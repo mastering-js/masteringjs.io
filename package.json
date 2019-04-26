@@ -1,0 +1,17 @@
+{
+  "name": "masteringjs.io",
+  "devDependencies": {
+    "acquit": "1.x",
+    "acquit-ignore": "0.1.x",
+    "acquit-require": "0.1.x",
+    "highlight.js": "9.12.0",
+    "marked": "0.6.x",
+    "mocha": "6.x",
+    "serve": "11.x",
+    "axios": "0.18.x"
+  },
+  "scripts": {
+    "serve": "serve .",
+    "test": "mocha examples/*.test.js"
+  }
+}

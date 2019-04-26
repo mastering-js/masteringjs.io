@@ -1,0 +1,57 @@
+
+<html>
+  <head>
+    <title>Mastering JavaScript: Setting Request Headers with Axios</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Setting Request Headers with Axios</h1>
+      <p>To set <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP request headers</a> with
+an <a href="https://www.npmjs.com/package/axios">axios</a> GET request, you should pass
+an object with a <code>headers</code> property as the 2nd argument.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-comment">// httpbin.org gives you the headers in the response</span>
+<span class="hljs-comment">// body `res.data`.</span>
+<span class="hljs-comment">// See: https://httpbin.org/#/HTTP_Methods/get_get</span>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
+  }
+});
+
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
+<p>With PUT and POST requests, the 2nd argument is the request body, so you should
+pass an object with a <code>headers</code> property as the 3rd argument.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
+  }
+});
+
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
+
+    </div>
+  </body>
+</html>

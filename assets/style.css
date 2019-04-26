@@ -1,0 +1,94 @@
+body {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #0366d6;
+}
+
+pre {
+  font-family: 'Inconsolata', monospace;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Nav */
+
+.nav {
+  width: 100%;
+  background-color: #fafbfc;
+  height: 55px;
+  border-bottom: 1px solid #ddd;
+}
+
+.branding {
+  padding-top: 10px;
+  padding-left: 0.25em;
+  font-size: 1.5em;
+}
+
+.branding .logo {
+  float: left;
+}
+
+.branding .name {
+  float: left;
+  margin-top: 0.2em;
+  margin-left: 0.25em;
+}
+
+.branding .name a {
+  color: black;
+}
+
+.logo img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.links {
+  padding-top: 4px;
+  float: right;
+  margin-right: 1em;
+}
+
+.links a {
+  margin-right: 0.5em;
+}
+
+/* End Nav */
+
+.content {
+  position: relative;
+  padding: 15px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.post .title {
+  font-size: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+.post .tags {
+  margin-top: 1em;
+}
+
+.post .tags .tag {
+  color: white;
+  background-color: #0366d6;
+  border-radius: 3px;
+  padding: 5px;
+}
