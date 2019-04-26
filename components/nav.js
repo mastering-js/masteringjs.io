@@ -1,5 +1,7 @@
 'use strict';
 
+const track = require('./track');
+
 module.exports = () => `
 <div class="nav">
   <div class="branding">
@@ -14,6 +16,7 @@ module.exports = () => `
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
     </div>
     <div style="clear: both"></div>
+    ${track()}
   </div>
 </div>
 `;
