@@ -20,9 +20,19 @@ marked.setOptions({
 run().then(() => console.log('done')).catch(err => console.log(err));
 
 async function run() {
-  const tests = [...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8'))];
+  const tests = [
+    ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8'))
+  ];
 
   const tutorials = [
+    {
+      title: 'Get the Current Timestamp in JavaScript',
+      raw: './tutorials/fundamentals/timestamps.md',
+      url: '/tutorials/fundamentals/timestamps',
+      description: 'Learn how to get the current Unix time in JavaScript.',
+      tags: ['fundamentals']
+    },
     {
       title: 'Setting Request Headers with Axios',
       raw: './tutorials/axios/headers.md',
@@ -31,15 +41,6 @@ async function run() {
       tags: ['axios']
     }
   ];
-
-  const byTag = tutorials.reduce((obj, t) => {
-    for (const tag of t.tags) {
-      if (obj[tag] == null) {
-        obj[tag] = []
-      }
-      obj[tag].push(t)
-    }
-  }, {});
 
   fs.writeFileSync('./index.html', home({ posts: tutorials }));
 
