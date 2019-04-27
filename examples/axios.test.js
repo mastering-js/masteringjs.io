@@ -23,7 +23,7 @@ describe('axios', function() {
   });
 
   it('setting headers with POST', async function() {
-    const res = await axios.post('https://httpbin.org/get', { hello: 'world' }, {
+    const res = await axios.post('https://httpbin.org/post', { hello: 'world' }, {
       headers: {
         'Test-Header': 'test-value'
       }
