@@ -8,7 +8,9 @@
     "marked": "0.6.x",
     "mocha": "6.x",
     "serve": "11.x",
-    "axios": "0.18.x"
+    "axios": "0.18.x",
+    "mongoose": "5.x",
+    "mongoose-beautiful-unique-validation": "7.x"
   },
   "scripts": {
     "serve": "serve .",

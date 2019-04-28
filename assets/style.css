@@ -27,6 +27,10 @@ p code {
   color: #00386c;
 }
 
+p {
+  line-height: 1.5em;
+}
+
 /* Nav */
 
 .nav {

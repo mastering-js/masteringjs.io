@@ -22,10 +22,18 @@ run().then(() => console.log('done')).catch(err => console.log(err));
 async function run() {
   const tests = [
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
-    ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8'))
+    ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8'))
   ];
 
   const tutorials = [
+    {
+      title: 'Debug E11000 Errors in Mongoose',
+      raw: './tutorials/mongoose/duplicate_key.md',
+      url: '/tutorials/mongoose/e11000-duplicate-key',
+      description: 'Learn how to understand and debug E11000 errors in Mongoose.',
+      tags: ['mongoose']
+    },
     {
       title: 'Get the Current Timestamp in JavaScript',
       raw: './tutorials/fundamentals/timestamps.md',
