@@ -28,6 +28,13 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understand valueOf() in JavaScript',
+      raw: './tutorials/fundamentals/valueof.md',
+      url: '/tutorials/fundamentals/valueof',
+      description: 'Learn what String valueOf(), Number valueOf(), and Date valueOf() have in common.',
+      tags: ['mongoose']
+    },
+    {
       title: 'Debug E11000 Errors in Mongoose',
       raw: './tutorials/mongoose/duplicate_key.md',
       url: '/tutorials/mongoose/e11000-duplicate-key',

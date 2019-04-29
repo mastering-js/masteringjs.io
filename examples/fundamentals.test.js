@@ -25,4 +25,57 @@ describe('Fundamentals', function() {
     assert.equal(d.valueOf(), 1559347200000);
     // acquit:ignore:end
   });
+
+  describe('valueOf', function() {
+    it('for string, number, date', function() {
+      const s = new String('test');
+      typeof s; // 'object'
+      s.valueOf(); // 'test'
+      typeof s.valueOf(); // 'string'
+
+      const n = new Number(42);
+      n.valueOf(); // 42
+
+      const d = new Date('2019-06-01');
+      d.valueOf(); // 1559347200000
+      // acquit:ignore:start
+      assert.strictEqual(s.valueOf(), 'test');
+      assert.strictEqual(n.valueOf(), 42);
+      assert.strictEqual(d.valueOf(), 1559347200000);
+      // acquit:ignore:end
+    });
+
+    it('compare custom objects', function() {
+      class MyClass {
+        valueOf() {
+          return 0;
+        }
+      }
+
+      const obj = new MyClass();
+
+      // For the purposes of `==`, `<`, `>`, `>=` and `<=`, `obj` is
+      // equivalent to 0.
+      obj < Number(-1); // false
+      obj > Number(-1); // true
+      obj == Number(0); // true
+      obj < -1; // false
+      obj > -1; // true
+      obj == 0; // true
+
+      // `===` skips calling `valueOf()`.
+      obj === Number(0); // false
+      // acquit:ignore:start
+      assert.ok(!(obj < Number(-1)));
+      assert.ok(obj > Number(-1));
+      assert.ok(obj == Number(0));
+
+      assert.ok(!(obj < -1));
+      assert.ok(obj > -1);
+      assert.ok(obj == 0);
+
+      assert.ok(!(obj === Number(0)));
+      // acquit:ignore:end
+    });
+  });
 });
