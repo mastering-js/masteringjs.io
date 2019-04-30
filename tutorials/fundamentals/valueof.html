@@ -65,7 +65,7 @@ n.valueOf(); <span class="hljs-comment">// 42</span>
 <span class="hljs-keyword">const</span> d = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 d.valueOf(); <span class="hljs-comment">// 1559347200000</span></code></pre>
 <p>JavaScript uses the <code>valueOf()</code> function for type coercion when comparing values using the operators <code>==</code> (as opposed to <code>===</code>), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>. For example, here is <a href="https://tc39.github.io/ecma262/#sec-abstract-relational-comparison">the part of the JavaScript language specification that discusses using <code>valueOf()</code> for the <code>&lt;</code> operator</a>.</p>
-<p>Suppose you have an object whose <code>valueOf()</code> always returns 0. As far as the <code>&lt;</code> and <code>==</code> operators are concerned, this object is equivalent to 0.</p>
+<p>Suppose you have an object whose <code>valueOf()</code> always returns 0. As far as the <code>&lt;</code> and <code>==</code> operators are concerned, this object is equivalent to the primitive number 0. However, for <code>==</code>, this object is <strong>not</strong> equivalent to <code>new Number(0)</code>, because JavaScript does <strong>not</strong> call <code>valueOf()</code> when using <code>==</code> to compare two objects.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
   valueOf() {
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
@@ -74,14 +74,19 @@ d.valueOf(); <span class="hljs-comment">// 1559347200000</span></code></pre>
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
 
-<span class="hljs-comment">// For the purposes of `==`, `&lt;`, `&gt;`, `&gt;=` and `&lt;=`, `obj` is</span>
+<span class="hljs-comment">// For the purposes of `&lt;`, `&gt;`, `&gt;=` and `&lt;=`, `obj` is</span>
 <span class="hljs-comment">// equivalent to 0.</span>
-obj &lt; <span class="hljs-built_in">Number</span>(<span class="hljs-number">-1</span>); <span class="hljs-comment">// false</span>
-obj &gt; <span class="hljs-built_in">Number</span>(<span class="hljs-number">-1</span>); <span class="hljs-comment">// true</span>
-obj == <span class="hljs-built_in">Number</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// true</span>
+obj &lt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">-1</span>); <span class="hljs-comment">// false</span>
+obj &gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">-1</span>); <span class="hljs-comment">// true</span>
 obj &lt; <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
 obj &gt; <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
+
+<span class="hljs-comment">// For the purposes of `==`, `obj` is equivalent to 0 as a primitive,</span>
+<span class="hljs-comment">// but not 0 as a Number object. This is because both `obj` and</span>
+<span class="hljs-comment">// `new Number(0)` are objects, so JS does not call `valueOf()`.</span>
+obj == <span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// false</span>
 obj == <span class="hljs-number">0</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-number">0</span> == obj; <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// `===` skips calling `valueOf()`.</span>
 obj === <span class="hljs-built_in">Number</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// false</span></code></pre>

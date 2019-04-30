@@ -54,21 +54,27 @@ describe('Fundamentals', function() {
 
       const obj = new MyClass();
 
-      // For the purposes of `==`, `<`, `>`, `>=` and `<=`, `obj` is
+      // For the purposes of `<`, `>`, `>=` and `<=`, `obj` is
       // equivalent to 0.
-      obj < Number(-1); // false
-      obj > Number(-1); // true
-      obj == Number(0); // true
+      obj < new Number(-1); // false
+      obj > new Number(-1); // true
       obj < -1; // false
       obj > -1; // true
+
+      // For the purposes of `==`, `obj` is equivalent to 0 as a primitive,
+      // but not 0 as a Number object. This is because both `obj` and
+      // `new Number(0)` are objects, so JS does not call `valueOf()`.
+      obj == new Number(0); // false
       obj == 0; // true
+      0 == obj; // true
 
       // `===` skips calling `valueOf()`.
       obj === Number(0); // false
       // acquit:ignore:start
-      assert.ok(!(obj < Number(-1)));
-      assert.ok(obj > Number(-1));
-      assert.ok(obj == Number(0));
+      assert.ok(!(obj < new Number(-1)));
+      assert.ok(obj > new Number(-1));
+      assert.ok(!(obj == new Number(0)));
+      assert.ok(0 == obj);
 
       assert.ok(!(obj < -1));
       assert.ok(obj > -1);

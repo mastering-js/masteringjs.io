@@ -15,7 +15,7 @@ The `valueOf()` function should return a value whose `typeof` is one of the abov
 
 JavaScript uses the `valueOf()` function for type coercion when comparing values using the operators `==` (as opposed to `===`), `<`, `>`, `<=`, and `>=`. For example, here is [the part of the JavaScript language specification that discusses using `valueOf()` for the `<` operator](https://tc39.github.io/ecma262/#sec-abstract-relational-comparison).
 
-Suppose you have an object whose `valueOf()` always returns 0. As far as the `<` and `==` operators are concerned, this object is equivalent to 0.
+Suppose you have an object whose `valueOf()` always returns 0. As far as the `<` and `==` operators are concerned, this object is equivalent to the primitive number 0. However, for `==`, this object is **not** equivalent to `new Number(0)`, because JavaScript does **not** call `valueOf()` when using `==` to compare two objects.
 
 ```javascript
 [require:valueOf.*compare custom objects]
