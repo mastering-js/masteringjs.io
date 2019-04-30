@@ -28,6 +28,13 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Calculate Standard Deviation in JavaScript',
+      raw: './tutorials/fundamentals/stddev.md',
+      url: '/tutorials/fundamentals/stddev',
+      description: 'Use Mathjs to calculate standard deviation in Node.js and the browser.',
+      tags: ['fundamentals']
+    },
+    {
       title: 'Understand valueOf() in JavaScript',
       raw: './tutorials/fundamentals/valueof.md',
       url: '/tutorials/fundamentals/valueof',

@@ -78,4 +78,30 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  it('standard deviation normal', function() {
+    const math = require('mathjs');
+
+    // Can pass an array to the `stddev()` function:
+    math.std([5, 5, 5, 5]); // 0
+
+    // Or a list of arguments (also called a "spread")
+    math.std(1, 5, 9); // 4
+    // acquit:ignore:start
+    assert.equal(math.std([5, 5, 5, 5]), 0);
+    assert.equal(math.std(1, 5, 9), 4);
+    // acquit:ignore:end
+  });
+
+  it('standard deviation uncorrected', function() {
+    const math = require('mathjs');
+
+    // Must pass an array if you're using options
+    math.std([1, 3], 'uncorrected'); // 1
+    math.std([2, 4, 6, 8], 'biased'); // 2
+    // acquit:ignore:start
+    assert.equal(math.std([1, 3], 'uncorrected'), 1);
+    assert.equal(math.std([2, 4, 6, 8], 'biased'), 2);
+    // acquit:ignore:end
+  });
 });

@@ -1,0 +1,65 @@
+
+<html>
+  <head>
+    <title>Calculate Standard Deviation in JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Calculate Standard Deviation in JavaScript</h1>
+      <p><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is a measure of how far a set of numbers deviates from the average. Small standard deviation means the numbers are all relatively close to the mean. JavaScript doesn&#39;t have a built-in standard deviation function, but <a href="https://www.npmjs.com/package/mathjs">Math.js</a> is a well supported library with a full featured standard deviation function.</p>
+<p>Here&#39;s an example of using <a href="https://mathjs.org/docs/reference/functions/std.html">Math.js&#39; <code>std()</code> function</a> to calculate standard deviation.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
+
+<span class="hljs-comment">// Can pass an array to the `stddev()` function:</span>
+math.std([<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// 0</span>
+
+<span class="hljs-comment">// Or a list of arguments (also called a "spread")</span>
+math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span></code></pre>
+<p>Math.js also has support for bias correction. Math.js&#39; <code>std()</code> function uses <a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel&#39;s correction</a> by default, but takes a 2nd argument <code>normalization</code> for configuring this. By default, given an array of length <code>n</code>, the <code>std()</code> function divides the variance by <code>n - 1</code>. You can pass <code>&#39;uncorrected&#39;</code> to make <code>std()</code> divide by <code>n</code>, or <code>&#39;biased&#39;</code> to make <code>std()</code> divide by <code>n + 1</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
+
+<span class="hljs-comment">// Must pass an array if you're using options</span>
+math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
+math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span></code></pre>
+
+    </div>
+  </body>
+</html>
