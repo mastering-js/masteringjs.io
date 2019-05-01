@@ -1,0 +1,118 @@
+
+<html>
+  <head>
+    <title>Updating Documents in Mongoose - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Updating Documents in Mongoose</h1>
+      <p><a href="https://mongoosejs.com/">Mongoose</a> has 4 different ways to update a document. Here&#39;s a list:</p>
+<ul>
+<li><a href="https://mongoosejs.com/docs/api.html#document_Document-save"><code>Document#save()</code></a></li>
+<li><a href="https://mongoosejs.com/docs/api.html#model_Model.updateOne"><code>Model.updateOne()</code></a> and <a href="https://mongoosejs.com/docs/api.html#model_Model.updateMany"><code>Model.updateMany()</code></a></li>
+<li><a href="https://mongoosejs.com/docs/api.html#document_Document-updateOne"><code>Document#updateOne()</code></a></li>
+<li><a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code></a></li>
+</ul>
+<p>What&#39;s the difference between these 4 ways? Let&#39;s take a look at what each of these functions do.</p>
+<h2 id="using-save">Using <code>save()</code></h2>
+<p>Below is an example of using <code>save()</code> to update Jon Snow&#39;s title.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span> });
+<span class="hljs-keyword">const</span> CharacterModel = mongoose.model(<span class="hljs-string">'Character'</span>, schema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.create({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span>,
+  <span class="hljs-attr">title</span>: <span class="hljs-string">`Lord Commander of the Night's Watch`</span>
+});
+
+<span class="hljs-comment">// Update the document by setting a property and calling `save()`</span>
+doc.title = <span class="hljs-string">'King in the North'</span>;
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
+<p>This simple example has a couple nuances. First, <code>save()</code> is a method on a document, which means you must have a document to save. You need to either <code>create()</code> or use <a href="http://thecodebarbarian.com/how-find-works-in-mongoose.html"><code>find()</code></a> to get a document.</p>
+<p>Second, Mongoose documents have change tracking. Under the hood, when you call <code>doc.save()</code>, Mongoose knows you set <code>title</code> and transforms your <code>save()</code> call into <code>updateOne({ $set: { title } })</code>. Try running <a href="https://mongoosejs.com/docs/api.html#mongoose_Mongoose-set">Mongoose with debug mode</a> to see what queries Mongoose executes.</p>
+<h2 id="using-modelupdateone-and-modelupdatemany">Using <code>Model.updateOne()</code> and <code>Model.updateMany()</code></h2>
+<p>Using <code>Model.updateOne()</code> and <code>Model.updateMany()</code>, you can update the document without loading it from the database first. In the below example, the document with <code>name = &#39;Jon Snow&#39;</code> is not in the Node.js process&#39; memory when <code>updateOne()</code> is called.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Update the document using `updateOne()`</span>
+<span class="hljs-keyword">await</span> CharacterModel.updateOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> }, {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'King in the North'</span>
+});
+
+<span class="hljs-comment">// Load the document to see the updated value</span>
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.findOne();
+doc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
+<p><code>updateMany()</code> is similar. The difference between these two functions is that <code>updateOne()</code> will update <strong>at most one</strong> document, whereas <code>updateMany()</code> will update every document that matches the filter.</p>
+<p>You should use <code>save()</code> rather than <code>updateOne()</code> and <code>updateMany()</code> where possible. However, <code>Model.updateOne()</code> and <code>Model.updateMany()</code> have a few advantages:</p>
+<ul>
+<li><code>updateOne()</code> is <a href="https://docs.mongodb.com/manual/core/write-operations-atomicity/#atomicity">atomic</a>. If you load a document using <code>find()</code>, it may change before you <code>save()</code> it.</li>
+<li><code>updateOne()</code> doesn&#39;t require you to load the document into memory, which may give you better performance if your documents are huge.</li>
+</ul>
+<h2 id="using-documentupdateone">Using <code>Document#updateOne()</code></h2>
+<p>The <code>Document#updateOne()</code> function is syntactic sugar for <code>Model.updateOne()</code>. If you already have the document in memory, <code>doc.updateOne()</code> structures a <code>Model.updateOne()</code> call for you.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Load the document</span>
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> });
+
+<span class="hljs-comment">// Update the document using `Document#updateOne()`</span>
+<span class="hljs-comment">// Equivalent to `CharacterModel.updateOne({ _id: doc._id }, update)`</span>
+<span class="hljs-keyword">const</span> update = { <span class="hljs-attr">title</span>: <span class="hljs-string">'King in the North'</span> };
+<span class="hljs-keyword">await</span> doc.updateOne(update);
+
+<span class="hljs-keyword">const</span> updatedDoc = <span class="hljs-keyword">await</span> CharacterModel.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> });
+updatedDoc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
+<p>Generally, <code>Document#updateOne()</code> is rarely useful. You&#39;re better off using <code>save()</code> and using <code>Model.updateOne()</code> for cases when <code>save()</code> is not flexible enough.</p>
+<h2 id="using-modelfindoneandupdate">Using <code>Model.findOneAndUpdate()</code></h2>
+<p>The <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> behaves similarly to <code>updateOne()</code>: it atomically updates the first document that matches the first parameter <code>filter</code>. Unlike <code>updateOne()</code>, it gives you back the updated document.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.findOneAndUpdate(
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> },
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">'King in the North'</span> },
+  <span class="hljs-comment">// If `new` isn't true, `findOneAndUpdate()` will return the</span>
+  <span class="hljs-comment">// document as it was _before_ it was updated.</span>
+  { <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span> }
+);
+
+doc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
+<h2 id="summary">Summary</h2>
+<p>In general, you should use <code>save()</code> to update a document in Mongoose, unless you
+need an atomic update. Here&#39;s a summary of the key features of all 4 ways to update a document:</p>
+<img src="/assets/mongoose_update.png" style="width:1000px">
+
+
+    </div>
+  </body>
+</html>

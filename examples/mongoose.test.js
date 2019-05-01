@@ -4,6 +4,7 @@ const assert = require('assert');
 const mongoose = require('mongoose');
 
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 const { Schema } = mongoose;
 
@@ -107,5 +108,83 @@ describe('Mongoose', function() {
     assert.ok(_error);
     assert.ok(_error.errors['_id'].message.includes('is not unique'), _error.message);
     // acquit:ignore:end
+  });
+
+  describe('update', function() {
+    let CharacterModel;
+
+    beforeEach(async function() {
+      mongoose.deleteModel(/^Character$/);
+      const schema = new mongoose.Schema({ name: String, title: String });
+      CharacterModel = mongoose.model('Character', schema);
+
+      await CharacterModel.deleteMany({});
+      await CharacterModel.create({
+        name: 'Jon Snow',
+        title: `Lord Commander of the Night's Watch`
+      });
+    });
+
+    it('using save', async function() {
+      // acquit:ignore:start
+      mongoose.deleteModel(/^Character$/);
+      // acquit:ignore:end
+      const schema = new mongoose.Schema({ name: String, title: String });
+      const CharacterModel = mongoose.model('Character', schema);
+
+      const doc = await CharacterModel.create({
+        name: 'Jon Snow',
+        title: `Lord Commander of the Night's Watch`
+      });
+
+      // Update the document by setting a property and calling `save()`
+      doc.title = 'King in the North';
+      await doc.save();
+    });
+
+    it('using model `updateOne()`', async function() {
+      // Update the document using `updateOne()`
+      await CharacterModel.updateOne({ name: 'Jon Snow' }, {
+        title: 'King in the North'
+      });
+
+      // Load the document to see the updated value
+      const doc = await CharacterModel.findOne();
+      doc.title; // "King in the North"
+      // acquit:ignore:start
+      assert.equal(doc.title, 'King in the North');
+      // acquit:ignore:end
+    });
+
+    it('using document `updateOne()`', async function() {
+      // Load the document
+      const doc = await CharacterModel.findOne({ name: 'Jon Snow' });
+
+      // Update the document using `Document#updateOne()`
+      // Equivalent to `CharacterModel.updateOne({ _id: doc._id }, update)`
+      const update = { title: 'King in the North' };
+      await doc.updateOne(update);
+
+      const updatedDoc = await CharacterModel.findOne({ name: 'Jon Snow' });
+      updatedDoc.title; // "King in the North"
+      // acquit:ignore:start
+      assert.equal(updatedDoc.title, 'King in the North');
+      // acquit:ignore:end
+    });
+
+    it('using findOneAndUpdate', async function() {
+      const doc = await CharacterModel.findOneAndUpdate(
+        { name: 'Jon Snow' },
+        { title: 'King in the North' },
+        // If `new` isn't true, `findOneAndUpdate()` will return the
+        // document as it was _before_ it was updated.
+        { new: true }
+      );
+
+      doc.title; // "King in the North"
+      // acquit:ignore:start
+      assert.equal(doc.title, 'King in the North');
+      // acquit:ignore:end
+    });
   });
 });

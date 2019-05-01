@@ -28,6 +28,13 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Updating Documents in Mongoose',
+      raw: './tutorials/mongoose/update.md',
+      url: '/tutorials/mongoose/update',
+      description: 'Learn about the different ways to update a document in Mongoose.',
+      tags: ['mongoose']
+    },
+    {
       title: 'Calculate Standard Deviation in JavaScript',
       raw: './tutorials/fundamentals/stddev.md',
       url: '/tutorials/fundamentals/stddev',
