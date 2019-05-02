@@ -28,6 +28,13 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Format Dates Using Vanilla JavaScript',
+      raw: './tutorials/fundamentals/date_format.md',
+      url: '/tutorials/fundamentals/date_format',
+      description: 'Learn about formatting dates using the `toLocaleString()` function, with no outside libraries',
+      tags: ['fundamentals']
+    },
+    {
       title: 'Updating Documents in Mongoose',
       raw: './tutorials/mongoose/update.md',
       url: '/tutorials/mongoose/update',

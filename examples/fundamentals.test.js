@@ -110,4 +110,94 @@ describe('Fundamentals', function() {
     assert.equal(math.std([2, 4, 6, 8], 'biased'), 2);
     // acquit:ignore:end
   });
+
+  describe('toLocaleString', function() {
+    it('basic', function() {
+      // No 'Z' at the end means JavaScript will use the server's timezone
+      // as opposed to UTC.
+      const date = new Date('2019-06-01T00:00:00.000');
+
+      // "Sat, June 01, 2019"
+      date.toLocaleString('en-US', {
+        weekday: 'short', // "Sat"
+        month: 'long', // "June"
+        day: '2-digit', // "01"
+        year: 'numeric' // "2019"
+      });
+      // acquit:ignore:start
+      assert.equal(date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      }), 'Sat, June 01, 2019');
+      // acquit:ignore:end
+    });
+
+    it('vs toLocaleDateString', function() {
+      const date = new Date('2019-06-01T08:00:00.000');
+
+      // "6/1/2019, 8:00:00 AM"
+      date.toLocaleString('en-US');
+      // "6/1/2019" with no time portion
+      date.toLocaleDateString();
+
+      // But you can still include `hours` and `minutes` using options
+      // with `toLocaleDateString()`.
+      date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit'
+      }); // "June 01, 2019, 8 AM"
+      // acquit:ignore:start
+      assert.equal(date.toLocaleString('en-US'), '6/1/2019, 8:00:00 AM');
+      assert.equal(date.toLocaleDateString('en-US'), '6/1/2019');
+      assert.equal(date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit'
+      }), 'June 01, 2019, 8 AM');
+      // acquit:ignore:end
+    });
+
+    it('timezone', function() {
+      const date = new Date('2019-06-01T08:00:00.000Z');
+      // "June 01, 2019, 2 AM"
+      date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        timeZone: 'America/Denver' // 6 hours behind UTC
+      });
+      // acquit:ignore:start
+      assert.equal(date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        timeZone: 'America/Denver'
+      }), 'June 01, 2019, 2 AM');
+      // acquit:ignore:end
+    });
+
+    it('yyyy-mm-dd', function() {
+      const date = new Date('2019-06-01T00:00:00.000');
+      // "June 01, 2019, 2 AM"
+      date.toLocaleDateString('fr-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
+      // acquit:ignore:start
+      assert.equal(date.toLocaleDateString('fr-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }), '2019-06-01');
+      // acquit:ignore:end
+    });
+  });
 });

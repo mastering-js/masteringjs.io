@@ -1,0 +1,96 @@
+
+<html>
+  <head>
+    <title>Format Dates Using Vanilla JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Format Dates Using Vanilla JavaScript</h1>
+      <p>There are numerous libraries, like <a href="https://www.npmjs.com/package/moment">moment</a>, that allow you to format dates in JavaScript. However, you don&#39;t need them for basic date formatting: the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString"><code>Date#toLocaleString()</code> function</a> lets you convert dates into custom string formats with no outside libraries.</p>
+<h2 id="introducing-tolocalestring">Introducing <code>toLocaleString()</code></h2>
+<p>The <code>toLocaleString()</code> function takes 2 arguments:</p>
+<p>1) A string <code>locale</code> that represents the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument">high level format of the date</a>, like <code>&#39;en-US&#39;</code> or <code>&#39;default&#39;</code>.</p>
+<p>2) An object <code>options</code> that contains how to format various date components, like <code>month</code> or <code>minutes</code>.</p>
+<p>Here&#39;s an example of formatting a date to include the short form of the weekday and the full date.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// No 'Z' at the end means JavaScript will use the server's timezone</span>
+<span class="hljs-comment">// as opposed to UTC.</span>
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T00:00:00.000'</span>);
+
+<span class="hljs-comment">// "Sat, June 01, 2019"</span>
+date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
+  <span class="hljs-attr">weekday</span>: <span class="hljs-string">'short'</span>, <span class="hljs-comment">// "Sat"</span>
+  month: <span class="hljs-string">'long'</span>, <span class="hljs-comment">// "June"</span>
+  day: <span class="hljs-string">'2-digit'</span>, <span class="hljs-comment">// "01"</span>
+  year: <span class="hljs-string">'numeric'</span> <span class="hljs-comment">// "2019"</span>
+});</code></pre>
+<p><strong>Note:</strong> Don&#39;t confuse <code>toLocaleString()</code> with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString"><code>toLocaleDateString()</code></a>. The <code>toLocaleDateString()</code> function is similar to <code>toLocaleString()</code>, except for it doesn&#39;t include the time portion of the date by default.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T08:00:00.000'</span>);
+
+<span class="hljs-comment">// "6/1/2019, 8:00:00 AM"</span>
+date.toLocaleString(<span class="hljs-string">'en-US'</span>);
+<span class="hljs-comment">// "6/1/2019" with no time portion</span>
+date.toLocaleDateString();
+
+<span class="hljs-comment">// But you can still include `hours` and `minutes` using options</span>
+<span class="hljs-comment">// with `toLocaleDateString()`.</span>
+date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
+  <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
+  <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
+  <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>
+}); <span class="hljs-comment">// "June 01, 2019, 8 AM"</span></code></pre>
+<h2 id="timezones">Timezones</h2>
+<p>The <code>toLocaleString()</code> function also lets you specify a timezone to format the date in. Which timezones are supported is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#Parameters">implementation-specific</a>, so you shouldn&#39;t rely on named timezones like &#39;America/Los_Angeles&#39; or &#39;America/New_York&#39; without testing your environment first. For example, Node.js <a href="https://github.com/nodejs/help/issues/1843">pulls timezone data from your OS</a>, so that means your Node process most likely has timezone data, but that is not strictly guaranteed.</p>
+<p>Below is an example of formatting a UTC date with a specific timezone, <code>&#39;America/Denver&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T08:00:00.000Z'</span>);
+<span class="hljs-comment">// "June 01, 2019, 2 AM"</span>
+date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
+  <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
+  <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
+  <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">timeZone</span>: <span class="hljs-string">'America/Denver'</span> <span class="hljs-comment">// 6 hours behind UTC</span>
+});</code></pre>
+<h2 id="limitations">Limitations</h2>
+
+    </div>
+  </body>
+</html>
