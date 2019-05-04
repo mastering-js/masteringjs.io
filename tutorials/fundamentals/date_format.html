@@ -90,6 +90,16 @@ date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">timeZone</span>: <span class="hljs-string">'America/Denver'</span> <span class="hljs-comment">// 6 hours behind UTC</span>
 });</code></pre>
 <h2 id="limitations">Limitations</h2>
+<p>The <code>toLocaleString()</code> function is good enough for simple human-readable formatting, but it doesn&#39;t have the same level of control that you have with <a href="https://www.npmjs.com/package/moment">moment</a>.</p>
+<p>For example, <code>toLocaleString()</code> doesn&#39;t have a way to output a date in <code>YYYYMMDD</code> format, such as &#39;20190601&#39; for June 1, 2019. You can output a date in <code>YYYY-MM-DD</code>, but you have to guess a compatible locale. There&#39;s no way to output <code>YYYY-MM-DD</code> using the <code>&#39;en-US&#39;</code> locale, but you can do it with the <code>&#39;fr-CA&#39;</code> locale.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T00:00:00.000'</span>);
+<span class="hljs-comment">// "June 01, 2019, 2 AM"</span>
+date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
+  <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
+  <span class="hljs-attr">month</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>
+});</code></pre>
+<p>Unfortunately, figuring out the right locale requires trial and error. If you need more powerful formatting than just &#39;June 1, 2019&#39;, you&#39;re better off using moment.</p>
 
     </div>
   </body>

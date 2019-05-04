@@ -34,4 +34,38 @@ describe('axios', function() {
     assert.equal(res.data.headers['Test-Header'], 'test-value');
     // acquit:ignore:end
   });
+
+  describe('basic auth', function() {
+    it('works', async function() {
+      const res = await axios.get('https://httpbin.org/basic-auth/foo/bar', {
+        // Axios looks for the `auth` option, and, if it is set, formats a
+        // basic auth header for you automatically.
+        auth: {
+          username: 'foo',
+          password: 'bar'
+        }
+      });
+      res.status; // 200
+      // acquit:ignore:start
+      assert.equal(res.status, 200);
+      // acquit:ignore:end
+    });
+
+    it('error case', async function() {
+      const err = await axios.
+        get('https://httpbin.org/basic-auth/foo/bar', {
+          auth: {
+            username: 'foo',
+            password: 'baz' // Bad password
+          }
+        }).
+        catch(err => err);
+      err.message; // "Request failed with status code 401"
+      err.response.status; // 401 "Unauthorized"
+      // acquit:ignore:start
+      assert.equal(err.message, 'Request failed with status code 401');
+      assert.equal(err.response.status, 401);
+      // acquit:ignore:end
+    });
+  });
 });

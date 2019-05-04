@@ -28,6 +28,13 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Basic Auth Using the Axios HTTP Client',
+      raw: './tutorials/axios/basic_auth.md',
+      url: '/tutorials/axios/basic_auth',
+      description: 'Learn how to do HTTP basic authentication using Axios',
+      tags: ['axios']
+    },
+    {
       title: 'Format Dates Using Vanilla JavaScript',
       raw: './tutorials/fundamentals/date_format.md',
       url: '/tutorials/fundamentals/date_format',
