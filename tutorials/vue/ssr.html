@@ -1,0 +1,71 @@
+
+<html>
+  <head>
+    <title>Server Side Rendering with Vue and Express - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Server Side Rendering with Vue and Express</h1>
+      <p><a href="https://ssr.vuejs.org/guide/#installation">Vue has solid support for server-side rendering in Node.js</a>. This means that, given a Vue app,
+you can render the app in an Express endpoint using the <a href="https://www.npmjs.com/package/vue-server-renderer"><code>vue-server-renderer</code> library</a>.</p>
+<p>Below is an example of rendering a Vue app using <a href="https://www.npmjs.com/package/express">Express</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
+<span class="hljs-keyword">const</span> expressApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-comment">// Initialize with data from the request.</span>
+    data: { <span class="hljs-attr">content</span>: req.query.content },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;{{content}}&lt;/div&gt;'</span>
+  });
+  renderToString(app).
+    <span class="hljs-comment">// Sends '&lt;div data-server-rendered="true"&gt;Hello, World&lt;/div&gt;'</span>
+    then(<span class="hljs-function"><span class="hljs-params">html</span> =&gt;</span> res.send(html)).
+    catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);</code></pre>
+<p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
+<p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
+
+    </div>
+  </body>
+</html>

@@ -4,6 +4,7 @@
     "acquit": "1.x",
     "acquit-ignore": "0.1.x",
     "acquit-require": "0.1.x",
+    "express": "4.x",
     "highlight.js": "9.12.0",
     "marked": "0.6.x",
     "mocha": "6.x",
@@ -11,7 +12,9 @@
     "axios": "0.18.x",
     "mathjs": "5.9.x",
     "mongoose": "5.x",
-    "mongoose-beautiful-unique-validation": "7.x"
+    "mongoose-beautiful-unique-validation": "7.x",
+    "vue": "2.x",
+    "vue-server-renderer": "2.x"
   },
   "scripts": {
     "serve": "serve .",

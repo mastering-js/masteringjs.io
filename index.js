@@ -23,10 +23,18 @@ async function run() {
   const tests = [
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
-    ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8'))
+    ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8'))
   ];
 
   const tutorials = [
+    {
+      title: 'Server Side Rendering with Vue and Express',
+      raw: './tutorials/vue/ssr.md',
+      url: '/tutorials/vue/ssr',
+      description: 'Learn how to render Vue components on the server side with Express',
+      tags: ['vue', 'express']
+    },
     {
       title: 'Basic Auth Using the Axios HTTP Client',
       raw: './tutorials/axios/basic_auth.md',
