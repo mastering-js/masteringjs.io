@@ -7,6 +7,7 @@ const layout = require('./components/layout');
 const list = require('./components/list');
 const marked = require('marked');
 const transform = require('acquit-require');
+const tutorialTemplate = require('./components/tutorial');
 
 require('acquit-ignore')();
 
@@ -107,6 +108,7 @@ async function run() {
     console.log(tutorial);
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
+    tutorial.content = tutorialTemplate({ tutorial, tutorials })
     const html = layout(tutorial);
     fs.writeFileSync('.' + tutorial.url + '.html', html);
   }

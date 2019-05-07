@@ -44,7 +44,8 @@
 
     <div class="content">
       <h1>Format Dates Using Vanilla JavaScript</h1>
-      <p>There are numerous libraries, like <a href="https://www.npmjs.com/package/moment">moment</a>, that allow you to format dates in JavaScript. However, you don&#39;t need them for basic date formatting: the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString"><code>Date#toLocaleString()</code> function</a> lets you convert dates into custom string formats with no outside libraries.</p>
+      
+  <p>There are numerous libraries, like <a href="https://www.npmjs.com/package/moment">moment</a>, that allow you to format dates in JavaScript. However, you don&#39;t need them for basic date formatting: the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString"><code>Date#toLocaleString()</code> function</a> lets you convert dates into custom string formats with no outside libraries.</p>
 <h2 id="introducing-tolocalestring">Introducing <code>toLocaleString()</code></h2>
 <p>The <code>toLocaleString()</code> function takes 2 arguments:</p>
 <p>1) A string <code>locale</code> that represents the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument">high level format of the date</a>, like <code>&#39;en-US&#39;</code> or <code>&#39;default&#39;</code>.</p>
@@ -100,6 +101,47 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>
 });</code></pre>
 <p>Unfortunately, figuring out the right locale requires trial and error. If you need more powerful formatting than just &#39;June 1, 2019&#39;, you&#39;re better off using moment.</p>
+
+  <hr>
+  <h2>More Fundamentals Tutorials</h2>
+  
+<div class="list">
+  
+<div class="post">
+  <div class="title">
+    <a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a>
+  </div>
+  <div class="description">
+    Use Mathjs to calculate standard deviation in Node.js and the browser.
+  </div>
+  <div class="tags">
+    
+<span class="tag">
+  fundamentals
+</span>
+
+  </div>
+</div>
+
+
+<div class="post">
+  <div class="title">
+    <a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a>
+  </div>
+  <div class="description">
+    Learn how to get the current Unix time in JavaScript.
+  </div>
+  <div class="tags">
+    
+<span class="tag">
+  fundamentals
+</span>
+
+  </div>
+</div>
+
+</div>
+
 
     </div>
   </body>

@@ -44,7 +44,8 @@
 
     <div class="content">
       <h1>Calculate Standard Deviation in JavaScript</h1>
-      <p><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is a measure of how far a set of numbers deviates from the average. Small standard deviation means the numbers are all relatively close to the mean. JavaScript doesn&#39;t have a built-in standard deviation function, but <a href="https://www.npmjs.com/package/mathjs">Math.js</a> is a well supported library with a full featured standard deviation function.</p>
+      
+  <p><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is a measure of how far a set of numbers deviates from the average. Small standard deviation means the numbers are all relatively close to the mean. JavaScript doesn&#39;t have a built-in standard deviation function, but <a href="https://www.npmjs.com/package/mathjs">Math.js</a> is a well supported library with a full featured standard deviation function.</p>
 <p>Here&#39;s an example of using <a href="https://mathjs.org/docs/reference/functions/std.html">Math.js&#39; <code>std()</code> function</a> to calculate standard deviation.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
 
@@ -59,6 +60,47 @@ math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>,
 <span class="hljs-comment">// Must pass an array if you're using options</span>
 math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
 math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span></code></pre>
+
+  <hr>
+  <h2>More Fundamentals Tutorials</h2>
+  
+<div class="list">
+  
+<div class="post">
+  <div class="title">
+    <a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a>
+  </div>
+  <div class="description">
+    Learn about formatting dates using the `toLocaleString()` function, with no outside libraries
+  </div>
+  <div class="tags">
+    
+<span class="tag">
+  fundamentals
+</span>
+
+  </div>
+</div>
+
+
+<div class="post">
+  <div class="title">
+    <a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a>
+  </div>
+  <div class="description">
+    Learn how to get the current Unix time in JavaScript.
+  </div>
+  <div class="tags">
+    
+<span class="tag">
+  fundamentals
+</span>
+
+  </div>
+</div>
+
+</div>
+
 
     </div>
   </body>

@@ -6,6 +6,7 @@
     "acquit-require": "0.1.x",
     "express": "4.x",
     "highlight.js": "9.12.0",
+    "lodash": "4.17.11",
     "marked": "0.6.x",
     "mocha": "6.x",
     "serve": "11.x",

@@ -44,7 +44,8 @@
 
     <div class="content">
       <h1>Enable HTTPS With Express</h1>
-      <p>Setting up an HTTPS server on localhost is tricky, but doable. You will need to create an HTTPS certificate and configure your browser to trust your new certificate. Thankfully, there&#39;s a tool for that.</p>
+      
+  <p>Setting up an HTTPS server on localhost is tricky, but doable. You will need to create an HTTPS certificate and configure your browser to trust your new certificate. Thankfully, there&#39;s a tool for that.</p>
 <p>First, you will need to set up <a href="https://github.com/FiloSottile/mkcert">mkcert</a>. The easiest way is to download the <a href="https://github.com/FiloSottile/mkcert/releases">prebuilt mkcert binary</a> for your platform. Below are the commands I ran to create a trusted certificate for <code>localhost</code>.</p>
 <pre><code>$ wget https:<span class="hljs-comment">//github.com/FiloSottile/mkcert/releases/download/v1.3.0/mkcert-v1.3.0-linux-amd64</span>
 $ chmod <span class="hljs-number">0755</span> ./mkcert-v1<span class="hljs-number">.3</span><span class="hljs-number">.0</span>-linux-amd64 
@@ -72,6 +73,35 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; res.send(<span cl
 }, app);
 
 <span class="hljs-keyword">await</span> server.listen(<span class="hljs-number">443</span>);</code></pre>
+
+  <hr>
+  <h2>More Express Tutorials</h2>
+  
+<div class="list">
+  
+<div class="post">
+  <div class="title">
+    <a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a>
+  </div>
+  <div class="description">
+    Learn how to render Vue components on the server side with Express
+  </div>
+  <div class="tags">
+    
+<span class="tag">
+  vue
+</span>
+
+
+<span class="tag">
+  express
+</span>
+
+  </div>
+</div>
+
+</div>
+
 
     </div>
   </body>
