@@ -22,12 +22,20 @@ run().then(() => console.log('done')).catch(err => console.log(err));
 async function run() {
   const tests = [
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8'))
   ];
 
   const tutorials = [
+    {
+      title: 'Enable HTTPS With Express',
+      raw: './tutorials/express/https.md',
+      url: '/tutorials/express/https',
+      description: 'Learn how to enable your Express server to respond on https://localhost',
+      tags: ['express']
+    },
     {
       title: 'Server Side Rendering with Vue and Express',
       raw: './tutorials/vue/ssr.md',

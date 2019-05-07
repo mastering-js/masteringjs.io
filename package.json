@@ -18,6 +18,6 @@
   },
   "scripts": {
     "serve": "serve .",
-    "test": "mocha examples/*.test.js"
+    "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
   }
 }
