@@ -9,6 +9,7 @@
     "lodash": "4.17.11",
     "marked": "0.6.x",
     "mocha": "6.x",
+    "moment": "2.x",
     "serve": "11.x",
     "axios": "0.18.x",
     "mathjs": "5.9.x",

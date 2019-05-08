@@ -6,6 +6,7 @@ const home = require('./components/home');
 const layout = require('./components/layout');
 const list = require('./components/list');
 const marked = require('marked');
+const moment = require('moment');
 const transform = require('acquit-require');
 const tutorialTemplate = require('./components/tutorial');
 
@@ -35,70 +36,80 @@ async function run() {
       raw: './tutorials/express/https.md',
       url: '/tutorials/express/https',
       description: 'Learn how to enable your Express server to respond on https://localhost',
-      tags: ['express']
+      tags: ['express'],
+      date: moment('2019-05-07')
     },
     {
       title: 'Server Side Rendering with Vue and Express',
       raw: './tutorials/vue/ssr.md',
       url: '/tutorials/vue/ssr',
       description: 'Learn how to render Vue components on the server side with Express',
-      tags: ['vue', 'express']
+      tags: ['vue', 'express'],
+      date: moment('2019-05-05')
     },
     {
       title: 'Basic Auth Using the Axios HTTP Client',
       raw: './tutorials/axios/basic_auth.md',
       url: '/tutorials/axios/basic_auth',
       description: 'Learn how to do HTTP basic authentication using Axios',
-      tags: ['axios']
+      tags: ['axios'],
+      date: moment('2019-05-04')
     },
     {
       title: 'Format Dates Using Vanilla JavaScript',
       raw: './tutorials/fundamentals/date_format.md',
       url: '/tutorials/fundamentals/date_format',
       description: 'Learn about formatting dates using the `toLocaleString()` function, with no outside libraries',
-      tags: ['fundamentals']
+      tags: ['fundamentals'],
+      date: moment('2019-05-03')
     },
     {
       title: 'Updating Documents in Mongoose',
       raw: './tutorials/mongoose/update.md',
       url: '/tutorials/mongoose/update',
       description: 'Learn about the different ways to update a document in Mongoose.',
-      tags: ['mongoose']
+      tags: ['mongoose'],
+      date: moment('2019-05-02')
     },
     {
       title: 'Calculate Standard Deviation in JavaScript',
       raw: './tutorials/fundamentals/stddev.md',
       url: '/tutorials/fundamentals/stddev',
       description: 'Use Mathjs to calculate standard deviation in Node.js and the browser.',
-      tags: ['fundamentals']
+      tags: ['fundamentals'],
+      date: moment('2019-05-01')
     },
     {
       title: 'Understand valueOf() in JavaScript',
       raw: './tutorials/fundamentals/valueof.md',
       url: '/tutorials/fundamentals/valueof',
       description: 'Learn what String valueOf(), Number valueOf(), and Date valueOf() have in common.',
-      tags: ['mongoose']
+      tags: ['mongoose'],
+      date: moment('2019-04-30')
     },
     {
       title: 'Debug E11000 Errors in Mongoose',
       raw: './tutorials/mongoose/duplicate_key.md',
       url: '/tutorials/mongoose/e11000-duplicate-key',
       description: 'Learn how to understand and debug E11000 errors in Mongoose.',
-      tags: ['mongoose']
+      tags: ['mongoose'],
+      date: moment('2019-04-29')
     },
     {
       title: 'Get the Current Timestamp in JavaScript',
       raw: './tutorials/fundamentals/timestamps.md',
       url: '/tutorials/fundamentals/timestamps',
       description: 'Learn how to get the current Unix time in JavaScript.',
-      tags: ['fundamentals']
+      tags: ['fundamentals'],
+      date: moment('2019-04-28')
     },
     {
       title: 'Setting Request Headers with Axios',
       raw: './tutorials/axios/headers.md',
       url: '/tutorials/axios/headers',
       description: 'Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client.',
-      tags: ['axios']
+      tags: ['axios'],
+      date: moment('2019-04-27')
     }
   ];
 
