@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Vuex',
+      raw: './tutorials/vue/vuex.md',
+      url: '/tutorials/vue/vuex',
+      description: 'Learn how to use vuex, the official state management library for Vue',
+      tags: ['vue'],
+      date: moment('2019-05-08')
+    },
+    {
       title: 'Enable HTTPS With Express',
       raw: './tutorials/express/https.md',
       url: '/tutorials/express/https',
