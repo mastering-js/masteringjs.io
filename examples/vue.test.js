@@ -96,7 +96,6 @@ describe('Vue', function() {
       const actions = {
         increment: async ({ commit }) => {
           await new Promise(resolve => setTimeout(resolve, 100));
-          throw new Error('oops')
           commit('increment');
         }
       };
@@ -110,7 +109,7 @@ describe('Vue', function() {
 
       // Dispatch an action. Note that the `dispatch()` function returns a
       // promise because the `increment` action is an async function.
-      store.dispatch('increment');
+      await store.dispatch('increment');
       // acquit:ignore:start
       assert.equal(store.state.count, 1);
       // acquit:ignore:end
@@ -118,6 +117,35 @@ describe('Vue', function() {
       await renderToString(app); // <div data-server-rendered="true">1</div>
       assert.equal(await renderToString(app),
         '<div data-server-rendered="true">1</div>');
+      // acquit:ignore:end
+    });
+
+    it('async error', async function() {
+      // acquit:ignore:start
+      const state = { count: 0 };
+      const mutations = {
+        increment: (state) => { ++state.count; },
+        decrement: (state) => { --state.count; }
+      };
+      // acquit:ignore:end
+      const actions = {
+        increment: async () => {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          throw new Error('Oops');
+        }
+      };
+      const store = new Vuex.Store({ state, mutations, actions });
+      // acquit:ignore:start
+      const app = new Vue({
+        store,
+        template: '<div>{{$store.state.count}}</div>'
+      });
+      // acquit:ignore:end
+      // 
+      const err = await store.dispatch('increment').catch(err => err);
+      err.message; // "Oops"
+      // acquit:ignore:start
+      assert.equal(err.message, 'Oops');
       // acquit:ignore:end
     });
   });

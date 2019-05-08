@@ -1,0 +1,148 @@
+
+<html>
+  <head>
+    <title>An Introduction to Vuex - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>An Introduction to Vuex</h1>
+      
+  <p><a href="https://github.com/vuejs/vuex">Vuex</a> is the official state management library for Vue. A handy metaphor is that Vuex is to Vue as <a href="https://www.npmjs.com/package/redux">Redux</a> is to <a href="https://www.npmjs.com/package/react">React</a>. If you already know Redux, Vuex will seem familiar, just with slightly different terminology. In this article, you&#39;ll learn the basics of Vuex from standalone Node.js scripts, no browser required.</p>
+<p>First, to get started, you should install <a href="https://www.npmjs.com/package/vue">vue</a>, <a href="https://www.npmjs.com/package/vuex">vuex</a>, and <a href="https://www.npmjs.com/package/vue-server-renderer">vue-server-renderer</a> from npm. Here&#39;s how you import these libraries:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
+<span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
+Vue.use(Vuex);</code></pre>
+<p>Next, let&#39;s define a template that displays a single number <code>count</code> that&#39;s stored in Vuex. This script has 4 steps:</p>
+<p>1) Create a Vuex store. To create a Vuex store, you need to define <a href="https://vuex.vuejs.org/guide/state.html">state</a>, <a href="https://vuex.vuejs.org/guide/mutations.html">mutations</a>, and <a href="https://vuex.vuejs.org/guide/actions.html">actions</a>.</p>
+<p>2) Create a Vue app that&#39;s wired up to use the Vuex store.</p>
+<p>3) Render the app using vue-server-renderer.</p>
+<p>4) Dispatch an action and re-render the app using vue-server-renderer.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">/**
+ * Step 1: Create a Vuex store.
+ * Vuex stores have 3 primary concepts:
+ * - `state` is a POJO that contains all the application's data
+ * - `mutations` are synchronous functions that change the `state`
+ * - `actions` are potentially async functions that may trigger 1 or
+ *   more mutations.
+ */</span>
+<span class="hljs-keyword">const</span> state = { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> };
+<span class="hljs-keyword">const</span> mutations = {
+  <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> { ++state.count; },
+  <span class="hljs-attr">decrement</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> { --state.count; }
+};
+<span class="hljs-keyword">const</span> actions = {
+  <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">{ commit }</span>) =&gt;</span> commit(<span class="hljs-string">'increment'</span>),
+  <span class="hljs-attr">decrement</span>: <span class="hljs-function">(<span class="hljs-params">{ commit }</span>) =&gt;</span> commit(<span class="hljs-string">'decrement'</span>)
+};
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({ state, mutations, actions });
+
+<span class="hljs-comment">// Step 2: Create a Vue app that's wired up to use the Vuex store</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  store,
+  <span class="hljs-comment">// In Vue templates, you reference the Vuex state with `$store.state`</span>
+  template: <span class="hljs-string">'&lt;div&gt;{{$store.state.count}}&lt;/div&gt;'</span>
+});
+
+<span class="hljs-comment">// Step 3: Render the app using vue-server-renderer</span>
+<span class="hljs-keyword">await</span> renderToString(app); <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;0&lt;/div&gt;</span>
+
+<span class="hljs-comment">// Step 4: Dispatch an action and re-render the app</span>
+store.dispatch(<span class="hljs-string">'increment'</span>);
+store.state.count; <span class="hljs-comment">// 1</span>
+
+<span class="hljs-keyword">await</span> renderToString(app); <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;1&lt;/div&gt;</span>
+assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
+  <span class="hljs-string">'&lt;div data-server-rendered="true"&gt;1&lt;/div&gt;'</span>);
+<span class="hljs-comment">// acquit:ignore:end</span></code></pre>
+<p>If you&#39;re coming from Redux, the concepts of <em>state</em> and <em>action</em> in Vuex are equivalent to states and actions in Redux. You can think of a <em>mutation</em> as being equivalent to a reducer.</p>
+<h2 id="async-actions">Async Actions</h2>
+<p>One key difference between actions and mutations is that actions can be asynchronous, whereas <a href="https://vuex.vuejs.org/guide/mutations.html#mutations-must-be-synchronous">mutations must be synchronous</a>. Making state changes in separate synchronous mutations enables better debugging and better devtools. Actions, however, can be async. For example, your <code>increment</code> action can be async as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create the store</span>
+<span class="hljs-keyword">const</span> state = { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> };
+<span class="hljs-keyword">const</span> mutations = {
+  <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> { ++state.count; },
+  <span class="hljs-attr">decrement</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> { --state.count; }
+};
+<span class="hljs-keyword">const</span> actions = {
+  <span class="hljs-attr">increment</span>: <span class="hljs-keyword">async</span> ({ commit }) =&gt; {
+    <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
+    commit(<span class="hljs-string">'increment'</span>);
+  }
+};
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({ state, mutations, actions });
+
+<span class="hljs-comment">// Create the app</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  store,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;{{$store.state.count}}&lt;/div&gt;'</span>
+});
+
+<span class="hljs-comment">// Dispatch an action. Note that the `dispatch()` function returns a</span>
+<span class="hljs-comment">// promise because the `increment` action is an async function.</span>
+<span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'increment'</span>);
+
+<span class="hljs-keyword">await</span> renderToString(app); <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;1&lt;/div&gt;</span>
+assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
+  <span class="hljs-string">'&lt;div data-server-rendered="true"&gt;1&lt;/div&gt;'</span>);
+<span class="hljs-comment">// acquit:ignore:end</span></code></pre>
+<p>One important caveat is that Vuex doesn&#39;t handle errors in async actions for you. If an async action throws an error, you&#39;ll get an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled promise rejection</a> unless you explicitly handle the error using <code>.catch()</code> or <a href="https://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js">async/await</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> actions = {
+  <span class="hljs-attr">increment</span>: <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>);
+  }
+};
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({ state, mutations, actions });
+<span class="hljs-comment">// </span>
+<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'increment'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+err.message; <span class="hljs-comment">// "Oops"</span></code></pre>
+
+  <hr>
+  <h2>More Vue Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>
