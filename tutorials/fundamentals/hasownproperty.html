@@ -1,0 +1,112 @@
+
+<html>
+  <head>
+    <title>The Difference Between in and hasOwnProperty in JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>The Difference Between in and hasOwnProperty in JavaScript</h1>
+      
+  <p>Given a general JavaScript object, there are two common ways to check whether an object contains a key: the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in"><code>in</code> operator</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty()</code> function</a>. With a simple POJO and no special keys, these two are equivalent:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+<span class="hljs-string">'answer'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+obj.hasOwnProperty(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// true</span>
+
+<span class="hljs-string">'does not exist'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// false</span>
+obj.hasOwnProperty(<span class="hljs-string">'does not exist'</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>Both also support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">ES6 symbols</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> symbol = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'answer'</span>);
+<span class="hljs-keyword">const</span> obj = { [symbol]: <span class="hljs-number">42</span> };
+
+symbol <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+obj.hasOwnProperty(symbol); <span class="hljs-comment">// true</span></code></pre>
+<p>So what&#39;s the difference between the two? The key difference is that <code>in</code> will return <code>true</code> for inherited properties, whereas <code>hasOwnProperty()</code> will return <code>false</code> for inherited properties.</p>
+<p>For example, the <code>Object</code> base class in JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>__proto__</code> property</a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor"><code>constructor</code> property</a>, and a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty</code> function</a>. The <code>in</code> operator will return <code>true</code> for these properties, but <code>hasOwnProperty()</code> will return <code>false</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-string">'constructor'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'__proto__'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'hasOwnProperty'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+
+obj.hasOwnProperty(<span class="hljs-string">'constructor'</span>); <span class="hljs-comment">// false</span>
+obj.hasOwnProperty(<span class="hljs-string">'__proto__'</span>); <span class="hljs-comment">// false</span>
+obj.hasOwnProperty(<span class="hljs-string">'hasOwnProperty'</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>Because <code>hasOwnProperty()</code> ignores inherited properties, it is the better choice for plain old JavaScript objects (POJOs). However, <code>hasOwnProperty()</code> will return <code>false</code> for class properties and class methods, like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">ES6 getters</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>{
+  get baseProp() {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+  }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChildClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>{
+  get childProp() {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+  }
+}
+<span class="hljs-keyword">const</span> base = <span class="hljs-keyword">new</span> BaseClass();
+<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> ChildClass();
+
+<span class="hljs-string">'baseProp'</span> <span class="hljs-keyword">in</span> base; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'childProp'</span> <span class="hljs-keyword">in</span> child; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'baseProp'</span> <span class="hljs-keyword">in</span> child; <span class="hljs-comment">// true</span>
+
+base.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="hljs-comment">// false</span>
+child.hasOwnProperty(<span class="hljs-string">'childProp'</span>); <span class="hljs-comment">// false</span>
+child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>Below is a summary of the tradeoffs between <code>in</code> and <code>hasOwnProperty()</code>.</p>
+<img src="/assets/hasownproperty.png">
+
+<p>In general, <code>hasOwnProperty()</code> is the right choice most of the time, because you avoid issues with special keys, like <code>constructor</code>. A good rule of thumb is that if you&#39;re looking to see whether an object has a property, you should use <code>hasOwnProperty()</code>. If you&#39;re looking to see if an object has a function that you intend to call, like checking if an object has <code>toString()</code>, you should use <code>in</code>.</p>
+
+  <hr>
+  <h2>More Fundamentals Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>

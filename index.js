@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The Difference Between in and hasOwnProperty in JavaScript',
+      raw: './tutorials/fundamentals/hasownproperty.md',
+      url: '/tutorials/fundamentals/hasownproperty',
+      description: 'Learn about the different ways to check if an object contains a given key in JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-05-10')
+    },
+    {
       title: 'An Introduction to Vuex',
       raw: './tutorials/vue/vuex.md',
       url: '/tutorials/vue/vuex',

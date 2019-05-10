@@ -200,4 +200,93 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('in vs hasOwnProperty', function() {
+    it('basics', function() {
+      const obj = { answer: 42 };
+      'answer' in obj; // true
+      obj.hasOwnProperty('answer'); // true
+
+      'does not exist' in obj; // false
+      obj.hasOwnProperty('does not exist'); // false
+      // acquit:ignore:start
+      assert.ok('answer' in obj);
+      assert.ok(obj.hasOwnProperty('answer'));
+
+      assert.ok(!('does not exist' in obj));
+      assert.ok(!obj.hasOwnProperty('does not exist'));
+
+      assert.ok('constructor' in obj);
+      assert.ok(!obj.hasOwnProperty('constructor'));
+      // acquit:ignore:end
+    });
+
+    it('special properties', function() {
+      // acquit:ignore:start
+      const obj = { answer: 42 };
+      // acquit:ignore:end
+      'constructor' in obj; // true
+      '__proto__' in obj; // true
+      'hasOwnProperty' in obj; // true
+
+      obj.hasOwnProperty('constructor'); // false
+      obj.hasOwnProperty('__proto__'); // false
+      obj.hasOwnProperty('hasOwnProperty'); // false
+      // acquit:ignore:start
+      assert.ok('constructor' in obj);
+      assert.ok(!obj.hasOwnProperty('constructor'));
+
+      assert.ok('__proto__' in obj);
+      assert.ok(!obj.hasOwnProperty('__proto__'));
+
+      assert.ok('hasOwnProperty' in obj);
+      assert.ok(!obj.hasOwnProperty('hasOwnProperty'));
+      // acquit:ignore:end
+    });
+
+    it('inheritance', function() {
+      class BaseClass {
+        get baseProp() {
+          return 42;
+        }
+      }
+      class ChildClass extends BaseClass {
+        get childProp() {
+          return 42;
+        }
+      }
+      const base = new BaseClass();
+      const child = new ChildClass();
+
+      'baseProp' in base; // true
+      'childProp' in child; // true
+      'baseProp' in child; // true
+
+      base.hasOwnProperty('baseProp'); // false
+      child.hasOwnProperty('childProp'); // false
+      child.hasOwnProperty('baseProp'); // false
+      // acquit:ignore:start
+      assert.ok('baseProp' in base);
+      assert.ok(!base.hasOwnProperty('baseProp'));
+
+      assert.ok('childProp' in child);
+      assert.ok(!child.hasOwnProperty('childProp'));
+
+      assert.ok('baseProp' in child);
+      assert.ok(!child.hasOwnProperty('baseProp'));
+      // acquit:ignore:end
+    });
+
+    it('symbols', function() {
+      const symbol = Symbol('answer');
+      const obj = { [symbol]: 42 };
+
+      symbol in obj; // true
+      obj.hasOwnProperty(symbol); // true
+      // acquit:ignore:start
+      assert.ok(symbol in obj);
+      assert.ok(obj.hasOwnProperty(symbol));
+      // acquit:ignore:end
+    });
+  });
 });
