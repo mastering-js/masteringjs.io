@@ -18,7 +18,7 @@ For example, the `Object` base class in JavaScript has a [`__proto__` property](
 [require:Fundamentals.*hasOwnProperty.*special properties]
 ```
 
-Because `hasOwnProperty()` ignores inherited properties, it is the better choice for plain old JavaScript objects (POJOs). However, `hasOwnProperty()` will return `false` for class properties and class methods, like [ES6 getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
+Because `hasOwnProperty()` ignores inherited properties, it is the better choice for plain old JavaScript objects (POJOs). However, `hasOwnProperty()` will return `false` for ES6 class getters and methods, like [ES6 getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get).
 
 ```javascript
 [require:Fundamentals.*hasOwnProperty.*inheritance]
