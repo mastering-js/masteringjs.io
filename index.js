@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Getting Started with Mongoose Virtuals',
+      raw: './tutorials/mongoose/virtuals.md',
+      url: '/tutorials/mongoose/virtuals',
+      description: 'Learn about declaring and using virtuals in Mongoose.',
+      tags: ['mongoose'],
+      date: moment('2019-05-11')
+    },
+    {
       title: 'The Difference Between in and hasOwnProperty in JavaScript',
       raw: './tutorials/fundamentals/hasownproperty.md',
       url: '/tutorials/fundamentals/hasownproperty',

@@ -187,4 +187,84 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('virtuals', function() {
+    let BlogPost;
+    let doc;
+
+    before(function() {
+      // Markdown parser
+      const marked = require('marked');
+
+      const blogPostSchema = new Schema({ content: String });
+
+      // A _virtual_ is a schema property that is **not** stored in MongoDB.
+      // It is instead calculated from other properties in the document.
+      blogPostSchema.virtual('html').get(function() {
+        // In the getter function, `this` is the document. Don't use arrow
+        // functions for virtual getters!
+        return marked(this.content);
+      });
+      BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+      doc = new BlogPost({ content: '# Hello' });
+    });
+
+    it('basic example', async function() {
+      // Markdown parser
+      const marked = require('marked');
+
+      const blogPostSchema = new Schema({ content: String });
+
+      // A _virtual_ is a schema property that is **not** stored in MongoDB.
+      // It is instead calculated from other properties in the document.
+      blogPostSchema.virtual('html').get(function() {
+        // In the getter function, `this` is the document. Don't use arrow
+        // functions for virtual getters!
+        return marked(this.content);
+      });
+      const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+      const doc = new BlogPost({ content: '# Hello' });
+      doc.html; // "<h1 id="hello">Hello</h1>"
+      // acquit:ignore:start
+      assert.equal(doc.html, '<h1 id="hello">Hello</h1>\n');
+      // acquit:ignore:end
+    });
+
+    it('with express', async function() {
+      const app = require('express')();
+      const axios = require('axios');
+
+      // Make Mongoose attach virtuals whenever calling `JSON.stringify()`,
+      // including using `res.json()`
+      mongoose.set('toJSON', { virtuals: true });
+
+      app.get('*', function(req, res) {
+        // Mongoose will automatically attach the `html` virtual
+        res.json(doc);
+      });
+
+      const server = await app.listen(3000);
+
+      // "<h1 id="hello">Hello</h1>"
+      await axios.get('http://localhost:3000').then(res => res.data.html);
+      // acquit:ignore:start
+      const res = await axios.get('http://localhost:3000');
+      assert.equal(res.data.html, '<h1 id="hello">Hello</h1>\n');
+      server.close();
+      // acquit:ignore:end
+    });
+
+    it('queries', async function() {
+      await doc.save();
+
+      // `count` will be 0, because the `html` property is a virtual, and
+      // thus not stored in MongoDB.
+      const count = await BlogPost.countDocuments({ html: { $exists: true } });
+      // acquit:ignore:start
+      assert.strictEqual(count, 0);
+      // acquit:ignore:end
+    });
+  });
 });
