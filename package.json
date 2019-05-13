@@ -4,6 +4,7 @@
     "acquit": "1.x",
     "acquit-ignore": "0.1.x",
     "acquit-require": "0.1.x",
+    "cheerio": "1.0.0-rc.3",
     "express": "4.x",
     "highlight.js": "9.12.0",
     "lodash": "4.17.11",

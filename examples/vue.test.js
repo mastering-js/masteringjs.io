@@ -3,6 +3,7 @@
 const Vue = require('vue');
 const assert = require('assert');
 const axios = require('axios');
+const { renderToString } = require('vue-server-renderer').createRenderer();
 
 describe('Vue', function() {
   it('ssr', async function() {
@@ -146,6 +147,94 @@ describe('Vue', function() {
       err.message; // "Oops"
       // acquit:ignore:start
       assert.equal(err.message, 'Oops');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('slots', function() {
+    it('basic', async function() {
+      Vue.component('green', {
+        // The `<slot></slot>` part will be replaced with child content.
+        template: `
+          <div style="background-color: #00ff00">
+            <slot></slot>
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        // The `<h1>` is the child content.
+        template: `
+          <green>
+            <h1>Hello, World!</h1>
+          </green>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.equal(data, '<div data-server-rendered="true" ' +
+        'style="background-color:#00ff00;"><h1>Hello, World!</h1></div>');
+      // acquit:ignore:end
+    });
+
+    it('default', async function() {
+      Vue.component('green', {
+        // The inner HTML of `<slot></slot>` is the default.
+        template: `
+          <div style="background-color: #00ff00">
+            <slot>
+              <h2>Hello, World!</h2>
+            </slot>
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        // No inner HTML
+        template: `<green></green>`
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.equal(data, '<div data-server-rendered="true" ' +
+        'style="background-color:#00ff00;"><h2>Hello, World!</h2></div>');
+      // acquit:ignore:end
+    });
+
+    it('named', async function() {
+      Vue.component('brand', {
+        // 2 slots named 'logo' and 'name'.
+        template: `
+          <div class="brand">
+            <div class="logo">
+              <slot name="logo"></slot>
+            </div>
+            <div class="name">
+              <a href="/">
+                <slot name="name"></slot>
+              </a>
+            </div>
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        // `template v-slot:name` is how you insert content into a slot named
+        // 'name'
+        template: `
+          <brand>
+            <template v-slot:logo>
+              <img src="http://masteringjs.io/assets/logo.png">
+            </template>
+            <template v-slot:name>
+              Mastering JS
+            </template>
+          </brand>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('/logo.png'));
+      assert.ok(data.includes('Mastering JS'));
       // acquit:ignore:end
     });
   });

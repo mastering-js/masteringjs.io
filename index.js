@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding Vue.js Slots',
+      raw: './tutorials/vue/slots.md',
+      url: '/tutorials/vue/slots',
+      description: 'Learn how to embed arbitrary content in Vue components using slots.',
+      tags: ['vue'],
+      date: moment('2019-05-13')
+    },
+    {
       title: 'Getting Started with Mongoose Virtuals',
       raw: './tutorials/mongoose/virtuals.md',
       url: '/tutorials/mongoose/virtuals',
