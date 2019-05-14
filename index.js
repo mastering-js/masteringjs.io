@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Redirects With Express',
+      raw: './tutorials/express/redirect.md',
+      url: '/tutorials/express/redirect',
+      description: 'Learn how to redirect to a different URL using Express',
+      tags: ['express'],
+      date: moment('2019-05-14')
+    },
+    {
       title: 'Understanding Vue.js Slots',
       raw: './tutorials/vue/slots.md',
       url: '/tutorials/vue/slots',

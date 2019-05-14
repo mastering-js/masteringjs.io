@@ -1,0 +1,114 @@
+
+<html>
+  <head>
+    <title>Redirects With Express - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Redirects With Express</h1>
+      
+  <p>The <a href="http://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code> function</a> lets you redirect the user to a different URL by sending an <a href="https://en.wikipedia.org/wiki/HTTP_302">HTTP response with status 302</a>. The HTTP client (browser, <a href="https://masteringjs.io/tutorials/axios/headers">Axios</a>, etc.) will then &quot;follow&quot; the redirect and send an HTTP request to the new URL as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// The `res.redirect()` function sends back an HTTP 302 by default.</span>
+<span class="hljs-comment">// When an HTTP client receives a response with status 302, it will send</span>
+<span class="hljs-comment">// an HTTP request to the URL in the response, in this case `/to`</span>
+app.get(<span class="hljs-string">'/from'</span>, (req, res) =&gt; {
+  res.redirect(<span class="hljs-string">'/to'</span>);
+});
+app.get(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello, World!'</span>));
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/from'</span>);
+<span class="hljs-comment">// Axios follows the redirect and sends a GET `/to` request, so the</span>
+<span class="hljs-comment">// response will contain the string "Hello, World!"</span>
+res.data;</code></pre>
+<p>The <code>res.redirect()</code> function also lets you specify an HTTP status other than 302. The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302">302 status is considered a temporary redirect</a>, which means search engines will still crawl the existing URL. If you want to indicate the URL has permanently changed, you should send a response with <a href="https://en.wikipedia.org/wiki/HTTP_301">HTTP status 301</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+app.get(<span class="hljs-string">'/from'</span>, (req, res) =&gt; {
+  <span class="hljs-comment">// The optional first parameter to `res.redirect()` is a numeric</span>
+  <span class="hljs-comment">// HTTP status.</span>
+  res.redirect(<span class="hljs-number">301</span>, <span class="hljs-string">'/to'</span>);
+});
+app.get(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello, World!'</span>));
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/from'</span>);
+<span class="hljs-comment">// "Hello, World!"</span>
+res.data;</code></pre>
+<h2 id="handling-post-requests">Handling POST Requests</h2>
+<p>There&#39;s some nuances about which status code you should use for POST requests.
+Strictly speaking, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301">HTTP 301 and 302 are not required to keep the same method and body content</a> when redirecting. If you&#39;re redirecting a POST request, you should use <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307">HTTP 307</a> as a replacement for HTTP 302, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/308">HTTP 308</a> as a replacement for HTTP 301.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+<span class="hljs-comment">// Parser to set `req.body`</span>
+app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'body-parser'</span>).json());
+
+app.post(<span class="hljs-string">'/from'</span>, (req, res) =&gt; {
+  res.redirect(<span class="hljs-number">307</span>, <span class="hljs-string">'/to'</span>);
+});
+app.post(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(req.body.message));
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://localhost:3000/from'</span>, {
+  <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello, World!'</span>
+});
+<span class="hljs-comment">// "Hello, World!"</span>
+res.data;</code></pre>
+<p>Here&#39;s a brief summary of the tradeoffs between these common redirect statuses.</p>
+<img src="https://i.imgur.com/K8LeE7a.png">
+  <hr>
+  <h2>More Express Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/express/https">Enable HTTPS With Express</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>
