@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '8 Neat Examples with forEach() in JavaScript',
+      raw: './tutorials/fundamentals/foreach.md',
+      url: '/tutorials/fundamentals/foreach',
+      description: 'Learn how to iterate nested arrays, object keys, and other values using forEach() in JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-05-15')
+    },
+    {
       title: 'Redirects With Express',
       raw: './tutorials/express/redirect.md',
       url: '/tutorials/express/redirect',

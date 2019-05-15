@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+const sinon = require('sinon');
 
 describe('Fundamentals', function() {
   it('timestamps', function() {
@@ -289,4 +290,156 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('forEach', function() {
+    let called = [];
+
+    beforeEach(function() {
+      called = [];
+      sinon.stub(console, 'log').callsFake(msg => called.push(msg));
+    });
+
+    afterEach(function() {
+      console.log.restore();
+    });
+
+    it('example 1', function() {
+      ['a', 'b', 'c'].forEach(v => {
+        console.log(v);
+      });
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a', 'b', 'c']);
+      // acquit:ignore:end
+    });
+
+    it('example 2', function() {
+      const arr = ['a', 'b', 'c'];
+      arr.forEach((v, i) => {
+        arr[i] = v.toUpperCase();
+      });
+      arr; // ['A', 'B', 'C']
+      // acquit:ignore:start
+      assert.deepStrictEqual(arr, ['A', 'B', 'C']);
+      // acquit:ignore:end
+    });
+
+    it('example 3', function() {
+      const obj = {
+        a: 1,
+        b: 2,
+        c: 3
+      };
+
+      // Prints "a", "b", "c"
+      Object.keys(obj).forEach(key => console.log(key));
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a', 'b', 'c']);
+      // acquit:ignore:end
+    });
+
+    it('example 4', function() {
+      const obj = {
+        a: 1,
+        b: 2,
+        c: 3
+      };
+
+      // Prints "a 1", "b 2", "c 3"
+      Object.entries(obj).forEach(([key, value]) => {
+        console.log(key + ' ' + value)
+      });
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a 1', 'b 2', 'c 3']);
+      // acquit:ignore:end
+    });
+
+    it('example 5', function() {
+      const arr = ['a', ['b', 'c'], [['d', ['e']]]];
+
+      // Prints "a", "b", "c", "d", "e". `3` is the maximum depth for flattening
+      arr.flat(3).forEach(v => console.log(v));
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a', 'b', 'c', 'd', 'e']);
+      // acquit:ignore:end
+    });
+
+    it('example 6', function() {
+      const arr = ['a', 'b', 'c'];
+
+      // Prints "a", "b", "c", even though each callback invocation adds
+      // a new element to the array.
+      arr.forEach(v => {
+        arr.push(v.toUpperCase());
+        console.log(v);
+      });
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a', 'b', 'c']);
+      // acquit:ignore:end
+    });
+
+    it('example 7', function() {
+      const arr = ['a', 'b', 'c'];
+
+      class Stack {
+        constructor() {
+          this._arr = [];
+        }
+
+        push(v) {
+          this._arr.push(v);
+        }
+
+        pop() {
+          return this._arr.pop();
+        }
+      }
+
+      const stack = new Stack();
+      // Without `thisArg`, would throw an error
+      arr.forEach(stack.push, stack);
+      // Equivalent:
+      arr.forEach(v => stack.push(v));
+      // Also equivalent:
+      arr.forEach(stack.push.bind(stack));
+      // acquit:ignore:start
+      assert.deepEqual(stack._arr, ['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']);
+      // acquit:ignore:end
+    });
+
+    it('example 8', function() {
+      const arr = ['a',, 'c'];
+      
+      // Prints "a", "c"
+      arr.forEach(v => console.log(v));
+
+      // Prints "a", "undefined", "c". `Array.from()` removes holes
+      Array.from(arr).forEach(v => console.log(v));
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['a', 'c', 'a', void 0, 'c']);
+      // acquit:ignore:end
+    });
+  });
 });
+
+if (!Array.prototype.flat) {
+  Array.prototype.flat = function() {
+    var depth = arguments[0];
+    depth = depth === undefined ? 1 : Math.floor(depth);
+    if (depth < 1) return Array.prototype.slice.call(this);
+    return (function flat(arr, depth) {
+      var len = arr.length >>> 0;
+      var flattened = [];
+      var i = 0;
+      while (i < len) {
+        if (i in arr) {
+          var el = arr[i];
+          if (Array.isArray(el) && depth > 0)
+            flattened = flattened.concat(flat(el, depth - 1));
+          else flattened.push(el);
+        }
+        i++;
+      }
+      return flattened;
+    })(this, depth);
+  };
+}
