@@ -419,6 +419,54 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  it('String#includes', function() {
+    const str = 'Arya Stark';
+
+    str.includes('Stark'); // true
+    str.includes('Snow'); // false
+    // acquit:ignore:start
+    assert.ok(str.includes('Stark'));
+    assert.ok(!str.includes('Snow'));
+    // acquit:ignore:end
+  });
+
+  it('String#indexOf', function() {
+    const str = 'Arya Stark';
+
+    str.indexOf('Stark') !== -1; // true
+    str.indexOf('Snow') !== -1; // false
+    // acquit:ignore:start
+    assert.ok(str.indexOf('Stark') !== -1);
+    assert.ok(!str.indexOf('Snow') !== -1);
+    // acquit:ignore:end
+  });
+
+  it('case insensitive', function() {
+    const str = 'arya stark';
+
+    // The most concise way to check substrings ignoring case is using
+    // `String#match()` and a case-insensitive regular expression (the 'i')
+    str.match(/Stark/i); // true
+    str.match(/Snow/i); // false
+
+    // You can also convert both the string and the search string to lower case.
+    str.toLowerCase().includes('Stark'.toLowerCase()); // true
+    str.toLowerCase().indexOf('Stark'.toLowerCase()) !== -1; // true
+
+    str.toLowerCase().includes('Snow'.toLowerCase()); // false
+    str.toLowerCase().indexOf('Snow'.toLowerCase()) !== -1; // false
+    // acquit:ignore:start
+    assert.ok(str.toLowerCase().includes('Stark'.toLowerCase()));
+    assert.ok(str.toLowerCase().indexOf('Stark'.toLowerCase()) !== -1);
+
+    assert.ok(!str.toLowerCase().includes('Snow'.toLowerCase()));
+    assert.ok(!str.toLowerCase().indexOf('Snow'.toLowerCase()) !== -1);
+
+    assert.ok(str.match(/Stark/i));
+    assert.ok(!str.match(/Snow/i));
+    // acquit:ignore:end
+  });
 });
 
 if (!Array.prototype.flat) {

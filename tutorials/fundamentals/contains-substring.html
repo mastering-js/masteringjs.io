@@ -1,0 +1,101 @@
+
+<html>
+  <head>
+    <title>Check if a String Contains a Substring in JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Check if a String Contains a Substring in JavaScript</h1>
+      
+  <p>There&#39;s two common ways to check whether a string contains a substring in JavaScript. The more modern way is the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes"><code>String#includes()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
+
+str.includes(<span class="hljs-string">'Stark'</span>); <span class="hljs-comment">// true</span>
+str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>You can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#Browser_compatibility"><code>String#includes()</code> in all modern browsers <strong>except</strong> Internet Explorer</a>. You can also use <code>String#includes()</code> in Node.js <code>&gt;= 4.0.0</code>.</p>
+<img src="/assets/includes-browser-compat.png">
+
+<p><em>Compatibility table from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#Browser_compatibility">Mozilla Developer Network</a></em></p>
+<p>If you need to support Internet Explorer, you should instead use the <a href="https://www.w3schools.com/jsref/jsref_indexof.asp">String#indexOf()` function</a>, which has been a part of JavaScript since ES1 in 1997.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
+
+str.indexOf(<span class="hljs-string">'Stark'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
+str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
+<p>In general, if you have any doubt about whether code will run in an environment that supports <code>includes()</code>, you should use <code>indexOf()</code>. The <code>includes()</code> function&#39;s syntax is only marginally more concise than <code>indexOf()</code>.</p>
+<h2 id="case-insensitive-search">Case Insensitive Search</h2>
+<p>Both <code>String#includes()</code> and <code>String#indexOf()</code> are case sensitive. Neither function supports regular expressions. To do case insensitive search, you can use regular expressions and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String#match()</code> function</a>, or you can convert both the string and substring to lower case using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase"><code>String#toLowerCase()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'arya stark'</span>;
+
+<span class="hljs-comment">// The most concise way to check substrings ignoring case is using</span>
+<span class="hljs-comment">// `String#match()` and a case-insensitive regular expression (the 'i')</span>
+str.match(<span class="hljs-regexp">/Stark/i</span>); <span class="hljs-comment">// true</span>
+str.match(<span class="hljs-regexp">/Snow/i</span>); <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// You can also convert both the string and the search string to lower case.</span>
+str.toLowerCase().includes(<span class="hljs-string">'Stark'</span>.toLowerCase()); <span class="hljs-comment">// true</span>
+str.toLowerCase().indexOf(<span class="hljs-string">'Stark'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
+
+str.toLowerCase().includes(<span class="hljs-string">'Snow'</span>.toLowerCase()); <span class="hljs-comment">// false</span>
+str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
+
+  <hr>
+  <h2>More Fundamentals Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>

@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Check if a String Contains a Substring in JavaScript',
+      raw: './tutorials/fundamentals/contains-substring.md',
+      url: '/tutorials/fundamentals/contains-substring',
+      description: 'Learn how to check if a string contains a substring in vanilla JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-05-16')
+    },
+    {
       title: '8 Neat Examples with forEach() in JavaScript',
       raw: './tutorials/fundamentals/foreach.md',
       url: '/tutorials/fundamentals/foreach',
