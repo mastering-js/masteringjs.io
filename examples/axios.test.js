@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 const axios = require('axios');
+const express = require('express');
 
 describe('axios', function() {
   it('setting headers with GET', async function() {
@@ -65,6 +66,54 @@ describe('axios', function() {
       // acquit:ignore:start
       assert.equal(err.message, 'Request failed with status code 401');
       assert.equal(err.response.status, 401);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('interceptors', function() {
+    it('default error message', async function() {
+      const app = express();
+      app.get('*', (req, res) => {
+        res.status(404).json({ message: `Could not find page ${req.url}` });
+      });
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000/test').
+        catch(err => err);
+      // "Request failed with status code 404"
+      err.message;
+      // acquit:ignore:start
+      assert.equal(err.message, 'Request failed with status code 404');
+      server.close();
+      // acquit:ignore:end
+    });
+
+    it('using interceptors', async function() {
+      // acquit:ignore:start
+      const app = express();
+      app.get('*', (req, res) => {
+        res.status(404).json({ message: `Could not find page ${req.url}` });
+      });
+      const server = await app.listen(3000);
+      // acquit:ignore:end
+      // Create an Axios instance to 
+      const client = axios.create();
+      // Interceptors take 2 parameters:
+      // Axios calls the first function if the request succeeds
+      // Axios calls the second function if the request fails
+      client.interceptors.response.use(
+        res => res,
+        err => {
+          throw new Error(err.response.data.message);
+        }
+      )
+      const err = await client.get('http://localhost:3000/test').
+        catch(err => err);
+      // "Could not find page /test"
+      err.message;
+      // acquit:ignore:start
+      assert.equal(err.message, 'Could not find page /test');
+      server.close();
       // acquit:ignore:end
     });
   });

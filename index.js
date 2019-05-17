@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'HTTP Request Error Handling With Axios Interceptors',
+      raw: './tutorials/axios/error_handling.md',
+      url: '/tutorials/axios/error-handling',
+      description: 'Learn how to use Axios interceptors to make HTTP error messages readable',
+      tags: ['axios'],
+      date: moment('2019-05-17')
+    },
+    {
       title: 'Check if a String Contains a Substring in JavaScript',
       raw: './tutorials/fundamentals/contains-substring.md',
       url: '/tutorials/fundamentals/contains-substring',
