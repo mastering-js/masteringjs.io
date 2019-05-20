@@ -1,0 +1,113 @@
+
+<html>
+  <head>
+    <title>Upserting Documents with Mongoose - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Upserting Documents with Mongoose</h1>
+      
+  <p>In MongoDB, an <a href="https://en.wiktionary.org/wiki/upsert">upsert</a> means an update that inserts a new document if no document matches the <code>filter</code>. To upsert a document in Mongoose, you should set the <code>upsert</code> option to the <a href="https://mongoosejs.com/docs/api.html#model_Model.updateOne"><code>Model.updateOne()</code> function</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> Character.updateOne(
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> },
+  { <span class="hljs-attr">$set</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> } },
+  { <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span> } <span class="hljs-comment">// Make this update into an upsert</span>
+);
+
+<span class="hljs-comment">// Will be 1 if MongoDB modified an existing document, or 0</span>
+<span class="hljs-comment">// if MongoDB inserted a new document.</span>
+res.nModified;
+<span class="hljs-comment">// Contains an array of descriptions of the documents inserted,</span>
+<span class="hljs-comment">// including the `_id` of all inserted docs.</span>
+res.upserted;</code></pre>
+<p>To get the upserted document, you should use the <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> instead of <code>Model.updateOne()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> },
+  { <span class="hljs-attr">$set</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> } },
+  { <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span> }
+);
+
+doc.name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
+doc.age; <span class="hljs-comment">// 59</span></code></pre>
+<p>Mongoose will insert at most one document. Even if you use <a href="https://mongoosejs.com/docs/api.html#model_Model.updateMany"><code>Model.updateMany()</code></a> with <code>upsert</code>, Mongoose will insert at most one document. To upsert multiple documents in bulk, you should use <a href="https://mongoosejs.com/docs/api.html#model_Model.bulkWrite">the <code>Model.bulkWrite()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> Character.bulkWrite([
+  {
+    <span class="hljs-attr">updateOne</span>: {
+      <span class="hljs-attr">filter</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span> },
+      <span class="hljs-attr">update</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+      <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>
+    }
+  },
+  {
+    <span class="hljs-attr">updateOne</span>: {
+      <span class="hljs-attr">filter</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span> },
+      <span class="hljs-attr">update</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+      <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>
+    }
+  }
+]);
+
+<span class="hljs-comment">// Contains the number of documents that were inserted because</span>
+<span class="hljs-comment">// of an upsert</span>
+res.upsertedCount;
+<span class="hljs-comment">// Contains the number of existing documents that were updated.</span>
+res.modifiedCount;</code></pre>
+
+  <hr>
+  <h2>More Mongoose Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/mongoose/virtuals">Getting Started with Mongoose Virtuals</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/update">Updating Documents in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/valueof">Understand valueOf() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/e11000-duplicate-key">Debug E11000 Errors in Mongoose</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>

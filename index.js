@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Upserting Documents with Mongoose',
+      raw: './tutorials/mongoose/upsert.md',
+      url: '/tutorials/mongoose/upsert',
+      description: 'Learn how to use insert a document in Mongoose if it doesn\'t already exist',
+      tags: ['mongoose'],
+      date: moment('2019-05-20')
+    },
+    {
       title: 'HTTP Request Error Handling With Axios Interceptors',
       raw: './tutorials/axios/error_handling.md',
       url: '/tutorials/axios/error-handling',

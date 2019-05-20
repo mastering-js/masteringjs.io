@@ -267,4 +267,80 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('upsert', function() {
+    let Character;
+
+    before(async function() {
+      Character = mongoose.model('Upsert', new Schema({
+        name: String,
+        age: Number
+      }));
+
+      await Character.deleteMany({});
+    });
+
+    it('updateOne', async function() {
+      const res = await Character.updateOne(
+        { name: 'Jean-Luc Picard' },
+        { $set: { age: 59 } },
+        { upsert: true } // Make this update into an upsert
+      );
+
+      // Will be 1 if MongoDB modified an existing document, or 0
+      // if MongoDB inserted a new document.
+      res.nModified;
+      // Contains an array of descriptions of the documents inserted,
+      // including the `_id` of all inserted docs.
+      res.upserted;
+      // acquit:ignore:start
+      assert.equal(res.nModified, 0);
+      assert.equal(res.upserted.length, 1);
+      // acquit:ignore:end
+    });
+
+    it('findOneAndUpdate', async function() {
+      const doc = await Character.findOneAndUpdate(
+        { name: 'Jean-Luc Picard' },
+        { $set: { age: 59 } },
+        { upsert: true, new: true }
+      );
+
+      doc.name; // 'Jean-Luc Picard'
+      doc.age; // 59
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Jean-Luc Picard');
+      assert.equal(doc.age, 59);
+      // acquit:ignore:end
+    });
+
+    it('bulkWrite', async function() {
+      const res = await Character.bulkWrite([
+        {
+          updateOne: {
+            filter: { name: 'Will Riker' },
+            update: { age: 29 },
+            upsert: true
+          }
+        },
+        {
+          updateOne: {
+            filter: { name: 'Geordi La Forge' },
+            update: { age: 29 },
+            upsert: true
+          }
+        }
+      ]);
+
+      // Contains the number of documents that were inserted because
+      // of an upsert
+      res.upsertedCount;
+      // Contains the number of existing documents that were updated.
+      res.modifiedCount;
+      // acquit:ignore:start
+      assert.equal(res.upsertedCount, 2);
+      assert.equal(res.modifiedCount, 0);
+      // acquit:ignore:end
+    });
+  });
 });
