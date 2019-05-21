@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'File Uploads with Express',
+      raw: './tutorials/express/file-upload.md',
+      url: '/tutorials/express/file-upload',
+      description: 'Learn how to upload files using Express, with help from the library Formidable.',
+      tags: ['express'],
+      date: moment('2019-05-22')
+    },
+    {
       title: 'Supporting Promises in Express Middleware',
       raw: './tutorials/express/promises.md',
       url: '/tutorials/express/promises',

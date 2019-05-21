@@ -1,0 +1,103 @@
+
+<html>
+  <head>
+    <title>File Uploads with Express - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>File Uploads with Express</h1>
+      
+  <p><a href="https://www.npmjs.com/package/formidable">Formidable</a> is the most popular file uploading library for Express. Here&#39;s how you can use Formidable to upload files:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+<span class="hljs-keyword">const</span> formidable = <span class="hljs-built_in">require</span>(<span class="hljs-string">'formidable'</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+app.post(<span class="hljs-string">'/upload'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-keyword">const</span> form = <span class="hljs-keyword">new</span> formidable.IncomingForm();
+  <span class="hljs-comment">// Parse `req` and upload all associated files</span>
+  form.parse(req, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, fields, files</span>) </span>{
+    <span class="hljs-keyword">if</span> (err != <span class="hljs-literal">null</span>) {
+      <span class="hljs-keyword">return</span> res.json({ <span class="hljs-attr">message</span>: err.message });
+    }
+
+    <span class="hljs-comment">// The `files` object contains all files that were uploaded. Formidable</span>
+    <span class="hljs-comment">// parses each file and uploads it to a temporary file for you.</span>
+    <span class="hljs-keyword">const</span> [firstFileName] = <span class="hljs-built_in">Object</span>.keys(files);
+
+    <span class="hljs-comment">// The `path` property is where formidable stored the file</span>
+    <span class="hljs-built_in">console</span>.log(files[firstFileName].path);
+
+    <span class="hljs-comment">// You can read the file and print it out.</span>
+    fs.readFile(files[firstFileName].path, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, content</span>) </span>{
+      <span class="hljs-keyword">if</span> (err != <span class="hljs-literal">null</span>) {
+        <span class="hljs-keyword">return</span> res.json({ <span class="hljs-attr">message</span>: err.message });
+      }
+      res.json({ <span class="hljs-attr">content</span>: content.toString(<span class="hljs-string">'utf8'</span>) });
+    });
+  });
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
+<p>The <code>/upload</code> route handler has 3 steps:</p>
+<p>1) Create a new form using <code>new formidable.IncomingForm()</code>. The <a href="https://www.npmjs.com/package/formidable#api"><code>IncomingForm</code> class</a> is the primary entry point to Formidable.</p>
+<p>2) Call <code>form.parse()</code> on an <a href="http://expressjs.com/en/4x/api.html#req">Express request</a>. This tells Formidable to parse the request and save any files in the request to your server.</p>
+<p>3) Handle the uploaded files. You can store the files locally, or <a href="https://www.zeolearn.com/magazine/uploading-files-to-aws-s3-using-nodejs">upload the files to a service like Amazon S3</a>.</p>
+
+  <hr>
+  <h2>More Express Tutorials</h2>
+  <ul>
+  
+    <li><a href="/tutorials/express/promises">Supporting Promises in Express Middleware</a></li>
+  
+
+    <li><a href="/tutorials/express/redirect">Redirects With Express</a></li>
+  
+
+    <li><a href="/tutorials/express/https">Enable HTTPS With Express</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+  </ul>
+
+    </div>
+  </body>
+</html>
