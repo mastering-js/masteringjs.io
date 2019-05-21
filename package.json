@@ -1,6 +1,7 @@
 {
   "name": "masteringjs.io",
   "devDependencies": {
+    "@awaitjs/express": "0.3.0",
     "acquit": "1.x",
     "acquit-ignore": "0.1.x",
     "acquit-require": "0.1.x",

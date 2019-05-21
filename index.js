@@ -32,6 +32,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Supporting Promises in Express Middleware',
+      raw: './tutorials/express/promises.md',
+      url: '/tutorials/express/promises',
+      description: 'Express doesn\'t support promises by default. Learn what you can do about it.',
+      tags: ['express'],
+      date: moment('2019-05-21')
+    },
+    {
       title: 'Upserting Documents with Mongoose',
       raw: './tutorials/mongoose/upsert.md',
       url: '/tutorials/mongoose/upsert',

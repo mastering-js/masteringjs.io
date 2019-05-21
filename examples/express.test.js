@@ -3,6 +3,8 @@
 const assert = require('assert');
 const axios = require('axios');
 
+process.on('unhandledRejection', () => {});
+
 describe('Express', function() {
   describe('https', function() {
     it('works', async function() {
@@ -92,6 +94,109 @@ describe('Express', function() {
       // acquit:ignore:start
       assert.equal(res.data, 'Hello, World!');
       server.close();
+      // acquit:ignore:end
+    });
+  });
+
+  describe('promises', function() {
+    it('promise errors', async function() {
+      const app = require('express')();
+
+      app.get(async function routeHandler(req, res) {
+        // Will throw an error because `req.params.bar` is undefined
+        req.params.bar.toString();
+
+        // Request will hang forever because `res.json()` never gets called.
+        res.json({ test: 42 });
+      });
+
+      const server = await app.listen(3000);
+
+      // Will time out. If not for the `timeout` option, would hang forever.
+      const err = await axios.get('http://localhost:3000', { timeout: 300 }).
+        catch(err => err);
+      err.message; // "timeout of 300ms exceeded"
+      // acquit:ignore:start
+      assert.equal(err.message, 'timeout of 300ms exceeded');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('wrapper', async function() {
+      const app = require('express')();
+      const { addAsync } = require('@awaitjs/express');
+      addAsync(app);
+
+      // @awaitjs/express adds a `getAsync()` function to Express
+      app.getAsync(async function routeHandler(req, res) {
+        // The `getAsync()` function knows to look out for promise rejections
+        req.params.bar.toString();
+
+        res.json({ test: 42 });
+      });
+      // acquit:ignore:start
+      // Prevent Express from printing
+      app.use(function(error, req, res, next) {
+        res.status(500).json({ message: error.message });
+      });
+      // acquit:ignore:end
+
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        catch(err => err);
+      err.message; // "Request failed with status code 500"
+      // acquit:ignore:start
+      assert.equal(err.message, 'Request failed with status code 500');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('try/catch', async function() {
+      const app = require('express')();
+
+      app.get(async function routeHandler(req, res) {
+        // Wrap your route handler logic in a try/catch, and make sure
+        // to respond if an unexpected error occurs.
+        try {
+          req.params.bar.toString();
+
+          res.json({ test: 42 });
+        } catch (err) {
+          res.status(500).json({ message: err.message });
+        }
+      });
+
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        catch(err => err);
+      err.message; // "Request failed with status code 500"
+      // acquit:ignore:start
+      assert.equal(err.message, 'Request failed with status code 500');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('Promise catch', async function() {
+      const app = require('express')();
+
+      app.get(function routeHandler(req, res) {
+        return Promise.resolve().
+          then(() => req.params.bar.toString()).
+          then(() => res.json({ test: 42 })).
+          // Make sure you call `.catch()` on your promise to handle errors!
+          catch(err => res.status(500).json({ message: err.message }));
+      });
+
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        catch(err => err);
+      err.message; // "Request failed with status code 500"
+      // acquit:ignore:start
+      assert.equal(err.message, 'Request failed with status code 500');
+      await server.close();
       // acquit:ignore:end
     });
   });
