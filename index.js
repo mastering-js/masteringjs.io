@@ -27,10 +27,19 @@ async function run() {
     ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
-    ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8'))
+    ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/webpack.test.js', 'utf8'))
   ];
 
   const tutorials = [
+    {
+      title: 'Run Webpack Watch From Node.js',
+      raw: './tutorials/webpack/programmatic-watch.md',
+      url: '/tutorials/webpack/programmatic-watch',
+      description: 'Learn how to run `webpack --watch` from your Node.js dev server using the Webpack Node API',
+      tags: ['webpack'],
+      date: moment('2019-05-23')
+    },
     {
       title: 'File Uploads with Express',
       raw: './tutorials/express/file-upload.md',

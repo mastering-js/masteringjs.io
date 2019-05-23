@@ -8,6 +8,7 @@
     "body-parser": "1.19.0",
     "cheerio": "1.0.0-rc.3",
     "express": "4.x",
+    "express-static": "1.2.6",
     "form-data": "2.3.3",
     "formidable": "1.2.1",
     "highlight.js": "9.12.0",
@@ -23,7 +24,8 @@
     "sinon": "7.x",
     "vue": "2.x",
     "vue-server-renderer": "2.x",
-    "vuex": "3.x"
+    "vuex": "3.x",
+    "webpack": "4.32.2"
   },
   "scripts": {
     "serve": "serve .",
