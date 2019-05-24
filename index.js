@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '3 Ways to Define Templates in Vue',
+      raw: './tutorials/vue/templates.md',
+      url: '/tutorials/vue/templates',
+      description: 'Learn how to define templates in Vue using string templates, inline templates, and single file components.',
+      tags: ['vue'],
+      date: moment('2019-05-24')
+    },
+    {
       title: 'Run Webpack Watch From Node.js',
       raw: './tutorials/webpack/programmatic-watch.md',
       url: '/tutorials/webpack/programmatic-watch',

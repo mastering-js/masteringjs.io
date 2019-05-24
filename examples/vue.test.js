@@ -238,4 +238,108 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('templates', function() {
+    it('inline', async function() {
+      Vue.component('app', {
+        template: '<h1>{{message}}</h1>',
+        data: () => ({ message: 'Hello World' })
+      });
+
+      const app = new Vue({
+        template: '<app></app>'
+      });
+
+      const data = await renderToString(app);
+      // <h1 data-server-rendered="true">Hello World</h1>
+      data;
+      // acquit:ignore:start
+      assert.equal(data, '<h1 data-server-rendered="true">Hello World</h1>');
+      // acquit:ignore:end
+    });
+
+    it('loader', async function() {
+      Vue.component('app', {
+        template: await load('app-template'),
+        data: () => ({ message: 'Hello World' })
+      });
+
+      const app = new Vue({
+        template: '<app></app>'
+      });
+
+      const data = await renderToString(app);
+      // <h1 data-server-rendered="true">Hello World</h1>
+      data;
+
+      async function load(template) {
+        if (typeof window !== 'undefined') {
+          return fetch(template + '.html').then(res => res.text());
+        }
+
+        const fs = require('fs');
+        return new Promise((resolve, reject) => {
+          fs.readFile(`${__dirname}/${template}.html`, 'utf8', (err, res) => {
+            if (err != null) {
+              return reject(err);
+            }
+            resolve(res);
+          });
+        });
+      }
+      // acquit:ignore:start
+      assert.equal(data, '<h1 data-server-rendered="true">Hello World</h1>');
+      // acquit:ignore:end
+    });
+
+    it('inline', async function() {
+      Vue.component('app', {
+        data: () => ({ message: 'Hello World' })
+      });
+
+      const app = new Vue({
+        template: `
+          <app inline-template>
+            <h1>{{message}}</h1>
+          </app>
+        `
+      });
+
+      const data = await renderToString(app);
+      // <h1 data-server-rendered="true">Hello World</h1>
+      data;
+      // acquit:ignore:start
+      assert.equal(data, '<h1 data-server-rendered="true">Hello World</h1>');
+      // acquit:ignore:end
+    });
+
+    it('template compiler', async function() {
+      const compiler = require('vue-template-compiler');
+      const parsed = compiler.parseComponent(`
+        <template>
+          <h1>{{message}}</h1>
+        </template>
+        <script>
+          module.exports = {
+            data: () => ({ message: 'Hello World' })
+          };
+        </script>
+      `);
+
+      // Contains `template`, `data` properties
+      const appComponent = Object.assign({ template: parsed.template.content },
+        eval(parsed.script.content));
+      Vue.component('app', appComponent);
+      const app = new Vue({
+        template: '<app></app>'
+      });
+
+      const data = await renderToString(app);
+      // <h1 data-server-rendered="true">Hello World</h1>
+      data;
+      // acquit:ignore:start
+      assert.equal(data, '<h1 data-server-rendered="true">Hello World</h1>');
+      // acquit:ignore:end
+    });
+  });
 });

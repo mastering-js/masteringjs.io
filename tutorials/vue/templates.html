@@ -1,0 +1,161 @@
+
+<html>
+  <head>
+    <title>3 Ways to Define Templates in Vue - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+(function(name,path,ctx){ctx[name]=ctx[name]||{ready:function(fn){var h=document.getElementsByTagName('head')[0],s=document.createElement('script'),w=window,loaded;s.onload=s.onerror=s.onreadystatechange=function(){if((s.readyState&&!(/^c|loade/.test(s.readyState)))||loaded){return}s.onload=s.onreadystatechange=null;loaded=1;ctx[name].ready(fn)};s.async=1;s.src=path;h.parentNode.insertBefore(s,h)}}})
+  ('KeenTracking', 'https://cdn.jsdelivr.net/npm/keen-tracking@4/dist/keen-tracking.min.js', this);
+
+  KeenTracking.ready(function(){
+    const client = new KeenTracking({
+      projectId: '5cc33f10c9e77c0001221a8b',
+      writeKey: '7A9D6C3CC0D72CF31D7F0CEAD56C9754334C36E35C80678A6C75DA8098AB6299309EDD1957063CB8F97E3FFF296E38B6492C83BC347BAAB05A44CA7169F9206BCB4815E76B79869C21C8106F9A1B5FCDE2BBE1AC8DDBB05FB1D500F1FA538DA7'
+    });
+
+    client.recordEvent('pageView', {
+      path: window.location.pathname
+    });
+  });
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>3 Ways to Define Templates in Vue</h1>
+      
+  <p>There are <a href="https://sebastiandedeyne.com/dealing-with-templates-in-vue-20/">numerous ways to define templates in Vue</a>, but many of them don&#39;t work so well in production. <a href="https://vuejs.org/v2/guide/components-edge-cases.html#X-Templates">The docs even recommend avoiding some of them</a>. Here&#39;s 3 ways to define templates for Vue components that work well with server-side rendering:</p>
+<h2 id="string-templates">String Templates</h2>
+<p>You can define a template in vanilla JavaScript as a <a href="https://medium.com/js-dojo/7-ways-to-define-a-component-template-in-vuejs-c04e0c72900d">string literal or template literal</a>. This approach means a component&#39;s HTML and JavaScript stay in the same file, which is generally considered a positive. The downside is that you don&#39;t get HTML syntax highlighting.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'app'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;{{message}}&lt;/h1&gt;'</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello World'</span> })
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;app&gt;&lt;/app&gt;'</span>
+});
+
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
+data;</code></pre>
+<p>You can use this approach but use a function to load the string. This splits HTML and JavaScript into separate files to get better syntax highlighting and separation of concerns.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'app'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-keyword">await</span> load(<span class="hljs-string">'app-template'</span>),
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello World'</span> })
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;app&gt;&lt;/app&gt;'</span>
+});
+
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
+data;
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span>(<span class="hljs-params">template</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">'undefined'</span>) {
+    <span class="hljs-keyword">return</span> fetch(template + <span class="hljs-string">'.html'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.text());
+  }
+
+  <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    fs.readFile(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/<span class="hljs-subst">${template}</span>.html`</span>, <span class="hljs-string">'utf8'</span>, (err, res) =&gt; {
+      <span class="hljs-keyword">if</span> (err != <span class="hljs-literal">null</span>) {
+        <span class="hljs-keyword">return</span> reject(err);
+      }
+      resolve(res);
+    });
+  });
+}</code></pre>
+<h2 id="inline-templates">Inline Templates</h2>
+<p>Another approach that is similar to string templates is inline templates. Instead of defining an HTML template for every component, you define all your component HTML in one top-level template. This is similar to <a href="http://localhost:5000/tutorials/vue/slots">slots</a>.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'app'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;{{message}}&lt;/h1&gt;'</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello World'</span> })
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;app&gt;&lt;/app&gt;'</span>
+});
+
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
+data;</code></pre>
+<p>The advantage of this approach is you can define all your app&#39;s HTML in one template, but still break up business logic into separate components.</p>
+<h2 id="single-file-components">Single File Components</h2>
+<p><a href="https://vuejs.org/v2/guide/single-file-components.html">Single file components</a> give you the best of both worlds between putting your HTML template in a separate file and putting your HTML template as a string literal. Like string literals, everything about a component is in one place. Like separate HTML files, you can get decent syntax highlighting.</p>
+<p>The tradeoff is that single file components are typically declared in a separate <code>.vue</code> file with its own special syntax. Below is an example of <code>.vue</code> syntax. Depending on your IDE, you may need to install an additional package for <code>.vue</code> file syntax highlighting.</p>
+<pre><code>&lt;template&gt;
+  &lt;h1&gt;{{message}}&lt;/h1&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  module.exports = {
+    data: () =&gt; ({ message: 'Hello World' })
+  };
+&lt;/script&gt;</code></pre><p>So in order to compile your component, you need a build step. There are numerous tools that can do this for you, like <a href="https://www.npmjs.com/package/vueify">the Vueify transform for Browserify</a> and <a href="https://www.npmjs.com/package/vue-loader">vue-loader for Webpack</a>. Under the hood, both of these tools use <a href="https://www.npmjs.com/package/vue-template-compiler"><code>vue-template-compiler</code></a>. Here&#39;s an example of using vue-template-compiler directly to compile Vue syntax into a component:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> compiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-template-compiler'</span>);
+<span class="hljs-keyword">const</span> parsed = compiler.parseComponent(<span class="hljs-string">`
+  &lt;template&gt;
+    &lt;h1&gt;{{message}}&lt;/h1&gt;
+  &lt;/template&gt;
+  &lt;script&gt;
+    module.exports = {
+      data: () =&gt; ({ message: 'Hello World' })
+    };
+  &lt;/script&gt;
+`</span>);
+
+<span class="hljs-comment">// Contains `template`, `data` properties</span>
+<span class="hljs-keyword">const</span> appComponent = <span class="hljs-built_in">Object</span>.assign({ <span class="hljs-attr">template</span>: parsed.template.content },
+  <span class="hljs-built_in">eval</span>(parsed.script.content));
+Vue.component(<span class="hljs-string">'app'</span>, appComponent);
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;app&gt;&lt;/app&gt;'</span>
+});
+
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
+data;</code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>
