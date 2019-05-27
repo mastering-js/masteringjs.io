@@ -1,0 +1,124 @@
+
+<html>
+  <head>
+    <title>Compare Two Strings in JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Compare Two Strings in JavaScript</h1>
+      
+  <p>JavaScript makes comparing strings easy. First, to compare if two strings are exactly equal, use <code>===</code>. <a href="https://codeburst.io/javascript-double-equals-vs-triple-equals-61d4ce5a121a">Do <strong>not</strong> use <code>==</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'1st string'</span>;
+<span class="hljs-keyword">const</span> str2 = str1;
+<span class="hljs-keyword">const</span> str3 = <span class="hljs-string">'2nd string'</span>;
+
+str1 === str2; <span class="hljs-comment">// true</span>
+str1 === str3; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// Always use `===`, because `==` can have some surprises</span>
+<span class="hljs-string">'1'</span> == <span class="hljs-number">1</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'2'</span> == <span class="hljs-number">2</span>; <span class="hljs-comment">// true</span></code></pre>
+<h2 id="and"><code>&lt;</code> and <code>&gt;</code></h2>
+<p>Using <code>&lt;</code> and <code>&gt;</code> compares strings lexicographically according to <a href="https://www.w3.org/TR/xml-entity-names/bycodes.html">Unicode sort order</a>. That means digits are always <code>&lt;</code> uppercase letters, and uppercase letters are always <code>&lt;</code> lowercase letters.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'0'</span>;
+<span class="hljs-keyword">const</span> str2 = <span class="hljs-string">'A'</span>;
+<span class="hljs-keyword">const</span> str3 = <span class="hljs-string">'Z'</span>;
+<span class="hljs-keyword">const</span> str4 = <span class="hljs-string">'a'</span>;
+
+str1 &lt; str2; <span class="hljs-comment">// true</span>
+str2 &lt; str3; <span class="hljs-comment">// true</span>
+str3 &lt; str4; <span class="hljs-comment">// true</span></code></pre>
+<p>When comparing strings with length greater than 1, JavaScript compares character by character. If both strings start with the same character, JavaScript compares the 2nd characters of each string. The end of a string is always <code>&lt;</code> any character.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Empty string '' is `&lt;` all other strings</span>
+<span class="hljs-keyword">const</span> str1 = <span class="hljs-string">''</span>;
+<span class="hljs-keyword">const</span> str2 = <span class="hljs-string">'A'</span>;
+<span class="hljs-keyword">const</span> str3 = <span class="hljs-string">'A1'</span>;
+<span class="hljs-keyword">const</span> str4 = <span class="hljs-string">'Z0'</span>;
+
+str1 &lt; str2; <span class="hljs-comment">// true</span>
+str2 &lt; str3; <span class="hljs-comment">// true</span>
+str3 &lt; str4; <span class="hljs-comment">// true</span></code></pre>
+<p>The <code>&lt;</code> and <code>&gt;</code> operators return <code>false</code> when comparing a string to a non-string:</p>
+<pre><code class="language-javascript"><span class="hljs-number">1</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
+<span class="hljs-string">'A'</span> &lt; <span class="hljs-number">1</span>; <span class="hljs-comment">// false</span>
+
+<span class="hljs-literal">null</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
+<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">null</span>; <span class="hljs-comment">// false</span>
+
+<span class="hljs-literal">undefined</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
+<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="sorting">Sorting</h2>
+<p>By default, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Description"><code>Array#sort()</code> function converts all values in an array to strings and then sorts them in Unicode sort order</a>. The <code>sort()</code> function puts <code>null</code> and <code>undefined</code> values at the end of the array.</p>
+<p>1 &lt; &#39;A&#39;; // false
+&#39;A&#39; &lt; 1; // false</p>
+<p>null &lt; &#39;A&#39;; // false
+&#39;A&#39; &lt; null; // false</p>
+<p>undefined &lt; &#39;A&#39;; // false
+&#39;A&#39; &lt; undefined; // false</p>
+<h2 id="-and-"><code>&lt;=</code> and <code>&gt;=</code></h2>
+<p>Be careful when using <code>&lt;=</code> and <code>&gt;=</code>, because these use the same type coercion that <code>==</code> does.</p>
+<pre><code class="language-javascript"><span class="hljs-string">'1'</span> &lt;= <span class="hljs-number">1</span>; <span class="hljs-comment">// true</span></code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>

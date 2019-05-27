@@ -467,6 +467,102 @@ describe('Fundamentals', function() {
     assert.ok(!str.match(/Snow/i));
     // acquit:ignore:end
   });
+
+  describe('string compare', function() {
+    it('equality', function() {
+      const str1 = '1st string';
+      const str2 = str1;
+      const str3 = '2nd string';
+
+      str1 === str2; // true
+      str1 === str3; // false
+
+      // Always use `===`, because `==` can have some surprises
+      '1' == 1; // true
+      '2' == 2; // true
+      // acquit:ignore:start
+      assert.ok(str1 === str2);
+      assert.ok(str1 !== str3);
+      assert.ok('1' == 1);
+      assert.ok('2' == 2);
+      // acquit:ignore:end
+    });
+
+    it('comparison', function() {
+      const str1 = '0';
+      const str2 = 'A';
+      const str3 = 'Z';
+      const str4 = 'a';
+
+      str1 < str2; // true
+      str2 < str3; // true
+      str3 < str4; // true
+      // acquit:ignore:start
+      assert.ok(str1 < str2);
+      assert.ok(str2 < str3);
+      assert.ok(str3 < str4);
+      // acquit:ignore:end
+    });
+
+    it('compare longer strings', function() {
+      // Empty string '' is `<` all other strings
+      const str1 = '';
+      const str2 = 'A';
+      const str3 = 'A1';
+      const str4 = 'Z0';
+
+      str1 < str2; // true
+      str2 < str3; // true
+      str3 < str4; // true
+      // acquit:ignore:start
+      assert.ok(str1 < str2);
+      assert.ok(str2 < str3);
+      assert.ok(str3 < str4);
+      // acquit:ignore:end
+    });
+
+    it('non-strings', function() {
+      1 < 'A'; // false
+      'A' < 1; // false
+
+      null < 'A'; // false
+      'A' < null; // false
+
+      undefined < 'A'; // false
+      'A' < undefined; // false
+      // acquit:ignore:start
+      assert.ok(!(1 < 'A'));
+      assert.ok(!('A' < 1));
+
+      assert.ok(!(null < 'A'));
+      assert.ok(!('A' < null));
+      assert.ok(!(null > 'A'));
+      assert.ok(!('A' > null));
+
+      assert.ok(!(undefined < 'A'));
+      assert.ok(!('A' < undefined));
+      assert.ok(!(undefined > 'A'));
+      assert.ok(!('A' > undefined));
+      // acquit:ignore:end
+    });
+
+    it('sort', function() {
+      const arr = [null, '', '0', 'A', 'Z', 'a'];
+      arr.sort();
+      // [ '', '0', 'A', 'Z', 'a', null ]
+      arr;
+      // acquit:ignore:start
+      assert.deepEqual(arr, [ '', '0', 'A', 'Z', 'a', null ]);
+      // acquit:ignore:end
+    });
+
+    it('lte', function() {
+      '1' <= 1; // true
+      // acquit:ignore:start
+      assert.ok('1' <= 1);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

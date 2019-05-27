@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Two Strings in JavaScript',
+      raw: './tutorials/fundamentals/string-compare.md',
+      url: '/tutorials/fundamentals/string-compare',
+      description: 'Learn how to compare two strings in JavaScript: whether one string is greater than, less than, or equal to the other.',
+      tags: ['fundamentals'],
+      date: moment('2019-05-28')
+    },
+    {
       title: 'Introduction to Vue Router',
       raw: './tutorials/vue/router.md',
       url: '/tutorials/vue/router',
