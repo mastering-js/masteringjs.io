@@ -1,0 +1,138 @@
+
+<html>
+  <head>
+    <title>Introduction to Vue Router - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Introduction to Vue Router</h1>
+      
+  <p><a href="https://router.vuejs.org/">Vue Router</a> is Vue&#39;s official router. The point of a router is to integrate a single page app with browser navigation, like the back button.</p>
+<p>Here&#39;s how you create a page with 2 links using Vue Router. First, <code>example1.html</code>:</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script src="https://unpkg.com/vue/dist/vue.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/vue-router/dist/vue-router.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="content"&gt;&lt;/div&gt;
+    &lt;script src="example1.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>This script loads <code>example1.js</code>. Below is the <code>example1.js</code> file:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> VueRouter({
+  <span class="hljs-attr">routes</span>: [
+    <span class="hljs-comment">// A route maps paths to components - when the portion of the URL after</span>
+    <span class="hljs-comment">// '#' changes, Vue router changes which component is displayed</span>
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/home'</span>,
+      <span class="hljs-attr">component</span>: { <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Home&lt;/h1&gt;'</span> }
+    },
+    {
+      <span class="hljs-attr">path</span>: <span class="hljs-string">'/about'</span>,
+      <span class="hljs-attr">component</span>: { <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;About Us&lt;/h1&gt;'</span> }
+    }
+  ]
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  router,
+  <span class="hljs-comment">// The `router-link` and `router-view` components are from Vue router.</span>
+  <span class="hljs-comment">// `router-link` becomes an &lt;a&gt; that links to the correct path</span>
+  <span class="hljs-comment">// `router-view` is where Vue router renders the component or template</span>
+  <span class="hljs-comment">// that corresponds to the current path.</span>
+  template: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;div&gt;
+        &lt;router-link to="/home"&gt;Home&lt;/router-link&gt;
+        &lt;router-link to="/about"&gt;About Us&lt;/router-link&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;router-view&gt;&lt;/router-view&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+}).$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p><a href="/tutorials/vue/router/example1.html">Here&#39;s a live example</a> of this basic Vue router setup. Below is a video of this code in action.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/7c851ac804b64b41bcc066d6a68f72d9" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>  
+
+<h2 id="testing">Testing</h2>
+<p>There&#39;s <a href="https://vue-test-utils.vuejs.org/">numerous ways to test Vue apps</a>. One alternative approach is using <a href="https://www.npmjs.com/package/nightmare">Segment&#39;s browser automation tool Nightmare</a>. Here&#39;s the <a href="https://www.npmjs.com/package/mocha">Mocha</a> test we use to test the example from this article:</p>
+<pre><code class="language-javascript">  describe(<span class="hljs-string">'router'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    it(<span class="hljs-string">'basic example'</span>, <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">const</span> nightmare = <span class="hljs-keyword">new</span> Nightmare({ <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> });
+
+      <span class="hljs-keyword">await</span> nightmare.
+        goto(<span class="hljs-string">`file://<span class="hljs-subst">${process.cwd()}</span>/tutorials/vue/router/example1.html`</span>).
+        wait(<span class="hljs-string">'#rendered-content'</span>);
+
+      <span class="hljs-keyword">await</span> nightmare.click(<span class="hljs-string">'a[href="#/home"]'</span>);
+      <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> nightmare.evaluate(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'h1'</span>).innerHTML);
+      assert.equal(res, <span class="hljs-string">'Home'</span>);
+
+      <span class="hljs-keyword">await</span> nightmare.click(<span class="hljs-string">'a[href="#/about"]'</span>);
+      res = <span class="hljs-keyword">await</span> nightmare.evaluate(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'h1'</span>).innerHTML);
+      assert.equal(res, <span class="hljs-string">'About Us'</span>);
+
+      <span class="hljs-keyword">await</span> nightmare.end();
+    });
+  });</code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>

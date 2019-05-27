@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Introduction to Vue Router',
+      raw: './tutorials/vue/router.md',
+      url: '/tutorials/vue/router',
+      description: 'Learn how to handle page navigation in Vue using Vue Router',
+      tags: ['vue'],
+      date: moment('2019-05-27')
+    },
+    {
       title: '3 Ways to Define Templates in Vue',
       raw: './tutorials/vue/templates.md',
       url: '/tutorials/vue/templates',

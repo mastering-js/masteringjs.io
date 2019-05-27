@@ -1,5 +1,6 @@
 'use strict';
 
+const Nightmare = require('nightmare');
 const Vue = require('vue');
 const assert = require('assert');
 const axios = require('axios');
@@ -340,6 +341,26 @@ describe('Vue', function() {
       // acquit:ignore:start
       assert.equal(data, '<h1 data-server-rendered="true">Hello World</h1>');
       // acquit:ignore:end
+    });
+  });
+
+  describe('router', function() {
+    it('basic example', async function() {
+      const nightmare = new Nightmare({ show: false });
+
+      await nightmare.
+        goto(`file://${process.cwd()}/tutorials/vue/router/example1.html`).
+        wait('#rendered-content');
+
+      await nightmare.click('a[href="#/home"]');
+      let res = await nightmare.evaluate(() => document.querySelector('h1').innerHTML);
+      assert.equal(res, 'Home');
+
+      await nightmare.click('a[href="#/about"]');
+      res = await nightmare.evaluate(() => document.querySelector('h1').innerHTML);
+      assert.equal(res, 'About Us');
+
+      await nightmare.end();
     });
   });
 });
