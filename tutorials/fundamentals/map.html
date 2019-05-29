@@ -1,0 +1,164 @@
+
+<html>
+  <head>
+    <title>Maps in JavaScript - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Maps in JavaScript</h1>
+      
+  <p>A JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a> is an object that stores key/value pairs. You can <code>get()</code> or <code>set()</code> the value associated with a key, or use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has"><code>has()</code></a> to check whether the map has a given key.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+map.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// undefined</span>
+map.has(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// false</span>
+
+map.set(<span class="hljs-string">'answer'</span>, <span class="hljs-number">42</span>);
+
+map.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// 42</span>
+map.has(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// true</span></code></pre>
+<p>Before ES6, JavaScript objects were often used as maps. Maps have several advantages over objects for storing user data. First, objects have special properties that may collide with key names. If you&#39;re not careful, you can end up with a <a href="https://medium.com/intrinsic/javascript-prototype-poisoning-vulnerabilities-in-the-wild-7bc15347c96">prototype poisoning security vulnerability</a>. That&#39;s why you need to be careful <a href="/tutorials/fundamentals/hasownproperty">whether you use <code>in</code> or <code>hasOwnProperty()</code></a> if you&#39;re using objects as maps.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {};
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+obj.answer = <span class="hljs-number">42</span>;
+map.set(<span class="hljs-string">'answer'</span>, <span class="hljs-number">42</span>);
+
+<span class="hljs-string">'answer'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+map.has(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// true</span>
+
+<span class="hljs-string">'prototype'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+map.has(<span class="hljs-string">'prototype'</span>); <span class="hljs-comment">// false</span>
+
+<span class="hljs-string">'__proto__'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+map.has(<span class="hljs-string">'constructor'</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>Maps can also store arbitrary keys, whereas objects can only store strings as keys. For example, you can store a <a href="/tutorials/fundamentals/timestamps">JavaScript date</a> key in a map. If you try to store a date as a key in an object, JavaScript will convert the key to a string first.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+map.set(date, <span class="hljs-string">'test1'</span>);
+map.set(date.toString(), <span class="hljs-string">'test2'</span>);
+
+map.get(date); <span class="hljs-comment">// 'test1'</span>
+map.get(date.toString()); <span class="hljs-comment">// 'test2'</span>
+
+<span class="hljs-keyword">const</span> obj = {};
+obj[date] = <span class="hljs-string">'test1'</span>;
+obj[date.toString()] = <span class="hljs-string">'test2'</span>;
+obj[date]; <span class="hljs-comment">// 'test2', because JavaScript converts object keys to strings</span></code></pre>
+<h2 id="the-map-constructor">The Map Constructor</h2>
+<p>The <code>Map</code> constructor takes a single parameter <code>iterable</code>. In practice, <code>iterable</code> is usually an array of key/value pairs <code>[[key1, value1], [key2, value2]]</code>. However, you can also pass a map to the <code>Map</code> constructor.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-keyword">const</span> map1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([
+  [<span class="hljs-string">'answer'</span>, <span class="hljs-number">42</span>],
+  [date, <span class="hljs-string">'test1'</span>]
+]);
+
+map1.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// 42</span>
+map1.get(date); <span class="hljs-comment">// test1</span>
+
+<span class="hljs-comment">// If you pass `map1` to the Map constructor, JavaScript will create a</span>
+<span class="hljs-comment">// copy of `map1`</span>
+<span class="hljs-keyword">const</span> map2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(map1);
+map2.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// 42</span>
+map2.get(date); <span class="hljs-comment">// test1</span>
+
+map2.set(<span class="hljs-string">'hello'</span>, <span class="hljs-string">'world'</span>);
+map1.get(<span class="hljs-string">'hello'</span>); <span class="hljs-comment">// undefined</span></code></pre>
+<p>You <strong>cannot</strong> pass an object to the map constructor. To convert an object to a map, you must use the <a href="/tutorials/fundamentals/foreach#example-4-object-keys-and-values"><code>Object.entries()</code> function to convert the object to an array of key/value pairs</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+<span class="hljs-comment">// This throws an error because objects are **not** iterable</span>
+<span class="hljs-comment">// "TypeError: undefined is not a function"</span>
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(obj);
+
+<span class="hljs-comment">// Works, you need to use `Object.entries()` to convert the object</span>
+<span class="hljs-comment">// to a key/value array</span>
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(<span class="hljs-built_in">Object</span>.entries(obj));
+map.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// 42</span></code></pre>
+<h2 id="iterating-over-a-map">Iterating Over a Map</h2>
+<p>You can iterate over a map&#39;s keys or key/value pairs using a <code>for/of</code> loop. Maps have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys"><code>keys()</code> function</a> that gives you the map&#39;s keys, and an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries"><code>entries()</code> function</a> that gives you the map&#39;s key/value pairs.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([
+  [<span class="hljs-string">'key1'</span>, <span class="hljs-number">1</span>],
+  [<span class="hljs-string">'key2'</span>, <span class="hljs-number">2</span>],
+  [<span class="hljs-string">'key3'</span>, <span class="hljs-number">3</span>]
+]);
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> map.keys()) {
+  <span class="hljs-comment">// 'key1', 'key2', 'key3'</span>
+  key;
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> map.entries()) {
+  <span class="hljs-comment">// 'key1', 'key2', 'key3'</span>
+  key;
+  <span class="hljs-comment">// 1, 2, 3</span>
+  value;
+}</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>

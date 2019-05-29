@@ -563,6 +563,160 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Map', function() {
+    it('get/set keys', function() {
+      const map = new Map();
+
+      map.get('answer'); // undefined
+      map.has('answer'); // false
+      // acquit:ignore:start
+      assert.strictEqual(map.get('answer'), undefined);
+      assert.ok(!map.has('answer'));
+      // acquit:ignore:end
+
+      map.set('answer', 42);
+
+      map.get('answer'); // 42
+      map.has('answer'); // true
+      // acquit:ignore:start
+      assert.equal(map.get('answer'), 42);
+      assert.ok(map.has('answer'));
+      // acquit:ignore:end
+    });
+
+    it('special properties', function() {
+      const obj = {};
+      const map = new Map();
+
+      obj.answer = 42;
+      map.set('answer', 42);
+
+      'answer' in obj; // true
+      map.has('answer'); // true
+      // acquit:ignore:start
+      assert.ok('answer' in obj);
+      assert.ok(map.has('answer'));
+      // acquit:ignore:end
+
+      'prototype' in obj; // true
+      map.has('prototype'); // false
+
+      '__proto__' in obj; // true
+      map.has('constructor'); // false
+      // acquit:ignore:start
+      assert.ok('__proto__' in obj);
+      assert.ok(!map.has('prototype'));
+
+      assert.ok('constructor' in obj);
+      assert.ok(!map.has('constructor'));
+      // acquit:ignore:end
+    });
+
+    it('arbitrary types', function() {
+      const map = new Map();
+
+      const date = new Date('2019-06-01');
+
+      map.set(date, 'test1');
+      map.set(date.toString(), 'test2');
+
+      map.get(date); // 'test1'
+      map.get(date.toString()); // 'test2'
+      // acquit:ignore:start
+      assert.equal(map.get(date), 'test1');
+      assert.equal(map.get(date.toString()), 'test2');
+      // acquit:ignore:end
+
+      const obj = {};
+      obj[date] = 'test1';
+      obj[date.toString()] = 'test2';
+      obj[date]; // 'test2', because JavaScript converts object keys to strings
+      // acquit:ignore:start
+      assert.equal(obj[date], 'test2');
+      // acquit:ignore:end
+    });
+
+    it('map constructor', function() {
+      const date = new Date('2019-06-01');
+      const map1 = new Map([
+        ['answer', 42],
+        [date, 'test1']
+      ]);
+
+      map1.get('answer'); // 42
+      map1.get(date); // test1
+      // acquit:ignore:start
+      assert.equal(map1.get('answer'), 42);
+      assert.equal(map1.get(date), 'test1');
+      // acquit:ignore:end
+
+      // If you pass `map1` to the Map constructor, JavaScript will create a
+      // copy of `map1`
+      const map2 = new Map(map1);
+      map2.get('answer'); // 42
+      map2.get(date); // test1
+
+      map2.set('hello', 'world');
+      map1.get('hello'); // undefined
+      // acquit:ignore:start
+      assert.equal(map2.get('answer'), 42);
+      assert.equal(map2.get(date), 'test1');
+      assert.ok(!map1.has('hello'));
+      // acquit:ignore:end
+    });
+
+    it('from object', function() {
+      const obj = { answer: 42 };
+
+      // acquit:ignore:start
+      try {
+      // acquit:ignore:end
+      // This throws an error because objects are **not** iterable
+      // "TypeError: undefined is not a function"
+      new Map(obj);
+      // acquit:ignore:start
+      } catch (err) {
+        assert.equal(err.message, 'undefined is not a function');
+      }
+      // acquit:ignore:end
+
+      // Works, you need to use `Object.entries()` to convert the object
+      // to a key/value array
+      const map = new Map(Object.entries(obj));
+      map.get('answer'); // 42
+      // acquit:ignore:start
+      assert.equal(map.get('answer'), 42);
+      // acquit:ignore:end
+    });
+
+    it('iterate', function() {
+      const map = new Map([
+        ['key1', 1],
+        ['key2', 2],
+        ['key3', 3]
+      ]);
+
+      for (const key of map.keys()) {
+        // 'key1', 'key2', 'key3'
+        key;
+      }
+      // acquit:ignore:start
+      assert.deepEqual(Array.from(map.keys()), ['key1', 'key2', 'key3']);
+      // acquit:ignore:end
+
+      for (const [key, value] of map.entries()) {
+        // 'key1', 'key2', 'key3'
+        key;
+        // 1, 2, 3
+        value;
+      }
+      // acquit:ignore:start
+      assert.deepEqual(Array.from(map.entries()),
+        [['key1', 1], ['key2', 2], ['key3', 3]]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

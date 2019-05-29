@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Maps in JavaScript',
+      raw: './tutorials/fundamentals/map.md',
+      url: '/tutorials/fundamentals/map',
+      description: 'Learn how to use ES6 maps in JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-05-29')
+    },
+    {
       title: 'Compare Two Strings in JavaScript',
       raw: './tutorials/fundamentals/string-compare.md',
       url: '/tutorials/fundamentals/string-compare',
