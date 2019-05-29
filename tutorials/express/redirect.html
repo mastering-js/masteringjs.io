@@ -41,6 +41,9 @@
 
     <div class="content">
       <h1>Redirects With Express</h1>
+      <div class="date">
+        May 14, 2019
+      </div>
       
   <p>The <a href="http://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code> function</a> lets you redirect the user to a different URL by sending an <a href="https://en.wikipedia.org/wiki/HTTP_302">HTTP response with status 302</a>. The HTTP client (browser, <a href="https://masteringjs.io/tutorials/axios/headers">Axios</a>, etc.) will then &quot;follow&quot; the redirect and send an HTTP request to the new URL as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();

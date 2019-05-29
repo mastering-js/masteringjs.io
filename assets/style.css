@@ -118,3 +118,8 @@ li {
   padding: 5px;
   margin-right: 0.5em;
 }
+
+.date {
+  font-size: 0.75em;
+  color: #333;
+}

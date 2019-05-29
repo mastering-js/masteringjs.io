@@ -41,6 +41,9 @@
 
     <div class="content">
       <h1>Getting Started with Mongoose Virtuals</h1>
+      <div class="date">
+        May 11, 2019
+      </div>
       
   <p><a href="https://mongoosejs.com/docs/guide.html#virtuals">Mongoose virtuals</a> are computed properties on <a href="https://mongoosejs.com/docs/documents.html">Mongoose documents</a>. They are not stored in MongoDB: a virtual property is computed whenever you access it.</p>
 <p>Suppose you have a <code>BlogPost</code> model that stores the raw <a href="https://www.markdownguide.org/">markdown</a> content of a blog post. You can create a virtual <code>html</code> that automatically calls a <a href="http://npmjs.com/package/marked">markdown parser</a> for you whenever you access the <code>html</code> property.</p>

@@ -15,6 +15,9 @@ module.exports = params => `
     ${nav()}
     <div class="content">
       <h1>${params.title}</h1>
+      <div class="date">
+        ${params.date ? params.date.format('ll') : ''}
+      </div>
       ${params.content}
     </div>
   </body>
