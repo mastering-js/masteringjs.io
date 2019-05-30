@@ -363,4 +363,29 @@ describe('Vue', function() {
       await nightmare.end();
     });
   });
+
+  describe('template compiler', function() {
+    it('compiling a string', async function() {
+      const compiler = require('vue-template-compiler');
+      const { renderToString } = require('vue-server-renderer').createRenderer();
+
+      // Compile a `render()` function based on a string template
+      const { render } = compiler.compileToFunctions('<h1>Hello, {{message}}</h1>');
+
+      Vue.component('hello', {
+        props: ['message'],
+        render
+      });
+
+      const app = new Vue({
+        template: '<hello message="World"></hello>'
+      });
+
+      // <h1 data-server-rendered="true">Hello, World</h1>
+      const data = await renderToString(app);
+      // acquit:ignore:start
+      assert.equal(data, '<h1 data-server-rendered="true">Hello, World</h1>');
+      // acquit:ignore:end
+    });
+  });
 });

@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Vue Template Compiler',
+      raw: './tutorials/vue/template-compiler.md',
+      url: '/tutorials/vue/template-compiler',
+      description: 'Learn how to use the vue-template-compiler npm module to compile Vue templates',
+      tags: ['vue'],
+      date: moment('2019-05-31')
+    },
+    {
       title: 'Sorting an Array in JavaScript',
       raw: './tutorials/fundamentals/array-sort.md',
       url: '/tutorials/fundamentals/array-sort',
