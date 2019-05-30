@@ -30,7 +30,9 @@ Sorting
 
 By default, the [`Array#sort()` function converts all values in an array to strings and then sorts them in Unicode sort order](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Description). The `sort()` function puts `null` and `undefined` values at the end of the array.
 
+```javascript
 [require:Fundamentals.*string compare.*non-strings]
+```
 
 `<=` and `>=`
 -------------

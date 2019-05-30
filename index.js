@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Sorting an Array in JavaScript',
+      raw: './tutorials/fundamentals/array-sort.md',
+      url: '/tutorials/fundamentals/array-sort',
+      description: 'Learn how to use the built-in `Array#sort()` function in JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-05-30')
+    },
+    {
       title: 'Maps in JavaScript',
       raw: './tutorials/fundamentals/map.md',
       url: '/tutorials/fundamentals/map',

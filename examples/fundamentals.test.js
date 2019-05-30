@@ -717,6 +717,88 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('sort', function() {
+    it('numbers forward', function() {
+      const arr = [3, 20, 100];
+
+      arr.sort((a, b) => a - b);
+      arr; // [3, 20, 100]
+      // acquit:ignore:start
+      assert.deepEqual(arr, [3, 20, 100]);
+      // acquit:ignore:end
+    });
+
+    it('numbers reverse', function() {
+      const arr = [20, 3, 100];
+
+      arr.sort((a, b) => b - a);
+      arr; // [100, 20, 3]
+      // acquit:ignore:start
+      assert.deepEqual(arr, [100, 20, 3]);
+      // acquit:ignore:end
+    });
+
+    it('lastName', function() {
+      const characters = [
+        { firstName: 'Jean-Luc', lastName: 'Picard', rank: 'Captain', age: 59 },
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander', age: 29 },
+        { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
+      ];
+
+      characters.sort((a, b) => {
+        if (a === b) {
+          return 0;
+        }
+        return a.lastName < b.lastName ? -1 : 1;
+      });
+
+      // La Forge, Picard, Riker
+      characters;
+      // acquit:ignore:start
+      assert.deepEqual(characters.map(c => c.lastName),
+        ['La Forge', 'Picard', 'Riker']);
+      // acquit:ignore:end
+    });
+
+    it('age', function() {
+      const characters = [
+        { firstName: 'Jean-Luc', lastName: 'Picard', rank: 'Captain', age: 59 },
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander', age: 29 },
+        { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
+      ];
+
+      characters.sort((a, b) => a.age - b.age);
+
+      // Riker, La Forge, Picard
+      characters;
+      // acquit:ignore:start
+      assert.deepEqual(characters.map(c => c.lastName),
+        ['Riker', 'La Forge', 'Picard']);
+      // acquit:ignore:end
+    });
+
+    it('rank', function() {
+      const characters = [
+        { firstName: 'Jean-Luc', lastName: 'Picard', rank: 'Captain', age: 59 },
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander', age: 29 },
+        { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
+      ];
+
+      const rankOrder = ['Captain', 'Commander', 'Lieutenant'];
+
+      characters.sort((a, b) => {
+        return rankOrder.indexOf(a.rank) - rankOrder.indexOf(b.rank);
+      });
+
+      // Picard, Riker, La Forge
+      characters;
+      // acquit:ignore:start
+      assert.deepEqual(characters.map(c => c.lastName),
+        ['Picard', 'Riker', 'La Forge']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
