@@ -799,6 +799,25 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('String#replace()', function() {
+    it('basic', function() {
+      const str = 'A penny saved is a penny earned';
+
+      // "A dollar saved is a dollar earned"
+      str.replace(/penny/g, 'dollar');
+
+      // "A dollar saved is a penny earned" - only replaces the first
+      // instance by default.
+      str.replace('penny', 'dollar');
+      // acquit:ignore:start
+      assert.equal(str.replace(/penny/g, 'dollar'),
+        'A dollar saved is a dollar earned');
+      assert.equal(str.replace('penny', 'dollar'),
+        'A dollar saved is a penny earned');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

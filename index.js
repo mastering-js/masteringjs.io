@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Replace All Instances of a String in JavaScript',
+      raw: './tutorials/fundamentals/string-replace.md',
+      url: '/tutorials/fundamentals/string-replace',
+      description: 'Learn how to replace all instances of a given substring in a JavaScript string',
+      tags: ['fundamentals'],
+      date: moment('2019-06-03')
+    },
+    {
       title: 'An Introduction to Vue Template Compiler',
       raw: './tutorials/vue/template-compiler.md',
       url: '/tutorials/vue/template-compiler',
