@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Webpack Watch',
+      raw: './tutorials/webpack/watch.md',
+      url: '/tutorials/webpack/watch',
+      description: 'Learn how Webpack\'s watch mode (--watch) works, with examples.',
+      tags: ['webpack'],
+      date: moment('2019-06-05')
+    },
+    {
       title: 'Running Webpack from Node.js',
       raw: './tutorials/webpack/node.md',
       url: '/tutorials/webpack/node',
