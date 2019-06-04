@@ -77,4 +77,30 @@ describe('Webpack', function() {
       // acquit:ignore:end
     });
   });
+
+  it('Node API', async function() {
+    // acquit:ignore:start
+    const fs = require('fs');
+    try {
+      fs.unlinkSync(`${__dirname}/bin/app.min.js`);
+    } catch (err) {}
+    // acquit:ignore:end
+    const config = require('./webpack.config.js');
+    const webpack = require('webpack');
+
+    const compiler = webpack(config);
+
+    // `compiler.run()` doesn't support promises yet, only callbacks
+    await new Promise((resolve, reject) => {
+      compiler.run((err, res) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(res);
+      });
+    });
+    // acquit:ignore:start
+    assert.ok(fs.existsSync(`${__dirname}/bin/app.min.js`));
+    // acquit:ignore:end
+  });
 });

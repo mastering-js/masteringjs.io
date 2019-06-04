@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Running Webpack from Node.js',
+      raw: './tutorials/webpack/node.md',
+      url: '/tutorials/webpack/node',
+      description: 'Learn how to run Webpack from your Node.js scripts, no CLI required',
+      tags: ['webpack'],
+      date: moment('2019-06-04')
+    },
+    {
       title: 'Replace All Instances of a String in JavaScript',
       raw: './tutorials/fundamentals/string-replace.md',
       url: '/tutorials/fundamentals/string-replace',

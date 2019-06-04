@@ -1,0 +1,90 @@
+
+<html>
+  <head>
+    <title>Running Webpack from Node.js - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Running Webpack from Node.js</h1>
+      <div class="date">
+        Jun 4, 2019
+      </div>
+      
+  <p>Most developers use Webpack via the <a href="https://www.npmjs.com/package/webpack-cli">Webpack CLI</a>, but Webpack also has an <a href="https://webpack.js.org/api/node/">excellent Node.js API</a>. That means you can run Webpack from your Node.js scripts, like an <a href="http://expressjs.com/">Express</a> server, without a task runner.</p>
+<p>For example, suppose you have the below <code>webpack.config.js</code> file. It takes a file <code>app.js</code>, and compiles it into <code>./bin/app.min.js</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">'development'</span>,
+  <span class="hljs-attr">entry</span>: {
+    <span class="hljs-attr">app</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/app.js`</span>
+  },
+  <span class="hljs-attr">target</span>: <span class="hljs-string">'web'</span>,
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/bin`</span>,
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">'[name].min.js'</span>
+  }
+};</code></pre>
+<p>Normally, you would run <code>webpack</code> from the command line. But you can also <code>require(&#39;webpack&#39;)</code> and run this config script from Node.js:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config.js'</span>);
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+
+<span class="hljs-keyword">const</span> compiler = webpack(config);
+
+<span class="hljs-comment">// `compiler.run()` doesn't support promises yet, only callbacks</span>
+<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  compiler.run(<span class="hljs-function">(<span class="hljs-params">err, res</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err) {
+      <span class="hljs-keyword">return</span> reject(err);
+    }
+    resolve(res);
+  });
+});</code></pre>
+<p>You can also <a href="/tutorials/webpack/programmatic-watch">run <code>webpack --watch</code> from Node.js</a>.</p>
+
+  <hr>
+  
+    <h2>More Webpack Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/webpack/programmatic-watch">Run Webpack Watch From Node.js</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>
