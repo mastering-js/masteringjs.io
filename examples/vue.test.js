@@ -5,6 +5,7 @@ const Vue = require('vue');
 const assert = require('assert');
 const axios = require('axios');
 const { renderToString } = require('vue-server-renderer').createRenderer();
+const sinon = require('sinon');
 
 describe('Vue', function() {
   it('ssr', async function() {
@@ -385,6 +386,142 @@ describe('Vue', function() {
       const data = await renderToString(app);
       // acquit:ignore:start
       assert.equal(data, '<h1 data-server-rendered="true">Hello, World</h1>');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('component', function() {
+    before(function() {
+      sinon.stub(Vue.prototype, '$mount').callsFake(() => null);
+    });
+
+    after(function() {
+      Vue.prototype.$mount.restore && Vue.prototype.$mount.restore();
+    });
+
+    it('create a component', async function() {
+      const helloComponent = Vue.component('hello', {
+        template: '<h1>Hello, World</h1>'
+      });
+      // Technically, a component is a function
+      typeof helloComponent; // 'function'
+      helloComponent.name; // 'VueComponent'
+
+      // Internally, Vue keeps a map from ids to components in
+      // `Vue.options.components`
+      Vue.options.components['hello'] === helloComponent; // true
+      // acquit:ignore:start
+      assert.ok(typeof helloComponent === 'function');
+      assert.equal(helloComponent.name, 'VueComponent');
+      assert.ok(Vue.options.components['hello'] === helloComponent);
+      // acquit:ignore:end
+
+      // Renders "<h1>Hello, World</h1>"
+      const app = new Vue({
+        template: '<hello></hello>'
+      });
+      app.$mount('#content');
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.equal(data, '<h1 data-server-rendered="true">Hello, World</h1>');
+      // acquit:ignore:end
+    });
+
+    it('component state', async function() {
+      Vue.component('hello', {
+        data: () => ({
+          name: 'World'
+        }),
+        template: `
+          <div>
+            <div>
+              <input v-model="name"></input>
+            </div>
+            <h1>Hello, {{name}}</h1>
+          </div>
+        `
+      });
+
+      // Displays "Hello, World" initially, changes based on input
+      const app = new Vue({
+        template: '<hello></hello>'
+      });
+      app.$mount('#content');
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'));
+      // acquit:ignore:end
+    });
+
+    it('component props', async function() {
+      // `props` is an array of prop names this component accepts. If you
+      // don't explicitly list a prop in `props`, you won't be able to use
+      // it in your template.
+      Vue.component('hello', {
+        props: ['name'],
+        template: '<h1>Hello, {{name}}</h1>'
+      });
+
+      // The app tracks `name` as internal state, and there's an input to
+      // modify `name` using `v-model`. Then, `v-bind:name` passes `name` as
+      // a prop to the `hello` component.
+      const app = new Vue({
+        data: () => ({ name: 'World' }),
+        template: `
+          <div>
+            <div>
+              <input v-model="name"></input>
+            </div>
+            <hello v-bind:name="name"></hello>
+          </div>
+        `
+      });
+      app.$mount('#content');
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'), data);
+      // acquit:ignore:end
+    });
+
+    it('emit', async function() {
+      Vue.component('input-name', {
+        data: () => ({ name: 'World' }),
+        // When you click the "Update" button, Vue will emit an event `update`
+        // to the parent, with the current state of 'name'.
+        template: `
+          <div>
+            <input type="text" v-model="name">
+            <button v-on:click="$emit('update', name)">
+              Update
+            </button>
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        data: () => ({ name: 'World' }),
+        // To listen to the 'update' event, you create the `input-name`
+        // component with a `v-on:update` attribute. `$event` contains
+        // the value of the 2nd parameter to `$emit()`.
+        template: `
+          <div>
+            <div>
+              <input-name v-on:update="setName($event)"></input-name>
+            </div>
+            <h1>Hello, {{name}}</h1>
+          </div>
+        `,
+        methods: {
+          // Define a method that Vue will call to handle the 'update' event.
+          setName: function(v) {
+            this.name = v;
+          }
+        }
+      });
+      app.$mount('#content');
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'), data);
       // acquit:ignore:end
     });
   });

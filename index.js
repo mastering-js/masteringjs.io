@@ -33,6 +33,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Vue Components',
+      raw: './tutorials/vue/components.md',
+      url: '/tutorials/vue/components',
+      description: 'A tutorial describing the basics of Vue components: templates, data, props, and events',
+      tags: ['vue'],
+      date: moment('2019-06-06')
+    },
+    {
       title: 'An Introduction to Webpack Watch',
       raw: './tutorials/webpack/watch.md',
       url: '/tutorials/webpack/watch',

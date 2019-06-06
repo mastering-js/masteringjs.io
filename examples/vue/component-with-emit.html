@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      Vue.component('input-name', {
+        data: () => ({ name: 'World' }),
+        // When you click the "Update" button, Vue will emit an event `update`
+        // to the parent, with the current state of 'name'.
+        template: `
+          <div>
+            <input type="text" v-model="name">
+            <button v-on:click="$emit('update', name)">
+              Update
+            </button>
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        data: () => ({ name: 'World' }),
+        // To listen to the 'update' event, you create the `input-name`
+        // component with a `v-on:update` attribute. `$event` contains
+        // the value of the 2nd parameter to `$emit()`.
+        template: `
+          <div>
+            <div>
+              <input-name v-on:update="setName($event)"></input-name>
+            </div>
+            <h1>Hello, {{name}}</h1>
+          </div>
+        `,
+        methods: {
+          // Define a method that Vue will call to handle the 'update' event.
+          setName: function(v) {
+            this.name = v;
+          }
+        }
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

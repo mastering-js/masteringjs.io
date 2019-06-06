@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      Vue.component('hello', {
+        props: ['name'],
+        template: '<h1>Hello, {{name}}</h1>'
+      });
+
+      // Displays "Hello, World" initially, changes based on input
+      const app = new Vue({
+        data: () => ({ name: 'World' }),
+        template: `
+          <div>
+            <div>
+              <input v-model="name"></input>
+            </div>
+            <hello v-bind:name="name"></hello>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

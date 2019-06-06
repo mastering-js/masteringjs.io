@@ -1,0 +1,193 @@
+
+<html>
+  <head>
+    <title>An Introduction to Vue Components - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>An Introduction to Vue Components</h1>
+      <div class="date">
+        Jun 6, 2019
+      </div>
+      
+  <p><a href="https://vuejs.org/v2/guide/components.html">Components</a> are essentially <a href="https://v1.vuejs.org/guide/components.html#What-are-Components">custom HTML elements</a>. They allow you to break your app down into understandable and reusable chunks, rather than having a single monolithic app. In this tutorial, you&#39;ll learn:</p>
+<ul>
+<li>How to create a component</li>
+<li>How to manage internal state with a component</li>
+<li>How to pass data into a component via props</li>
+<li>How to pass data from a component to its parent via <code>$emit()</code></li>
+</ul>
+<h2 id="creating-a-component">Creating a Component</h2>
+<p>To create a component, you should call the <a href="https://vuejs.org/v2/api/#Vue-component"><code>Vue.component()</code> function</a>. The <code>Vue.component()</code> function takes 2 parameters: a unique string <code>id</code> for the component, and the object <code>definition</code> of the component.</p>
+<p>Suppose you have a component whose id is <code>hello</code>. Whenever you include an element <code>&lt;hello&gt;&lt;/hello&gt;</code> in a <a href="/tutorials/vue/templates">Vue template</a>, Vue will replace the element with your component&#39;s template. Below is an example of a component <code>hello</code> with a template that displays a message in an <code>&lt;h1&gt;</code> tag.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> helloComponent = Vue.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Hello, World&lt;/h1&gt;'</span>
+});
+<span class="hljs-comment">// Technically, a component is a function</span>
+<span class="hljs-keyword">typeof</span> helloComponent; <span class="hljs-comment">// 'function'</span>
+helloComponent.name; <span class="hljs-comment">// 'VueComponent'</span>
+
+<span class="hljs-comment">// Internally, Vue keeps a map from ids to components in</span>
+<span class="hljs-comment">// `Vue.options.components`</span>
+Vue.options.components[<span class="hljs-string">'hello'</span>] === helloComponent; <span class="hljs-comment">// true</span>
+
+<span class="hljs-comment">// Renders "&lt;h1&gt;Hello, World&lt;/h1&gt;"</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<h2 id="internal-state-with-components">Internal State With Components</h2>
+<p>One advantage Vue has over React is <a href="https://vuejs.org/v2/guide/forms.html">two way data binding on form elements</a>. Forms in Vue are trivial using <code>v-model</code>, but they require a bit more work with React.</p>
+<p>Suppose you wanted to extend the <code>hello</code> component with an input, so the user can enter their name. You should add a <a href="https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function"><code>data</code> function</a> to your component <code>definition</code> that returns the initial state of the component. Make sure you define an initial state for all the properties you want Vue to watch, even if it is <code>null</code>.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span>
+  }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input v-model="name"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Displays "Hello, World" initially, changes based on input</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p>Here&#39;s how the component looks in action. You can also see a <a href="/examples/vue/component-with-data">live example here</a>.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/3075be615722442d89cc780630f92a8e" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+<h2 id="component-props">Component Props</h2>
+<p>Suppose that, instead of having one component that handles both user input and displaying data, you want to have separate components. The top-level <code>app</code> template will display the <code>&lt;input&gt;</code>, and the <code>hello</code> component will be responsible for displaying the value of the <code>&lt;input&gt;</code>.</p>
+<p>The way to pass data to the <code>hello</code> component is using <a href="https://vuejs.org/v2/guide/components-props.html">props</a>. The <code>v-bind:name=&quot;name&quot;</code> binds the value of <code>name</code> in the <code>hello</code> component&#39;s template to the value of <code>name</code> in the top-level app state.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `props` is an array of prop names this component accepts. If you</span>
+<span class="hljs-comment">// don't explicitly list a prop in `props`, you won't be able to use</span>
+<span class="hljs-comment">// it in your template.</span>
+Vue.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'name'</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Hello, {{name}}&lt;/h1&gt;'</span>
+});
+
+<span class="hljs-comment">// The app tracks `name` as internal state, and there's an input to</span>
+<span class="hljs-comment">// modify `name` using `v-model`. Then, `v-bind:name` passes `name` as</span>
+<span class="hljs-comment">// a prop to the `hello` component.</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input v-model="name"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;hello v-bind:name="name"&gt;&lt;/hello&gt;
+    &lt;/div&gt;
+  `</span>
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p><a href="/examples/vue/component-with-props">Here&#39;s a live example of the props-based <code>hello</code> component</a>.</p>
+<h2 id="emit"><code>$emit()</code></h2>
+<p>Props let you pass data into a component from a parent component. The <a href="https://vuejs.org/v2/guide/components-custom-events.html"><code>$emit()</code> function</a> lets you pass data from a component back to its parent, usually in response to an event.</p>
+<p>Suppose you wanted to define a separate <code>input-name</code> component that allowed the user to input their name. When the user clicks the &#39;Update&#39; button, your app updates the user&#39;s name and updates the <code>&lt;h1&gt;</code> tag. Here&#39;s how this works in Vue:</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'input-name'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// When you click the "Update" button, Vue will emit an event `update`</span>
+  <span class="hljs-comment">// to the parent, with the current state of 'name'.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input type="text" v-model="name"&gt;
+      &lt;button v-on:click="$emit('update', name)"&gt;
+        Update
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// To listen to the 'update' event, you create the `input-name`</span>
+  <span class="hljs-comment">// component with a `v-on:update` attribute. `$event` contains</span>
+  <span class="hljs-comment">// the value of the 2nd parameter to `$emit()`.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input-name v-on:update="setName($event)"&gt;&lt;/input-name&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>,
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-comment">// Define a method that Vue will call to handle the 'update' event.</span>
+    setName: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) </span>{
+      <span class="hljs-keyword">this</span>.name = v;
+    }
+  }
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p><a href="/examples/vue/component-with-emit">Here&#39;s a live example</a>.</p>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>
