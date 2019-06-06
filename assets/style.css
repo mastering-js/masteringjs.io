@@ -96,6 +96,12 @@ li {
   margin-right: auto;
 }
 
+.content img {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
 .post {
   border: 1px solid #ddd;
   padding: 15px;

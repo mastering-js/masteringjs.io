@@ -1,0 +1,97 @@
+
+<html>
+  <head>
+    <title>An Introduction to Vue CLI - Mastering JavaScript</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JavaScript</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>An Introduction to Vue CLI</h1>
+      <div class="date">
+        Jun 7, 2019
+      </div>
+      
+  <p><a href="https://cli.vuejs.org/">Vue CLI</a> is a powerful tool for scaffolding new Vue projects with standard tooling, like <a href="https://babeljs.io/">Babel</a> and <a href="https://eslint.org/">ESLint</a>. To get started, run:</p>
+<pre><code>npm install @vue/cli</code></pre><p>Then, run <code>./node_modules/.bin/vue ui</code> to get a nice GUI for scaffolding your Vue project. The below video walks through creating a project called <code>vue-sample</code> with the basic defaults.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/2c5169d3b661451b929b66d354b889be" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+<p>To run the project, navigate to the <code>vue-sample</code> directory, and run <code>npm run serve</code>. Navigate to <code>localhost:8080</code> and you&#39;ll be able to see your new Vue project:</p>
+<img src="https://i.imgur.com/U3pXe4i.png">
+
+<p>This project comes with ESLint, so you can immediately run <code>npm run lint</code> to lint your project. The project also has built-in support for single file components and live reload. Open up <code>src/App.vue</code> and you should see the below:</p>
+<img src="https://i.imgur.com/EOBwXQd.png">
+
+<p>Modify the template to display &quot;Hello, World!&quot;:</p>
+<pre><code>&lt;template&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Vue logo"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/logo.png"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">"Hello, World!"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre><p>Once you save, you&#39;ll see the app automatically updated in your browser. That&#39;s live reloading!</p>
+<img src="https://i.imgur.com/ZIMlRsJ.png">
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/components">An Introduction to Vue Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>
