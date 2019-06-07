@@ -9,7 +9,7 @@ module.exports = () => `
       <img src="/assets/logo.png">
     </div>
     <div class="name">
-      <a href="/">Mastering JavaScript</a>
+      <a href="/">Mastering JS</a>
     </div>
     <div class="links">
       <a href="/all">Tutorials</a>

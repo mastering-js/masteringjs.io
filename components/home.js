@@ -6,7 +6,7 @@ const nav = require('./nav');
 module.exports = ({ posts }) => `
 <html>
   <head>
-    <title>Mastering JavaScript</title>
+    <title>Mastering JS</title>
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/home.css" />

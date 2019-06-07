@@ -5,7 +5,7 @@ const nav = require('./nav');
 module.exports = params => `
 <html>
   <head>
-    <title>${params.title} - Mastering JavaScript</title>
+    <title>${params.title} - Mastering JS</title>
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
