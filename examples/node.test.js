@@ -2,6 +2,10 @@
 
 const WebSocket = require('ws');
 const assert = require('assert');
+const axios = require('axios');
+const config = require('../.config');
+
+Object.assign(process.env, config);
 
 describe('Node', function() {
   describe('websockets', function() {
@@ -78,6 +82,65 @@ describe('Node', function() {
       assert.deepEqual(await Promise.all([recv1, recv2]), ['Hello!', 'Hello!']);
       clients.map(c => c.close());
       await server.close();
+      // acquit:ignore:end
+    });
+  });
+
+  describe('s3', function() {
+    it('upload', async function() {
+      const AWS = require('aws-sdk');
+      const fs = require('fs');
+
+      AWS.config.update({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      });
+
+      const s3 = new AWS.S3();
+
+      const res = await new Promise((resolve, reject) => {
+        s3.upload({
+          Bucket: process.env.AWS_BUCKET,
+          Body: fs.createReadStream('./package.json'),
+          Key: 'package.json'
+        }, (err, data) => err == null ? resolve(data) : reject(err));
+      });
+
+      // 'https://s3.us-west-2.amazonaws.com/<bucket>/package.json'
+      res.Location;
+      // acquit:ignore:start
+      assert.equal(res.Location, 'https://s3.us-west-2.amazonaws.com/val.log.test/package.json');
+      // acquit:ignore:end
+    });
+
+    it('public upload', async function() {
+      // acquit:ignore:start
+      const AWS = require('aws-sdk');
+      const fs = require('fs');
+
+      AWS.config.update({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+      });
+
+      const s3 = new AWS.S3();
+      // acquit:ignore:end
+      const res = await new Promise((resolve, reject) => {
+        s3.upload({
+          Bucket: process.env.AWS_BUCKET,
+          Body: fs.createReadStream('./package.json'),
+          Key: 'package.json',
+          ACL: 'public-read' // Make this object public
+        }, (err, data) => err == null ? resolve(data) : reject(err));
+      });
+
+      // 'https://s3.us-west-2.amazonaws.com/<bucket>/package.json'
+      res.Location;
+      // acquit:ignore:start
+      assert.equal(res.Location, 'https://s3.us-west-2.amazonaws.com/val.log.test/package.json');
+      
+      const { data } = await axios.get(res.Location);
+      assert.equal(data.name, 'masteringjs.io');
       // acquit:ignore:end
     });
   });
