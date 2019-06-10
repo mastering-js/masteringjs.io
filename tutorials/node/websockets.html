@@ -1,0 +1,127 @@
+
+<html>
+  <head>
+    <title>WebSockets in Node.js - Mastering JS</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>WebSockets in Node.js</h1>
+      <div class="date">
+        Jun 10, 2019
+      </div>
+      
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">WebSockets</a> are a tool for bidirectional communication between a browser client and a server. In particular, WebSockets enable the server to push data to the client. This is different from your standard HTTP request using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"><code>fetch()</code></a> or <a href="/tutorials/axios/basic_auth">Axios</a> because the server cannot communicate with the client unless the client sends a request first.</p>
+<p>WebSockets are more flexible, but also are harder to implement and scale. WebSockets put more of a burden on the developer, so use them sparingly and only when you absolutely need them. In this article, you&#39;ll learn how to build a simple real-time chat application using WebSockets.</p>
+<h2 id="the-websocket-server">The WebSocket Server</h2>
+<p>The <a href="https://www.npmjs.com/package/ws"><code>ws</code> npm package</a> is the de facto WebSocket library for Node.js. You can also use <a href="https://socket.io/">Socket.IO</a>, but Socket.IO is a higher level framework on top of WebSockets rather than an implementation of the <a href="https://tools.ietf.org/html/rfc6455">WebSocket protocol</a>.</p>
+<p>Below is a basic example of a WebSocket server that tracks all open sockets and sends inbound messages to all open sockets. You can think of this as a simple chat server: when one person sends a message, the server broadcasts the message to everyone listening.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> WebSocket.Server({
+  <span class="hljs-attr">port</span>: <span class="hljs-number">8080</span>
+});
+
+<span class="hljs-keyword">let</span> sockets = [];
+server.on(<span class="hljs-string">'connection'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">socket</span>) </span>{
+  sockets.push(socket);
+
+  <span class="hljs-comment">// When you receive a message, send that message to every socket.</span>
+  socket.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
+    sockets.forEach(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.send(msg));
+  });
+});</code></pre>
+<h2 id="websocket-client-in-nodejs">WebSocket Client in Node.js</h2>
+<p>A WebSocket connection has two components, a client and a server. In the above example, you created a server. Clients initiate a request to open a WebSocket connection, and servers respond to inbound requests to open WebSocket connections.</p>
+<p>You can also create a WebSocket client in Node.js using <code>ws</code>. This is great for testing your WebSocket logic, although you can also use WebSockets for communication between backend services. Below is an example of a WebSocket client that talks to the above server.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> clients = [
+  <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:8080'</span>),
+  <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:8080'</span>)
+];
+
+clients.map(<span class="hljs-function"><span class="hljs-params">client</span> =&gt;</span> {
+  client.on(<span class="hljs-string">'message'</span>, msg =&gt; <span class="hljs-built_in">console</span>.log(msg));
+});
+
+<span class="hljs-comment">// Wait for the client to connect using async/await</span>
+<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> clients[<span class="hljs-number">0</span>].once(<span class="hljs-string">'open'</span>, resolve));
+
+<span class="hljs-comment">// Prints "Hello!" twice, once for each client.</span>
+clients[<span class="hljs-number">0</span>].send(<span class="hljs-string">'Hello!'</span>);</code></pre>
+<h2 id="websocket-client-in-the-browser">WebSocket Client in the Browser</h2>
+<p><a href="https://caniuse.com/#feat=websockets">Most modern browsers support WebSockets out of the box</a>. In other words, you can use the <code>WebSocket</code> class in the browser without without <code>ws</code> or transpilers, unless you want to support Internet Explorer 9 or Opera Mini. Below is a screenshot from <a href="https://caniuse.com/#feat=websockets">the <code>caniuse.com</code> section on WebSockets</a>.</p>
+<img src="https://i.imgur.com/hmA4oV1.png">
+
+<p>Below is an example of a chat page that connects to the above server:</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script type="text/javascript"&gt;
+      const ws = new WebSocket('ws://localhost:8080');
+
+      // Browser WebSockets have slightly different syntax than `ws`.
+      // Instead of EventEmitter syntax `on('open')`, you assign a callback
+      // to the `onopen` property.
+      ws.onopen = function() {
+        document.querySelector('#send').disabled = false;
+
+        document.querySelector('#send').addEventListener('click', function() {
+          ws.send(document.querySelector('#message').value);
+        });
+      };
+
+      ws.onmessage = function(msg) {
+        document.querySelector('#messages').innerHTML += `&lt;div&gt;${msg.data}&lt;/div&gt;`;
+      };
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Chat&lt;/h1&gt;
+    &lt;div&gt;
+      &lt;input id="message" placeholder="Message"&gt;
+      &lt;button id="send" disabled="true"&gt;Send&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="messages"&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Note that WebSockets in the browser have slightly different syntax for <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#Sending_data_to_the_server">waiting for the connection</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#Receiving_messages_from_the_server">receiving messages from the server</a>. Instead of <code>on(&#39;message&#39;, messageHandler)</code>, you should write <code>onmessage = messageHandler</code>.</p>
+
+  <hr>
+  
+
+    </div>
+  </body>
+</html>

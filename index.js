@@ -27,11 +27,20 @@ async function run() {
     ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/node.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/webpack.test.js', 'utf8'))
   ];
 
   const tutorials = [
+    {
+      title: 'WebSockets in Node.js',
+      raw: './tutorials/node/websockets.md',
+      url: '/tutorials/node/websockets',
+      description: 'WebSockets enable two-way communication between browser and server, including pushing updates to the browser. Here\'s how you can use websockets in Node.js',
+      tags: ['node'],
+      date: moment('2019-06-10')
+    },
     {
       title: 'An Introduction to Vue CLI',
       raw: './tutorials/vue/cli.md',
