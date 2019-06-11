@@ -34,7 +34,7 @@ async function run() {
 
   const tutorials = [
     {
-      title: 'Uploading Images to Amazon S3 in Node.js',
+      title: 'Uploading Files to Amazon S3 in Node.js',
       raw: './tutorials/node/s3.md',
       url: '/tutorials/node/s3',
       description: 'Learn how to upload files to Amazon S3 using the AWS Node.js SDK',
