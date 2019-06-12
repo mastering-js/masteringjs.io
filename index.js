@@ -34,6 +34,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to the Mocha Test Runner',
+      raw: './tutorials/mocha/intro.md',
+      url: '/tutorials/mocha/intro',
+      description: 'A brief overview of writing tests with Mocha',
+      tags: ['mocha', 'node'],
+      date: moment('2019-06-12')
+    },
+    {
       title: 'Uploading Files to Amazon S3 in Node.js',
       raw: './tutorials/node/s3.md',
       url: '/tutorials/node/s3',
