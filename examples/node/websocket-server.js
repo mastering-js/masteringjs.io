@@ -14,6 +14,11 @@ server.on('connection', function(socket) {
   socket.on('message', function(msg) {
     sockets.forEach(s => s.send(msg));
   });
+
+  // When a socket closes, or disconnects, remove it from the array.
+  socket.on('close', function() {
+    sockets = sockets.filter(s => s !== socket);
+  });
 });
 
 const express = require('express');
