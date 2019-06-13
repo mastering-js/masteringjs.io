@@ -34,6 +34,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using the Chai Assertion Library with Mocha',
+      raw: './tutorials/mocha/chai.md',
+      url: '/tutorials/mocha/chai',
+      description: 'An introduction to using Chai with Mocha using expect and should',
+      tags: ['mocha', 'node'],
+      date: moment('2019-06-13')
+    },
+    {
       title: 'An Introduction to the Mocha Test Runner',
       raw: './tutorials/mocha/intro.md',
       url: '/tutorials/mocha/intro',
