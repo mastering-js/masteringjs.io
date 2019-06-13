@@ -63,6 +63,11 @@ server.on(<span class="hljs-string">'connection'</span>, <span class="hljs-funct
   socket.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
     sockets.forEach(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.send(msg));
   });
+
+  <span class="hljs-comment">// When a socket closes, or disconnects, remove it from the array.</span>
+  socket.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    sockets = sockets.filter(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s !== socket);
+  });
 });</code></pre>
 <h2 id="websocket-client-in-nodejs">WebSocket Client in Node.js</h2>
 <p>A WebSocket connection has two components, a client and a server. In the above example, you created a server. Clients initiate a request to open a WebSocket connection, and servers respond to inbound requests to open WebSocket connections.</p>
