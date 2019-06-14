@@ -26,6 +26,7 @@ async function run() {
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/mocha.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/node.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/vue.test.js', 'utf8')),
@@ -33,6 +34,14 @@ async function run() {
   ];
 
   const tutorials = [
+    {
+      title: 'How to Test Async Code with Mocha',
+      raw: './tutorials/mocha/async.md',
+      url: '/tutorials/mocha/async',
+      description: 'An introduction to using Chai with Mocha using expect and should',
+      tags: ['mocha', 'node'],
+      date: moment('2019-06-14')
+    },
     {
       title: 'Using the Chai Assertion Library with Mocha',
       raw: './tutorials/mocha/chai.md',
