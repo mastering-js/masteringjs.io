@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Webpack Dev Server',
+      raw: './tutorials/webpack/dev-server.md',
+      url: '/tutorials/webpack/dev-server',
+      description: 'Learn how to use webpack-dev-server to run your browser-side JavaScript',
+      tags: ['webpack'],
+      date: moment('2019-06-17')
+    },
+    {
       title: 'How to Test Async Code with Mocha',
       raw: './tutorials/mocha/async.md',
       url: '/tutorials/mocha/async',
