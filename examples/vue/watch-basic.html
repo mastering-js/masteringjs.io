@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const app = new Vue({
+        data: () => ({ value: 'A', oldValue: 'A' }),
+        // The `watch` property is a map from watched properties to callbacks
+        watch: {
+          value: function(newValue, oldValue) {
+            console.log('Name changed from', oldValue, 'to', newValue);
+            this.oldValue = oldValue;
+          }
+        },
+        template: `
+          <div id="rendered-content">
+            <select v-model="value">
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+            <button id="undo" v-on:click="value = oldValue">Undo</button>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

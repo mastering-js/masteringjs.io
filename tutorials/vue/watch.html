@@ -1,0 +1,127 @@
+
+<html>
+  <head>
+    <title>An Introduction to Vue Watchers - Mastering JS</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>An Introduction to Vue Watchers</h1>
+      <div class="date">
+        Jun 18, 2019
+      </div>
+      
+  <p>In Vue, <a href="https://vuejs.org/v2/guide/computed.html#Watchers">watchers</a> let you watch a value by registering a callback that Vue will call whenever the value changes.</p>
+<p>For example, suppose you had a <a href="https://vuejs.org/v2/guide/forms.html#Select"><code>select</code> tag</a> that asked the user to select between options &#39;A&#39;, &#39;B&#39;, and &#39;C&#39;, and you wanted to implement an &quot;Undo&quot; button that would undo the last change the user made. You can do this by registering a watcher on the <code>value</code> that the select is bound to using <code>v-model</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-string">'A'</span>, <span class="hljs-attr">oldValue</span>: <span class="hljs-string">'A'</span> }),
+  <span class="hljs-comment">// The `watch` property is a map from watched properties to callbacks</span>
+  watch: {
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newValue, oldValue</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Name changed from'</span>, oldValue, <span class="hljs-string">'to'</span>, newValue);
+      <span class="hljs-keyword">this</span>.oldValue = oldValue;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;select v-model="value"&gt;
+        &lt;option&gt;A&lt;/option&gt;
+        &lt;option&gt;B&lt;/option&gt;
+        &lt;option&gt;C&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;button v-on:click="value = oldValue"&gt;Undo&lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p><a href="/examples/vue/watch-basic">Here&#39;s the undo button example in action</a>.</p>
+<p>One common use case for watchers is to persist changes to the server when a value changes. For example, suppose you wanted to send an HTTP request every time the user changes <code>value</code>. You could register a watcher on <code>value</code>, and send an HTTP request in the <code>watch</code> callback as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-string">'A'</span>, <span class="hljs-attr">saved</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-attr">watch</span>: {
+    <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">const</span> body = <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>.data);
+      fetch(<span class="hljs-string">'http://httpbin.org/post'</span>, { <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>, body }).
+        then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { <span class="hljs-keyword">this</span>.saved = <span class="hljs-literal">true</span>; });
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;select v-model="value"&gt;
+        &lt;option&gt;A&lt;/option&gt;
+        &lt;option&gt;B&lt;/option&gt;
+        &lt;option&gt;C&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;div v-if="saved" id="saved"&gt;Saved!&lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p><a href="/examples/vue/watch-basic">Here&#39;s a live example of the HTTP request watcher</a>.</p>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/cli">An Introduction to Vue CLI</a></li>
+  
+
+    <li><a href="/tutorials/vue/components">An Introduction to Vue Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>

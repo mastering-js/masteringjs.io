@@ -525,4 +525,55 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('watch', function() {
+    it('basic example', async function() {
+      const nightmare = new Nightmare({ show: false });
+
+      await nightmare.
+        goto(`file://${process.cwd()}/examples/vue/watch-basic.html`).
+        wait('#rendered-content');
+
+      let val = await nightmare.evaluate(() => document.querySelector('select').value);
+      assert.equal(val, 'A');
+
+      await nightmare.evaluate(() => {
+        document.querySelector('select').value = 'B';
+        document.querySelector('select').dispatchEvent(new Event('change'));
+      });
+      await nightmare.evaluate(() => {
+        document.querySelector('select').value = 'C';
+        document.querySelector('select').dispatchEvent(new Event('change'));
+      });
+      val = await nightmare.evaluate(() => document.querySelector('select').value);
+      assert.equal(val, 'C');
+      
+      await nightmare.evaluate(() => document.querySelector('#undo').click());
+
+      val = await nightmare.evaluate(() => document.querySelector('select').value);
+      assert.equal(val, 'B');
+
+      await nightmare.end();
+    });
+
+    it('http', async function() {
+      const nightmare = new Nightmare({ show: false });
+
+      await nightmare.
+        goto(`file://${process.cwd()}/examples/vue/watch-http.html`).
+        wait('#rendered-content');
+
+      let val = await nightmare.evaluate(() => document.querySelector('select').value);
+      assert.equal(val, 'A');
+
+      await nightmare.evaluate(() => {
+        document.querySelector('select').value = 'B';
+        document.querySelector('select').dispatchEvent(new Event('change'));
+      });
+
+      await nightmare.wait('#saved');
+
+      await nightmare.end();
+    });
+  });
 });

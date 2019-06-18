@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Vue Watchers',
+      raw: './tutorials/vue/watch.md',
+      url: '/tutorials/vue/watch',
+      description: 'Learn how to use Vue watchers to execute code when a value changes.',
+      tags: ['vue'],
+      date: moment('2019-06-18')
+    },
+    {
       title: 'An Introduction to Webpack Dev Server',
       raw: './tutorials/webpack/dev-server.md',
       url: '/tutorials/webpack/dev-server',
