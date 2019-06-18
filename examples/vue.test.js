@@ -576,4 +576,84 @@ describe('Vue', function() {
       await nightmare.end();
     });
   });
+
+  describe('props', function() {
+    afterEach(function() {
+      console.error.restore && console.error.restore();
+    });
+
+    it('basic', async function() {
+      Vue.component('greet', {
+        props: ['name'],
+        template: `
+          <div>
+            Hello, {{name}}
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        template: `<greet name="World!"></greet>`
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'), data);
+      // acquit:ignore:end
+    });
+
+    it('dynamic', async function() {
+      Vue.component('greet', {
+        props: ['name'],
+        // Renders "Hello, World"
+        template: `
+          <div>
+            Hello, {{name}}
+          </div>
+        `
+      });
+
+      const app = new Vue({
+        data: () => ({ value: 'World' }),
+        // Note the `v-bind:` prefix. If you forget it, `greet` will treat
+        // 'value' as a raw string and render "Hello, value"
+        template: `<greet v-bind:name="value"></greet>`
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'), data);
+      // acquit:ignore:end
+    });
+
+    it('validation', async function() {
+      Vue.component('greet', {
+        // Note the slightly different syntax. When doing validation, you set
+        // `props` as an object with the prop names as the keys.
+        props: {
+          name: String
+        },
+        // Renders "Hello, 42"
+        template: `
+          <div>
+            Hello, {{name}}
+          </div>
+        `
+      });
+
+      // Prints a warning:
+      // Invalid prop: type check failed for prop "name". Expected String
+      // with value "42", got Number with value 42.
+      const app = new Vue({
+        data: () => ({ value: 42 }),
+        template: `<greet v-bind:name="value"></greet>`
+      });
+      // acquit:ignore:start
+      sinon.stub(console, 'error');
+      const data = await renderToString(app);
+
+      assert.equal(console.error.getCalls().length, 1);
+      assert.ok(console.error.getCalls()[0].toString().indexOf('Expected String') !== -1,
+        console.error.getCalls()[0].toString());
+      // acquit:ignore:end
+    });
+  });
 });
