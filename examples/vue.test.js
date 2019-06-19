@@ -225,7 +225,7 @@ describe('Vue', function() {
         template: `
           <brand>
             <template v-slot:logo>
-              <img src="http://masteringjs.io/assets/logo.png">
+              <img src="https://masteringjs.io/assets/logo.png">
             </template>
             <template v-slot:name>
               Mastering JS
