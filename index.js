@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding Array.splice() in JavaScript',
+      raw: './tutorials/fundamentals/array-splice.md',
+      url: '/tutorials/fundamentals/array-splice',
+      description: 'A tutorial on how to use `splice()` to add and remove elements from JavaScript arrays',
+      tags: ['fundamentals'],
+      date: moment('2019-06-21')
+    },
+    {
       title: 'Substring vs Substr vs Slice in JavaScript',
       raw: './tutorials/fundamentals/substring.md',
       url: '/tutorials/fundamentals/substring',
