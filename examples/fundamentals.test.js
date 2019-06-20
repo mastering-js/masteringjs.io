@@ -818,6 +818,92 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('substring()', function() {
+    it('with 2 args', function() {
+      const str = 'Twas the night before Christmas';
+
+      let indexStart = 0;
+      let indexEnd = 4;
+      str.substring(indexStart, indexEnd); // 'Twas'
+
+      str.substring(5, 14); // 'the night'
+      // acquit:ignore:start
+      assert.equal(str.substring(0, 4), 'Twas');
+      assert.equal(str.substring(5, 14), 'the night');
+      // acquit:ignore:end
+    });
+
+    it('with 1 arg', function() {
+      // acquit:ignore:start
+      const str = 'Twas the night before Christmas';
+      // acquit:ignore:end
+      str.substring(5); // 'the night before Christmas'
+      // acquit:ignore:start
+      assert.equal(str.substring(5), 'the night before Christmas');
+      // acquit:ignore:end
+    });
+
+    it('with negative', function() {
+      // acquit:ignore:start
+      const str = 'Twas the night before Christmas';
+      // acquit:ignore:end
+      str.substring(4, -1); // 'Twas'
+      // acquit:ignore:start
+      assert.equal(str.substring(4, -1), 'Twas');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('substr', function() {
+    it('with 2 args', function() {
+      const str = 'Twas the night before Christmas';
+
+      let start = 0;
+      let length = 4;
+      // If `start === 0`, `substr()` and `substring()` are equivalent
+      str.substr(start, length); // 'Twas'
+
+      str.substr(5, 9); // 'the night'
+      'the night'.length; // 9
+      // acquit:ignore:start
+      assert.equal(str.substr(0, 4), 'Twas');
+      assert.equal(str.substr(5, 9), 'the night');
+      assert.equal('the night'.length, 9);
+      // acquit:ignore:end
+    });
+
+    it('with negative', function() {
+      const str = 'Twas the night before Christmas';
+
+      let start = -9;
+      let length = 9;
+      str.substr(start, length); // 'Christmas'
+
+      'Christmas'.length; // 9
+      // acquit:ignore:start
+      assert.equal(str.substr(-9, 9), 'Christmas');
+      assert.equal('Christmas'.length, 9);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('String#slice', function() {
+    it('works', function() {
+      const str = 'Twas the night before Christmas';
+
+      str.slice(0, 4); // Twas
+      str.slice(5, 14); // the night
+      str.slice(-16, -10); // before
+      str.slice(-9); // Christmas
+      // acquit:ignore:start
+      assert.equal(str.slice(0, 4), 'Twas');
+      assert.equal(str.slice(5, 14), 'the night');
+      assert.equal(str.slice(-16, -10), 'before');
+      assert.equal(str.slice(-9), 'Christmas');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

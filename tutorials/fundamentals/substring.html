@@ -1,0 +1,141 @@
+
+<html>
+  <head>
+    <title>Substring vs Substr vs Slice in JavaScript - Mastering JS</title>
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+    <div class="content">
+      <h1>Substring vs Substr vs Slice in JavaScript</h1>
+      <div class="date">
+        Jun 20, 2019
+      </div>
+      
+  <p>The difference between the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>String#substring()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>String#substr()</code></a> functions is a common source of confusion. Even experienced JavaScript developers mix them up sometimes. There&#39;s also a third way to get a substring, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>String#slice()</code> function</a>, that you may see in the wild. In this tutorial, you&#39;ll learn the difference between these 3 ways to get a substring in JavaScript.</p>
+<h2 id="stringsubstring"><code>String#substring()</code></h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>substring()</code> function</a> is the most common way to get a substring in JavaScript. It takes two parameters: <code>indexStart</code> and <code>indexEnd</code>. It returns the portion of the string that starts at <code>indexStart</code> and ends the character immediately preceding <code>indexEnd</code>. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
+
+<span class="hljs-keyword">let</span> indexStart = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> indexEnd = <span class="hljs-number">4</span>;
+str.substring(indexStart, indexEnd); <span class="hljs-comment">// 'Twas'</span>
+
+str.substring(<span class="hljs-number">5</span>, <span class="hljs-number">14</span>); <span class="hljs-comment">// 'the night'</span></code></pre>
+<p>If you don&#39;t specify <code>indexEnd</code>, the <code>substring()</code> function returns the rest of the string starting at <code>indexStart</code>.</p>
+<pre><code class="language-javascript">str.substring(<span class="hljs-number">5</span>); <span class="hljs-comment">// 'the night before Christmas'</span></code></pre>
+<p>The <code>substring()</code> function has some quirky behavior in edge cases:</p>
+<ul>
+<li>If <code>indexStart</code> or <code>indexEnd</code> is less than 0, it is treated as 0.</li>
+<li>If <code>indexEnd &lt; indexStart</code>, the two are swapped.</li>
+</ul>
+<p>For example, <code>substring(4, -1)</code> is equivalent to <code>substring(4, 0)</code>, which in turn is equivalent to <code>substring(0, 4)</code> as shown below.</p>
+<pre><code class="language-javascript">str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// 'Twas'</span></code></pre>
+<h2 id="stringsubstr"><code>String#substr()</code></h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>substr()</code> function</a> is also common, but it is considered a &quot;legacy function&quot; in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr">Mozilla&#39;s docs</a>. You shouldn&#39;t use it when writing new code, but you may see it in existing JavaScript projects.</p>
+<p>The key difference between <code>substring()</code> and <code>substr()</code> is that <code>substr()</code> has a different 2nd parameter. The first parameter to <code>substr()</code> is <code>start</code>, and the 2nd is <code>length</code>. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
+
+<span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> length = <span class="hljs-number">4</span>;
+<span class="hljs-comment">// If `start === 0`, `substr()` and `substring()` are equivalent</span>
+str.substr(start, length); <span class="hljs-comment">// 'Twas'</span>
+
+str.substr(<span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 'the night'</span>
+<span class="hljs-string">'the night'</span>.length; <span class="hljs-comment">// 9</span></code></pre>
+<p>Unlike <code>substring()</code>, you can call <code>substr()</code> with a negative <code>start</code>. That will make <code>substr()</code> start counting at the end of the string as opposed to the beginning. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
+
+<span class="hljs-keyword">let</span> start = <span class="hljs-number">-9</span>;
+<span class="hljs-keyword">let</span> length = <span class="hljs-number">9</span>;
+str.substr(start, length); <span class="hljs-comment">// 'Christmas'</span>
+
+<span class="hljs-string">'Christmas'</span>.length; <span class="hljs-comment">// 9</span></code></pre>
+<h2 id="stringslice"><code>String#slice()</code></h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>slice()</code> function</a> is less common than <code>substring()</code> and <code>substr()</code>. However, it has the best aspects of both <code>substring()</code> and <code>substr()</code>. Like <code>substring()</code>, the <code>slice()</code> function takes the start and end indices as parameters, and is not considered a legacy function. Like <code>substr()</code>, the <code>slice()</code> function supports negative indices. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
+
+str.slice(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// Twas</span>
+str.slice(<span class="hljs-number">5</span>, <span class="hljs-number">14</span>); <span class="hljs-comment">// the night</span>
+str.slice(<span class="hljs-number">-16</span>, <span class="hljs-number">-10</span>); <span class="hljs-comment">// before</span>
+str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Christmas</span></code></pre>
+<p>The <code>slice()</code> function seems like the clear winner out of the 3:</p>
+<ul>
+<li>Not considered a &quot;legacy function&quot;</li>
+<li>Supports negative indices</li>
+<li>Less name confusion: there&#39;s no <code>String#splice()</code></li>
+</ul>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/string-replace">Replace All Instances of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-sort">Sorting an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/map">Maps in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+    </div>
+  </body>
+</html>

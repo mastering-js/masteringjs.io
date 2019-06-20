@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Substring vs Substr vs Slice in JavaScript',
+      raw: './tutorials/fundamentals/substring.md',
+      url: '/tutorials/fundamentals/substring',
+      description: 'There are 3 ways to get a substring of a string in JavaScript. In this tutorial, you will learn the difference between `String#substring()`, `String#substr()`, and `String#slice()`',
+      tags: ['fundamentals'],
+      date: moment('2019-06-20')
+    },
+    {
       title: 'Vue Props Tutorial',
       raw: './tutorials/vue/props.md',
       url: '/tutorials/vue/props',
