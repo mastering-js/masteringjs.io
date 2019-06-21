@@ -904,6 +904,51 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Array#splice', function() {
+    it('remove', function() {
+      const arr = ['a', 'b', 'c', 'd'];
+
+      // Remove 1 element starting at index 2
+      arr.splice(2, 1);
+
+      arr; // ['a', 'b', 'd']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'd']);
+      // acquit:ignore:end
+    });
+
+    it('vs filter', function() {
+      const arr = ['a', 'b', 'c', 'd'];
+
+      // Remove 1 element starting at index 2
+      const arr2 = arr.filter((v, i) => i !== 2);
+
+      // `arr` still has 'c', because `filter()` doesn't modify the array
+      // in place. On the other hand, `splice()` modifies the array in place.
+      arr; // ['a', 'b', 'c', 'd']
+      arr2; // ['a', 'b', 'd']
+      arr2 === arr; // false
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd']);
+      assert.deepEqual(arr2, ['a', 'b', 'd']);
+      assert.ok(arr !== arr2);
+      // acquit:ignore:end
+    });
+
+    it('add', function() {
+      const arr = ['a', 'b', 'd'];
+
+      let start = 2;
+      let deleteCount = 0;
+      arr.splice(start, deleteCount, 'c');
+
+      arr; // ['a', 'b', 'c', 'd'];
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
