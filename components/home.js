@@ -33,9 +33,11 @@ module.exports = ({ posts }) => `
         </div>
       </div>
     </div>
-    <div class="content">
-      <h1>Latest Tutorials</h1>
-      ${list({ posts })}
+    <div class="allwrapper">
+      <div class="content">
+        <h1>Latest Tutorials</h1>
+        ${list({ posts })}
+      </div>
     </div>
   </body>
 </html>

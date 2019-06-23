@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>Getting Started with Mongoose Virtuals</h1>
-      <div class="date">
-        May 11, 2019
-      </div>
-      
+      <div class="content">
+        <h1>Getting Started with Mongoose Virtuals</h1>
+        <div class="date">
+          May 11, 2019
+        </div>
+        
   <p><a href="https://mongoosejs.com/docs/guide.html#virtuals">Mongoose virtuals</a> are computed properties on <a href="https://mongoosejs.com/docs/documents.html">Mongoose documents</a>. They are not stored in MongoDB: a virtual property is computed whenever you access it.</p>
 <p>Suppose you have a <code>BlogPost</code> model that stores the raw <a href="https://www.markdownguide.org/">markdown</a> content of a blog post. You can create a virtual <code>html</code> that automatically calls a <a href="http://npmjs.com/package/marked">markdown parser</a> for you whenever you access the <code>html</code> property.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Markdown parser</span>
@@ -108,6 +109,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

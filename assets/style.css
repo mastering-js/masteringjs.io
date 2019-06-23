@@ -131,7 +131,7 @@ li {
 }
 
 @media (max-width: 1000px) {
-  body {
+  .allwrapper {
     padding: 15px;
   }
 

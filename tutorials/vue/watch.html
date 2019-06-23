@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>An Introduction to Vue Watchers</h1>
-      <div class="date">
-        Jun 18, 2019
-      </div>
-      
+      <div class="content">
+        <h1>An Introduction to Vue Watchers</h1>
+        <div class="date">
+          Jun 18, 2019
+        </div>
+        
   <p>In Vue, <a href="https://vuejs.org/v2/guide/computed.html#Watchers">watchers</a> let you watch a value by registering a callback that Vue will call whenever the value changes.</p>
 <p>For example, suppose you had a <a href="https://vuejs.org/v2/guide/forms.html#Select"><code>select</code> tag</a> that asked the user to select between options &#39;A&#39;, &#39;B&#39;, and &#39;C&#39;, and you wanted to implement an &quot;Undo&quot; button that would undo the last change the user made. You can do this by registering a watcher on the <code>value</code> that the select is bound to using <code>v-model</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -132,6 +133,7 @@
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

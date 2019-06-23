@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>WebSockets in Node.js</h1>
-      <div class="date">
-        Jun 10, 2019
-      </div>
-      
+      <div class="content">
+        <h1>WebSockets in Node.js</h1>
+        <div class="date">
+          Jun 10, 2019
+        </div>
+        
   <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">WebSockets</a> are a tool for bidirectional communication between a browser client and a server. In particular, WebSockets enable the server to push data to the client. This is different from your standard HTTP request using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"><code>fetch()</code></a> or <a href="/tutorials/axios/basic_auth">Axios</a> because the server cannot communicate with the client unless the client sends a request first.</p>
 <p>WebSockets are more flexible, but also are harder to implement and scale. WebSockets put more of a burden on the developer, so use them sparingly and only when you absolutely need them. In this article, you&#39;ll learn how to build a simple real-time chat application using WebSockets.</p>
 <h2 id="the-websocket-server">The WebSocket Server</h2>
@@ -150,6 +151,7 @@ clients[<span class="hljs-number">0</span>].send(<span class="hljs-string">'Hell
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

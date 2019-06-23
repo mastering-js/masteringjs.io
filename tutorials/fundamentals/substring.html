@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>Substring vs Substr vs Slice in JavaScript</h1>
-      <div class="date">
-        Jun 20, 2019
-      </div>
-      
+      <div class="content">
+        <h1>Substring vs Substr vs Slice in JavaScript</h1>
+        <div class="date">
+          Jun 20, 2019
+        </div>
+        
   <p>The difference between the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>String#substring()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>String#substr()</code></a> functions is a common source of confusion. Even experienced JavaScript developers mix them up sometimes. There&#39;s also a third way to get a substring, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>String#slice()</code> function</a>, that you may see in the wild. In this tutorial, you&#39;ll learn the difference between these 3 ways to get a substring in JavaScript.</p>
 <h2 id="stringsubstring"><code>String#substring()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>substring()</code> function</a> is the most common way to get a substring in JavaScript. It takes two parameters: <code>indexStart</code> and <code>indexEnd</code>. It returns the portion of the string that starts at <code>indexStart</code> and ends the character immediately preceding <code>indexEnd</code>. For example:</p>
@@ -146,6 +147,7 @@ str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Ch
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

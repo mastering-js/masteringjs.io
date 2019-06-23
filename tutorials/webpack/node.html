@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>Running Webpack from Node.js</h1>
-      <div class="date">
-        Jun 4, 2019
-      </div>
-      
+      <div class="content">
+        <h1>Running Webpack from Node.js</h1>
+        <div class="date">
+          Jun 4, 2019
+        </div>
+        
   <p>Most developers use Webpack via the <a href="https://www.npmjs.com/package/webpack-cli">Webpack CLI</a>, but Webpack also has an <a href="https://webpack.js.org/api/node/">excellent Node.js API</a>. That means you can run Webpack from your Node.js scripts, like an <a href="http://expressjs.com/">Express</a> server, without a task runner.</p>
 <p>For example, suppose you have the below <code>webpack.config.js</code> file. It takes a file <code>app.js</code>, and compiles it into <code>./bin/app.min.js</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
@@ -98,6 +99,7 @@
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

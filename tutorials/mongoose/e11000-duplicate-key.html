@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    
+    <div class="allwrapper">
+      
 <div class="nav">
   <div class="branding">
     <div class="logo">
@@ -46,12 +47,12 @@
   </div>
 </div>
 
-    <div class="content">
-      <h1>Debug E11000 Errors in Mongoose</h1>
-      <div class="date">
-        Apr 29, 2019
-      </div>
-      
+      <div class="content">
+        <h1>Debug E11000 Errors in Mongoose</h1>
+        <div class="date">
+          Apr 29, 2019
+        </div>
+        
   <p><a href="https://docs.mongodb.com/manual/core/index-unique/#unique-index-and-missing-field">MongoDB&#39;s E11000 error</a> is a common source of confusion. This error occurs when two documents have the
 same value for a field that&#39;s <a href="https://mongoosejs.com/docs/validation.html#the-unique-option-is-not-a-validator">defined as <code>unique</code> in your Mongoose schema</a>.</p>
 <p>Mongoose models have an <code>_id</code> field that&#39;s <a href="https://docs.mongodb.com/manual/core/index-single/">always unique</a>. If you try to insert two documents with the same <code>_id</code>, you get the below error message.</p>
@@ -133,6 +134,7 @@ schema.plugin(<span class="hljs-built_in">require</span>(<span class="hljs-strin
     </ul>
   
 
+      </div>
     </div>
   </body>
 </html>

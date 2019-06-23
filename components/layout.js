@@ -19,13 +19,15 @@ module.exports = params => `
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
   </head>
   <body>
-    ${nav()}
-    <div class="content">
-      <h1>${params.title}</h1>
-      <div class="date">
-        ${params.date ? params.date.format('ll') : ''}
+    <div class="allwrapper">
+      ${nav()}
+      <div class="content">
+        <h1>${params.title}</h1>
+        <div class="date">
+          ${params.date ? params.date.format('ll') : ''}
+        </div>
+        ${params.content}
       </div>
-      ${params.content}
     </div>
   </body>
 </html>
