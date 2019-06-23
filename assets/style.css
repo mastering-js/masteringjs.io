@@ -129,3 +129,30 @@ li {
   font-size: 0.75em;
   color: #333;
 }
+
+@media (max-width: 1000px) {
+  body {
+    padding: 15px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0px;
+    margin-top: 55px;
+  }
+
+  pre {
+    overflow-x: scroll;
+  }
+
+  .nav {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+
+  .nav .links {
+    display: none;
+  }
+}
