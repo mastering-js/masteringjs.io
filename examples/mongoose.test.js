@@ -268,6 +268,53 @@ describe('Mongoose', function() {
     });
   });
 
+  describe('find all', function() {
+    it('basic', async function() {
+      const User = mongoose.model('User', Schema({
+        name: String,
+        email: String
+      }));
+      // acquit:ignore:start
+      await User.deleteMany({});
+      await User.create({ name: 'Test', email: 'test@gmail.com' });
+      // acquit:ignore:end
+
+      // Empty `filter` means "match all documents"
+      const filter = {};
+      const all = await User.find(filter);
+      // acquit:ignore:start
+      assert.equal(all.length, 1);
+      assert.equal(all[0].name, 'Test');
+      // acquit:ignore:end
+    });
+
+    it('cursor', async function() {
+      const User = mongoose.model('User', Schema({
+        name: String,
+        email: String
+      }));
+      // acquit:ignore:start
+      await User.deleteMany({});
+      await User.create({ name: 'Test', email: 'test@gmail.com' });
+      let docs = [];
+      // acquit:ignore:end
+
+      // Note no `await` here
+      const cursor = User.find().cursor();
+
+      for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+        // Use `doc`
+        // acquit:ignore:start
+        docs.push(doc);
+        // acquit:ignore:end
+      }
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      assert.equal(docs[0].name, 'Test');
+      // acquit:ignore:end
+    });
+  });
+
   describe('upsert', function() {
     let Character;
 

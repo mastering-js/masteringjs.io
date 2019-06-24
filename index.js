@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Find All Documents in Mongoose',
+      raw: './tutorials/mongoose/find-all.md',
+      url: '/tutorials/mongoose/find-all',
+      description: 'A tutorial about how to get all documents in a Mongoose model',
+      tags: ['mongoose'],
+      date: moment('2019-06-24')
+    },
+    {
       title: 'Understanding Array.splice() in JavaScript',
       raw: './tutorials/fundamentals/array-splice.md',
       url: '/tutorials/fundamentals/array-splice',
