@@ -315,6 +315,109 @@ describe('Mongoose', function() {
     });
   });
 
+  describe('Query', function() {
+    let Character;
+
+    before(async function() {
+      Character = mongoose.model('Character', Schema({
+        name: String,
+        age: Number
+      }));
+    });
+
+    beforeEach(async function() {
+      await Character.deleteMany({});
+      await Character.create({ name: 'Jean-Luc Picard', age: 59 });
+    });
+
+    it('query class', async function() {
+      const Character = mongoose.model('Character', Schema({
+        name: String,
+        age: Number
+      }));
+
+      const query = Character.find();
+      query instanceof mongoose.Query; // true
+      // acquit:ignore:start
+      assert.ok(query instanceof mongoose.Query);
+      // acquit:ignore:end
+
+      // Execute the query
+      const docs = await query;
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      // acquit:ignore:end
+    });
+
+    it('chaining', async function() {
+      let docs = await Character.find().
+        // `where()` specifies the name of the property
+        where('name').
+        // and then the query helper `in()` specifies that `name`
+        // must be one of the 2 values in the array
+        in(['Jean-Luc Picard', 'Will Riker']);
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      // acquit:ignore:end
+
+      // Equivalent query, but with the filter expressed as an object rather
+      // than using chaining
+      docs = await Character.find({
+        name: { $in: ['Jean-Luc Picard', 'Will Riker'] }
+      });
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      // acquit:ignore:end
+    });
+
+    it('getFilter', async function() {
+      const query = Character.find().
+        where('name').in(['Jean-Luc Picard', 'Will Riker']);
+      // `{ name: { $in: ['Jean-Luc Picard', 'Will Riker'] } }`
+      query.getFilter(); 
+      // acquit:ignore:start
+      assert.deepEqual(query.getFilter(), {
+        name: { $in: ['Jean-Luc Picard', 'Will Riker'] }
+      });
+      // acquit:ignore:end
+    });
+
+    it('multiple', async function() {
+      const docs = await Character.find().
+        // `name` must match the regular expression
+        where('name').regex(/picard/i).
+        // `age` must be between 29 and 59
+        where('age').gte(29).lte(59);
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      // acquit:ignore:end
+    });
+
+    it('exec()', async function() {
+      const promise = Character.find().exec();
+      promise instanceof Promise; // true
+      promise instanceof mongoose.Query; // false
+      // acquit:ignore:start
+      assert.ok(promise instanceof Promise);
+      assert.ok(!(promise instanceof mongoose.Query));
+      // acquit:ignore:end
+
+      const docs = await promise;
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      // acquit:ignore:end
+    });
+
+    it('then()', async function() {
+      return Character.find().then(docs => {
+        docs; // List of docs
+        // acquit:ignore:start
+        assert.equal(docs.length, 1);
+        // acquit:ignore:end
+      });
+    });
+  });
+
   describe('upsert', function() {
     let Character;
 

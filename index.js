@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Queries in Mongoose',
+      raw: './tutorials/mongoose/query.md',
+      url: '/tutorials/mongoose/query',
+      description: 'An overview of the Mongoose Query class and how to use it to query for documents',
+      tags: ['mongoose'],
+      date: moment('2019-06-25')
+    },
+    {
       title: 'How to Find All Documents in Mongoose',
       raw: './tutorials/mongoose/find-all.md',
       url: '/tutorials/mongoose/find-all',
