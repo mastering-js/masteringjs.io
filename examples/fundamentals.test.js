@@ -1052,6 +1052,21 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  it('promisify', async function() {
+    function myCallbackBasedFunction(callback) {
+      setTimeout(() => callback(null, 'Hello, World!'), 25);
+    }
+
+    const util = require('util');
+    const myPromiseBasedFunction =
+      util.promisify(myCallbackBasedFunction);
+
+    await myPromiseBasedFunction(); // 'Hello, World!'
+    // acquit:ignore:start
+    assert.equal(await myPromiseBasedFunction(), 'Hello, World!');
+    // acquit:ignore:end
+  });
 });
 
 if (!Array.prototype.flat) {
