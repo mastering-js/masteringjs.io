@@ -949,6 +949,109 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Object.keys', function() {
+    it('basic', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        age: 59,
+        rank: 'Captain'
+      };
+      Object.keys(obj); // ['name', 'age', 'rank']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'age', 'rank']);
+      // acquit:ignore:end
+    });
+
+    it('order', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        age: 59
+      };
+
+      obj.rank = 'Captain';
+      Object.keys(obj); // ['name', 'age', 'rank']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'age', 'rank']);
+      // acquit:ignore:end
+
+      delete obj.age;
+      obj.age = 59;
+      Object.keys(obj); // ['name', 'rank', 'age']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'rank', 'age']);
+      // acquit:ignore:end
+    });
+
+    it('numeric', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        rank: 'Captain',
+        1: 'test',
+        100: 'test',
+        10: 'test'
+      };
+
+      Object.keys(obj); // ['1', '10', '100', 'name', 'rank']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['1', '10', '100', 'name', 'rank']);
+      // acquit:ignore:end
+    });
+
+    it('ES6 class', function() {
+      class Character {
+        get show() { return 'Star Trek: The Next Generation'; }
+
+        firstName() {
+          return this.name.slice(0, this.name.indexOf(' '));
+        }
+      }
+
+      const obj = new Character();
+      Object.assign(obj, {
+        name: 'Jean-Luc Picard',
+        age: 59,
+        rank: 'Captain'
+      });
+
+      obj.show; // 'Star Trek: The Next Generation'
+      obj.firstName(); // 'Jean-Luc'
+
+      // `show` and `firstName` are **not** own properties, because they're
+      // from the class
+      Object.keys(obj); // ['name', 'age', 'rank']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'age', 'rank']);
+      // acquit:ignore:end
+
+      // But if you overwrite a class property, it becomes an own property.
+      obj.firstName = () => 'test';
+      Object.keys(obj); // ['name', 'age', 'rank', 'firstName']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'age', 'rank', 'firstName']);
+      // acquit:ignore:end
+    });
+
+    it('symbols', function() {
+      const rankSymbol = Symbol('rank');
+
+      const obj = {
+        name: 'Jean-Luc Picard',
+        age: 59,
+        [rankSymbol]: 'Captain'
+      };
+
+      Object.keys(obj); // ['name', 'age']
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(obj), ['name', 'age']);
+      // acquit:ignore:end
+      Object.getOwnPropertySymbols(obj); // [ Symbol(rank) ]
+      // acquit:ignore:start
+      assert.deepEqual(Object.getOwnPropertySymbols(obj).map(v => v.toString()),
+        ['Symbol(rank)']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

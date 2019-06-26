@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Overview of the Object.keys() Function in JavaScript',
+      raw: './tutorials/fundamentals/keys.md',
+      url: '/tutorials/fundamentals/keys',
+      description: 'An introduction to how to use Object.keys() in JavaScript',
+      tags: ['fundamentals'],
+      date: moment('2019-06-26')
+    },
+    {
       title: 'An Introduction to Queries in Mongoose',
       raw: './tutorials/mongoose/query.md',
       url: '/tutorials/mongoose/query',
