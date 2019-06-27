@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding Callbacks in JavaScript',
+      raw: './tutorials/fundamentals/callbacks.md',
+      url: '/tutorials/fundamentals/callbacks',
+      description: 'The term "callback" can mean one of a few different concepts in JavaScript. This tutorial will help you wrap your mind around callbacks.',
+      tags: ['fundamentals'],
+      date: moment('2019-06-27')
+    },
+    {
       title: 'An Overview of the Object.keys() Function in JavaScript',
       raw: './tutorials/fundamentals/keys.md',
       url: '/tutorials/fundamentals/keys',
