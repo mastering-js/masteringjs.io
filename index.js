@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What Does "use strict" Do in JavaScript?',
+      raw: './tutorials/fundamentals/strict.md',
+      url: '/tutorials/fundamentals/strict',
+      description: '"use strict" enables strict mode in JavaScript. This tutorial explains what strict mode does for you.',
+      tags: ['fundamentals'],
+      date: moment('2019-06-28')
+    },
+    {
       title: 'Understanding Callbacks in JavaScript',
       raw: './tutorials/fundamentals/callbacks.md',
       url: '/tutorials/fundamentals/callbacks',
