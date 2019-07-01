@@ -1,0 +1,155 @@
+
+<html>
+  <head>
+    <title>Make JavaScript Objects Immutable with Object.freeze() - Mastering JS</title>
+
+    <meta property="og:title" content="Make JavaScript Objects Immutable with Object.freeze()" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `const` keyword in JavaScript does not prevent you from changing an object's properties. The Object.freeze() function does that, but comes with caveats." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Make JavaScript Objects Immutable with Object.freeze()</h1>
+        <div class="date">
+          Jul 1, 2019
+        </div>
+        
+  <p>There&#39;s some confusion about <a href="https://stackoverflow.com/questions/33124058/object-freeze-vs-const">how to make an object immutable in JavaScript</a>. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">ES6 <code>const</code> keyword</a> prevents you from overwriting an object, but it does <strong>not</strong> prevent you from changing an object&#39;s properties.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+
+<span class="hljs-comment">// Even though `obj` is declared with `const`, you can modify</span>
+<span class="hljs-comment">// any properties of `obj`.</span>
+obj.answer = <span class="hljs-number">43</span>;
+++obj.answer;
+obj.otherProperty = <span class="hljs-string">'test'</span>;
+<span class="hljs-built_in">Object</span>.assign(obj, { <span class="hljs-attr">anotherProperty</span>: <span class="hljs-string">'test2'</span> });
+
+<span class="hljs-comment">// You **cannot** overwrite `obj` by assigning to it. This code</span>
+<span class="hljs-comment">// throws an error "assignment to constant variable"</span>
+obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">41</span> };</code></pre>
+<h2 id="freezing-an-object">Freezing an Object</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"><code>Object.freeze()</code> function</a> &quot;freezes&quot; an object. JavaScript prevents you from adding, removing, or modifying the properties of a frozen object.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
+
+<span class="hljs-comment">// Since `obj` is frozen, modifying any of its existing</span>
+<span class="hljs-comment">// properties or adding a new property throws an error:</span>
+<span class="hljs-comment">// "Cannot assign to read only property 'answer' of object '#&lt;Object&gt;'"</span>
+obj.answer = <span class="hljs-number">43</span>;</code></pre>
+<p>However, <code>Object.freeze()</code> is <strong>not</strong> recursive. You can still modify
+nested object properties.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">nested</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+
+<span class="hljs-comment">// Does **not** throw an error. `obj` is a frozen object,</span>
+<span class="hljs-comment">// but `nested` is not.</span>
+obj.nested.answer = <span class="hljs-number">43</span>;</code></pre>
+<p>There are numerous utilities for recursively freezing objects, including <a href="https://www.npmjs.com/package/deep-freeze">deep-freeze</a>.</p>
+<h2 id="strict-mode">Strict Mode</h2>
+<p>Be very careful relying on <code>Object.freeze()</code>: <code>Object.freeze()</code> does <strong>not</strong> work outside of <a href="/tutorials/fundamentals/strict">strict mode</a>. Even if you <code>freeze()</code> an object in a function that uses strict mode, another function can still modify that object if that function does not use strict mode.</p>
+<pre><code class="language-javacript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">strict</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-meta">  'use strict'</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> obj = strict();
+  <span class="hljs-comment">// Works because this function is not in strict mode</span>
+  ++obj.answer;
+}
+
+run();</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/strict">What Does "use strict" Do in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/callbacks">Understanding Callbacks in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/keys">An Overview of the Object.keys() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-splice">Understanding Array.splice() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/substring">Substring vs Substr vs Slice in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-replace">Replace All Instances of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-sort">Sorting an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/map">Maps in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

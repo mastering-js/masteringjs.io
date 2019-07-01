@@ -1067,6 +1067,52 @@ describe('Fundamentals', function() {
     assert.equal(await myPromiseBasedFunction(), 'Hello, World!');
     // acquit:ignore:end
   });
+
+  describe('freeze', function() {
+    it('vs const', function() {
+      const obj = { answer: 42 };
+
+      // Even though `obj` is declared with `const`, you can modify
+      // any properties of `obj`.
+      obj.answer = 43;
+      ++obj.answer;
+      obj.otherProperty = 'test';
+      Object.assign(obj, { anotherProperty: 'test2' });
+
+      // You **cannot** overwrite `obj` by assigning to it. This code
+      // throws an error "assignment to constant variable"
+      // acquit:ignore:start
+      assert.throws(function() {
+      // acquit:ignore:end
+      obj = { answer: 41 };
+      // acquit:ignore:start
+      }, /Assignment to constant variable/);
+      // acquit:ignore:end
+    });
+
+    it('basic', function() {
+      const obj = Object.freeze({ answer: 42 });
+
+      // Since `obj` is frozen, modifying any of its existing
+      // properties or adding a new property throws an error:
+      // "Cannot assign to read only property 'answer' of object '#<Object>'"
+      // acquit:ignore:start
+      assert.throws(function() {
+      // acquit:ignore:end
+      obj.answer = 43;
+      // acquit:ignore:start
+      }, /Cannot assign to read only property 'answer' of object '#<Object>'/);
+      // acquit:ignore:end
+    });
+
+    it('nested', function() {
+      const obj = Object.freeze({ nested: { answer: 42 } });
+
+      // Does **not** throw an error. `obj` is a frozen object,
+      // but `nested` is not.
+      obj.nested.answer = 43;
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

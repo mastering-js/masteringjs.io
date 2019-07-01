@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Make JavaScript Objects Immutable with Object.freeze()',
+      raw: './tutorials/fundamentals/freeze.md',
+      url: '/tutorials/fundamentals/freeze',
+      description: 'The `const` keyword in JavaScript does not prevent you from changing an object\'s properties. The Object.freeze() function does that, but comes with caveats.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-01')
+    },
+    {
       title: 'What Does "use strict" Do in JavaScript?',
       raw: './tutorials/fundamentals/strict.md',
       url: '/tutorials/fundamentals/strict',
