@@ -1113,6 +1113,126 @@ describe('Fundamentals', function() {
       obj.nested.answer = 43;
     });
   });
+
+  describe('arrow functions', function() {
+    it('no curly braces', function() {
+      // 'getAnswer()` is an arrow function that returns 42
+      const getAnswer = () => 42;
+
+      getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(getAnswer(), 42);
+      // acquit:ignore:end
+    });
+
+    it('with curly braces', function() {
+      // 'getAnswer()` is an arrow function that returns 42
+      const getAnswer = () => {
+        return 42;
+      };
+
+      getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(getAnswer(), 42);
+      // acquit:ignore:end
+    });
+
+    it('if without curly brace', function() {
+      let answer = 42;
+      // Without curly braces, the arrow function can only contain one
+      // expression. The below function works fine, but you can't use
+      // an `if` statement without curly braces.
+      const getAnswer = () => answer !== null && answer !== undefined ?
+        answer :
+        0;
+
+      getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(getAnswer(), 42);
+      // acquit:ignore:end
+    });
+
+    it('params', function() {
+      // If your arrow function takes no params, declare it with
+      // `() =>`
+      const getAnswer = () => 42;
+
+      // If your arrow function takes 1 param, you can omit the
+      // parentheses around the parameter names
+      let noop = v => v;
+      // Or, equivalently:
+      noop = (v) => v;
+
+      // If your arrow function takes more than 1 param, you must
+      // put parentheses around the parameter names
+      const add = (a, b) => a + b;
+
+      // acquit:ignore:start
+      assert.equal(getAnswer(), 42);
+      assert.equal(noop(42), 42);
+      assert.equal(add(21, 21), 42);
+      // acquit:ignore:end
+    });
+
+    it('class no arrow', async function() {
+      // acquit:ignore:start
+      let messages = [];
+      // acquit:ignore:end
+      class MyClass {
+        constructor(message) {
+          this.message = message;
+        }
+
+        print() {
+          setTimeout(function() {
+            // undefined, because `this` is a `Timeout` object in
+            // a `setTimeout()` callback
+            this.message;
+            // acquit:ignore:start
+            messages.push(this.message);
+            // acquit:ignore:end
+          }, 100);
+        }
+      }
+
+      const obj = new MyClass('Hello, World');
+      obj.message; // 'Hello, World'
+      obj.print();
+      // acquit:ignore:start
+      await new Promise(resolve => setTimeout(resolve, 200));
+      assert.deepEqual(messages, [void 0]);
+      // acquit:ignore:end
+    });
+
+    it('class with arrow', async function() {
+      // acquit:ignore:start
+      let messages = [];
+      // acquit:ignore:end
+      class MyClass {
+        constructor(message) {
+          this.message = message;
+        }
+
+        print() {
+          setTimeout(() => {
+            // 'Hello, World'
+            this.message;
+            // acquit:ignore:start
+            messages.push(this.message);
+            // acquit:ignore:end
+          }, 100);
+        }
+      }
+
+      const obj = new MyClass('Hello, World');
+      obj.message; // 'Hello, World'
+      obj.print();
+      // acquit:ignore:start
+      await new Promise(resolve => setTimeout(resolve, 200));
+      assert.deepEqual(messages, ['Hello, World']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

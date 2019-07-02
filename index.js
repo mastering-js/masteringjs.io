@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Arrow Functions in JavaScript',
+      raw: './tutorials/fundamentals/arrow.md',
+      url: '/tutorials/fundamentals/arrow',
+      description: 'Arrow functions let you write functions more concisely, but come with several syntactic quirks. This tutorial describes what you need to know to use arrow functions effectively.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-02')
+    },
+    {
       title: 'Make JavaScript Objects Immutable with Object.freeze()',
       raw: './tutorials/fundamentals/freeze.md',
       url: '/tutorials/fundamentals/freeze',

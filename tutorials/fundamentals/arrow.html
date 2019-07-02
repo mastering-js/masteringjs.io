@@ -1,0 +1,247 @@
+
+<html>
+  <head>
+    <title>Arrow Functions in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Arrow Functions in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Arrow functions let you write functions more concisely, but come with several syntactic quirks. This tutorial describes what you need to know to use arrow functions effectively." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Arrow Functions in JavaScript</h1>
+        <div class="date">
+          Jul 2, 2019
+        </div>
+        
+  <p><a href="https://exploringjs.com/es6/ch_arrow-functions.html">Arrow functions</a>
+were introduced in ES6 to work around several common gotchas with
+conventional functions. However, you still need to learn when to use
+conventional functions versus when to use arrow functions, because
+there are situations where
+<a href="https://mongoosejs.com/docs/faq.html#arrow-functions">using an arrow function is the wrong choice</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<p>When you see <code>=&gt;</code>, you&#39;re looking at an arrow function. There are
+two ways to declare an arrow function:</p>
+<p>1) Without curly braces <code>{}</code>. With this syntax, the arrow function has an implicit return. For example, the below arrow function returns 42, even though there&#39;s no <code>return</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 'getAnswer()` is an arrow function that returns 42</span>
+<span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>;
+
+getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+<p>2) With curly braces <code>{}</code>. With this syntax, the arrow function does not have an implicit <code>return</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 'getAnswer()` is an arrow function that returns 42</span>
+<span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+};
+
+getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+<p>Returning an object literal from an arrow function is tricky:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Syntax error! JavaScript assumes curly braces after `=&gt;` means</span>
+<span class="hljs-comment">// you're using the curly braces syntax</span>
+<span class="hljs-keyword">const</span> getObj = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+
+<span class="hljs-comment">// With parentheses around the object literal, the below function</span>
+<span class="hljs-comment">// correctly returns an object with `obj.answer = 42`</span>
+<span class="hljs-keyword">const</span> getObj = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
+
+getObj(); <span class="hljs-comment">// 42</span></code></pre>
+<p>Without curly braces, you can only put one <a href="https://2ality.com/2012/09/expressions-vs-statements.html">expression</a> to the right of the arrow <code>=&gt;</code>. Intuitively, this means you can only use the no curly brace syntax for &quot;one-liners&quot;. You can use the ternary operator <code>?</code>, <code>&amp;&amp;</code>, and <code>||</code>. But you cannot use <code>if</code> statements or semicolons.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> answer = <span class="hljs-number">42</span>;
+<span class="hljs-comment">// Without curly braces, the arrow function can only contain one</span>
+<span class="hljs-comment">// expression. The below function works fine, but you can't use</span>
+<span class="hljs-comment">// an `if` statement without curly braces.</span>
+<span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> answer !== <span class="hljs-literal">null</span> &amp;&amp; answer !== <span class="hljs-literal">undefined</span> ?
+  answer :
+  <span class="hljs-number">0</span>;
+
+getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+<h2 id="parameters">Parameters</h2>
+<p>Like normal functions, arrow functions can take zero or more parameters.
+You must put the parameter names in parentheses <code>(param1, param2, param3) =&gt; {}</code> unless your arrow function takes exactly one parameter.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// If your arrow function takes no params, declare it with</span>
+<span class="hljs-comment">// `() =&gt;`</span>
+<span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>;
+
+<span class="hljs-comment">// If your arrow function takes 1 param, you can omit the</span>
+<span class="hljs-comment">// parentheses around the parameter names</span>
+<span class="hljs-keyword">let</span> noop = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v;
+<span class="hljs-comment">// Or, equivalently:</span>
+noop = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> v;
+
+<span class="hljs-comment">// If your arrow function takes more than 1 param, you must</span>
+<span class="hljs-comment">// put parentheses around the parameter names</span>
+<span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;</code></pre>
+<h2 id="why-arrow-functions">Why Arrow Functions?</h2>
+<p>Arrow functions have two major advantages:</p>
+<p>1) Implicit return for one-line functions means more concise code
+2) <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this">Lexical <code>this</code></a>. <code>this</code> in the arrow function is the same as <code>this</code> outside the arrow function.</p>
+<p>For example, suppose you try to call <code>setTimeout()</code> in a
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions">class method</a>. If you use a normal function as opposed to
+an arrow function, <code>this</code> will <strong>not</strong> be an instance of <code>MyClass</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+  <span class="hljs-keyword">constructor</span>(message) {
+    <span class="hljs-keyword">this</span>.message = message;
+  }
+
+  print() {
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-comment">// undefined, because `this` is a `Timeout` object in</span>
+      <span class="hljs-comment">// a `setTimeout()` callback</span>
+      <span class="hljs-keyword">this</span>.message;
+    }, <span class="hljs-number">100</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-string">'Hello, World'</span>);
+obj.message; <span class="hljs-comment">// 'Hello, World'</span>
+obj.print();</code></pre>
+<p>With an arrow function, <code>this</code> will be an instance of <code>MyClass</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+  <span class="hljs-keyword">constructor</span>(message) {
+    <span class="hljs-keyword">this</span>.message = message;
+  }
+
+  print() {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-comment">// 'Hello, World'</span>
+      <span class="hljs-keyword">this</span>.message;
+    }, <span class="hljs-number">100</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-string">'Hello, World'</span>);
+obj.message; <span class="hljs-comment">// 'Hello, World'</span>
+obj.print();</code></pre>
+<h2 id="why-not-arrow-functions">Why Not Arrow Functions?</h2>
+<p>Arrow functions are excellent, and often it doesn&#39;t matter whether
+you use an arrow function or normal function. But when you use a
+framework that depends on <code>this</code>, you should not use arrow functions.</p>
+<p>For example, suppose you declare a <a href="https://v1.vuejs.org/guide/events.html#Method-Handler">Vue method</a> using an arrow function. You won&#39;t be able to access the Vue instance&#39;s <code>name</code>
+property because Vue won&#39;t be able to set <code>this</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-comment">// This method will **not** work. Vue methods depend on</span>
+  <span class="hljs-comment">// the correct value of `this`</span>
+  methods: {
+    <span class="hljs-attr">setName</span>: <span class="hljs-function"><span class="hljs-params">newName</span> =&gt;</span> <span class="hljs-keyword">this</span>.name = newName
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;h1&gt;{{name}}&lt;/h1&gt;
+      &lt;button v-on:click="setName('Hello')"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>Another common case is <a href="https://mochajs.org/#test-level">Mocha timeouts</a>. You can use arrow functions for <a href="/tutorials/mocha/intro">Mocha tests</a>, but then you can&#39;t set the test timeout.</p>
+<pre><code class="language-javascript">describe(<span class="hljs-string">'MyFunction'</span>, () =&gt; {
+  it(<span class="hljs-string">'works'</span>, () =&gt; {
+    <span class="hljs-keyword">this</span>.timeout(<span class="hljs-number">500</span>); <span class="hljs-comment">// Throws an error</span>
+  });
+});</code></pre>
+<p>In general, you should <strong>not</strong> pass arrow functions to a framework
+unless you do not intend to use the <code>this</code> keyword. For example,
+don&#39;t use arrow functions for Vue methods, Mocha tests, React class
+methods, or <a href="https://mongoosejs.com/docs/guide.html#methods">Mongoose model methods</a>. You may use arrow
+functions inside a Vue method or a Mocha test, but the top level
+function that you give to Vue or Mocha should <strong>not</strong> be an arrow function.</p>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/freeze">Make JavaScript Objects Immutable with Object.freeze()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/strict">What Does "use strict" Do in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/callbacks">Understanding Callbacks in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/keys">An Overview of the Object.keys() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-splice">Understanding Array.splice() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/substring">Substring vs Substr vs Slice in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-replace">Replace All Instances of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-sort">Sorting an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/map">Maps in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
