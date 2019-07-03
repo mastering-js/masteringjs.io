@@ -1,0 +1,44 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      Vue.component('my-select', {
+        // `v-model` passes the 'value' as a prop...
+        props: ['value'],
+        methods: {
+          set: function(v) {
+            // And listens to the 'input' event for changes
+            this.$emit('input', v);
+          }
+        },
+        template: `
+          <div>
+            <div v-for="v in ['A', 'B', 'C']" v-on:click="set(v)">
+              {{v}}
+              <span v-if="v === value">[x]</span>
+            </div>
+          </div>
+        `
+      })
+
+      const app = new Vue({
+        data: () => ({ value: 'B' }),
+        template: `
+          <div id="rendered-content">
+            <h1>{{value}}</h1>
+            <div>
+              <my-select v-model="value"></my-select>
+            </div>
+            <button v-on:click="value = 'B'">
+              Reset
+            </button>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

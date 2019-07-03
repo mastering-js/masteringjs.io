@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const app = new Vue({
+        data: () => ({ value: 'Hello, World' }),
+        template: `
+          <div id="rendered-content">
+            <h1>{{value}}</h1>
+            <div>
+              <input v-model="value"></input>
+            </div>
+            <button v-on:click="value = 'Hello, World'">
+              Reset
+            </button>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const app = new Vue({
+        data: () => ({ value: 'B' }),
+        template: `
+          <div id="rendered-content">
+            <h1>{{value}}</h1>
+            <div>
+              <select v-model="value">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+              </select>
+            </div>
+            <button v-on:click="value = 'B'">
+              Reset
+            </button>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

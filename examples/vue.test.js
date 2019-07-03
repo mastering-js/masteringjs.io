@@ -365,6 +365,36 @@ describe('Vue', function() {
     });
   });
 
+  describe('v-model', function() {
+    it('basic example', async function() {
+      const nightmare = new Nightmare({ show: true });
+
+      await nightmare.
+        goto(`file://${process.cwd()}/examples/vue/v-model.html`).
+        wait('#rendered-content');
+
+      let res = await nightmare.evaluate(() => document.querySelector('h1').innerHTML);
+      assert.equal(res, 'Hello, World');
+
+      await nightmare.evaluate(() => {
+        document.querySelector('input').value = 'Test';
+        document.querySelector('input').dispatchEvent(new Event('input'));
+      });
+
+      res = await nightmare.evaluate(() => document.querySelector('h1').innerHTML);
+      assert.equal(res, 'Test');
+
+      await nightmare.evaluate(() => {
+        document.querySelector('button').click();
+      });
+
+      res = await nightmare.evaluate(() => document.querySelector('h1').innerHTML);
+      assert.equal(res, 'Hello, World');
+
+      await nightmare.end();
+    });
+  });
+
   describe('template compiler', function() {
     it('compiling a string', async function() {
       const compiler = require('vue-template-compiler');

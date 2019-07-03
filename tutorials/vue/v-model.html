@@ -1,0 +1,203 @@
+
+<html>
+  <head>
+    <title>Two-Way Data Binding in Vue With v-model - Mastering JS</title>
+
+    <meta property="og:title" content="Two-Way Data Binding in Vue With v-model" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Two way data binding lets you build sophisticated forms without outside libraries. In this tutorial, you will learn about Vue's mechanism for two-way data binding: the v-model property." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Two-Way Data Binding in Vue With v-model</h1>
+        <div class="date">
+          Jul 3, 2019
+        </div>
+        
+  <p><a href="https://stackoverflow.com/questions/13504906/what-is-two-way-binding">Two way data binding</a> is a powerful pattern for building forms in JavaScript. For example,
+suppose you have an <code>input</code> element and a JavaScript variable <code>value</code>.
+Two way data binding means:</p>
+<ol>
+<li>When the user types in the <code>input</code>, <code>value</code> gets updated to match the value in <code>input</code>.</li>
+<li>When you update <code>value</code>, the <code>input</code> element&#39;s content updates to match <code>value</code>.</li>
+</ol>
+<p>Vue supports two way data binding via the <a href="https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components"><code>v-model</code></a> property. In the below example, if you type in the input, Vue will display your changes in the <code>h1</code> element. Also, if you update <code>value</code> by clicking the &quot;Reset&quot; button, Vue will display the new <code>value</code> in the <code>input</code> and <code>h1</code> elements.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-string">'Hello, World'</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;h1&gt;{{value}}&lt;/h1&gt;
+      &lt;div&gt;
+        &lt;input v-model="value"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;button v-on:click="value = 'Hello, World'"&gt;
+        Reset
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/c94584d5fd6c40d1a9410f6af74b39bb" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+<p><a href="/examples/vue/v-model">Here&#39;s a live example</a>.</p>
+<h2 id="with-checkboxes-and-dropdowns">With Checkboxes and Dropdowns</h2>
+<p>The <code>v-model</code> property works seamlessly with other native inputs. If
+you have an input of type &#39;checkbox&#39;, <code>v-model</code> will store a boolean:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;h1&gt;{{value}}&lt;/h1&gt;
+      &lt;div&gt;
+        &lt;input type="checkbox" v-model="value"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;button v-on:click="value = false"&gt;
+        Reset
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p><a href="/examples/vue/v-model-checkbox">Here&#39;s a live example of using <code>v-model</code> with checkboxes</a>.</p>
+<p>If you attach <code>v-model</code> to a <code>select</code> element, Vue will bind to the
+selected option&#39;s <code>value</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-string">'B'</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;h1&gt;{{value}}&lt;/h1&gt;
+      &lt;div&gt;
+        &lt;select v-model="value"&gt;
+          &lt;option value="A"&gt;A&lt;/option&gt;
+          &lt;option value="B"&gt;B&lt;/option&gt;
+          &lt;option value="C"&gt;C&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;button v-on:click="value = 'B'"&gt;
+        Reset
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<h2 id="custom-inputs">Custom Inputs</h2>
+<p>Under the hood, <code>v-model</code> builds on 2 other Vue properties:</p>
+<ol>
+<li><a href="https://vuejs.org/v2/guide/class-and-style.html"><code>v-bind</code></a> to bind the input to the JavaScript value.</li>
+<li><a href="https://vuejs.org/v2/guide/events.html"><code>v-on</code></a> to listen for &#39;input&#39; events.</li>
+</ol>
+<p>You can use <code>v-model</code> with a <a href="/tutorials/vue/components">custom Vue component</a> by accepting a prop named &#39;value&#39; and emitting an event named &#39;input&#39;. For example, the below custom component is a fake select using <code>div</code> elements. Clicking on a <code>div</code> selects it.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'my-select'</span>, {
+  <span class="hljs-comment">// `v-model` passes the 'value' as a prop...</span>
+  props: [<span class="hljs-string">'value'</span>],
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">set</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) </span>{
+      <span class="hljs-comment">// And listens to the 'input' event for changes</span>
+      <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">'input'</span>, v);
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div v-for="v in ['A', 'B', 'C']" v-on:click="set(v)"&gt;
+        {{v}}
+        &lt;span v-if="v === value"&gt;[x]&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-string">'B'</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;h1&gt;{{value}}&lt;/h1&gt;
+      &lt;div&gt;
+        &lt;my-select v-model="value"&gt;&lt;/my-select&gt;
+      &lt;/div&gt;
+      &lt;button v-on:click="value = 'B'"&gt;
+        Reset
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/592315027467418985b32dfda80ccd66" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
+<p><a href="/examples/vue/v-model-fake">Here&#39;s a live example</a></p>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/props">Vue Props Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/watch">An Introduction to Vue Watchers</a></li>
+  
+
+    <li><a href="/tutorials/vue/cli">An Introduction to Vue CLI</a></li>
+  
+
+    <li><a href="/tutorials/vue/components">An Introduction to Vue Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

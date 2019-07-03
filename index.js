@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Two-Way Data Binding in Vue With v-model',
+      raw: './tutorials/vue/v-model.md',
+      url: '/tutorials/vue/v-model',
+      description: 'Two way data binding lets you build sophisticated forms without outside libraries. In this tutorial, you will learn about Vue\'s mechanism for two-way data binding: the v-model property.',
+      tags: ['vue'],
+      date: moment('2019-07-03')
+    },
+    {
       title: 'Arrow Functions in JavaScript',
       raw: './tutorials/fundamentals/arrow.md',
       url: '/tutorials/fundamentals/arrow',
