@@ -1,0 +1,168 @@
+
+<html>
+  <head>
+    <title>Conditional Rendering in Vue with v-if - Mastering JS</title>
+
+    <meta property="og:title" content="Conditional Rendering in Vue with v-if" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Learn how to use the v-if directive for conditional rendering in Vue." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Conditional Rendering in Vue with v-if</h1>
+        <div class="date">
+          Jul 4, 2019
+        </div>
+        
+  <p><a href="https://vuejs.org/v2/guide/conditional.html#v-if">The <code>v-if</code> directive</a> allows you to conditionally render a block. It differs from <a href="https://vuejs.org/v2/guide/conditional.html#v-if-vs-v-show"><code>v-show</code></a> in that <code>v-if</code> doesn&#39;t actually create the element if its expression evaluates to <code>false</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">render</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;h1 v-if="render"&gt;Hello, World&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Vue will **not** render 'Hello, World' because the `v-if`</span>
+<span class="hljs-comment">// expression evaluates to false.</span>
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;!----&gt;&lt;/div&gt;</span>
+data;</code></pre>
+<h2 id="v-else-if-and-v-else"><code>v-else-if</code> and <code>v-else</code></h2>
+<p>Vue also has <a href="https://vuejs.org/v2/guide/conditional.html#v-else"><code>v-else-if</code> and <code>v-else</code> directives</a> that behave like <code>else if</code> and <code>else</code> in JavaScript.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-number">1</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div v-if="value &gt; 0"&gt;Positive&lt;/div&gt;
+      &lt;div v-else-if="value &lt; 0"&gt;Negative&lt;/div&gt;
+      &lt;div v-else&gt;Zero&lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Positive&lt;/div&gt;&lt;/div&gt;</span>
+data;
+
+app._data.value = <span class="hljs-number">-1</span>;
+data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Negative&lt;/div&gt;&lt;/div&gt;</span>
+data;
+
+app._data.value = <span class="hljs-number">0</span>;
+data = <span class="hljs-keyword">await</span> renderToString(app);
+<span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Zero&lt;/div&gt;&lt;/div&gt;</span>
+data;</code></pre>
+<h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
+<p><a href="https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks">Vue components have lifecycle hooks</a>, like the <code>created</code> hook that gets called when the component gets created, and <code>mounted</code> when the component gets mounted.</p>
+<p>When Vue renders a component because the <code>v-if</code> expression became
+truthy, it triggers both the &#39;created&#39; and &#39;mounted&#39; hooks. For example,
+the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every time
+<code>display</code> changes to <code>true</code> from <code>false</code>.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'test'</span>, {
+  <span class="hljs-attr">created</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Created!'</span>);
+  },
+  <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mounted!'</span>);
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Hello World&lt;/h1&gt;'</span>
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">display</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div id="rendered-content"&gt;
+      &lt;test v-if="display"&gt;&lt;/test&gt;
+      &lt;div&gt;
+        &lt;button v-on:click="display = !display"&gt;Toggle&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/v-model">Two-Way Data Binding in Vue With v-model</a></li>
+  
+
+    <li><a href="/tutorials/vue/props">Vue Props Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/watch">An Introduction to Vue Watchers</a></li>
+  
+
+    <li><a href="/tutorials/vue/cli">An Introduction to Vue CLI</a></li>
+  
+
+    <li><a href="/tutorials/vue/components">An Introduction to Vue Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

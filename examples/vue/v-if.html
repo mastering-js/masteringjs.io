@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      Vue.component('test', {
+        created: function() {
+          console.log('Created!');
+        },
+        mounted: function() {
+          console.log('Mounted');
+        },
+        template: '<h1>Hello World</h1>'
+      });
+
+      const app = new Vue({
+        data: () => ({ display: false }),
+        template: `
+          <div id="rendered-content">
+            <test v-if="display"></test>
+            <div>
+              <button v-on:click="display = !display">Toggle</button>
+            </div>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

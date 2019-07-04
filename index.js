@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Conditional Rendering in Vue with v-if',
+      raw: './tutorials/vue/v-if.md',
+      url: '/tutorials/vue/v-if',
+      description: 'Learn how to use the v-if directive for conditional rendering in Vue.',
+      tags: ['vue'],
+      date: moment('2019-07-04')
+    },
+    {
       title: 'Two-Way Data Binding in Vue With v-model',
       raw: './tutorials/vue/v-model.md',
       url: '/tutorials/vue/v-model',

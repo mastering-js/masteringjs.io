@@ -365,6 +365,68 @@ describe('Vue', function() {
     });
   });
 
+  describe('v-if', function() {
+    it('basic', async function() {
+      const app = new Vue({
+        data: () => ({ render: false }),
+        template: `
+          <div>
+            <h1 v-if="render">Hello, World</h1>
+          </div>
+        `
+      });
+
+      // Vue will **not** render 'Hello, World' because the `v-if`
+      // expression evaluates to false.
+      const data = await renderToString(app);
+      // <div data-server-rendered="true"><!----></div>
+      data;
+      // acquit:ignore:start
+      assert.equal(data,
+        '<div data-server-rendered="true"><!----></div>');
+      // acquit:ignore:end
+    });
+
+    it('else', async function() {
+      const app = new Vue({
+        data: () => ({ value: 1 }),
+        template: `
+          <div>
+            <div v-if="value > 0">Positive</div>
+            <div v-else-if="value < 0">Negative</div>
+            <div v-else>Zero</div>
+          </div>
+        `
+      });
+
+      let data = await renderToString(app);
+      // <div data-server-rendered="true"><div>Positive</div></div>
+      data;
+      // acquit:ignore:start
+      assert.equal(data,
+        '<div data-server-rendered="true"><div>Positive</div></div>');
+      // acquit:ignore:end
+
+      app._data.value = -1;
+      data = await renderToString(app);
+      // <div data-server-rendered="true"><div>Negative</div></div>
+      data;
+      // acquit:ignore:start
+      assert.equal(data,
+        '<div data-server-rendered="true"><div>Negative</div></div>');
+      // acquit:ignore:end
+
+      app._data.value = 0;
+      data = await renderToString(app);
+      // <div data-server-rendered="true"><div>Zero</div></div>
+      data;
+      // acquit:ignore:start
+      assert.equal(data,
+        '<div data-server-rendered="true"><div>Zero</div></div>');
+      // acquit:ignore:end
+    });
+  });
+
   describe('v-model', function() {
     it('basic example', async function() {
       const nightmare = new Nightmare({ show: true });
