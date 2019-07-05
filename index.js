@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Event Handling with v-on',
+      raw: './tutorials/vue/v-on.md',
+      url: '/tutorials/vue/v-on',
+      description: 'Learn how to propagate events from a child component to a parent component using v-on.',
+      tags: ['vue'],
+      date: moment('2019-07-05')
+    },
+    {
       title: 'Conditional Rendering in Vue with v-if',
       raw: './tutorials/vue/v-if.md',
       url: '/tutorials/vue/v-if',
