@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Check if a JS Array Contains a Specific Value',
+      raw: './tutorials/fundamentals/includes.md',
+      url: '/tutorials/fundamentals/includes',
+      description: 'There are two common ways to check if a JavaScript array contains a value: `includes()` and `indexOf()`. This tutorial shows you how to use both, and why you would use one versus the other.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-08')
+    },
+    {
       title: 'Vue Event Handling with v-on',
       raw: './tutorials/vue/v-on.md',
       url: '/tutorials/vue/v-on',

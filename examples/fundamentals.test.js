@@ -1233,6 +1233,88 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Array#includes', function() {
+    it('basic example', function() {
+      const arr = ['A', 'B', 'C'];
+
+      arr.includes('B'); // true
+      arr.includes('D'); // false
+      // acquit:ignore:start
+      assert.ok(arr.includes('B'));
+      assert.ok(!arr.includes('D'));
+      // acquit:ignore:end
+    });
+
+    it('NaN', function() {
+      // Array contains 1 element, 'NaN'
+      const arr = [parseInt('foo')];
+
+      arr.includes(parseInt('foo')); // true
+      arr.includes(NaN); // true
+      arr.includes(Number.NaN); // true
+
+      // The `===` operator has some quirks with NaN. `Array#includes()`
+      // smooths out those rough edges.
+      arr[0] === NaN; // false
+      arr[0] === Number.NaN; // false
+      // acquit:ignore:start
+      assert.ok(arr.includes(parseInt('foo')));
+      assert.ok(arr.includes(NaN));
+      assert.ok(arr.includes(Number.NaN));
+
+      assert.ok(!(arr[0] === NaN));
+      assert.ok(!(arr[0] === Number.NaN));
+      // acquit:ignore:end
+    });
+  });
+
+  describe('Array#indexOf', function() {
+    it('basic example', function() {
+      const arr = ['A', 'B', 'C'];
+
+      arr.indexOf('A'); // 0
+      arr.indexOf('B'); // 1
+      arr.indexOf('D'); // -1
+
+      // To check whether an array contains a given value, you should use the
+      // below check.
+      arr.indexOf('D') !== -1; // false
+      // acquit:ignore:start
+      assert.equal(arr.indexOf('A'), 0);
+      assert.equal(arr.indexOf('B'), 1);
+      assert.equal(arr.indexOf('D'), -1);
+
+      assert.ok(!(arr.indexOf('D') !== -1));
+      // acquit:ignore:end
+    });
+
+    it('bitwise NOT', function() {
+      const arr = ['A', 'B', 'C'];
+
+      if (~arr.indexOf('A')) {
+        // Runs
+      }
+      if (~arr.indexOf('D')) {
+        // Does not run
+        // acquit:ignore:start
+        assert.ok(false);
+        // acquit:ignore:end
+      }
+    });
+
+    it('NaN', function() {
+      // Array contains 1 element, 'NaN'
+      const arr = [parseInt('foo')];
+
+      arr.indexOf(NaN); // -1
+      arr.indexOf(Number.NaN); // -1
+      // acquit:ignore:start
+      assert.equal(arr.indexOf(NaN), -1);
+      assert.equal(arr.indexOf(Number.NaN), -1);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
