@@ -25,7 +25,8 @@ There are numerous utilities for recursively freezing objects, including [deep-f
 Strict Mode
 -----------
 
-Be very careful relying on `Object.freeze()`: `Object.freeze()` does **not** work outside of [strict mode](/tutorials/fundamentals/strict). Even if you `freeze()` an object in a function that uses strict mode, another function can still modify that object if that function does not use strict mode.
+Be very careful relying on `Object.freeze()`: `Object.freeze()` does **not** throw an error outside of [strict mode](/tutorials/fundamentals/strict). Even if you `freeze()` an object in a function that uses strict mode, modifying that object
+outside of strict mode won't throw an error.
 
 ```javacript
 function strict() {
@@ -35,8 +36,10 @@ function strict() {
 
 function run() {
   const obj = strict();
-  // Works because this function is not in strict mode
+  // No error because this function is not in strict mode
   ++obj.answer;
+
+  obj.answer; // Still 42
 }
 
 run();
