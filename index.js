@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JavaScript Array Push Tutorial',
+      raw: './tutorials/fundamentals/push.md',
+      url: '/tutorials/fundamentals/push',
+      description: 'The push() method adds an element to the end of a JavaScript array. This tutorial will show you how push() works.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-09')
+    },
+    {
       title: 'Check if a JS Array Contains a Specific Value',
       raw: './tutorials/fundamentals/includes.md',
       url: '/tutorials/fundamentals/includes',

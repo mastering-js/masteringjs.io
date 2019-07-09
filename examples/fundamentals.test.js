@@ -1315,6 +1315,47 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Array#push', function() {
+    it('basic example', function() {
+      const arr = ['A', 'B', 'C'];
+
+      arr.push('D'); // 4
+      arr; // ['A', 'B', 'C', 'D']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['A', 'B', 'C', 'D']);
+      // acquit:ignore:end
+
+      arr.push('E', 'F'); // 6
+      arr; // ['A', 'B', 'C', 'D', 'E', 'F']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['A', 'B', 'C', 'D', 'E', 'F']);
+      // acquit:ignore:end
+    });
+
+    it('another array', function() {
+      const arr = ['A', 'B', 'C'];
+      const arr2 = ['D', 'E'];
+
+      arr.push(arr2); // 4
+      arr; // ['A', 'B', 'C', ['D', 'E']]
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['A', 'B', 'C', ['D', 'E']]);
+      // acquit:ignore:end
+    });
+
+    it('spread', function() {
+      const arr = ['A', 'B', 'C'];
+      const arr2 = ['D', 'E'];
+
+      // Equivalent to `arr.push('D', 'E')`
+      arr.push(...arr2); // 5
+      arr; // ['A', 'B', 'C', 'D', 'E']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['A', 'B', 'C', 'D', 'E']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
