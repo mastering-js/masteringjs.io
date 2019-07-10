@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Learn Mongoose find() by Example',
+      raw: './tutorials/mongoose/find.md',
+      url: '/tutorials/mongoose/find',
+      description: 'The Mongoose `Model.find()` function finds all documents in a collection that match a query. In this tutorial, you will learn how to structure common queries in Mongoose.',
+      tags: ['mongoose'],
+      date: moment('2019-07-10')
+    },
+    {
       title: 'JavaScript Array Push Tutorial',
       raw: './tutorials/fundamentals/push.md',
       url: '/tutorials/fundamentals/push',

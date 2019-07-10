@@ -493,4 +493,192 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Model.find()', function() {
+    let Character;
+
+    beforeEach(async function() {
+      Character = mongoose.model('Character', mongoose.Schema({
+        name: String,
+        age: Number,
+        rank: String
+      }));
+
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+    });
+
+    it('setup', async function() {
+      // acquit:ignore:start
+      mongoose.deleteModel('Character');
+      // acquit:ignore:end
+      const Character = mongoose.model('Character', mongoose.Schema({
+        name: String,
+        age: Number,
+        rank: String
+      }));
+
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+    });
+
+    it('basic', async function() {
+      // acquit:ignore:start
+      Character = mongoose.model('Character');
+      // acquit:ignore:end
+      const docs = await Character.find({ rank: 'Lieutenant' });
+
+      // MongoDB may return the docs in any order unless you explicitly sort
+      docs.map(doc => doc.name).sort(); // ['Geordi La Forge', 'Worf']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Geordi La Forge', 'Worf']);
+      // acquit:ignore:end
+    });
+
+    it('number', async function() {
+      const docs = await Character.find({ age: 29 });
+
+      docs.map(doc => doc.name).sort(); // ['Geordi La Forge', 'William Riker']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Geordi La Forge', 'William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('$eq query operator', async function() {
+      // acquit:ignore:start
+      Character = mongoose.model('Character');
+      // acquit:ignore:end
+      // Equivalent to `{ rank: 'Lieutenant' }`. `$eq` is an example of
+      // a "query operator"
+      const docs = await Character.find({ rank: { $eq: 'Lieutenant' } });
+
+      docs.map(doc => doc.name).sort(); // ['Geordi La Forge', 'Worf']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Geordi La Forge', 'Worf']);
+      // acquit:ignore:end
+    });
+
+    it('$lt', async function() {
+      const docs = await Character.find({ age: { $lt: 29 } });
+
+      docs.map(doc => doc.name).sort(); // ['Deanna Troi', 'Worf']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Deanna Troi', 'Worf']);
+      // acquit:ignore:end
+    });
+
+    it('$gte', async function() {
+      const docs = await Character.find({ age: { $gte: 29 } });
+
+      // ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('$lte string', async function() {
+      const docs = await Character.find({ name: { $lte: 'Geordi La Forge' } });
+
+      // ['Deanna Troi', 'Geordi La Forge']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Deanna Troi', 'Geordi La Forge']);
+      // acquit:ignore:end
+    });
+
+    it('regexp', async function() {
+      const docs = await Character.find({ rank: /Commander/ });
+
+      // ['Deanna Troi', 'William Riker']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Deanna Troi', 'William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('$regex query operator', async function() {
+      const docs = await Character.find({ rank: { $regex: 'Commander' } });
+
+      // ['Deanna Troi', 'William Riker']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Deanna Troi', 'William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('multiple filters', async function() {
+      const docs = await Character.find({
+        age: { $gte: 29 },
+        rank: 'Commander'
+      });
+
+      // ['William Riker']
+      docs.map(doc => doc.name);
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name),
+        ['William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('$or query operator', async function() {
+      const docs = await Character.find({
+        $or: [
+          { age: { $gte: 29 } },
+          { rank: 'Commander' }
+        ]
+      });
+
+      // ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']);
+      // acquit:ignore:end
+    });
+
+    it('$and query operator', async function() {
+      const docs = await Character.find({
+        $and: [
+          {
+            $or: [
+              { age: { $gte: 29 } },
+              { rank: 'Commander' }
+            ]
+          },
+          {
+            $or: [
+              { name: { $lte: 'D' } },
+              { name: { $gte: 'W' } }
+            ]
+          }
+        ]
+      });
+
+      // ['William Riker']
+      docs.map(doc => doc.name).sort();
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.name).sort(),
+        ['William Riker']);
+      // acquit:ignore:end
+    });
+  });
 });
