@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Find By ID in Mongoose',
+      raw: './tutorials/mongoose/find-by-id.md',
+      url: '/tutorials/mongoose/find-by-id',
+      description: 'A tutorial about how to use the `findById()` function in Mongoose.',
+      tags: ['mongoose'],
+      date: moment('2019-07-11')
+    },
+    {
       title: 'Learn Mongoose find() by Example',
       raw: './tutorials/mongoose/find.md',
       url: '/tutorials/mongoose/find',
@@ -455,7 +463,7 @@ async function run() {
       raw: './tutorials/fundamentals/valueof.md',
       url: '/tutorials/fundamentals/valueof',
       description: 'Learn what String valueOf(), Number valueOf(), and Date valueOf() have in common.',
-      tags: ['mongoose'],
+      tags: ['fundamentals'],
       date: moment('2019-04-30')
     },
     {

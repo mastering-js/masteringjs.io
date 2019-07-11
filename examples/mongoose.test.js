@@ -681,4 +681,66 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('findById', function() {
+    it('basic', async function() {
+      const schema = new mongoose.Schema({ _id: Number }, { versionKey: false });
+      const Model = mongoose.model('MyModel', schema);
+
+      await Model.create({ _id: 1 });
+
+      // `{ _id: 1 }`
+      await Model.findById(1);
+      
+      // `null` because no document was found
+      await Model.findById(2);
+      // acquit:ignore:start
+      const doc = await Model.findById(1);
+      assert.deepEqual(doc.toObject(), { _id: 1 });
+      assert.strictEqual(await Model.findById(2), null);
+      // acquit:ignore:end
+    });
+
+    it('findOne', async function() {
+      // acquit:ignore:start
+      let count = 0;
+      // acquit:ignore:end
+      const schema = new mongoose.Schema({ _id: Number }, { versionKey: false });
+      schema.pre('findOne', function() {
+        console.log('Called `findOne()`');
+        // acquit:ignore:start
+        ++count;
+        // acquit:ignore:end
+      });
+      const Model = mongoose.model('MyModel', schema);
+      await Model.create({ _id: 1 });
+
+      // Prints "Called `findOne()`" because `findById()` calls `findOne()`
+      await Model.findById(1);
+      // acquit:ignore:start
+      assert.equal(count, 1);
+      // acquit:ignore:end
+    });
+
+    it('ObjectId', async function() {
+      const _id = '5d273f9ed58f5e7093b549b0';
+      const schema = new mongoose.Schema({ _id: mongoose.ObjectId }, { versionKey: false });
+      const Model = mongoose.model('MyModel', schema);
+
+      await Model.create({ _id: new mongoose.Types.ObjectId(_id) });
+
+      typeof _id; // 'string'
+      // `{ _id: '5d273f9ed58f5e7093b549b0' }`
+      const doc = await Model.findById(_id);
+
+      typeof doc._id; // 'object'
+      doc._id instanceof mongoose.Types.ObjectId; // true
+      // acquit:ignore:start
+      assert.ok(doc);
+      assert.equal(typeof doc._id, 'object');
+      assert.ok(doc._id instanceof mongoose.Types.ObjectId);
+      assert.equal(doc._id.toHexString(), _id);
+      // acquit:ignore:end
+    });
+  });
 });
