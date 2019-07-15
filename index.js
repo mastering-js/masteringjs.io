@@ -503,8 +503,29 @@ async function run() {
     fs.writeFileSync('.' + tutorial.url + '.html', html);
   }
 
+  const byTag = new Map();
+  for (const tutorial of tutorials) {
+    for (const tag of tutorial.tags) {
+      if (!byTag.has(tag)) {
+        byTag.set(tag, []);
+      }
+      byTag.get(tag).push(tutorial);
+    }
+  }
+
+  for (const [tag, tutorials] of byTag.entries()) {
+    fs.writeFileSync(`./${tag}.html`, layout({
+      title: `${capitalize(tag)} Tutorials`,
+      content: list({ posts: tutorials })
+    }));
+  }
+
   fs.writeFileSync('./all.html', layout({
     title: 'All Tutorials',
     content: list({ posts: tutorials })
   }));
+}
+
+function capitalize(str) {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
 }

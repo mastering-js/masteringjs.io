@@ -125,6 +125,10 @@ li {
   margin-right: 0.5em;
 }
 
+.post .tags .tag a {
+  color: white;
+}
+
 .date {
   font-size: 0.75em;
   color: #333;

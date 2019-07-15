@@ -22,6 +22,6 @@ const post = p => `
 
 const tag = t => `
 <span class="tag">
-  ${t}
+  <a href="/${t}">${t}</a>
 </span>
 `;
