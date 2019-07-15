@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const app = new Vue({
+        data: () => ({
+          field1: 'row',
+          field2: 'your boat'
+        }),
+        computed: {
+          // Vue will **only** call` getter()` when `field2` changes. Vue will
+          // not call `getter()` when `field1` changes.
+          field2Upper: function getter() {
+            if (field1.length === 0) {
+              return 'row' + this.field2;
+            }
+            return this.field2.toUpperCase();
+          }
+        },
+        template: `
+          <div>
+            <div>
+              {{field1}} {{field2Upper.toLowerCase()}}
+            </div>
+            <button v-on:click="field1 += ' row'">Add</button>
+          </div>
+        `
+      });
+      app.$mount('#content');
+    </script>
+  </body>
+</html>

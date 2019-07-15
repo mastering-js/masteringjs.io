@@ -1,0 +1,207 @@
+
+<html>
+  <head>
+    <title>Computed Properties in Vue - Mastering JS</title>
+
+    <meta property="og:title" content="Computed Properties in Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Are your Vue templates hard to read because you have extremely long template expressions in `{{}}`? This tutorial will show you how to fix this problem using computed properties." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Computed Properties in Vue</h1>
+        <div class="date">
+          Jul 15, 2019
+        </div>
+        
+  <p>In Vue, <a href="https://vuejs.org/v2/guide/computed.html">computed properties</a> help you avoid putting too much logic in your <a href="/tutorials/vue/templates">template</a> expressions. For example, suppose your app has a list of reviews, and you want to display the average of all reviews.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">reviews</span>: [
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">5</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">3</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">4</span> }
+    ]
+  }),
+  <span class="hljs-comment">// Computing the average in a template expression is awkward</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      {{reviews.reduce((sum, v) =&gt; sum + v.score, 0) / reviews.length}} ({{reviews.length}} reviews)
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>Instead of computing the average in the template, you can instead
+create a computed property <code>average</code>, and use <code>average</code> in the 
+template expression instead.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">reviews</span>: [
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">5</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">3</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">4</span> }
+    ]
+  }),
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-comment">// `average` is a computed property. Vue will call `computeAverage()`</span>
+    <span class="hljs-comment">// for you when a `data` property changes.</span>
+    average: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">computeAverage</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.reviews.length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.reviews.
+        reduce(<span class="hljs-function">(<span class="hljs-params">sum, v</span>) =&gt;</span> sum + v.score, <span class="hljs-number">0</span>) / <span class="hljs-keyword">this</span>.reviews.length;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      {{average}} ({{reviews.length}} reviews)
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<h2 id="when-to-use-computed-properties-versus-methods">When To Use Computed Properties Versus Methods</h2>
+<p>You can also use Vue methods to abstract out complex template logic as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">reviews</span>: [
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">5</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">3</span> },
+      { <span class="hljs-attr">score</span>: <span class="hljs-number">4</span> }
+    ]
+  }),
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-comment">// `average` is a method that's called in the template expression</span>
+    average: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">average</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.reviews.length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.reviews.
+        reduce(<span class="hljs-function">(<span class="hljs-params">sum, v</span>) =&gt;</span> sum + v.score, <span class="hljs-number">0</span>) / <span class="hljs-keyword">this</span>.reviews.length;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      {{average()}} ({{reviews.length}} reviews)
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>Both approaches work, but Vue <a href="https://vuejs.org/v2/guide/computed.html#Computed-Caching-vs-Methods">caches computed properties based on their &quot;reactive values&quot;</a>.
+In other words, Vue figures out what <code>data</code> fields your computed property relies on,
+and doesn&#39;t recompute the computed property unless one of those <code>data</code> fields
+changes.</p>
+<p>For example, if you have a computed property that only depends on <code>field1</code>,
+Vue won&#39;t recompute the property if you modify <code>field2</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">field1</span>: <span class="hljs-string">'row'</span>,
+    <span class="hljs-attr">field2</span>: <span class="hljs-string">'your boat'</span>
+  }),
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-comment">// Vue will **only** call` getter()` when `field2` changes. Vue will</span>
+    <span class="hljs-comment">// not call `getter()` when `field1` changes.</span>
+    field2Upper: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getter</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Called!'</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.field2.toUpperCase();
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        {{field1}} {{field2Upper.toLowerCase()}}
+      &lt;/div&gt;
+      &lt;button v-on:click="field1 += ' row'"&gt;Add&lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>If your computed property is expensive, computed properties can save you from
+unnecessarily recalculating. <a href="https://forum.vuejs.org/t/how-vuejs-knows-the-dependencies-of-computed-properties-for-caching/4945/2">Vue has a clever algorithm for tracking what properties your computed property depends on</a>. When the function <code>getter()</code> above accesses <code>field2</code>, Vue intercepts
+that property access and adds it to a list of fields <code>getter()</code> depends on.</p>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/v-on">Vue Event Handling with v-on</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-if">Conditional Rendering in Vue with v-if</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-model">Two-Way Data Binding in Vue With v-model</a></li>
+  
+
+    <li><a href="/tutorials/vue/props">Vue Props Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/watch">An Introduction to Vue Watchers</a></li>
+  
+
+    <li><a href="/tutorials/vue/cli">An Introduction to Vue CLI</a></li>
+  
+
+    <li><a href="/tutorials/vue/components">An Introduction to Vue Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/template-compiler">An Introduction to Vue Template Compiler</a></li>
+  
+
+    <li><a href="/tutorials/vue/router">Introduction to Vue Router</a></li>
+  
+
+    <li><a href="/tutorials/vue/templates">3 Ways to Define Templates in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/slots">Understanding Vue.js Slots</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex">An Introduction to Vuex</a></li>
+  
+
+    <li><a href="/tutorials/vue/ssr">Server Side Rendering with Vue and Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

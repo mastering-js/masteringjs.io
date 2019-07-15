@@ -748,4 +748,122 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('computed', function() {
+    it('motivation', async function() {
+      const app = new Vue({
+        data: () => ({
+          reviews: [
+            { score: 5 },
+            { score: 3 },
+            { score: 4 }
+          ]
+        }),
+        // Computing the average in a template expression is awkward
+        template: `
+          <div>
+            {{reviews.reduce((sum, v) => sum + v.score, 0) / reviews.length}} ({{reviews.length}} reviews)
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('4 (3 reviews)'), data);
+      // acquit:ignore:end
+    });
+
+    it('basic example', async function() {
+      const app = new Vue({
+        data: () => ({
+          reviews: [
+            { score: 5 },
+            { score: 3 },
+            { score: 4 }
+          ]
+        }),
+        computed: {
+          // `average` is a computed property. Vue will call `computeAverage()`
+          // for you when a `data` property changes.
+          average: function computeAverage() {
+            if (this.reviews.length === 0) {
+              return 0;
+            }
+            return this.reviews.
+              reduce((sum, v) => sum + v.score, 0) / this.reviews.length;
+          }
+        },
+        template: `
+          <div>
+            {{average}} ({{reviews.length}} reviews)
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('4 (3 reviews)'), data);
+      // acquit:ignore:end
+    });
+
+    it('method', async function() {
+      const app = new Vue({
+        data: () => ({
+          reviews: [
+            { score: 5 },
+            { score: 3 },
+            { score: 4 }
+          ]
+        }),
+        methods: {
+          // `average` is a method that's called in the template expression
+          average: function average() {
+            if (this.reviews.length === 0) {
+              return 0;
+            }
+            return this.reviews.
+              reduce((sum, v) => sum + v.score, 0) / this.reviews.length;
+          }
+        },
+        template: `
+          <div>
+            {{average()}} ({{reviews.length}} reviews)
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('4 (3 reviews)'), data);
+      // acquit:ignore:end
+    });
+
+    it('method', async function() {
+      const app = new Vue({
+        data: () => ({
+          field1: 'row',
+          field2: 'your boat'
+        }),
+        computed: {
+          // Vue will **only** call` getter()` when `field2` changes. Vue will
+          // not call `getter()` when `field1` changes.
+          field2Upper: function getter() {
+            console.log('Called!');
+            return this.field2.toUpperCase();
+          }
+        },
+        template: `
+          <div>
+            <div>
+              {{field2Upper}}
+            </div>
+            <button v-on:click="field1 += ' row'">Add</button>
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('4 (3 reviews)'), data);
+      // acquit:ignore:end
+    });
+
+    
+  });
 });

@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Computed Properties in Vue',
+      raw: './tutorials/vue/computed.md',
+      url: '/tutorials/vue/computed',
+      description: 'Are your Vue templates hard to read because you have extremely long template expressions in `{{}}`? This tutorial will show you how to fix this problem using computed properties.',
+      tags: ['vue'],
+      date: moment('2019-07-15')
+    },
+    {
       title: 'Find By ID in Mongoose',
       raw: './tutorials/mongoose/find-by-id.md',
       url: '/tutorials/mongoose/find-by-id',
