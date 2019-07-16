@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Request Parameters in Express',
+      raw: './tutorials/express/req.md',
+      url: '/tutorials/express/req',
+      description: 'An overview of the `req` parameter in Express.',
+      tags: ['express'],
+      date: moment('2019-07-16')
+    },
+    {
       title: 'Computed Properties in Vue',
       raw: './tutorials/vue/computed.md',
       url: '/tutorials/vue/computed',

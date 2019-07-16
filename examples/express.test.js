@@ -267,4 +267,176 @@ describe('Express', function() {
     await server.close();
     // acquit:ignore:end
   });
+
+  describe('.Request', function() {
+    it('basic', async function() {
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        // `req` is an instance of Node.js' built-in HTTP request class,
+        // with some additional features from Express
+        req instanceof require('http').IncomingMessage; // true
+        // acquit:ignore:start
+        assert.ok(req instanceof require('http').IncomingMessage);
+        // acquit:ignore:end
+
+        res.json({ ok: 1 });
+      });
+
+      const server = await app.listen(3000);
+      // acquit:ignore:start
+      const res = await axios.get('http://localhost:3000');
+      assert.equal(res.data.ok, 1);
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('query string', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        const name = req.query.name; // 'Jean-Luc Picard'
+        const rank = req.query.rank; // 'Captain'
+        res.json({ name, rank });
+      });
+
+      const server = await app.listen(3000);
+
+      // Send a GET request to the server with URL-encoded params in the
+      // query string
+      const querystring = 'name=Jean-Luc Picard&rank=Captain';
+      const res = await axios.get('http://localhost:3000?' + querystring);
+
+      res.data.name; // 'Jean-Luc Picard'
+      res.data.rank; // 'Captain'
+      // acquit:ignore:start
+      assert.equal(res.data.name, 'Jean-Luc Picard');
+      assert.equal(res.data.rank, 'Captain');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('params', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('/:model/:id', function(req, res) {
+        const model = req.params.model; // 'user'
+        const id = req.params.id; // '1'
+        res.json({ model, id });
+      });
+
+      const server = await app.listen(3000);
+
+      // Send a GET request to the server with URL params
+      const res = await axios.get('http://localhost:3000/user/1');
+
+      res.data.model; // 'user'
+      res.data.id; // '1'
+      // acquit:ignore:start
+      assert.equal(res.data.model, 'user');
+      assert.equal(res.data.id, '1');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('json body', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      // Parse the request body as JSON. Requires Express >= 4.16.0.
+      app.use(express.json());
+
+      app.put('*', function(req, res) {
+        const name = req.body.name; // 'Jean-Luc Picard'
+        const rank = req.body.rank; // 'Captain'
+        res.json({ name, rank });
+      });
+
+      const server = await app.listen(3000);
+
+      // Send a PUT request to the server with a request body
+      const body = { name: 'Jean-Luc Picard', rank: 'Captain' };
+      const res = await axios.put('http://localhost:3000', body);
+
+      res.data.name; // 'Jean-Luc Picard'
+      res.data.rank; // 'Captain'
+      // acquit:ignore:start
+      assert.equal(res.data.name, 'Jean-Luc Picard');
+      assert.equal(res.data.rank, 'Captain');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('headers', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        // `req.get()` is case-insensitive.
+        const authorization = req.get('authorization');
+
+        // Or you can use `req.headers`
+        req.headers.authorization;
+
+        res.json({ authorization });
+      });
+
+      const server = await app.listen(3000);
+
+      // Send a GET request to the server with an 'Authorization' header
+      const res = await axios.get('http://localhost:3000', {
+        headers: {
+          'Authorization': 'test'
+        }
+      });
+
+      res.data.authorization; // 'test'
+      // acquit:ignore:start
+      assert.equal(res.data.authorization, 'test');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('body size', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      // Set the body size limit to 10 bytes
+      app.use(express.json({ limit: 10 }));
+
+      app.put('*', function(req, res) {
+        const name = req.body.name; // 'Jean-Luc Picard'
+        const rank = req.body.rank; // 'Captain'
+        res.json({ name, rank });
+      });
+      // acquit:ignore:start
+      app.use(function(err, req, res, next) {
+        res.status(err.status);
+        res.json({ error: err.message });
+        next();
+      });
+      // acquit:ignore:end
+
+      const server = await app.listen(3000);
+
+      // Send a PUT request to the server with a request body
+      const body = { name: 'Jean-Luc Picard', rank: 'Captain' };
+      const err = await axios.put('http://localhost:3000', body).
+        catch(err => err);
+
+      err.response.status; // 413
+      // acquit:ignore:start
+      assert.equal(err.response.status, 413);
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
