@@ -560,4 +560,57 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('error handling', function() {
+    it('basic', async function() {
+      const app = require('express')();
+
+      app.get('*', function routeHandler() {
+        throw new Error('Oops!');
+      });
+
+      // Your function  **must** take 4 parameters for Express to consider it
+      // error handling middleware.
+      app.use((err, req, res, next) => {
+        res.status(500).json({ message: err.message });
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        then(() => null, err => err);
+
+      assert.equal(err.response.data.message, 'Oops!');
+      await server.close();
+      // acquit:ignore:end      
+    });
+
+    it('async', async function() {
+      const app = require('express')();
+
+      app.get('*', async function asyncRouteHandler(req, res, next) {
+        try {
+          throw new Error('Oops!');
+        } catch (err) {
+          // The `next()` function tells Express to go to the next middleware
+          // in the chain. Express doesn't handle async errors, so you need to
+          // report errors by calling `next()`.
+          return next(err);
+        }
+      });
+
+      app.use((err, req, res, next) => {
+        res.status(500).json({ message: err.message });
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        then(() => null, err => err);
+
+      assert.equal(err.response.data.message, 'Oops!');
+      await server.close();
+      // acquit:ignore:end      
+    });
+  });
 });

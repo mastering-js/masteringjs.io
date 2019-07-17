@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Error Handling Middleware in Express',
+      raw: './tutorials/express/error-handling.md',
+      url: '/tutorials/express/error-handling',
+      description: 'Error handling middleware is the canonical way to handle errors in Express. This tutorial shows you how to use error handling middleware for several common use cases.',
+      tags: ['express'],
+      date: moment('2019-07-18')
+    },
+    {
       title: 'The res Object in Express',
       raw: './tutorials/express/res.md',
       url: '/tutorials/express/res',
