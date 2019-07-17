@@ -22,6 +22,7 @@
     "mathjs": "5.9.x",
     "mongoose": "5.x",
     "mongoose-beautiful-unique-validation": "7.x",
+    "pug": "2.x",
     "sinon": "7.x",
     "vue": "2.x",
     "vue-router": "3.x",

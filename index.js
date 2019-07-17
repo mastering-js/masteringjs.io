@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The res Object in Express',
+      raw: './tutorials/express/res.md',
+      url: '/tutorials/express/res',
+      description: 'The `res` parameter in Express is used to craft an HTTP response. This tutorial teaches you how to use the `res` object by example.',
+      tags: ['express'],
+      date: moment('2019-07-17')
+    },
+    {
       title: 'Request Parameters in Express',
       raw: './tutorials/express/req.md',
       url: '/tutorials/express/req',

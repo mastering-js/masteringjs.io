@@ -439,4 +439,125 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('response', function() {
+    it('send', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        res.send('Hello, World');
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000');
+      response.data; // 'Hello, World'
+      response.headers['content-type']; // 'text/html; charset=utf-8'
+      // acquit:ignore:start
+      assert.equal(response.data, 'Hello, World');
+      assert.equal(response.headers['content-type'], 'text/html; charset=utf-8');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('json', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        res.json({ answer: 42 });
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000');
+      response.data; // { answer: 42 }
+      response.headers['content-type']; // 'application/json; charset=utf-8'
+      // acquit:ignore:start
+      assert.deepEqual(response.data, { answer: 42 });
+      assert.equal(response.headers['content-type'],
+        'application/json; charset=utf-8');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('pug', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      // Set 'pug' as the view engine
+      app.set('view engine', 'pug');
+
+      app.get('*', function(req, res) {
+        // Loads `views/test.pug` and renders it with the given `locals`
+        const locals = { message: 'Hello, World' };
+        res.render('test', locals);
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000');
+      response.data; // '<h1>Hello, World</h1>'
+      // acquit:ignore:start
+      assert.equal(response.data, '<h1>Hello, World</h1>');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('status', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        // Sets the response status to 201 "Created". The response status
+        // is 200 "OK" by default.
+        res.status(201).json({ ok: 1 });
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000');
+      response.status; // 201
+      // acquit:ignore:start
+      assert.equal(response.status, 201);
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('set header', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      app.get('*', function(req, res) {
+        // Setting content-type means Chrome will treat this endpoint as
+        // an image to download rather than a page to display.    
+        res.set('content-type', 'image/svg+xml').send(`
+          <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="white" />
+          </svg>
+        `);
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000');
+      response.headers['content-type']; // image/svg+xml; charset=utf-8
+      // acquit:ignore:start
+      assert.equal(response.headers['content-type'],
+        'image/svg+xml; charset=utf-8');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
