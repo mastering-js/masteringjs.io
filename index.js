@@ -2,6 +2,7 @@
 
 const acquit = require('acquit');
 const fs = require('fs');
+const highlight = require('highlight.js');
 const home = require('./components/home');
 const layout = require('./components/layout');
 const list = require('./components/list');
@@ -12,7 +13,6 @@ const tutorialTemplate = require('./components/tutorial');
 
 require('acquit-ignore')();
 
-const highlight = require('highlight.js');
 marked.setOptions({
   highlight: function(code) {
     return highlight.highlight('JavaScript', code).value;
