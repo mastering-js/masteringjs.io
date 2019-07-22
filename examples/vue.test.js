@@ -862,8 +862,40 @@ describe('Vue', function() {
       const data = await renderToString(app);
       assert.ok(data.includes('4 (3 reviews)'), data);
       // acquit:ignore:end
+    });    
+  });
+
+  describe('expressions', function() {
+    it('with expression', async function() {
+      const app = new Vue({
+        data: () => ({ answer: null }),
+        template: `
+          <div>
+            {{answer = 42}}
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('42'), data);
+      // acquit:ignore:end
     });
 
-    
+    it('with statement', async function() {
+      const app = new Vue({
+        data: () => ({}),
+        // Will throw a "Error compiling template" error
+        template: `
+          <div>
+            {{let answer = 42}}
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      const err = await renderToString(app).then(() => null, err => err);
+      assert.ok(err);
+      assert.ok(err.message.includes('Error compiling template'));
+      // acquit:ignore:end
+    });
   });
 });

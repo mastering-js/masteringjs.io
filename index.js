@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What is a JavaScript Expression?',
+      raw: './tutorials/fundamentals/expressions.md',
+      url: '/tutorials/fundamentals/expressions',
+      description: 'Many frameworks, like Vue, allow you to embed JavaScript expressions in HTML. But what is an expression? Can you put `if` statements in an expression?',
+      tags: ['fundamentals'],
+      date: moment('2019-07-22')
+    },
+    {
       title: 'Error Handling Middleware in Express',
       raw: './tutorials/express/error-handling.md',
       url: '/tutorials/express/error-handling',
