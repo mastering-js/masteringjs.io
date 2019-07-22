@@ -1,0 +1,220 @@
+
+<html>
+  <head>
+    <title>What is a JavaScript Expression? - Mastering JS</title>
+
+    <meta property="og:title" content="What is a JavaScript Expression?" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Many frameworks, like Vue, allow you to embed JavaScript expressions in HTML. But what is an expression? Can you put `if` statements in an expression?" />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>What is a JavaScript Expression?</h1>
+        <div class="date">
+          Jul 22, 2019
+        </div>
+        
+  <p>JavaScript&#39;s language syntax distinguishes between <a href="https://2ality.com/2012/09/expressions-vs-statements.html"><em>expressions</em> and <em>statements</em></a>.
+These two concepts are subtly different, and you need to understand the difference
+if you want to understand frameworks like <a href="/vue">Vue</a>.</p>
+<p>In general, an expression is a snippet of code that evaluates to a value. A
+statement is a snippet of code that performs an action. Wherever JavaScript
+expects a statement, you can write an expression. But the opposite isn&#39;t true:
+if a framework or the JavaScript runtime expects an expression, you cannot use
+a statement.</p>
+<p>The below code snippets are all expressions. They all evaluate to a value.</p>
+<pre><code class="language-javascript"><span class="hljs-number">0</span> <span class="hljs-comment">// 0</span>
+
+<span class="hljs-number">1</span> + <span class="hljs-number">1</span> <span class="hljs-comment">// 2</span>
+
+<span class="hljs-string">'Hello'</span> + <span class="hljs-string">' '</span> + <span class="hljs-string">'World'</span> <span class="hljs-comment">// 'Hello World'</span>
+
+{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } <span class="hljs-comment">// { answer: 42 }</span>
+
+<span class="hljs-built_in">Object</span>.assign({}, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }) <span class="hljs-comment">// { answer: 42 }</span>
+
+answer !== <span class="hljs-number">42</span> ? <span class="hljs-number">42</span> : answer <span class="hljs-comment">// 42</span>
+
+answer = <span class="hljs-number">42</span> <span class="hljs-comment">// 42</span></code></pre>
+<p>The below snippets are all statements. They do <strong>not</strong> evaluate to a value.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `if` statement</span>
+<span class="hljs-keyword">if</span> (answer !== <span class="hljs-number">42</span>) { answer = <span class="hljs-number">42</span> }
+<span class="hljs-comment">// `for` is a statement</span>
+<span class="hljs-keyword">for</span> (;;) { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World'</span>); }
+<span class="hljs-comment">// Declaring a variable is a statement</span>
+<span class="hljs-keyword">let</span> answer = <span class="hljs-number">42</span></code></pre>
+<h2 id="function-arguments">Function Arguments</h2>
+<p>When you call a JavaScript function, all the arguments must be expressions,
+not statements.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">v</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(v);
+}
+
+print(<span class="hljs-string">'Hello, World'</span>); <span class="hljs-comment">// OK</span>
+print(<span class="hljs-literal">true</span> ? <span class="hljs-string">'Hello, World'</span> : <span class="hljs-literal">null</span>); <span class="hljs-comment">// OK</span>
+
+print(<span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) { <span class="hljs-string">'Hello, World'</span> }); <span class="hljs-comment">// SyntaxError: Unexpected token if</span></code></pre>
+<p>A handy way to distinguish whether a code snippet is a statement or an expression is
+to think about whether you could pass the code snippet as a parameter to <code>console.log()</code>.</p>
+<p>You may see code that relies on the fact that assigning a value to a variable
+is an expression, but declaring a variable is a statement. In other words,
+you can pass an assignment as a parameter to a function, as long as you already
+declared the variable.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> answer;
+<span class="hljs-built_in">console</span>.log(answer = <span class="hljs-number">42</span>); <span class="hljs-comment">// 42</span>
+answer; <span class="hljs-comment">// 42</span>
+
+<span class="hljs-comment">// SyntaxError</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">let</span> value = <span class="hljs-number">1</span>);</code></pre>
+<h2 id="immediately-invoked-function-expressions-iifes">Immediately Invoked Function Expressions (IIFEs)</h2>
+<p>In JavaScript, function definitions are expressions.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}); <span class="hljs-comment">// '[Function]'</span></code></pre>
+<p>There is also the notion of an <a href="https://flaviocopes.com/javascript-expressions/#invocation-expressions">invocation expression</a>. Calling a function is an expression:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span> };
+
+<span class="hljs-built_in">console</span>.log(getAnswer()); <span class="hljs-comment">// '42'</span></code></pre>
+<p>However, things get confusing when you attempt to call a function at the same
+time as declaring it.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// SyntaxError</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span> }();</code></pre>
+<p>That&#39;s because certain snippets can be expressions or statements depending on
+context. For example <code>function getAnswer() { return 42; }</code> is an expression when
+it is on the right hand side of an assignment, but a statement when it is at the
+start of a file.</p>
+<p>The workaround is to wrap <code>function getAnswer() { return 42 }</code> in parentheses.
+Parenthesis, also known as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Grouping">the grouping operator</a>, make JavaScript attempt to treat what is in the parentheses as an expression.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 42</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span> })();</code></pre>
+<p>The pattern of wrapping a function in parentheses to call it immediately is
+known as an &quot;immediately invoked function expressions,&quot; or &quot;IIFE&quot; for short.</p>
+<h2 id="in-vue">In Vue</h2>
+<p>Frontend frameworks like Vue allow you to bind <a href="https://vuejs.org/v2/guide/syntax.html#Using-JavaScript-Expressions">HTML values to JavaScript expressions</a>. Vue bindings must contain exactly one expression.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">answer</span>: <span class="hljs-literal">null</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      {{answer = 42}}
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>If you use a statement instead of an expression, Vue will throw a template compilation error.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({}),
+  <span class="hljs-comment">// Will throw a "Error compiling template" error</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      {{let answer = 42}}
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/push">JavaScript Array Push Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/includes">Check if a JS Array Contains a Specific Value</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/arrow">Arrow Functions in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/freeze">Make JavaScript Objects Immutable with Object.freeze()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/strict">What Does "use strict" Do in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/callbacks">Understanding Callbacks in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/keys">An Overview of the Object.keys() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-splice">Understanding Array.splice() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/substring">Substring vs Substr vs Slice in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-replace">Replace All Instances of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-sort">Sorting an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/map">Maps in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/valueof">Understand valueOf() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
