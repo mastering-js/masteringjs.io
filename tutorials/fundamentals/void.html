@@ -81,6 +81,19 @@ URI do nothing. An <code>&lt;a&gt;</code> tag is not valid HTML unless it has a 
 <pre><code class="language-html">&lt;a href=<span class="hljs-string">"javascript:void(0)"</span>&gt;Click Here&lt;<span class="hljs-regexp">/a&gt;</span></code></pre>
 <p>Below is how the above HTML looks:</p>
 <p><a href="javascript:void(0)">Click Here</a></p>
+<h2 id="immediately-invoked-function-expressions-iifes">Immediately Invoked Function Expressions (IIFEs)</h2>
+<p>To declare a function and execute it in the same statement, you normally would
+use parentheses to <a href="/tutorials/fundamentals/expressions#immediately-invoked-function-expressions-iifes">force JavaScript to handle the function declaration as an expression</a>.</p>
+<pre><code class="language-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World'</span>); })(); <span class="hljs-comment">// Prints "Hello, World"</span></code></pre>
+<p>You may occasionally see the <code>void</code> operator as an alternative to parentheses.
+Because <code>void</code> is a unary operator, it tells JavaScript to treat the function
+declaration as an expression, so the below code prints &quot;Hello, World.&quot;</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World'</span>); }();</code></pre>
+<p>The difference is that a normal IIFE can still return a value, whereas using <code>void</code>
+for IIFE will always evaluate to <code>undefined</code>.</p>
+<pre><code class="language-javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; })(); <span class="hljs-comment">// 42</span>
+
+<span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; }(); <span class="hljs-comment">// undefined</span></code></pre>
 
   <hr>
   
