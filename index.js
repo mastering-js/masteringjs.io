@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What Does void 0 Do in JavaScript?',
+      raw: './tutorials/fundamentals/void.md',
+      url: '/tutorials/fundamentals/void',
+      description: 'The void operator in JavaScript is a common source of confusion because it is rarely taught, but has a couple of convenient uses. This tutorial explains the most common use cases for the void operator.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-23')
+    },
+    {
       title: 'What is a JavaScript Expression?',
       raw: './tutorials/fundamentals/expressions.md',
       url: '/tutorials/fundamentals/expressions',

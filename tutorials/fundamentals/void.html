@@ -1,11 +1,11 @@
 
 <html>
   <head>
-    <title>Get the Current Timestamp in JavaScript - Mastering JS</title>
+    <title>What Does void 0 Do in JavaScript? - Mastering JS</title>
 
-    <meta property="og:title" content="Get the Current Timestamp in JavaScript" />
+    <meta property="og:title" content="What Does void 0 Do in JavaScript?" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="Learn how to get the current Unix time in JavaScript." />
+    <meta property="og:description" content="The void operator in JavaScript is a common source of confusion because it is rarely taught, but has a couple of convenient uses. This tutorial explains the most common use cases for the void operator." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -48,36 +48,45 @@
 </div>
 
       <div class="content">
-        <h1>Get the Current Timestamp in JavaScript</h1>
+        <h1>What Does void 0 Do in JavaScript?</h1>
         <div class="date">
-          Apr 28, 2019
+          Jul 23, 2019
         </div>
         
-  <p>A <a href="https://en.wikipedia.org/wiki/Unix_time">Unix timestamp</a> is a number
-representing the number of <strong>seconds</strong> since January 1, 1970. Unix timestamps
-are a common method for representing points in time because they only require 64 bits (or 32 bits <a href="https://developers.slashdot.org/story/13/01/22/1447205/youve-got-25-years-until-unix-time-overflows">until 2038</a>), can be compared using basic math operators like <code>&gt;</code> and <code>&lt;=</code>, and are timezone-independent.</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now">JavaScript&#39;s <code>Date.now()</code> function</a> returns the number of <strong>milliseconds</strong> since January 1, 1970. In other words, <code>Date.now()</code> doesn&#39;t give you the Unix timestamp, but you can easily convert by dividing by 1000:</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// 1556372741848, _milliseconds_ since Jan 1 1970</span>
-<span class="hljs-built_in">Date</span>.now();
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void"><code>void</code> operator in JavaScript</a> 
+evaluates an <a href="/tutorials/fundamentals/expressions">expression</a> and returns 
+<code>undefined</code>. At first glance, this operator doesn&#39;t seem useful, but there are 3 
+cases where you may see the <code>void</code> operator in practice. Here are the 3 major use
+cases:</p>
+<h2 id="no-overwriting-undefined">No Overwriting <code>undefined</code></h2>
+<p>Surprisingly enough, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined#Description"><code>undefined</code> is a valid variable name in JavaScript</a>. The below script will print out &quot;test&quot; twice.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">'test'</span>;
 
-<span class="hljs-comment">// 1556372741, _seconds_ since Jan 1, 1970. This is the Unix timestamp</span>
-<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Date</span>.now() / <span class="hljs-number">1000</span>);</code></pre>
-<p>Given an existing date, you can use either the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime"><code>getTime()</code> function</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf"><code>valueOf()</code> function</a> to get the number of milliseconds since January 1, 1970. These two functions are equivalent.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+}
 
-<span class="hljs-comment">// Both get you the number of milliseconds since the Unix epoch</span>
-d.getTime(); <span class="hljs-comment">// 1559347200000</span>
-d.valueOf(); <span class="hljs-comment">// 1559347200000</span></code></pre>
-<p>The reason why <code>getTime()</code> and <code>valueOf()</code> are separate functions is that <a href="https://blog.klipse.tech/javascript/2016/09/21/valueOf-js.html">JavaScript uses <code>valueOf()</code> functions for implicit type conversions</a>.</p>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params">undefined</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+}
+
+<span class="hljs-built_in">console</span>.log(foo());
+<span class="hljs-built_in">console</span>.log(bar(<span class="hljs-string">'test'</span>));</code></pre>
+<p>However, <code>void</code> is an operator. That means, if you try to name a variable <code>void</code>,
+JavaScript will throw the below error.</p>
+<pre><code><span class="hljs-built_in">SyntaxError</span>: Unexpected token <span class="hljs-keyword">void</span></code></pre><p>Some JavaScript projects prefer <code>void 0</code> instead of <code>undefined</code> to avoid accidentally creating variables named <code>undefined</code>. There is <a href="https://eslint.org/docs/2.0.0/rules/no-undefined">even an ESLint rule to disallow <code>undefined</code></a> for this reason.</p>
+<h2 id="no-op-for-a-tags">No-Op for <code>&lt;a&gt;</code> Tags</h2>
+<p>Another use case for the <code>void</code> operator is to make an <code>&lt;a&gt;</code> tag with a <code>javascript:</code>
+URI do nothing. An <code>&lt;a&gt;</code> tag is not valid HTML unless it has a <code>name</code> or <code>href</code> property, so <code>javascript: void(0)</code> is a common trick to make an <code>&lt;a&gt;</code> tag render correctly without adding an actual link.</p>
+<pre><code class="language-html">&lt;a href=<span class="hljs-string">"javascript:void(0)"</span>&gt;Click Here&lt;<span class="hljs-regexp">/a&gt;</span></code></pre>
+<p>Below is how the above HTML looks:</p>
+<p><a href="javascript:void(0)">Click Here</a></p>
 
   <hr>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/void">What Does void 0 Do in JavaScript?</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/expressions">What is a JavaScript Expression?</a></li>
   
 
@@ -136,6 +145,9 @@ d.valueOf(); <span class="hljs-comment">// 1559347200000</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/valueof">Understand valueOf() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
   
     </ul>
   
