@@ -1356,6 +1356,32 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('capitalize', function() {
+    it('vanilla', function() {
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      capitalize('dog'); // 'Dog'
+      capitalize('cAT'); // 'CAT'
+      // acquit:ignore:start
+      assert.equal(capitalize('dog'), 'Dog'); // 'Dog'
+      assert.equal(capitalize('cAT'), 'CAT'); // 'CAT'
+      // acquit:ignore:end
+    });
+
+    it('lodash', function() {
+      const _ = require('lodash');
+
+      _.capitalize('dog'); // 'Dog'
+      _.capitalize('cAT'); // 'Cat'
+      // acquit:ignore:start
+      assert.equal(_.capitalize('dog'), 'Dog'); // 'Dog'
+      assert.equal(_.capitalize('cAT'), 'Cat'); // 'Cat'
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

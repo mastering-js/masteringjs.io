@@ -35,6 +35,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Capitalize the First Letter of a String in JavaScript',
+      raw: './tutorials/fundamentals/capitalize.md',
+      url: '/tutorials/fundamentals/capitalize',
+      description: 'How to convert the string "dog" to "Dog" in JavaScript.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-24')
+    },
+    {
       title: 'What Does void 0 Do in JavaScript?',
       raw: './tutorials/fundamentals/void.md',
       url: '/tutorials/fundamentals/void',
