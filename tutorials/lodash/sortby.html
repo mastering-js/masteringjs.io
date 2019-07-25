@@ -1,0 +1,121 @@
+
+<html>
+  <head>
+    <title>Sorting Arrays With Lodash's sortBy() Function - Mastering JS</title>
+
+    <meta property="og:title" content="Sorting Arrays With Lodash's sortBy() Function" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Lodash has a `sortBy()` function that provides some neat syntactic sugar on top of `Array#sort()`. This tutorial will teach you what you need to know about `_.sortBy()`." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Sorting Arrays With Lodash's sortBy() Function</h1>
+        <div class="date">
+          Jul 25, 2019
+        </div>
+        
+  <p><a href="/tutorials/fundamentals/array-sort">JavaScript has a built-in <code>Array#sort()</code> function</a> that sorts an array in place.
+The built-in <code>sort()</code> function works well, but can get cumbersome when sorting
+arrays of objects.</p>
+<p>On the other hand, <a href="https://lodash.com/docs/4.17.15#sortBy"><code>_.sortBy()</code></a> lets you 
+sort an array of objects by a property name as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span> }
+];
+
+<span class="hljs-comment">// Sort characters by the `age` property</span>
+<span class="hljs-keyword">const</span> sorted = _.sortBy(characters, <span class="hljs-string">'age'</span>);
+
+sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Worf</span>
+sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// Deanna Troi</span>
+sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// William Riker</span>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span></code></pre>
+<p>The first parameter to <code>sortBy()</code> is the array to sort, and then 2nd parameter
+is called the <code>iteratees</code>. You can think of <code>iteratees</code> as a function that
+transforms each array element into something that is sortable. For example,
+instead of passing the property name <code>age</code> as a string, you can instead pass
+an <code>iteratees</code> function as the 2nd parameter.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span> }
+];
+
+<span class="hljs-comment">// Sort characters by the `age` property</span>
+<span class="hljs-keyword">const</span> iteratees = <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.age;
+<span class="hljs-keyword">const</span> sorted = _.sortBy(characters, iteratees);
+
+sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Worf</span>
+sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// Deanna Troi</span>
+sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// William Riker</span>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span></code></pre>
+<p>There are numerous other ways to use <code>iteratees</code> to transform the array.
+For example, instead of sorting by the character&#39;s age, you can sort by the
+length of the character&#39;s name.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span> }
+];
+
+<span class="hljs-comment">// Sort characters by the length of their name, longest first. Note</span>
+<span class="hljs-comment">// the negative sign.</span>
+<span class="hljs-keyword">const</span> iteratees = <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> -obj.name.length;
+<span class="hljs-keyword">const</span> sorted = _.sortBy(characters, iteratees);
+
+sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span>
+sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// William Riker</span>
+sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// Deanna Troi</span>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Worf</span></code></pre>
+
+  <hr>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

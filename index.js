@@ -26,6 +26,7 @@ async function run() {
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/lodash.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mocha.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/node.test.js', 'utf8')),
@@ -34,6 +35,14 @@ async function run() {
   ];
 
   const tutorials = [
+    {
+      title: 'Sorting Arrays With Lodash\'s sortBy() Function',
+      raw: './tutorials/lodash/sortby.md',
+      url: '/tutorials/lodash/sortby',
+      description: 'Lodash has a `sortBy()` function that provides some neat syntactic sugar on top of `Array#sort()`. This tutorial will teach you what you need to know about `_.sortBy()`.',
+      tags: ['lodash'],
+      date: moment('2019-07-25')
+    },
     {
       title: 'Capitalize the First Letter of a String in JavaScript',
       raw: './tutorials/fundamentals/capitalize.md',
