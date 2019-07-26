@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Safe Navigation With Lodash\'s get() Function',
+      raw: './tutorials/lodash/get.md',
+      url: '/tutorials/lodash/get',
+      description: 'Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property \'prop\' of undefined" errors. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2019-07-26')
+    },
+    {
       title: 'Sorting Arrays With Lodash\'s sortBy() Function',
       raw: './tutorials/lodash/sortby.md',
       url: '/tutorials/lodash/sortby',

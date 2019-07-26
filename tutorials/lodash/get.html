@@ -1,0 +1,125 @@
+
+<html>
+  <head>
+    <title>Safe Navigation With Lodash's get() Function - Mastering JS</title>
+
+    <meta property="og:title" content="Safe Navigation With Lodash's get() Function" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property 'prop' of undefined" errors. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Safe Navigation With Lodash's get() Function</h1>
+        <div class="date">
+          Jul 26, 2019
+        </div>
+        
+  <p>The <a href="https://lodash.com/docs/4.17.15#get"><code>_.get()</code> function in Lodash</a> lets you
+get deeply nested properties in an object without worrying about whether an 
+intermediate property is <code>null</code> or <code>undefined</code>. For example, suppose you have
+the below object:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> landmark = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Golden Gate Bridge'</span>,
+  <span class="hljs-comment">// GeoJSON feature: https://geojson.org/</span>
+  location: {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'Feature'</span>,
+    <span class="hljs-attr">properties</span>: {
+      <span class="hljs-attr">city</span>: <span class="hljs-string">'San Francisco'</span>,
+      <span class="hljs-attr">state</span>: <span class="hljs-string">'California'</span>
+    },
+    <span class="hljs-attr">geometry</span>: {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'Point'</span>,
+      <span class="hljs-attr">coordinates</span>: [<span class="hljs-number">-122.4804438</span>, <span class="hljs-number">37.8199328</span>]
+    }
+  }
+};</code></pre>
+<p>To get the <code>location.geometry.type</code> property, you could use <code>landmark.location.geometry.type</code>. But if <code>landmark.location</code> is undefined,
+you would get the below error.</p>
+<pre><code><span class="hljs-built_in">TypeError</span>: Cannot read property <span class="hljs-string">'geometry'</span> <span class="hljs-keyword">of</span> <span class="hljs-literal">undefined</span></code></pre><p>The <code>_.get()</code> function lets you safely access the nested <code>location.geometry.type</code> property, without having to explicity check whether <code>landmark</code>, <code>landmark.location</code>, or <code>landmark.location.geometry</code> is undefined.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// 'Point'</span>
+
+<span class="hljs-keyword">delete</span> landmark.location;
+<span class="hljs-comment">// `_.get()` doesn't error out, even though `landmark.location` is</span>
+<span class="hljs-comment">// undefined.</span>
+type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-comment">// Even if `landmark` is `null`, `_.get()` does not error out.</span>
+type = _.get(<span class="hljs-literal">null</span>, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// undefined</span></code></pre>
+<h2 id="default-values">Default Values</h2>
+<p>The third argument to <code>_.get()</code> is the default value. If you pass a default value, <code>_.get()</code> will return the default value where it would normally return <code>undefined</code>.</p>
+<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">undefined</span>;
+<span class="hljs-comment">// If the value of the property is `undefined`, `_.get()` will return</span>
+<span class="hljs-comment">// the default value.</span>
+<span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// 'default'</span>
+
+<span class="hljs-keyword">delete</span> landmark.location;
+<span class="hljs-comment">// If the property doesn't exist, `_.get()` will also return the default</span>
+<span class="hljs-comment">// value.</span>
+type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// 'default'</span></code></pre>
+<h2 id="null-vs-undefined"><code>null</code> vs <code>undefined</code></h2>
+<p>Be careful, the <code>_.get()</code> function can return <code>null</code>, even if you specify a default value.</p>
+<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">null</span>;
+<span class="hljs-comment">// If the value of the property is `null`, `_.get()` will **not** use</span>
+<span class="hljs-comment">// the default value</span>
+<span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// null</span></code></pre>
+<p>If you want to make sure <code>_.get()</code> never resolves to a nullish value, you need
+to explicitly check the return value using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">conditional operator <code>?</code></a>.</p>
+<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">null</span>;
+
+<span class="hljs-keyword">const</span> checkDefault = <span class="hljs-function">(<span class="hljs-params">v, def</span>) =&gt;</span> v == <span class="hljs-literal">null</span> ? def : v;
+<span class="hljs-comment">// 'default'</span>
+<span class="hljs-keyword">let</span> type = checkDefault(_.get(landmark, <span class="hljs-string">'location.geometry.type'</span>), <span class="hljs-string">'default'</span>);</code></pre>
+
+  <hr>
+  
+    <h2>More Lodash Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/lodash/sortby">Sorting Arrays With Lodash's sortBy() Function</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -77,4 +77,137 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('get', function() {
+    it('basic', function() {
+      // acquit:ignore:start
+      const landmark = {
+        name: 'Golden Gate Bridge',
+        // GeoJSON feature: https://geojson.org/
+        location: {
+          type: 'Feature',
+          properties: {
+            city: 'San Francisco',
+            state: 'California'
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-122.4804438, 37.8199328]
+          }
+        }
+      };
+
+      landmark?.location?.geometry?.type;
+
+      // acquit:ignore:end
+      let type = _.get(landmark, 'location.geometry.type'); // 'Point'
+      // acquit:ignore:start
+      assert.equal(type, 'Point');
+      // acquit:ignore:end
+
+      delete landmark.location;
+      // `_.get()` doesn't error out, even though `landmark.location` is
+      // undefined.
+      type = _.get(landmark, 'location.geometry.type'); // undefined
+      // acquit:ignore:start
+      assert.strictEqual(type, void 0);
+      // acquit:ignore:end
+
+      // Even if `landmark` is `null`, `_.get()` does not error out.
+      type = _.get(null, 'location.geometry.type'); // undefined
+      // acquit:ignore:start
+      assert.strictEqual(type, void 0);
+      // acquit:ignore:end
+    });
+
+    it('default', function() {
+      // acquit:ignore:start
+      const landmark = {
+        name: 'Golden Gate Bridge',
+        // GeoJSON feature: https://geojson.org/
+        location: {
+          type: 'Feature',
+          properties: {
+            city: 'San Francisco',
+            state: 'California'
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-122.4804438, 37.8199328]
+          }
+        }
+      };
+      // acquit:ignore:end
+      landmark.location.geometry.type = undefined;
+      // If the value of the property is `undefined`, `_.get()` will return
+      // the default value.
+      let type = _.get(landmark, 'location.geometry.type', 'default'); // 'default'
+      // acquit:ignore:start
+      assert.equal(type, 'default');
+      // acquit:ignore:end
+
+      delete landmark.location;
+      // If the property doesn't exist, `_.get()` will also return the default
+      // value.
+      type = _.get(landmark, 'location.geometry.type', 'default'); // 'default'
+      // acquit:ignore:start
+      assert.strictEqual(type, 'default');
+      // acquit:ignore:end
+    });
+
+    it('with null', function() {
+      // acquit:ignore:start
+      const landmark = {
+        name: 'Golden Gate Bridge',
+        // GeoJSON feature: https://geojson.org/
+        location: {
+          type: 'Feature',
+          properties: {
+            city: 'San Francisco',
+            state: 'California'
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-122.4804438, 37.8199328]
+          }
+        }
+      };
+      // acquit:ignore:end
+      landmark.location.geometry.type = null;
+      // If the value of the property is `null`, `_.get()` will **not** use
+      // the default value
+      let type = _.get(landmark, 'location.geometry.type', 'default'); // null
+      // acquit:ignore:start
+      assert.strictEqual(type, null);
+      // acquit:ignore:end
+    });
+
+    it('safe null', function() {
+      // acquit:ignore:start
+      const landmark = {
+        name: 'Golden Gate Bridge',
+        // GeoJSON feature: https://geojson.org/
+        location: {
+          type: 'Feature',
+          properties: {
+            city: 'San Francisco',
+            state: 'California'
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [-122.4804438, 37.8199328]
+          }
+        }
+      };
+      // acquit:ignore:end
+      landmark.location.geometry.type = null;
+
+      const checkDefault = (v, def) => v == null ? def : v;
+      // 'default'
+      let type = checkDefault(_.get(landmark, 'location.geometry.type'), 'default');
+      // acquit:ignore:start
+      assert.strictEqual(type, 'default');
+      // acquit:ignore:end
+    });
+  });
 });
