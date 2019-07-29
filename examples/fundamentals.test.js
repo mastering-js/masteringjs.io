@@ -1382,6 +1382,110 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('concat', function() {
+    it('plus', function() {
+      const str = 'Hello' + ' ' + 'World';
+      str; // 'Hello World'
+      // acquit:ignore:start
+      assert.equal(str, 'Hello World');
+      // acquit:ignore:end
+    });
+
+    it('plus equals', function() {
+      let str = 'Hello';
+      str += ' ';
+      str += 'World';
+      str; // 'Hello World'
+      // acquit:ignore:start
+      assert.equal(str, 'Hello World');
+      // acquit:ignore:end
+    });
+
+    it('null', function() {
+      let str = 'Values: ';
+      str += 42;
+      str += ' ';
+
+      str += {};
+      str += ' ';
+
+      str += null;
+
+      str; // 'Values: 42 [object Object] null'
+      // acquit:ignore:start
+      assert.equal(str, 'Values: 42 [object Object] null');
+      // acquit:ignore:end
+    });
+
+    describe('String#concat', function() {
+      it('basic', function() {
+        const str1 = 'Hello';
+        const str2 = str1.concat(' ', 'World');
+
+        // 'Hello'. Strings are immutable, so `concat()` does not modify `str1`
+        str1;
+        // 'Hello World'
+        str2;
+        // acquit:ignore:start
+        assert.equal(str1, 'Hello');
+        assert.equal(str2, 'Hello World');
+        // acquit:ignore:end
+      });
+
+      it('null', function() {
+        // If `str` is null or not a string, can't use `concat()`
+        const str = 'Values: ';
+
+        // 'Values: 42 null'
+        str.concat(42, ' ', null);
+        // acquit:ignore:start
+        assert.equal(str.concat(42, ' ', null), 'Values: 42 null');
+        // acquit:ignore:end
+      });
+
+      it('empty str', function() {
+        ''.concat('Hello', ' ', 'World');
+        // acquit:ignore:start
+        assert.equal(''.concat('Hello', ' ', 'World'), 'Hello World');
+        // acquit:ignore:end
+      });
+    });
+
+    describe('Array#join', function() {
+      it('basic', function() {
+        ['Hello', ' ', 'World'].join(''); // 'Hello World'
+        // acquit:ignore:start
+        assert.equal(['Hello', ' ', 'World'].join(''), 'Hello World');
+        // acquit:ignore:end
+      });
+
+      it('default separator', function() {
+        ['a', 'b', 'c'].join(); // 'a,b,c'
+        // acquit:ignore:start
+        assert.equal(['a', 'b', 'c'].join(), 'a,b,c');
+        // acquit:ignore:end
+      });
+
+      it('words', function() {
+        // 'Twas the night before Christmas'
+        ['Twas', 'the', 'night', 'before', 'Christmas'].join(' ');
+        // acquit:ignore:start
+        assert.equal(['Twas', 'the', 'night', 'before', 'Christmas'].join(' '),
+          'Twas the night before Christmas');
+        // acquit:ignore:end
+      });
+
+      it('url', function() {
+        // 'masteringjs.io/tutorials/fundamentals/string-concat'
+        ['masteringjs.io', 'tutorials', 'fundamentals', 'string-concat'].join('/');
+        // acquit:ignore:start
+        assert.equal(['masteringjs.io', 'tutorials', 'fundamentals', 'string-concat'].join('/'),
+          'masteringjs.io/tutorials/fundamentals/string-concat');
+        // acquit:ignore:end
+      });
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

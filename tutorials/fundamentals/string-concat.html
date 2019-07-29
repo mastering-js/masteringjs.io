@@ -1,0 +1,200 @@
+
+<html>
+  <head>
+    <title>3 Ways to Concatenate Strings in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="3 Ways to Concatenate Strings in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="You can concatenate strings in JavaScript using the `+` operator, the `Array#join()` function, or the `String#concat()` function. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>3 Ways to Concatenate Strings in JavaScript</h1>
+        <div class="date">
+          Jul 29, 2019
+        </div>
+        
+  <p>There are 3 ways to concatenate strings in JavaScript. In this tutorial, you&#39;ll
+the different ways and the tradeoffs between them.</p>
+<h2 id="the--operator">The <code>+</code> Operator</h2>
+<p>The same <code>+</code> operator you use for adding two numbers can be used to concatenate
+two strings.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Hello'</span> + <span class="hljs-string">' '</span> + <span class="hljs-string">'World'</span>;
+str; <span class="hljs-comment">// 'Hello World'</span></code></pre>
+<p>You can also use <code>+=</code>, where <code>a += b</code> is a shorthand for <code>a = a + b</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'Hello'</span>;
+str += <span class="hljs-string">' '</span>;
+str += <span class="hljs-string">'World'</span>;
+str; <span class="hljs-comment">// 'Hello World'</span></code></pre>
+<p>If the left hand side of the <code>+</code> operator is a string, JavaScript will coerce
+the right hand side to a string. That means it is safe to concatenate objects,
+numbers, <code>null</code>, and <code>undefined</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'Values: '</span>;
+str += <span class="hljs-number">42</span>;
+str += <span class="hljs-string">' '</span>;
+
+str += {};
+str += <span class="hljs-string">' '</span>;
+
+str += <span class="hljs-literal">null</span>;
+
+str; <span class="hljs-comment">// 'Values: 42 [object Object] null'</span></code></pre>
+<p>The <code>+</code> and <code>+=</code> operators are <a href="https://2ality.com/2011/10/string-concatenation.html">fast on modern JavaScript engines</a>, so no need to worry about something like <a href="https://www.geeksforgeeks.org/stringbuilder-class-in-java-with-examples/">Java&#39;s StringBuilder class</a>.</p>
+<h2 id="arrayjoin"><code>Array#join()</code></h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join"><code>Array#join()</code> function</a> creates a new string from concatenating all elements in an array. For example:</p>
+<pre><code class="language-javascript">[<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>].join(<span class="hljs-string">''</span>); <span class="hljs-comment">// 'Hello World'</span></code></pre>
+<p>The first parameter to <code>join()</code> is called the <em>separator</em>. By default, the
+separator is a single comma <code>&#39;,&#39;</code>.</p>
+<pre><code class="language-javascript">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>].join(); <span class="hljs-comment">// 'a,b,c'</span></code></pre>
+<p>You can pass in any separator you want. Separators make <code>Array#join()</code> the preferred
+choice for concatenating strings if you find yourself repeating the same character over and over again. For example, you can use <code>&#39; &#39;</code> as the separator to join an array of words:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 'Twas the night before Christmas'</span>
+[<span class="hljs-string">'Twas'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'night'</span>, <span class="hljs-string">'before'</span>, <span class="hljs-string">'Christmas'</span>].join(<span class="hljs-string">' '</span>);</code></pre>
+<p>Or you can use <code>&#39;/&#39;</code> to join together URL fragments:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 'masteringjs.io/tutorials/fundamentals/string-concat'</span>
+[<span class="hljs-string">'masteringjs.io'</span>, <span class="hljs-string">'tutorials'</span>, <span class="hljs-string">'fundamentals'</span>, <span class="hljs-string">'string-concat'</span>].join(<span class="hljs-string">'/'</span>);</code></pre>
+<p>Separators make <code>Array#join()</code> a very flexible way to concatenate strings. If you
+want to join together a variable number of strings, you should generally use <code>join()</code>
+rather than a <code>for</code> loop with <code>+</code>.</p>
+<h2 id="stringconcat"><code>String#concat()</code></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat">JavaScript strings have a built-in <code>concat()</code> method</a>. The <code>concat()</code> function takes one or more parameters, and returns the modified string. Strings in JavaScript are immutable, so <code>concat()</code> doesn&#39;t modify the string in place.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'Hello'</span>;
+<span class="hljs-keyword">const</span> str2 = str1.concat(<span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>);
+
+<span class="hljs-comment">// 'Hello'. Strings are immutable, so `concat()` does not modify `str1`</span>
+str1;
+<span class="hljs-comment">// 'Hello World'</span>
+str2;</code></pre>
+<p>The downside of using <code>concat()</code> is that you must be certain <code>str1</code> is a string.
+You can pass non-string parameters to <code>concat()</code>, but you will get a TypeError
+if <code>str == null</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// If `str` is null or not a string, can't use `concat()`</span>
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">'Values: '</span>;
+
+<span class="hljs-comment">// 'Values: 42 null'</span>
+str.concat(<span class="hljs-number">42</span>, <span class="hljs-string">' '</span>, <span class="hljs-literal">null</span>);</code></pre>
+<p>The <code>concat()</code> function is rarely used because it has more error cases than the
+<code>+</code> operator. For example, you would get unexpected behavior if you call <code>concat()</code>
+on a value that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">happens to be an array</a>. You should use <code>+</code> instead of <code>concat()</code> unless you have a very good reason.</p>
+<p>If you must use <code>concat()</code>, it is usually best to call it on an empty string:</p>
+<pre><code class="language-javascript"><span class="hljs-string">''</span>.concat(<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>);</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/capitalize">Capitalize the First Letter of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/void">What Does void 0 Do in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/expressions">What is a JavaScript Expression?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/push">JavaScript Array Push Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/includes">Check if a JS Array Contains a Specific Value</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/arrow">Arrow Functions in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/freeze">Make JavaScript Objects Immutable with Object.freeze()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/strict">What Does "use strict" Do in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/callbacks">Understanding Callbacks in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/keys">An Overview of the Object.keys() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-splice">Understanding Array.splice() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/substring">Substring vs Substr vs Slice in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-replace">Replace All Instances of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-sort">Sorting an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/map">Maps in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-compare">Compare Two Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/contains-substring">Check if a String Contains a Substring in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">8 Neat Examples with forEach() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/hasownproperty">The Difference Between in and hasOwnProperty in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/valueof">Understand valueOf() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/timestamps">Get the Current Timestamp in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

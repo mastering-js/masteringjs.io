@@ -97,8 +97,6 @@ describe('lodash', function() {
         }
       };
 
-      landmark?.location?.geometry?.type;
-
       // acquit:ignore:end
       let type = _.get(landmark, 'location.geometry.type'); // 'Point'
       // acquit:ignore:start

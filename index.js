@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '3 Ways to Concatenate Strings in JavaScript',
+      raw: './tutorials/fundamentals/string-concat.md',
+      url: '/tutorials/fundamentals/string-concat',
+      description: 'You can concatenate strings in JavaScript using the `+` operator, the `Array#join()` function, or the `String#concat()` function. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-29')
+    },
+    {
       title: 'Safe Navigation With Lodash\'s get() Function',
       raw: './tutorials/lodash/get.md',
       url: '/tutorials/lodash/get',
