@@ -1486,6 +1486,54 @@ describe('Fundamentals', function() {
       });
     });
   });
+
+  describe('Object assign', function() {
+    it('basic', function() {
+      const source = { hello: 'world' };
+      const target = {};
+
+      // The first parameter is the target object, every subsequent parameter
+      // is a source object.
+      const ret = Object.assign(target, source);
+
+      // `Object.assign()` modifies `target` in place, and returns `target`
+      ret === target; // true
+      target.hello; // 'World'
+      // acquit:ignore:start
+      assert.ok(ret === target);
+      assert.equal(target.hello, 'world');
+      // acquit:ignore:end
+    });
+
+    it('shallow copy', function() {
+      const obj = { name: 'Jean-Luc Picard', age: 59 };
+
+      // `Object.assign({}, obj)` is a common pattern that returns a shallow
+      // clone of `obj`.
+      const shallowCopy = Object.assign({}, obj);
+
+      shallowCopy === obj; // false
+
+      // Cloning the object means that changing `shallowCopy` doesn't affect `obj`
+      shallowCopy.rank = 'Captain';
+      obj.rank; // undefined
+      // acquit:ignore:start
+      assert.ok(!(shallowCopy === obj));
+      assert.strictEqual(obj.rank, void 0);
+      // acquit:ignore:end
+    });
+
+    it('multiple source', function() {
+      const o1 = { a: 1, b: 1, c: 1 };
+      const o2 = { a: 2, b: 2 };
+      const o3 = { a: 3 };
+
+      Object.assign(o1, o2, o3); // { a: 3, b: 2, c: 1 }
+      // acquit:ignore:start
+      assert.deepEqual(o1, { a: 3, b: 2, c: 1 });
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

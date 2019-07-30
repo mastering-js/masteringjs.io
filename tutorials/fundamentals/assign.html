@@ -1,11 +1,11 @@
 
 <html>
   <head>
-    <title>Calculate Standard Deviation in JavaScript - Mastering JS</title>
+    <title>Object.assign() in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Calculate Standard Deviation in JavaScript" />
+    <meta property="og:title" content="Object.assign() in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="Use Mathjs to calculate standard deviation in Node.js and the browser." />
+    <meta property="og:description" content="The `Object.assign()` function lets you assign properties from one object to another. You can use it to shallow copy objects or assign multiple properties at once." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -48,35 +48,47 @@
 </div>
 
       <div class="content">
-        <h1>Calculate Standard Deviation in JavaScript</h1>
+        <h1>Object.assign() in JavaScript</h1>
         <div class="date">
-          May 1, 2019
+          Jul 30, 2019
         </div>
         
-  <p><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is a measure of how far a set of numbers deviates from the average. Small standard deviation means the numbers are all relatively close to the mean. JavaScript doesn&#39;t have a built-in standard deviation function, but <a href="https://www.npmjs.com/package/mathjs">Math.js</a> is a well supported library with a full featured standard deviation function.</p>
-<p>Here&#39;s an example of using <a href="https://mathjs.org/docs/reference/functions/std.html">Math.js&#39; <code>std()</code> function</a> to calculate standard deviation.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
+  <p>In JavaScript, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">the <code>Object.assign()</code> function</a> copies properties from one or more source objects to a target object. It returns the target object.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> source = { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> };
+<span class="hljs-keyword">const</span> target = {};
 
-<span class="hljs-comment">// Can pass an array to the `stddev()` function:</span>
-math.std([<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// 0</span>
+<span class="hljs-comment">// The first parameter is the target object, every subsequent parameter</span>
+<span class="hljs-comment">// is a source object.</span>
+<span class="hljs-keyword">const</span> ret = <span class="hljs-built_in">Object</span>.assign(target, source);
 
-<span class="hljs-comment">// Or a list of arguments (also called a "spread")</span>
-math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span></code></pre>
-<p>Math.js also has support for bias correction. Math.js&#39; <code>std()</code> function uses <a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel&#39;s correction</a> by default, but takes a 2nd argument <code>normalization</code> for configuring this. By default, given an array of length <code>n</code>, the <code>std()</code> function divides the variance by <code>n - 1</code>. You can pass <code>&#39;uncorrected&#39;</code> to make <code>std()</code> divide by <code>n</code>, or <code>&#39;biased&#39;</code> to make <code>std()</code> divide by <code>n + 1</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
+<span class="hljs-comment">// `Object.assign()` modifies `target` in place, and returns `target`</span>
+ret === target; <span class="hljs-comment">// true</span>
+target.hello; <span class="hljs-comment">// 'World'</span></code></pre>
+<p><code>Object.assign()</code> is commonly used to shallow copy objects, although the <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html">spread operator is generally faster than <code>Object.assign()</code> for shallow copying</a>. Shallow copying is most commonly used in <a href="https://redux.js.org/recipes/using-object-spread-operator">Redux reducers</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> };
 
-<span class="hljs-comment">// Must pass an array if you're using options</span>
-math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
-math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span></code></pre>
+<span class="hljs-comment">// `Object.assign({}, obj)` is a common pattern that returns a shallow</span>
+<span class="hljs-comment">// clone of `obj`.</span>
+<span class="hljs-keyword">const</span> shallowCopy = <span class="hljs-built_in">Object</span>.assign({}, obj);
+
+shallowCopy === obj; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// Cloning the object means that changing `shallowCopy` doesn't affect `obj`</span>
+shallowCopy.rank = <span class="hljs-string">'Captain'</span>;
+obj.rank; <span class="hljs-comment">// undefined</span></code></pre>
+<h2 id="multiple-sources">Multiple Sources</h2>
+<p>You can pass <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Merging_objects_with_same_properties">multiple source objects to <code>Object.assign()</code></a>. If there&#39;s multiple sources with the same property, the last one in the parameter list wins out.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> o1 = { <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">1</span> };
+<span class="hljs-keyword">const</span> o2 = { <span class="hljs-attr">a</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> };
+<span class="hljs-keyword">const</span> o3 = { <span class="hljs-attr">a</span>: <span class="hljs-number">3</span> };
+
+<span class="hljs-built_in">Object</span>.assign(o1, o2, o3); <span class="hljs-comment">// { a: 3, b: 2, c: 1 }</span></code></pre>
 
   <hr>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/assign">Object.assign() in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/string-concat">3 Ways to Concatenate Strings in JavaScript</a></li>
   
 
@@ -138,6 +150,9 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
   
 
     <li><a href="/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stddev">Calculate Standard Deviation in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/valueof">Understand valueOf() in JavaScript</a></li>

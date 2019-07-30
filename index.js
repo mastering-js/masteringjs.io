@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Object.assign() in JavaScript',
+      raw: './tutorials/fundamentals/assign.md',
+      url: '/tutorials/fundamentals/assign',
+      description: 'The `Object.assign()` function lets you assign properties from one object to another. You can use it to shallow copy objects or assign multiple properties at once.',
+      tags: ['fundamentals'],
+      date: moment('2019-07-30')
+    },
+    {
       title: '3 Ways to Concatenate Strings in JavaScript',
       raw: './tutorials/fundamentals/string-concat.md',
       url: '/tutorials/fundamentals/string-concat',
