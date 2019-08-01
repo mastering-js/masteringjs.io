@@ -743,4 +743,40 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('connect()', function() {
+    it('basic', async function() {
+      // acquit:ignore:start
+      await mongoose.disconnect();
+      // acquit:ignore:end
+      // Connect to a MongoDB server running on 'localhost:27017' and use the
+      // 'test' database.
+      await mongoose.connect('mongodb://localhost:27017/test', {
+        useNewUrlParser: true // Boilerplate for Mongoose 5.x
+      });
+
+      // Once you're connected to MongoDB, you can create a user model and
+      // use it to save a user to the database.
+      const userSchema = new mongoose.Schema({ name: String });
+      const UserModel = mongoose.model('User', userSchema);
+
+      await UserModel.create({ name: 'test' });
+    });
+
+    it('error', async function() {
+      // acquit:ignore:start
+      await mongoose.disconnect();
+      // acquit:ignore:end
+      const options = { useNewUrlParser: true };
+      // Try to connect to `nota.domain`, which should fail
+      const err = await mongoose.connect('mongodb://nota.domain:27017/test', options).
+        catch(err => err);
+
+      // 'failed to connect to server [nota.domain:27017] on first connect'
+      err.message;
+      // acquit:ignore:start
+      assert.ok(err.message.indexOf('failed to connect to server [nota.domain:27017] on first connect') === 0, err.message);
+      // acquit:ignore:end
+    });
+  });
 });

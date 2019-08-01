@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Connecting to MongoDB with Mongoose',
+      raw: './tutorials/mongoose/connect.md',
+      url: '/tutorials/mongoose/connect',
+      description: 'The `mongoose.connect()` function is the most common way to connect to MongoDB with Mongoose. This tutorial describes how to use `mongoose.connect()` and how to troubleshoot common issues.',
+      tags: ['mongoose'],
+      date: moment('2019-08-01')
+    },
+    {
       title: 'Object.assign() in JavaScript',
       raw: './tutorials/fundamentals/assign.md',
       url: '/tutorials/fundamentals/assign',
