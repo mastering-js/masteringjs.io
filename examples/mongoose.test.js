@@ -779,4 +779,124 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Schema', function() {
+    it('definition', function() {
+      const userSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+      });
+
+      userSchema.path('name'); // SchemaString { ... }
+      userSchema.path('age'); // SchemaNumber { ... }
+      // acquit:ignore:start
+      assert.ok(userSchema.path('name').constructor.name, 'SchemaString');
+      assert.ok(userSchema.path('name').constructor.name, 'SchemaNumber');
+      // acquit:ignore:end
+    });
+
+    it('model', function() {
+      const userSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+      });
+
+      const UserModel = mongoose.model('User', userSchema);
+
+      const doc = new UserModel({
+        name: 'Jean-Luc Picard',
+        age: 59,
+        rank: 'Captain'
+      });
+      doc.name; // 'Jean-Luc Picard'
+      doc.age; // 59
+
+      // undefined, Mongoose strips out `rank` because it isn't in the schema
+      doc.rank;
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Jean-Luc Picard');
+      assert.equal(doc.age, 59);
+      assert.strictEqual(doc.rank, void 0);
+      // acquit:ignore:end
+    });
+
+    it('casting', async function() {
+      // acquit:ignore:start
+      const userSchema = new mongoose.Schema({
+        name: String,
+        age: Number
+      });
+      // acquit:ignore:end
+      const UserModel = mongoose.model('User', userSchema);
+
+      const doc = new UserModel({
+        name: 'Jean-Luc Picard',
+        age: '59' // Mongoose will convert this to a number
+      });
+      doc.age; // 59
+      await doc.save();
+
+      // Mongoose will convert '60' from a string to a number, even in an update
+      await UserModel.updateOne({}, { $set: { age: '60' } });
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Jean-Luc Picard');
+      assert.equal(doc.age, 59);
+
+      const _doc = await UserModel.collection.findOne();
+      assert.equal(_doc.age, 60);
+      // acquit:ignore:end
+    });
+
+    it('validation', async function() {
+      const userSchema = new mongoose.Schema({
+        // Make `name` required
+        name: { type: String, required: true },
+        age: Number
+      });
+      const UserModel = mongoose.model('User', userSchema);
+
+      const doc = new UserModel({ age: 30 });
+
+      const err = await doc.save().catch(err => err);
+      err.message; // Path `name` is required.
+      // acquit:ignore:start
+      assert.ok(err.message.includes('Path `name` is required.'), err.message);
+      // acquit:ignore:end
+    });
+
+    it('nested', async function() {
+      // This is **not** how you define a `nested.type` property
+      const schema = new mongoose.Schema({
+        nested: {
+          type: String
+        }
+      });
+
+      schema.path('nested'); // SchemaString { ... }
+      schema.path('nested.type'); // undefined
+      // acquit:ignore:start
+      assert.ok(!schema.path('nested.type'));
+      // acquit:ignore:end
+    });
+
+    it('typeKey', async function() {
+      // Make Mongoose look for `$type` instead of `type`
+      const options = { typeKey: '$type' };
+      const schema = new mongoose.Schema({
+        nested: {
+          type: String
+        },
+        otherProperty: {
+          $type: String
+        }
+      }, options);
+
+      schema.path('nested.type'); // SchemaString { ... }
+      schema.path('otherProperty'); // SchemaString { ... }
+      // acquit:ignore:start
+      assert.equal(schema.path('nested.type').constructor.name, 'SchemaString');
+      assert.equal(schema.path('otherProperty').constructor.name, 'SchemaString');
+      // acquit:ignore:end
+    });
+  });
 });

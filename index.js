@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Introduction to Mongoose Schemas',
+      raw: './tutorials/mongoose/schema.md',
+      url: '/tutorials/mongoose/schema',
+      description: 'In Mongoose, schemas are a configuration object for models. They tell Mongoose what paths to cast/validate, what options to set, and what virtuals to create.',
+      tags: ['mongoose'],
+      date: moment('2019-08-02')
+    },
+    {
       title: 'Connecting to MongoDB with Mongoose',
       raw: './tutorials/mongoose/connect.md',
       url: '/tutorials/mongoose/connect',
