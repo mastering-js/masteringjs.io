@@ -17,7 +17,7 @@ function more(tutorials, tutorial) {
   return `
     <h2>More ${capitalize(tutorial.tags[0])} Tutorials</h2>
     <ul>
-    ${otherTutorials.map(_tutorial).join('\n')}
+    ${otherTutorials.slice(0, 7).map(_tutorial).join('\n')}
     </ul>
   `;
 }
