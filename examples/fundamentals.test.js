@@ -1582,6 +1582,109 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('prototype', function() {
+    it('toString example', function() {
+      const obj = {};
+      obj.toString(); // '[object Object]'
+      // acquit:ignore:start
+      assert.equal(obj.toString(), '[object Object]');
+      // acquit:ignore:end
+    });
+
+    it('instanceof example', function() {
+      const obj = {};
+      obj instanceof Object; // true
+      obj.toString === Object.prototype.toString; // true
+      // acquit:ignore:start
+      assert.ok(obj instanceof Object);
+      assert.ok(obj.toString === Object.prototype.toString);
+      // acquit:ignore:end
+
+      obj.toString = () => {};
+      obj.toString === Object.prototype.toString; // false
+      // acquit:ignore:start
+      assert.ok(!(obj.toString === Object.prototype.toString));
+      // acquit:ignore:end
+    });
+
+    it('add to prototype', function() {
+      // Add a `getAnswer()` function to _all_ objects
+      Object.prototype.getAnswer = function() { return 42 };
+
+      const obj = {};
+      obj.getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(obj.getAnswer(), 42);
+      delete Object.prototype.getAnswer;
+      // acquit:ignore:end
+    });
+
+    it('MyClass prototype', function() {
+      function MyClass() {}
+
+      // Add a `getAnswer()` function to all instances of `MyClass`
+      MyClass.prototype.getAnswer = function() { return 42; };
+
+      const obj = new MyClass();
+      obj.getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(obj.getAnswer(), 42);
+      // acquit:ignore:end
+    });
+
+    it('MyClass set prototype', function() {
+      function MyClass() {}
+
+      // Overwrite the entire prototype
+      MyClass.prototype = {
+        getAnswer: function() { return 42; }
+      };
+
+      const obj = new MyClass();
+      obj.getAnswer(); // 42
+      // acquit:ignore:start
+      assert.equal(obj.getAnswer(), 42);
+      // acquit:ignore:end
+    });
+
+    it('MyChildClass', function() {
+      function MyClass() {}
+
+      // Overwrite the entire prototype
+      MyClass.prototype = {
+        getAnswer: function() { return 42; }
+      };
+
+      function MyChildClass() {}
+      MyChildClass.prototype = new MyClass();
+
+      const obj = new MyChildClass();
+      obj.getAnswer(); // 42
+
+      // `obj` is an instance of `MyChildClass`, and `MyChildClass` inherits
+      // from `MyClass`, which in turn inherits from `Object`.
+      obj instanceof MyChildClass; // true
+      obj instanceof MyClass; // true
+      obj instanceof Object; // true
+      // acquit:ignore:start
+      assert.equal(obj.getAnswer(), 42);
+      assert.ok(obj instanceof MyChildClass);
+      assert.ok(obj instanceof MyClass);
+      assert.ok(obj instanceof Object);
+      // acquit:ignore:end
+    });
+
+    it('constructor prototype', function() {
+      function MyClass() {}
+
+      const obj = new MyClass();
+      obj.constructor.prototype.getAnswer = function() { return 42; };
+
+      const obj2 = new MyClass();
+      obj2.getAnswer(); // 42
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

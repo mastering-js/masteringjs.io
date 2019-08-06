@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Intro to Object Prototypes in JavaScript',
+      raw: './tutorials/fundamentals/prototype.md',
+      url: '/tutorials/fundamentals/prototype',
+      description: 'JavaScript uses prototype-based inheritance, even when you use the ES6 class `extends` keyword. Here\'s what you need to know about prototypes.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-07')
+    },
+    {
       title: 'Deep Copy vs Shallow Copy in JavaScript',
       raw: './tutorials/fundamentals/shallow-copy.md',
       url: '/tutorials/fundamentals/shallow-copy',
