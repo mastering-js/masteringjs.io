@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Deep Copy vs Shallow Copy in JavaScript',
+      raw: './tutorials/fundamentals/shallow-copy.md',
+      url: '/tutorials/fundamentals/shallow-copy',
+      description: 'In JavaScript, you often hear the terms "deep clone" and "shallow clone", also known as deep/shallow copy. This tutorial describes what these terms mean with examples.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-06')
+    },
+    {
       title: 'Introduction to Mongoose Schemas',
       raw: './tutorials/mongoose/schema.md',
       url: '/tutorials/mongoose/schema',
