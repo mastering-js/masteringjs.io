@@ -1534,6 +1534,54 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('shallow copy', function() {
+    it('shallow', function() {
+      const obj = { answer: 42 };
+      // The `Object.assign()` function is a common way to shallow clone an object
+      const copy = Object.assign({}, obj);
+
+      ++copy.answer; // 43
+      obj.answer; // 42, did not change because `copy` is a copy of `obj`
+      // acquit:ignore:start
+      assert.equal(copy.answer, 43);
+      assert.equal(obj.answer, 42);
+      // acquit:ignore:end
+    });
+
+    it('shallow limitation', function() {
+      const obj = { name: { first: 'Jean-Luc', last: 'Picard' } };
+      const copy = Object.assign({}, obj);
+
+      copy.name.first = 'Johnny';
+      obj.name.first; // 'Johnny', `name` was **not** cloned
+      // acquit:ignore:start
+      assert.equal(obj.name.first, 'Johnny');
+      // acquit:ignore:end
+    });
+
+    it('json stringify', function() {
+      const obj = { name: { first: 'Jean-Luc', last: 'Picard' } };
+      const copy = JSON.parse(JSON.stringify(obj));
+
+      copy.name.first = 'Johnny';
+      obj.name.first; // 'Jean-Luc'
+      // acquit:ignore:start
+      assert.equal(obj.name.first, 'Jean-Luc');
+      // acquit:ignore:end
+    });
+
+    it('json stringify date', function() {
+      const obj = { date: new Date('2019-06-01') };
+      const copy = JSON.parse(JSON.stringify(obj));
+
+      obj.date instanceof Date; // true
+      copy.date instanceof Date; // false, `date` is a string
+      // acquit:ignore:start
+      assert.equal(typeof copy.date, 'string');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
