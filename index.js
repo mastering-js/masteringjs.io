@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The $emit Function in Vue',
+      raw: './tutorials/vue/emit.md',
+      url: '/tutorials/vue/emit',
+      description: 'In Vue, the $emit function lets you pass events up the component tree. Here\'s how it works.',
+      tags: ['vue'],
+      date: moment('2019-08-08')
+    },
+    {
       title: 'Intro to Object Prototypes in JavaScript',
       raw: './tutorials/fundamentals/prototype.md',
       url: '/tutorials/fundamentals/prototype',

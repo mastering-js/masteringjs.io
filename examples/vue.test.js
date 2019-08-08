@@ -898,4 +898,49 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('emit', function() {
+    it('in a component', async function() {
+      Vue.component('my-component', {
+        mounted: function() {
+          // `$emit()` sends an event up the component tree. The parent
+          // can listen for the 'notify' event using 'v-on:notify'
+          this.$emit('notify');
+        },
+        template: '<div></div>'
+      });
+
+      const app = new Vue({
+        data: () => ({ show: false }),
+        // Vue evaluates the expression in 'v-on:notify' when it gets a 'notify'
+        // event. 
+        template: `
+          <div>
+            <my-component v-on:notify="show = true"></my-component>
+            <div v-if="show">Notified</div>
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      await renderToString(app);
+      app.$children[0].$emit('notify');
+      assert.equal(app.$data.show, true);
+      // acquit:ignore:end
+    });
+
+    it('in app', async function() {
+      const app = new Vue({
+        template: '<div></div>'
+      });
+
+      let called = 0;
+      app.$on('test-event', () => { ++called; });
+
+      app.$emit('test-event');
+      called; // 1
+      // acquit:ignore:start
+      assert.equal(called, 1);
+      // acquit:ignore:end
+    });
+  });
 });
