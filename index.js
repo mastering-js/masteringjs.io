@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using v-bind in Vue',
+      raw: './tutorials/vue/bind.md',
+      url: '/tutorials/vue/bind',
+      description: 'In Vue, `v-bind` provides one-way data binding and lets you pass props down the component tree. Here\'s how it works.',
+      tags: ['vue'],
+      date: moment('2019-08-09')
+    },
+    {
       title: 'The $emit Function in Vue',
       raw: './tutorials/vue/emit.md',
       url: '/tutorials/vue/emit',

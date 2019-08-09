@@ -568,8 +568,8 @@ describe('Vue', function() {
           </div>
         `
       });
-      app.$mount('#content');
       // acquit:ignore:start
+      app.$mount('#content');
       const data = await renderToString(app);
       assert.ok(data.includes('Hello, World'), data);
       // acquit:ignore:end
@@ -940,6 +940,62 @@ describe('Vue', function() {
       called; // 1
       // acquit:ignore:start
       assert.equal(called, 1);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('bind', function() {
+    it('href', async function() {
+      const app = new Vue({
+        data: () => ({ link: 'http://google.com' }),
+        // Initially, the link will go to Google...
+        template: `
+          <a v-bind:href="link">My Link</a>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('google.com'));
+      // acquit:ignore:end
+      // Now, the link will go to Twitter.
+      app.$data.link = 'http://twitter.com';
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('twitter.com'));
+      // acquit:ignore:end
+    });
+
+    it('style', async function() {
+      const app = new Vue({
+        data: () => ({ color: 'blue' }),
+        // Initially, will show "blue text" in blue font.
+        template: `
+          <div v-bind:style="{ color }">{{color}} text</div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('color:blue'));
+      // acquit:ignore:end
+      // Now, it will show "green text" in green font.
+      app.$data.color = 'green';
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('color:green'));
+      // acquit:ignore:end
+    });
+
+    it('shorthand', async function() {
+      const app = new Vue({
+        data: () => ({ link: 'http://google.com' }),
+        // `:href` is the same ad `v-bind:href`, just more concise.
+        template: `
+          <a :href="link">My Link</a>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('google.com'));
       // acquit:ignore:end
     });
   });
