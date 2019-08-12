@@ -1,0 +1,111 @@
+
+<html>
+  <head>
+    <title>Using Lodash's find() Function - Mastering JS</title>
+
+    <meta property="og:title" content="Using Lodash's find() Function" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Lodash's `find()` function lets you find the first element in an array that matches a given criteria. Here's how it works." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Using Lodash's find() Function</h1>
+        <div class="date">
+          Aug 12, 2019
+        </div>
+        
+  <p><a href="https://lodash.com/docs/4.17.15#find">Lodash&#39;s <code>find()</code> function</a> returns
+the first element of a collection that matches the given <code>predicate</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-comment">// `find()` executes `predicate` for every element in the array until</span>
+<span class="hljs-comment">// `predicate` returns true.</span>
+<span class="hljs-keyword">const</span> predicate = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v &gt; <span class="hljs-number">3</span>;
+_.find(arr, predicate); <span class="hljs-comment">// 4</span></code></pre>
+<p><code>find()</code> is different from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">JavaScript&#39;s built-in <code>filter()</code> function</a> because <code>filter()</code> returns <em>all</em> elements that match a condition, whereas <code>find()</code> returns the first element that matches a condition.</p>
+<p>If <code>find()</code> doesn&#39;t find an element, it returns <a href="/tutorials/fundamentals/void"><code>undefined</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+_.find(arr, v =&gt; v &gt; <span class="hljs-number">5</span>); <span class="hljs-comment">// undefined</span></code></pre>
+<p>The <code>find()</code> function operates on a collection, not an array, which means
+you can use it on objects too.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key1</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">key2</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">key3</span>: <span class="hljs-number">3</span> };
+
+_.find(obj, v =&gt; v &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span></code></pre>
+<h2 id="alternative-syntaxes">Alternative Syntaxes</h2>
+<p><code>find()</code> supports two alernative syntaxes. If you pass an object as the predicate,
+the <code>find()</code> function will create a predicate function using the <a href="https://lodash.com/docs/4.17.15#matches"><code>matches()</code> function</a> which performs a partial deep comparison. That means Lodash will find the first object in the collection that has the given properties.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Geordi'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }
+];
+
+_.find(characters, { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }).lastName; <span class="hljs-comment">// 'Riker'</span></code></pre>
+<p>If you pass a string <code>str</code> as the predicate, the <code>find()</code> function will return the first object in the array that has a truthy property <code>str</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Doctor Pulaski'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Tasha Yar'</span>, <span class="hljs-attr">active</span>: <span class="hljs-literal">false</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Wesley Crusher'</span>, <span class="hljs-attr">active</span>: <span class="hljs-literal">null</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span> }
+];
+
+<span class="hljs-comment">// Find the first character with a truthy `active` property</span>
+_.find(characters, <span class="hljs-string">'active'</span>).name; <span class="hljs-comment">// 'Jean-Luc Picard'</span></code></pre>
+
+  <hr>
+  
+    <h2>More Lodash Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/lodash/get">Safe Navigation With Lodash's get() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/sortby">Sorting Arrays With Lodash's sortBy() Function</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Lodash\'s find() Function',
+      raw: './tutorials/lodash/find.md',
+      url: '/tutorials/lodash/find',
+      description: 'Lodash\'s `find()` function lets you find the first element in an array that matches a given criteria. Here\'s how it works.',
+      tags: ['lodash'],
+      date: moment('2019-08-12')
+    },
+    {
       title: 'Using v-bind in Vue',
       raw: './tutorials/vue/bind.md',
       url: '/tutorials/vue/bind',

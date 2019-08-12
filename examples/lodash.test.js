@@ -208,4 +208,65 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('find', function() {
+    it('basic', function() {
+      const arr = [1, 2, 3, 4, 5];
+
+      // `find()` executes `predicate` for every element in the array until
+      // `predicate` returns true.
+      const predicate = v => v > 3;
+      _.find(arr, predicate); // 4
+      // acquit:ignore:start
+      assert.equal(_.find(arr, predicate), 4);
+      // acquit:ignore:end
+    });
+
+    it('no result', function() {
+      const arr = [1, 2, 3, 4, 5];
+
+      _.find(arr, v => v > 5); // undefined
+      // acquit:ignore:start
+      assert.strictEqual(_.find(arr, v => v > 5), void 0);
+      // acquit:ignore:end
+    });
+
+    it('object', function() {
+      const obj = { key1: 1, key2: 2, key3: 3 };
+
+      _.find(obj, v => v > 2); // 3
+      // acquit:ignore:start
+      assert.strictEqual(_.find(obj, v => v > 2), 3);
+      // acquit:ignore:end
+    });
+
+    it('object comparison', function() {
+      const characters = [
+        { firstName: 'Jean-Luc', lastName: 'Picard', rank: 'Captain', age: 59 },
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander', age: 29 },
+        { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
+      ];
+
+      _.find(characters, { rank: 'Commander', age: 29 }).lastName; // 'Riker'
+      // acquit:ignore:start
+      assert.strictEqual(_.find(characters, { rank: 'Commander', age: 29 }).lastName,
+        'Riker');
+      // acquit:ignore:end
+    });
+
+    it('string comparison', function() {
+      const characters = [
+        { name: 'Doctor Pulaski' },
+        { name: 'Tasha Yar', active: false },
+        { name: 'Wesley Crusher', active: null },
+        { name: 'Jean-Luc Picard', active: true }
+      ];
+
+      // Find the first character with a truthy `active` property
+      _.find(characters, 'active').name; // 'Jean-Luc Picard'
+      // acquit:ignore:start
+      assert.strictEqual(_.find(characters, 'active').name, 'Jean-Luc Picard');
+      // acquit:ignore:end
+    });
+  });
 });
