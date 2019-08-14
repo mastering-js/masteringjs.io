@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Throttling Functions With Lodash\'s debounce() Function',
+      raw: './tutorials/lodash/debounce.md',
+      url: '/tutorials/lodash/debounce',
+      description: 'Lodash\'s `debounce()` function lets you ensure a function is only executed once every X seconds.',
+      tags: ['lodash'],
+      date: moment('2019-08-13')
+    },
+    {
       title: 'Using Lodash\'s find() Function',
       raw: './tutorials/lodash/find.md',
       url: '/tutorials/lodash/find',

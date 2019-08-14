@@ -269,4 +269,85 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('debounce', function() {
+    it('autocomplete', async function() {
+      // acquit:ignore:start
+      let called = 0;
+      const el = new FakeElement();
+      // acquit:ignore:end
+      const wait = 100;
+      el.addEventListener('change', _.debounce(autocomplete, wait));
+
+      el.value = 'te';
+      el.trigger('change'); // "Called: te" after 100ms
+      await new Promise(resolve => setTimeout(resolve, 110));
+      // acquit:ignore:start
+      assert.equal(called, 1);
+      // acquit:ignore:end
+
+      el.value = 'test';
+      // Nothing, because the next 'change' event takes over
+      el.trigger('change');
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      el.value = 'testing';
+      el.trigger('change'); // "Called: testing" after 100ms
+      // acquit:ignore:start
+      await new Promise(resolve => setTimeout(resolve, 110));
+      assert.equal(called, 2);
+      // acquit:ignore:end
+
+      function autocomplete() {
+        // acquit:ignore:start
+        ++called;
+        // acquit:ignore:end
+        console.log('Called:', el.value);
+      }
+    });
+
+    it('maxWait', async function() {
+      // acquit:ignore:start
+      let called = 0;
+      const el = new FakeElement();
+      // acquit:ignore:end
+      const wait = 100;
+      el.addEventListener('change', _.debounce(autocomplete, wait, {
+        maxWait: 120
+      }));
+
+      el.value = 'te';
+      el.trigger('change');
+      await new Promise(resolve => setTimeout(resolve, 60));
+
+      el.value = 'test';
+      el.trigger('change'); // "Called: test" after 60ms
+      // acquit:ignore:start
+      await new Promise(resolve => setTimeout(resolve, 80));
+      assert.equal(called, 1);
+      // acquit:ignore:end
+
+      function autocomplete() {
+        // acquit:ignore:start
+        ++called;
+        // acquit:ignore:end
+        console.log('Called:', el.value);
+      }
+    });
+  });
 });
+
+const EventEmitter = require('events').EventEmitter;
+
+class FakeElement extends EventEmitter {
+  trigger(name, val) {
+    if (name === 'click' && val == null) {
+      val = { target: this };
+    }
+    this.emit(name, val);
+  }
+
+  addEventListener(name, handler) {
+    this.on(name, handler);
+  }
+}
