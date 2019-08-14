@@ -17,8 +17,3 @@ will execute after 60ms instead of 100ms.
 ```javascript
 [require:lodash.*debounce.*maxWait$]
 ```
-
-Trailing vs Leading
--------------------
-
-The `debounce()` function has two important options: `leading` and `trailing`. 
