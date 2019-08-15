@@ -76,12 +76,27 @@ frozen.answer = <span class="hljs-number">43</span>;</code></pre>
 <p>Like with <code>freeze()</code>, adding, removing, or re-configuring a property from a sealed 
 object only throws an error in <a href="/tutorials/fundamentals/strict">strict mode</a>.
 Otherwise it fails silently.</p>
+<p>The <code>seal()</code> function is also similar to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions"><code>Object.preventExtensions()</code> function</a>. However, the <code>preventExtensions()</code> function only prevents adding new properties to an object, you can still <code>delete</code> properties or reconfigure existing properties.</p>
+<h2 id="when-to-use-seal">When To Use <code>seal()</code></h2>
+<p>The <code>freeze()</code> function is much more commonly used, the <code>seal()</code> function is rare
+in production. One potential use case for <code>seal()</code> is to protect the <code>global</code>
+object in Node.js.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Object</span>.seal(global);
+
+global.newProp = <span class="hljs-number">42</span>; <span class="hljs-comment">// TypeError</span></code></pre>
+<p>Certain npm modules, like <a href="https://www.npmjs.com/package/safe-buffer">safe-buffer</a>, intentionally modify existing global variables, but you might want to make sure
+that no other npm module unintentionally adds new global variables. Admittedly
+sealing <code>global</code> is uncommon in the Node.js community and certainly not an
+established best practice, but try it out - you might be surprised by the results.</p>
 
   <hr>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/stringify">JSON.stringify() in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/prototype">Intro to Object Prototypes in JavaScript</a></li>
   
 
@@ -98,9 +113,6 @@ Otherwise it fails silently.</p>
   
 
     <li><a href="/tutorials/fundamentals/void">What Does void 0 Do in JavaScript?</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/expressions">What is a JavaScript Expression?</a></li>
   
     </ul>
   

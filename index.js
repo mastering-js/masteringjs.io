@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JSON.stringify() in JavaScript',
+      raw: './tutorials/fundamentals/stringify.md',
+      url: '/tutorials/fundamentals/stringify',
+      description: 'The `JSON.stringify()` function is the canonical way to convert a JavaScript object to a JSON string. This tutorial explains `JSON.stringify()` from a practical perspective with examples.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-16')
+    },
+    {
       title: 'Object.seal() in JavaScript',
       raw: './tutorials/fundamentals/seal.md',
       url: '/tutorials/fundamentals/seal',

@@ -1735,6 +1735,78 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('JSON.stringify', function() {
+    it('basic', function() {
+      const obj = { answer: 42 };
+      const arr = ['hello', 'world'];
+
+      typeof JSON.stringify(obj); // 'string'
+
+      JSON.stringify(obj); // '{"answer":42}'
+      JSON.stringify(arr); // '["hello","world"]'
+      // acquit:ignore:start
+      assert.equal(JSON.stringify(obj), '{"answer":42}');
+      assert.equal(JSON.stringify(arr), '["hello","world"]');
+      // acquit:ignore:end
+    });
+
+    it('missing types', function() {
+      let obj = { undef: undefined, symbol: Symbol('foo') };
+
+      // JSON.stringify() ignores `undefined` and symbols
+      JSON.stringify(obj); // '{}'
+      // acquit:ignore:start
+      assert.equal(JSON.stringify(obj), '{}');
+      // acquit:ignore:end
+    });
+
+    it('dates', function() {
+      // '{"date":"2019-06-01T00:00:00.000Z"}'
+      JSON.stringify({ date: new Date('2019-06-01') });
+      // acquit:ignore:start
+      assert.equal(JSON.stringify({ date: new Date('2019-06-01') }),
+        '{"date":"2019-06-01T00:00:00.000Z"}');
+      // acquit:ignore:end
+    });
+
+    it('replacer', function() {
+      const obj = { answer: 42, test: null };
+      // '{"answer":42}'
+      JSON.stringify(obj, function replacer(key, value) {
+        if (value === null) {
+          return undefined;
+        }
+        return value;
+      });
+      // acquit:ignore:start
+      const str = JSON.stringify(obj, function replacer(key, value) {
+        if (value === null) {
+          return undefined;
+        }
+        return value;
+      });
+      assert.equal(str, '{"answer":42}');
+      // acquit:ignore:end
+    });
+
+    it('space', function() {
+      const obj = { firstName: 'Jean-Luc', lastName: 'Picard' };
+      // {
+      //   "firstName": "Jean-Luc",
+      //   "lastName": "Picard"
+      // }
+      JSON.stringify(obj, null, '  ');
+      // Equivalent, JavaScript treats `space=2` as equivalent to 2 spaces.
+      JSON.stringify(obj, null, 2);
+      // acquit:ignore:start
+      assert.equal(JSON.stringify(obj, null, '  '), '{\n' +
+        '  "firstName": "Jean-Luc",\n' +
+        '  "lastName": "Picard"\n' +
+        '}');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
