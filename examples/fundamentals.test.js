@@ -1685,6 +1685,56 @@ describe('Fundamentals', function() {
       obj2.getAnswer(); // 42
     });
   });
+
+  describe('seal', function() {
+    it('example', function() {
+      const sealed = Object.seal({ answer: 42 });
+
+      sealed.answer = 43; // OK
+
+      // TypeError: Cannot delete property 'answer' of #<Object>
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      delete sealed.answer;
+      // acquit:ignore:start
+      }, /Cannot delete property/);
+      // acquit:ignore:end
+
+      // TypeError: Cannot add property newProp, object is not extensible
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      sealed.newProp = 42;
+      // acquit:ignore:start
+      }, /Cannot add property newProp/);
+      // acquit:ignore:end
+
+      // TypeError: Cannot redefine property: answer
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      Object.defineProperty(sealed, 'answer', { enumerable: false });
+      // acquit:ignore:start
+      }, /Cannot redefine property/);
+      // acquit:ignore:end
+    });
+
+    it('vs freeze', function() {
+      const sealed = Object.seal({ answer: 42 });
+      const frozen = Object.freeze({ answer: 42 });
+
+      sealed.answer = 43; // ok
+      // TypeError: Cannot assign to read only property 'answer' of object '#<Object>'
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      frozen.answer = 43;
+      // acquit:ignore:start
+      }, /read only property 'answer'/);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

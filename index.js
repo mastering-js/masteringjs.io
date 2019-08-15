@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Object.seal() in JavaScript',
+      raw: './tutorials/fundamentals/seal.md',
+      url: '/tutorials/fundamentals/seal',
+      description: 'The `seal()` function prevents adding or removing properties from an object, while still letting you modify existing properties. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-15')
+    },
+    {
       title: 'Throttling Functions With Lodash\'s debounce() Function',
       raw: './tutorials/lodash/debounce.md',
       url: '/tutorials/lodash/debounce',
