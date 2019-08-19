@@ -1,0 +1,147 @@
+
+<html>
+  <head>
+    <title>JSON.stringify() in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="JSON.stringify() in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `JSON.stringify()` function is the canonical way to convert a JavaScript object to a JSON string. This tutorial explains `JSON.stringify()` from a practical perspective with examples." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>JSON.stringify() in JavaScript</h1>
+        <div class="date">
+          Aug 16, 2019
+        </div>
+        
+  <p>The <a href="http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html"><code>JSON.stringify()</code> function</a> is how you convert a JavaScript object to a <a href="https://www.json.org/">JSON string</a>.
+Just about every npm module that handles HTTP requests or responses, like <a href="https://www.npmjs.com/package/axios">Axios</a> or <a href="http://expressjs.com/">Express</a>, uses <code>JSON.stringify()</code> under the hood.</p>
+<h2 id="converting-values-to-json">Converting Values to JSON</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Parameters">first parameter to <code>JSON.stringify()</code></a> is the <code>value</code> to convert to JSON.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+<span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'hello'</span>, <span class="hljs-string">'world'</span>];
+
+<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// 'string'</span>
+
+<span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{"answer":42}'</span>
+<span class="hljs-built_in">JSON</span>.stringify(arr); <span class="hljs-comment">// '["hello","world"]'</span></code></pre>
+<p>JSON can only represent values with the following types:</p>
+<ul>
+<li>Strings</li>
+<li>Numbers</li>
+<li>Objects</li>
+<li>Arrays</li>
+<li>Booleans</li>
+<li><code>null</code></li>
+</ul>
+<p>You may notice that this list excludes a few of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Data_types">JavaScript&#39;s built-in types</a>. Specifically, JSON cannot represent JavaScript <code>undefined</code>, symbols, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInts</a>. <code>JSON.stringify()</code> silently ignores <code>undefined</code> values and symbol values.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> obj = { <span class="hljs-attr">undef</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">symbol</span>: <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'foo'</span>) };
+
+<span class="hljs-comment">// JSON.stringify() ignores `undefined` and symbols</span>
+<span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{}'</span></code></pre>
+<p><code>JSON.stringify()</code> throws an error if it finds a BigInt value.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// TypeError: Do not know how to serialize a BigInt</span>
+<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">val</span>: <span class="hljs-number">42</span>n });</code></pre>
+<p>This list also excludes JavaScript objects, like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">JavaScript dates</a>. The <code>JSON.stringify()</code> function converts <a href="/tutorials/fundamentals/date_format">JavaScript dates to strings</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// '{"date":"2019-06-01T00:00:00.000Z"}'</span>
+<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>) });</code></pre>
+<h2 id="replacer-function">Replacer Function</h2>
+<p>The 2nd argument to <code>JSON.stringify()</code> is a replacer function. JavaScript calls
+this function for every key/value pair in the object, and uses the return value.
+If the replacer function returns <code>undefined</code>, that key is omitted from the
+JSON output.</p>
+<p>For example, suppose you wanted to strip out <code>null</code> values using a replacer
+function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">test</span>: <span class="hljs-literal">null</span> };
+<span class="hljs-comment">// '{"answer":42}'</span>
+<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">replacer</span>(<span class="hljs-params">key, value</span>) </span>{
+  <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+  }
+  <span class="hljs-keyword">return</span> value;
+});</code></pre>
+<h2 id="pretty-printing">Pretty Printing</h2>
+<p>The 3rd argument to <code>JSON.stringify()</code> is called <code>space</code>. This parameter should
+be either a string or a number, and it tells JavaScript to format the JSON in
+a human readable way. If you specify a <code>space</code> parameter, JavaScript will
+put each key/value pair on its own line, and prefix each line with <code>space</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span> };
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   "firstName": "Jean-Luc",</span>
+<span class="hljs-comment">//   "lastName": "Picard"</span>
+<span class="hljs-comment">// }</span>
+<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-string">'  '</span>);
+<span class="hljs-comment">// Equivalent, JavaScript treats `space=2` as equivalent to 2 spaces.</span>
+<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>);</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/seal">Object.seal() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/prototype">Intro to Object Prototypes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/shallow-copy">Deep Copy vs Shallow Copy in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/assign">Object.assign() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-concat">3 Ways to Concatenate Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/capitalize">Capitalize the First Letter of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/void">What Does void 0 Do in JavaScript?</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
