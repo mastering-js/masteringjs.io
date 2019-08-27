@@ -1807,6 +1807,197 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('class', function() {
+    it('basic example', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+      }
+
+      const obj = new Rectangle(3, 5);
+      obj.height; // 3
+      obj.width; // 5
+      // acquit:ignore:start
+      assert.equal(obj.height, 3);
+      assert.equal(obj.width, 5);
+      // acquit:ignore:end
+
+      // The `instanceof` keyword is how you test whether an object was created
+      // from a certain class.
+      obj instanceof Rectangle; // true
+      ({}) instanceof Rectangle; // false
+      // acquit:ignore:start
+      assert.ok(obj instanceof Rectangle);
+      assert.ok(!(({}) instanceof Rectangle));
+      // acquit:ignore:end
+    });
+
+    it('method', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        // To define a method named `methodName`, you put `methodName() {}` in
+        // the class declaration.
+        area() {
+          return this.width * this.height;
+        }
+      }
+
+      const obj = new Rectangle(3, 5);
+      obj.area(); // 15
+      // acquit:ignore:start
+      assert.equal(obj.area(), 15);
+      // acquit:ignore:end
+    });
+
+    it('static', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        // To define a static named `functionName`, you put
+        // `static functionName() {}` in the class declaration.
+        static createSquare(length) {
+          return new Rectangle(length, length);
+        }
+      }
+
+      const obj = Rectangle.createSquare(5);
+      obj.height; // 5
+      obj.width; // 5
+      // acquit:ignore:start
+      assert.equal(obj.height, 5);
+      assert.equal(obj.width, 5);
+      // acquit:ignore:end
+    });
+
+    it('getter', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        // To define a getter named `getterName`, put `get getterName() {}`
+        // in the class definition. Getters are functions!
+        get area() {
+          return this.height * this.width;
+        }
+      }
+
+      const obj = new Rectangle(3, 5);
+      obj.area; // 15
+      // acquit:ignore:start
+      assert.equal(obj.area, 15);
+      // acquit:ignore:end
+    });
+
+    it('setter', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        get height() {
+          return this._height;
+        }
+
+        set height(v) {
+          assert.ok(typeof v === 'number', 'Height must be a number');
+          return v;
+        }
+
+        get width() {
+          return this._width;
+        }
+
+        set width(v) {
+          assert.ok(typeof v === 'number', 'Width must be a number');
+          return v;
+        }
+      }
+
+      const obj = new Rectangle(3, 5);
+
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      // Throws 'AssertionError: Height must be a number'
+      obj.height = 'Not a number';
+      // acquit:ignore:start
+      }, /Height must be a number/);
+      // acquit:ignore:end
+    });
+
+    it('inheritance', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+
+        area() {
+          return this.width * this.height;
+        }
+      }
+
+      class Square extends Rectangle {
+        constructor(length) {
+          // `super` refers to the base class' constructor
+          super(length, length);
+        }
+
+        // The radius of the inscribed circle
+        // See: see http://mathworld.wolfram.com/Square.html
+        inradius() {
+          return this.height / 2;
+        }
+      }
+
+      const obj = new Square(5);
+
+      obj.area(); // 25, from `Rectangle` base class
+      obj.inradius(); // 2.5, from `Square` class
+
+      obj instanceof Square; // true
+      obj instanceof Rectangle; // true
+      // acquit:ignore:start
+      assert.equal(obj.area(), 25);
+      assert.equal(obj.inradius(), 2.5);
+      assert.ok(obj instanceof Square);
+      assert.ok(obj instanceof Rectangle);
+      // acquit:ignore:end
+    });
+
+    it('prototype', function() {
+      class Rectangle {
+        constructor(height, width) {
+          this.height = height;
+          this.width = width;
+        }
+      }
+
+      Rectangle.prototype.area = function area() {
+        return this.width * this.height;
+      };
+
+      const obj = new Rectangle(3, 5);
+
+      obj.area(); // 15
+      // acquit:ignore:start
+      assert.equal(obj.area(), 15);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

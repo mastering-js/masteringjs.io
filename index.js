@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Classes in JavaScript',
+      raw: './tutorials/fundamentals/class.md',
+      url: '/tutorials/fundamentals/class',
+      description: 'As of ES6 / 2015, JavaScript has a built-in `class` keyword for object-oriented programming. Here\'s how it works.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-27')
+    },
+    {
       title: 'JSON.stringify() in JavaScript',
       raw: './tutorials/fundamentals/stringify.md',
       url: '/tutorials/fundamentals/stringify',
