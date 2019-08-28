@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The instanceof Operator in JavaScript',
+      raw: './tutorials/fundamentals/instanceof.md',
+      url: '/tutorials/fundamentals/instanceof',
+      description: 'The `instanceof` operator tells you whether a given object is an instance of a class.',
+      tags: ['fundamentals'],
+      date: moment('2019-08-28')
+    },
+    {
       title: 'Classes in JavaScript',
       raw: './tutorials/fundamentals/class.md',
       url: '/tutorials/fundamentals/class',

@@ -1998,6 +1998,79 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('instanceof', function() {
+    it('inheritance', function() {
+      class BaseClass {}
+      class SubClass extends BaseClass {}
+
+      const obj = new SubClass();
+
+      obj instanceof SubClass; // true
+      obj instanceof BaseClass; // true
+      // acquit:ignore:start
+      assert.ok(obj instanceof SubClass);
+      assert.ok(obj instanceof BaseClass);
+      // acquit:ignore:end
+    });
+
+    it('object class', function() {
+      class MyClass {}
+
+      const obj = new MyClass();
+
+      obj instanceof Object; // true
+      ({}) instanceof Object; // true
+      null instanceof Object; // false
+      // acquit:ignore:start
+      assert.ok(obj instanceof Object);
+      assert.ok(({}) instanceof Object);
+      assert.ok(!(null instanceof Object));
+      // acquit:ignore:end
+    });
+
+    it('not instanceof object', function() {
+      // `Object.prototype` is not technically `instanceof Object` because
+      // prototype chains must end somewhere
+      typeof Object.prototype; // 'object'
+      Object.prototype instanceof Object; // false
+
+      // Setting a function's prototype to `Object.create(null)` means
+      // `Object` won't be in the object's prototype chain.
+      function MyClass() {}
+      MyClass.prototype = Object.create(null);
+
+      typeof new MyClass(); // 'object'
+      (new MyClass()) instanceof Object; // false
+      // acquit:ignore:start
+      assert.equal(typeof Object.prototype, 'object');
+      assert.ok(!(Object.prototype instanceof Object));
+
+      assert.equal(typeof new MyClass(), 'object');
+      assert.ok(!((new MyClass()) instanceof Object));
+      // acquit:ignore:end
+    });
+
+    it('function', function() {
+      class MyClass {}
+
+      function MyOtherClass() {}
+
+      const obj = {};
+
+      obj instanceof MyClass; // false
+      obj instanceof MyOtherClass; // false
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+
+      // Throws "TypeError: Right-hand side of 'instanceof' is not callable"
+      obj instanceof { answer: 42 };
+      // acquit:ignore:start
+      }, /Right-hand side of 'instanceof' is not callable/);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

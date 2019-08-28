@@ -1,0 +1,147 @@
+
+<html>
+  <head>
+    <title>The instanceof Operator in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="The instanceof Operator in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `instanceof` operator tells you whether a given object is an instance of a class." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The instanceof Operator in JavaScript</h1>
+        <div class="date">
+          Aug 28, 2019
+        </div>
+        
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof"><code>instanceof</code> operator</a> tests whether a given object is an instance of a given <a href="/tutorials/fundamentals/class">JavaScript class</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> </span>{
+  <span class="hljs-keyword">constructor</span>(height, width) {
+    <span class="hljs-keyword">this</span>.height = height;
+    <span class="hljs-keyword">this</span>.width = width;
+  }
+}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
+obj.height; <span class="hljs-comment">// 3</span>
+obj.width; <span class="hljs-comment">// 5</span>
+
+<span class="hljs-comment">// The `instanceof` keyword is how you test whether an object was created</span>
+<span class="hljs-comment">// from a certain class.</span>
+obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// true</span>
+({}) <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// false</span></code></pre>
+<p>Technically, the <code>instanceof</code> operator checks the <a href="/tutorials/fundamentals/prototype#inheriting-from-another-class">prototype chain</a> to see if any constructor in the prototype chain is equal to the given class. That means if you use <a href="tutorials/fundamentals/class#inheritance">inheritance</a>, an instance of a subclass is also an instance of the base class.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>{}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> SubClass();
+
+obj <span class="hljs-keyword">instanceof</span> SubClass; <span class="hljs-comment">// true</span>
+obj <span class="hljs-keyword">instanceof</span> BaseClass; <span class="hljs-comment">// true</span></code></pre>
+<h2 id="the-object-class">The Object Class</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code> class</a> is the base class for all JavaScript classes.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
+
+obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
+({}) <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-literal">null</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span></code></pre>
+<p>You might be tempted to use <code>v instanceof Object</code> to check whether <code>v</code> is an object. That works for most cases, but <a href="https://2ality.com/2012/08/instanceof-object.html">there are several cases where an object is not <code>instanceof Object</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `Object.prototype` is not technically `instanceof Object` because</span>
+<span class="hljs-comment">// prototype chains must end somewhere</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.prototype; <span class="hljs-comment">// 'object'</span>
+<span class="hljs-built_in">Object</span>.prototype <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// Setting a function's prototype to `Object.create(null)` means</span>
+<span class="hljs-comment">// `Object` won't be in the object's prototype chain.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyClass</span>(<span class="hljs-params"></span>) </span>{}
+MyClass.prototype = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
+
+<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> MyClass(); <span class="hljs-comment">// 'object'</span>
+(<span class="hljs-keyword">new</span> MyClass()) <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="error-cases">Error Cases</h2>
+<p>The <code>instanceof</code> operator throws an error if the right hand side is not a function.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyOtherClass</span>(<span class="hljs-params"></span>) </span>{}
+
+<span class="hljs-keyword">const</span> obj = {};
+
+obj <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// false</span>
+obj <span class="hljs-keyword">instanceof</span> MyOtherClass; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// Throws "TypeError: Right-hand side of 'instanceof' is not callable"</span>
+obj <span class="hljs-keyword">instanceof</span> { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/class">Classes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stringify">JSON.stringify() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/seal">Object.seal() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/prototype">Intro to Object Prototypes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/shallow-copy">Deep Copy vs Shallow Copy in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/assign">Object.assign() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-concat">3 Ways to Concatenate Strings in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
