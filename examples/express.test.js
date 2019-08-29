@@ -613,4 +613,46 @@ describe('Express', function() {
       // acquit:ignore:end      
     });
   });
+
+  describe('middleware', function() {
+    it('next with no more middleware', async function() {
+      // acquit:ignore:start
+      const app = require('express')();
+      // acquit:ignore:end
+      // It is OK to call `next()` even if there's no more middleware.
+      app.use((req, res, next) => {
+        res.send('Hello, World');
+        next();
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const res = await axios.get('http://localhost:3000');
+
+      assert.equal(res.data, 'Hello, World');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('next with error', async function() {
+      // acquit:ignore:start
+      const app = require('express')();
+      // acquit:ignore:end
+      app.use((req, res, next) => {
+        next(new Error('Fail!'));
+      });
+      // acquit:ignore:start
+      app.use(function(err, req, res, next) {
+        res.status(500).send(err.message);
+      });
+      const server = await app.listen(3000);
+
+      const err = await axios.get('http://localhost:3000').
+        then(() => null, err => err);
+
+      assert.ok(err.response.data.indexOf('Fail!') !== -1, err.response.data);
+      //await server.close();
+      // acquit:ignore:end
+    });
+  });
 });

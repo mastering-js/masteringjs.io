@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Express Middleware',
+      raw: './tutorials/express/middleware.md',
+      url: '/tutorials/express/middleware',
+      description: 'Middleware is the fundamental building block of Express apps - even routes are middleware under the hood. Here\'s what you need to know about middleware.',
+      tags: ['express'],
+      date: moment('2019-08-29')
+    },
+    {
       title: 'The instanceof Operator in JavaScript',
       raw: './tutorials/fundamentals/instanceof.md',
       url: '/tutorials/fundamentals/instanceof',
