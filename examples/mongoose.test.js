@@ -899,4 +899,72 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('objectid', function() {
+    it('basic example', async function() {
+      const Model = mongoose.model('Test', mongoose.Schema({ name: String }));
+      const doc = new Model({ name: 'test' });
+
+      doc._id instanceof mongoose.Types.ObjectId; // true
+      typeof doc._id; // 'object'
+      doc._id; // '5d6ede6a0ba62570afcedd3a'
+      // acquit:ignore:start
+      assert.ok(doc._id instanceof mongoose.Types.ObjectId);
+      assert.equal(typeof doc._id, 'object');
+      // acquit:ignore:end
+    });
+
+    it('casting', async function() {
+      const schema = mongoose.Schema({ testId: mongoose.ObjectId });
+      const Model = mongoose.model('Test', schema);
+
+      const doc = new Model({ testId: '5d6ede6a0ba62570afcedd3a' });
+
+      // `testId` is an ObjectId, Mongoose casts 24 hex char strings to
+      // ObjectIds for you automatically based on your schema.
+      doc.testId instanceof mongoose.Types.ObjectId; // true
+      // acquit:ignore:start
+      assert.ok(doc.testId instanceof mongoose.Types.ObjectId);
+      // acquit:ignore:end
+    });
+
+    it('casting other types', async function() {
+      const schema = mongoose.Schema({ testId: mongoose.ObjectId });
+      const Model = mongoose.model('Test', schema);
+
+      // Any 12 character string is a valid ObjectId, because the only defining
+      // feature of ObjectIds is that they have 12 bytes.
+      let doc = new Model({ testId: '12char12char' });
+      doc.testId instanceof mongoose.Types.ObjectId; // true
+      doc.testId; // '313263686172313263686172'
+      // acquit:ignore:start
+      assert.ok(doc.testId instanceof mongoose.Types.ObjectId);
+      assert.equal(doc.testId.toString(), '313263686172313263686172');
+      // acquit:ignore:end
+
+      // Similarly, Mongoose will automatically convert buffers of length 12
+      // to ObjectIds.
+      doc = new Model({ testId: Buffer.from('12char12char') });
+      doc.testId instanceof mongoose.Types.ObjectId; // true
+      doc.testId; // '313263686172313263686172'
+      // acquit:ignore:start
+      assert.ok(doc.testId instanceof mongoose.Types.ObjectId);
+      assert.equal(doc.testId.toString(), '313263686172313263686172');
+      // acquit:ignore:end
+    });
+
+    it('timestamps', async function() {
+      const schema = mongoose.Schema({ testId: mongoose.ObjectId });
+      const Model = mongoose.model('Test', schema);
+
+      const doc = new Model({ testId: '313263686172313263686172' });
+      doc.testId.getTimestamp(); // '1996-02-27T01:50:32.000Z'
+      doc.testId.getTimestamp() instanceof Date; // true
+      // acquit:ignore:start
+      assert.equal(doc.testId.getTimestamp().toISOString(),
+        '1996-02-27T01:50:32.000Z');
+      assert.ok(doc.testId.getTimestamp() instanceof Date);
+      // acquit:ignore:end
+    });
+  });
 });

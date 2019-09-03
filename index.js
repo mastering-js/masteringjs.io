@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'ObjectIds in Mongoose',
+      raw: './tutorials/mongoose/objectid.md',
+      url: '/tutorials/mongoose/objectid',
+      description: 'In MongoDB, every document\'s `_id` property is an ObjectId by default. Here\'s what you need to know about ObjectIds in Mongoose.',
+      tags: ['mongoose'],
+      date: moment('2019-09-03')
+    },
+    {
       title: 'Express Middleware',
       raw: './tutorials/express/middleware.md',
       url: '/tutorials/express/middleware',
