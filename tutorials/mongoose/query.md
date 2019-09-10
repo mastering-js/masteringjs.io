@@ -45,7 +45,7 @@ Executing
 
 [Mongoose queries are **not** promises](https://mongoosejs.com/docs/queries.html#queries-are-not-promises). The key difference is that Mongoose doesn't actually send your query to the server until you explicitly execute the query. There's 2 ways to execute a query:
 
-- [`Query#exec()`](https://mongoosejs.com/docs/api/query.html#query_Query-exec): executes the query and returns a native JavaScript promise.
+- [`Query#exec()`](https://mongoosejs.com/docs/api/query.html#query_Query-exec): executes the query and returns a [native JavaScript promise](/tutorials/fundamentals/promise).
 
 ```javascript
 [require:Mongoose.*Query.*exec]

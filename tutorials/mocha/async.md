@@ -15,7 +15,7 @@ Suppose you have an asynchronous function that makes an HTTP request using [Axio
 [require:Mocha.*axios example]
 ```
 
-The function `get()` takes one parameter, a URL, and returns a promise. Let's test this function with Mocha, 3 different ways.
+The function `get()` takes one parameter, a URL, and returns a [promise](/tutorials/fundamentals/promise). Let's test this function with Mocha, 3 different ways.
 
 Async Functions
 ---------------

@@ -14,7 +14,7 @@ The [`mongoose.connect()` function returns a promise](https://mongoosejs.com/doc
 
 Many [older tutorials recommend listening to connection events](https://theholmesoffice.com/mongoose-connection-best-practice/). This isn't strictly necessary because [Mongoose handles automatically reconnecting on its own](https://thecodebarbarian.com/managing-connections-with-the-mongodb-node-driver.html#handling-single-server-outages) if it loses connectivity to MongoDB after initial connection.
 
-The promise `mongoose.connect()` returns only rejects if there is an error when
+The [promise](/tutorials/fundamentals/promise) `mongoose.connect()` returns only rejects if there is an error when
 Mongoose is initially connecting to MongoDB. Once Mongoose successfully connects,
 it automatically handles reconnecting if it loses connectivity.
 

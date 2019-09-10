@@ -37,7 +37,7 @@ app.get('/', function callback(req, res) {
 
 ## Node-style Callbacks
 
-Promises are a relatively new addition to JavaScript, they were first added
+[Promises](/tutorials/fundamentals/promise) are a relatively new addition to JavaScript, they were first added
 in 2015. Before promises and async/await, the de facto paradigm for async
 operations in Node.js was passing a callback function that took 2 parameters,
 an error `err` and a result `res`. When someone talks about ["callback hell"](https://thecodebarbarian.com/2015/03/20/callback-hell-is-a-myth),

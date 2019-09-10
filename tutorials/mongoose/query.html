@@ -107,7 +107,7 @@ your query. For example:</p>
 <h2 id="executing">Executing</h2>
 <p><a href="https://mongoosejs.com/docs/queries.html#queries-are-not-promises">Mongoose queries are <strong>not</strong> promises</a>. The key difference is that Mongoose doesn&#39;t actually send your query to the server until you explicitly execute the query. There&#39;s 2 ways to execute a query:</p>
 <ul>
-<li><a href="https://mongoosejs.com/docs/api/query.html#query_Query-exec"><code>Query#exec()</code></a>: executes the query and returns a native JavaScript promise.</li>
+<li><a href="https://mongoosejs.com/docs/api/query.html#query_Query-exec"><code>Query#exec()</code></a>: executes the query and returns a <a href="/tutorials/fundamentals/promise">native JavaScript promise</a>.</li>
 </ul>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> promise = Character.find().exec();
 promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>

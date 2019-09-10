@@ -77,7 +77,7 @@ Once you&#39;ve connected, you can then <a href="https://mongoosejs.com/docs/mod
 <span class="hljs-comment">// 'failed to connect to server [nota.domain:27017] on first connect'</span>
 err.message;</code></pre>
 <p>Many <a href="https://theholmesoffice.com/mongoose-connection-best-practice/">older tutorials recommend listening to connection events</a>. This isn&#39;t strictly necessary because <a href="https://thecodebarbarian.com/managing-connections-with-the-mongodb-node-driver.html#handling-single-server-outages">Mongoose handles automatically reconnecting on its own</a> if it loses connectivity to MongoDB after initial connection.</p>
-<p>The promise <code>mongoose.connect()</code> returns only rejects if there is an error when
+<p>The <a href="/tutorials/fundamentals/promise">promise</a> <code>mongoose.connect()</code> returns only rejects if there is an error when
 Mongoose is initially connecting to MongoDB. Once Mongoose successfully connects,
 it automatically handles reconnecting if it loses connectivity.</p>
 <h2 id="the-reconnectfailed-event">The <code>reconnectFailed</code> Event</h2>

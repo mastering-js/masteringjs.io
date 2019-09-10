@@ -8,7 +8,7 @@ If you pass the `auth` option to `axios.get()`, axios will properly format basic
 [require:axios.*basic auth.*works]
 ```
 
-If login failed, HTTPBin will respond with an HTTP 401, which Axios bubbles up as a promise rejection.
+If login failed, HTTPBin will respond with an HTTP 401, which Axios bubbles up as a [promise rejection](https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html).
 
 ```javascript
 [require:axios.*basic auth.*error]
