@@ -5,7 +5,7 @@ the first element of a collection that matches the given `predicate`.
 [require:lodash.*find.*basic$]
 ```
 
-`find()` is different from [JavaScript's built-in `filter()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) because `filter()` returns _all_ elements that match a condition, whereas `find()` returns the first element that matches a condition.
+`find()` is different from [Lodash's `filter()` function](https://lodash.com/docs/#filter) because `filter()` returns _all_ elements that match a condition, whereas `find()` returns the first element that matches a condition.
 
 If `find()` doesn't find an element, it returns [`undefined`](/tutorials/fundamentals/void).
 
