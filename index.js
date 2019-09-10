@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Promises in JavaScript',
+      raw: './tutorials/fundamentals/promise.md',
+      url: '/tutorials/fundamentals/promise',
+      description: 'A promise is an object that represents an asynchronous operation. Promises are JavaScript\'s fundamental concurrency primitive - here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-09-10')
+    },
+    {
       title: 'ObjectIds in Mongoose',
       raw: './tutorials/mongoose/objectid.md',
       url: '/tutorials/mongoose/objectid',

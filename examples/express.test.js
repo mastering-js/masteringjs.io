@@ -182,7 +182,7 @@ describe('Express', function() {
     it('Promise catch', async function() {
       const app = require('express')();
 
-      app.get(function routeHandler(req, res) {
+      app.get('/', function routeHandler(req, res) {
         return Promise.resolve().
           then(() => req.params.bar.toString()).
           then(() => res.json({ test: 42 })).

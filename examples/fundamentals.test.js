@@ -2071,6 +2071,74 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Promise', function() {
+    it('basic example', async function() {
+      const axios = require('axios');
+
+      // `axios.get()` returns a promise representing an HTTP request.
+      const promise = axios.get('https://httpbin.org/get?answer=42');
+
+      // The `then()` function lets you register a callback that JavaScript
+      // will call when the HTTP request succeeds.
+      promise.then(res => {
+        res.data.query.answer; // '42'
+        // acquit:ignore:start
+        assert.equal(res.data.query.answer, 42);
+        // acquit:ignore:end
+      });
+    });
+
+    it('onFulfilled and onRejected', async function() {
+      // Create a promise that is immediately fulfilled with value 42.
+      const promise = Promise.resolve(42);
+
+      const onFulfilled = () => {};
+      const onRejected = () => {};
+
+      // JavaScript will call `onFulfilled` if the promise is fulfilled,
+      // and `onRejected` if the promise is rejected.
+      promise.then(onFulfilled, onRejected);
+    });
+
+    it('associated value', function() {
+      // Create a promise that is immediately fulfilled with value 42.
+      const promise = Promise.resolve(42);
+
+      promise.then(value => {
+        value; // 42
+        // acquit:ignore:start
+        assert.equal(value, 42);
+        // acquit:ignore:end
+      });
+    });
+
+    it('associated error', function() {
+      // Create a promise that is immediately rejected with an error object
+      const promise = Promise.reject(new Error('Oops!'));
+
+      promise.then(null, err => {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+
+    it('constructor', function() {
+      const promise = new Promise(function executor(resolve, reject) {
+        // Fulfill the promise with value '42' after 100 ms.
+        setTimeout(() => resolve(42), 100);
+      });
+
+      promise.then(value => {
+        value; // 42
+        // acquit:ignore:start
+        assert.equal(value, 42);
+        // acquit:ignore:end
+      });
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
