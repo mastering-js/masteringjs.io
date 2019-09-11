@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The Promise then() Function in JavaScript',
+      raw: './tutorials/fundamentals/then.md',
+      url: '/tutorials/fundamentals/then',
+      description: 'The `then()` function is the primary way you interact with promises in JavaScript, including promise chaining.',
+      tags: ['fundamentals'],
+      date: moment('2019-09-11')
+    },
+    {
       title: 'Promises in JavaScript',
       raw: './tutorials/fundamentals/promise.md',
       url: '/tutorials/fundamentals/promise',

@@ -2138,6 +2138,46 @@ describe('Fundamentals', function() {
         // acquit:ignore:end
       });
     });
+
+    it('catch', function() {
+      // Create a promise that is immediately rejected with an error object
+      const promise = Promise.reject(new Error('Oops!'));
+
+      // Equivalent to `.then(null, onRejected)`
+      promise.catch(function onRejected() {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+
+    it('chain', function() {
+      const init = Promise.resolve('Hello');
+      const q = Promise.resolve('World');
+      const p = init.then(() => q);
+
+      p.then(value => {
+        value; // 'World'
+        // acquit:ignore:start
+        assert.equal(value, 'World');
+        // acquit:ignore:end
+      });
+    });
+
+    it('catch chain', function(done) {
+      Promise.resolve(1).
+        then(() => Promise.resolve(2)).
+        then(() => Promise.reject(new Error('Oops!'))).
+        then(() => console.log('This will not print')).
+        catch(function errorHandler(err) {
+          err.message; // 'Oops!'
+          // acquit:ignore:start
+          assert.equal(err.message, 'Oops!');
+          done();
+          // acquit:ignore:end
+        });
+    });
   });
 });
 

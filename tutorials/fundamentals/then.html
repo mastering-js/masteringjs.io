@@ -1,0 +1,176 @@
+
+<html>
+  <head>
+    <title>The Promise then() Function in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="The Promise then() Function in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `then()` function is the primary way you interact with promises in JavaScript, including promise chaining." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The Promise then() Function in JavaScript</h1>
+        <div class="date">
+          Sep 11, 2019
+        </div>
+        
+  <p><a href="/tutorials/fundamentals/promise">Promises in JavaScript</a> are an object
+representation of an asynchronous computation. You can think of a promise as
+a placeholder for a value that hasn&#39;t been computed yet. However, there&#39;s no way
+to get a promise&#39;s value from the promise directly - you need to call the
+<code>then()</code> function to register a <a href="/tutorials/fundamentals/callbacks">callback</a>
+that JavaScript will call when the value is computed.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately fulfilled with value 42.</span>
+<span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">42</span>);
+
+promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+  value; <span class="hljs-comment">// 42</span>
+});</code></pre>
+<h2 id="the-then-functions-parameters">The <code>then()</code> Function&#39;s Parameters</h2>
+<p>The <code>then()</code> function takes 2 callback function parameters:</p>
+<ul>
+<li><code>onFulfilled()</code>: JavaScript will call this function if the underlying async operation succeeded.</li>
+<li><code>onRejected()</code>: JavaScript will call this function if the underlying async operation failed.</li>
+</ul>
+<p>Recall that a <a href="/tutorials/fundamentals/promise#promises-as-state-machines">promise is a state machine with 3 states</a>:</p>
+<ol>
+<li><strong>Pending</strong> The operation is in progress.</li>
+<li><strong>Fulfilled</strong> The operation completed successfully.</li>
+<li><strong>Rejected</strong> The operation experienced an error.</li>
+</ol>
+<img src="https://codebarbarian-images.s3.amazonaws.com/promise.png" class="inline-image" style="width: 400px">
+
+<p>A promise always starts out in the pending state. If the promise transitions
+to the fulfilled state, JavaScript calls the <code>onFulfilled()</code> function. If you
+call <code>then()</code> on a promise that is already fulfilled, JavaScript will
+immediately call <code>onFulfilled()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+  <span class="hljs-comment">// Fulfill the promise with value '42' after 100 ms.</span>
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> resolve(<span class="hljs-number">42</span>), <span class="hljs-number">100</span>);
+});
+
+promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+  value; <span class="hljs-comment">// 42</span>
+});</code></pre>
+<p>If the promise transitions to the rejected state, or if you call <code>then()</code> on
+a promise that is already rejected, JavaScript calls <code>onRejected()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately rejected with an error object</span>
+<span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>));
+
+promise.then(<span class="hljs-literal">null</span>, err =&gt; {
+  err.message; <span class="hljs-comment">// 'Oops!'</span>
+});</code></pre>
+<p>Both <code>onFulfilled()</code> and <code>onRejected()</code> are optional. If <code>onFulfilled()</code> is
+<code>null</code> like in the above example, JavaScript will do nothing if the promise is
+fulfilled. If you call <code>.then()</code> without an <code>onRejected()</code> function and the
+promise rejects, that will lead to an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled rejection error message</a>.</p>
+<h2 id="then-vs-catch"><code>then()</code> vs <code>catch()</code></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch">The <code>Promise#catch()</code> function in JavaScript</a> is a convenient shorthand for <code>.then()</code>. Calling <code>.catch(onRejected)</code> is
+syntactic sugar for <code>.then(null, onRejected)</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately rejected with an error object</span>
+<span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>));
+
+<span class="hljs-comment">// Equivalent to `.then(null, onRejected)`</span>
+promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRejected</span>(<span class="hljs-params"></span>) </span>{
+  err.message; <span class="hljs-comment">// 'Oops!'</span>
+});</code></pre>
+<p>Although <code>.catch()</code> isn&#39;t complicated under the hood, the name <code>catch</code> is
+valuable because you can think of <code>.catch()</code> as the promise analog to the
+<a href="https://www.w3schools.com/js/js_errors.asp"><code>catch</code> part of <code>try/catch</code></a>.
+When you&#39;re scanning promise based code, seeing <code>.catch()</code> makes it easy to
+identify error handling.</p>
+<h2 id="chaining">Chaining</h2>
+<p>Promise chaining is one of the key reasons why promises are so useful. The
+<code>then()</code> function returns a promise <code>p</code>, and if your <code>onFulfilled()</code> function
+returns a promise <code>q</code>, <code>p</code> will <a href="https://promisesaplus.com/#point-49"><em>adopt</em></a>
+the state of <code>q</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately rejected with an error object</span>
+<span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>));
+
+<span class="hljs-comment">// Equivalent to `.then(null, onRejected)`</span>
+promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRejected</span>(<span class="hljs-params"></span>) </span>{
+  err.message; <span class="hljs-comment">// 'Oops!'</span>
+});</code></pre>
+<p>Because of promise chaining, you don&#39;t need to catch errors in each individual
+<code>then()</code>. If you put <code>catch()</code> at the end of your promise chain, any errors
+in the promise chain will bypass the rest of the promise chain and go straight
+to your <code>catch()</code> error handler.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">1</span>).
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">2</span>)).
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>))).
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'This will not print'</span>)).
+  catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandler</span>(<span class="hljs-params">err</span>) </span>{
+    err.message; <span class="hljs-comment">// 'Oops!'</span>
+  });</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/promise">Promises in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/instanceof">The instanceof Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/class">Classes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stringify">JSON.stringify() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/seal">Object.seal() in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/prototype">Intro to Object Prototypes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/shallow-copy">Deep Copy vs Shallow Copy in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
