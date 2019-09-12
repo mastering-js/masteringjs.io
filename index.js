@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'CORS with Express',
+      raw: './tutorials/express/cors.md',
+      url: '/tutorials/express/cors',
+      description: 'CORS (Cross-Origin Resource Sharing) headers allow browsers to make HTTP requests to different domains. Here\'s how you set CORS headers with Express and Node.js',
+      tags: ['express'],
+      date: moment('2019-09-12')
+    },
+    {
       title: 'The Promise then() Function in JavaScript',
       raw: './tutorials/fundamentals/then.md',
       url: '/tutorials/fundamentals/then',

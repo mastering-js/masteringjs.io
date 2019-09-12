@@ -1,0 +1,125 @@
+
+<html>
+  <head>
+    <title>CORS with Express - Mastering JS</title>
+
+    <meta property="og:title" content="CORS with Express" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="CORS (Cross-Origin Resource Sharing) headers allow browsers to make HTTP requests to different domains. Here's how you set CORS headers with Express and Node.js" />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>CORS with Express</h1>
+        <div class="date">
+          Sep 12, 2019
+        </div>
+        
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS headers</a> allow
+apps running in the browser to make requests to servers on different domains (also 
+known as <em>origins</em>). CORS headers are set on the server side - the HTTP server
+is responsible for indicating that a given HTTP request can be cross-origin.</p>
+<p>The <a href="https://www.npmjs.com/package/cors">cors npm module</a> is an
+<a href="/tutorials/express/middleware">Express middleware</a> that sets CORS headers
+on the <a href="/tutorials/express/res">Express response object</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+<span class="hljs-comment">// Set CORS headers on all responses</span>
+app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'cors'</span>)());
+
+app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello, World!'</span>));
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-comment">// Make an example request to see that, yep, the CORS headers are set</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
+res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span></code></pre>
+<p>You can also declare CORS middleware on a certain subset of your routes by
+passing a string parameter to <code>use()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+<span class="hljs-comment">// Set CORS headers on responses to any requests whose URL starts with</span>
+<span class="hljs-comment">// '/api'</span>
+app.use(<span class="hljs-string">'/api'</span>, <span class="hljs-built_in">require</span>(<span class="hljs-string">'cors'</span>)());
+
+app.get(<span class="hljs-string">'/api/test'</span>, (req, res) =&gt; res.json({ <span class="hljs-attr">ok</span>: <span class="hljs-number">1</span> }));
+app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello, World!'</span>));
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-comment">// Make an example request to see that CORS headers are set on</span>
+<span class="hljs-comment">// `/api/test`, but not `/`</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
+res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// undefined</span>
+
+res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/api/test'</span>);
+res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span></code></pre>
+
+  <hr>
+  
+    <h2>More Express Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/express/middleware">Express Middleware</a></li>
+  
+
+    <li><a href="/tutorials/express/error-handling">Error Handling Middleware in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/res">The res Object in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/req">Request Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/file-upload">File Uploads with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/promises">Supporting Promises in Express Middleware</a></li>
+  
+
+    <li><a href="/tutorials/express/redirect">Redirects With Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

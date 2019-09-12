@@ -655,4 +655,52 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('cors', function() {
+    it('basic example', async function() {
+      const app = require('express')();
+      // Set CORS headers on all responses
+      app.use(require('cors')());
+
+      app.get('/', (req, res) => res.send('Hello, World!'));
+      const server = await app.listen(3000);
+
+      // Make an example request to see that, yep, the CORS headers are set
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000');
+      res.headers['access-control-allow-origin']; // '*'
+      // acquit:ignore:start
+      assert.equal(res.headers['access-control-allow-origin'], '*');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('subset', async function() {
+      const app = require('express')();
+      // Set CORS headers on responses to any requests whose URL starts with
+      // '/api'
+      app.use('/api', require('cors')());
+
+      app.get('/api/test', (req, res) => res.json({ ok: 1 }));
+      app.get('/', (req, res) => res.send('Hello, World!'));
+      const server = await app.listen(3000);
+
+      // Make an example request to see that CORS headers are set on
+      // `/api/test`, but not `/`
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000');
+      res.headers['access-control-allow-origin']; // undefined
+      // acquit:ignore:start
+      assert.strictEqual(res.headers['access-control-allow-origin'], void 0);
+      // acquit:ignore:end
+
+      res = await axios.get('http://localhost:3000/api/test');
+      res.headers['access-control-allow-origin']; // '*'      
+      // acquit:ignore:start
+      assert.equal(res.headers['access-control-allow-origin'], '*');
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
