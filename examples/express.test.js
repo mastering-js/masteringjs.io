@@ -486,6 +486,40 @@ describe('Express', function() {
       // acquit:ignore:end
     });
 
+    it('json pretty print', async function() {
+      const axios = require('axios');
+      const express = require('express');
+      const app = express();
+
+      // Make Express pass '2' as the 3rd argument to `JSON.stringify()`
+      app.set('json spaces', 2);
+
+      app.get('*', function(req, res) {
+        res.json({ answer: 42, hello: 'world' });
+      });
+
+      const server = await app.listen(3000);
+
+      const response = await axios.get('http://localhost:3000', {
+        transformResponse: res => res // Disable automatic JSON parsing
+      });
+      // {
+      //   "answer": 42,
+      //   "hello": "world"
+      // }
+      response.data;
+      // acquit:ignore:start
+      assert.deepEqual(response.data, [
+        '{',
+        '  "answer": 42,',
+        '  "hello": "world"',
+        '}'        
+      ].join('\n'));
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
     it('pug', async function() {
       const axios = require('axios');
       const express = require('express');

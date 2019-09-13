@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Express Response JSON',
+      raw: './tutorials/express/json.md',
+      url: '/tutorials/express/json',
+      description: 'Express responses have a `res.json()` function that serializes a JavaScript object to JSON and puts it in the response body. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2019-09-13')
+    },
+    {
       title: 'CORS with Express',
       raw: './tutorials/express/cors.md',
       url: '/tutorials/express/cors',

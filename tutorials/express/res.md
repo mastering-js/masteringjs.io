@@ -23,7 +23,7 @@ or another backend service that sends responses in JSON, you should use the
 [`res.json()` function](http://expressjs.com/en/4x/api.html#res.json). The `res.json()` function converts the given object to JSON using [`JSON.stringify()`](http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html) and sets the [content type to `'application/json; charset=utf-8'`](https://github.com/expressjs/express/blob/e1b45ebd050b6f06aa38cda5aaf0c21708b0c71e/lib/response.js#L263-L265).
 
 ```javascript
-[require:Express.*response.*json]
+[require:Express.*response.*json$]
 ```
 
 Rendering Template Languages
