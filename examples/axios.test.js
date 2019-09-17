@@ -36,6 +36,55 @@ describe('axios', function() {
     // acquit:ignore:end
   });
 
+  describe('POST requests', function() {
+    it('basic example', async function() {
+      const res = await axios.post('https://httpbin.org/post', { hello: 'world' });
+
+      res.data.json; // { hello: 'world' }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.json, { hello: 'world' });
+      // acquit:ignore:end
+    });
+
+    it('headers', async function() {
+      const res = await axios.post('https://httpbin.org/post', { hello: 'world' });
+
+      res.data.headers['Content-Type']; // application/json;charset=utf-8
+      // acquit:ignore:start
+      assert.equal(res.data.headers['Content-Type'],
+        'application/json;charset=utf-8');
+      // acquit:ignore:end
+    });
+
+    it('content-type', async function() {
+      const res = await axios.post('https://httpbin.org/post', { hello: 'world' }, {
+        headers: {
+          // 'application/json' is the modern content-type for JSON, but some
+          // older servers may use 'text/json'.
+          // See: http://bit.ly/text-json
+          'content-type': 'text/json'
+        }
+      });
+
+      res.data.headers['Content-Type']; // text/json
+      // acquit:ignore:start
+      assert.equal(res.data.headers['Content-Type'], 'text/json');
+      // acquit:ignore:end
+    });
+
+    it('string', async function() {
+      const res = await axios.post('https://httpbin.org/post', 'hello=world');
+
+      res.data.form; // { hello: 'world' }
+      res.data.headers['Content-Type']; // application/x-www-form-urlencoded
+      // acquit:ignore:start
+      assert.deepEqual(res.data.form, { hello: 'world' });
+      assert.equal(res.data.headers['Content-Type'],
+        'application/x-www-form-urlencoded');
+      // acquit:ignore:end
+    });
+  });
+
   describe('basic auth', function() {
     it('works', async function() {
       const res = await axios.get('https://httpbin.org/basic-auth/foo/bar', {

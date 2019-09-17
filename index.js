@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'POST Requests with Axios',
+      raw: './tutorials/axios/post.md',
+      url: '/tutorials/axios/post',
+      description: 'Sending an HTTP POST request with Axios is easy. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2019-09-17')
+    },
+    {
       title: 'Express Response JSON',
       raw: './tutorials/express/json.md',
       url: '/tutorials/express/json',

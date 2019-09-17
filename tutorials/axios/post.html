@@ -1,0 +1,100 @@
+
+<html>
+  <head>
+    <title>POST Requests with Axios - Mastering JS</title>
+
+    <meta property="og:title" content="POST Requests with Axios" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Sending an HTTP POST request with Axios is easy. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>POST Requests with Axios</h1>
+        <div class="date">
+          Sep 17, 2019
+        </div>
+        
+  <p>The easiest way to make a POST request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the
+<a href="https://github.com/axios/axios#example"><code>axios.post()</code> function</a>. The first 
+parameter to <code>axios.post()</code> is the URL, and the 2nd
+is the <a href="https://en.wikipedia.org/wiki/HTTP_message_body">HTTP request body</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
+
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+<p>By default, if the 2nd parameter to <code>axios.post()</code> is an object, Axios
+serializes the object to JSON using <a href="http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript">the <code>JSON.stringify()</code> function</a>.
+If the 2nd parameter is an object, Axios also sets the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>content-type</code> header to <code>application/json</code></a>, so
+most web frameworks, like <a href="/tutorials/express/json">Express</a>, will be able
+to automatically convert the request body into a JavaScript object for you.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
+
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/json;charset=utf-8</span></code></pre>
+<h2 id="form-encoded-request-bodies">Form-Encoded Request Bodies</h2>
+<p>If you pass a string as the <code>body</code> parameter to <code>axios.post()</code>, Axios will
+set the <code>content-type</code> header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa"><code>application/x-www-form-urlencoded</code></a>.
+That means the request body should be a bunch of key/value pairs separated by
+<code>&amp;</code>, like <code>key1=value1&amp;key2=value2</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, <span class="hljs-string">'hello=world'</span>);
+
+res.data.form; <span class="hljs-comment">// { hello: 'world' }</span>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span></code></pre>
+
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/error-handling">HTTP Request Error Handling With Axios Interceptors</a></li>
+  
+
+    <li><a href="/tutorials/axios/basic_auth">Basic Auth Using the Axios HTTP Client</a></li>
+  
+
+    <li><a href="/tutorials/axios/headers">Setting Request Headers with Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
