@@ -22,7 +22,7 @@ you should use the third parameter to `axios.post()`: the `options` parameter.
 Set the `options.header['content-type']` option to set the `content-type` header.
 
 ```javascript
-
+[require:axios.*POST requests.*content-type$]
 ```
 
 Form-Encoded Request Bodies

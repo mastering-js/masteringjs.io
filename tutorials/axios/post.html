@@ -68,6 +68,19 @@ to automatically convert the request body into a JavaScript object for you.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
 res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/json;charset=utf-8</span></code></pre>
+<p>To override the <a href="/tutorials/axios/headers"><code>content-type</code> header in Axios</a>,
+you should use the third parameter to <code>axios.post()</code>: the <code>options</code> parameter.
+Set the <code>options.header[&#39;content-type&#39;]</code> option to set the <code>content-type</code> header.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-comment">// 'application/json' is the modern content-type for JSON, but some</span>
+    <span class="hljs-comment">// older servers may use 'text/json'.</span>
+    <span class="hljs-comment">// See: http://bit.ly/text-json</span>
+    <span class="hljs-string">'content-type'</span>: <span class="hljs-string">'text/json'</span>
+  }
+});
+
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// text/json</span></code></pre>
 <h2 id="form-encoded-request-bodies">Form-Encoded Request Bodies</h2>
 <p>If you pass a string as the <code>body</code> parameter to <code>axios.post()</code>, Axios will
 set the <code>content-type</code> header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa"><code>application/x-www-form-urlencoded</code></a>.
