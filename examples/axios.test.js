@@ -166,4 +166,31 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('#create', function() {
+    it('basic example', async function() {
+      const axios = require('axios');
+      const instance = axios.create({ timeout: 1000 });
+
+      // `instance` is an instance of the same class as `axios`, so it has
+      // the same methods
+      axios.constructor === instance.constructor; // true
+
+      // For example, `instance.get()` lets you send a GET request, but
+      // it will also have the 1000ms timeout.
+      await instance.get('https://httpbin.org/get?hello=world');
+    });
+
+    it('baseURL', async function() {
+      const axios = require('axios').create({
+        baseURL: 'https://httpbin.org'
+      });
+
+      // Sends request to 'https://httpbin.org/get' 
+      const res = await axios.get('/get?hello=world');
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { hello: 'world' });
+      // acquit:ignore:end
+    });
+  });
 });

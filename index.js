@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `create()` Function in Axios',
+      raw: './tutorials/axios/create.md',
+      url: '/tutorials/axios/create',
+      description: 'Axios\' `create()` function lets you create a "template" HTTP request, with defaults for future requests.',
+      tags: ['axios'],
+      date: moment('2019-09-18')
+    },
+    {
       title: 'POST Requests with Axios',
       raw: './tutorials/axios/post.md',
       url: '/tutorials/axios/post',

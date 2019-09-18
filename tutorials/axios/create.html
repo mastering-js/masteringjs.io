@@ -1,0 +1,96 @@
+
+<html>
+  <head>
+    <title>The `create()` Function in Axios - Mastering JS</title>
+
+    <meta property="og:title" content="The `create()` Function in Axios" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Axios' `create()` function lets you create a "template" HTTP request, with defaults for future requests." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The `create()` Function in Axios</h1>
+        <div class="date">
+          Sep 18, 2019
+        </div>
+        
+  <p>The <a href="https://github.com/axios/axios#creating-an-instance"><code>axios.create()</code> function</a>
+creates a new Axios <em>instance</em>. When you <code>require(&#39;axios&#39;)</code>, you get back an
+the default Axios instance. The reason why you would create an instance is to
+set custom defaults for your application.</p>
+<p>For example, suppose you wanted
+to add a <a href="https://medium.com/@masnun/handling-timeout-in-axios-479269d83c68">timeout to all your Axios requests</a>. You could
+create a new Axios instance with a default timeout of 1000 milliseconds:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> instance = axios.create({ <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span> });
+
+<span class="hljs-comment">// `instance` is an instance of the same class as `axios`, so it has</span>
+<span class="hljs-comment">// the same methods</span>
+axios.constructor === instance.constructor; <span class="hljs-comment">// true</span>
+
+<span class="hljs-comment">// For example, `instance.get()` lets you send a GET request, but</span>
+<span class="hljs-comment">// it will also have the 1000ms timeout.</span>
+<span class="hljs-keyword">await</span> instance.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);</code></pre>
+
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/post">POST Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/error-handling">HTTP Request Error Handling With Axios Interceptors</a></li>
+  
+
+    <li><a href="/tutorials/axios/basic_auth">Basic Auth Using the Axios HTTP Client</a></li>
+  
+
+    <li><a href="/tutorials/axios/headers">Setting Request Headers with Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
