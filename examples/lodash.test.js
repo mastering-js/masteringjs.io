@@ -335,6 +335,44 @@ describe('lodash', function() {
       }
     });
   });
+
+  describe('.clone', function() {
+    it('array', function() {
+      const arr = ['a', 'b', 'c'];
+
+      // `Object.assign()` will copy all the array properties
+      // into a POJO
+      Object.assign({}, arr); // { '0': 1, '1': 2, '2': 3 }
+
+      // But `_.clone()` is smart enough to clone an array
+      _.clone(arr); // ['a', 'b', 'c']
+      // acquit:ignore:start
+      assert.ok(_.clone(arr) instanceof Array);
+      assert.deepEqual(_.clone(arr), ['a', 'b', 'c']);
+      // acquit:ignore:end
+    });
+
+    it('class instance', function() {
+      class MyClass {
+        constructor(val) {
+          this.val = val;
+        }
+      }
+
+      const obj = new MyClass(42);
+
+      // `Object.assign()` **always** returns a POJO. It
+      // doesn't actually create a new instance of the class.
+      Object.assign({}, obj) instanceof MyClass; // false
+
+      // `_.clone()` retains the original object's class.
+      _.clone(obj) instanceof MyClass; // true
+       // acquit:ignore:start
+       assert.ok(_.clone(obj) instanceof MyClass);
+       assert.equal(_.clone(obj).val, 42);
+       // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

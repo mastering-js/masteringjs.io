@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Cloning an Object with Lodash',
+      raw: './tutorials/lodash/clone.md',
+      url: '/tutorials/lodash/clone',
+      description: 'Lodash\'s `clone()` function shallow clones a given object. Here\'s how it differs from using `Object.assign()`.',
+      tags: ['lodash'],
+      date: moment('2019-09-20')
+    },
+    {
       title: 'The `create()` Function in Axios',
       raw: './tutorials/axios/create.md',
       url: '/tutorials/axios/create',

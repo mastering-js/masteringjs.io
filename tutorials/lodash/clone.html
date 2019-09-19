@@ -1,0 +1,115 @@
+
+<html>
+  <head>
+    <title>Cloning an Object with Lodash - Mastering JS</title>
+
+    <meta property="og:title" content="Cloning an Object with Lodash" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Lodash's `clone()` function shallow clones a given object. Here's how it differs from using `Object.assign()`." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Cloning an Object with Lodash</h1>
+        <div class="date">
+          Sep 20, 2019
+        </div>
+        
+  <p><a href="https://lodash.com/docs/4.17.15#clone">Lodash&#39;s <code>clone()</code> function</a> is a powerful utility for <a href="/tutorials/fundamentals/shallow-copy">shallow cloning</a> generic objects. The <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html"><code>Object.assign()</code> function or the spread operator</a> are the canonical methods for shallow copying a POJO. But <code>_.clone()</code> has some additional functionality built in that may make it a better choice for your use case.</p>
+<h2 id="cloning-an-array">Cloning an Array</h2>
+<p><code>Object.assign()</code> and <code>_.clone()</code> behave similarly when
+copying a plain old JavaScript object (POJO). But what
+about cloning an array?</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
+
+<span class="hljs-comment">// `Object.assign()` will copy all the array properties</span>
+<span class="hljs-comment">// into a POJO</span>
+<span class="hljs-built_in">Object</span>.assign({}, arr); <span class="hljs-comment">// { '0': 1, '1': 2, '2': 3 }</span>
+
+<span class="hljs-comment">// But `_.clone()` is smart enough to clone an array</span>
+_.clone(arr); <span class="hljs-comment">// ['a', 'b', 'c']</span></code></pre>
+<h2 id="cloning-an-instance-of-a-class">Cloning an Instance of a Class</h2>
+<p>Another benefit of <code>_.clone()</code> is that the cloned object
+will have the same <a href="http://thecodebarbarian.com/an-overview-of-es6-classes">ES6 class</a> as the original object. The <code>Object.assign()</code> function always returns a POJO.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+  <span class="hljs-keyword">constructor</span>(val) {
+    <span class="hljs-keyword">this</span>.val = val;
+  }
+}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-number">42</span>);
+
+<span class="hljs-comment">// `Object.assign()` **always** returns a POJO. It</span>
+<span class="hljs-comment">// doesn't actually create a new instance of the class.</span>
+<span class="hljs-built_in">Object</span>.assign({}, obj) <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// `_.clone()` retains the original object's class.</span>
+_.clone(obj) <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// true</span></code></pre>
+<h2 id="takeaways">Takeaways</h2>
+<p>If you need to clone a POJO, you don&#39;t need Lodash. Just use
+<code>{...obj}</code> or <code>Object.assign({}, obj)</code>. But <code>_.clone()</code> is
+handy if you find yourself needing to clone class instances,
+or just want to be able to clone an arbitrary object without
+checking whether it is an array.</p>
+
+  <hr>
+  
+    <h2>More Lodash Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/lodash/debounce">Throttling Functions With Lodash's debounce() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/find">Using Lodash's find() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/get">Safe Navigation With Lodash's get() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/sortby">Sorting Arrays With Lodash's sortBy() Function</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
