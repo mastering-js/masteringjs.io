@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What is a Plain Old JavaScript Object (POJO)?',
+      raw: './tutorials/fundamentals/pojo.md',
+      url: '/tutorials/fundamentals/pojo',
+      description: 'Plain old JavaScript objects are the most common way to store user-entered data in JavaScript. But how do you actually define a POJO?',
+      tags: ['fundamentals'],
+      date: moment('2019-10-08')
+    },
+    {
       title: 'Cloning an Object with Lodash',
       raw: './tutorials/lodash/clone.md',
       url: '/tutorials/lodash/clone',

@@ -2179,6 +2179,68 @@ describe('Fundamentals', function() {
         });
     });
   });
+
+  describe('POJO', function() {
+    it('create null', function() {
+      // If you create an object `obj` with `{}`, `obj` is an instance of
+      // the `Object` class, and so it has some built-in properties.
+      let obj = {};
+      obj.hasOwnProperty; // [Function]
+      obj.constructor === Object; // true
+      // acquit:ignore:start
+      assert.strictEqual(obj.hasOwnProperty, Object.prototype.hasOwnProperty);
+      assert.strictEqual(obj.constructor, Object);
+      // acquit:ignore:end
+
+      // On the other hand, `Object.create(null)` creates an object that
+      // doesn't inherit from **any** class.
+      obj = Object.create(null);
+      typeof obj; // 'object'
+      obj.hasOwnProperty; // undefined
+      obj.constructor; // undefined
+
+      obj.prop = 42;
+      obj.prop; // 42
+      // acquit:ignore:start
+      assert.equal(typeof obj, 'object');
+      assert.strictEqual(obj.hasOwnProperty, undefined);
+      assert.strictEqual(obj.constructor, undefined);
+      assert.equal(obj.prop, 42);
+      // acquit:ignore:end
+    });
+
+    it('map stringify', function() {
+      const map = new Map([['answer', 42]]);
+      JSON.stringify(map); // '{}'
+      // acquit:ignore:start
+      assert.equal(JSON.stringify(map), '{}');
+      // acquit:ignore:end
+    });
+
+    it('check if pojo', function() {
+      function isPOJO(arg) {
+        if (arg == null || typeof arg !== 'object') {
+          return false;
+        }
+        const proto = Object.getPrototypeOf(arg);
+        if (proto == null) {
+          return true; // `Object.create(null)`
+        }
+        return proto === Object.prototype;
+      }
+
+      isPOJO({}); // true
+      isPOJO(Object.create(null)); // true
+      isPOJO(null); // false
+      isPOJO(new Number(42)); // false
+      // acquit:ignore:start
+      assert.strictEqual(isPOJO({}), true); // true
+      assert.strictEqual(isPOJO(Object.create(null)), true); // true
+      assert.strictEqual(isPOJO(null), false); // false
+      assert.strictEqual(isPOJO(new Number(42)), false); // false
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
