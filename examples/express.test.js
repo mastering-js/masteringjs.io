@@ -736,5 +736,29 @@ describe('Express', function() {
       await server.close();
       // acquit:ignore:end
     });
+
+    it('custom', async function() {
+      const app = require('express')();
+
+      // Need to handle 'OPTIONS' requests for pre-flight
+      app.options('*', (req, res) => {
+        res.set('Access-Control-Allow-Origin', '*');
+        res.send('ok');
+      });
+
+      // As well as set 'Access-Control-Allow-Origin' on the actual response
+      app.get('/', (req, res) => {
+        res.set('Access-Control-Allow-Origin', '*');
+        res.send('Hello, World!')
+      });
+      const server = await app.listen(3000);
+      // acquit:ignore:start
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000/api/test');
+      res.headers['access-control-allow-origin']; // '*'      
+      assert.equal(res.headers['access-control-allow-origin'], '*');
+      await server.close();
+      // acquit:ignore:end
+    });
   });
 });

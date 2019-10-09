@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'A Brief Overview of Cross-Origin Resource Sharing (CORS)',
+      raw: './tutorials/fundamentals/cors.md',
+      url: '/tutorials/fundamentals/cors',
+      description: 'Cross-Origin Resource Sharing, or CORS for short, is a protocol for a browser to determine whether it is safe to make a request to a different domain. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-10-09')
+    },
+    {
       title: 'What is a Plain Old JavaScript Object (POJO)?',
       raw: './tutorials/fundamentals/pojo.md',
       url: '/tutorials/fundamentals/pojo',
