@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Axios with Vue',
+      raw: './tutorials/vue/axios.md',
+      url: '/tutorials/vue/axios',
+      description: 'The Vue cookbook recommends using Axios for HTTP requests with Vue. Here\'s an alternative tutorial on how to use Axios with Vue.',
+      tags: ['vue', 'axios'],
+      date: moment('2019-10-10')
+    },
+    {
       title: 'A Brief Overview of Cross-Origin Resource Sharing (CORS)',
       raw: './tutorials/fundamentals/cors.md',
       url: '/tutorials/fundamentals/cors',

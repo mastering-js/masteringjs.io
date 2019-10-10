@@ -999,4 +999,41 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('axios', function() {
+    it('basic example', async function() {
+      const url = 'https://jsonplaceholder.typicode.com/users/1';
+
+      const app = new Vue({
+        data: () => ({ user: null, error: null }),
+        // Display username if available, and error message if not
+        template: `
+          <div>
+            <div v-if="user != null">
+              {{user.name}}
+            </div>
+            <div v-if="error != null">
+              {{error.message}}
+            </div>
+          </div>
+        `,
+        mounted
+      });
+
+      async function mounted() {
+        try {
+          this.user = await axios.get(url).then(res => res.data);
+          this.error = null;
+        } catch (error) {
+          this.user = null;
+          this.error = error;
+        }
+      }
+      // acquit:ignore:start
+      await mounted.call(app);
+      const data = await renderToString(app);
+      assert.ok(data.includes('Leanne Graham'));
+      // acquit:ignore:end
+    });
+  });
 });

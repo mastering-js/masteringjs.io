@@ -1,0 +1,157 @@
+
+<html>
+  <head>
+    <title>Using Axios with Vue - Mastering JS</title>
+
+    <meta property="og:title" content="Using Axios with Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The Vue cookbook recommends using Axios for HTTP requests with Vue. Here's an alternative tutorial on how to use Axios with Vue." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Using Axios with Vue</h1>
+        <div class="date">
+          Oct 10, 2019
+        </div>
+        
+  <p>Vue doesn&#39;t have a built-in HTTP request library. The official <a href="https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html">Vue cookbook recommends using Axios</a> to interact with REST APIs.</p>
+<p>This tutorial will use the excellent <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder API</a> to provide sample data. For example, if you
+type <code>https://jsonplaceholder.typicode.com/users/1</code> in your browser&#39;s URL bar, you&#39;ll
+get the below response:</p>
+<pre><code>{
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"Leanne Graham"</span>,
+  <span class="hljs-string">"username"</span>: <span class="hljs-string">"Bret"</span>,
+  <span class="hljs-string">"email"</span>: <span class="hljs-string">"Sincere@april.biz"</span>,
+  <span class="hljs-string">"address"</span>: {
+    <span class="hljs-string">"street"</span>: <span class="hljs-string">"Kulas Light"</span>,
+    <span class="hljs-string">"suite"</span>: <span class="hljs-string">"Apt. 556"</span>,
+    <span class="hljs-string">"city"</span>: <span class="hljs-string">"Gwenborough"</span>,
+    <span class="hljs-string">"zipcode"</span>: <span class="hljs-string">"92998-3874"</span>,
+    <span class="hljs-string">"geo"</span>: {
+      <span class="hljs-string">"lat"</span>: <span class="hljs-string">"-37.3159"</span>,
+      <span class="hljs-string">"lng"</span>: <span class="hljs-string">"81.1496"</span>
+    }
+  },
+  <span class="hljs-string">"phone"</span>: <span class="hljs-string">"1-770-736-8031 x56442"</span>,
+  <span class="hljs-string">"website"</span>: <span class="hljs-string">"hildegard.org"</span>,
+  <span class="hljs-string">"company"</span>: {
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"Romaguera-Crona"</span>,
+    <span class="hljs-string">"catchPhrase"</span>: <span class="hljs-string">"Multi-layered client-server neural-net"</span>,
+    <span class="hljs-string">"bs"</span>: <span class="hljs-string">"harness real-time e-markets"</span>
+  }
+}</code></pre><h2 id="displaying-response-data">Displaying Response Data</h2>
+<p>The <a href="https://www.npmjs.com/package/axios#example"><code>axios.get()</code> function</a> executes
+an HTTP GET and returns a promise. So calling <code>await axios.get(&#39;https://jsonplaceholder.typicode.com&#39;)</code> gets you an object whose <code>data</code> property contains
+the above JSON data.</p>
+<p>Remember that Vue hooks can be <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async functions</a>. So that means you can use <a href="https://asyncawait.net">async/await</a> to execute the Axios request.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> url = <span class="hljs-string">'https://jsonplaceholder.typicode.com/users/1'</span>;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">user</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">error</span>: <span class="hljs-literal">null</span> }),
+  <span class="hljs-comment">// Display username if available, and error message if not</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div v-if="user != null"&gt;
+        {{user.name}}
+      &lt;/div&gt;
+      &lt;div v-if="error != null"&gt;
+        {{error.message}}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span>,
+  mounted
+});
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mounted</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">this</span>.user = <span class="hljs-keyword">await</span> axios.get(url).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.data);
+    <span class="hljs-keyword">this</span>.error = <span class="hljs-literal">null</span>;
+  } <span class="hljs-keyword">catch</span> (error) {
+    <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.error = error;
+  }
+}</code></pre>
+<h2 id="with-server-side-rendering">With Server-Side Rendering</h2>
+<p>Unfortunately, the above example as written won&#39;t work with <a href="h/tutorials/vue/ssr">Vue server-side rendering</a> because:</p>
+<ol>
+<li>Vue&#39;s <code>renderToString()</code> doesn&#39;t call <code>mounted</code> hooks, because the component is never actually mounted.</li>
+<li>Vue&#39;s <code>renderToString()</code> doesn&#39;t wait for async hooks to execute, so even if you used <code>created</code>, the above example wouldn&#39;t work.</li>
+</ol>
+<p>However, there is an easy workaround. Just call the <code>mounted()</code> function manually
+and <code>await</code> on it.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> mounted.call(app);
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
+data; <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Leanne Graham&lt;/div&gt; &lt;!----&gt;&lt;/div&gt;</span></code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/bind">Using v-bind in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/emit">The $emit Function in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/computed">Computed Properties in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-on">Vue Event Handling with v-on</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-if">Conditional Rendering in Vue with v-if</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-model">Two-Way Data Binding in Vue With v-model</a></li>
+  
+
+    <li><a href="/tutorials/vue/props">Vue Props Tutorial</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
