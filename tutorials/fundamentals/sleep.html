@@ -1,0 +1,109 @@
+
+<html>
+  <head>
+    <title>Make a JavaScript Function Sleep - Mastering JS</title>
+
+    <meta property="og:title" content="Make a JavaScript Function Sleep" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The Vue cookbook recommends using Axios for HTTP requests with Vue. Here's an alternative tutorial on how to use Axios with Vue." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Make a JavaScript Function Sleep</h1>
+        <div class="date">
+          Oct 14, 2019
+        </div>
+        
+  <p>Unlike many other languages, JavaScript doesn&#39;t have a built-in
+function to pause execution for a given period of time. There&#39;s
+a good reason for this: in languages like C, <code>sleep(2)</code> blocks
+the current thread for 2 seconds. Since JavaScript is 
+single-threaded, C-style <code>sleep(2)</code> would block the entire
+JavaScript runtime for 2 seconds, and that isn&#39;t very useful.</p>
+<p>However, you can pause an <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async function</a> call 
+without blocking the rest of the JavaScript runtime. You
+just need to <code>await</code> on a promise that resolves after a given
+period of time.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sleep</span>(<span class="hljs-params">ms</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, ms));
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Pause execution of this async function for 2 seconds</span>
+  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">2000</span>);
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Waited for 2 seconds'</span>);
+}</code></pre>
+<h2 id="conventional-sleep-in-javascript">Conventional <code>sleep()</code> in JavaScript</h2>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/pojo">What is a Plain Old JavaScript Object (POJO)?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/then">The Promise then() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise">Promises in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/instanceof">The instanceof Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/class">Classes in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/stringify">JSON.stringify() in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
