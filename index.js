@@ -39,7 +39,7 @@ async function run() {
       title: 'Make a JavaScript Function Sleep',
       raw: './tutorials/fundamentals/sleep.md',
       url: '/tutorials/fundamentals/sleep',
-      description: 'The Vue cookbook recommends using Axios for HTTP requests with Vue. Here\'s an alternative tutorial on how to use Axios with Vue.',
+      description: 'JavaScript doesn\'t have a built-in `sleep()` function, but that doesn\'t mean you can\'t pause a function in JavaScript.',
       tags: ['fundamentals'],
       date: moment('2019-10-14')
     },

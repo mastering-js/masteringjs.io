@@ -5,7 +5,7 @@
 
     <meta property="og:title" content="Make a JavaScript Function Sleep" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="The Vue cookbook recommends using Axios for HTTP requests with Vue. Here's an alternative tutorial on how to use Axios with Vue." />
+    <meta property="og:description" content="JavaScript doesn't have a built-in `sleep()` function, but that doesn't mean you can't pause a function in JavaScript." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -73,7 +73,22 @@ period of time.</p>
 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Waited for 2 seconds'</span>);
 }</code></pre>
-<h2 id="conventional-sleep-in-javascript">Conventional <code>sleep()</code> in JavaScript</h2>
+<p>The <code>new Promise()</code> call uses <a href="/tutorials/fundamentals/promise#the-promise-constructor">JavaScript&#39;s promise constructor</a> to create a new promise that resolves after <code>ms</code> milliseconds. And when
+you <code>await</code> on a promise, you pause execution of that function
+until the promise resolves, without impacting other functions.</p>
+<p>For example, you can call two functions in parallel that call
+<code>sleep()</code>, and neither function will block the other.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> start = <span class="hljs-built_in">Date</span>.now();
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pauseMe</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">2000</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'MS since start:'</span>, <span class="hljs-built_in">Date</span>.now() - start);
+}
+
+<span class="hljs-comment">// Will print something like "MS since start: 2006"</span>
+pauseMe();
+<span class="hljs-comment">// Will print something like "MS since start: 2010"</span>
+pauseMe();</code></pre>
 
   <hr>
   
