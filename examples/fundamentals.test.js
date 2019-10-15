@@ -2241,6 +2241,47 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Array#filter', function() {
+    it('even/odd', function() {
+      const numbers = [1, 2, 3, 4, 5, 6];
+
+      let callback = v => v % 2 === 0;
+      const even = numbers.filter(callback);
+      even; // [2, 4, 6]
+      // acquit:ignore:start
+      assert.deepEqual(even, [2, 4, 6]);
+      // acquit:ignore:end
+
+      callback = v => v % 2 === 1;
+      const odd = numbers.filter(callback);
+      odd; // [1, 3, 5]
+      // acquit:ignore:start
+      assert.deepEqual(odd, [1, 3, 5]);
+      // acquit:ignore:end
+    });
+
+    it('objects', function() {
+      const people = [
+        { name: 'Jean-Luc Picard', rank: 'Captain' },
+        { name: 'Will Riker', rank: 'Commander' },
+        { name: 'Geordi La Forge', rank: 'Lieutenant' }
+      ];
+
+      const filtered = people.filter(p => p.rank === 'Lieutenant');
+
+      // Although `filtered` is a new array, it still points to
+      // the same objects, so modifying an object in the filtered
+      // array also affects the original array.
+      filtered[0] === people[2]; // true
+      filtered[0].rank = 'Lieutenant Commander';
+      people[2].rank; // 'Lieutenant Commander'
+      // acquit:ignore:start
+      assert.strictEqual(filtered[0], people[2]);
+      assert.equal(people[2].rank, 'Lieutenant Commander');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

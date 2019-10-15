@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Array `filter()` in JavaScript',
+      raw: './tutorials/fundamentals/filter.md',
+      url: '/tutorials/fundamentals/filter',
+      description: 'The `filter()` function in JavaScript lets you filter out array elements that don\'t match certain criteria. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-10-15')
+    },
+    {
       title: 'Make a JavaScript Function Sleep',
       raw: './tutorials/fundamentals/sleep.md',
       url: '/tutorials/fundamentals/sleep',
