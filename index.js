@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Introduction to Express\' Router',
+      raw: './tutorials/express/router.md',
+      url: '/tutorials/express/router',
+      description: 'Express\' Router class lets you define request handlers for specific URIs and HTTP methods. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2019-10-17')
+    },
+    {
       title: 'Array `filter()` in JavaScript',
       raw: './tutorials/fundamentals/filter.md',
       url: '/tutorials/fundamentals/filter',

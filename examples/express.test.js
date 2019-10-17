@@ -761,4 +761,22 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('router', function() {
+    it('testing', async function() {
+      const app = require('express')();
+      app.get('/route1', (req, res) => res.send('Hello, World!'));
+      // `app.listen()` returns a promise. Once this promise
+      // resolves, that means Express is ready to handle requests.
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000/route1');
+      res.data; // 'Hello, World!'
+      // acquit:ignore:start
+      assert.equal(res.data, 'Hello, World!');
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });

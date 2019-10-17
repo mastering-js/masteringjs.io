@@ -1,0 +1,207 @@
+
+<html>
+  <head>
+    <title>Introduction to Express' Router - Mastering JS</title>
+
+    <meta property="og:title" content="Introduction to Express' Router" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Express' Router class lets you define request handlers for specific URIs and HTTP methods. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Introduction to Express' Router</h1>
+        <div class="date">
+          Oct 17, 2019
+        </div>
+        
+  <p><a href="https://expressjs.com/en/guide/routing.html">Routing</a> in Express
+means mapping an HTTP request to the appropriate request handler. 
+In Express, a <em>request handler</em> is a
+<a href="/tutorials/fundamentals/callbacks">callback function</a> with the 
+following signature:</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{}</code></pre>
+<p>For example, if you receive an HTTP GET request for <code>/route1</code>,
+Express should call the request handler for <code>GET /route1</code> and
+not call the request handler for <code>GET /route2</code>. Here&#39;s how
+you can define a request handler for <code>GET /route1</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-comment">// When `app` receives a GET request to `/route1`, Express calls</span>
+<span class="hljs-comment">// the `requestHandler()` function.</span>
+app.get(<span class="hljs-string">'/route1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Hello from route1'</span>);
+});
+
+<span class="hljs-comment">// Listen for requests on port 3000</span>
+app.listen(<span class="hljs-number">3000</span>);</code></pre>
+<h2 id="testing-with-axios">Testing with Axios</h2>
+<p>The easiest way to see your Express app in action is using
+<a href="http://npmjs.com/package/axios">Axios</a> - no need to remember
+CURL flags. Here&#39;s a simple script that starts an Express server
+and makes an HTTP request to that server using Axios and
+<a href="https://asyncawait.net">async/await</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+app.get(<span class="hljs-string">'/route1'</span>, (req, res) =&gt; res.send(<span class="hljs-string">'Hello, World!'</span>));
+<span class="hljs-comment">// `app.listen()` returns a promise. Once this promise</span>
+<span class="hljs-comment">// resolves, that means Express is ready to handle requests.</span>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/route1'</span>);
+res.data; <span class="hljs-comment">// 'Hello, World!'</span></code></pre>
+<h2 id="other-http-request-methods">Other HTTP Request Methods</h2>
+<p>The <a href="https://expressjs.com/en/5x/api.html#app.get.method"><code>app.get()</code> function</a> defines a request handler specifically
+for an <a href="https://www.w3schools.com/tags/ref_httpmethods.asp">HTTP GET request</a>. However, there are <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">several HTTP request methods</a> in addition to <code>GET</code>:</p>
+<ul>
+<li><code>POST</code></li>
+<li><code>PUT</code></li>
+<li><code>DELETE</code></li>
+<li><code>OPTIONS</code></li>
+<li><code>HEAD</code></li>
+<li><code>PATCH</code></li>
+<li><code>TRACE</code></li>
+</ul>
+<p>Express has a separate function for each of these request methods:</p>
+<ul>
+<li><a href="https://expressjs.com/en/5x/api.html#app.post.method"><code>app.post()</code></a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#app.put.method"><code>app.put()</code></a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#app.delete.method"><code>app.delete()</code></a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#routing-methods">`app.options()</a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#routing-methods"><code>app.head()</code></a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#routing-methods">`app.patch()</a></li>
+<li><a href="https://expressjs.com/en/5x/api.html#routing-methods">`app.trace()</a></li>
+</ul>
+<p>Most apps just use <code>app.get()</code>, <code>app.post()</code>, <code>app.put()</code>, and 
+<code>app.delete()</code>. However, <code>app.options()</code> is useful for <a href="/tutorials/fundamentals/cors">CORS</a>. Here&#39;s how you can define a
+POST handler:</p>
+<pre><code class="language-javascript">app.post(<span class="hljs-string">'/route1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'Hello from POST /route1'</span>);
+});</code></pre>
+<p>The <a href="https://expressjs.com/en/4x/api.html#app.all"><code>app.all()</code> function</a> lets you define a route handler for all HTTP methods:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Express will call `routeHandler()` for any request to</span>
+<span class="hljs-comment">// `/route1`, regardless of the request method. For example,</span>
+<span class="hljs-comment">// `GET /route1` and `POST /route1` both trigger `routeHandler`.</span>
+app.all(<span class="hljs-string">'/route1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{});</code></pre>
+<h2 id="wildcards-and-route-parameters">Wildcards and Route Parameters</h2>
+<p>Express routing supports <a href="https://expressjs.com/en/guide/routing.html#route-paths">a subset of regular expressions</a>, including wildcards. For example, the below is how you define a 
+request handler for all URIs:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Express will call `requestHandler()` for **every** GET request.</span>
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{});</code></pre>
+<p>The <code>:</code> character is how you define a <a href="https://expressjs.com/en/guide/routing.html#route-parameters">route parameter in Express</a>. A route parameter is a named section of the URL - Express captures
+the value in the named section and stores it in <a href="https://expressjs.com/en/4x/api.html#req.params">the <code>req.params</code> property</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Express stores whatever string comes after `/user/` in</span>
+<span class="hljs-comment">// `req.params.id`</span>
+app.get(<span class="hljs-string">'/user/:id'</span>, (req, res) =&gt; res.json({ <span class="hljs-attr">id</span>: req.params.id }));
+
+<span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/test1'</span>);
+res.data.id; <span class="hljs-comment">// 'test1'</span>
+
+res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/test2'</span>);
+res.data.id; <span class="hljs-comment">// 'test2'</span></code></pre>
+<p>You can also define multiple route parameters. Route parameters
+are delimited by <code>/</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `GET /flight/MIA/JFK` means `req.params` is equal to</span>
+<span class="hljs-comment">// `{ from: 'MIA', to: 'JFK' }`</span>
+app.get(<span class="hljs-string">'/flight/:from/:to'</span>, (req, res) =&gt; res.json(req.params));</code></pre>
+<h2 id="subrouters">Subrouters</h2>
+<p>The <a href="https://expressjs.com/en/4x/api.html#express.router"><code>express.Router()</code> function</a> creates a subrouter. A subrouter is
+an <a href="https://masteringjs.io/tutorials/express/middleware">Express middleware</a> that behaves like a mini Express app. It has the
+same <code>get()</code>, <code>post()</code>, <code>all()</code>, etc. methods that an Express app 
+does for defining route handlers.</p>
+<p>Routers are commonly used as Express sub-apps. For example, you
+may have a separate router for REST API requests and another
+router for custom views.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Set up an API sub-app...</span>
+<span class="hljs-keyword">const</span> api = express.Router();
+
+api.get(<span class="hljs-string">'/users'</span>, (req, res) =&gt; { res.json({ <span class="hljs-attr">users</span>: [] }); });
+
+<span class="hljs-comment">// And a views sub-app...</span>
+<span class="hljs-keyword">const</span> views = express.Router();
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> usersPage = fs.readFileSync(<span class="hljs-string">'./views/users.html'</span>, <span class="hljs-string">'utf8'</span>);
+
+views.get(<span class="hljs-string">'/users'</span>, (req, res) =&gt; res.send(usersPage));
+
+<span class="hljs-comment">// And add them to a top-level app</span>
+<span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-comment">// Handles `GET /api/users`</span>
+app.use(<span class="hljs-string">'/api'</span>, api);
+<span class="hljs-comment">// Handles `GET /views/users`</span>
+app.use(<span class="hljs-string">'/views'</span>, views);</code></pre>
+
+  <hr>
+  
+    <h2>More Express Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/express/json">Express Response JSON</a></li>
+  
+
+    <li><a href="/tutorials/express/cors">CORS with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/middleware">Express Middleware</a></li>
+  
+
+    <li><a href="/tutorials/express/error-handling">Error Handling Middleware in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/res">The res Object in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/req">Request Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/file-upload">File Uploads with Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
