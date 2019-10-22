@@ -9,7 +9,7 @@
     "body-parser": "1.19.0",
     "cheerio": "1.0.0-rc.3",
     "cors": "2.8.5",
-    "express": "4.x",
+    "express": "~4.16",
     "express-static": "1.2.6",
     "form-data": "2.3.3",
     "formidable": "1.2.1",

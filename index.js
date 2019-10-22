@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Getting the Request Body in Express',
+      raw: './tutorials/express/body.md',
+      url: '/tutorials/express/body',
+      description: 'Express doesn\'t set the request body for you by default, you need to attach middleware. Here\'s how you set up Express to parse the request body for you.',
+      tags: ['express'],
+      date: moment('2019-10-22')
+    },
+    {
       title: 'Introduction to Express\' Router',
       raw: './tutorials/express/router.md',
       url: '/tutorials/express/router',

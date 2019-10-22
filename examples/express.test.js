@@ -779,4 +779,128 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('request body', function() {
+    it('json middleware', async function() {
+      const express = require('express');
+      const app = express();
+
+      // Parse JSON bodies for this app. Make sure you put
+      // `app.use(express.json())` **before** your route handlers!
+      app.use(express.json());
+
+      app.post('*', (req, res) => {
+        req.body; // JavaScript object containing the parse JSON
+        res.json(req.body);
+      });
+      const server = await app.listen(3000);
+
+      // Demo showing the server in action
+      const axios = require('axios');
+      const res = await axios.post('http://localhost:3000/', {
+        answer: 42
+      });
+      res.data; // `{ answer: 42 }`
+      // acquit:ignore:start
+      assert.deepEqual(res.data, { answer: 42 });
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('malformed json', async function() {
+      const express = require('express');
+      const app = express();
+      app.use(express.json());
+      app.post('*', (req, res) => {
+        res.json(req.body);
+      });
+
+      // Add error handling middleware that Express will call
+      // in the event of malformed JSON.
+      app.use(function(err, req, res, next) {
+        // 'SyntaxError: Unexpected token n in JSON at position 0'
+        err.message;
+        next(err);
+      });
+      // acquit:ignore:start
+      app.use(function(err, req, res, next) {
+        res.status(err.status).send(err.message);
+      });
+      // acquit:ignore:end
+      const server = await app.listen(3000);
+
+      // Demonstrate the server in action
+      const axios = require('axios');
+      const headers = { 'Content-Type': 'application/json' };
+      const err = await axios.
+        post('http://localhost:3000/', 'not json', { headers }).
+        then(() => null, err => err);
+
+      // Express will send an HTTP 400 by default if JSON middleware
+      // failed to parse.
+      err.response.status; // 400
+      err.message; // 'Request failed with status code 400'
+      // acquit:ignore:start
+      assert.equal(err.response.status, 400);
+      assert.equal(err.message, 'Request failed with status code 400');
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('content type', async function() {
+      const express = require('express');
+      const app = express();
+      app.use(express.json());
+      app.post('*', (req, res) => {
+        // undefined, body parser ignored this request
+        // because of the content-type header
+        req.body;
+        // acquit:ignore:start
+        assert.strictEqual(res.body, void 0);
+        // acquit:ignore:end
+        res.json(req.body);
+      });
+      const server = await app.listen(3000);
+
+      // Demo of making a request the JSON body parser ignores.
+      const axios = require('axios');
+      const headers = { 'Content-Type': 'text/plain' };
+      const res = await axios.
+        post('http://localhost:3000/', 'not json', { headers });
+
+      res.data; // Empty object `{}`
+      // acquit:ignore:start
+      assert.deepEqual(res.data, {});
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('url encoded', async function() {
+      const express = require('express');
+      const app = express();
+      app.use(require('body-parser').urlencoded({ extended: false }));
+      app.post('*', (req, res) => {
+        req.body; // { answer: 42 }
+        // acquit:ignore:start
+        assert.deepEqual(req.body, { answer: 42 });
+        // acquit:ignore:end
+        res.json(req.body);
+      });
+      const server = await app.listen(3000);
+
+      // Demo of making a request with a URL-encoded body.
+      const axios = require('axios');
+      const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+      const res = await axios.
+        post('http://localhost:3000/', 'answer=42', { headers });
+
+      res.data; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data, { answer: 42 });
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
