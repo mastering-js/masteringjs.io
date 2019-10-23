@@ -903,4 +903,49 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('route parameters', function() {
+    it('basic example', async function() {
+      const app = require('express')();
+
+      // `:userId` is a route parameter. Express will capture whatever
+      // string comes after `/user/` in the URL and store it in
+      // `req.params.userId`
+      app.get('/user/:userId', (req, res) => {
+        req.params; // { userId: '42' }
+        res.json(req.params);
+      });
+
+      const server = await app.listen(3000);
+      // Demo of making a request to the server
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000/user/42')
+
+      res.data; // { userId: '42' }
+      // acquit:ignore:start
+      assert.deepStrictEqual(res.data, { userId: '42' });
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('multiple', async function() {
+      const app = require('express')();
+
+      app.get('/user/:userId/books/:bookId', (req, res) => {
+        req.params; // { userId: '42', bookId: '101' }
+        res.json(req.params);
+      });
+
+      const server = await app.listen(3000);
+      // Demo of making a request to the server
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000/user/42/books/101')
+
+      res.data; // { userId: '42', bookId: '101' }
+      // acquit:ignore:start
+      assert.deepStrictEqual(res.data, { userId: '42', bookId: '101' });
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });

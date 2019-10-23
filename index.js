@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Route Parameters in Express',
+      raw: './tutorials/express/route-parameters.md',
+      url: '/tutorials/express/route-parameters',
+      description: 'Express route parameters allow your users to pass parameters in the URL. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2019-10-23')
+    },
+    {
       title: 'Getting the Request Body in Express',
       raw: './tutorials/express/body.md',
       url: '/tutorials/express/body',
