@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Query Parameters in Express',
+      raw: './tutorials/express/query-parameters.md',
+      url: '/tutorials/express/query-parameters',
+      description: 'Express automatically parses the URL query string and stores the parsed parameters in `req.query`. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2019-10-25')
+    },
+    {
       title: 'Route Parameters in Express',
       raw: './tutorials/express/route-parameters.md',
       url: '/tutorials/express/route-parameters',

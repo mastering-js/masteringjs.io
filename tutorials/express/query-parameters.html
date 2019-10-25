@@ -1,0 +1,150 @@
+
+<html>
+  <head>
+    <title>Query Parameters in Express - Mastering JS</title>
+
+    <meta property="og:title" content="Query Parameters in Express" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Express automatically parses the URL query string and stores the parsed parameters in `req.query`. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Query Parameters in Express</h1>
+        <div class="date">
+          Oct 25, 2019
+        </div>
+        
+  <p>The <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> portion of
+a URL is the part of the URL after the question mark <code>?</code>. For example:</p>
+<pre><code>?answer=<span class="hljs-number">42</span></code></pre><p>Each <code>key=value</code> pair is called a <em>query parameter</em>. If your query string has 
+multiple query parameters, they&#39;re separated by <code>&amp;</code>. For example, the below
+string has 2 query parameters, <code>a</code> and <code>b</code>.</p>
+<pre><code>?a=<span class="hljs-number">1</span>&amp;b=<span class="hljs-number">2</span></code></pre><p>Express automatically parses query parameters for you and stores them
+on the <a href="/tutorials/express/req">request object</a> as <a href="http://expressjs.com/en/4x/api.html#req.query"><code>req.query</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  req.query; <span class="hljs-comment">// { a: '1', b: '2' }</span>
+  res.json(req.query);
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+<span class="hljs-comment">// Demo of making a request to the server</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/?a=1&amp;b=2'</span>)
+
+res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span></code></pre>
+<h2 id="objects-and-arrays-in-query-strings">Objects and Arrays in Query Strings</h2>
+<p>If a query parameter appears multiple times in the query string, Express
+will group the values into an array. For example, given the below query string:</p>
+<pre><code>?color=black&amp;color=yellow</code></pre><p>Express will set <code>req.query.color</code> to an array <code>[&#39;black&#39;, &#39;yellow&#39;]</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  req.query; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span>
+  res.json(req.query);
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+<span class="hljs-comment">// Demo of making a request to the server</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow'</span>;
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
+
+res.data; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span></code></pre>
+<p>If you use square brackets in a query string parameter, Express will parse
+that parameter as an object. For example, Express will parse the below
+query string into <code>{ shoe: { color: &#39;white&#39; } }</code></p>
+<pre><code class="language-javascript">?shoe[color]=white</code></pre>
+<p>This default behavior is often a nasty surprise and <a href="https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html">can cause security vulnerabilities</a>. To prevent Express from parsing
+square brackets as object properties,
+you should set the <a href="https://expressjs.com/en/api.html#app.settings.table"><code>query parser</code> app setting to &#39;simple&#39;</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// Only parse query parameters into strings, not objects</span>
+app.set(<span class="hljs-string">'query parser'</span>, <span class="hljs-string">'simple'</span>);
+
+app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  req.query; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span>
+  res.json(req.query);
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+<span class="hljs-comment">// Demo of making a request to the server</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow&amp;shoe[color]=white'</span>;
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
+
+res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span></code></pre>
+
+  <hr>
+  
+    <h2>More Express Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/express/route-parameters">Route Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/body">Getting the Request Body in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/router">Introduction to Express' Router</a></li>
+  
+
+    <li><a href="/tutorials/express/json">Express Response JSON</a></li>
+  
+
+    <li><a href="/tutorials/express/cors">CORS with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/middleware">Express Middleware</a></li>
+  
+
+    <li><a href="/tutorials/express/error-handling">Error Handling Middleware in Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

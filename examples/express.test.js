@@ -948,4 +948,74 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('query parameters', function() {
+    it('basic example', async function() {
+      const app = require('express')();
+
+      app.get('*', (req, res) => {
+        req.query; // { a: '1', b: '2' }
+        res.json(req.query);
+      });
+
+      const server = await app.listen(3000);
+      // Demo of making a request to the server
+      const axios = require('axios');
+      const res = await axios.get('http://localhost:3000/?a=1&b=2')
+
+      res.data; // { a: '1', b: '2' }
+      // acquit:ignore:start
+      assert.deepStrictEqual(res.data, { a: '1', b: '2' });
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('array', async function() {
+      const app = require('express')();
+
+      app.get('*', (req, res) => {
+        req.query; // { color: ['black', 'yellow'] }
+        res.json(req.query);
+      });
+
+      const server = await app.listen(3000);
+      // Demo of making a request to the server
+      const axios = require('axios');
+      const querystring = '?color=black&color=yellow';
+      const res = await axios.get('http://localhost:3000/' + querystring);
+
+      res.data; // { color: ['black', 'yellow'] }
+      // acquit:ignore:start
+      assert.deepStrictEqual(res.data, { color: ['black', 'yellow'] });
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('simple', async function() {
+      const app = require('express')();
+
+      // Only parse query parameters into strings, not objects
+      app.set('query parser', 'simple');
+
+      app.get('*', (req, res) => {
+        req.query; // { color: ['black', 'yellow'], 'shoe[color]': 'white' }
+        res.json(req.query);
+      });
+
+      const server = await app.listen(3000);
+      // Demo of making a request to the server
+      const axios = require('axios');
+      const querystring = '?color=black&color=yellow&shoe[color]=white';
+      const res = await axios.get('http://localhost:3000/' + querystring);
+
+      res.data; // { color: ['black', 'yellow'], 'shoe[color]': 'white' }
+      // acquit:ignore:start
+      assert.deepStrictEqual(res.data, {
+        color: ['black', 'yellow'],
+        'shoe[color]': 'white'
+      });
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
