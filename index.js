@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What is "Falsy" in JavaScript?',
+      raw: './tutorials/fundamentals/falsy.md',
+      url: '/tutorials/fundamentals/falsy',
+      description: 'JavaScript type coercion is full of surprises, but if you understand the basics it can save you a lot of wasteful type checks. Here is what you need to know about falsy values.',
+      tags: ['fundamentals'],
+      date: moment('2019-10-28')
+    },
+    {
       title: 'Query Parameters in Express',
       raw: './tutorials/express/query-parameters.md',
       url: '/tutorials/express/query-parameters',

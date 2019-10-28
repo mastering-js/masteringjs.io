@@ -1,0 +1,146 @@
+
+<html>
+  <head>
+    <title>What is "Falsy" in JavaScript? - Mastering JS</title>
+
+    <meta property="og:title" content="What is "Falsy" in JavaScript?" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="JavaScript type coercion is full of surprises, but if you understand the basics it can save you a lot of wasteful type checks. Here is what you need to know about falsy values." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>What is "Falsy" in JavaScript?</h1>
+        <div class="date">
+          Oct 28, 2019
+        </div>
+        
+  <p>In JavaScript, a value is <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">falsy</a>
+if JavaScript&#39;s built-in type coercion converts it to <code>false</code>. For example,
+consider the below <code>if</code> statement:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">if</span> (v) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'v is not falsy'</span>);
+}</code></pre>
+<p>The <code>console.log()</code> will only run if <code>v</code> is <strong>not</strong> one of the below values:</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>0n</code>: 0 as a <a href="http://thecodebarbarian.com/an-overview-of-bigint-in-node-js.html">BigInt</a></li>
+<li><code>&#39;&#39;</code>: Empty string</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+</ul>
+<p>These 7 values are the only falsy values in JavaScript. Any value that is not falsy is <a href="https://developer.mozilla.org/en-US/docs/Glossary/truthy">truthy</a>. </p>
+<p>In particular, a non-null <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">object</a> is always truthy, even if its <a href="/tutorials/fundamentals/valueof"><code>valueOf()</code> function</a> returns a falsy value.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFalsy</span>(<span class="hljs-params">v</span>) </span>{
+  <span class="hljs-keyword">return</span> !v;
+}
+
+<span class="hljs-comment">// `false`. The object form of `0` is truthy, even though 0 is falsy.</span>
+isFalsy(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">0</span>));</code></pre>
+<h2 id="recommendations">Recommendations</h2>
+<p>Using truthy/falsy for implicit type coercions in <code>if</code> statements is
+typically messy. It is rare to find a case that the 7 falsy values are exactly
+the set of values that you want to look out for.</p>
+<p>For example, suppose you&#39;re implementing a function that checks that a string
+is shorter than 25 characters.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkLength</span>(<span class="hljs-params">v</span>) </span>{
+  <span class="hljs-keyword">if</span> (!v) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Must provide a string!'</span>);
+  }
+  <span class="hljs-keyword">return</span> v.length &lt; <span class="hljs-number">25</span>;
+}</code></pre>
+<p>Unfortunately, <code>checkLength(&#39;&#39;)</code> will throw an error because empty string is
+falsy. Instead, you should check if <code>v</code> is a string:</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkLength</span>(<span class="hljs-params">v</span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> v !== <span class="hljs-string">'string'</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Must provide a string!'</span>);
+  }
+  <span class="hljs-keyword">return</span> v.length &lt; <span class="hljs-number">25</span>;
+}</code></pre>
+<h2 id="nullish-values">Nullish Values</h2>
+<p>Instead of checking for truthy/falsy values, you usually want to check for
+&quot;nullish&quot; values. One of the common use cases for falsy checks is making sure
+that you don&#39;t get a <code>TypeError: Cannot read property &#39;prop&#39; of null</code> error 
+when accessing a property of a value <code>v</code>.</p>
+<p>It is it is safe to access <code>v.prop</code> unless <code>v</code> is strictly equal to <code>null</code> or 
+<code>undefined</code>. Even <code>NaN.prop</code> is fine.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-built_in">Number</span>(<span class="hljs-string">'abc'</span>);
+x; <span class="hljs-comment">// NaN</span>
+x.prop; <span class="hljs-comment">// undefined</span></code></pre>
+<p>Checking if <code>v == null</code> is equivalent to <code>v === null || v === undefined</code>.
+In other words, a value is loosely equal to <code>null</code> only if it is strictly
+equal to <code>null</code> or <code>undefined</code>. So checking if <code>v == null</code> is often
+more accurate than checking for truthy or falsy values.</p>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/pojo">What is a Plain Old JavaScript Object (POJO)?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/then">The Promise then() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise">Promises in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/instanceof">The instanceof Operator in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
