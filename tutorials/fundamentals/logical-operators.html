@@ -1,0 +1,166 @@
+
+<html>
+  <head>
+    <title>Logical Operators in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Logical Operators in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="JavaScript has 3 logical operators: `&&`, `||`, and `!`. These 3 operators are usually used to structure `if` statements, but they also have some unique quirks that you can take advantage of. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Logical Operators in JavaScript</h1>
+        <div class="date">
+          Oct 30, 2019
+        </div>
+        
+  <p>JavaScript has 3 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators">logical operators</a>:</p>
+<ul>
+<li><code>!</code>: Logical NOT</li>
+<li><code>&amp;&amp;</code>: Logical AND</li>
+<li><code>||</code>: Logical OR</li>
+</ul>
+<h2 id="logical-not">Logical NOT</h2>
+<p>The logical not operator <code>!</code> checks whether a value is truthy or <a href="/tutorials/fundamentals/falsy">falsy</a>. In other words, <code>!v === false</code> <strong>unless</strong> <code>v</code> is one
+of the below 7 values:</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>0n</code>: 0 as a <a href="http://thecodebarbarian.com/an-overview-of-bigint-in-node-js.html">BigInt</a></li>
+<li><code>&#39;&#39;</code>: Empty string</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+</ul>
+<pre><code class="language-javascript"><span class="hljs-comment">// Falsy values means `!v === true`</span>
+!<span class="hljs-literal">false</span>; <span class="hljs-comment">// true</span>
+!<span class="hljs-number">0</span>; <span class="hljs-comment">// true</span>
+!<span class="hljs-string">''</span>; <span class="hljs-comment">// true</span>
+!<span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+!<span class="hljs-literal">null</span>; <span class="hljs-comment">// true</span>
+!<span class="hljs-built_in">Number</span>(<span class="hljs-string">'abc'</span>); <span class="hljs-comment">// true</span>
+
+<span class="hljs-comment">// All other values are "truthy", meaning `!v === false`</span>
+!<span class="hljs-number">1</span>; <span class="hljs-comment">// true</span>
+!({}); <span class="hljs-comment">// true</span>
+!<span class="hljs-function">(<span class="hljs-params">{ valueOf: (</span>) =&gt;</span> <span class="hljs-number">0</span> }); <span class="hljs-comment">// true</span>
+!<span class="hljs-string">' '</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>The not operator always returns a boolean, unlike <code>||</code> and <code>&amp;&amp;</code>. A common
+way to convert a value <code>v</code> to a boolean is to use the logical not operator twice:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Convert `v` to a boolean</span>
+!!v;</code></pre>
+<h2 id="logical-or">Logical OR</h2>
+<p>The logical or operator <code>||</code> operates on 2 values, and returns a truthy
+value if at least one of the values is truthy.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// True if `a` or `b` is truthy. Will only be `false` if</span>
+<span class="hljs-comment">// both `a` and `b` are falsy.</span>
+!!(a || b);</code></pre>
+<p>The logical or operator is most often used in <code>if</code> statements to execute
+the <code>if</code> block if one of multiple conditions is true. But, the logical
+or operator does <strong>not</strong> necessarily return a boolean:</p>
+<ul>
+<li>If <code>a</code> is truthy, <code>(a || b) === a</code></li>
+<li>If <code>a</code> is falsy, <code>(a || b) === b</code></li>
+</ul>
+<p>This works neatly with multiple or operators: <code>a || b || c || d</code> returns
+the leftmost value that is truthy. Because of this, logical or is often
+used for default values:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> defaultNumReps = <span class="hljs-number">2</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">repeat</span>(<span class="hljs-params">str, numReps</span>) </span>{
+  <span class="hljs-comment">// If `numReps` is null, undefined, or 0, this sets</span>
+  <span class="hljs-comment">// `numReps` to the default value `2`</span>
+  numReps = numReps || defaultNumReps;
+
+  <span class="hljs-keyword">let</span> ret = <span class="hljs-string">''</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numReps; ++i) {
+    ret += str;
+  }
+  <span class="hljs-keyword">return</span> ret;
+}</code></pre>
+<h2 id="logical-and">Logical AND</h2>
+<p>The logical and operator <code>&amp;&amp;</code> operates on 2 values, and returns falsy
+if at least one of the values is falsy:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Only true if both `a` and `b` are truthy.</span>
+!!(a &amp;&amp; b);</code></pre>
+<p>The logical and operator is most often used in <code>if</code> statements to execute
+the <code>if</code> block if multiple conditions are all true. But, like the logical
+or operator, the logical and operator doesn&#39;t necessarily return a boolean:</p>
+<ul>
+<li>If <code>a</code> is falsy, <code>(a &amp;&amp; b) === a</code></li>
+<li>If <code>a</code> is truthy, <code>(a &amp;&amp; b) === b</code></li>
+</ul>
+<p>Given a chain of multiple logical and operators <code>a &amp;&amp; b &amp;&amp; c &amp;&amp; d</code>, JavaScript
+returns the left-most falsy value.</p>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/falsy">What is "Falsy" in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/pojo">What is a Plain Old JavaScript Object (POJO)?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/then">The Promise then() Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise">Promises in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

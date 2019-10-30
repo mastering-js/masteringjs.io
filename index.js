@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Logical Operators in JavaScript',
+      raw: './tutorials/fundamentals/logical-operators.md',
+      url: '/tutorials/fundamentals/logical-operators',
+      description: 'JavaScript has 3 logical operators: `&&`, `||`, and `!`. These 3 operators are usually used to structure `if` statements, but they also have some unique quirks that you can take advantage of. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-10-30')
+    },
+    {
       title: 'What is "Falsy" in JavaScript?',
       raw: './tutorials/fundamentals/falsy.md',
       url: '/tutorials/fundamentals/falsy',

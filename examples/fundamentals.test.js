@@ -2282,6 +2282,38 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('logical operators', function() {
+    it('not', function() {
+      // Falsy values means `!v === true`
+      !false; // true
+      !0; // true
+      !''; // true
+      !undefined; // true
+      !null; // true
+      !Number('abc'); // true
+      // acquit:ignore:start
+      assert.ok(!false);
+      assert.ok(!0);
+      assert.ok(!'');
+      assert.ok(!undefined);
+      assert.ok(!null);
+      assert.ok(!Number('abc'));
+      // acquit:ignore:end
+
+      // All other values are "truthy", meaning `!v === false`
+      !1; // true
+      !({}); // true
+      !({ valueOf: () => 0 }); // true
+      !' '; // true
+      // acquit:ignore:start
+      assert.ok(!!1);
+      assert.ok(!!({}));
+      assert.ok(!!({ valueOf: () => 0 }));
+      assert.ok(!!' ');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
