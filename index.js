@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Truthy Values in JavaScript',
+      raw: './tutorials/fundamentals/truthy.md',
+      url: '/tutorials/fundamentals/truthy',
+      description: 'JavaScript lets you put any type of value in an `if` statement, not just a boolean. JavaScript\'s native type coercion then takes over - a "truthy" value is a value that JavaScript\'s native type coercion converts to true.',
+      tags: ['fundamentals'],
+      date: moment('2019-11-04')
+    },
+    {
       title: 'Logical Operators in JavaScript',
       raw: './tutorials/fundamentals/logical-operators.md',
       url: '/tutorials/fundamentals/logical-operators',

@@ -1,0 +1,123 @@
+
+<html>
+  <head>
+    <title>Truthy Values in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Truthy Values in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="JavaScript lets you put any type of value in an `if` statement, not just a boolean. JavaScript's native type coercion then takes over - a "truthy" value is a value that JavaScript's native type coercion converts to true." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Truthy Values in JavaScript</h1>
+        <div class="date">
+          Nov 4, 2019
+        </div>
+        
+  <p>In JavaScript, a value is <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">truthy</a> if JavaScript&#39;s built-in type coercion converts it to <code>true</code>.
+Every value is either truthy or <a href="/tutorials/fundamentals/falsy">falsy</a>, so
+any value that isn&#39;t falsy must be truthy.</p>
+<p>Truthy and falsy usually come up in the context of <code>if</code> statements. For
+example, the below <code>if</code> statement will print if and only if <code>v</code> is truthy.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">if</span> (v) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'v is truthy!'</span>);
+}</code></pre>
+<p>Remember that there are <a href="/tutorials/fundamentals/falsy">only 7 values in JavaScript that are falsy</a>:</p>
+<ul>
+<li><code>false</code></li>
+<li><code>0</code></li>
+<li><code>0n</code>: 0 as a <a href="http://thecodebarbarian.com/an-overview-of-bigint-in-node-js.html">BigInt</a></li>
+<li><code>&#39;&#39;</code>: Empty string</li>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>NaN</code></li>
+</ul>
+<p>Every other value is truthy. For example, even a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code> object containing <code>false</code></a> is truthy.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> v = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(<span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">// Will print! All JavaScript objects are truthy.</span>
+<span class="hljs-keyword">if</span> (v) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'v is truthy!'</span>);
+}</code></pre>
+<h2 id="with-the-logical-not-operator">With the Logical NOT Operator</h2>
+<p>The <a href="/tutorials/fundamentals/logical-operators#logical-not">logical NOT operator in JavaScript</a> converts truthy values to <code>false</code> and
+falsy values to <code>true</code>. In other words, the logical <code>!</code> operator lets
+you store the value JavaScript&#39;s built-in boolean coercion converts <code>v</code> into.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `b` will be false if `v` is truthy</span>
+<span class="hljs-keyword">const</span> b = !v;</code></pre>
+<p>You might see the logical NOT operator twice in a row: <code>!!v</code>. This is
+how you convert a value to a boolean using JavaScript&#39;s built-in coercion.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `isTruthy` is true if and only if `v` is truthy.</span>
+<span class="hljs-keyword">const</span> isTruthy = !!v;</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/logical-operators">Logical Operators in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/falsy">What is "Falsy" in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/pojo">What is a Plain Old JavaScript Object (POJO)?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/then">The Promise then() Function in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
