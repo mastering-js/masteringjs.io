@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Post Form Data With Axios',
+      raw: './tutorials/axios/form-data.md',
+      url: '/tutorials/axios/form-data',
+      description: 'Here\'s how you can upload files from JavaScript using Axios and JavaScript\'s built-in FormData class.',
+      tags: ['axios'],
+      date: moment('2019-11-05')
+    },
+    {
       title: 'Truthy Values in JavaScript',
       raw: './tutorials/fundamentals/truthy.md',
       url: '/tutorials/fundamentals/truthy',

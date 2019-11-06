@@ -11,7 +11,7 @@
     "cors": "2.8.5",
     "express": "~4.16",
     "express-static": "1.2.6",
-    "form-data": "2.3.3",
+    "form-data": "2.5.1",
     "formidable": "1.2.1",
     "highlight.js": "9.12.0",
     "lodash": "4.x",
@@ -20,7 +20,7 @@
     "moment": "2.x",
     "nightmare": "3.x",
     "serve": "11.x",
-    "axios": "0.18.x",
+    "axios": "0.19.x",
     "mathjs": "5.9.x",
     "mongoose": "5.x",
     "mongoose-beautiful-unique-validation": "7.x",
@@ -36,6 +36,7 @@
   },
   "scripts": {
     "serve": "serve .",
+    "server": "node ./server",
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
   }
 }

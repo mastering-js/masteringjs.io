@@ -63,23 +63,15 @@ app.post(<span class="hljs-string">'/upload'</span>, <span class="hljs-function"
   <span class="hljs-comment">// Parse `req` and upload all associated files</span>
   form.parse(req, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, fields, files</span>) </span>{
     <span class="hljs-keyword">if</span> (err != <span class="hljs-literal">null</span>) {
-      <span class="hljs-keyword">return</span> res.json({ <span class="hljs-attr">message</span>: err.message });
+      <span class="hljs-built_in">console</span>.log(err)
+      <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">400</span>).json({ <span class="hljs-attr">message</span>: err.message });
     }
 
     <span class="hljs-comment">// The `files` object contains all files that were uploaded. Formidable</span>
     <span class="hljs-comment">// parses each file and uploads it to a temporary file for you.</span>
     <span class="hljs-keyword">const</span> [firstFileName] = <span class="hljs-built_in">Object</span>.keys(files);
 
-    <span class="hljs-comment">// The `path` property is where formidable stored the file</span>
-    <span class="hljs-built_in">console</span>.log(files[firstFileName].path);
-
-    <span class="hljs-comment">// You can read the file and print it out.</span>
-    fs.readFile(files[firstFileName].path, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, content</span>) </span>{
-      <span class="hljs-keyword">if</span> (err != <span class="hljs-literal">null</span>) {
-        <span class="hljs-keyword">return</span> res.json({ <span class="hljs-attr">message</span>: err.message });
-      }
-      res.json({ <span class="hljs-attr">content</span>: content.toString(<span class="hljs-string">'utf8'</span>) });
-    });
+    res.json({ <span class="hljs-attr">filename</span>: firstFileName });
   });
 });
 

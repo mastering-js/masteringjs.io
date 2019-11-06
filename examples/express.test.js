@@ -212,58 +212,27 @@ describe('Express', function() {
       // Parse `req` and upload all associated files
       form.parse(req, function(err, fields, files) {
         if (err != null) {
-          return res.json({ message: err.message });
+          console.log(err)
+          return res.status(400).json({ message: err.message });
         }
 
         // The `files` object contains all files that were uploaded. Formidable
         // parses each file and uploads it to a temporary file for you.
         const [firstFileName] = Object.keys(files);
 
-        // The `path` property is where formidable stored the file
-        console.log(files[firstFileName].path);
-
-        // You can read the file and print it out.
-        fs.readFile(files[firstFileName].path, function(err, content) {
-          if (err != null) {
-            return res.json({ message: err.message });
-          }
-          res.json({ content: content.toString('utf8') });
-        });
+        res.json({ filename: firstFileName });
       });
     });
 
     const server = await app.listen(3000);
     // acquit:ignore:start
-    const Writable = require('readable-stream').Writable;
-    class ConcatStream extends Writable {
-      constructor(cb) {
-        super();
-
-        this.on('finish', () => cb(null, this._body));
-      }
-
-      _write(chunk, enc, next) {
-        if (this._body == null) {
-          this._body = '';
-        }
-        this._body = this._body + chunk.toString();
-        next();
-      }
-    }
-    const fd = new FormData();
-    fd.append('file.txt', 'Hello World', {
-      filename: 'file.txt',
-      contentType: 'text/plain',
-      knownLength: 'Hello World'.length
-    });
-    const content = await new Promise(resolve => {
-      fd.pipe(new ConcatStream((err, res) => resolve(res)));
-    });
-    const res = await axios.post('http://localhost:3000/upload', content, {
-      headers: fd.getHeaders()
+    const formData = new FormData();
+    formData.append('yinyang.png', fs.createReadStream('./yinyang.png'));
+    const res = await axios.post('http://localhost:3000/upload', formData, {
+      headers: formData.getHeaders()
     });
 
-    assert.equal(res.data.content, 'Hello World');
+    assert.equal(res.data.filename, 'yinyang.png');
     await server.close();
     // acquit:ignore:end
   });
