@@ -967,4 +967,214 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Populate', function() {
+    it('basic with query', async function() {
+      // acquit:ignore:start
+      const Movie = mongoose.model('Movie', mongoose.Schema({
+        title: String,
+        director: {
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        },
+        actors: [{
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        }]
+      }));
+      
+      const Person = mongoose.model('Person', mongoose.Schema({
+        name: String
+      }));
+      await Movie.deleteMany({});
+      await Person.deleteMany({});
+      // acquit:ignore:end
+      const people = await Person.create([
+        { name: 'James Cameron' },
+        { name: 'Arnold Schwarzenegger' },
+        { name: 'Linda Hamilton' }
+      ]);
+      await Movie.create({
+        title: 'Terminator 2',
+        director: people[0]._id,
+        actors: [people[1]._id, people[2]._id]
+      });
+
+      // Load just the movie's director
+      let movie = await Movie.findOne().populate('director');
+      movie.director.name; // 'James Cameron'
+      movie.actors[0].name; // undefined
+      // acquit:ignore:start
+      assert.equal(movie.director.name, 'James Cameron');
+      assert.equal(movie.actors[0].name, void 0);
+      // acquit:ignore:end
+
+      // Load both the director and the actors
+      movie = await Movie.findOne().populate('director').populate('actors');
+      movie.director.name; // 'James Cameron'
+      movie.actors[0].name; // 'Arnold Schwarzenegger'
+      movie.actors[1].name; // 'Linda Hamilton'
+      // acquit:ignore:start
+      assert.equal(movie.director.name, 'James Cameron');
+      assert.equal(movie.actors[0].name, 'Arnold Schwarzenegger');
+      assert.equal(movie.actors[1].name, 'Linda Hamilton');
+      // acquit:ignore:end
+    });
+
+    it('basic with document', async function() {
+      // acquit:ignore:start
+      const Movie = mongoose.model('Movie', mongoose.Schema({
+        title: String,
+        director: {
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        },
+        actors: [{
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        }]
+      }));
+      
+      const Person = mongoose.model('Person', mongoose.Schema({
+        name: String
+      }));
+
+      await Movie.deleteMany({});
+      await Person.deleteMany({});
+      const people = await Person.create([
+        { name: 'James Cameron' },
+        { name: 'Arnold Schwarzenegger' },
+        { name: 'Linda Hamilton' }
+      ]);
+      await Movie.create({
+        title: 'Terminator 2',
+        director: people[0]._id,
+        actors: [people[1]._id, people[2]._id]
+      });
+      // acquit:ignore:end
+      // Load just the movie's director
+      let movie = await Movie.findOne();
+      movie.director.name; // undefined
+      movie.actors[0].name; // undefined
+      // acquit:ignore:start
+      assert.equal(movie.director.name, void 0);
+      assert.equal(movie.actors[0].name, void 0);
+      // acquit:ignore:end
+
+      // Populate the director
+      await movie.populate('director').execPopulate();
+      movie.director.name; // 'James Cameron'
+      movie.actors[0].name; // undefined
+      // acquit:ignore:start
+      assert.equal(movie.director.name, 'James Cameron');
+      assert.equal(movie.actors[0].name, void 0);
+      // acquit:ignore:end
+
+      // Populate the actors
+      await movie.populate('actors').execPopulate();
+      movie.director.name; // 'James Cameron'
+      movie.actors[0].name; // 'Arnold Schwarzenegger'
+      movie.actors[1].name; // 'Linda Hamilton'
+      // acquit:ignore:start
+      assert.equal(movie.director.name, 'James Cameron');
+      assert.equal(movie.actors[0].name, 'Arnold Schwarzenegger');
+      assert.equal(movie.actors[1].name, 'Linda Hamilton');
+      // acquit:ignore:end
+    });
+
+    it('missing docs', async function() {
+      // acquit:ignore:start
+      const Movie = mongoose.model('Movie', mongoose.Schema({
+        title: String,
+        director: {
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        },
+        actors: [{
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        }]
+      }));
+      
+      const Person = mongoose.model('Person', mongoose.Schema({
+        name: String
+      }));
+      await Movie.deleteMany({});
+      await Person.deleteMany({});
+      const people = await Person.create([
+        { name: 'James Cameron' },
+        { name: 'Arnold Schwarzenegger' },
+        { name: 'Linda Hamilton' }
+      ]);
+      await Movie.create({
+        title: 'Terminator 2',
+        director: people[0]._id,
+        actors: [people[1]._id, people[2]._id]
+      });
+      // acquit:ignore:end
+      await Person.deleteOne({ name: 'James Cameron' });
+
+      const movie = await Movie.findOne().populate('director');
+      movie.director; // null
+      // acquit:ignore:start
+      assert.strictEqual(movie.director, null);
+      // acquit:ignore:end
+    });
+
+    it('missing array', async function() {
+      // acquit:ignore:start
+      const Movie = mongoose.model('Movie', mongoose.Schema({
+        title: String,
+        director: {
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        },
+        actors: [{
+          type: mongoose.ObjectId,
+          ref: 'Person'
+        }]
+      }));
+      
+      const Person = mongoose.model('Person', mongoose.Schema({
+        name: String
+      }));
+      await Movie.deleteMany({});
+      await Person.deleteMany({});
+      const people = await Person.create([
+        { name: 'James Cameron' },
+        { name: 'Arnold Schwarzenegger' },
+        { name: 'Linda Hamilton' }
+      ]);
+      await Movie.create({
+        title: 'Terminator 2',
+        director: people[0]._id,
+        actors: [people[1]._id, people[2]._id]
+      });
+      // acquit:ignore:end
+      await Person.deleteOne({ name: 'Arnold Schwarzenegger' });
+
+      let movie = await Movie.findOne().populate('actors');
+      movie.actors.length; // 1
+      movie.actors[0].name; // 'Linda Hamilton'
+      // acquit:ignore:start
+      assert.equal(movie.actors.length, 1);
+      assert.equal(movie.actors[0].name, 'Linda Hamilton');
+      // acquit:ignore:end
+
+      // Set `retainNullValues` option to insert `null` for
+      // missing documents in the array
+      movie = await Movie.findOne().populate({
+        path: 'actors',
+        options: { retainNullValues: true }
+      });
+      movie.actors.length; // 2
+      movie.actors[0]; // null
+      movie.actors[1].name; // 'Linda Hamilton'
+      // acquit:ignore:start
+      assert.equal(movie.actors.length, 2);
+      assert.strictEqual(movie.actors[0], null);
+      assert.equal(movie.actors[1].name, 'Linda Hamilton');
+      // acquit:ignore:end
+    });
+  });
 });
