@@ -1177,4 +1177,146 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('findOneAndUpdate', function() {
+    it('getting started', async function() {
+      const Character = mongoose.model('Character', Schema({
+        name: String,
+        rank: String
+      }));
+
+      await Character.create({ name: 'Luke Skywalker' });
+
+      // By default, `findOneAndUpdate()` returns the document as
+      // it was **before** MongoDB applied the update.
+      const filter = { name: 'Luke Skywalker' };
+      const update = { rank: 'Jedi Knight' };
+      let doc = await Character.findOneAndUpdate(filter, update);
+      doc.name; // 'Luke Skywalker'
+      doc.rank; // undefined
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Luke Skywalker');
+      assert.strictEqual(doc.rank, void 0);
+      // acquit:ignore:end
+
+      // But the document is updated in the database:
+      doc = await Character.findOne(filter);
+      doc.rank; // 'Jedi Knight'
+      // acquit:ignore:start
+      assert.equal(doc.rank, 'Jedi Knight');
+      // acquit:ignore:end
+    });
+
+    it('new option', async function() {
+      // acquit:ignore:start
+      const Character = mongoose.model('Character', Schema({
+        name: String,
+        rank: String
+      }));
+      await Character.deleteMany({});
+      await Character.create({ name: 'Luke Skywalker' });
+      // acquit:ignore:end
+      // If you set the `new` option to `true`, Mongoose will
+      // return the document with the update applied.
+      const filter = { name: 'Luke Skywalker' };
+      const update = { rank: 'Jedi Knight' };
+      const opts = { new: true };
+
+      let doc = await Character.findOneAndUpdate(filter, update, opts);
+      doc.name; // 'Luke Skywalker'
+      doc.rank; // 'Jedi Knight'
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Luke Skywalker');
+      assert.strictEqual(doc.rank, 'Jedi Knight');
+      // acquit:ignore:end
+    });
+
+    it('new option', async function() {
+      // acquit:ignore:start
+      const Character = mongoose.model('Character', Schema({
+        name: String,
+        rank: String
+      }));
+      await Character.deleteMany({});
+      await Character.create({ name: 'Luke Skywalker' });
+      // acquit:ignore:end
+      // If you set the `new` option to `true`, Mongoose will
+      // return the document with the update applied.
+      const filter = { name: 'Luke Skywalker' };
+      const update = { rank: 'Jedi Knight' };
+      const opts = { new: true };
+
+      let doc = await Character.findOneAndUpdate(filter, update, opts);
+      doc.name; // 'Luke Skywalker'
+      doc.rank; // 'Jedi Knight'
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Luke Skywalker');
+      assert.strictEqual(doc.rank, 'Jedi Knight');
+      // acquit:ignore:end
+    });
+
+    it('upsert', async function() {
+      // acquit:ignore:start
+      const Character = mongoose.model('Character', Schema({
+        name: String,
+        rank: String
+      }));
+      // acquit:ignore:end
+      await Character.deleteMany({});
+
+      const filter = { name: 'Luke Skywalker' };
+      const update = { rank: 'Jedi Knight' };
+      // If you set the `upsert` option, Mongoose will insert
+      // a new document if one isn't found.
+      const opts = { new: true, upsert: true };
+
+      let doc = await Character.findOneAndUpdate(filter, update, opts);
+      doc.name; // 'Luke Skywalker'
+      doc.rank; // 'Jedi Knight'
+      // acquit:ignore:start
+      assert.equal(doc.name, 'Luke Skywalker');
+      assert.strictEqual(doc.rank, 'Jedi Knight');
+      // acquit:ignore:end
+
+      // If `new` is `false` and an upsert happened,
+      // `findOneAndUpdate()` will return `null`
+      await Character.deleteMany({});
+
+      opts.new = false;
+      doc = await Character.findOneAndUpdate(filter, update, opts);
+      doc; // null
+      // acquit:ignore:start
+      assert.strictEqual(doc, null);
+      // acquit:ignore:end
+    });
+
+    it('middleware', async function() {
+      const schema = Schema({
+        name: String,
+        rank: String
+      });
+      schema.pre('findOneAndUpdate', function middleware() {
+        this.getFilter(); // { name: 'Luke Skywalker' }
+        this.getUpdate(); // { rank: 'Jedi Knight' }
+        // acquit:ignore:start
+        assert.deepEqual(this.getFilter(), { name: 'Luke Skywalker' });
+        assert.deepEqual(this.getUpdate(), { rank: 'Jedi Knight' });
+        ++called;
+        // acquit:ignore:end
+      });
+      const Character = mongoose.model('Character', schema);
+      // acquit:ignore:start
+      let called = 0;
+      await Character.deleteMany({});
+      // acquit:ignore:end
+
+      const filter = { name: 'Luke Skywalker' };
+      const update = { rank: 'Jedi Knight' };
+      // Mongoose calls the `middleware()` function above
+      await Character.findOneAndUpdate(filter, update, opts);
+      // acquit:ignore:start
+      assert.equal(called, 1);
+      // acquit:ignore:end
+    });
+  });
 });

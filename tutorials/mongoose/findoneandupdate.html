@@ -1,0 +1,166 @@
+
+<html>
+  <head>
+    <title>findOneAndUpdate() in Mongoose - Mastering JS</title>
+
+    <meta property="og:title" content="findOneAndUpdate() in Mongoose" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Mongoose `findOneAndUpdate()` lets you find and modify a document atomically. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>findOneAndUpdate() in Mongoose</h1>
+        <div class="date">
+          Nov 13, 2019
+        </div>
+        
+  <p><a href="https://mongoosejs.com/docs/tutorials/findoneandupdate.html">Mongoose&#39;s <code>findOneAndUpdate()</code> function</a> finds the first document that matches a given <code>filter</code>, applies an <code>update</code>, and returns the document. Unlike <code>updateOne()</code>, <code>findOneAndUpdate()</code>
+returns the updated document. Unlike <code>save()</code>,
+<code>findOneAndUpdate()</code> is atomic: the document can&#39;t
+change between when MongoDB finds the document and when MongoDB applies the update.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>You need at least 2 parameters to call <code>findOneAndUpdate()</code>: <code>filter</code>
+and <code>update</code>. MongoDB finds the first document that matches <code>filter</code>
+and applies <code>update</code>. By default, <code>findOneAndUpdate()</code> returns the
+document as it was <strong>before</strong> MongoDB applied <code>update</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-built_in">String</span>
+}));
+
+<span class="hljs-keyword">await</span> Character.create({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Luke Skywalker'</span> });
+
+<span class="hljs-comment">// By default, `findOneAndUpdate()` returns the document as</span>
+<span class="hljs-comment">// it was **before** MongoDB applied the update.</span>
+<span class="hljs-keyword">const</span> filter = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Luke Skywalker'</span> };
+<span class="hljs-keyword">const</span> update = { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Jedi Knight'</span> };
+<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(filter, update);
+doc.name; <span class="hljs-comment">// 'Luke Skywalker'</span>
+doc.rank; <span class="hljs-comment">// undefined</span>
+
+<span class="hljs-comment">// But the document is updated in the database:</span>
+doc = <span class="hljs-keyword">await</span> Character.findOne(filter);
+doc.rank; <span class="hljs-comment">// 'Jedi Knight'</span></code></pre>
+<p>To return the document as it was <strong>after</strong> MongoDB applied the given
+<code>update</code>, you need to set the <code>new</code> option to <code>true</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// If you set the `new` option to `true`, Mongoose will</span>
+<span class="hljs-comment">// return the document with the update applied.</span>
+<span class="hljs-keyword">const</span> filter = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Luke Skywalker'</span> };
+<span class="hljs-keyword">const</span> update = { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Jedi Knight'</span> };
+<span class="hljs-keyword">const</span> opts = { <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span> };
+
+<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(filter, update, opts);
+doc.name; <span class="hljs-comment">// 'Luke Skywalker'</span>
+doc.rank; <span class="hljs-comment">// 'Jedi Knight'</span></code></pre>
+<h2 id="upserts">Upserts</h2>
+<p>There are several other options for <code>findOneAndUpdate()</code>. For example,
+you can set the <a href="/tutorials/mongoose/upsert"><code>upsert</code> option</a> to insert a new document if there isn&#39;t one that matches <code>filter</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Character.deleteMany({});
+
+<span class="hljs-keyword">const</span> filter = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Luke Skywalker'</span> };
+<span class="hljs-keyword">const</span> update = { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Jedi Knight'</span> };
+<span class="hljs-comment">// If you set the `upsert` option, Mongoose will insert</span>
+<span class="hljs-comment">// a new document if one isn't found.</span>
+<span class="hljs-keyword">const</span> opts = { <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span> };
+
+<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(filter, update, opts);
+doc.name; <span class="hljs-comment">// 'Luke Skywalker'</span>
+doc.rank; <span class="hljs-comment">// 'Jedi Knight'</span>
+
+<span class="hljs-comment">// If `new` is `false` and an upsert happened,</span>
+<span class="hljs-comment">// `findOneAndUpdate()` will return `null`</span>
+<span class="hljs-keyword">await</span> Character.deleteMany({});
+
+opts.new = <span class="hljs-literal">false</span>;
+doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(filter, update, opts);
+doc; <span class="hljs-comment">// null</span></code></pre>
+<h2 id="middleware">Middleware</h2>
+<p>Mongoose has dedicated <a href="https://mongoosejs.com/docs/middleware.html">middleware</a> for <code>findOneAndUpdate()</code>. Calling <code>findOneAndUpdate()</code>
+does <strong>not</strong> fire <code>findOne</code>, <code>updateOne</code>, or <code>save</code> middleware. But it
+does fire <code>findOneAndUpdate</code> middleware.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-built_in">String</span>
+});
+schema.pre(<span class="hljs-string">'findOneAndUpdate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">middleware</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">this</span>.getFilter(); <span class="hljs-comment">// { name: 'Luke Skywalker' }</span>
+  <span class="hljs-keyword">this</span>.getUpdate(); <span class="hljs-comment">// { rank: 'Jedi Knight' }</span>
+});
+<span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, schema);
+
+<span class="hljs-keyword">const</span> filter = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Luke Skywalker'</span> };
+<span class="hljs-keyword">const</span> update = { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Jedi Knight'</span> };
+<span class="hljs-comment">// Mongoose calls the `middleware()` function above</span>
+<span class="hljs-keyword">await</span> Character.findOneAndUpdate(filter, update, opts);</code></pre>
+
+  <hr>
+  
+    <h2>More Mongoose Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/mongoose/populate">Introduction to Mongoose Populate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/objectid">ObjectIds in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/schema">Introduction to Mongoose Schemas</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/connect">Connecting to MongoDB with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find-by-id">Find By ID in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find">Learn Mongoose find() by Example</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/query">An Introduction to Queries in Mongoose</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

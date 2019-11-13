@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'findOneAndUpdate() in Mongoose',
+      raw: './tutorials/mongoose/findoneandupdate.md',
+      url: '/tutorials/mongoose/findoneandupdate',
+      description: 'Mongoose `findOneAndUpdate()` lets you find and modify a document atomically. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2019-11-13')
+    },
+    {
       title: 'Introduction to Mongoose Populate',
       raw: './tutorials/mongoose/populate.md',
       url: '/tutorials/mongoose/populate',
