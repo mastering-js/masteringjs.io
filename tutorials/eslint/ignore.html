@@ -1,0 +1,97 @@
+
+<html>
+  <head>
+    <title>Ignore Lines and Files In ESLint - Mastering JS</title>
+
+    <meta property="og:title" content="Ignore Lines and Files In ESLint" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="ESLint helps you avoid common code mistakes, but sometimes you need to make an exception to an ESLint rule. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Ignore Lines and Files In ESLint</h1>
+        <div class="date">
+          Nov 27, 2019
+        </div>
+        
+  <p><a href="https://eslint.org/">ESLint</a> analyzes your code to find issues based on pre-defined
+rules. However, sometimes you need to break an ESLint rule. ESLint supports 2 mechanisms
+for <a href="https://eslint.org/docs/user-guide/configuring">ignoring rule violations in code</a>:</p>
+<ul>
+<li>Using comments, which let you <a href="https://eslint.org/docs/user-guide/configuring#using-configuration-comments">disable certain rules</a> for a line or code block.</li>
+<li>Using the <a href="https://eslint.org/docs/user-guide/configuring#eslintignore"><code>.eslintignore</code> file</a>.</li>
+</ul>
+<h2 id="disabling-eslint-with-a-comment">Disabling ESLint With a Comment</h2>
+<p>ESLint lets you disable individual lint rules using <code>/* eslint */</code> comments.
+For example, many ESLint rules <a href="https://eslint.org/docs/rules/no-eval">disallow using JavaScript&#39;s <code>eval()</code> function</a>, because <a href="https://alligator.io/js/eval/"><code>eval()</code> has several security concerns</a>. However, if you&#39;re really certain you want to allow <code>eval()</code>,
+you can disable the lint rule as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-built_in">eval</span>(<span class="hljs-string">'42'</span>); <span class="hljs-comment">// eslint-disable-line no-eval</span></code></pre>
+<p>The <code>// eslint-disable-line</code> comment disables the <code>no-eval</code> rule for just that line.</p>
+<p>You can also disable the <code>no-eval</code> rule for an entire function block by using <a href="https://eslint.org/docs/2.13.1/user-guide/configuring#disabling-rules-with-inline-comments"><code>/* eslint-disable */</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">usesEval</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">/* eslint-disable no-eval */</span>
+  <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">eval</span>(<span class="hljs-string">'42'</span>);
+  <span class="hljs-keyword">const</span> res2 = <span class="hljs-built_in">eval</span>(<span class="hljs-string">'test'</span>);
+
+  <span class="hljs-keyword">return</span> res2 + res;
+}</code></pre>
+<p>If you put <code>/* eslint-disable no-eval */</code> before any code in a <code>.js</code> file, that will disable the <code>no-eval</code> rule for the <strong>entire</strong> file.</p>
+<p>You can also disable all ESLint rules by putting <code>/* eslint-disable */</code> at the top
+of a file.</p>
+<h2 id="using-eslintignore">Using <a href="https://eslint.org/docs/user-guide/configuring#eslintignore"><code>.eslintignore</code></a></h2>
+<p>You can use comments to disable all ESLint rules for a file, but <a href="https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/no-abusive-eslint-disable.md">doing so is often discouraged</a>. If you&#39;re certain you want to make ESLint ignore
+a file, it is typically better to list it out in a <code>.eslintignore</code> file in your project&#39;s root directory.</p>
+<p><code>.eslintignore</code> syntax is similar to that of <a href="https://git-scm.com/docs/gitignore"><code>.gitignore</code></a>. To ignore a file <code>myfile.js</code>, all you need to do is add the following line
+to <code>.eslintignore</code>:</p>
+<pre><code>myfile.js</code></pre><p>ESLint supports globbing files. To ignore all files that end in <code>.test.js</code>, you can
+add this line to <code>.eslintignore</code>:</p>
+<pre><code>*.test.js</code></pre><p>ESLint considers paths in <code>.eslintignore</code> relative to the location of the <code>.eslintignore</code> file. Below is how you ignore all files in your project&#39;s <code>data</code>
+directory.</p>
+<pre><code class="language-javascript">data<span class="hljs-comment">/*</span></code></pre>
+
+  <hr>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

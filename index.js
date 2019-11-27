@@ -36,12 +36,12 @@ async function run() {
 
   const tutorials = [
     {
-      title: 'findOneAndUpdate() in Mongoose',
-      raw: './tutorials/mongoose/findoneandupdate.md',
-      url: '/tutorials/mongoose/findoneandupdate',
-      description: 'Mongoose `findOneAndUpdate()` lets you find and modify a document atomically. Here\'s what you need to know.',
-      tags: ['mongoose'],
-      date: moment('2019-11-13')
+      title: 'Ignore Lines and Files In ESLint',
+      raw: './tutorials/eslint/ignore.md',
+      url: '/tutorials/eslint/ignore',
+      description: 'ESLint helps you avoid common code mistakes, but sometimes you need to make an exception to an ESLint rule. Here\'s what you need to know.',
+      tags: ['eslint'],
+      date: moment('2019-11-27')
     },
     {
       title: 'Introduction to Mongoose Populate',
