@@ -60,6 +60,32 @@ cause ESLint to complain because of the <a href="https://eslint.org/docs/rules/n
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
 }</code></pre>
+<p>A <code>eslint-disable-line</code> comment disables <strong>all</strong> ESLint rules for a given line.
+That is dangerous, because you may unintentionally hide linter errors. For example,
+the below line violates both the <code>no-use-before-define</code> rule and the <a href="https://eslint.org/docs/rules/no-undef"><code>no-undef</code> rule</a>, because <code>undefinedVar</code> is never declared.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = getAnswer(undefinedVar); <span class="hljs-comment">// eslint-disable-line</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}</code></pre>
+<p>If you want to disable <strong>just</strong> the <code>no-use-before-define</code> rule and leave all other
+ESLint rules, you should use <code>// eslint-disable-line no-use-before-undefined</code>.
+After <code>// eslint-disable-line</code>, you can list out the rules you want to disable,
+separated by spaces.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = getAnswer(undefinedVar); <span class="hljs-comment">// eslint-disable-line no-use-before-define</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}</code></pre>
+<h2 id="disable-the-next-line">Disable the Next Line</h2>
+<p>Sometimes <code>// eslint-disable-line</code> can make a single line too long. You can use
+<code>eslint-disable-next-line</code> instead:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// eslint-disable-next-line no-use-before-define</span>
+<span class="hljs-keyword">const</span> answer = getAnswer(undefinedVar);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}</code></pre>
 
   <hr>
   
