@@ -1,11 +1,11 @@
 
 <html>
   <head>
-    <title>Eslint Tutorials - Mastering JS</title>
+    <title>Disable ESLint for a Single Line - Mastering JS</title>
 
-    <meta property="og:title" content="Eslint Tutorials" />
+    <meta property="og:title" content="Disable ESLint for a Single Line" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="undefined" />
+    <meta property="og:description" content="ESLint helps you avoid common code mistakes, but sometimes you need to make an exception for one line. Here's how you can disable an ESLint rule for one line." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -48,47 +48,28 @@
 </div>
 
       <div class="content">
-        <h1>Eslint Tutorials</h1>
+        <h1>Disable ESLint for a Single Line</h1>
         <div class="date">
-          
+          Nov 28, 2019
         </div>
         
-<div class="list">
+  <p>You can disable ESLint for a given line using a <a href="https://eslint.org/docs/2.13.1/user-guide/configuring#disabling-rules-with-inline-comments"><code>// eslint-disable-line</code> comment</a>. For example, the below code would
+cause ESLint to complain because of the <a href="https://eslint.org/docs/rules/no-use-before-define"><code>no-use-before-define</code> rule</a> if you remove the <code>eslint-disable-line</code> comment.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = getAnswer(); <span class="hljs-comment">// eslint-disable-line</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}</code></pre>
+
+  <hr>
   
-<div class="post">
-  <div class="title">
-    <a href="/tutorials/eslint/disable-line">Disable ESLint for a Single Line</a>
-  </div>
-  <div class="description">
-    ESLint helps you avoid common code mistakes, but sometimes you need to make an exception for one line. Here's how you can disable an ESLint rule for one line.
-  </div>
-  <div class="tags">
+    <h2>More Eslint Tutorials</h2>
+    <ul>
     
-<span class="tag">
-  <a href="/eslint">eslint</a>
-</span>
-
-  </div>
-</div>
-
-
-<div class="post">
-  <div class="title">
-    <a href="/tutorials/eslint/ignore">Ignore Lines and Files In ESLint</a>
-  </div>
-  <div class="description">
-    ESLint helps you avoid common code mistakes, but sometimes you need to make an exception to an ESLint rule. Here's what you need to know.
-  </div>
-  <div class="tags">
-    
-<span class="tag">
-  <a href="/eslint">eslint</a>
-</span>
-
-  </div>
-</div>
-
-</div>
+    <li><a href="/tutorials/eslint/ignore">Ignore Lines and Files In ESLint</a></li>
+  
+    </ul>
+  
 
       </div>
     </div>

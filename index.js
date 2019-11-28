@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Disable ESLint for a Single Line',
+      raw: './tutorials/eslint/disable-line.md',
+      url: '/tutorials/eslint/disable-line',
+      description: 'ESLint helps you avoid common code mistakes, but sometimes you need to make an exception for one line. Here\'s how you can disable an ESLint rule for one line.',
+      tags: ['eslint'],
+      date: moment('2019-11-28')
+    },
+    {
       title: 'Ignore Lines and Files In ESLint',
       raw: './tutorials/eslint/ignore.md',
       url: '/tutorials/eslint/ignore',

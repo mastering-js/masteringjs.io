@@ -6,9 +6,11 @@
     "acquit-ignore": "0.1.x",
     "acquit-require": "0.1.x",
     "aws-sdk": "2.x",
+    "axios": "0.19.x",
     "body-parser": "1.19.0",
     "cheerio": "1.0.0-rc.3",
     "cors": "2.8.5",
+    "eslint": "^6.7.1",
     "express": "~4.16",
     "express-static": "1.2.6",
     "form-data": "2.5.1",
@@ -16,15 +18,14 @@
     "highlight.js": "9.12.0",
     "lodash": "4.x",
     "marked": "0.6.x",
+    "mathjs": "5.9.x",
     "mocha": "6.x",
     "moment": "2.x",
-    "nightmare": "3.x",
-    "serve": "11.x",
-    "axios": "0.19.x",
-    "mathjs": "5.9.x",
     "mongoose": "5.x",
     "mongoose-beautiful-unique-validation": "7.x",
+    "nightmare": "3.x",
     "pug": "2.x",
+    "serve": "11.x",
     "sinon": "7.x",
     "vue": "2.x",
     "vue-router": "3.x",
@@ -38,5 +39,6 @@
     "serve": "serve .",
     "server": "node ./server",
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
-  }
+  },
+  "dependencies": {}
 }
