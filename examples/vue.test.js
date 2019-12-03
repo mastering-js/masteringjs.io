@@ -4,6 +4,7 @@ const Nightmare = require('nightmare');
 const Vue = require('vue');
 const assert = require('assert');
 const axios = require('axios');
+const puppeteer = require('puppeteer');
 const { renderToString } = require('vue-server-renderer').createRenderer();
 const sinon = require('sinon');
 
@@ -1033,6 +1034,91 @@ describe('Vue', function() {
       await mounted.call(app);
       const data = await renderToString(app);
       assert.ok(data.includes('Leanne Graham'));
+      // acquit:ignore:end
+    });
+  });
+
+  describe('render function', function() {
+    it('basic example', async function() {
+      const app = new Vue({
+        data: () => ({ user: 'World' }),
+        render: function(createElement) {
+          // `this` refers to the Vue instance, so you can
+          // edit data.
+          return createElement('h1', 'Hello, ' + this.user);
+        }
+      });
+      // acquit:ignore:start
+      const data = await renderToString(app);
+      assert.ok(data.includes('Hello, World'));
+      // acquit:ignore:end
+    });
+
+    it('data input', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      const html = `
+        <html>
+          <body>
+            <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+            <div id="content"></div>
+        
+            <script type="text/javascript">
+              const app = new Vue({
+                data: () => ({ count: 0 }),
+                render: function(createElement) {
+                  return createElement('div', null, [
+                    createElement('h1', 'Count: ' + this.count),
+                    createElement('button', {
+                      domProps: {
+                        innerHTML: 'Increment'
+                      },
+                      on: { click: () => ++this.count }
+                    })
+                  ]);
+                }
+              });
+
+              app.$mount('#content');
+            </script>
+          </body>
+        </html>
+      `;
+      // acquit:ignore:end
+      const app = new Vue({
+        data: () => ({ count: 0 }),
+        render: function(createElement) {
+          return createElement('div', null, [
+            createElement('h1', 'Count: ' + this.count),
+            // Note that the **2nd** parameter is the `data` object. Otherwise,
+            // `on` won't work.
+            createElement('button', {
+              domProps: {
+                innerHTML: 'Increment'
+              },
+              on: { click: () => ++this.count }
+            })
+          ]);
+        }
+      });
+      // acquit:ignore:start
+      await page.setContent(html);
+      let count = await page.evaluate(() => {
+        return document.querySelector('h1').innerHTML;
+      });
+      assert.equal(count, 'Count: 0');
+
+      await page.evaluate(() => {
+        return document.querySelector('button').click();
+      });
+      count = await page.evaluate(() => {
+        return document.querySelector('h1').innerHTML;
+      });
+      assert.equal(count, 'Count: 1');
+      await browser.close();
       // acquit:ignore:end
     });
   });

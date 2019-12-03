@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Render Functions',
+      raw: './tutorials/vue/render.md',
+      url: '/tutorials/vue/render',
+      description: 'You can use React-style JSX with Vue using render functions. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2019-12-03')
+    },
+    {
       title: 'Disable ESLint for a Single Line',
       raw: './tutorials/eslint/disable-line.md',
       url: '/tutorials/eslint/disable-line',
