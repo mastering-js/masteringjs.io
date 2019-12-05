@@ -1122,4 +1122,37 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('form', function() {
+    it('login form with axios', async function() {
+      const app = new Vue({
+        // `v-model` binds `email` to a text input in the template,
+        // and `password` to a password input.
+        data: () => ({ email: '', password: '' }),
+        methods: {
+          submit: async function() {
+            await axios.post('http://httpbin.org/post', {
+              email: this.email,
+              password: this.password
+            });
+          }
+        },
+        template: `
+          <div>
+            <input
+              type="text"
+              v-model="email"
+              placeholder="Email">
+            <input
+              type="password"
+              v-model="password"
+              placeholder="Password">
+            <button v-on:click="submit()">
+              Submit
+            </button>
+          </div>
+        `
+      });
+    });
+  });
 });

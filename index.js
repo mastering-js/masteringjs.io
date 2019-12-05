@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Building a Basic Form with Vue',
+      raw: './tutorials/vue/form.md',
+      url: '/tutorials/vue/form',
+      description: 'Vue\'s `v-model` directive is useful for collecting user data. Here\'s how you can use `v-model` to build a form.',
+      tags: ['vue'],
+      date: moment('2019-12-05')
+    },
+    {
       title: 'Vue Render Functions',
       raw: './tutorials/vue/render.md',
       url: '/tutorials/vue/render',
