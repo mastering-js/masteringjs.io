@@ -1,0 +1,138 @@
+
+<html>
+  <head>
+    <title>The Modulus Operator in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="The Modulus Operator in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The modulus operator in JavaScript returns the remainder when the first operand is divided by the second operand. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The Modulus Operator in JavaScript</h1>
+        <div class="date">
+          Dec 13, 2019
+        </div>
+        
+  <p>The modulus operator, also known as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder">remainder operator</a>, returns the remainder when the first
+operand is divided by the second operand.</p>
+<p>A handy analogy for the modulus is buying things: if widgets cost $3 and you have $7, 
+you can buy at most 2 widgets. Then you&#39;ll have $1 remaining. The modulus operator
+<code>a % b</code> returns what&#39;s left if you buy as many widgets as possible if you have <code>a</code> 
+dollars and widgets cost <code>b</code> dollars.</p>
+<pre><code class="language-javascript"><span class="hljs-number">7</span> % <span class="hljs-number">3</span>; <span class="hljs-comment">// 1</span></code></pre>
+<p>In English, <code>a % b</code> is said as <a href="https://www.quora.com/What-does-a-mod-b-mean">&quot;a mod b&quot;</a>.</p>
+<p>The modulus operator has several neat uses:</p>
+<h2 id="is-a-number-odd-or-even">Is A Number Odd or Even?</h2>
+<p>An integer <code>n</code> is <a href="http://mathworld.wolfram.com/EvenNumber.html">even</a> if it is
+divisible by 2. The modulus operator returns 0 if <code>a</code> is divisible <code>b</code>.
+In other words, checking if a number is even is equivalent to checking if <code>n % 2 === 0</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
+}
+
+isEven(<span class="hljs-number">5</span>); <span class="hljs-comment">// false</span>
+isEven(<span class="hljs-number">7.6</span>); <span class="hljs-comment">// false</span>
+isEven(<span class="hljs-number">8</span>); <span class="hljs-comment">// true</span></code></pre>
+<p>Similarly, <code>n</code> is <a href="http://mathworld.wolfram.com/OddNumber.html">odd</a> if and only if <code>n % 2 === 1</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isOdd</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
+}
+
+isEven(<span class="hljs-number">5</span>); <span class="hljs-comment">// false</span>
+isEven(<span class="hljs-number">7.6</span>); <span class="hljs-comment">// false</span>
+isEven(<span class="hljs-number">8</span>); <span class="hljs-comment">// true</span></code></pre>
+<h2 id="the-fractional-part-of-a-number">The <a href="https://en.wikipedia.org/wiki/Fractional_part">Fractional Part</a> of a Number</h2>
+<p>Say you have a number <code>2.5</code> and you want to get just the part of the number
+after the decimal point <code>0.5</code>. The most concise way to do this is to take
+the number mod 1.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFractionalPart</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">return</span> n % <span class="hljs-number">1</span>;
+}
+
+getFractionalPart(<span class="hljs-number">2.5</span>); <span class="hljs-comment">// 0.5</span></code></pre>
+<h2 id="converting-minutes-to-hours">Converting Minutes to Hours</h2>
+<p>The modulus operator is handy for basic date arithmetic that you don&#39;t want to
+pull in a heavy library for. For example, if you&#39;re given a number <code>n</code> that represents
+a number of minutes (potentially more than 60) and you want to convert it to hours
+and minutes, you could do something like this:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> minutesToHoursAndMinutes = <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> ({
+  <span class="hljs-attr">hours</span>: <span class="hljs-built_in">Math</span>.floor(n / <span class="hljs-number">60</span>),
+  <span class="hljs-attr">minutes</span>: n % <span class="hljs-number">60</span>
+});
+
+minutesToHoursAndMinutes(<span class="hljs-number">59</span>); <span class="hljs-comment">// { hours: 0, minutes: 59 }</span>
+minutesToHoursAndMinutes(<span class="hljs-number">62</span>); <span class="hljs-comment">// { hours: 1, minutes: 2 }</span>
+minutesToHoursAndMinutes(<span class="hljs-number">123</span>); <span class="hljs-comment">// { hours: 2, minutes: 3 }</span></code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/truthy">Truthy Values in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/logical-operators">Logical Operators in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/falsy">What is "Falsy" in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/pojo">What is a Plain Old JavaScript Object (POJO)?</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

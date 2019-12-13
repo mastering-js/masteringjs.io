@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The Modulus Operator in JavaScript',
+      raw: './tutorials/fundamentals/modulus.md',
+      url: '/tutorials/fundamentals/modulus',
+      description: 'The modulus operator in JavaScript returns the remainder when the first operand is divided by the second operand. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-12-13')
+    },
+    {
       title: 'Disable ESLint for a Single Line',
       raw: './tutorials/eslint/disable-line.md',
       url: '/tutorials/eslint/disable-line',
