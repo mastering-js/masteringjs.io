@@ -2,7 +2,7 @@ The [vue-template-compiler](https://www.npmjs.com/package/vue-template-compiler)
 
 The vue-template-compiler has two primary functions: converting templates to [`render()` functions](https://vuejs.org/v2/guide/render-function.html) and [parsing single file componens](https://masteringjs.io/tutorials/vue/templates#single-file-components).
 
-Compile Template to Render Function
+Compile Template to [Render Function](/tutorials/vue/render)
 -----------------------------------
 
 A Vue template is just a plain string. Vue-template-compiler's `compile()` function converts a template string that you can use as a `render()` function for your components.

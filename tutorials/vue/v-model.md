@@ -1,4 +1,4 @@
-[Two way data binding](https://stackoverflow.com/questions/13504906/what-is-two-way-binding) is a powerful pattern for building forms in JavaScript. For example,
+[Two way data binding](https://stackoverflow.com/questions/13504906/what-is-two-way-binding) is a powerful pattern for [building JavaScript forms with Vue](/tutorials/vue/form). For example,
 suppose you have an `input` element and a JavaScript variable `value`.
 Two way data binding means:
 

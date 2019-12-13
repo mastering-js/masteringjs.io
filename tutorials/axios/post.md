@@ -36,3 +36,5 @@ That means the request body should be a bunch of key/value pairs separated by
 ```javascript
 [require:axios.*POST requests.*string$]
 ```
+
+You can also [POST using JavaScript's `FormData` class](/tutorials/axios/form-data) to POST more sophisticated data, including files.

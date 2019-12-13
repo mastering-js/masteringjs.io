@@ -1,0 +1,216 @@
+
+<html>
+  <head>
+    <title>Building a Basic Form with Vue - Mastering JS</title>
+
+    <meta property="og:title" content="Building a Basic Form with Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Vue's `v-model` directive is useful for collecting user data. Here's how you can use `v-model` to build a form." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Building a Basic Form with Vue</h1>
+        <div class="date">
+          Dec 5, 2019
+        </div>
+        
+  <p><a href="https://masteringjs.io/tutorials/vue/v-model">Vue&#39;s <code>v-model</code> directive</a>
+binds the value of an HTML <code>input</code> tag to a JavaScript variable. That
+makes it ideal for building a form.</p>
+<p>For example, suppose you&#39;re building a login form that you want to
+submit with a <a href="/tutorials/axios/post">HTTP POST request using Axios</a>.
+Here&#39;s how that looks:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-comment">// `v-model` binds `email` to a text input in the template,</span>
+  <span class="hljs-comment">// and `password` to a password input.</span>
+  data: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">email</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">submit</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://httpbin.org/post'</span>, {
+        <span class="hljs-attr">email</span>: <span class="hljs-keyword">this</span>.email,
+        <span class="hljs-attr">password</span>: <span class="hljs-keyword">this</span>.password
+      });
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input
+        type="text"
+        v-model="email"
+        placeholder="Email"&gt;
+      &lt;input
+        type="password"
+        v-model="password"
+        placeholder="Password"&gt;
+      &lt;button v-on:click="submit()"&gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<h2 id="basic-form-validation">Basic Form Validation</h2>
+<p><a href="/tutorials/vue/computed">Computed properties</a> are a neat way to handle
+form validation in Vue. You can define a <code>emailError</code> property that
+Vue then updates whenever the <code>email</code> changes. You can then disable
+the &quot;Submit&quot; button whenever there&#39;s an <code>emailError</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">email</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-attr">emailError</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.email.length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Email is required'</span>;
+      }
+      <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.email.includes(<span class="hljs-string">'@'</span>)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Email must contain "@"'</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+  },
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">submit</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://httpbin.org/post'</span>, {
+        <span class="hljs-attr">email</span>: <span class="hljs-keyword">this</span>.email,
+        <span class="hljs-attr">password</span>: <span class="hljs-keyword">this</span>.password
+      });
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input
+        type="text"
+        v-model="email"
+        placeholder="Email"&gt;
+      &lt;input
+        type="password"
+        v-model="password"
+        placeholder="Password"&gt;
+      &lt;button v-on:click="submit()" v-bind:disabled="emailError"&gt;
+        Submit
+      &lt;/button&gt;
+      &lt;div&gt;
+        {{emailError}}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>Computed properties can rely on other computed properties, so you
+can define a separate <code>isFormValid</code> computed property that relies
+on computed properties for other fields:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">email</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-attr">emailError</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.email.length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Email is required'</span>;
+      }
+      <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.email.includes(<span class="hljs-string">'@'</span>)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Email must contain "@"'</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    },
+    <span class="hljs-attr">passwordError</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.password.length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Password is required'</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    },
+    <span class="hljs-attr">isFormValid</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.emailError == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">this</span>.passwordError == <span class="hljs-literal">null</span>;
+    }
+  },
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">submit</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://httpbin.org/post'</span>, {
+        <span class="hljs-attr">email</span>: <span class="hljs-keyword">this</span>.email,
+        <span class="hljs-attr">password</span>: <span class="hljs-keyword">this</span>.password
+      });
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input
+        type="text"
+        v-model="email"
+        placeholder="Email"&gt;
+      &lt;input
+        type="password"
+        v-model="password"
+        placeholder="Password"&gt;
+      &lt;button v-on:click="submit()" v-bind:disabled="!isFormValid"&gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/bind">Using v-bind in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/emit">The $emit Function in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/computed">Computed Properties in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-on">Vue Event Handling with v-on</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-if">Conditional Rendering in Vue with v-if</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

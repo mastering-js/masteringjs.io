@@ -55,7 +55,7 @@
         
   <p>The <a href="https://www.npmjs.com/package/vue-template-compiler">vue-template-compiler</a> module is a powerful tool for compiling Vue templates and <a href="https://vuejs.org/v2/guide/single-file-components.html">single file components</a> into JavaScript. Most developers don&#39;t use vue-template-compiler directly. But bundler tools like <a href="https://www.npmjs.com/package/vue-loader">vue-loader for Webpack</a> use vue-template-compiler to do the heavy lifting of actually compiling <code>.vue</code> files.</p>
 <p>The vue-template-compiler has two primary functions: converting templates to <a href="https://vuejs.org/v2/guide/render-function.html"><code>render()</code> functions</a> and <a href="https://masteringjs.io/tutorials/vue/templates#single-file-components">parsing single file componens</a>.</p>
-<h2 id="compile-template-to-render-function">Compile Template to Render Function</h2>
+<h2 id="compile-template-to-render-function">Compile Template to <a href="/tutorials/vue/render">Render Function</a></h2>
 <p>A Vue template is just a plain string. Vue-template-compiler&#39;s <code>compile()</code> function converts a template string that you can use as a <code>render()</code> function for your components.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> compiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-template-compiler'</span>);
 <span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
@@ -105,6 +105,12 @@ data;</code></pre>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
     <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
   
 
@@ -118,12 +124,6 @@ data;</code></pre>
   
 
     <li><a href="/tutorials/vue/v-on">Vue Event Handling with v-on</a></li>
-  
-
-    <li><a href="/tutorials/vue/v-if">Conditional Rendering in Vue with v-if</a></li>
-  
-
-    <li><a href="/tutorials/vue/v-model">Two-Way Data Binding in Vue With v-model</a></li>
   
     </ul>
   
