@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Static Properties and Functions in JavaScript',
+      raw: './tutorials/fundamentals/static.md',
+      url: '/tutorials/fundamentals/static',
+      description: 'The `static` keyword lets you define properties and functions on ES6 classes. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-12-18')
+    },
+    {
       title: 'The Modulus Operator in JavaScript',
       raw: './tutorials/fundamentals/modulus.md',
       url: '/tutorials/fundamentals/modulus',

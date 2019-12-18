@@ -2314,6 +2314,55 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('static', function() {
+    it('function', function() {
+      class MyClass {
+        static myFunction() {
+          return 42;
+        }
+      }
+
+      typeof MyClass.myFunction; // 'function'
+      MyClass.myFunction(); // 42
+      // acquit:ignore:start
+      assert.equal(MyClass.myFunction(), 42);
+      // acquit:ignore:end
+
+      // `myFunction()` is a function on `MyClass`, **not**
+      // instances of `MyClass`
+      const obj = new MyClass();
+      obj.myFunction; // undefined
+      // acquit:ignore:start
+      assert.strictEqual(obj.myFunction, void 0);
+      // acquit:ignore:end
+    });
+
+    it('assignment', function() {
+      class MyClass {}
+      MyClass.myFunction = function() {
+        return 42;
+      };
+
+      MyClass.myFunction(); // 42
+      // acquit:ignore:start
+      assert.equal(MyClass.myFunction(), 42);
+      // acquit:ignore:end
+    });
+
+    it('this', function() {
+      class MyClass {
+        static myFunction() {
+          return this;
+        }
+      }
+
+      MyClass.myFunction() === MyClass; // true
+      // acquit:ignore:start
+      assert.ok(MyClass.myFunction() === MyClass);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
