@@ -7,7 +7,7 @@ JavaScript has 3 [logical operators](https://developer.mozilla.org/en-US/docs/We
 Logical NOT
 -----------
 
-The logical not operator `!` checks whether a value is truthy or [falsy](/tutorials/fundamentals/falsy). In other words, `!v === false` **unless** `v` is one
+The logical not operator `!` checks whether a value is [truthy](/tutorials/fundamentals/truthy) or [falsy](/tutorials/fundamentals/falsy). In other words, `!v === false` **unless** `v` is one
 of the below 7 values:
 
 - `false`

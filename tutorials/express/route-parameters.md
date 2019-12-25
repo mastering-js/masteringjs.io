@@ -18,7 +18,7 @@ Why Route Parameters?
 ---------------------
 
 Route parameters have some convenient properties that reduce the amount of
-validation you need to do versus using query parameters or [request bodies](/tutorials/express/body):
+validation you need to do versus using [query parameters](/tutorials/express/query-parameters) or [request bodies](/tutorials/express/body):
 
 - A route parameter is never `null` or `undefined`. For example, a request to `GET /users` above will cause an HTTP 404, and not call the route handler for `/users/:userId/books/:bookId`.
 - A route parameter is always a string with positive length. For example, `GET /user/42/books/` also causes an HTTP 404.

@@ -22,7 +22,7 @@ Express automatically decodes them using [`decodeUriComponent()`](https://develo
 [require:Express.*\.Request.*params]
 ```
 
-Express does **not** parse the request body for you by default. To opt in to
+Express does **not** parse the [request body](/tutorials/express/body) for you by default. To opt in to
 parsing JSON request bodies, use the [`express.json()` middleware](https://expressjs.com/en/api.html#express.json). Express will then parse
 the HTTP request body and put the parsed body in `req.body`.
 

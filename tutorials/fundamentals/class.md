@@ -25,7 +25,7 @@ Statics
 
 A [static](https://beginnersbook.com/2013/05/static-vs-non-static-methods/) is a
 a function that is defined on the class itself. In JavaScript, a class is just
-another variable, so you can call static functions on a class.
+another variable, so you can call [static functions](/tutorials/fundamentals/static) on a class.
 
 ```javascript
 [require:Fundamentals.*class.*static$]

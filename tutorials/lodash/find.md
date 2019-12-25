@@ -30,7 +30,7 @@ the `find()` function will create a predicate function using the [`matches()` fu
 [require:lodash.*find.*object comparison$]
 ```
 
-If you pass a string `str` as the predicate, the `find()` function will return the first object in the array that has a truthy property `str`.
+If you pass a string `str` as the predicate, the `find()` function will return the first object in the array that has a [truthy](/tutorials/fundamentals/truthy) property `str`.
 
 ```javascript
 [require:lodash.*find.*string comparison$]
