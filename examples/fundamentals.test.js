@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+const moment = require('moment');
 const sinon = require('sinon');
 
 describe('Fundamentals', function() {
@@ -2360,6 +2361,85 @@ describe('Fundamentals', function() {
       MyClass.myFunction() === MyClass; // true
       // acquit:ignore:start
       assert.ok(MyClass.myFunction() === MyClass);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('tomorrow', function() {
+    it('getDate', function() {
+      // June 3, 2019 in local timezone
+      const date = new Date('2019/06/03');
+
+      date.getDate(); // 3
+      // acquit:ignore:start
+      assert.equal(date.getDate(), 3);
+      // acquit:ignore:end
+    });
+
+    it('setDate', function() {
+      // June 3, 2019 in local timezone
+      const date = new Date('2019/06/03');
+
+      date.setDate(6);
+      date.getDate(); // 6
+
+      // "Thu, June 06, 2019"
+      date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      });
+      // acquit:ignore:start
+      assert.equal(date.getDate(), 6);
+      assert.equal(date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      }), 'Thu, June 06, 2019');
+      // acquit:ignore:end
+    });
+
+    it('tomorrow', function() {
+      // Current date
+      const date = new Date();
+
+      // Tomorrow's date
+      date.setDate(date.getDate() + 1);
+    });
+
+    it('rollover', function() {
+      const date = new Date('2019/06/30');
+
+      // Tomorrow
+      date.setDate(date.getDate() + 1);
+
+      // "Mon, July 01, 2019"
+      date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      });
+      // acquit:ignore:start
+      assert.equal(date.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      }), 'Mon, July 01, 2019');
+      // acquit:ignore:end
+    });
+
+    it('moment', function() {
+      const date = moment(new Date('2019/06/30'));
+
+      date.add(1, 'days');
+
+      date.format('YYYY/MM/DD'); // "2019/07/01"
+      // acquit:ignore:start
+      assert.equal(date.format('YYYY/MM/DD'), '2019/07/01');
       // acquit:ignore:end
     });
   });

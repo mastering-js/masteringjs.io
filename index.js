@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Get Tomorrow\'s Date in JavaScript',
+      raw: './tutorials/fundamentals/tomorrow.md',
+      url: '/tutorials/fundamentals/tomorrow',
+      description: 'You can get tomorrow\'s date using vanilla JavaScript, although it is often easier with a library like Moment.js. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2019-12-30')
+    },
+    {
       title: 'Static Properties and Functions in JavaScript',
       raw: './tutorials/fundamentals/static.md',
       url: '/tutorials/fundamentals/static',

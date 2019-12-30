@@ -90,7 +90,7 @@ app.get(<span class="hljs-string">'/user/:userId/books/:bookId'</span>, (req, re
 res.data; <span class="hljs-comment">// { userId: '42', bookId: '101' }</span></code></pre>
 <h2 id="why-route-parameters">Why Route Parameters?</h2>
 <p>Route parameters have some convenient properties that reduce the amount of
-validation you need to do versus using query parameters or <a href="/tutorials/express/body">request bodies</a>:</p>
+validation you need to do versus using <a href="/tutorials/express/query-parameters">query parameters</a> or <a href="/tutorials/express/body">request bodies</a>:</p>
 <ul>
 <li>A route parameter is never <code>null</code> or <code>undefined</code>. For example, a request to <code>GET /users</code> above will cause an HTTP 404, and not call the route handler for <code>/users/:userId/books/:bookId</code>.</li>
 <li>A route parameter is always a string with positive length. For example, <code>GET /user/42/books/</code> also causes an HTTP 404.</li>

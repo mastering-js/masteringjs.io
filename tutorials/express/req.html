@@ -108,7 +108,7 @@ app.get(<span class="hljs-string">'/:model/:id'</span>, <span class="hljs-functi
 
 res.data.model; <span class="hljs-comment">// 'user'</span>
 res.data.id; <span class="hljs-comment">// '1'</span></code></pre>
-<p>Express does <strong>not</strong> parse the request body for you by default. To opt in to
+<p>Express does <strong>not</strong> parse the <a href="/tutorials/express/body">request body</a> for you by default. To opt in to
 parsing JSON request bodies, use the <a href="https://expressjs.com/en/api.html#express.json"><code>express.json()</code> middleware</a>. Express will then parse
 the HTTP request body and put the parsed body in <code>req.body</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);

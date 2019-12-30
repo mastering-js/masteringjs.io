@@ -53,18 +53,18 @@
           Dec 13, 2019
         </div>
         
-  <p>The modulus operator, also known as the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder">remainder operator</a>, returns the remainder when the first
-operand is divided by the second operand.</p>
-<p>A handy analogy for the modulus is buying things: if widgets cost $3 and you have $7, 
-you can buy at most 2 widgets. Then you&#39;ll have $1 remaining. The modulus operator
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder">remainder operator</a>, returns the remainder when the first
+operand is divided by the second operand. It is also sometimes called the <em>modulus operator</em>, although <a href="https://stackoverflow.com/questions/13683563/whats-the-difference-between-mod-and-remainder">technically the modulus operator is a different concept</a>.</p>
+<p>A handy analogy for the remainder operator is buying things: if widgets cost $3 and you have $7, 
+you can buy at most 2 widgets. Then you&#39;ll have $1 remaining. The remainder operator
 <code>a % b</code> returns what&#39;s left if you buy as many widgets as possible if you have <code>a</code> 
 dollars and widgets cost <code>b</code> dollars.</p>
 <pre><code class="language-javascript"><span class="hljs-number">7</span> % <span class="hljs-number">3</span>; <span class="hljs-comment">// 1</span></code></pre>
-<p>In English, <code>a % b</code> is said as <a href="https://www.quora.com/What-does-a-mod-b-mean">&quot;a mod b&quot;</a>.</p>
-<p>The modulus operator has several neat uses:</p>
+<p>In English, <code>a % b</code> is often spoken as <a href="https://www.quora.com/What-does-a-mod-b-mean">&quot;a mod b&quot;</a>.</p>
+<p>The remainder operator has several neat uses:</p>
 <h2 id="is-a-number-odd-or-even">Is A Number Odd or Even?</h2>
 <p>An integer <code>n</code> is <a href="http://mathworld.wolfram.com/EvenNumber.html">even</a> if it is
-divisible by 2. The modulus operator returns 0 if <code>a</code> is divisible <code>b</code>.
+divisible by 2. The remainder operator returns 0 if <code>a</code> is divisible by <code>b</code>.
 In other words, checking if a number is even is equivalent to checking if <code>n % 2 === 0</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">n</span>) </span>{
   <span class="hljs-keyword">return</span> n % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
@@ -91,7 +91,7 @@ the number mod 1.</p>
 
 getFractionalPart(<span class="hljs-number">2.5</span>); <span class="hljs-comment">// 0.5</span></code></pre>
 <h2 id="converting-minutes-to-hours">Converting Minutes to Hours</h2>
-<p>The modulus operator is handy for basic date arithmetic that you don&#39;t want to
+<p>The remainder operator is handy for basic date arithmetic that you don&#39;t want to
 pull in a heavy library for. For example, if you&#39;re given a number <code>n</code> that represents
 a number of minutes (potentially more than 60) and you want to convert it to hours
 and minutes, you could do something like this:</p>
@@ -103,12 +103,17 @@ and minutes, you could do something like this:</p>
 minutesToHoursAndMinutes(<span class="hljs-number">59</span>); <span class="hljs-comment">// { hours: 0, minutes: 59 }</span>
 minutesToHoursAndMinutes(<span class="hljs-number">62</span>); <span class="hljs-comment">// { hours: 1, minutes: 2 }</span>
 minutesToHoursAndMinutes(<span class="hljs-number">123</span>); <span class="hljs-comment">// { hours: 2, minutes: 3 }</span></code></pre>
+<h2 id="remainder-vs-modulus">Remainder vs Modulus</h2>
+<p>Modulus is a related concept, but handles negative numbers differently. For example, <code>-21 % 5 === -1</code>, because the remainder always takes the sign of the left number.</p>
 
   <hr>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/tomorrow">Get Tomorrow's Date in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/static">Static Properties and Functions in JavaScript</a></li>
   
 
@@ -125,9 +130,6 @@ minutesToHoursAndMinutes(<span class="hljs-number">123</span>); <span class="hlj
   
 
     <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/cors">A Brief Overview of Cross-Origin Resource Sharing (CORS)</a></li>
   
     </ul>
   

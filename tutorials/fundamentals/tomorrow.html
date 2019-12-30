@@ -1,0 +1,137 @@
+
+<html>
+  <head>
+    <title>Get Tomorrow's Date in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Get Tomorrow's Date in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="You can get tomorrow's date using vanilla JavaScript, although it is often easier with a library like Moment.js. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Get Tomorrow's Date in JavaScript</h1>
+        <div class="date">
+          Dec 30, 2019
+        </div>
+        
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">JavaScript&#39;s built-in <code>Date</code> class</a> has a getter and setter function
+for the current date of the month. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate"><code>Date#getDate()</code> function</a> returns the current date of the month:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// June 3, 2019 in local timezone</span>
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/03'</span>);
+
+date.getDate(); <span class="hljs-comment">// 3</span></code></pre>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate"><code>Date#setDate()</code> function</a> sets the date of the month.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// June 3, 2019 in local timezone</span>
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/03'</span>);
+
+date.setDate(<span class="hljs-number">6</span>);
+date.getDate(); <span class="hljs-comment">// 6</span>
+
+<span class="hljs-comment">// "Thu, June 06, 2019"</span>
+date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
+  <span class="hljs-attr">weekday</span>: <span class="hljs-string">'short'</span>,
+  <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
+  <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>
+});</code></pre>
+<p>See <a href="https://masteringjs.io/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a>.</p>
+<p>So to get tomorrow&#39;s date, you need to <code>setDate()</code> the current date, plus one.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Current date</span>
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+<span class="hljs-comment">// Tomorrow's date</span>
+date.setDate(date.getDate() + <span class="hljs-number">1</span>);</code></pre>
+<p>JavaScript is smart enough to deal with month rollovers on its own, so even
+if today is June 30, the <code>date.getDate() + 1</code> approach works:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/30'</span>);
+
+<span class="hljs-comment">// Tomorrow</span>
+date.setDate(date.getDate() + <span class="hljs-number">1</span>);
+
+<span class="hljs-comment">// "Mon, July 01, 2019"</span>
+date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
+  <span class="hljs-attr">weekday</span>: <span class="hljs-string">'short'</span>,
+  <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
+  <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
+  <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>
+});</code></pre>
+<h2 id="using-momentjs">Using <a href="https://momentjs.com/">Moment.js</a></h2>
+<p>Moment has a handy <code>.add()</code> function that lets you easily add 1 day to
+the current moment.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = moment(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/30'</span>));
+
+date.add(<span class="hljs-number">1</span>, <span class="hljs-string">'days'</span>);
+
+date.format(<span class="hljs-string">'YYYY/MM/DD'</span>); <span class="hljs-comment">// "2019/07/01"</span></code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/static">Static Properties and Functions in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/modulus">The Modulus Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/truthy">Truthy Values in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/logical-operators">Logical Operators in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/falsy">What is "Falsy" in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sleep">Make a JavaScript Function Sleep</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
