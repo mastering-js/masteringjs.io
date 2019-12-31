@@ -80,4 +80,7 @@ minutesToHoursAndMinutes(123); // { hours: 2, minutes: 3 }
 Remainder vs Modulus
 ----------
 
-Modulus is a related concept, but handles negative numbers differently. For example, `-21 % 5 === -1`, because the remainder always takes the sign of the left number.
+Modulus is a related concept, but handles negative numbers differently. For example, `-21 % 5 === -1`, because the remainder always takes the sign of the left number. However, a true modulus operator would always return a positive value,
+so 21 modulo 5 would equal 4. In practice, you are unlikely to use the remainder
+operator on negative values, and many JavaScript developers aren't aware of the
+difference.

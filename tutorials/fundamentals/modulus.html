@@ -104,7 +104,10 @@ minutesToHoursAndMinutes(<span class="hljs-number">59</span>); <span class="hljs
 minutesToHoursAndMinutes(<span class="hljs-number">62</span>); <span class="hljs-comment">// { hours: 1, minutes: 2 }</span>
 minutesToHoursAndMinutes(<span class="hljs-number">123</span>); <span class="hljs-comment">// { hours: 2, minutes: 3 }</span></code></pre>
 <h2 id="remainder-vs-modulus">Remainder vs Modulus</h2>
-<p>Modulus is a related concept, but handles negative numbers differently. For example, <code>-21 % 5 === -1</code>, because the remainder always takes the sign of the left number.</p>
+<p>Modulus is a related concept, but handles negative numbers differently. For example, <code>-21 % 5 === -1</code>, because the remainder always takes the sign of the left number. However, a true modulus operator would always return a positive value,
+so 21 modulo 5 would equal 4. In practice, you are unlikely to use the remainder
+operator on negative values, and many JavaScript developers aren&#39;t aware of the
+difference.</p>
 
   <hr>
   
