@@ -1,0 +1,133 @@
+
+<html>
+  <head>
+    <title>Triple Equals vs Double Equals in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Triple Equals vs Double Equals in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Whether you should use `==` or `===` is a common cause of confusion in JavaScript. The TLDR is that you should use `===`, with one minor exception. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Triple Equals vs Double Equals in JavaScript</h1>
+        <div class="date">
+          Jan 2, 2020
+        </div>
+        
+  <p>In JavaScript, there are technically <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">4 different ways of comparing whether 2 values are equal</a>. The 2 most common ways are the <a href="https://codeburst.io/javascript-showdown-vs-7be792be15b5"><code>==</code> operator and the <code>===</code> operator</a>, also known as <em>abstract equality comparison</em> and <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-strict-equality-comparison"><em>strict equality comparison</em></a>.</p>
+<h2 id="strict-equality-with-">Strict Equality With <code>===</code></h2>
+<p>Given 2 values <code>x</code> and <code>y</code>, here&#39;s how JavaScript checks whether <code>x === y</code>:</p>
+<ol>
+<li>Check the types of <code>x</code> and <code>y</code>. If they are different types, return <code>false</code>.</li>
+<li>If <code>x</code> and <code>y</code> are numbers, first check if either <code>x</code> or <code>y</code> is <code>NaN</code>, and return <code>false</code> if one is <code>NaN</code>. If both <code>x</code> and <code>y</code> are either <code>+0</code> or <code>-0</code>, return <code>true</code>. Otherwise, check to see if they are the same number.</li>
+<li>If <code>x</code> and <code>y</code> are both <code>null</code> or both <code>undefined</code>, return <code>true</code>.</li>
+<li>If <code>x</code> and <code>y</code> are both booleans, both strings, or both symbols, compare them by value.</li>
+<li>If <code>x</code> and <code>y</code> are both objects, return true if and only if they reference the same object.</li>
+</ol>
+<p>In short, here are the important details of <code>===</code>:</p>
+<ol>
+<li>No implicit type coercions. <code>===</code> doesn&#39;t call <a href="/tutorials/fundamentals/valueof"><code>valueOf()</code></a> or do anything else to try to convert objects to primitives.</li>
+<li>No value is <code>=== NaN</code>. You should not use <code>===</code> to check for <code>NaN</code>, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN"><code>Number.isNaN()</code> instead</a>.</li>
+<li>Object comparison is <a href="http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html">by reference</a> - two different objects can contain the exact same keys, but <code>===</code> will still say they&#39;re different.</li>
+</ol>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+<span class="hljs-keyword">const</span> obj2 = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+
+obj1 === obj2; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="abstract-equality-with-">Abstract Equality With <code>==</code></h2>
+<p>The <code>==</code> operator uses a more complex <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-abstract-equality-comparison">abstract equality comparison</a> algorithm to compare whether <code>x</code> and <code>y</code> are equal. Here&#39;s a brief overview:</p>
+<ol>
+<li>If <code>x</code> and <code>y</code> are the same type, check if <code>x === y</code>.</li>
+<li>If <code>x</code> and <code>y</code> are both either <code>null</code> or <code>undefined</code>, return <code>true</code>.</li>
+<li>If <code>x</code> is a number and <code>y</code> is a string, <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-tonumber">convert <code>y</code> to a number</a> and then compare using <code>===</code>. Similarly, if <code>x</code> is a boolean or string, and <code>y</code> is a number, convert <code>x</code> to a number.</li>
+<li>If <code>x</code> or <code>y</code> is a boolean, convert the other value of a number and compare them.</li>
+<li>If <code>x</code> is an object and <code>y</code> is a symbol, string, or number, try to convert <code>x</code> to a primitive using <a href="/tutorials/fundamentals/valueof"><code>valueOf()</code></a> and then compare using <code>===</code>.</li>
+</ol>
+<p>Abstract equality comparison is responsible for many of the <a href="https://www.destroyallsoftware.com/talks/wat">strange edge cases</a> that JavaScript is so famous for.</p>
+<pre><code class="language-javascript"><span class="hljs-string">'    '</span> == <span class="hljs-number">0</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-string">'    '</span> == <span class="hljs-literal">false</span>; <span class="hljs-comment">// true</span>
+({ <span class="hljs-attr">valueOf</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span> }) == <span class="hljs-number">42</span>; <span class="hljs-comment">// true</span>
+({ <span class="hljs-attr">valueOf</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">0</span> }) == <span class="hljs-literal">false</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>In general, you should always use <code>===</code> rather than <code>==</code> unless you&#39;re sure
+you know what you&#39;re doing. There is one neat functional use for <code>==</code>: checking for <code>null</code> or <code>undefined</code> (so-called <a href="/tutorials/fundamentals/falsy#nullish-values">nullish values</a>) with a single check:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Only true if `v === null` or `v === undefined`</span>
+v == <span class="hljs-literal">null</span>;
+
+<span class="hljs-comment">// Equivalent:</span>
+v === <span class="hljs-literal">null</span> || v === <span class="hljs-literal">undefined</span>;</code></pre>
+<p>Checking if <code>v == null</code> is a more concise way of checking if <code>v</code> is strictly
+equal to <code>null</code> or <code>undefined</code>. You may choose to do this if you&#39;re a more
+advanced JavaScript developer, but there is no harm in always using <code>===</code>.</p>
+<p><a href="https://eslint.org/docs/rules/eqeqeq#allow-null">ESLint has a rule to disallow <code>==</code> <em>unless</em> the right hand side is <code>null</code></a>, </p>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/tomorrow">Get Tomorrow's Date in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/static">Static Properties and Functions in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/modulus">The Modulus Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/truthy">Truthy Values in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/logical-operators">Logical Operators in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/falsy">What is "Falsy" in JavaScript?</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter">Array `filter()` in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

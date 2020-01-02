@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Triple Equals vs Double Equals in JavaScript',
+      raw: './tutorials/fundamentals/equals.md',
+      url: '/tutorials/fundamentals/equals',
+      description: 'Whether you should use `==` or `===` is a common cause of confusion in JavaScript. The TLDR is that you should use `===`, with one minor exception. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-02')
+    },
+    {
       title: 'Get Tomorrow\'s Date in JavaScript',
       raw: './tutorials/fundamentals/tomorrow.md',
       url: '/tutorials/fundamentals/tomorrow',
