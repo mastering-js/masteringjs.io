@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '`this` in JavaScript',
+      raw: './tutorials/fundamentals/this.md',
+      url: '/tutorials/fundamentals/this',
+      description: 'The `this` keyword, also known as a function\'s "context" or "scope", is a powerful but confusing concept. Here\'s how you can wrap your head around it.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-03')
+    },
+    {
       title: 'Triple Equals vs Double Equals in JavaScript',
       raw: './tutorials/fundamentals/equals.md',
       url: '/tutorials/fundamentals/equals',

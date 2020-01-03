@@ -2443,6 +2443,100 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('this', function() {
+    it('flat object', function() {
+      // `this` is an implicit parameter to the function
+      const fn = function() {
+        return this;
+      };
+
+      // One way that `this` is set is by attaching the function
+      // to an object.
+      const obj1 = { fn };
+      const obj2 = { fn };
+
+      obj1.fn() === obj1; // true
+      obj1.fn() === obj2; // false
+
+      obj2.fn() === obj1; // false
+      obj2.fn() === obj2; // true
+      // acquit:ignore:start
+      assert.ok(obj1.fn() === obj1);
+      assert.ok(obj1.fn() !== obj2);
+
+      assert.ok(obj2.fn() !== obj1);
+      assert.ok(obj2.fn() === obj2);
+      // acquit:ignore:end
+    });
+
+    it('lost context', function() {
+      const fn = function() {
+        return this;
+      };
+
+      const obj = { fn };
+
+      // If you call `fn()` without a property access `.`, you're
+      // implicitly setting the function context to `null`.
+      const myFn = obj.fn;
+      myFn() == null; // true in strict mode
+      // acquit:ignore:start
+      assert.equal(myFn(), null);
+      // acquit:ignore:end
+    });
+
+    it('class', function() {
+      class MyClass {
+        myFunction() {
+          return this;
+        }
+      }
+
+      const obj = new MyClass();
+
+      obj.myFunction() === obj; // true
+      // acquit:ignore:start
+      assert.ok(obj.myFunction() === obj);
+      // acquit:ignore:end
+    });
+
+    it('arrow', function() {
+      const arrow = () => this;
+
+      arrow() == null; // true
+
+      const obj = { arrow };
+
+      // Even though `arrow()` is attached to an object, it still
+      // has the same context as the surrounding block.
+      obj.arrow() == null; // true
+      obj.arrow() == this; // true
+    });
+
+    it('call and apply', function() {
+      const fn = function() {
+        return this;
+      };
+
+      const obj = {};
+
+      fn.call(obj) === obj; // true
+      fn.apply(obj) === obj; // true
+      // acquit:ignore:start
+      assert.equal(fn.call(obj), obj);
+      assert.equal(fn.apply(obj), obj);
+      // acquit:ignore:end
+
+      const copy = fn.bind(obj);
+      copy() === obj; // true
+      copy === fn; // false
+      // acquit:ignore:start
+      assert.equal(copy(), obj);
+      assert.ok(!(copy === fn));
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
