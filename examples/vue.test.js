@@ -1269,4 +1269,213 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('lifecycle hooks', function() {
+    it('example', async function() {
+      // acquit:ignore:start
+      const _console = console;
+      let called = 0;
+      console = {
+        log: () => ++called
+      };
+      // acquit:ignore:end
+      // The below Vue instance has a `created` hook
+      const app = new Vue({
+        created: function() {
+          console.log('Called!');
+        },
+        template: `
+          <h1>Hello, World</h1>
+        `
+      });
+      // acquit:ignore:start
+      assert.equal(called, 1);
+      app.$mount = () => true;
+      // acquit:ignore:end
+
+      // Prints "Called!"
+      app.$mount('#content');
+    });
+
+    it('created async', async function() {
+      // This Vue instance has an async created hook
+      const app = new Vue({
+        data: () => ({ answer: null }),
+        created: async function() {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          this.answer = 42;
+        },
+        // Will first render "The answer is N/A", and then
+        // "The answer is 42" after 100 ms
+        template: `
+          <h1>The answer is {{answer == null ? 'N/A' : answer}}</h1>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('answer is N/A'));
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+      data = await renderToString(app);
+      assert.ok(data.includes('answer is 42'));
+      // acquit:ignore:end
+    });
+
+    it('beforeCreate', async function() {
+      // acquit:ignore:start
+      let v = '42';
+      // acquit:ignore:end
+      // This Vue instance has an beforeCreate hook
+      const app = new Vue({
+        data: () => ({ data: 'test' }),
+        beforeCreate: function() {
+          // acquit:ignore:start
+          v = this.data;
+          // acquit:ignore:end
+          this.data; // undefined
+        },
+        template: `<div></div>`
+      });
+      // acquit:ignore:start
+      await renderToString(app);
+      assert.strictEqual(v, void 0);
+      // acquit:ignore:end
+    });
+
+    it('update', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        window.numUpdated = 0;
+
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          updated: function() {
+            // Will print every time you click on the h1
+            console.log(++window.numUpdated);
+          },
+          template: '<h1 v-on:click="++count">Clicked {{count}}</h1>'
+        });
+
+        app.$mount('#content');
+        // acquit:ignore:start
+      };
+
+      const html = `
+        <html>
+          <body>
+            <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+            <div id="content"></div>
+        
+            <script type="text/javascript">
+              (${fn.toString()})();
+            </script>
+          </body>
+        </html>
+      `;
+      await page.setContent(html);
+      let count = await page.evaluate(() => {
+        return document.querySelector('h1').innerHTML;
+      });
+      assert.equal(count, 'Clicked 0');
+      let numUpdated = await page.evaluate(() => {
+        return window.numUpdated;
+      });
+      assert.equal(numUpdated, 0);
+
+      await page.evaluate(() => {
+        return document.querySelector('h1').click();
+      });
+      count = await page.evaluate(() => {
+        return document.querySelector('h1').innerHTML;
+      });
+      assert.equal(count, 'Clicked 1');
+      numUpdated = await page.evaluate(() => {
+        return window.numUpdated;
+      });
+      assert.equal(numUpdated, 1);
+      await browser.close();
+      // acquit:ignore:end
+    });
+
+    it('destroyed', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        window.numDestroyed = 0;
+
+        Vue.component('test', {
+          destroyed: () => ++window.numDestroyed,
+          props: ['num'],
+          template: '<div class="test-element">{{num}}</div>'
+        });
+
+        const app = new Vue({
+          data: () => ({ elements: [1, 2, 3, 4] }),
+          destroyed: function() {
+            // Will print every time you click on the button, because
+            // Vue unmounts a `test` component every time you remove
+            // an element from `elements`.
+            console.log(++window.numDestroyed);
+          },
+          template: `
+            <div>
+              <test v-for="el in elements" :num="el"></test>
+              <button v-on:click="elements.splice(0, 1)">
+                Remove First
+              </button>
+            </div>
+          `
+        });
+
+        app.$mount('#content');
+        // acquit:ignore:start
+      };
+
+      const html = `
+        <html>
+          <body>
+            <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+            <div id="content"></div>
+        
+            <script type="text/javascript">
+              (${fn.toString()})();
+            </script>
+          </body>
+        </html>
+      `;
+      await page.setContent(html);
+      let count = await page.evaluate(() => {
+        return document.querySelectorAll('.test-element').length;
+      });
+      assert.equal(count, 4);
+
+      await page.evaluate(() => {
+        return document.querySelector('button').click();
+      });
+
+      count = await page.evaluate(() => {
+        return document.querySelectorAll('.test-element').length;
+      });
+      assert.equal(count, 3);
+
+      let numDestroyed = await page.evaluate(() => {
+        return window.numDestroyed;
+      });
+      assert.equal(numDestroyed, 1);
+      
+      await browser.close();
+      // acquit:ignore:end
+    });
+  });
 });
