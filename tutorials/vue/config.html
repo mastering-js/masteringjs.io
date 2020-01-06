@@ -1,0 +1,123 @@
+
+<html>
+  <head>
+    <title>An Overview of the vue.config.js File - Mastering JS</title>
+
+    <meta property="og:title" content="An Overview of the vue.config.js File" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `vue.config.js` file configures the Vue CLI. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>An Overview of the vue.config.js File</h1>
+        <div class="date">
+          Jan 10, 2020
+        </div>
+        
+  <p><a href="https://cli.vuejs.org/config/">The <code>vue.config.js</code> file</a> is a config file for
+the <a href="/tutorials/vue/cli">Vue CLI</a>. The <code>vue.config.js</code> file exports an object
+that contains various config options. For example, the below is a valid <code>vue.config.js</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {};</code></pre>
+<h2 id="starting-a-dev-server">Starting a Dev Server</h2>
+<p>One of the most common uses for the Vue CLI is <a href="https://medium.com/js-dojo/how-to-setup-vue-dev-server-with-a-running-web-server-7532c53b3198">starting a local web server</a> for development work. The Vue CLI is one of the easiest ways to compile
+your vanilla JS into a website, without needing to write any HTML.</p>
+<p>First, run <code>npm install vue @vue/cli @vue/cli-service-global</code>. The <code>@vue/cli-service-global</code> plugin is required to run a server locally.
+Next, create an <code>index.js</code> file that contains some Vue code:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+
+<span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1 v-on:click="++count"&gt;Clicked {{count}}&lt;/h1&gt;'</span>
+});</code></pre>
+<p>Note that this code does <strong>not</strong> explicitly mount the Vue instance to
+the DOM. The Vue CLI will take care of that.</p>
+<p>Next, open up <code>vue.config.js</code> and set the <a href="https://cli.vuejs.org/config/#devserver"><code>devServer.port</code> option</a> to tell the Vue CLI what port to run the web server on:</p>
+<pre><code class="language-javascript"><span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">devServer</span>: {
+    <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
+  }
+};</code></pre>
+<p>Now, run <code>./node_modules/.bin/vue serve</code> to start the web server and
+compile your <code>index.js</code> file. You should see output similar to the below:</p>
+<pre><code> DONE  Compiled successfully <span class="hljs-keyword">in</span> <span class="hljs-number">337</span>ms                                     <span class="hljs-number">5</span>:<span class="hljs-number">56</span>:<span class="hljs-number">59</span> PM
+
+
+  App running at:
+  - Local:   http:<span class="hljs-comment">//localhost:3000/ </span>
+  - Network: http:<span class="hljs-comment">//10.87.106.132:3000/</span>
+</code></pre><p>Point your web browser to <code>http://localhost:3000</code>, and you should
+see an <code>&lt;h1&gt;</code> tag that says &quot;Clicked 0&quot;.</p>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/bind">Using v-bind in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/emit">The $emit Function in Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

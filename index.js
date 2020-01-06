@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Overview of the vue.config.js File',
+      raw: './tutorials/vue/config.md',
+      url: '/tutorials/vue/config',
+      description: 'The `vue.config.js` file configures the Vue CLI. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-01-10')
+    },
+    {
       title: 'Vue Component Lifecycle',
       raw: './tutorials/vue/lifecycle.md',
       url: '/tutorials/vue/lifecycle',
