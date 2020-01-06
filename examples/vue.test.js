@@ -1155,4 +1155,118 @@ describe('Vue', function() {
       });
     });
   });
+
+  describe('conditional class', function() {
+    it('object syntax', async function() {
+      const app = new Vue({
+        data: () => ({ isGreen: true }),
+        // `div` will have class 'green' if `isGreen` is true
+        template: `
+          <div v-bind:class="{ green: isGreen }"></div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('class="green"'));
+      // acquit:ignore:end
+
+      // Remove the class 'green' from the `div`
+      app.$data.isGreen = false;
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(!data.includes('class="green"'));
+      // acquit:ignore:end
+    });
+
+    it('multiple', async function() {
+      const app = new Vue({
+        data: () => ({ green: true, small: false }),
+        // `div` will have class 'green' if `green` is true
+        // and 'small' if `small` is true.
+        template: `
+          <div :class="{ green, small }"></div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('class="green"'));
+      // acquit:ignore:end
+
+      // Remove the class 'green' from the `div`
+      app.$data.green = false;
+      app.$data.small = true;
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('class="small"'));
+      // acquit:ignore:end
+    });
+
+    it('string', async function() {
+      const app = new Vue({
+        data: () => ({ myClass: 'green' }),
+        // `div` will have whatever class or classes are in the
+        // `myClass` data value.
+        template: `
+          <div :class="myClass"></div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('class="green"'));
+      // acquit:ignore:end
+
+      // Remove the class 'green' from the `div` and replace it
+      // with the class 'small'
+      app.$data.myClass = 'small';
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('class="small"'));
+      // acquit:ignore:end
+    });
+
+    it('ternary', async function() {
+      const app = new Vue({
+        data: () => ({ isGreen: true }),
+        // `div` will have class 'green' if `isGreen` is true.
+        template: `
+          <div :class="isGreen ? 'green' : 'small'"></div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('class="green"'));
+      // acquit:ignore:end
+
+      // Remove the class 'green' from the `div` and replace it
+      // with the class 'small'
+      app.$data.isGreen = false;
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('class="small"'));
+      // acquit:ignore:end
+    });
+
+    it('array', async function() {
+      const app = new Vue({
+        data: () => ({ green: true }),
+        // `div` will have class 'green' if `green` is true, and
+        // 'small' otherwise.
+        template: `
+          <div :class="[{ green }, green ? '' : 'small']"></div>
+        `
+      });
+      // acquit:ignore:start
+      let data = await renderToString(app);
+      assert.ok(data.includes('class="green"'));
+      // acquit:ignore:end
+
+      // Remove the class 'green' from the `div` and replace it
+      // with the class 'small'
+      app.$data.green = false;
+      // acquit:ignore:start
+      data = await renderToString(app);
+      assert.ok(data.includes('class="small"'));
+      // acquit:ignore:end
+    });
+  });
 });

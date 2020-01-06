@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Conditional Classes in Vue',
+      raw: './tutorials/vue/conditional-class.md',
+      url: '/tutorials/vue/conditional-class',
+      description: 'Learn how to set classes on an element conditionally in Vue.js.',
+      tags: ['vue'],
+      date: moment('2020-01-06')
+    },
+    {
       title: '`this` in JavaScript',
       raw: './tutorials/fundamentals/this.md',
       url: '/tutorials/fundamentals/this',

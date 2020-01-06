@@ -1,0 +1,156 @@
+
+<html>
+  <head>
+    <title>Conditional Classes in Vue - Mastering JS</title>
+
+    <meta property="og:title" content="Conditional Classes in Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Learn how to set classes on an element conditionally in Vue.js." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Conditional Classes in Vue</h1>
+        <div class="date">
+          Jan 6, 2020
+        </div>
+        
+  <p><a href="/tutorials/vue/bind">Vue&#39;s <code>v-bind</code> syntax</a> supports dynamically binding classes via an
+<a href="https://vuejs.org/v2/guide/class-and-style.html#Object-Syntax">object syntax</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">isGreen</span>: <span class="hljs-literal">true</span> }),
+  <span class="hljs-comment">// `div` will have class 'green' if `isGreen` is true</span>
+  template: <span class="hljs-string">`
+    &lt;div v-bind:class="{ green: isGreen }"&gt;&lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Remove the class 'green' from the `div`</span>
+app.$data.isGreen = <span class="hljs-literal">false</span>;</code></pre>
+<p>You can conditionally bind multiple classes, and use the <a href="/tutorials/vue/bind#shorthand"><code>:</code> shorthand for <code>v-bind:</code></a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">green</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">small</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-comment">// `div` will have class 'green' if `green` is true</span>
+  <span class="hljs-comment">// and 'small' if `small` is true.</span>
+  template: <span class="hljs-string">`
+    &lt;div :class="{ green, small }"&gt;&lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Remove the class 'green' from the `div`</span>
+app.$data.green = <span class="hljs-literal">false</span>;
+app.$data.small = <span class="hljs-literal">true</span>;</code></pre>
+<h2 id="string-syntax">String Syntax</h2>
+<p>The value you bind to class with <code>v-bind</code> can be a string, not just an
+object. For example, you can store the class name in a <code>data</code> string:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">myClass</span>: <span class="hljs-string">'green'</span> }),
+  <span class="hljs-comment">// `div` will have whatever class or classes are in the</span>
+  <span class="hljs-comment">// `myClass` data value.</span>
+  template: <span class="hljs-string">`
+    &lt;div :class="myClass"&gt;&lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
+<span class="hljs-comment">// with the class 'small'</span>
+app.$data.myClass = <span class="hljs-string">'small'</span>;</code></pre>
+<p>Another neat approach is to <a href="https://vuejs.org/v2/guide/class-and-style.html#Array-Syntax">use the ternary operator</a> to decide which class the element will have:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">isGreen</span>: <span class="hljs-literal">true</span> }),
+  <span class="hljs-comment">// `div` will have class 'green' if `isGreen` is true.</span>
+  template: <span class="hljs-string">`
+    &lt;div :class="isGreen ? 'green' : 'small'"&gt;&lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
+<span class="hljs-comment">// with the class 'small'</span>
+app.$data.isGreen = <span class="hljs-literal">false</span>;</code></pre>
+<h2 id="array-syntax">Array Syntax</h2>
+<p>You can also bind the <code>class</code> to an array. Vue will then combine all
+elements in the array to form the final class binding. This lets you
+mix and match string and object syntax in one declaration:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">green</span>: <span class="hljs-literal">true</span> }),
+  <span class="hljs-comment">// `div` will have class 'green' if `green` is true, and</span>
+  <span class="hljs-comment">// 'small' otherwise.</span>
+  template: <span class="hljs-string">`
+    &lt;div :class="[{ green }, green ? '' : 'small']"&gt;&lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
+<span class="hljs-comment">// with the class 'small'</span>
+app.$data.green = <span class="hljs-literal">false</span>;</code></pre>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/bind">Using v-bind in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/emit">The $emit Function in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/computed">Computed Properties in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-on">Vue Event Handling with v-on</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
