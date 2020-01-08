@@ -1192,7 +1192,7 @@ describe('Vue', function() {
       assert.ok(data.includes('class="green"'));
       // acquit:ignore:end
 
-      // Remove the class 'green' from the `div`
+      // Remove the class 'green' from the `div` and add class 'small'
       app.$data.green = false;
       app.$data.small = true;
       // acquit:ignore:start
