@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Component Lifecycle',
+      raw: './tutorials/vue/lifecycle.md',
+      url: '/tutorials/vue/lifecycle',
+      description: 'Vue components have lifecycle hooks just like React components. Vue calls these functions whenever it does certain things to your component.',
+      tags: ['vue'],
+      date: moment('2020-01-08')
+    },
+    {
       title: 'Conditional Classes in Vue',
       raw: './tutorials/vue/conditional-class.md',
       url: '/tutorials/vue/conditional-class',
