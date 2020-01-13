@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Server-Sent Events with Express',
+      raw: './tutorials/express/server-sent-events.md',
+      url: '/tutorials/express/server-sent-events',
+      description: 'Server-sent events are an alternative to websockets for pushing events from your Express server to your client. Here\'s how you can get started with server-sent events in Node.js with Express.',
+      tags: ['express'],
+      date: moment('2020-01-15')
+    },
+    {
       title: 'The Switch/Case Statement in JavaScript',
       raw: './tutorials/fundamentals/switch-case.md',
       url: '/tutorials/fundamentals/switch-case',
