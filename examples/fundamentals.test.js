@@ -2537,6 +2537,165 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('switch', function() {
+    it('basic example', function() {
+      const hero = 'Batman';
+      let sidekick;
+
+      switch (hero) {
+        case 'Batman':
+          sidekick = 'Robin';
+          break;
+        case 'Aquaman':
+          sidekick = 'Aqualad';
+          break;
+        case 'Superman':
+          sidekick = 'Jimmy Olsen';
+          break;
+        default:
+          throw new Error('Unknown hero');
+      }
+
+      sidekick; // 'Robin'
+      // acquit:ignore:start
+      assert.equal(sidekick, 'Robin');
+      // acquit:ignore:end
+    });
+
+    it('missing break', function() {
+      const hero = 'Batman';
+      let sidekick;
+
+      switch (hero) {
+        case 'Batman':
+          sidekick = 'Robin';
+          // Unless there's a `break`, JavaScript will execute the next
+          // `case` block.
+          // break;
+        case 'Aquaman':
+          sidekick = 'Aqualad';
+          break;
+        case 'Superman':
+          sidekick = 'Jimmy Olsen';
+          break;
+        default:
+          throw new Error('Unknown hero');
+      }
+
+      // JavaScript executed both the 'Batman' and 'Aquaman' blocks,
+      // so you get the wrong `sidekick`.
+      sidekick; // 'Aqualad'
+      // acquit:ignore:start
+      assert.equal(sidekick, 'Aqualad');
+      // acquit:ignore:end
+    });
+
+    it('fallthrough', function() {
+      const sidekick = 'Nightwing';
+      let hero;
+
+      switch (sidekick) {
+        // The 'Robin' and 'Nightwing' cases are "fallthrough" `case`
+        // statements. They execute the same code block as the 'Bluebird'
+        // case.
+        case 'Robin':
+        case 'Nightwing':
+        case 'Bluebird':
+          hero = 'Batman';
+          break;
+        case 'Aqualad':
+        case 'Tempest':
+          hero = 'Aquaman';
+          break;
+        default:
+          throw new Error('Unknown sidekick');
+      }
+
+      hero; // 'Batman'
+      // acquit:ignore:start
+      assert.equal(hero, 'Batman');
+      // acquit:ignore:end
+    });
+
+    it('using if', function() {
+      const hero = 'Batman';
+      let sidekick;
+
+      if (hero === 'Batman') {
+        sidekick = 'Robin';
+      } else if (hero === 'Aquaman') {
+        sidekick = 'Aqualad';
+      } else if (hero === 'Superman') {
+        sidekick = 'Jimmy Olsen';
+      } else {
+        throw new Error('Unknown hero');
+      }
+
+      sidekick; // 'Robin'
+      // acquit:ignore:start
+      assert.equal(sidekick, 'Robin');
+      // acquit:ignore:end
+    });
+
+    it('object types', function() {
+      const date = new Date('2020/07/04');
+      let holiday;
+
+      const goodFriday = new Date('2020/04/10');
+      const independenceDay = new Date('2020/07/04');
+      const christmas = new Date('2020/12/25');
+
+      // Strict equality means two dates aren't equal unless they're
+      // the same object reference.
+      date === independenceDay; // false
+      // acquit:ignore:start
+      assert.ok(date !== independenceDay);
+      // acquit:ignore:end
+
+      // `date` is an object, so you need to make sure you convert the
+      // date to a number using `getTime()`. Otherwise none of the
+      // cases will hit.
+      switch (date.getTime()) {
+        case goodFriday.getTime():
+          holiday = 'Good Friday';
+          break;
+        case independenceDay.getTime():
+          holiday = 'Independence Day';
+          break;
+        case christmas.getTime():
+          holiday = 'Christmas';
+          break;
+      }
+
+      holiday; // 'Independence Day'
+      // acquit:ignore:start
+      assert.equal(holiday, 'Independence Day');
+      // acquit:ignore:end
+    });
+
+    it('using object conditional', function() {
+      const hero = 'Batman';
+      let sidekick;
+
+      const obj = {
+        'Batman': () => { sidekick = 'Robin'; },
+        'Aquaman': () => { sidekick = 'Aqualad'; },
+        'Superman': () => { sidekick = 'Jimmy Olsen'; }
+      };
+
+      // Make sure to use `hasOwnProperty()` if you're using an object,
+      // otherwise 'constructor' would be a valid `hero`.
+      if (obj.hasOwnProperty(hero)) {
+        obj[hero]();
+      }
+
+      sidekick; // 'Robin'
+      // acquit:ignore:start
+      assert.equal(sidekick, 'Robin');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The Switch/Case Statement in JavaScript',
+      raw: './tutorials/fundamentals/switch-case.md',
+      url: '/tutorials/fundamentals/switch-case',
+      description: 'The switch statement is like a multi-tiered `if` statement that can execute different code for different cases. This tutorial shows you how to use the `switch` and `case` statements.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-13')
+    },
+    {
       title: 'An Overview of the vue.config.js File',
       raw: './tutorials/vue/config.md',
       url: '/tutorials/vue/config',

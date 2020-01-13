@@ -1,0 +1,233 @@
+
+<html>
+  <head>
+    <title>The Switch/Case Statement in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="The Switch/Case Statement in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The switch statement is like a multi-tiered `if` statement that can execute different code for different cases. This tutorial shows you how to use the `switch` and `case` statements." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The Switch/Case Statement in JavaScript</h1>
+        <div class="date">
+          Jan 13, 2020
+        </div>
+        
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch"><code>switch</code> statement</a> evaluates an expression, and executes a block of code based on which <code>case</code> the expression evaluated to.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> hero = <span class="hljs-string">'Batman'</span>;
+<span class="hljs-keyword">let</span> sidekick;
+
+<span class="hljs-keyword">switch</span> (hero) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Batman'</span>:
+    sidekick = <span class="hljs-string">'Robin'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Aquaman'</span>:
+    sidekick = <span class="hljs-string">'Aqualad'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Superman'</span>:
+    sidekick = <span class="hljs-string">'Jimmy Olsen'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown hero'</span>);
+}
+
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
+<p>Make sure you don&#39;t forget the <code>break</code> statement at the end of a block!
+If you don&#39;t put a <code>break</code> statement at the end of a <code>case</code> block,
+JavaScript will &quot;fall through&quot; to the next <code>case</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> hero = <span class="hljs-string">'Batman'</span>;
+<span class="hljs-keyword">let</span> sidekick;
+
+<span class="hljs-keyword">switch</span> (hero) {
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Batman'</span>:
+    sidekick = <span class="hljs-string">'Robin'</span>;
+    <span class="hljs-comment">// Unless there's a `break`, JavaScript will execute the next</span>
+    <span class="hljs-comment">// `case` block.</span>
+    <span class="hljs-comment">// break;</span>
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Aquaman'</span>:
+    sidekick = <span class="hljs-string">'Aqualad'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Superman'</span>:
+    sidekick = <span class="hljs-string">'Jimmy Olsen'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown hero'</span>);
+}
+
+<span class="hljs-comment">// JavaScript executed both the 'Batman' and 'Aquaman' blocks,</span>
+<span class="hljs-comment">// so you get the wrong `sidekick`.</span>
+sidekick; <span class="hljs-comment">// 'Aqualad'</span></code></pre>
+<p>There are some benefits to this behavior. You can execute one block
+for multiple <code>case</code> statements. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> sidekick = <span class="hljs-string">'Nightwing'</span>;
+<span class="hljs-keyword">let</span> hero;
+
+<span class="hljs-keyword">switch</span> (sidekick) {
+  <span class="hljs-comment">// The 'Robin' and 'Nightwing' cases are "fallthrough" `case`</span>
+  <span class="hljs-comment">// statements. They execute the same code block as the 'Bluebird'</span>
+  <span class="hljs-comment">// case.</span>
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Robin'</span>:
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Nightwing'</span>:
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Bluebird'</span>:
+    hero = <span class="hljs-string">'Batman'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Aqualad'</span>:
+  <span class="hljs-keyword">case</span> <span class="hljs-string">'Tempest'</span>:
+    hero = <span class="hljs-string">'Aquaman'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown sidekick'</span>);
+}
+
+hero; <span class="hljs-comment">// 'Batman'</span></code></pre>
+<h2 id="equality-check">Equality Check</h2>
+<p>The <code>switch</code> statement evaluates the given expression once, and compares
+it against each <code>case</code> expression using <a href="https://masteringjs.io/tutorials/fundamentals/equals#strict-equality-with-">strict equality</a>. The below <code>if</code> statement
+is functionally equivalent to the first example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> hero = <span class="hljs-string">'Batman'</span>;
+<span class="hljs-keyword">let</span> sidekick;
+
+<span class="hljs-keyword">if</span> (hero === <span class="hljs-string">'Batman'</span>) {
+  sidekick = <span class="hljs-string">'Robin'</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hero === <span class="hljs-string">'Aquaman'</span>) {
+  sidekick = <span class="hljs-string">'Aqualad'</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hero === <span class="hljs-string">'Superman'</span>) {
+  sidekick = <span class="hljs-string">'Jimmy Olsen'</span>;
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown hero'</span>);
+}
+
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
+<p>Because the <code>switch</code> statement uses strict equality, you&#39;re responsible
+for doing type conversions if you want to compare objects, like <a href="/tutorials/fundamentals/date_format">dates</a>
+or <a href="https://docs.mongodb.com/manual/reference/method/ObjectId/">MongoDB ObjectIds</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2020/07/04'</span>);
+<span class="hljs-keyword">let</span> holiday;
+
+<span class="hljs-keyword">const</span> goodFriday = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2020/04/10'</span>);
+<span class="hljs-keyword">const</span> independenceDay = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2020/07/04'</span>);
+<span class="hljs-keyword">const</span> christmas = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2020/12/25'</span>);
+
+<span class="hljs-comment">// Strict equality means two dates aren't equal unless they're</span>
+<span class="hljs-comment">// the same object reference.</span>
+date === independenceDay; <span class="hljs-comment">// false</span>
+
+<span class="hljs-comment">// `date` is an object, so you need to make sure you convert the</span>
+<span class="hljs-comment">// date to a number using `getTime()`. Otherwise none of the</span>
+<span class="hljs-comment">// cases will hit.</span>
+<span class="hljs-keyword">switch</span> (date.getTime()) {
+  <span class="hljs-keyword">case</span> goodFriday.getTime():
+    holiday = <span class="hljs-string">'Good Friday'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> independenceDay.getTime():
+    holiday = <span class="hljs-string">'Independence Day'</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> christmas.getTime():
+    holiday = <span class="hljs-string">'Christmas'</span>;
+    <span class="hljs-keyword">break</span>;
+}
+
+holiday; <span class="hljs-comment">// 'Independence Day'</span></code></pre>
+<h2 id="alternatives">Alternatives</h2>
+<p>Unless you&#39;re using fallthrough <code>case</code> statements, you can use <code>if</code> as a
+replacement for <code>switch/case</code>. Another alternative is defining an object
+or <a href="https://thecodebarbarian.com/the-80-20-guide-to-maps-in-javascript.html">map</a>
+that contains functions to execute based on <code>case</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> hero = <span class="hljs-string">'Batman'</span>;
+<span class="hljs-keyword">let</span> sidekick;
+
+<span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-string">'Batman'</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { sidekick = <span class="hljs-string">'Robin'</span>; },
+  <span class="hljs-string">'Aquaman'</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { sidekick = <span class="hljs-string">'Aqualad'</span>; },
+  <span class="hljs-string">'Superman'</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { sidekick = <span class="hljs-string">'Jimmy Olsen'</span>; }
+};
+
+<span class="hljs-comment">// Make sure to use `hasOwnProperty()` if you're using an object,</span>
+<span class="hljs-comment">// otherwise 'constructor' would be a valid `hero`.</span>
+<span class="hljs-keyword">if</span> (obj.hasOwnProperty(hero)) {
+  obj[hero]();
+}
+
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
+<p>The advantage of using an object conditional is you can build up the object
+programatically. If your <code>switch</code> statement is getting a little too repetitive,
+you can instead build up an object conditional with a <code>for</code> loop.</p>
+<h2 id="recommended-use">Recommended Use</h2>
+<p>The <code>switch</code> statement comes with a lot of gotchas, like unintentionally
+falling through to the next <code>case</code> statement. <a href="https://eslint.org/docs/rules/no-fallthrough">ESLint has a <code>no-fallthrough</code> rule</a> that can help you catch this at the linter level.
+However, there&#39;s rarely a reason to use <code>switch</code> as opposed to <code>if/else if</code> or
+objects - because <code>switch</code> is less common than <code>if</code>, fewer developers are
+comfortable with the semantics of <code>switch</code>.</p>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/this">`this` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/equals">Triple Equals vs Double Equals in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/tomorrow">Get Tomorrow's Date in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/static">Static Properties and Functions in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/modulus">The Modulus Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/truthy">Truthy Values in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/logical-operators">Logical Operators in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
