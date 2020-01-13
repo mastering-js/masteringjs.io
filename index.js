@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What is a Webhook?',
+      raw: './tutorials/express/webhook.md',
+      url: '/tutorials/express/webhook',
+      description: 'A webhook is an API endpoint designed to be called by an outside service when an event occurs. Here\'s what you need to know about webhooks in Express.',
+      tags: ['express'],
+      date: moment('2020-01-17')
+    },
+    {
       title: 'Server-Sent Events with Express',
       raw: './tutorials/express/server-sent-events.md',
       url: '/tutorials/express/server-sent-events',
