@@ -79,7 +79,7 @@ The client side is easy: just point the <code>EventSource</code> class to an <a 
 <p>The Express side is the tricky part. To support SSE, you need to
 set 3 headers, and then <a href="https://nodejs.org/api/http.html#http_request_flushheaders">send the headers to the client using <code>flushHeaders()</code></a>:</p>
 <ul>
-<li><code>CacheControl: no-cache</code></li>
+<li><code>Cache-Control: no-cache</code></li>
 <li><code>Content-Type: text/event-stream</code>: So the client knows this response is an HTTP stream</li>
 <li><code>Connection: keep-alive</code>: So Node.js knows to keep the HTTP socket open</li>
 </ul>
