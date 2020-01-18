@@ -31,7 +31,7 @@ The client side is easy: just point the `EventSource` class to an [Express route
 The Express side is the tricky part. To support SSE, you need to
 set 3 headers, and then [send the headers to the client using `flushHeaders()`](https://nodejs.org/api/http.html#http_request_flushheaders):
 
-- `CacheControl: no-cache`
+- `Cache-Control: no-cache`
 - `Content-Type: text/event-stream`: So the client knows this response is an HTTP stream
 - `Connection: keep-alive`: So Node.js knows to keep the HTTP socket open
 
