@@ -2696,6 +2696,135 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Promise.all', function() {
+    it('basic example', async function() {
+      // `p1` is immediately fulfilled with value `1`
+      const p1 = Promise.resolve(1);
+      // `p2` will be fulfilled with value `2` after 100ms
+      const p2 = new Promise(resolve => setTimeout(() => resolve(2), 100));
+
+      const pAll = Promise.all([p1, p2]);
+      pAll instanceof Promise; // true
+      // acquit:ignore:start
+      assert.ok(pAll instanceof Promise);
+      // acquit:ignore:end
+
+      const arr = await pAll;
+
+      Array.isArray(arr); // true
+      arr[0]; // 1
+      arr[1]; // 2
+      // acquit:ignore:start
+      assert.ok(Array.isArray(arr));
+      assert.equal(arr[0], 1);
+      assert.equal(arr[1], 2);
+      // acquit:ignore:end
+    });
+
+    it('async functions', async function() {
+      async function getName() {
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        return 'Jean-Luc Picard';
+      }
+
+      async function getAge() {
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        return 59;
+      }
+
+      const start = Date.now();
+      const [name, age] = await Promise.all([getName(), getAge()]);
+      const end = Date.now();
+
+      name; // 'Jean-Luc Picard'
+      age; // 59
+
+      end - start; // Approximately 200
+      // acquit:ignore:start
+      assert.equal(name, 'Jean-Luc Picard');
+      assert.equal(age, 59);
+      assert.ok(end - start < 300);
+      assert.ok(end - start > 100);
+      // acquit:ignore:end
+    });
+
+    it('error', async function() {
+      const success = new Promise(resolve => setTimeout(() => resolve('OK'), 100));
+      const fail = new Promise((resolve, reject) => {
+        setTimeout(() => reject(new Error('Oops')), 100);
+      });
+
+      try {
+        await Promise.all([success, fail]);
+      } catch (err) {
+        err.message; // 'Oops'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops');
+        // acquit:ignore:end
+      }
+    });
+
+    it('execution after error', async function() {
+      let finished = false;
+
+      const success = async function() {
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        finished = true;
+        return 'OK';
+      }
+      const fail = async function() {
+        await new Promise(resolve => setTimeout(resolve, 10));
+        throw new Error('Oops');
+      }
+
+      // acquit:ignore:start
+      let threw = false;
+      // acquit:ignore:end
+      try {
+        await Promise.all([success(), fail()]);
+      } catch (err) {
+        err.message; // 'Oops'
+
+        // `Promise.all()` fails fast because `fail()` threw an
+        // error, but `success()` is still running.
+        finished; // false
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops');
+        assert.ok(!finished);
+        threw = true;
+        // acquit:ignore:end
+
+        // If you wait, `success()` will set `finished`
+        await new Promise(resolve => setTimeout(resolve, 100));
+        finished; // true
+        // acquit:ignore:start
+        assert.ok(finished);
+        // acquit:ignore:end
+      }
+      // acquit:ignore:start
+      assert.ok(threw);
+      // acquit:ignore:end
+    });
+
+    it('generator', async function() {
+      const generatorFn = function*() {
+        for (let i = 1; i <= 5; ++i) {
+          yield Promise.resolve(i);
+        }
+      }
+
+      const arr = await Promise.all(generatorFn());
+
+      arr; // [1, 2, 3, 4, 5]
+      // acquit:ignore:start
+      assert.deepEqual(arr, [1, 2, 3, 4, 5]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

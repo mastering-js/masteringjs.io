@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `Promise.all()` Function in JavaScript',
+      raw: './tutorials/fundamentals/promise-all.md',
+      url: '/tutorials/fundamentals/promise-all',
+      description: 'The `Promise.all()` function lets you execute multiple promises in parallel, and accumulates the results. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-20')
+    },
+    {
       title: 'What is a Webhook?',
       raw: './tutorials/express/webhook.md',
       url: '/tutorials/express/webhook',
