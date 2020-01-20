@@ -2825,6 +2825,63 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Promise resolve', function() {
+    it('basic example', async function() {
+      const p = Promise.resolve('Hello, World');
+
+      const str = await p;
+      str; // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(str, 'Hello, World');
+      // acquit:ignore:end
+
+      return p.then(str => {
+        str; // 'Hello, World'
+        // acquit:ignore:start
+        assert.equal(str, 'Hello, World');
+        // acquit:ignore:end
+      });
+    });
+
+    it('another promise', async function() {
+      const p = Promise.resolve('Hello, World');
+      const p2 = Promise.resolve(p);
+
+      const str = await p2;
+      // `p2` "assimilates" the value of `p`.
+      str; // 'Hello, World'
+    });
+
+    it('reject', async function() {
+      async function fail() {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        throw new Error('Oops');
+      }
+
+      // Calling `fail()` returns a promise that rejects after
+      // 100ms. So `p` will reject, even though it was resolved!
+      const p = Promise.resolve(fail());
+
+      const err = await p.catch(err => err);
+      err.message; // 'Oops'
+      // acquit:ignore:start
+      assert.equal(err.message, 'Oops');
+      // acquit:ignore:end
+    });
+
+    it('constructor', async function() {
+      const p = Promise.resolve('Hello, World');
+      const p2 = new Promise(resolve => resolve(p));
+
+      const str = await p2;
+      // `p2` "assimilates" the value of `p`.
+      str; // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(str, 'Hello, World');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
