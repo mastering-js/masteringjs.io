@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Resolve a Promise in JavaScript',
+      raw: './tutorials/fundamentals/promise-resolve.md',
+      url: '/tutorials/fundamentals/promise-resolve',
+      description: 'Resolving a promise in JavaScript is how you mark a promise as fulfilled. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-22')
+    },
+    {
       title: 'The `Promise.all()` Function in JavaScript',
       raw: './tutorials/fundamentals/promise-all.md',
       url: '/tutorials/fundamentals/promise-all',
