@@ -6,7 +6,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #0366d6;
+  color: #208E96;
 }
 
 pre {
@@ -25,14 +25,14 @@ p code {
   background-color: #f5f5f5;
   padding: 2px;
   border-radius: 2px;
-  color: #00386c;
+  color: #0A5257;
 }
 
 li code {
   background-color: #f5f5f5;
   padding: 2px;
   border-radius: 2px;
-  color: #00386c;
+  color: #0A5257;
 }
 
 p {
@@ -48,14 +48,14 @@ li {
 .nav {
   width: 100%;
   background-color: #fafbfc;
-  height: 55px;
+  height: 65px;
   border-bottom: 1px solid #ddd;
 }
 
 .branding {
-  padding-top: 10px;
+  padding-top: 7px;
   padding-left: 0.25em;
-  font-size: 1.5em;
+  font-size: 1.75em;
 }
 
 .branding .logo {
@@ -73,8 +73,8 @@ li {
 }
 
 .logo img {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.75em;
+  height: 1.75em;
 }
 
 .links {
@@ -120,7 +120,7 @@ li {
 
 .post .tags .tag {
   color: white;
-  background-color: #0366d6;
+  background-color: #208E96;
   border-radius: 3px;
   padding: 5px;
   margin-right: 0.5em;
