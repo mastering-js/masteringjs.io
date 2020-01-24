@@ -2882,6 +2882,99 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('new Promise', function() {
+    it('basic example', async function() {
+      const success = new Promise(function executor(resolve) {
+        resolve('OK');
+      });
+
+      const fail = new Promise(function executor(resolve, reject) {
+        reject(new Error('Oops'));
+      });
+
+      const str = await success;
+      str; // 'OK'
+
+      const err = await fail.catch(err => err);
+      err.message; // Oops
+      // acquit:ignore:start
+      assert.equal(str, 'OK');
+      assert.equal(err.message, 'Oops');
+      // acquit:ignore:end
+    });
+
+    it('with then', async function() {
+      const success = new Promise(function executor(resolve) {
+        setTimeout(() => resolve('OK'), 100);
+      });
+
+      const start = Date.now();
+
+      return success.then(function onFulfilled(str) {
+        str; // 'OK'
+
+        const elapsed = Date.now() - start;
+        elapsed; // Approximately 100
+        // acquit:ignore:start
+        assert.equal(str, 'OK');
+        assert.ok(elapsed > 50);
+        assert.ok(elapsed < 150);
+        // acquit:ignore:end
+      });
+    });
+
+    it('timeout', async function() {
+      async function test() {
+        // Pause the async function for 100ms
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        return 'OK';
+      }
+
+      const start = Date.now();
+      await test();
+      const elapsed = Date.now() - start;
+      elapsed; // Approximately 100
+      // acquit:ignore:start
+      assert.ok(elapsed > 50);
+      assert.ok(elapsed < 150);
+      // acquit:ignore:end
+    });
+
+    it('fs', async function() {
+      const fs = require('fs');
+
+      const p = new Promise(function executor(resolve, reject) {
+        fs.readFile('./package.json', (error, result) => {
+          if (error != null) {
+            // Note the early return!
+            return reject(error);
+          }
+
+          resolve(result);
+        });
+      });
+
+      const pkg = JSON.parse(await p);
+      pkg.name; // 'masteringjs.io'
+      // acquit:ignore:start
+      assert.equal(pkg.name, 'masteringjs.io');
+      // acquit:ignore:end
+    });
+
+    it('async executor', async function() {
+      const p = new Promise(async function executor(resolve, reject) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        resolve('OK');
+      });
+
+      const str = await p;
+      // acquit:ignore:start
+      assert.equal(str, 'OK');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

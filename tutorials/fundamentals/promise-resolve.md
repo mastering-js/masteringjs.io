@@ -31,6 +31,10 @@ In particular, a promise that is resolved can still become rejected!
 [require:Fundamentals Promise resolve reject$]
 ```
 
+Resolved is not a [promise state](/tutorials/fundamentals/promise#promises-as-state-machines). On the other hand, fulfilled is
+one of 3 states a promise can be in, and once a promise transitions
+to fulfilled, JavaScript executes any `onFulfilled` callbacks you passed to the [`then()` function](/tutorials/fundamentals/then).
+
 With the Promise Constructor
 ----------------------------
 

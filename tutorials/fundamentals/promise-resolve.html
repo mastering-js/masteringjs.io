@@ -93,6 +93,9 @@ In particular, a promise that is resolved can still become rejected!</p>
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 err.message; <span class="hljs-comment">// 'Oops'</span></code></pre>
+<p>Resolved is not a <a href="/tutorials/fundamentals/promise#promises-as-state-machines">promise state</a>. On the other hand, fulfilled is
+one of 3 states a promise can be in, and once a promise transitions
+to fulfilled, JavaScript executes any <code>onFulfilled</code> callbacks you passed to the <a href="/tutorials/fundamentals/then"><code>then()</code> function</a>.</p>
 <h2 id="with-the-promise-constructor">With the Promise Constructor</h2>
 <p>When you create a promise using <code>new</code>, you call the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise constructor</a>.
 The Promise constructor takes a single parameter, an <code>executor</code> function.
@@ -120,6 +123,9 @@ str; <span class="hljs-comment">// 'Hello, World'</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/promise-new">Understanding `new Promise` in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/promise-all">The `Promise.all()` Function in JavaScript</a></li>
   
 
@@ -136,9 +142,6 @@ str; <span class="hljs-comment">// 'Hello, World'</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/static">Static Properties and Functions in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/modulus">The Modulus Operator in JavaScript</a></li>
   
     </ul>
   

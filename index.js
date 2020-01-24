@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding `new Promise` in JavaScript',
+      raw: './tutorials/fundamentals/promise-new.md',
+      url: '/tutorials/fundamentals/promise-new',
+      description: 'When you call `new Promise` in JavaScript, you invoke the Promise constructor. Here\'s how you can use the Promise constructor like a pro.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-24')
+    },
+    {
       title: 'Resolve a Promise in JavaScript',
       raw: './tutorials/fundamentals/promise-resolve.md',
       url: '/tutorials/fundamentals/promise-resolve',
