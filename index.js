@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'A Practical Introduction to Finite State Machines',
+      raw: './tutorials/fundamentals/state-machines.md',
+      url: '/tutorials/fundamentals/state-machines',
+      description: 'State machines may seem like a dull abstract topic, but they are extremely useful for JavaScript developers. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-29')
+    },
+    {
       title: 'Understanding Async/Await in JavaScript',
       raw: './tutorials/fundamentals/async-await.md',
       url: '/tutorials/fundamentals/async-await',
