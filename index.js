@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding Async/Await in JavaScript',
+      raw: './tutorials/fundamentals/async-await.md',
+      url: '/tutorials/fundamentals/async-await',
+      description: 'Async/await lets you write async code in a way that looks sync. No callbacks or promise chains, just `for` loops and `if` statements. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-27')
+    },
+    {
       title: 'Understanding `new Promise` in JavaScript',
       raw: './tutorials/fundamentals/promise-new.md',
       url: '/tutorials/fundamentals/promise-new',

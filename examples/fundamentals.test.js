@@ -2975,6 +2975,86 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('async await', function() {
+    it('basic await', async function() {
+      async function test() {
+        // `await` unwraps the promise's value
+        const val = await Promise.resolve(42);
+        val; // 42
+      }
+
+      test();
+    });
+
+    it('await pause', async function() {
+      async function test() {
+        const start = Date.now();
+        await new Promise(resolve => setTimeout(resolve, 100));
+        const elapsed = Date.now() - start;
+        elapsed; // about 100
+        // acquit:ignore:start
+        assert.ok(elapsed > 50);
+        assert.ok(elapsed < 150);
+        // acquit:ignore:end
+      }
+      // acquit:ignore:start
+      return test();
+      // acquit:ignore:end
+    });
+
+    it('await loop', async function() {
+      async function asyncEvenNumbers() {
+        const nums = [];
+        for (let i = 1; i <= 10; ++i) {
+          if (i % 2 === 0) {
+            const v = await Promise.resolve(i);
+            nums.push(v);
+          }
+        }
+
+        nums; // [2, 4, 6, 8, 10]
+        // acquit:ignore:start
+        assert.deepEqual(nums, [2, 4, 6, 8, 10]);
+        // acquit:ignore:end
+      }
+      // acquit:ignore:start
+      return asyncEvenNumbers();
+      // acquit:ignore:end
+    });
+
+    it('try catch', async function() {
+      async function test() {
+        try {
+          await Promise.reject(new Error('Oops'));
+        } catch (err) {
+          err.message; // Oops
+          // acquit:ignore:start
+          assert.equal(err.message, 'Oops');
+          // acquit:ignore:end
+        }
+      }
+      // acquit:ignore:start
+      return test();
+      // acquit:ignore:end
+    });
+
+    it('promise catch', async function() {
+      async function test() {
+        const promise = Promise.reject(new Error('Oops'));
+
+        // Unwrap the promise's error
+        const err = await promise.catch(err => err);
+        err.message; // 'Oops'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops');
+        // acquit:ignore:end
+      }
+      // acquit:ignore:start
+      return test();
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

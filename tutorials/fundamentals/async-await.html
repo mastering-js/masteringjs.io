@@ -1,0 +1,174 @@
+
+<html>
+  <head>
+    <title>Understanding Async/Await in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Understanding Async/Await in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Async/await lets you write async code in a way that looks sync. No callbacks or promise chains, just `for` loops and `if` statements. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Understanding Async/Await in JavaScript</h1>
+        <div class="date">
+          Jan 27, 2020
+        </div>
+        
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">Async/await</a> lets you write async code in a way that looks like sync code. You can
+use <code>if</code> statements, <code>for</code> loops, and <code>try/catch</code> in async functions!</p>
+<h2 id="async">Async</h2>
+<p>The <code>async</code> keyword marks a function as an <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async function</a>. In the below example, <code>test()</code> is an
+async function.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}</code></pre>
+<p>You can also define an async arrow function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> test = <span class="hljs-keyword">async</span> () =&gt; <span class="hljs-number">42</span>;</code></pre>
+<h2 id="await">Await</h2>
+<p>The special thing about async functions is that you can use the <code>await</code>
+keyword. If you <code>await</code> on a promise, the <code>await</code> keyword <em>pauses</em> execution of
+the surrounding async function until the promise <a href="/tutorials/fundamentals/promise#promises-as-state-machines">fulfills or rejects</a>. <code>await</code> also <em>unwraps</em> the promise: it
+gives you the fulfilled value of the promise.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// `await` unwraps the promise's value</span>
+  <span class="hljs-keyword">const</span> val = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">42</span>);
+  val; <span class="hljs-comment">// 42</span>
+}
+
+test();</code></pre>
+<p>In the above example, the <a href="/tutorials/fundamentals/promise-resolve"><code>Promise.resolve()</code> function</a> means the promise is fulfilled immediately. In the below example,
+<code>await</code> pauses execution of <code>test()</code> for 100 ms:
+`</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> start = <span class="hljs-built_in">Date</span>.now();
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
+  <span class="hljs-keyword">const</span> elapsed = <span class="hljs-built_in">Date</span>.now() - start;
+  elapsed; <span class="hljs-comment">// about 100</span>
+}</code></pre>
+<p><code>await</code> is just a plain old JavaScript keyword. That means you can use it within
+<code>if</code> statements, <code>for</code> loops, and <code>try/catch</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncEvenNumbers</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> nums = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; ++i) {
+    <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.resolve(i);
+      nums.push(v);
+    }
+  }
+
+  nums; <span class="hljs-comment">// [2, 4, 6, 8, 10]</span>
+}</code></pre>
+<h2 id="return-value">Return Value</h2>
+<p>Another special property of async functions is that they always return a promise.
+Even if you return a primitive value from an async function, JavaScript will
+wrap that value in a promise.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}
+
+<span class="hljs-keyword">const</span> p = test();
+p <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+p.then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+  v; <span class="hljs-comment">// 42</span>
+});</code></pre>
+<p>That means can use <code>await</code> on an async function call:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> val = <span class="hljs-keyword">await</span> test();
+  val; <span class="hljs-comment">// 42</span>
+}</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p><a href="http://thecodebarbarian.com/async-await-error-handling-in-javascript.html">Error handling with async/await</a> is a complex topic. But, at a high level,
+there are two patterns for handling errors.</p>
+<p>When you <code>await</code> on a promise and that promise rejects, <code>await</code> throws an
+error that you can <code>try/catch</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>));
+  } <span class="hljs-keyword">catch</span> (err) {
+    err.message; <span class="hljs-comment">// Oops</span>
+  }
+}</code></pre>
+<p>You can also use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch">the <code>Promise#catch()</code> function</a> to unwrap the promise&#39;s error:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>));
+
+  <span class="hljs-comment">// Unwrap the promise's error</span>
+  <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> promise.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+  err.message; <span class="hljs-comment">// 'Oops'</span>
+}</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/promise-new">Understanding `new Promise` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-resolve">Resolve a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-all">The `Promise.all()` Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/switch-case">The Switch/Case Statement in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/this">`this` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/equals">Triple Equals vs Double Equals in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/tomorrow">Get Tomorrow's Date in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
