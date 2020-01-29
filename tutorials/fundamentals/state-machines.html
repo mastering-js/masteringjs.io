@@ -1,0 +1,155 @@
+
+<html>
+  <head>
+    <title>A Practical Introduction to Finite State Machines - Mastering JS</title>
+
+    <meta property="og:title" content="A Practical Introduction to Finite State Machines" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="State machines may seem like a dull abstract topic, but they are extremely useful for JavaScript developers. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>A Practical Introduction to Finite State Machines</h1>
+        <div class="date">
+          Jan 29, 2020
+        </div>
+        
+  <p>A <a href="https://www.freecodecamp.org/news/state-machines-basics-of-computer-science-d42855debc66/">finite state machine</a> is a fancy way
+to describe a very simple design pattern: there is a list of valid
+<em>states</em>, and a list of allowed <em>transitions</em> between states.</p>
+<p>For example, <a href="/tutorials/fundamentals/promise#promises-as-state-machines">JavaScript promises are state machines</a>. A promise can be in one of 3 states:</p>
+<ol>
+<li>Pending</li>
+<li>Fulfilled</li>
+<li>Rejected</li>
+</ol>
+<p>There are only two allowed state transitions: pending to fulfilled, and
+pending to rejected. Once a promise is fulfilled, it stays fulfilled forever.
+You can represent this state machine using the below <a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-state-machine-diagram/">state machine diagram</a>.</p>
+<img src="https://codebarbarian-images.s3.amazonaws.com/promise.png" class="inline-image" style="width: 400px">
+
+<p>A <em>state machine diagram</em> usually represents states using circles or squares,
+and transitions using lines or arrows.</p>
+<h2 id="a-basic-use-case-with-mongoose">A Basic Use Case With <a href="https://www.npmjs.com/package/mongoose">Mongoose</a></h2>
+<p>Suppose you&#39;re building an app for moderating blog post comments.
+Moderating comments can be represented by a state machine similar
+to the one for promises. A comment can be in one of 3 states:</p>
+<ol>
+<li>Pending</li>
+<li>Approved</li>
+<li>Rejected</li>
+</ol>
+<p>You only want to display approved comments on your blog. But an admin
+should have an easy way to load all pending comments. Here&#39;s how
+you might represent this using a <a href="https://mongoosejs.com/docs/guide.html">Mongoose schema</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = mongoose.Schema({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">enum</span>: [<span class="hljs-string">'Pending'</span>, <span class="hljs-string">'Approved'</span>, <span class="hljs-string">'Rejected'</span>],
+    <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-string">'Pending'</span>
+  },
+  <span class="hljs-attr">authorId</span>: mongoose.ObjectId,
+  <span class="hljs-attr">comment</span>: <span class="hljs-built_in">String</span>
+});
+
+<span class="hljs-keyword">const</span> Comment = mongoose.model(<span class="hljs-string">'Comment'</span>, schema);</code></pre>
+<p>Loading all pending or all approved comments is easy using <a href="http://thecodebarbarian.com/how-find-works-in-mongoose.html">Mongoose&#39;s <code>find()</code> function</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> pending = <span class="hljs-keyword">await</span> Comment.find({ <span class="hljs-attr">state</span>: <span class="hljs-string">'Pending'</span> });</code></pre>
+<p>Here&#39;s how the state machine diagram looks:</p>
+<img src="/assets/commentstate.png" class="inline-image" style="width: 400px">
+
+<p>As the developer, you&#39;re responsible for ensuring these state transitions
+are respected. For example, you could expose 2 Express endpoints: one for
+approving a comment, and one for rejecting a comment.</p>
+<pre><code class="language-javascript">app.put(<span class="hljs-string">'/comment/:id/approve'</span>, <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-keyword">const</span> comment = <span class="hljs-keyword">await</span> Comment.findById(req.params.id);
+  <span class="hljs-keyword">if</span> (comment.state !== <span class="hljs-string">'Pending'</span>) {
+    <span class="hljs-keyword">return</span> res.send(<span class="hljs-number">400</span>).json({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Comment is not pending'</span> });
+  }
+  comment.state = <span class="hljs-string">'Approved'</span>;
+  <span class="hljs-keyword">await</span> comment.save();
+  res.json({ <span class="hljs-attr">ok</span>: <span class="hljs-number">1</span> });
+});
+
+app.put(<span class="hljs-string">'/comment/:id/reject'</span>, <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-keyword">const</span> comment = <span class="hljs-keyword">await</span> Comment.findById(req.params.id);
+  <span class="hljs-keyword">if</span> (comment.state !== <span class="hljs-string">'Pending'</span>) {
+    <span class="hljs-keyword">return</span> res.send(<span class="hljs-number">400</span>).json({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Comment is not pending'</span> });
+  }
+  comment.state = <span class="hljs-string">'Rejected'</span>;
+  <span class="hljs-keyword">await</span> comment.save();
+  res.json({ <span class="hljs-attr">ok</span>: <span class="hljs-number">1</span> });
+});</code></pre>
+
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/async-await">Understanding Async/Await in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-new">Understanding `new Promise` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-resolve">Resolve a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-all">The `Promise.all()` Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/switch-case">The Switch/Case Statement in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/this">`this` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/equals">Triple Equals vs Double Equals in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>
