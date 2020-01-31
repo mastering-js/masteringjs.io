@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Introduction to Puppeteer',
+      raw: './tutorials/fundamentals/puppeteer.md',
+      url: '/tutorials/fundamentals/puppeteer',
+      description: 'Puppeteer is a great tool for testing JavaScript apps in a real browser. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-01-31')
+    },
+    {
       title: 'A Practical Introduction to Finite State Machines',
       raw: './tutorials/fundamentals/state-machines.md',
       url: '/tutorials/fundamentals/state-machines',

@@ -3055,6 +3055,114 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('puppeteer', function() {
+    it('basic google search', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      // acquit:ignore:end
+      const puppeteer = require('puppeteer');
+
+      // Run in the background (headless mode)
+      const browser = await puppeteer.launch({ headless: true });
+
+      // Navigate to Google
+      const page = await browser.newPage();
+      await page.goto('https://google.com');
+
+      // Type "JavaScript" into the search bar
+      await page.evaluate(() => {
+        document.querySelector('input[name="q"]').value = 'JavaScript';
+      });
+
+      // Click on the "Google Search" button and wait for the page to load
+      await Promise.all([
+        page.waitForNavigation(),
+        page.evaluate(() => {
+          document.querySelector('input[value="Google Search"]').click();
+        })
+      ]);
+      
+      // Get all the search result URLs
+      const links = await page.evaluate(function getUrls() {
+        return Array.from(document.querySelectorAll('a cite').values()).
+          map(el => el.innerHTML);
+      });
+      // acquit:ignore:start
+      assert.ok(links.length > 0);
+      // acquit:ignore:end
+
+      await browser.close();
+    });
+
+    it('local server', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      // acquit:ignore:end
+      const express = require('express');
+      const puppeteer = require('puppeteer');
+
+      // Start an Express app that renders a Vue app with a counter
+      const app = express();
+      app.get('/', function(req, res) {
+        res.send(`
+        <html>
+          <body>
+            <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        
+            <div id="content"></div>
+        
+            <script type="text/javascript">      
+              const app = new Vue({
+                data: () => ({ count: 0 }),
+                template: \`
+                  <div>
+                    <div id="count">
+                      Count: {{count}}
+                    </div>
+                    <button v-on:click="++count">Increment</button>
+                  </div>
+                \`
+              });
+              app.$mount('#content');
+            </script>
+          </body>
+        </html>
+        `);
+      });
+      const server = await app.listen(3000);
+
+      // Run in the background (headless mode)
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      await page.goto('http://localhost:3000');
+
+      // Load the current count
+      let count = await page.evaluate(() => {
+        return document.querySelector('#count').innerHTML.trim();
+      });
+      count; // 'Count: 0'
+      // acquit:ignore:start
+      assert.equal(count, 'Count: 0');
+      // acquit:ignore:end
+
+      // Increment the count and check that the counter was incremented
+      await page.evaluate(() => {
+        document.querySelector('button').click();
+      });
+
+      count = await page.evaluate(() => {
+        return document.querySelector('#count').innerHTML.trim();
+      });
+      count; // 'Count: 1'
+      // acquit:ignore:start
+      assert.equal(count, 'Count: 1');
+      // acquit:ignore:end
+
+      await browser.close();
+      await server.close();
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
