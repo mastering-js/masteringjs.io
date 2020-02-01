@@ -135,6 +135,18 @@ li {
   color: #333;
 }
 
+.cta img {
+  width: auto !important;
+  border: 0px;
+  margin-top: 1em;
+  max-width: 1000px;
+}
+
+.cta-img-wrap {
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .allwrapper {
     padding: 15px;
@@ -155,5 +167,9 @@ li {
 
   .nav .links {
     display: none;
+  }
+
+  .cta img {
+    max-width: 370px;
   }
 }

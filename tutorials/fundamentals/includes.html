@@ -111,6 +111,7 @@ arr.indexOf(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">/
 arr.indexOf(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">// -1</span></code></pre>
 <p><code>Array#includes()</code> is generally the better choice, because you don&#39;t need to type out <code>!== -1</code> and because it has slightly better equality semantics. But since <code>Array#includes()</code> was introduced in ES2016, it is <a href="https://caniuse.com/#feat=array-includes">not supported in any version of Internet Explorer</a> or Node.js versions before 6.0.0. If you use <code>Array#includes()</code>, make sure you add a <a href="https://www.npmjs.com/package/array-includes">polyfill for older browsers</a>.</p>
 
+  
   <hr>
   
     <h2>More Fundamentals Tutorials</h2>

@@ -4,6 +4,7 @@ const list = require('./list');
 
 module.exports = ({ tutorials, tutorial }) => `
   ${tutorial.content}
+  ${cta(tutorial)}
   <hr>
   ${more(tutorials, tutorial)}
 `;
@@ -30,4 +31,11 @@ function _tutorial(tutorial) {
 
 function capitalize(str) {
   return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
+function cta(tutorial) {
+  if (tutorial.cta) {
+    return `<hr>${require('./ctas/' + tutorial.cta)()}`
+  }
+  return '';
 }
