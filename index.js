@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction To Vue $refs',
+      raw: './tutorials/vue/refs.md',
+      url: '/tutorials/vue/refs',
+      description: 'Vue instances have a `$refs` property that lets you access a Vue instance\'s child components. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-02-03')
+    },
+    {
       title: 'Introduction to Puppeteer',
       raw: './tutorials/fundamentals/puppeteer.md',
       url: '/tutorials/fundamentals/puppeteer',

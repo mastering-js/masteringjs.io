@@ -1,0 +1,158 @@
+
+<html>
+  <head>
+    <title>An Introduction To Vue $refs - Mastering JS</title>
+
+    <meta property="og:title" content="An Introduction To Vue $refs" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Vue instances have a `$refs` property that lets you access a Vue instance's child components. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>An Introduction To Vue $refs</h1>
+        <div class="date">
+          Feb 3, 2020
+        </div>
+        
+  <p>The <a href="https://vuejs.org/v2/guide/components-edge-cases.html#Accessing-Child-Component-Instances-amp-Child-Elements"><code>$refs</code> property in Vue</a> is used to reference <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">DOM elements</a> in the Vue instance&#39;s templates.</p>
+<p>A common use case for <code>$refs</code> is <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus">focusing</a> on a DOM element when a certain event happens. <a href="https://www.w3schools.com/jsref/prop_text_autofocus.asp">The <code>autofocus</code> property</a> works on page loads. But what if you want to give focus back to the <code>username</code> input if login failed?</p>
+<p>If you give the <code>username</code> input a <code>ref</code> attribute in your template, you can then access
+the <code>username</code> input using <code>this.$refs.username</code> as shown below. You can then call
+the <a href="https://www.w3schools.com/jsref/met_html_focus.asp">built-in <code>Element#focus()</code> function</a> to give focus to the <code>username</code> input.</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">username</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">failed</span>: <span class="hljs-literal">false</span> }),
+    <span class="hljs-attr">methods</span>: {
+      <span class="hljs-attr">login</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// Simulate that login always fails, just for this example</span>
+        <span class="hljs-keyword">this</span>.failed = <span class="hljs-literal">true</span>;
+
+        <span class="hljs-comment">// Give focus back to `username` input. If you change the</span>
+        <span class="hljs-comment">// 'ref' attribute in the template to 'usernameRef', you</span>
+        <span class="hljs-comment">// would do `this.$refs.usernameRef` here.</span>
+        <span class="hljs-keyword">this</span>.$refs.username.focus();
+      }
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;input type="text" v-model="username" ref="username" id="username"&gt;
+        &lt;input type="password" v-model="password"&gt;
+        &lt;button v-on:click="login()"&gt;Login&lt;/button&gt;
+        &lt;div v-if="failed" id="failed"&gt;
+          Login Failed!
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<h2 id="with-v-for">With <code>v-for</code></h2>
+<p>When you use <code>ref</code> with <a href="https://vuejs.org/v2/guide/list.html">the <code>v-for</code> directive</a>,
+Vue gives you a native <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">JavaScript array</a> of elements, not just a single element.</p>
+<p>For example, suppose you have a list of <code>&lt;input&gt;</code> tags, and you want users
+to be able to navigate between inputs using the up and down arrow keys.
+You can access the individual <code>&lt;input&gt;</code> elements using <code>$refs</code> and call
+<code>focus()</code> whenever the user presses up or down:</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">cells</span>: [<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'baz'</span>].map(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> ({ val })) }),
+    <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">let</span> cur = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">this</span>.$refs.inputs[<span class="hljs-number">0</span>].focus();
+
+      <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'keyup'</span>, ev =&gt; {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Got event'</span>, ev)
+        cur = <span class="hljs-keyword">this</span>.$refs.inputs.findIndex(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> <span class="hljs-built_in">document</span>.activeElement === el);
+        <span class="hljs-keyword">if</span> (cur === <span class="hljs-number">-1</span>) {
+          cur = <span class="hljs-number">0</span>;
+        }
+
+        <span class="hljs-keyword">const</span> numEls = <span class="hljs-keyword">this</span>.cells.length;
+        <span class="hljs-keyword">if</span> (ev.keyCode === <span class="hljs-number">38</span>) { <span class="hljs-comment">// Up arrow</span>
+          cur = (numEls + cur - <span class="hljs-number">1</span>) % numEls; 
+
+          <span class="hljs-keyword">this</span>.$refs.inputs[cur].focus();
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ev.keyCode === <span class="hljs-number">40</span>) { <span class="hljs-comment">// Down arrow</span>
+          cur = (cur + <span class="hljs-number">1</span>) % numEls;
+
+          <span class="hljs-keyword">this</span>.$refs.inputs[cur].focus();
+        }
+      });
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;div v-for="cell in cells"&gt;
+          &lt;input v-model="cell.val" ref="inputs"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/config">An Overview of the vue.config.js File</a></li>
+  
+
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/bind">Using v-bind in Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

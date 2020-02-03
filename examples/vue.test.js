@@ -1478,4 +1478,156 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('refs', function() {
+    it('basic example', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        const app = new Vue({
+          data: () => ({ username: '', password: '', failed: false }),
+          methods: {
+            login: async function() {
+              // Simulate that login always fails, just for this example
+              this.failed = true;
+
+              // Give focus back to `username` input. If you change the
+              // 'ref' attribute in the template to 'usernameRef', you
+              // would do `this.$refs.usernameRef` here.
+              this.$refs.username.focus();
+            }
+          },
+          template: `
+            <div>
+              <input type="text" v-model="username" ref="username" id="username">
+              <input type="password" v-model="password">
+              <button v-on:click="login()">Login</button>
+              <div v-if="failed" id="failed">
+                Login Failed!
+              </div>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => {
+        return document.querySelectorAll('#failed').length;
+      });
+      assert.equal(count, 0);
+      let hasFocus = await page.evaluate(() => {
+        return document.activeElement === document.getElementById('username');
+      });
+      assert.strictEqual(hasFocus, false);
+
+      await page.evaluate(() => {
+        return document.querySelector('button').click();
+      });
+
+      count = await page.evaluate(() => {
+        return document.querySelectorAll('#failed').length;
+      });
+      assert.equal(count, 1);
+
+      hasFocus = await page.evaluate(() => {
+        return document.activeElement === document.getElementById('username');
+      });
+      assert.strictEqual(hasFocus, true);
+
+      await browser.close();
+      // acquit:ignore:end
+    });
+
+    it('up down', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        const app = new Vue({
+          data: () => ({ cells: ['foo', 'bar', 'baz'].map(val => ({ val })) }),
+          mounted: function() {
+            let cur = 0;
+            this.$refs.inputs[0].focus();
+
+            document.addEventListener('keyup', ev => {
+              console.log('Got event', ev)
+              cur = this.$refs.inputs.findIndex(el => document.activeElement === el);
+              if (cur === -1) {
+                cur = 0;
+              }
+
+              const numEls = this.cells.length;
+              if (ev.keyCode === 38) { // Up arrow
+                cur = (numEls + cur - 1) % numEls; 
+
+                this.$refs.inputs[cur].focus();
+              } else if (ev.keyCode === 40) { // Down arrow
+                cur = (cur + 1) % numEls;
+
+                this.$refs.inputs[cur].focus();
+              }
+            });
+          },
+          template: `
+            <div>
+              <div v-for="cell in cells">
+                <input v-model="cell.val" ref="inputs">
+              </div>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let focusedVal = await page.evaluate(() => {
+        return document.activeElement == null ? null : document.activeElement.value.trim();
+      });
+      assert.strictEqual(focusedVal, 'foo');
+
+      await page.evaluate(() => {
+        const ev = new Event('keyup');
+        ev.keyCode = 40;
+        return document.dispatchEvent(ev);
+      });
+
+      focusedVal = await page.evaluate(() => {
+        return document.activeElement == null ? null : document.activeElement.value.trim();
+      });
+      assert.strictEqual(focusedVal, 'bar');
+
+      await browser.close();
+      // acquit:ignore:end
+    });
+  });
 });
+
+function createVueHTMLScaffolding(code) {
+  return `
+    <html>
+      <body>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+        <div id="content"></div>
+    
+        <script type="text/javascript">
+          (${code})();
+        </script>
+      </body>
+    </html>
+  `;
+}

@@ -43,6 +43,31 @@ li {
   line-height: 1.5em;
 }
 
+.image-with-caption {
+  padding: 3px;
+  border: 1px solid #ddd;
+  text-align: center;
+  width: auto;
+  margin-bottom: 1em;
+}
+
+.image-with-caption img {
+  width: 100%;
+  margin-bottom: 0px !important;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
+.image-with-caption .caption {
+  color: #333;
+  font-size: 0.6em;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  margin: 0px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
 /* Nav */
 
 .nav {
