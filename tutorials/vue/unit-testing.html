@@ -1,0 +1,108 @@
+
+<html>
+  <head>
+    <title>Two Patterns for Unit Testing Vue Apps - Mastering JS</title>
+
+    <meta property="og:title" content="Two Patterns for Unit Testing Vue Apps" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Unit testing is tricky, especially on the frontend. Here's a couple of patterns we use at Mastering JS for testing Vue components in isolation." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Two Patterns for Unit Testing Vue Apps</h1>
+        <div class="date">
+          Feb 5, 2020
+        </div>
+        
+  <p>At <a href="/">Mastering JS</a>, we do our best to test every example in all of our tutorials.
+That way we can be confident that our content is up to date when major
+releases happen, or when we decide to rewrite a tutorial. That means we need
+to automatically test all our Vue examples as well. In general, there are
+two patterns we use for <a href="https://martinfowler.com/bliki/UnitTest.html">unit testing</a>
+our code examples:</p>
+<h2 id="with-server-side-rendering-in-nodejs">With Server-Side Rendering in Node.js</h2>
+<p>When unit testing, you first need to define what you consider a &quot;unit.&quot;
+There&#39;s some debate as to what is a unit when it comes to writing Vue
+code: do individual <a href="https://v1.vuejs.org/guide/events.html">methods</a>
+count as units? How about <a href="/tutorials/vue/computed">computed properties</a>?
+We at Mastering JS tend to err on the side of testing code closer to
+how the end user will interact with it, so we consider a <a href="/tutorials/vue/components">Vue component</a>
+a unit.</p>
+<p>Vue enjoys excellent support for Node.js and <a href="/tutorials/vue/ssr">server-side rendering</a>.
+Unlike some other frameworks, instantiating a Vue component in Node.js
+doesn&#39;t require any outside libraries or special customization.
+Just call <code>new Vue()</code> and you get a <a href="https://vuejs.org/v2/guide/instance.html">Vue instance</a>.</p>
+<h2 id="with-scaffolding-in-puppeteer">With Scaffolding in <a href="http://thecodebarbarian.com/control-chrome-from-node-js-with-puppeteer.html">Puppeteer</a></h2>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/refs">An Introduction To Vue $refs</a></li>
+  
+
+    <li><a href="/tutorials/vue/config">An Overview of the vue.config.js File</a></li>
+  
+
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

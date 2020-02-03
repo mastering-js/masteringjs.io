@@ -1614,6 +1614,98 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('unit test', function() {
+    it('with ssr', async function() {
+      const Vue = require('vue');
+      const { renderToString } = require('vue-server-renderer').createRenderer();
+
+      const app = new Vue({
+        data: () => ({ count: 0 }),
+        methods: {
+          increment: function() { ++this.count; }
+        },
+        template: `
+          <div>
+            <div id="clicks">Clicks: {{count}}</div>
+            <button v-on:click="increment()">Increment</button>
+          </div>
+        `
+      });
+
+      let res = await renderToString(app);
+      assert.ok(res.includes('Clicks: 0'));
+
+      // `app` is reactive in Node
+      app.count = 2;
+      res = await renderToString(app);
+      assert.ok(res.includes('Clicks: 2'));
+
+      // You can also call methods in Node
+      app.$options.methods.increment.call(app);
+      res = await renderToString(app);
+      assert.ok(res.includes('Clicks: 3'));
+    });
+
+    it('with puppeteer', async function() {
+      const puppeteer = require('puppeteer');
+
+      // Since your Vue app is running in a real browser, you would need
+      // webpack or browserify to build a bundle if you use `require()`
+      const createComponent = function() {
+        return new Vue({
+          data: () => ({ count: 0 }),
+          methods: {
+            increment: function() { ++this.count; }
+          },
+          template: `
+            <div>
+              <div id="clicks">Clicks: {{count}}</div>
+              <button v-on:click="increment()">Increment</button>
+            </div>
+          `
+        });
+      };
+
+      const js = createComponent.toString();
+      const htmlScaffold = `
+        <html>
+          <body>
+            <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    
+            <div id="content"></div>
+        
+            <script type="text/javascript">
+              const app = (${js})();
+              app.$mount('#content');
+            </script>
+          </body>
+        </html>
+      `;
+
+      // Launch a new browser and make it render the above HTML.
+      // You can set `headless: false` to interact with the real browser.
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      await page.setContent(htmlScaffold);
+
+      // Interact with the component via `evaluate()`
+      let content = await page.evaluate(() => {
+        return document.querySelector('#clicks').innerHTML.trim()
+      });
+      assert.equal(content, 'Clicks: 0');
+
+      await page.evaluate(() => document.querySelector('button').click());
+
+      content = await page.evaluate(() => {
+        return document.querySelector('#clicks').innerHTML.trim()
+      });
+      assert.equal(content, 'Clicks: 1');
+
+      // Clean up
+      await browser.close();
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
