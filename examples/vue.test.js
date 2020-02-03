@@ -1706,6 +1706,181 @@ describe('Vue', function() {
       await browser.close();
     });
   });
+
+  describe('v-for', function() {
+    it('basic', async function() {
+      const app = new Vue({
+        data: () => ({ people: ['Axl Rose', 'Slash', 'Izzy Stradlin'] }),
+        // 1 `<li>` for each person in `people`
+        template: `
+          <div>
+            <h1>Band Members</h1>
+            <ul>
+              <li v-for="person in people">
+                {{person}}
+              </li>
+            </ul>
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      let res = await renderToString(app);
+      assert.ok(res.includes('Axl Rose'));
+      assert.ok(res.includes('Slash'));
+      assert.ok(res.includes('Izzy Stradlin'));
+      // acquit:ignore:end
+    });
+
+    it('v-model bad', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        const app = new Vue({
+          data: () => ({ people: ['Axl Rose', 'Slash', 'Izzy Stradlin'] }),
+          // 1 `<input>` for each person in `people`
+          template: `
+            <div>
+              <h1>Band Members</h1>
+              <div id="people-array">{{people}}</div>
+              <ul>
+                <li v-for="person in people">
+                  <input v-model="person">
+                  <span>{{person}}</span>
+                </li>
+              </ul>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let peopleArr = await page.evaluate(() => {
+        return document.querySelector('#people-array').innerHTML.trim();
+      });
+      assert.ok(peopleArr.includes('Slash'));
+
+      await page.evaluate(() => {
+        const input = document.querySelector('li:nth-of-type(2) input');
+        input.value = 'Saul Hudson';
+        console.log(input);
+        input.dispatchEvent(new Event('change'));
+      });
+
+      let inFor = await page.evaluate(() => {
+        return document.querySelector('li:nth-of-type(2) span').innerHTML.trim();
+      });
+      assert.ok(peopleArr.includes('Slash'));
+
+      peopleArr = await page.evaluate(() => {
+        return document.querySelector('#people-array').innerHTML.trim();
+      });
+      assert.ok(peopleArr.includes('Slash'));
+
+      await browser.close();
+      // acquit:ignore:end
+    });
+
+    it('v-model good', async function() {
+      // acquit:ignore:start
+      this.timeout(1000);
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        const app = new Vue({
+          data: () => ({
+            people: [
+              { name: 'Axl Rose' },
+              { name: 'Slash' },
+              { name: 'Izzy Stradlin' }
+            ]
+          }),
+          template: `
+            <div>
+              <h1>Band Members</h1>
+              <div id="people-array">{{people}}</div>
+              <ul>
+                <li v-for="person in people">
+                  <input v-model="person.name">
+                  <span>{{person.name}}</span>
+                </li>
+              </ul>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let peopleArr = await page.evaluate(() => {
+        return document.querySelector('#people-array').innerHTML.trim();
+      });
+      assert.ok(peopleArr.includes('Slash'));
+
+      await page.evaluate(() => {
+        const input = document.querySelector('li:nth-of-type(2) input');
+        input.value = 'Saul Hudson';
+        console.log(input)
+        input.dispatchEvent(new Event('input'));
+      });
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      let inFor = await page.evaluate(() => {
+        return document.querySelector('li:nth-of-type(2) span').innerHTML.trim();
+      });
+      assert.ok(inFor.includes('Saul Hudson'), inFor);
+
+      peopleArr = await page.evaluate(() => {
+        return document.querySelector('#people-array').innerHTML.trim();
+      });
+      assert.ok(peopleArr.includes('Saul Hudson'));
+
+      await browser.close();
+      // acquit:ignore:end
+    });
+
+    it('object', async function() {
+      const app = new Vue({
+        data: () => ({
+          people: {
+            singer: 'Axl Rose',
+            guitarist: 'Slash',
+            bassist: 'Duff McKagan'
+          }
+        }),
+        // 3 `<li>` elements: "Axl Rose - singer", "Slash - guitarist",
+        // and "Duff McKagan - bassist"
+        template: `
+          <div>
+            <h1>Band Members</h1>
+            <ul>
+              <li v-for="(value, key) in people">
+                {{value}} - {{key}}
+              </li>
+            </ul>
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      let res = await renderToString(app);
+      assert.ok(res.includes('Axl Rose - singer'));
+      assert.ok(res.includes('Slash - guitarist'));
+      assert.ok(res.includes('Duff McKagan - bassist'));
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {

@@ -1,0 +1,182 @@
+
+<html>
+  <head>
+    <title>Vue v-for Tutorial - Mastering JS</title>
+
+    <meta property="og:title" content="Vue v-for Tutorial" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `v-for` directive lets you render a separate item for each element in an array. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Vue v-for Tutorial</h1>
+        <div class="date">
+          Feb 7, 2020
+        </div>
+        
+  <p>The <code>v-for</code> directive is the right way to do <a href="https://vuejs.org/v2/guide/list.html">list rendering in Vue</a>. If your Vue instance has an array in <code>data</code>, you can
+render each element in the array using <code>v-for</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">people</span>: [<span class="hljs-string">'Axl Rose'</span>, <span class="hljs-string">'Slash'</span>, <span class="hljs-string">'Izzy Stradlin'</span>] }),
+  <span class="hljs-comment">// 1 `&lt;li&gt;` for each person in `people`</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;h1&gt;Band Members&lt;/h1&gt;
+      &lt;ul&gt;
+        &lt;li v-for="person in people"&gt;
+          {{person}}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+<p>Vue also handles <a href="https://vuejs.org/v2/guide/list.html#Array-Change-Detection">array change detection</a>.
+If you were to <a href="/tutorials/fundamentals/array-splice">remove an element from the array using <code>splice()</code></a>, Vue would remove an <code>&lt;li&gt;</code> from the DOM for you.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Remove "Izzy Stradlin" from the array, and also from the `&lt;ul&gt;`</span>
+<span class="hljs-keyword">this</span>.array.splice(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>);</code></pre>
+<h2 id="with-v-model">With <a href="/tutorials/vue/v-model"><code>v-model</code></a></h2>
+<p>Although you can loop over an array of strings using <code>v-for</code>,
+it won&#39;t work with <code>v-model</code>. The <code>v-model</code> directive won&#39;t
+be able to update your array with any changes to the <code>&lt;input&gt;</code>.</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">people</span>: [<span class="hljs-string">'Axl Rose'</span>, <span class="hljs-string">'Slash'</span>, <span class="hljs-string">'Izzy Stradlin'</span>] }),
+    <span class="hljs-comment">// 1 `&lt;input&gt;` for each person in `people`</span>
+    template: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;h1&gt;Band Members&lt;/h1&gt;
+        &lt;div id="people-array"&gt;{{people}}&lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li v-for="person in people"&gt;
+            &lt;input v-model="person"&gt;
+            &lt;span&gt;{{person}}&lt;/span&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<div class="image-with-caption">
+  <img src="/assets/v-for-model.png" style="width: 50%">
+  <div class="caption">Even though the `input` is updated, the array doesn't change!</div>
+</div>
+
+<p>The way to work around this is to use an array of objects with <code>v-for</code>.
+Whenever you use <code>v-model</code> with <code>v-for</code>, make sure the property you&#39;re
+binding with <code>v-model</code> is an object property.</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+      <span class="hljs-attr">people</span>: [
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">'Axl Rose'</span> },
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">'Slash'</span> },
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">'Izzy Stradlin'</span> }
+      ]
+    }),
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;h1&gt;Band Members&lt;/h1&gt;
+        &lt;div id="people-array"&gt;{{people}}&lt;/div&gt;
+        &lt;ul&gt;
+          &lt;li v-for="person in people"&gt;
+            &lt;input v-model="person.name"&gt;
+            &lt;span&gt;{{person.name}}&lt;/span&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<h2 id="with-objects">With Objects</h2>
+<p>You can also use <a href="https://vuejs.org/v2/guide/list.html#v-for-with-an-Object"><code>v-for</code> to loop over the keys of an object</a> using the <code>v-for=&quot;(value, key) in obj&quot;</code> syntax.
+Note that <code>v-for</code> only loops over <a href="/tutorials/fundamentals/hasownproperty">own properties</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">people</span>: {
+      <span class="hljs-attr">singer</span>: <span class="hljs-string">'Axl Rose'</span>,
+      <span class="hljs-attr">guitarist</span>: <span class="hljs-string">'Slash'</span>,
+      <span class="hljs-attr">bassist</span>: <span class="hljs-string">'Duff McKagan'</span>
+    }
+  }),
+  <span class="hljs-comment">// 3 `&lt;li&gt;` elements: "Axl Rose - singer", "Slash - guitarist",</span>
+  <span class="hljs-comment">// and "Duff McKagan - bassist"</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;h1&gt;Band Members&lt;/h1&gt;
+      &lt;ul&gt;
+        &lt;li v-for="(value, key) in people"&gt;
+          {{value}} - {{key}}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/unit-testing">Two Patterns for Unit Testing Vue Apps</a></li>
+  
+
+    <li><a href="/tutorials/vue/refs">An Introduction To Vue $refs</a></li>
+  
+
+    <li><a href="/tutorials/vue/config">An Overview of the vue.config.js File</a></li>
+  
+
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/render">Vue Render Functions</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+  </body>
+</html>

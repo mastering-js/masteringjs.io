@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue v-for Tutorial',
+      raw: './tutorials/vue/v-for.md',
+      url: '/tutorials/vue/v-for',
+      description: 'The `v-for` directive lets you render a separate item for each element in an array. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-02-07')
+    },
+    {
       title: 'Two Patterns for Unit Testing Vue Apps',
       raw: './tutorials/vue/unit-testing.md',
       url: '/tutorials/vue/unit-testing',
