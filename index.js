@@ -36,6 +36,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Two Patterns for Unit Testing Vue Apps',
+      raw: './tutorials/vue/unit-testing.md',
+      url: '/tutorials/vue/unit-testing',
+      description: 'Unit testing is tricky, especially on the frontend. Here\'s a couple of patterns we use at Mastering JS for testing Vue components in isolation.',
+      tags: ['vue'],
+      date: moment('2020-02-05')
+    },
+    {
       title: 'An Introduction To Vue $refs',
       raw: './tutorials/vue/refs.md',
       url: '/tutorials/vue/refs',
