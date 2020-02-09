@@ -29,6 +29,8 @@ module.exports = params => `
         ${params.content}
       </div>
     </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>
 `;
