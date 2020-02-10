@@ -35,10 +35,36 @@ module.exports = ({ posts }) => `
     </div>
     <div class="allwrapper">
       <div class="content">
+        <h1>What Do You Want to Learn?</h1>
+        <div>
+          <div class="pill" style="margin-left: 0px">
+            <a href="/fundamentals">Fundamentals</a>
+          </div>
+          <div class="pill">
+            <a href="/express">Express</a>
+          </div>
+          <div class="pill">
+            <a href="/mongoose">Mongoose</a>
+          </div>
+        </div>
+        <div>
+          <div class="pill" style="margin-left: 0px">
+            <a href="/vue">Vue</a>
+          </div>
+          <div class="pill">
+            <a href="/axios">Axios</a>
+          </div>
+          <div class="pill">
+            <a href="/webpack">Webpack</a>
+          </div>
+        </div>
+
         <h1>Latest Tutorials</h1>
-        ${list({ posts })}
+        ${list({ posts }, 20)}
       </div>
     </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>
 `;

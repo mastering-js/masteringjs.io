@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ({ posts }) => `
+module.exports = ({ posts }, limit) => `
 <div class="list">
-  ${posts.map(post).join('\n')}
+  ${posts.slice(0, limit).map(post).join('\n')}
 </div>
 `;
 

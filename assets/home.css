@@ -48,3 +48,20 @@
   border-radius: 4px;
   padding: 0.25em;
 }
+
+.pill {
+  display: inline-block;
+  width: 280px;
+  background-color: #F0DB4F;
+  margin-bottom: 1em;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 2em;
+  border-radius: 8px;
+  margin-left: 60px;
+}
+
+.pill a {
+  color: white;
+}
