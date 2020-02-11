@@ -65,3 +65,10 @@
 .pill a {
   color: white;
 }
+
+@media (max-width: 1000px) {
+  .pill {
+    width: 49%;
+    margin-left: 0px;
+  }
+}
