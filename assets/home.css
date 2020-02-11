@@ -63,32 +63,33 @@
 }
 
 .pill a {
-  color: white;
+  color: #232323;
+}
+
+.pill-axios {
+  background-image: url("/assets/http.png");
 }
 
 .pill-mongoose {
-  background-color: #ddd;
   background-image: url("/assets/mongoose-transparent.png");
-  background-position: center;
-  background-size: cover;
+}
+
+.pill-express {
+  background-image: url("/assets/express-transparent.png");
 }
 
 .pill-vue {
-  background-color: #ddd;
   background-image: url("/assets/vue-transparent.png");
-  background-position: center;
-  background-size: cover;
 }
 
 .pill-webpack {
-  background-color: #ddd;
   background-image: url("/assets/webpack-transparent.png");
-  background-position: center;
-  background-size: cover;
 }
 
-.pill-dark a {
-  color: black !important;
+.pill-dark {
+  background-color: #ddd;
+  background-position: center;
+  background-size: cover;
 }
 
 @media (max-width: 1000px) {

@@ -39,7 +39,7 @@ module.exports = ({ posts }) => `
         <div class="pill" style="margin-left: 0px">
           <a href="/fundamentals">Fundamentals</a>
         </div>
-        <div class="pill">
+        <div class="pill pill-express pill-dark">
           <a href="/express">Express</a>
         </div>
         <div class="pill pill-mongoose pill-dark">
@@ -48,7 +48,7 @@ module.exports = ({ posts }) => `
         <div class="pill pill-vue pill-dark" style="margin-left: 0px">
           <a href="/vue">Vue</a>
         </div>
-        <div class="pill">
+        <div class="pill pill-axios pill-dark">
           <a href="/axios">Axios</a>
         </div>
         <div class="pill pill-webpack pill-dark">
