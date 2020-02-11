@@ -26,6 +26,7 @@ async function run() {
     ...acquit.parse(fs.readFileSync('./examples/axios.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/express.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/fundamentals.test.js', 'utf8')),
+    ...acquit.parse(fs.readFileSync('./examples/graphql.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/lodash.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mocha.test.js', 'utf8')),
     ...acquit.parse(fs.readFileSync('./examples/mongoose.test.js', 'utf8')),
@@ -35,6 +36,14 @@ async function run() {
   ];
 
   const tutorials = [
+    {
+      title: 'An Introduction to GraphQL with Apollo',
+      raw: './tutorials/graphql/apollo.md',
+      url: '/tutorials/graphql/apollo',
+      description: 'Apollo is a GraphQL server - it parses your GraphQL schema and provides a framework for you to define resolvers and mutations. Here\'s what you need to know.',
+      tags: ['graphql'],
+      date: moment('2020-02-11')
+    },
     {
       title: 'Vue v-for Tutorial',
       raw: './tutorials/vue/v-for.md',
