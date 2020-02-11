@@ -66,6 +66,31 @@
   color: white;
 }
 
+.pill-mongoose {
+  background-color: #ddd;
+  background-image: url("/assets/mongoose-transparent.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.pill-vue {
+  background-color: #ddd;
+  background-image: url("/assets/vue-transparent.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.pill-webpack {
+  background-color: #ddd;
+  background-image: url("/assets/webpack-transparent.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.pill-dark a {
+  color: black !important;
+}
+
 @media (max-width: 1000px) {
   .pill {
     width: 49%;

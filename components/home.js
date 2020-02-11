@@ -42,16 +42,16 @@ module.exports = ({ posts }) => `
         <div class="pill">
           <a href="/express">Express</a>
         </div>
-        <div class="pill">
+        <div class="pill pill-mongoose pill-dark">
           <a href="/mongoose">Mongoose</a>
         </div>
-        <div class="pill" style="margin-left: 0px">
+        <div class="pill pill-vue pill-dark" style="margin-left: 0px">
           <a href="/vue">Vue</a>
         </div>
         <div class="pill">
           <a href="/axios">Axios</a>
         </div>
-        <div class="pill">
+        <div class="pill pill-webpack pill-dark">
           <a href="/webpack">Webpack</a>
         </div>
 
