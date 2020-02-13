@@ -1,11 +1,11 @@
 
 <html>
   <head>
-    <title>An Introduction to GraphQL with Apollo - Mastering JS</title>
+    <title>GraphQL Mutations in Apollo - Mastering JS</title>
 
-    <meta property="og:title" content="An Introduction to GraphQL with Apollo" />
+    <meta property="og:title" content="GraphQL Mutations in Apollo" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="Apollo is a GraphQL server - it parses your GraphQL schema and provides a framework for you to define resolvers and mutations. Here's what you need to know." />
+    <meta property="og:description" content="GraphQL operations are broken up into 2 types: queries and mutations. Queries are read-only, mutations modify data. Here's what you need to know about mutations in Apollo." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -48,91 +48,14 @@
 </div>
 
       <div class="content">
-        <h1>An Introduction to GraphQL with Apollo</h1>
+        <h1>GraphQL Mutations in Apollo</h1>
         <div class="date">
-          Feb 11, 2020
+          Feb 13, 2020
         </div>
         
-  <p>The <a href="https://www.npmjs.com/package/apollo-server">apollo-server package</a> provides a framework for
-building GraphQL APIs. There are 2 components
-you need to implement to build a GraphQL API:</p>
-<ul>
-<li><a href="https://graphql.org/learn/schema/">Schema</a>: What types exist in your system and what operations are allowed on those types.</li>
-<li>Resolvers: How to load individual properties of your types.</li>
-</ul>
-<h2 id="schema-and-resolvers">Schema and Resolvers</h2>
-<p>With a GraphQL schema and resolvers, you can define
-a read-only API with Apollo.</p>
-<p>First, a GraphQL schema is a string that defines
-every type your API returns and every operation your
-API allows. For example, the below GraphQL schema
-defines one query operation, <code>getCount()</code>, that
-returns an object of type <code>CountResult</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-string">`
-  type Query {
-    getCount: CountResult
-  }
-
-  type CountResult {
-    count: Int
-    time: Float
-  }
-`</span>;</code></pre>
-<p>In a GraphQL schema, the <code>Query</code> type is special: it lists out
-all queries (read-only operations) that the server allows.</p>
-<p><em>Resolvers</em> allow you to actually implement the <code>getCount()</code>
-function. The below example shows how you can start up an
-Apollo server with the above schema, and make an
-HTTP request using Axios:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { ApolloServer, gql } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'apollo-server'</span>);
-
-<span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-
-<span class="hljs-comment">// The `gql()` function parses the schema</span>
-<span class="hljs-keyword">const</span> schema = gql(<span class="hljs-string">`
-  type Query {
-    getCount: CountResult
-  }
-
-  type CountResult {
-    count: Int
-    time: Float
-  }
-`</span>);
-
-<span class="hljs-comment">// Resolvers define how the actual operations are implemented.</span>
-<span class="hljs-comment">// The `Query.getCount()` resolver defines what happens when</span>
-<span class="hljs-comment">// you call `getCount()`, and the `Query.CountResult` resolvers</span>
-<span class="hljs-comment">// define how to transform the individual properties.</span>
-<span class="hljs-keyword">const</span> resolvers = {
-  <span class="hljs-attr">Query</span>: {
-    <span class="hljs-attr">getCount</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ count, <span class="hljs-attr">time</span>: <span class="hljs-built_in">Date</span>.now() })
-  },
-  <span class="hljs-attr">CountResult</span>: {
-    <span class="hljs-attr">count</span>: <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.count,
-    <span class="hljs-attr">time</span>: <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.time
-  }
-};
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> ApolloServer({ <span class="hljs-attr">typeDefs</span>: schema, resolvers });
-<span class="hljs-keyword">const</span> handle = <span class="hljs-keyword">await</span> server.listen();
-
-<span class="hljs-comment">// Make a request to the Apollo server. GraphQL requests are</span>
-<span class="hljs-comment">// just plain old HTTP requests.</span>
-<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-<span class="hljs-keyword">const</span> { data } = <span class="hljs-keyword">await</span> axios.post(handle.url, {
-  <span class="hljs-attr">query</span>: <span class="hljs-string">`
-    { getCount { count, time } }
-  `</span>
-});
-
-data.data; <span class="hljs-comment">// { getCount: { count: 0, time: 1581442587371 } }</span></code></pre>
-<h2 id="mutations">Mutations</h2>
-<p>The previous Apollo server is read-only. It just allows you to
-get the current <code>count</code>, not increment it. In GraphQL, an operation
-that modifies data is called a <a href="https://graphql.org/graphql-js/mutations-and-input-types/">mutation</a>.</p>
-<p>Like <code>Query</code>, <code>Mutation</code> is a special type that lists out every
-mutation your API allows.</p>
+  <p>A <a href="https://graphql.org/learn/queries/#mutations">GraphQL mutation</a> is an
+API operation that modifies data. Like <code>Query</code>, <code>Mutation</code> is a special
+type in your <a href="https://graphql.org/learn/schema/">GraphQL schema</a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-string">`
   type Query {
     getCount: CountResult
@@ -147,8 +70,16 @@ mutation your API allows.</p>
     time: Float
   }
 `</span>;</code></pre>
-<p>In Apollo, mutations are just resolvers for the <code>Mutation</code> type
-as shown below.</p>
+<p>Every member of the <code>Mutation</code> type is a distinct API operation that
+you can use to modify data. In the above schema, there is exactly
+one mutation: <code>increment()</code>. The <code>increment()</code> operation returns
+an object of type <code>CountResult</code>.</p>
+<h2 id="implementing-a-mutation">Implementing a Mutation</h2>
+<p>A GraphQL schema is just a list of type definitions. You also need
+to implement the business logic of the <code>increment()</code> mutation.
+Like for queries, you implement the <code>increment()</code> mutation as a
+<a href="https://graphql.org/learn/execution/#root-fields-resolvers">resolver</a>
+on the <code>Mutation</code> type:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> { ApolloServer, gql } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'apollo-server'</span>);
 
 <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
@@ -197,6 +128,89 @@ as shown below.</p>
 });
 
 data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 1581442587371 } }</span></code></pre>
+<p>Note that, to actually call a mutation, you need to start your
+GraphQL query with the string <code>&#39;mutation&#39;</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.post(handle.url, {
+  <span class="hljs-comment">// Note 'mutation' below. Not necessary for queries, but</span>
+  <span class="hljs-comment">// necessary for mutations.</span>
+  query: <span class="hljs-string">'mutation { increment { count, time } }'</span>
+});</code></pre>
+<h2 id="mutation-arguments">Mutation Arguments</h2>
+<p>A GraphQL mutation is a function like any other. You can pass arguments
+to your mutation as well. For example, if you want to allow <code>increment()</code>
+with a value other than 1, you can add a <code>Number</code> parameter to the
+<code>increment()</code> mutation:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-string">`
+  type Query {
+    getCount: CountResult
+  }
+
+  type Mutation {
+    increment(num: Int): CountResult
+  }
+
+  type CountResult {
+    count: Int
+    time: Float
+  }
+`</span>;</code></pre>
+<p>Apollo passes the arguments passed in to your mutation as the 2nd
+parameter to your mutation&#39;s resolver function:</p>
+<pre><code class="language-javascript">increment: <span class="hljs-function">(<span class="hljs-params">obj, args</span>) =&gt;</span> {
+  args.num; <span class="hljs-comment">// Whatever the user passed in `increment()`</span>
+}</code></pre>
+<p>Below is a full implementation of <code>increment()</code> with arguments:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">const</span> schema = gql(<span class="hljs-string">`
+  type Query {
+    getCount: CountResult
+  }
+
+  type Mutation {
+    increment(num: Int!): CountResult
+  }
+
+  type CountResult {
+    count: Int
+    time: Float
+  }
+`</span>);
+
+<span class="hljs-keyword">const</span> resolvers = {
+  <span class="hljs-attr">Query</span>: {
+    <span class="hljs-attr">getCount</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ count, <span class="hljs-attr">time</span>: <span class="hljs-built_in">Date</span>.now() })
+  },
+  <span class="hljs-comment">// `increment` is just a resolver for the Mutation type</span>
+  Mutation: {
+    <span class="hljs-attr">increment</span>: <span class="hljs-function">(<span class="hljs-params">obj, args</span>) =&gt;</span> {
+      count += args.num;
+      <span class="hljs-keyword">return</span> { count, <span class="hljs-attr">time</span>: <span class="hljs-built_in">Date</span>.now() };
+    }
+  },
+  <span class="hljs-attr">CountResult</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.count,
+    <span class="hljs-attr">time</span>: <span class="hljs-function"><span class="hljs-params">obj</span> =&gt;</span> obj.time
+  }
+};
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> ApolloServer({ <span class="hljs-attr">typeDefs</span>: schema, resolvers });
+<span class="hljs-keyword">const</span> handle = <span class="hljs-keyword">await</span> server.listen();
+
+<span class="hljs-keyword">let</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-comment">// Call the `increment` mutation with an argument. Note that</span>
+<span class="hljs-comment">// GraphQL arguments are named: you need to put `num: 5`, not</span>
+<span class="hljs-comment">// just `5`.</span>
+<span class="hljs-keyword">await</span> axios.post(handle.url, {
+  <span class="hljs-attr">query</span>: <span class="hljs-string">'mutation { increment(num: 5) { count, time } }'</span>
+});
+
+<span class="hljs-comment">// After the `increment` mutation, `count` is now 5</span>
+<span class="hljs-keyword">const</span> { data } = <span class="hljs-keyword">await</span> axios.post(handle.url, {
+  <span class="hljs-attr">query</span>: <span class="hljs-string">'{ getCount { count, time } }'</span>
+});
+
+data.data; <span class="hljs-comment">// { getCount: { count: 5, time: 1581442587371 } }</span></code></pre>
 
   
   <hr>
@@ -204,7 +218,7 @@ data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 158144258
     <h2>More Graphql Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/graphql/mutations">GraphQL Mutations in Apollo</a></li>
+    <li><a href="/tutorials/graphql/apollo">An Introduction to GraphQL with Apollo</a></li>
   
     </ul>
   

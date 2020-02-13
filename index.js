@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'GraphQL Mutations in Apollo',
+      raw: './tutorials/graphql/mutations.md',
+      url: '/tutorials/graphql/mutations',
+      description: 'GraphQL operations are broken up into 2 types: queries and mutations. Queries are read-only, mutations modify data. Here\'s what you need to know about mutations in Apollo.',
+      tags: ['graphql'],
+      date: moment('2020-02-13')
+    },
+    {
       title: 'An Introduction to GraphQL with Apollo',
       raw: './tutorials/graphql/apollo.md',
       url: '/tutorials/graphql/apollo',
