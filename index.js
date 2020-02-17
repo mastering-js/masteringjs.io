@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Node.js Buffer Tutorial',
+      raw: './tutorials/node/buffer.md',
+      url: '/tutorials/node/buffer',
+      description: 'Node.js has a built-in Buffer type that lets you store arbitrary binary data. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-02-21')
+    },
+    {
       title: 'Deploy a Function to Lambda Using the Node.js AWS SDK',
       raw: './tutorials/node/lambda.md',
       url: '/tutorials/node/lambda',
