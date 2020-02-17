@@ -4,6 +4,7 @@ const WebSocket = require('ws');
 const assert = require('assert');
 const axios = require('axios');
 const config = require('../.config');
+const fs = require('fs');
 
 Object.assign(process.env, config);
 
@@ -151,6 +152,107 @@ describe('Node', function() {
       
       const { data } = await axios.get(res.Location);
       assert.equal(data.name, 'masteringjs.io');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('promisify', function() {
+    it('fs with callbacks', function(done) {
+      const fs = require('fs');
+
+      fs.readFile('./package.json', function callback(err, buf) {
+        const obj = JSON.parse(buf.toString('utf8'));
+        obj.name; // 'masteringjs.io'
+        // acquit:ignore:start
+        assert.equal(obj.name, 'masteringjs.io');
+        done();
+        // acquit:ignore:end
+      });
+    });
+
+    it('fs with promisify', async function() {
+      const fs = require('fs');
+      const util = require('util');
+
+      // Convert `fs.readFile()` into a function that takes the
+      // same parameters but returns a promise.
+      const readFile = util.promisify(fs.readFile);
+
+      // You can now use `readFile()` with `await`!
+      const buf = await readFile('./package.json');
+
+      const obj = JSON.parse(buf.toString('utf8'));
+      obj.name; // 'masteringjs.io'
+      // acquit:ignore:start
+      assert.equal(obj.name, 'masteringjs.io');
+      // acquit:ignore:end
+    });
+
+    it('custom promisify', async function() {
+      const fs = require('fs');
+
+      // A simplified implementation of `util.promisify()`. Doesn't
+      // cover all cases, don't use this in prod!
+      function promisify(fn) {
+        return function() {
+          const args = Array.prototype.slice.call(arguments);
+          return new Promise((resolve, reject) => {
+            fn.apply(this, [].concat(args).concat([(err, res) => {
+              if (err != null) {
+                return reject(err);
+              }
+              resolve(res);
+            }]));
+          });
+        };
+      }
+
+      // Convert `fs.readFile()` into a function that takes the
+      // same parameters but returns a promise.
+      const readFile = promisify(fs.readFile);
+
+      // You can now use `readFile()` with `await`!
+      const buf = await readFile('./package.json');
+
+      const obj = JSON.parse(buf.toString('utf8'));
+      obj.name; // 'masteringjs.io'
+      // acquit:ignore:start
+      assert.equal(obj.name, 'masteringjs.io');
+      // acquit:ignore:end
+    });
+
+    it('losing context', async function() {
+      class MyClass {
+        myCallbackFn(cb) {
+          cb(null, this);
+        }
+      }
+
+      const obj = new MyClass();
+      const promisified = require('util').promisify(obj.myCallbackFn);
+
+      const context = await promisified();
+      context; // `undefined` instead of a `MyClass` instance!
+      // acquit:ignore:start
+      assert.strictEqual(context, void 0);
+      // acquit:ignore:end
+    });
+
+    it('correct context', async function() {
+      class MyClass {
+        myCallbackFn(cb) {
+          cb(null, this);
+        }
+      }
+
+      const obj = new MyClass();
+      // Retain context because `promisified` is a property of `obj`
+      obj.promisified = require('util').promisify(obj.myCallbackFn);
+
+      const context = await obj.promisified();
+      context === obj; // true
+      // acquit:ignore:start
+      assert.strictEqual(context, obj);
       // acquit:ignore:end
     });
   });

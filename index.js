@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `util.promisify()` Function in Node.js',
+      raw: './tutorials/node/promisify.md',
+      url: '/tutorials/node/promisify',
+      description: 'The `util.promisify()` function converts functions that use Node.js callbacks into functions that return promises. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-02-17')
+    },
+    {
       title: 'GraphQL Mutations in Apollo',
       raw: './tutorials/graphql/mutations.md',
       url: '/tutorials/graphql/mutations',
