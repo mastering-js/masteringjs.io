@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Deploy a Function to Lambda Using the Node.js AWS SDK',
+      raw: './tutorials/node/lambda.md',
+      url: '/tutorials/node/lambda',
+      description: 'AWS is powerful, but their UI leaves a lot to be desired. Here\'s how you can skip the AWS console and deploy Lambda functions from a Node.js script.',
+      tags: ['node'],
+      date: moment('2020-02-19')
+    },
+    {
       title: 'The `util.promisify()` Function in Node.js',
       raw: './tutorials/node/promisify.md',
       url: '/tutorials/node/promisify',
