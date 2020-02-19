@@ -256,4 +256,160 @@ describe('Node', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('AWS lambda', function() {
+    const awsBucket = 'codebarbarian-images';
+    let functionArn;
+
+    it('bundle and upload', async function() {
+      const AdmZip = require('adm-zip');
+      const AWS = require('aws-sdk');
+
+      const file = new AdmZip();
+      file.addFile('test.js', Buffer.from(`
+        exports.handler = async function(event, context) {
+          return { statusCode: 200, body: 'Hello, World' };
+        };
+      `));
+
+      file.writeZip('./test.zip');
+
+      // Make sure the configs are set!
+      AWS.config.update({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: 'us-east-1'
+      });
+
+      const s3 = new AWS.S3();
+      await new Promise((resolve, reject) => {
+        s3.upload({
+          Bucket: awsBucket, // Make this your AWS bucket
+          Body: fs.createReadStream('./test.zip'),
+          Key: 'test.zip'
+        }, (err, data) => err == null ? resolve(data) : reject(err));
+      });
+    });
+
+    it('invoke', async function() {
+      const AWS = require('aws-sdk');
+      const promisify = require('util').promisify;
+
+      AWS.config.update({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: 'us-east-1'
+      });
+
+      const lambda = new AWS.Lambda();
+      // acquit:ignore:start
+      await promisify(lambda.deleteFunction).call(lambda, {
+        FunctionName: 'nodetest'
+      });
+      // acquit:ignore:end
+      
+      // Actually create the function with the given name and runtime.
+      const opts = {
+        FunctionName: 'nodetest',
+        Runtime: 'nodejs12.x',
+        // Whatever role, doesn't matter
+        Role: 'add actual role that starts with `arn:aws:iam::` here',
+        // acquit:ignore:start
+        Role: 'arn:aws:iam::676517094076:role/service-role/test',
+        // acquit:ignore:end
+        // `test` is for `test.js`, and `handler` is for `exports.handler`.
+        Handler: 'test.handler',
+        Code: {
+          'S3Bucket': awsBucket,
+          'S3Key': 'test.zip'
+        }
+      };
+      const fn = await promisify(lambda.createFunction).call(lambda, opts);
+      functionArn = fn.FunctionArn; // The "id" of the lambda function
+
+      // Let API Gateway call this Lambda function
+      await promisify(lambda.addPermission).call(lambda, {
+        FunctionName: 'nodetest',
+        StatementId: 'doesntmatter',
+        Action: 'lambda:InvokeFunction',
+        Principal: 'apigateway.amazonaws.com'
+      });
+
+      const res = await promisify(lambda.invoke).call(lambda, {
+        FunctionName: 'nodetest'
+      });
+      res.Payload; // '{"statusCode":200,"body":"Hello, World"}'
+      // acquit:ignore:start
+      assert.equal(res.Payload, '{"statusCode":200,"body":"Hello, World"}');
+      // acquit:ignore:end
+    });
+
+    it('create rest api', async function() {
+      this.timeout(5000);
+      const AWS = require('aws-sdk');
+      const promisify = require('util').promisify;
+
+      AWS.config.update({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: 'us-east-1'
+      });
+
+      const gateway = new AWS.APIGateway();
+
+      // Create a new API
+      const api = await promisify(gateway.createRestApi).call(gateway, {
+        name: 'My Test API'
+      });
+      const restApiId = api.id;
+
+      // Create a new endpoint (resource) at `/test/
+      const resources = await promisify(gateway.getResources).call(gateway, { restApiId });
+      const resource = await promisify(gateway.createResource).call(gateway, {
+        restApiId,
+        // Parent resource is the "root" resource
+        parentId: resources.items[0].id,
+        pathPart: 'test'
+      });
+      await promisify(gateway.putMethod).call(gateway, {
+        restApiId,
+        resourceId: resource.id,
+        httpMethod: 'GET',
+        authorizationType: 'NONE'
+      });
+
+      // Configure the endpoint to use the Lambda function
+      await promisify(gateway.putIntegration).call(gateway, {
+        restApiId,
+        resourceId: resource.id,
+        httpMethod: 'GET',
+        integrationHttpMethod: 'POST',
+        type: 'AWS_PROXY',
+        uri: `arn:aws:apigateway:us-east-1:lambda:path//2015-03-31/functions/${functionArn}/invocations`
+      });
+      await promisify(gateway.createDeployment).call(gateway, { restApiId, stageName: 'prod' });
+
+      await promisify(gateway.putMethodResponse).call(gateway, {
+        restApiId,
+        resourceId: resource.id,
+        httpMethod: 'GET',
+        statusCode: '200'
+      });
+      await promisify(gateway.putIntegrationResponse).call(gateway, {
+        restApiId,
+        resourceId: resource.id,
+        httpMethod: 'GET',
+        statusCode: '200'
+      });
+
+      // Now call the function using Axios!
+      const axios = require('axios');
+
+      const res = await axios.get(`https://${api.id}.execute-api.us-east-1.amazonaws.com/prod/test`);
+      res.data; // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(res.data, 'Hello, World');
+      // acquit:ignore:end
+    });
+  });
 });
