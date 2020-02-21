@@ -412,4 +412,77 @@ describe('Node', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('buffers', function() {
+    it('from filesystem', function() {
+      const fs = require('fs');
+
+      const buf = fs.readFileSync('./package.json');
+      buf instanceof Buffer; // true
+      // acquit:ignore:start
+      assert.ok(buf instanceof Buffer);
+      // acquit:ignore:end
+      
+      buf; // '<Buffer 7b 0a 20 20 22 6e 61 6d 65 22 ...>'
+    });
+
+    it('toString utf8', function() {
+      const fs = require('fs');
+
+      const buf = fs.readFileSync('./package.json');
+      // acquit:ignore:start
+      assert.ok(buf instanceof Buffer);
+      // acquit:ignore:end
+      buf.toString('utf8'); // '{ "name": "masteringjs.io", ...}'
+    });
+
+    it('toString hex', function() {
+      const fs = require('fs');
+
+      const buf = fs.readFileSync('./package.json');
+      // acquit:ignore:start
+      assert.ok(buf instanceof Buffer);
+      // acquit:ignore:end
+      buf.toString('hex'); // '7b0a2020...'
+    });
+
+    it('from string', function() {
+      let buf = Buffer.from('Hello, World', 'utf8');
+
+      buf.toString('hex'); // '48656c6c6f2c20576f726c64'
+      buf.toString('utf8'); // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(buf.toString('hex'), '48656c6c6f2c20576f726c64');
+      assert.equal(buf.toString('utf8'), 'Hello, World');
+      // acquit:ignore:end
+
+      buf = Buffer.from('48656c6c6f2c20576f726c64', 'hex');
+      buf.toString('utf8'); // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(buf.toString('utf8'), 'Hello, World');
+      // acquit:ignore:end
+    });
+
+    it('json', function() {
+      let buf = Buffer.from('Hello, World', 'utf8');
+
+      let obj = { buffer: buf };
+      obj = JSON.parse(JSON.stringify(obj));
+
+      // { type: 'Buffer',
+      //   data: [ 72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100 ] }
+      obj.buffer;
+      // acquit:ignore:start
+      assert.deepEqual(obj.buffer.data,
+        [72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100]);
+      // acquit:ignore:end
+
+      // To convert from JSON representation back to a buffer, use `Buffer.from()`
+      obj.buffer = Buffer.from(obj.buffer);
+      obj.buffer.toString('utf8'); // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(obj.buffer.toString('utf8'), 'Hello, World');
+      // acquit:ignore:end
+    });
+  });
 });

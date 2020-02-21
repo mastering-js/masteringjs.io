@@ -1,0 +1,162 @@
+
+<html>
+  <head>
+    <title>Node.js Buffer Tutorial - Mastering JS</title>
+
+    <meta property="og:title" content="Node.js Buffer Tutorial" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Node.js has a built-in Buffer type that lets you store arbitrary binary data. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Node.js Buffer Tutorial</h1>
+        <div class="date">
+          Feb 21, 2020
+        </div>
+        
+  <p><a href="http://thecodebarbarian.com/an-overview-of-buffers-in-node-js.html">Node.js buffers</a> are objects that store arbitary binary data. The most common reason for running into buffers is <a href="https://nodejs.dev/reading-files-with-nodejs">reading files using Node.js</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+<span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
+buf <span class="hljs-keyword">instanceof</span> Buffer; <span class="hljs-comment">// true</span>
+
+buf; <span class="hljs-comment">// '&lt;Buffer 7b 0a 20 20 22 6e 61 6d 65 22 ...&gt;'</span></code></pre>
+<p>Buffers have a <a href="https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings"><code>toString()</code> function</a> that takes a single
+argument <code>encoding</code>. The <code>toString()</code> function lets you convert
+buffers into meaningful strings depending on encoding. For example,
+if you read an ordinary text file using <code>fs.readFile()</code>, you can
+convert the buffer into the text from the file using <code>.toString(&#39;utf8&#39;)</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+<span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// '{ "name": "masteringjs.io", ...}'</span></code></pre>
+<p>Another common encoding is <code>hex</code>, which encodes the buffer as a string
+of characters <code>[0-9A-F]</code>. Hex encoding is useful because it doesn&#39;t
+require escaping - you can put a hex encoded buffer into a URI without
+using <code>encodeURIComponent()</code> or put it into JSON without escaping <code>&quot;</code>,
+because hex encoding only contains alphanumeric characters.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+<span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
+buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '7b0a2020...'</span></code></pre>
+<h2 id="creating-a-new-buffer">Creating a New Buffer</h2>
+<p>You can create buffers from strings using the <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_array"><code>Buffer.from()</code> function</a>. Like <code>toString()</code>, you can pass <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding">an <code>encoding</code> argument to <code>Buffer.from()</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
+
+buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '48656c6c6f2c20576f726c64'</span>
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span>
+
+buf = Buffer.from(<span class="hljs-string">'48656c6c6f2c20576f726c64'</span>, <span class="hljs-string">'hex'</span>);
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
+<p>The <code>Buffer.from()</code> function also accepts arrays and buffers. You can
+use <code>Buffer.from()</code> to clone a buffer:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf2 = Buffer.from(buf);
+
+buf2 === buf; <span class="hljs-comment">// false</span>
+buf2.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
+<p>Or from an array of numeric bytes:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from([
+  <span class="hljs-number">0x48</span>,
+  <span class="hljs-number">0x65</span>,
+  <span class="hljs-number">0x6c</span>,
+  <span class="hljs-number">0x6c</span>,
+  <span class="hljs-number">0x6f</span>,
+  <span class="hljs-number">0x2c</span>,
+  <span class="hljs-number">0x20</span>,
+  <span class="hljs-number">0x57</span>,
+  <span class="hljs-number">0x6f</span>,
+  <span class="hljs-number">0x72</span>,
+  <span class="hljs-number">0x6c</span>,
+  <span class="hljs-number">0x64</span>
+]);
+
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// Hello, World</span></code></pre>
+<h2 id="with-jsonstringify">With <a href="https://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html"><code>JSON.stringify()</code></a></h2>
+<p>The <a href="https://nodejs.org/api/buffer.html#buffer_buf_tojson"><code>JSON.stringify()</code> function converts buffers into objects</a>. The raw data is encoded as an array of bytes that you can pass in to <code>Buffer.from()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
+
+<span class="hljs-keyword">let</span> obj = { <span class="hljs-attr">buffer</span>: buf };
+obj = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
+
+<span class="hljs-comment">// { type: 'Buffer',</span>
+<span class="hljs-comment">//   data: [ 72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100 ] }</span>
+obj.buffer;
+
+<span class="hljs-comment">// To convert from JSON representation back to a buffer, use `Buffer.from()`</span>
+obj.buffer = Buffer.from(obj.buffer);
+obj.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Node Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/node/lambda">Deploy a Function to Lambda Using the Node.js AWS SDK</a></li>
+  
+
+    <li><a href="/tutorials/node/promisify">The `util.promisify()` Function in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/mocha/async">How to Test Async Code with Mocha</a></li>
+  
+
+    <li><a href="/tutorials/mocha/chai">Using the Chai Assertion Library with Mocha</a></li>
+  
+
+    <li><a href="/tutorials/mocha/intro">An Introduction to the Mocha Test Runner</a></li>
+  
+
+    <li><a href="/tutorials/node/s3">Uploading Files to Amazon S3 in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/websockets">WebSockets in Node.js</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
