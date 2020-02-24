@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Iterate Over a JavaScript Object',
+      raw: './tutorials/fundamentals/iterate-object.md',
+      url: '/tutorials/fundamentals/iterate-object',
+      description: 'There are numerous ways to iterate over all keys and values in a JavaScript object. Here\'s 3 ways and the tradeoffs between them.',
+      tags: ['fundamentals'],
+      date: moment('2020-02-24')
+    },
+    {
       title: 'Node.js Buffer Tutorial',
       raw: './tutorials/node/buffer.md',
       url: '/tutorials/node/buffer',

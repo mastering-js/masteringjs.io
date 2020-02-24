@@ -3163,6 +3163,173 @@ describe('Fundamentals', function() {
       await server.close();
     });
   });
+
+  describe('iterate object', function() {
+    let _console = console;
+    let messages = [];
+
+    beforeEach(function() {
+      messages = [];
+      console = {
+        log: msg => messages.push(msg)
+      };
+    });
+
+    afterEach(function() {
+      console = _console;
+    });
+
+    it('object entries', function() {
+      const obj = {
+        name: 'Luke Skywalker',
+        title: 'Jedi Knight',
+        age: 23
+      };
+
+      // Prints out:
+      // 'name: Luke Skywalker'
+      // 'title: Jedi Knight'
+      // 'age: 23'
+      for (const [key, value] of Object.entries(obj)) {
+        console.log(`${key}: ${value}`);
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, [
+        'name: Luke Skywalker',
+        'title: Jedi Knight',
+        'age: 23'
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('object entries as array', function() {
+      const obj = {
+        name: 'Luke Skywalker',
+        title: 'Jedi Knight',
+        age: 23
+      };
+
+      const keyValuePairs = Object.entries(obj);
+      keyValuePairs[0]; // ['name', 'Luke Skywalker']
+      keyValuePairs[1]; // ['title', 'Jedi Knight']
+      keyValuePairs[2]; // ['age', 23]
+      // acquit:ignore:start
+      assert.deepEqual(keyValuePairs, [
+        ['name', 'Luke Skywalker'],
+        ['title', 'Jedi Knight'],
+        ['age', 23]
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('keys', function() {
+      const obj = {
+        name: 'Luke Skywalker',
+        title: 'Jedi Knight',
+        age: 23
+      };
+
+      // Prints out:
+      // 'name: Luke Skywalker'
+      // 'title: Jedi Knight'
+      // 'age: 23'
+      for (const key of Object.keys(obj)) {
+        console.log(`${key}: ${obj[key]}`);
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, [
+        'name: Luke Skywalker',
+        'title: Jedi Knight',
+        'age: 23'
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('keys vs entries', function() {
+      const obj = {
+        name: 'Luke Skywalker',
+        title: 'Jedi Knight',
+        age: 23
+      };
+
+      // Assigning to `value` does **not** change the property
+      // value! You need to do `obj[key] = newValue`
+      for (let [key, value] of Object.entries(obj)) {
+        if (key === 'title') {
+          value = 'Jedi Master';
+        }
+      }
+      obj.title; // 'Jedi Knight'
+      // acquit:ignore:start
+      assert.equal(obj.title, 'Jedi Knight');
+      // acquit:ignore:end
+
+      // Works!
+      for (const key of Object.keys(obj)) {
+        if (key === 'title') {
+          obj[key] = 'Jedi Master';
+        }
+      }
+      // acquit:ignore:start
+      assert.equal(obj.title, 'Jedi Master');
+      // acquit:ignore:end
+    });
+
+    it('for/in', function() {
+      function JediKnight(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // `title` is an inherited property for instances of the
+      // `Jedi Knight` class.
+      JediKnight.prototype.title = 'Jedi Knight';
+
+      const obj = new JediKnight('Luke Skywalker', 23);
+
+      // `entries` will **not** include the `title` property
+      const entries = Object.entries(obj);
+      entries; // [['name', 'Luke Skywalker'], ['age', '23']]
+      // acquit:ignore:start
+      assert.deepEqual(entries, [['name', 'Luke Skywalker'], ['age', '23']]);
+      // acquit:ignore:end
+
+      // Includes `title`, because `for/in` also loops over
+      // inheritted properties.
+      // 'name: Luke Skywalker'
+      // 'age: 23'
+      // 'title: Jedi Knight'
+      for (const key in obj) {
+        console.log(`${key}: ${obj[key]}`);
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, [
+        'name: Luke Skywalker',
+        'age: 23',
+        'title: Jedi Knight'
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('for/in with pojo', function() {
+      const obj = {
+        name: 'Luke Skywalker',
+        title: 'Jedi Knight',
+        age: 23
+      };
+
+      const keys = [];
+      for (const key in obj) {
+        keys.push(key);
+      }
+
+      keys; // ['name', 'title', 'age', 'constructor']
+      // acquit:ignore:start
+      assert.deepEqual(keys, [
+        'name', 'title', 'age', 'constructor'
+      ]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
