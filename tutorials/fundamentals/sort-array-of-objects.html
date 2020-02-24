@@ -1,11 +1,11 @@
 
 <html>
   <head>
-    <title>Sorting an Array in JavaScript - Mastering JS</title>
+    <title>Sort an Array of Objects in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Sorting an Array in JavaScript" />
+    <meta property="og:title" content="Sort an Array of Objects in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="Learn how to use the built-in `Array#sort()` function in JavaScript" />
+    <meta property="og:description" content="JavaScript's built in `sort()` function lets you sort arrays by an object property. Here's what you need to know." />
     <meta property="og:type" content="article" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
@@ -48,42 +48,42 @@
 </div>
 
       <div class="content">
-        <h1>Sorting an Array in JavaScript</h1>
+        <h1>Sort an Array of Objects in JavaScript</h1>
         <div class="date">
-          May 30, 2019
+          Feb 26, 2020
         </div>
         
-  <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">JavaScript&#39;s built-in <code>sort()</code> function</a> is often surprising to beginners. For example, suppose you sorted the below array:</p>
-<pre><code class="language-javascript">[<span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">100</span>].sort();</code></pre>
-<p>What would the output be? You might expect the array to stay the same, but the output will actually become:</p>
-<pre><code class="language-javascript">[<span class="hljs-number">100</span>, <span class="hljs-number">20</span>, <span class="hljs-number">3</span>];</code></pre>
-<p>That is because JavaScript converts array elements to strings and then <a href="https://masteringjs.io/tutorials/fundamentals/string-compare">sorts them according to JavaScript&#39;s ordering of strings</a>.</p>
-<h2 id="sorting-an-array-of-numbers">Sorting an Array of Numbers</h2>
-<p>The <code>sort()</code> function <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters">takes one parameter, <code>compareFunction()</code></a>. The <code>compareFunction()</code> function takes two array elements <code>a</code> and <code>b</code>. It should return:</p>
-<ul>
-<li>A negative number if <code>a &lt; b</code></li>
-<li>A positive number if <code>a &gt; b</code></li>
-<li>0 if <code>a</code> is neither greater than nor less than <code>b</code>.</li>
-</ul>
-<p>To sort an array of numbers in forward order, you should use <code>(a, b) =&gt; a - b</code> as your <code>compareFunction()</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">100</span>];
-
-arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);
-arr; <span class="hljs-comment">// [3, 20, 100]</span></code></pre>
-<p>To sort an array of numbers in reverse order, you should use <code>(a, b) =&gt; b - a</code> instead.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">20</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span>];
-
-arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b - a);
-arr; <span class="hljs-comment">// [100, 20, 3]</span></code></pre>
-<p>If you&#39;re familiar with Java, you can think of <code>compareFunction()</code> as JavaScript&#39;s equivalent to <a href="https://www.javatpoint.com/Comparable-interface-in-collection-framework"><code>compareTo()</code></a>.</p>
-<h2 id="sorting-an-array-of-objects-by-property">Sorting an Array of Objects by Property</h2>
-<p>Suppose you instead wanted to sort an array of objects. For example, suppose you had an array of Star Trek: The Next Generation characters:</p>
+  <p>Suppose you have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">JavaScript array</a> containing
+Star Trek: The Next Generation characters:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Geordi'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }
 ];</code></pre>
-<p>Here&#39;s how you would sort the <code>characters</code> array by <code>lastName</code> using <a href="/tutorials/fundamentals/string-compare">JavaScript string comparison</a>:</p>
+<p>How do you sort this array by different properties?</p>
+<h2 id="sorting-by-age">Sorting By <code>age</code></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">JavaScript&#39;s built-in <code>Array#sort()</code> function</a> optionally
+takes a <a href="/tutorials/fundamentals/callbacks">callback</a> parameter that
+compares two elements in the array.</p>
+<p>The callback function is called <code>compareFunction()</code>. If <code>compareFunction(a, b)</code>
+returns a value that is <code>&lt; 0</code>, JavaScript considers <code>a</code> to be less than <code>b</code>.
+And if <code>compareFunction(a, b)</code> returns a value that is <code>&gt; 0</code>, JavaScript considers <code>b</code> to be greater than <code>a</code>.</p>
+<p>That means it is easy to sort by a numeric property like <code>age</code>. If <code>a.age - b.age &lt; 0</code>, that means <code>b</code> is older than <code>a</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Geordi'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }
+];
+
+characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.age - b.age);
+
+<span class="hljs-comment">// Riker, La Forge, Picard</span>
+characters;</code></pre>
+<h2 id="sorting-by-lastname">Sorting by <code>lastName</code></h2>
+<p>Sorting by a string property like <code>lastName</code> is also easy, because
+JavaScript&#39;s <code>&lt;</code> and <code>&gt;</code> properties can handle strings. To sort
+by a string property, your <code>compareFunction()</code> can compare the
+two strings using <code>&lt;</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
@@ -99,18 +99,12 @@ characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</spa
 
 <span class="hljs-comment">// La Forge, Picard, Riker</span>
 characters;</code></pre>
-<p>Here&#39;s how you would sort the <code>characters</code> array by age:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
-  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
-  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
-  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Geordi'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }
-];
-
-characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.age - b.age);
-
-<span class="hljs-comment">// Riker, La Forge, Picard</span>
-characters;</code></pre>
-<p>How about sorting by <code>rank</code>? Sorting by rank requires a custom ordering, because the JavaScript runtime doesn&#39;t know that &#39;Captain&#39; is a higher rank than &#39;Lieutenant&#39;. Here&#39;s how you would sort based on a custom ordering using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><code>indexOf()</code></a>.</p>
+<h2 id="sorting-by-rank">Sorting by <code>rank</code></h2>
+<p>Sorting by <code>rank</code> is a bit trickier because rank isn&#39;t necessarily
+in alphabetical order. JavaScript doesn&#39;t know that &#39;Captain&#39; is
+a higher rank than &#39;Lieutenant&#39;.</p>
+<p>To sort by a custom ordering, you should define a map from
+<code>rank</code> to a numeric value to make for easier comparison.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> },
@@ -136,9 +130,6 @@ characters;</code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/sort-array-of-objects">Sort an Array of Objects in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/iterate-object">How to Iterate Over a JavaScript Object</a></li>
   
 
@@ -155,6 +146,9 @@ characters;</code></pre>
   
 
     <li><a href="/tutorials/fundamentals/promise-resolve">Resolve a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-all">The `Promise.all()` Function in JavaScript</a></li>
   
     </ul>
   
