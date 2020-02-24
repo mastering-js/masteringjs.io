@@ -805,6 +805,33 @@ describe('Fundamentals', function() {
     });
   });
 
+  describe('typeof', function() {
+    it('with basic values', function() {
+      typeof 42; // 'number'
+      typeof 'test'; // 'string'
+      typeof true; // 'boolean'
+      typeof (void 0); // 'undefined'
+      typeof BigInt('1234'); // 'bigint'
+      typeof Symbol('foo'); // 'symbol'
+      typeof ({ answer: 42 }); // 'object'
+
+      // As far as `typeof` is concerned, all objects are the same.
+      class MyClass {}
+      typeof (new MyClass()); // 'object'
+      // acquit:ignore:start
+      assert.equal(typeof 42, 'number');
+      assert.equal(typeof 'test', 'string');
+      assert.equal(typeof true, 'boolean');
+      assert.equal(typeof (void 0), 'undefined');
+      assert.equal(typeof ({ answer: 42 }), 'object');
+      assert.equal(typeof BigInt('1234'), 'bigint');
+      assert.equal(typeof Symbol('foo'), 'symbol');
+
+      assert.equal(typeof (new MyClass()), 'object');
+      // acquit:ignore:end
+    });
+  });
+
   describe('String#replace()', function() {
     it('basic', function() {
       const str = 'A penny saved is a penny earned';

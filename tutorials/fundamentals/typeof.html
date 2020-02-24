@@ -1,0 +1,130 @@
+
+<html>
+  <head>
+    <title>The `typeof` Operator in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="The `typeof` Operator in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="JavaScript's built in `sort()` function lets you sort arrays by an object property. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The `typeof` Operator in JavaScript</h1>
+        <div class="date">
+          Feb 28, 2020
+        </div>
+        
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof"><code>typeof</code> operator</a> returns the type of a given variable
+as a string.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-number">42</span>; <span class="hljs-comment">// 'number'</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-string">'test'</span>; <span class="hljs-comment">// 'string'</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// 'boolean'</span>
+<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">void</span> <span class="hljs-number">0</span>); <span class="hljs-comment">// 'undefined'</span>
+<span class="hljs-keyword">typeof</span> BigInt(<span class="hljs-string">'1234'</span>); <span class="hljs-comment">// 'bigint'</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'foo'</span>); <span class="hljs-comment">// 'symbol'</span>
+<span class="hljs-keyword">typeof</span> ({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }); <span class="hljs-comment">// 'object'</span>
+
+<span class="hljs-comment">// As far as `typeof` is concerned, all objects are the same.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
+<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">new</span> MyClass()); <span class="hljs-comment">// 'object'</span></code></pre>
+<p>Here&#39;s the general idea: the <code>typeof</code> operator returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">which of the 8 JavaScript data types</a> a given value is. There&#39;s one key exception to this
+rule: <code>null</code>.</p>
+<h2 id="with-null">With <code>null</code></h2>
+<p>The one big gotcha with <code>typeof</code> is that <code>typeof null === &#39;object&#39;</code>.
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof#null">There is a historical reason for this behavior</a>, and a proposal to change this behavior was rejected, so it looks like JavaScript is stuck
+with this quirk.</p>
+<p>The workaround to check whether a value is actually an object with
+<code>typeof</code> is to check whether the type is <code>&#39;object&#39;</code> and the value
+is not <a href="/tutorials/fundamentals/equals">strictly equal</a> to <code>null</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isObject</span>(<span class="hljs-params">v</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">'object'</span> &amp;&amp; v !== <span class="hljs-literal">null</span>;
+}</code></pre>
+<h2 id="error-cases">Error Cases</h2>
+<p>The <code>typeof</code> operator can throw an error if you use it on
+a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">block scope variable</a> before you define it.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Throws 'ReferenceError: v is not defined'</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> v);
+
+<span class="hljs-keyword">let</span> v;</code></pre>
+<p>This behavior <strong>only</strong> applies for block scoped variables. For example,
+if you don&#39;t define <code>v</code> at all, the above script will work fine.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> v); <span class="hljs-comment">// 'undefined'</span>
+
+<span class="hljs-comment">//let v;</span></code></pre>
+<p>Block scoped variables are the only case where <code>typeof</code> throws an
+error. Otherwise, <code>typeof</code> will always succeed.</p>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/sort-array-of-objects">Sort an Array of Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/iterate-object">How to Iterate Over a JavaScript Object</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/puppeteer">Introduction to Puppeteer</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/state-machines">A Practical Introduction to Finite State Machines</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/async-await">Understanding Async/Await in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-new">Understanding `new Promise` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-resolve">Resolve a Promise in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
