@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Sort an Array of Objects in JavaScript',
+      raw: './tutorials/fundamentals/sort-array-of-objects.md',
+      url: '/tutorials/fundamentals/sort-array-of-objects',
+      description: 'JavaScript\'s built in `sort()` function lets you sort arrays by an object property. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-02-26')
+    },
+    {
       title: 'How to Iterate Over a JavaScript Object',
       raw: './tutorials/fundamentals/iterate-object.md',
       url: '/tutorials/fundamentals/iterate-object',

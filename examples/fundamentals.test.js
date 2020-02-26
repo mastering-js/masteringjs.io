@@ -786,10 +786,14 @@ describe('Fundamentals', function() {
         { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
       ];
 
-      const rankOrder = ['Captain', 'Commander', 'Lieutenant'];
+      const rankOrder = new Map([
+        ['Captain', 1],
+        ['Commander', 2],
+        ['Lieutenant', 3]
+      ]);
 
       characters.sort((a, b) => {
-        return rankOrder.indexOf(a.rank) - rankOrder.indexOf(b.rank);
+        return rankOrder.get(a.rank) - rankOrder.get(b.rank);
       });
 
       // Picard, Riker, La Forge
