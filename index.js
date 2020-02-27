@@ -40,7 +40,7 @@ async function run() {
       title: 'The `typeof` Operator in JavaScript',
       raw: './tutorials/fundamentals/typeof.md',
       url: '/tutorials/fundamentals/typeof',
-      description: 'JavaScript\'s built in `sort()` function lets you sort arrays by an object property. Here\'s what you need to know.',
+      description: 'The typeof Operator tells you the type of a value - whether the value is a number, string, object, etc. Here\'s what you need to know.',
       tags: ['fundamentals'],
       date: moment('2020-02-28')
     },
