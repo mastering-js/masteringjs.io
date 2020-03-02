@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Upload Files to Google Cloud Storage in Node.js',
+      raw: './tutorials/node/google-cloud-storage.md',
+      url: '/tutorials/node/google-cloud-storage',
+      description: 'Google Cloud has a Node.js API that lets you upload Google Cloud Functions, launch new VMs, and compile code on Google Cloud. Here\'s how you can upload files to Google Cloud Storage.',
+      tags: ['node'],
+      date: moment('2020-03-06')
+    },
+    {
       title: 'Analyze JavaScript Bundles with Webpack Bundle Analyzer',
       raw: './tutorials/webpack/bundle-analyzer.md',
       url: '/tutorials/webpack/bundle-analyzer',
