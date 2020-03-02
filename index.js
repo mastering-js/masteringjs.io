@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Webpack Configs',
+      raw: './tutorials/webpack/config.md',
+      url: '/tutorials/webpack/config',
+      description: 'Webpack configs are a common source of confusion, but they are actually pretty simple to write by hand. Here\'s what you need to know.',
+      tags: ['webpack'],
+      date: moment('2020-03-02')
+    },
+    {
       title: 'The `typeof` Operator in JavaScript',
       raw: './tutorials/fundamentals/typeof.md',
       url: '/tutorials/fundamentals/typeof',
