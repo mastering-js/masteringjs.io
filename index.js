@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Analyze JavaScript Bundles with Webpack Bundle Analyzer',
+      raw: './tutorials/webpack/bundle-analyzer.md',
+      url: '/tutorials/webpack/bundle-analyzer',
+      description: 'Webpack Bundle Analyzer generates a zoomable treemap of the contents of your Webpack bundle. Here\'s how you can get started with webpack-bundle-analyzer.',
+      tags: ['webpack'],
+      date: moment('2020-03-04')
+    },
+    {
       title: 'An Introduction to Webpack Configs',
       raw: './tutorials/webpack/config.md',
       url: '/tutorials/webpack/config',
