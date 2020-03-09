@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Handling Websockets with Express',
+      raw: './tutorials/express/websockets.md',
+      url: '/tutorials/express/websockets',
+      description: 'Handling websockets with an Express server in Node.js is easy with the ws module. Here\'s how it works.',
+      tags: ['express'],
+      date: moment('2020-03-09')
+    },
+    {
       title: 'Upload Files to Google Cloud Storage in Node.js',
       raw: './tutorials/node/google-cloud-storage.md',
       url: '/tutorials/node/google-cloud-storage',
