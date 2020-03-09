@@ -987,4 +987,56 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('websockets', function() {
+    const _consoleLog = console.log;
+    let logs = [];
+
+    beforeEach(() => {
+      logs = [];
+      console.log = function() {
+        logs.push(Array.prototype.slice.call(arguments));
+      };
+    });
+    afterEach(function() {
+      console.log = _consoleLog;
+    });
+
+    it('basic example', async function() {
+      const express = require('express');
+      const ws = require('ws');
+
+      const app = express();
+
+      // Set up a headless websocket server that prints any
+      // events that come in.
+      const wsServer = new ws.Server({ noServer: true });
+      wsServer.on('connection', socket => {
+        socket.on('message', message => console.log(message));
+      });
+
+      // `server` is a vanilla Node.js HTTP server, so use
+      // the same ws upgrade process described here:
+      // https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server
+      const server = app.listen(3000);
+      server.on('upgrade', (request, socket, head) => {
+        wsServer.handleUpgrade(request, socket, head, socket => {
+          wsServer.emit('connection', socket, request);
+        });
+      });
+      // acquit:ignore:start
+      const client = new ws('ws://localhost:3000');
+
+      client.on('open', () => {
+        client.send('Hello');
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+      assert.deepEqual(logs, [['Hello']]);
+
+      await server.close();
+      await wsServer.close();
+      // acquit:ignore:end
+    });
+  });
 });

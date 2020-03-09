@@ -1,0 +1,129 @@
+
+<html>
+  <head>
+    <title>Handling Websockets with Express - Mastering JS</title>
+
+    <meta property="og:title" content="Handling Websockets with Express" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Handling websockets with an Express server in Node.js is easy with the ws module. Here's how it works." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Handling Websockets with Express</h1>
+        <div class="date">
+          Mar 9, 2020
+        </div>
+        
+  <p>The <a href="https://www.npmjs.com/package/ws">ws npm module</a> is the de facto library for 
+<a href="/tutorials/node/websockets">websockets in Node.js</a>. It has <a href="https://www.npmjs.com/package/ws#external-https-server">built-in support for Node.js&#39; native <code>http</code> servers</a>. But, unfortunately, very
+few developers use Node&#39;s built-in HTTP package directly, they usually use <a href="/express">Express</a>.</p>
+<p>Integrating the ws package with Express is easy. There is also an <a href="https://www.npmjs.com/package/express-ws">express-ws module on npm</a>, but I&#39;ve never managed to get that module to work. Here&#39;s how you can use the ws package to listen to websockets on an
+Express server.</p>
+<h2 id="listening-to-websockets-with-express">Listening to Websockets with Express</h2>
+<p>The ws package supports native Node.js HTTP servers. Conveniently, <a href="http://expressjs.com/en/4x/api.html#app.listen">Express&#39; <code>listen()</code> function</a> returns a native Node.js HTTP server. So you can use the same process described in the <a href="https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server">ws docs</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+
+<span class="hljs-comment">// Set up a headless websocket server that prints any</span>
+<span class="hljs-comment">// events that come in.</span>
+<span class="hljs-keyword">const</span> wsServer = <span class="hljs-keyword">new</span> ws.Server({ <span class="hljs-attr">noServer</span>: <span class="hljs-literal">true</span> });
+wsServer.on(<span class="hljs-string">'connection'</span>, socket =&gt; {
+  socket.on(<span class="hljs-string">'message'</span>, message =&gt; <span class="hljs-built_in">console</span>.log(message));
+});
+
+<span class="hljs-comment">// `server` is a vanilla Node.js HTTP server, so use</span>
+<span class="hljs-comment">// the same ws upgrade process described here:</span>
+<span class="hljs-comment">// https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server</span>
+<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">3000</span>);
+server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&gt; {
+  wsServer.handleUpgrade(request, socket, head, socket =&gt; {
+    wsServer.emit(<span class="hljs-string">'connection'</span>, socket, request);
+  });
+});</code></pre>
+<h2 id="testing">Testing</h2>
+<p>How do you actually connect to this server? <a href="https://www.npmjs.com/package/ws#sending-and-receiving-text-data">ws also has a websocket client implementation</a> as well as the server implementation.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> ws(<span class="hljs-string">'ws://localhost:3000'</span>);
+
+client.on(<span class="hljs-string">'open'</span>, () =&gt; {
+  <span class="hljs-comment">// Causes the server to print "Hello"</span>
+  client.send(<span class="hljs-string">'Hello'</span>);
+});</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Express Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/express/webhook">What is a Webhook?</a></li>
+  
+
+    <li><a href="/tutorials/express/server-sent-events">Server-Sent Events with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/query-parameters">Query Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/route-parameters">Route Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/body">Getting the Request Body in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/router">Introduction to Express' Router</a></li>
+  
+
+    <li><a href="/tutorials/express/json">Express Response JSON</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
