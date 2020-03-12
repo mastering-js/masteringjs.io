@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Serving Static Files in Express',
+      raw: './tutorials/express/static.md',
+      url: '/tutorials/express/static',
+      description: 'Here\'s how you can serve static assets directly from a folder using Node.js and Express.',
+      tags: ['express'],
+      date: moment('2020-03-12')
+    },
+    {
       title: 'Handling Websockets with Express',
       raw: './tutorials/express/websockets.md',
       url: '/tutorials/express/websockets',
