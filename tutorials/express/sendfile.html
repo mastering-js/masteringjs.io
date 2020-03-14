@@ -1,0 +1,103 @@
+
+<html>
+  <head>
+    <title>Send Static Files in Express with sendFile() - Mastering JS</title>
+
+    <meta property="og:title" content="Send Static Files in Express with sendFile()" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="The `sendFile()` method lets you send a static file as an Express response. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Send Static Files in Express with sendFile()</h1>
+        <div class="date">
+          Mar 13, 2020
+        </div>
+        
+  <p><a href="https://expressjs.com/en/api.html#res.sendFile">Express&#39; <code>sendFile()</code> function</a> lets you send a raw file as a response to an HTTP request. You can think of <code>res.sendFile()</code> as <a href="/tutorials/express/static">Express&#39; <code>static</code></a> middleware for a single endpoint.</p>
+<h2 id="using-sendfile">Using <code>sendFile()</code></h2>
+<p>Suppose you have an HTML file <code>test.html</code> that looks like this:</p>
+<pre><code>&lt;h1&gt;Hello, World&lt;<span class="hljs-regexp">/h1&gt;</span></code></pre><p>You can make Express serve this HTML file as an HTTP response using <code>res.sendFile()</code> by passing the path to <code>test.html</code>. Note that the path must be absolute <em>unless</em> you specify the <code>root</code> option.</p>
+<pre><code class="language-javascript">app.get(<span class="hljs-string">'/myendpoint'</span>, (req, res) =&gt; {
+  res.sendFile(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/test.html`</span>);
+});</code></pre>
+<p>If you don&#39;t want to specify the absolute path, you can pass the <code>root</code> option to
+specify the directory the path is relative to.</p>
+<pre><code class="language-javascript">app.get(<span class="hljs-string">'/myendpoint'</span>, (req, res) =&gt; {
+  res.sendFile(<span class="hljs-string">'test.html'</span>, { <span class="hljs-attr">root</span>: __dirname });
+});</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Express Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/express/static">Serving Static Files in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/websockets">Handling Websockets with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/webhook">What is a Webhook?</a></li>
+  
+
+    <li><a href="/tutorials/express/server-sent-events">Server-Sent Events with Express</a></li>
+  
+
+    <li><a href="/tutorials/express/query-parameters">Query Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/route-parameters">Route Parameters in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/body">Getting the Request Body in Express</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

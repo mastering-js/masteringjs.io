@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Send Static Files in Express with sendFile()',
+      raw: './tutorials/express/sendfile.md',
+      url: '/tutorials/express/sendfile',
+      description: 'The `sendFile()` method lets you send a static file as an Express response. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-03-13')
+    },
+    {
       title: 'Serving Static Files in Express',
       raw: './tutorials/express/static.md',
       url: '/tutorials/express/static',
