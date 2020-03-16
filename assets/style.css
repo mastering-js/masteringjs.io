@@ -197,6 +197,10 @@ li {
   .cta img {
     max-width: 370px;
   }
+
+  li {
+    line-height: 2em;
+  }
 }
 
 /* CPM ads */

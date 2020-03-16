@@ -1,7 +1,7 @@
 [Mongoose](https://mongoosejs.com/) has 4 different ways to update a document. Here's a list:
 
 * [`Document#save()`](https://mongoosejs.com/docs/api.html#document_Document-save)
-* [`Model.updateOne()`](https://mongoosejs.com/docs/api.html#model_Model.updateOne) and [`Model.updateMany()`](https://mongoosejs.com/docs/api.html#model_Model.updateMany)
+* [`Model.updateOne()`](https://mongoosejs.com/docs/api.html#model_Model.updateOne) and [`updateMany()`](https://mongoosejs.com/docs/api.html#model_Model.updateMany)
 * [`Document#updateOne()`](https://mongoosejs.com/docs/api.html#document_Document-updateOne)
 * [`Model.findOneAndUpdate()`](https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
 
@@ -62,5 +62,5 @@ Summary
 In general, you should use `save()` to update a document in Mongoose, unless you
 need an atomic update. Here's a summary of the key features of all 4 ways to update a document:
 
-<img src="/assets/mongoose_update.png" style="width:1000px">
+<img src="/assets/mongoose_update.png">
 
