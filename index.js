@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Arrays in JavaScript',
+      raw: './tutorials/fundamentals/compare-arrays.md',
+      url: '/tutorials/fundamentals/compare-arrays',
+      description: 'Comparing two arrays in JavaScript can be tricky. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-03-20')
+    },
+    {
       title: 'Compare Dates in JavaScript',
       raw: './tutorials/fundamentals/compare-dates.md',
       url: '/tutorials/fundamentals/compare-dates',
