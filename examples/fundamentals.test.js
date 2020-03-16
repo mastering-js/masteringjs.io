@@ -3361,6 +3361,25 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('compare strings', function() {
+    it('localeCompare', function() {
+      const characters = [
+        { firstName: 'Jean-Luc', lastName: 'Picard', rank: 'Captain', age: 59 },
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander', age: 29 },
+        { firstName: 'Geordi', lastName: 'La Forge', rank: 'Lieutenant', age: 29 }
+      ];
+
+      characters.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+      // La Forge, Picard, Riker
+      characters;
+      // acquit:ignore:start
+      assert.deepEqual(characters.map(c => c.lastName),
+        ['La Forge', 'Picard', 'Riker']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

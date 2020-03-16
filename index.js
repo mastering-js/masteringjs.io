@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Strings in JavaScript',
+      raw: './tutorials/fundamentals/compare-strings.md',
+      url: '/tutorials/fundamentals/compare-strings',
+      description: 'JavaScript\'s comparison operators make it easy to compare strings. There\'s also a `localeCompare()` method for sorting.',
+      tags: ['node'],
+      date: moment('2020-03-16')
+    },
+    {
       title: 'Send Static Files in Express with sendFile()',
       raw: './tutorials/express/sendfile.md',
       url: '/tutorials/express/sendfile',
