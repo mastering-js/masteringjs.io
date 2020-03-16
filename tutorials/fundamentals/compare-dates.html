@@ -1,0 +1,166 @@
+
+<html>
+  <head>
+    <title>Compare Dates in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Compare Dates in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="JavaScript's comparison operators make it easy to compare strings. There's also a `localeCompare()` method for sorting." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Compare Dates in JavaScript</h1>
+        <div class="date">
+          Mar 18, 2020
+        </div>
+        
+  <p>Suppose you have two <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">JavaScript <code>Date</code></a> objects:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);</code></pre>
+<p>How do you compare if two dates are equal? Surprisingly, both <a href="/tutorials/fundamentals/equals">triple equals and double equals</a> don&#39;t work when comparing two dates.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+d1 === d3; <span class="hljs-comment">// false</span>
+d1 == d3; <span class="hljs-comment">// false</span></code></pre>
+<p>To compare two dates, you can use either <code>toString()</code> or <a href="/tutorials/fundamentals/valueof"><code>valueOf()</code></a>.
+The <code>toString()</code> method converts the date into an ISO date string, and the
+<code>valueOf()</code> method converts the date into <a href="https://currentmillis.com/">milliseconds since the epoch</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+<span class="hljs-comment">// 'Fri May 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)'</span>
+d1.toString();
+d1.valueOf(); <span class="hljs-comment">// 1559347200000</span>
+
+d1.toString() === d2.toString(); <span class="hljs-comment">// false</span>
+d1.toString() === d3.toString(); <span class="hljs-comment">// true</span>
+
+d1.valueOf() === d2.valueOf(); <span class="hljs-comment">// false</span>
+d1.valueOf() === d3.valueOf(); <span class="hljs-comment">// true</span></code></pre>
+<h2 id="before-and-after">Before and After</h2>
+<p>Although neither <code>==</code> nor <code>===</code> can compare whether two dates are equal,
+surprisingly both <code>&lt;</code> and <code>&gt;</code> work fine for comparing dates:</p>
+<pre><code class="language-javascript">d1 &lt; d2; <span class="hljs-comment">// false</span>
+d1 &lt; d3; <span class="hljs-comment">// false</span>
+
+d2 &lt; d1; <span class="hljs-comment">// true</span></code></pre>
+<p>So to check if date <code>a</code> is before date <code>b</code>, you can just check <code>a &lt; b</code>.</p>
+<p>Another neat trick: you can subtract dates in JavaScript. Subtracting
+<code>a - b</code> gives you the difference between two dates in milliseconds.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+d1 - d3; <span class="hljs-comment">// 0</span>
+d1 - d2; <span class="hljs-comment">// 1 year in milliseconds, 1000 * 60 * 60 * 24 * 365</span></code></pre>
+<p>In other words, you can compare two dates <code>a</code> and <code>b</code> by using <code>a - b</code>.
+If <code>b</code> is after <code>a</code>, then <code>a - b &lt; 0</code>.</p>
+<h2 id="sorting">Sorting</h2>
+<p>Sorting an array of dates in JavaScript doesn&#39;t work as you might expect.
+The below <code>sort()</code> call gives you the dates in reverse order.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2017-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+[d2, d1, d3].sort(); <span class="hljs-comment">// [d3, d2, d1]</span></code></pre>
+<p>Why is that? Because <a href="/tutorials/fundamentals/array-sort">JavaScript&#39;s sort function</a>
+implicitly converts all values in the array into strings before sorting.
+So the above <code>sort()</code> is actually sorting based on the below string values:</p>
+<pre><code>[ <span class="hljs-string">'Fri May 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)'</span>,
+  <span class="hljs-string">'Thu May 31 2018 20:00:00 GMT-0400 (Eastern Daylight Time)'</span>,
+  <span class="hljs-string">'Wed May 31 2017 20:00:00 GMT-0400 (Eastern Daylight Time)'</span> ]</code></pre><p>In other words, JavaScript implicitly sorts arrays of dates based on the
+day of the week by default.</p>
+<p>To sort dates based on which date happened first,
+you need to pass a <code>compare()</code> <a href="/tutorials/fundamentals/callbacks">callback</a>
+to the <code>sort()</code> function. The <code>compare()</code> function should return:</p>
+<ul>
+<li><code>0</code> if <code>a</code> and <code>b</code> are equal</li>
+<li>A positive number if <code>a &gt; b</code></li>
+<li>A negative number if <code>a &lt; b</code></li>
+</ul>
+<p>Since JavaScript lets you subtract dates, you can just use <code>a - b</code> as
+your comparison function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2017-06-01'</span>);
+<span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
+<span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
+
+[d2, d1, d3].sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b); <span class="hljs-comment">// [d1, d2, d3]</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/compare-strings">Compare Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof">The `typeof` Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sort-array-of-objects">Sort an Array of Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/iterate-object">How to Iterate Over a JavaScript Object</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/puppeteer">Introduction to Puppeteer</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/state-machines">A Practical Introduction to Finite State Machines</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/async-await">Understanding Async/Await in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

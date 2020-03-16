@@ -37,11 +37,19 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Dates in JavaScript',
+      raw: './tutorials/fundamentals/compare-dates.md',
+      url: '/tutorials/fundamentals/compare-dates',
+      description: 'JavaScript\'s comparison operators make it easy to compare strings. There\'s also a `localeCompare()` method for sorting.',
+      tags: ['fundamentals'],
+      date: moment('2020-03-18')
+    },
+    {
       title: 'Compare Strings in JavaScript',
       raw: './tutorials/fundamentals/compare-strings.md',
       url: '/tutorials/fundamentals/compare-strings',
       description: 'JavaScript\'s comparison operators make it easy to compare strings. There\'s also a `localeCompare()` method for sorting.',
-      tags: ['node'],
+      tags: ['fundamentals'],
       date: moment('2020-03-16')
     },
     {
