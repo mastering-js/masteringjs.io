@@ -1,10 +1,9 @@
 .hero {
   width: 100%;
-  height: 400px;
   background: url(https://s3.amazonaws.com/codebarbarian-images/laptops.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
-  min-width: 1000px;
+  background-position: center;
 }
 
 .hero a {
@@ -14,11 +13,10 @@
 .hero .copy {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.85);
-  height: 400px;
+  padding-bottom: 50px;
 }
 
 .hero .intro {
-  width: 1000px;
   margin-left: auto;
   margin-right: auto;
   font-size: 3.5em;
@@ -28,7 +26,6 @@
 }
 
 .hero .cta {
-  width: 1000px;
   margin-top: 50px;
   color: #232323;
   margin-left: auto;
@@ -96,5 +93,6 @@
   .pill {
     width: 49%;
     margin-left: 0px;
+    font-size: 1.25em;
   }
 }

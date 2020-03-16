@@ -11,6 +11,7 @@ module.exports = ({ posts }) => `
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/home.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
   </head>
 
   <body>
