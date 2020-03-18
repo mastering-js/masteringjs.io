@@ -40,7 +40,7 @@ async function run() {
       title: 'Compare Dates in JavaScript',
       raw: './tutorials/fundamentals/compare-dates.md',
       url: '/tutorials/fundamentals/compare-dates',
-      description: 'JavaScript\'s comparison operators make it easy to compare strings. There\'s also a `localeCompare()` method for sorting.',
+      description: 'Comparing dates in JavaScript is tricky. Since dates are objects, `===` compares dates by reference rather than by value. Here\'s how you can compare dates in vanilla JavaScript.',
       tags: ['fundamentals'],
       date: moment('2020-03-18')
     },
