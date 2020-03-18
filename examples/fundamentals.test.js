@@ -3380,6 +3380,79 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('compare dates', function() {
+    it('comparison operators', function() {
+      const d1 = new Date('2019-06-01');
+      const d2 = new Date('2018-06-01');
+      const d3 = new Date('2019-06-01');
+
+      d1 === d3; // false
+      d1 == d3; // false
+      // acquit:ignore:start
+      assert.ok(!(d1 === d3));
+      assert.ok(!(d1 == d3));
+      // acquit:ignore:end
+    });
+
+    it('convert then compare', function() {
+      const d1 = new Date('2019-06-01');
+      const d2 = new Date('2018-06-01');
+      const d3 = new Date('2019-06-01');
+
+      // 'Fri May 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)'
+      d1.toString();
+      d1.valueOf(); // 1559347200000
+
+      d1.toString() === d2.toString(); // false
+      d1.toString() === d3.toString(); // true
+
+      d1.valueOf() === d2.valueOf(); // false
+      d1.valueOf() === d3.valueOf(); // true
+      // acquit:ignore:start
+      assert.ok(!(d1.toString() === d2.toString()));
+      assert.ok(!(d1.valueOf() === d2.valueOf()));
+
+      assert.ok(d1.toString() === d3.toString());
+      assert.ok(d1.valueOf() === d3.valueOf());
+      // acquit:ignore:end
+    });
+
+    it('subtraction', function() {
+      const d1 = new Date('2019-06-01');
+      const d2 = new Date('2018-06-01');
+      const d3 = new Date('2019-06-01');
+
+      d1 - d3; // 0
+      d1 - d2; // 1 year in milliseconds, 1000 * 60 * 60 * 24 * 365
+      // acquit:ignore:start
+      assert.strictEqual(d1 - d3, 0);
+      assert.strictEqual(d1 - d2, 1000 * 60 * 60 * 24 * 365);
+      // acquit:ignore:end
+    });
+
+    it('sort', function() {
+      const d1 = new Date('2017-06-01');
+      const d2 = new Date('2018-06-01');
+      const d3 = new Date('2019-06-01');
+
+      [d2, d1, d3].sort(); // [d3, d2, d1]
+      // acquit:ignore:start
+      assert.deepEqual([d2, d1, d3].sort(), [d3, d2, d1]);
+      // acquit:ignore:end
+    });
+
+    it('correct sort', function() {
+      const d1 = new Date('2017-06-01');
+      const d2 = new Date('2018-06-01');
+      const d3 = new Date('2019-06-01');
+
+      [d2, d1, d3].sort((a, b) => a - b); // [d1, d2, d3]
+      // acquit:ignore:start
+      assert.deepEqual([d2, d1, d3].sort((a, b) => a - b), [d1, d2, d3]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
