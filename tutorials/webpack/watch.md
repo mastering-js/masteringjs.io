@@ -1,6 +1,6 @@
 Usually when you run Webpack in development, you want to run it in [watch mode](https://webpack.js.org/configuration/watch/). This configures Webpack to watch files in your project for changes, and recompile whenever a file changes. In other words, you don't have to manually re-run Webpack every time.
 
-For example, suppose you have the below `webpack.config.js` file. It takes a file `app.js`, and compiles it into `./bin/app.min.js`.
+For example, suppose you have the below [`webpack.config.js` file](/tutorials/webpack/config). It takes a file `app.js`, and compiles it into `./bin/app.min.js`.
 
 ```javascript
 module.exports = {
