@@ -3453,6 +3453,59 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('compare arrays', function() {
+    it('same length strict equality', function() {
+      const a = [1, 2, 3];
+      const b = [4, 5, 6];
+      const c = [1, 2, 3];
+
+      function arrayEquals(a, b) {
+        return Array.isArray(a) &&
+          Array.isArray(b) &&
+          a.length === b.length &&
+          a.every((val, index) => val === b[index]);
+      }
+
+      arrayEquals(a, b); // false
+      arrayEquals(a, c); // true
+      // acquit:ignore:start
+      assert.ok(!arrayEquals(a, b));
+      assert.ok(arrayEquals(a, c));
+      // acquit:ignore:end
+    });
+
+    it('json stringify', function() {
+      const a = [{ answer: 42 }, { powerLevel: 9001 }];
+      const b = [{ answer: 42 }, { powerLevel: 9001 }];
+      const c = [{ answer: 42 }, { password: 'taco' }];
+
+      JSON.stringify(a) === JSON.stringify(b); // true
+      JSON.stringify(a) === JSON.stringify(c); // false
+      // acquit:ignore:start
+      assert.ok(JSON.stringify(a) === JSON.stringify(b));
+      assert.ok(!(JSON.stringify(a) === JSON.stringify(c)));
+      // acquit:ignore:end
+    });
+
+    it('lodash isEqual', function() {
+      const _ = require('lodash');
+
+      class MyClass {
+        constructor(obj) {
+          Object.assign(this, obj);
+        }
+      }
+      
+      const a = [new MyClass({ answer: 42 })];
+      const b = [{ answer: 42 }];
+
+      _.isEqual(a, b); // false
+      // acquit:ignore:start
+      assert.ok(!_.isEqual(a, b));
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

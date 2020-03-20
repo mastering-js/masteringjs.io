@@ -1,0 +1,184 @@
+
+<html>
+  <head>
+    <title>Compare Arrays in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Compare Arrays in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Comparing two arrays in JavaScript can be tricky. Here's what you need to know." />
+    <meta property="og:type" content="article" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Compare Arrays in JavaScript</h1>
+        <div class="date">
+          Mar 20, 2020
+        </div>
+        
+  <p>Arrays are objects in JavaScript, so the <a href="/tutorials/fundamentals/equals">triple equals operator</a> <code>===</code>
+only returns <code>true</code> if the arrays are the same reference.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+a === a; <span class="hljs-comment">// true</span>
+a === b; <span class="hljs-comment">// false</span></code></pre>
+<p>How do you compare whether two arrays are equal? Equality is a tricky
+subject: the JavaScript spec defines <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">4 different ways of checking if two values are &quot;equal&quot;</a>, and that doesn&#39;t take into account deep equality between objects.</p>
+<p>In cases like this, it helps to be as explicit as possible about what
+you mean by &quot;equal.&quot; In software engineering, asking
+a question in the right way often makes the answer obvious.</p>
+<p>With that in mind, here&#39;s 3 definitions of equality for arrays and
+how to check them.</p>
+<h2 id="same-length-each-value-equal">Same Length, Each Value Equal</h2>
+<p>One approach for comparing <code>a</code> and <code>b</code> is checking if each value of <code>a</code>
+is strictly equal to the corresponding value of <code>b</code>. This works well
+if all the elements of the arrays are primitives as opposed to objects.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];
+<span class="hljs-keyword">const</span> c = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">arrayEquals</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.isArray(a) &amp;&amp;
+    <span class="hljs-built_in">Array</span>.isArray(b) &amp;&amp;
+    a.length === b.length &amp;&amp;
+    a.every(<span class="hljs-function">(<span class="hljs-params">val, index</span>) =&gt;</span> val === b[index]);
+}
+
+arrayEquals(a, b); <span class="hljs-comment">// false</span>
+arrayEquals(a, c); <span class="hljs-comment">// true</span></code></pre>
+<h2 id="deep-equality-with-pojos">Deep Equality With <a href="/tutorials/fundamentals/pojo">POJOs</a></h2>
+<p>The previous <code>arrayEquals()</code> function works great for primitive values,
+but falls short if you want to compare objects by value.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">powerLevel</span>: <span class="hljs-number">9001</span> }];
+<span class="hljs-keyword">const</span> b = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">powerLevel</span>: <span class="hljs-number">9001</span> }];
+
+<span class="hljs-comment">// false, because { answer: 42 } !== { answer: 42 }, different references</span>
+arrayEquals(a, b);</code></pre>
+<p>One neat way to take into account object values is comparing arrays
+by their <a href="https://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html"><code>JSON.stringify()</code></a> output.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">powerLevel</span>: <span class="hljs-number">9001</span> }];
+<span class="hljs-keyword">const</span> b = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">powerLevel</span>: <span class="hljs-number">9001</span> }];
+<span class="hljs-keyword">const</span> c = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">password</span>: <span class="hljs-string">'taco'</span> }];
+
+<span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(b); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(c); <span class="hljs-comment">// false</span></code></pre>
+<p>This approach is handy because it requires minimal code and no outside
+libraries. However, comparing <code>JSON.stringify()</code> output has an unfortunate
+edge case that may be a problem depending on your use case. Since <code>undefined</code>
+isn&#39;t a valid JSON value, the below arrays have the same <code>JSON.stringify()</code> output,
+because <code>JSON.stringify()</code> converts <code>undefined</code> to <code>null</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [<span class="hljs-literal">undefined</span>];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-literal">null</span>];</code></pre>
+<h2 id="using-lodashs-isequal">Using Lodash&#39;s <code>isEqual()</code></h2>
+<p>In addition to the <code>null</code> vs <code>undefined</code> quirk, comparing <code>JSON.stringify()</code>
+output also doesn&#39;t take into account object types. As far as <code>JSON.stringify()</code>
+is concerned, an object with a <code>toJSON()</code> function that returns 42 is the same
+as the number 42.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [{ <span class="hljs-attr">toJSON</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span> }];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-number">42</span>];
+
+<span class="hljs-built_in">JSON</span>.stringify(a); <span class="hljs-comment">// '[42]'</span>
+<span class="hljs-built_in">JSON</span>.stringify(b); <span class="hljs-comment">// '[42]'</span></code></pre>
+<p>Similarly, a custom object is the same as a POJO:</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+  <span class="hljs-keyword">constructor</span>(obj) {
+    <span class="hljs-built_in">Object</span>.assign(<span class="hljs-keyword">this</span>, obj);
+  }
+}
+
+<span class="hljs-keyword">const</span> a = [<span class="hljs-keyword">new</span> MyClass({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> })];
+<span class="hljs-keyword">const</span> b = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }];
+
+<span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(b); <span class="hljs-comment">// true</span></code></pre>
+<p><a href="https://lodash.com/docs/4.17.15#isEqual">Lodash&#39;s <code>isEqual()</code> function</a>, on the other hand,
+takes all this into account.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+  <span class="hljs-keyword">constructor</span>(obj) {
+    <span class="hljs-built_in">Object</span>.assign(<span class="hljs-keyword">this</span>, obj);
+  }
+}
+
+<span class="hljs-keyword">const</span> a = [<span class="hljs-keyword">new</span> MyClass({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> })];
+<span class="hljs-keyword">const</span> b = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }];
+
+_.isEqual(a, b); <span class="hljs-comment">// false</span></code></pre>
+<p>Lodash&#39;s <code>isEqual()</code> function is the way to go if you need all the bells and
+whistles of checking that objects have the same class. The <code>JSON.stringify()</code>
+approach works well for POJOs, just make sure you take into account <code>null</code>
+and only use it with trusted data - <code>toJSON()</code> can be a security vulnerability.</p>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/compare-dates">Compare Dates in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-strings">Compare Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof">The `typeof` Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sort-array-of-objects">Sort an Array of Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/iterate-object">How to Iterate Over a JavaScript Object</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/puppeteer">Introduction to Puppeteer</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/state-machines">A Practical Introduction to Finite State Machines</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
