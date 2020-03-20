@@ -1207,13 +1207,15 @@ async function run() {
   for (const [tag, tutorials] of byTag.entries()) {
     fs.writeFileSync(`./${tag}.html`, layout({
       title: `${capitalize(tag)} Tutorials`,
-      content: list({ posts: tutorials })
+      content: list({ posts: tutorials }),
+      description: `Bite-sized ${capitalize(tag)} tutorials for busy developers`
     }));
   }
 
   fs.writeFileSync('./all.html', layout({
     title: 'All Tutorials',
-    content: list({ posts: tutorials })
+    content: list({ posts: tutorials }),
+    description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 }
 

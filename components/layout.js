@@ -9,8 +9,9 @@ module.exports = params => `
 
     <meta property="og:title" content="${params.title}" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="${params.description}" />
     <meta property="og:type" content="article" />
+    <meta property="og:description" content="${params.description}" />
+    <meta name="description" content="${params.description}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
