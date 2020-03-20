@@ -96,4 +96,4 @@ error and trigger [error handling middleware](/tutorials/express/error-handling)
 
 If you open the above middleware in Chrome, you'll see something like this:
 
-<img src="https://codebarbarian-images.s3.amazonaws.com/express2.jpg" class="inline-image" style="width: 200px">
+<img src="https://codebarbarian-images.s3.amazonaws.com/express2.jpg" class="inline-image" style="width: 200px" alt="An example of an HTTP response error">

@@ -66,11 +66,11 @@ app.use(express.static(<span class="hljs-string">'./public'</span>));
 
 app.listen(<span class="hljs-number">3000</span>);</code></pre>
 <p>With the above script, you can open <code>http://localhost:3000/home.css</code> in your browser and see the CSS file.</p>
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px">
+<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px" alt="Displaying a CSS file in Google Chrome">
 
 <h2 id="serving-html-files">Serving HTML Files</h2>
 <p>The <code>static</code> middleware is how you can use Express to serve static HTML files. If you have a vanilla HTML file <code>test.html</code>, you can open that file in your browser and the browser will render the HTML.</p>
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example-2.png" class="inline-image" style="width: 400px">
+<img src="https://codebarbarian-images.s3.amazonaws.com/static-example-2.png" class="inline-image" style="width: 400px" alt="Displaying an HTML file in Google Chrome">
 
 <p>This means that you can use <code>express.static()</code> to host an entire frontend web app, including JavaScript, CSS, images, and HTML.</p>
 

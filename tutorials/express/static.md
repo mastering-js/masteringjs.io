@@ -21,13 +21,13 @@ app.listen(3000);
 
 With the above script, you can open `http://localhost:3000/home.css` in your browser and see the CSS file.
 
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px">
+<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px" alt="Displaying a CSS file in Google Chrome">
 
 Serving HTML Files
 ------------------
 
 The `static` middleware is how you can use Express to serve static HTML files. If you have a vanilla HTML file `test.html`, you can open that file in your browser and the browser will render the HTML.
 
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example-2.png" class="inline-image" style="width: 400px">
+<img src="https://codebarbarian-images.s3.amazonaws.com/static-example-2.png" class="inline-image" style="width: 400px" alt="Displaying an HTML file in Google Chrome">
 
 This means that you can use `express.static()` to host an entire frontend web app, including JavaScript, CSS, images, and HTML.

@@ -22,4 +22,4 @@ Strictly speaking, [HTTP 301 and 302 are not required to keep the same method an
 
 Here's a brief summary of the tradeoffs between these common redirect statuses.
 
-<img src="https://i.imgur.com/K8LeE7a.png">
+<img src="https://i.imgur.com/K8LeE7a.png" alt="Tradeoffs between HTTP 301 vs 302 vs 307 vs 308">

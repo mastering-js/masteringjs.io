@@ -8,6 +8,7 @@ module.exports = ({ posts }) => `
   <head>
     <title>Mastering JS</title>
 
+    <meta name="description" content="Bite-sized full stack JavaScript tutorials for busy developers">
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/home.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
