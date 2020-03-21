@@ -4,7 +4,8 @@ const list = require('./list');
 const nav = require('./nav');
 
 module.exports = ({ posts }) => `
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Mastering JS</title>
 

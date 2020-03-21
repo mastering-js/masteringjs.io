@@ -3,7 +3,8 @@
 const nav = require('./nav');
 
 module.exports = params => `
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>${params.title} - Mastering JS</title>
 
