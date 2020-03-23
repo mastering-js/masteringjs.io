@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JavaScript Create Promise',
+      raw: './tutorials/fundamentals/promise-create.md',
+      url: '/tutorials/fundamentals/promise-create',
+      description: 'There are several ways to create a new promise in JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-03-27')
+    },
+    {
       title: 'The Promise `catch()` Function in JavaScript',
       raw: './tutorials/fundamentals/catch.md',
       url: '/tutorials/fundamentals/catch',

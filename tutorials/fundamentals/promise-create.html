@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JavaScript Create Promise - Mastering JS</title>
+
+    <meta property="og:title" content="JavaScript Create Promise" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="There are several ways to create a new promise in JavaScript. Here's what you need to know." />
+    <meta name="description" content="There are several ways to create a new promise in JavaScript. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>JavaScript Create Promise</h1>
+        <div class="date">
+          Mar 27, 2020
+        </div>
+        
+  <p>In general, there are 3 ways to create a new promise in JavaScript:</p>
+<ul>
+<li>Using <a href="https://masteringjs.io/tutorials/fundamentals/promise-new">the <code>Promise</code> constructor</a></li>
+<li>Using the static helpers <a href="/tutorials/fundamentals/promise-resolve"><code>Promise.resolve()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject"><code>Promise.reject()</code></a></li>
+<li>Chaining with the <a href="/tutorials/fundamentals/then"><code>then()</code> function</a> or <a href="/tutorials/fundamentals/catch"><code>catch()</code> function</a></li>
+</ul>
+<h2 id="using-the-promise-constructor">Using the Promise Constructor</h2>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise constructor</a> takes a single parameter, an <code>executor</code> function.
+When you call <code>new Promise(executor)</code>, JavaScript immediately executes your <code>executor</code> function with 2
+arguments: <code>resolve()</code> and <code>reject()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+  <span class="hljs-keyword">typeof</span> resolve; <span class="hljs-comment">// 'function'</span>
+  <span class="hljs-keyword">typeof</span> reject; <span class="hljs-comment">// 'function'</span>
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(executor);</code></pre>
+<p>The <code>executor()</code> function is then responsible for calling <code>resolve()</code> to mark
+the promise as <a href="/tutorials/fundamentals/promise#promises-as-state-machines"><em>fulfilled</em></a> (successful) or <em>rejected</em> (failed).</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> success = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve</span>) </span>{
+  resolve(<span class="hljs-string">'OK'</span>);
+});
+
+<span class="hljs-keyword">const</span> fail = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve, reject</span>) </span>{
+  reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>));
+});
+
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">await</span> success;
+str; <span class="hljs-comment">// 'OK'</span>
+
+<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> fail.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+err.message; <span class="hljs-comment">// Oops</span></code></pre>
+<h2 id="using-static-helpers">Using Static Helpers</h2>
+<p>The <code>Promise.resolve()</code> function lets you create a new promise that
+is immediately fulfilled.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-number">42</span>);
+p.then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+  v; <span class="hljs-comment">// 42</span>
+});</code></pre>
+<p>You can think of <code>Promise.resolve(v)</code> as short for <code>new Promise(resolve =&gt; resolve(v))</code>.</p>
+<p>Similarly, the <code>Promise.reject()</code> function lets you create a new promise that is immediately rejected.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>));
+p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+  err.message; <span class="hljs-comment">// 'Oops!'</span>
+});</code></pre>
+<p>Be careful with <code>Promise.reject()</code>: if you don&#39;t immediately add a <code>.catch()</code> handler to your new promise, you&#39;ll get an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled promise rejection</a>.</p>
+<h2 id="then-and-catch"><code>then()</code> and <code>catch()</code></h2>
+<p>When you call <code>.then()</code> or <code>.catch()</code>, JavaScript creates a new promise.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.resolve(<span class="hljs-string">'Hello'</span>);
+
+<span class="hljs-keyword">const</span> p2 = p.then(<span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${str}</span> World`</span>);
+
+p2 <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+p2 === p; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="without-executing">Without Executing</h2>
+<p><a href="/tutorials/fundamentals/promise">JavaScript promises</a> are <a href="https://staltz.com/cold-and-hot-callbacks.html">&quot;hot&quot;</a> in the sense that JavaScript executes the executor function immediately.</p>
+<p>If you find yourself wanting a &quot;cold&quot; promise in the sense that your
+promise doesn&#39;t execute until you <code>await</code> on it, you should just use an
+async function. Calling an async function returns a new promise every time.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAnswer</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}
+
+<span class="hljs-keyword">const</span> p1 = getAnswer();
+p1 <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">const</span> p2 = getAnswer();
+p2 <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+p2 === p1; <span class="hljs-comment">// false</span></code></pre>
+<p>Another common alternative is the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Deferred">deferred pattern</a>, where you create a promise that has <code>resolve()</code> and <code>reject()</code> functions that you can call outside the <code>executor()</code> function.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Promise</span>.deferred = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> resolve = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">let</span> reject = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">_resolve, _reject</span>) =&gt;</span> {
+    resolve = _resolve;
+    reject = _reject;
+  });
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign(p, { resolve, reject });
+};
+
+<span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.deferred();
+
+p.then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+  v; <span class="hljs-comment">// 42</span>
+});
+
+p.resolve(<span class="hljs-number">42</span>);</code></pre>
+<p>However, <a href="https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns#the-deferred-anti-pattern">the deferred pattern is considered an antipattern</a>. That&#39;s because synchronous errors that occur outside the executor function won&#39;t reject the promise!</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// JavaScript catches any errors that occur in the promise executor</span>
+<span class="hljs-comment">// and treats them as a promise rejection.</span>
+<span class="hljs-keyword">const</span> p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> { <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>); });
+p1.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+  err.message; <span class="hljs-comment">// 'Oops!'</span>
+});
+
+<span class="hljs-comment">// With `deferred`, you're responsible for handling errors that</span>
+<span class="hljs-comment">// occur outside the executor. If you forget, your promise will</span>
+<span class="hljs-comment">// be pending forever like `p2` below.</span>
+<span class="hljs-keyword">const</span> p2 = <span class="hljs-built_in">Promise</span>.deferred();
+<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>);</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/catch">The Promise `catch()` Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-arrays">Compare Arrays in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-dates">Compare Dates in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-strings">Compare Strings in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof">The `typeof` Operator in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/sort-array-of-objects">Sort an Array of Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/iterate-object">How to Iterate Over a JavaScript Object</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
