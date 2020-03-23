@@ -1319,4 +1319,30 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('promise', function() {
+    it('basic example', async function() {
+      const Model = mongoose.model('Test', Schema({
+        name: String
+      }));
+
+      const doc = new Model({ name: 'Neo' });
+
+      const promise = doc.save();
+      promise instanceof Promise; // true
+      // acquit:ignore:start
+      assert.ok(promise instanceof Promise);
+      await promise;
+      // acquit:ignore:end
+
+      const res = doc.save(function callback(err) {
+        /*...*/
+      });
+      res; // undefined
+      // acquit:ignore:start
+      assert.strictEqual(res, undefined);
+      await new Promise(resolve => setTimeout(resolve, 50));
+      // acquit:ignore:end
+    });
+  });
 });

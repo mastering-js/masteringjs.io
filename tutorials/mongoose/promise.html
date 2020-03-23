@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Promises in Mongoose - Mastering JS</title>
+
+    <meta property="og:title" content="Promises in Mongoose" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Comparing two arrays in JavaScript can be tricky. Here's what you need to know." />
+    <meta name="description" content="Comparing two arrays in JavaScript can be tricky. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>Promises in Mongoose</h1>
+        <div class="date">
+          Mar 23, 2020
+        </div>
+        
+  <p><a href="https://mongoosejs.com/docs/promises.html">Mongoose has built-in support for promises</a>. In Mongoose 5, async operations like <code>.save()</code> and
+<code>.find().exec()</code> return a promise <strong>unless</strong> you pass a callback.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Model = mongoose.model(<span class="hljs-string">'Test'</span>, Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>
+}));
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Model({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Neo'</span> });
+
+<span class="hljs-keyword">const</span> promise = doc.save();
+promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">const</span> res = doc.save(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-comment">/*...*/</span>
+});
+res; <span class="hljs-comment">// undefined</span></code></pre>
+<h2 id="the-mongoosepromise-property">The <code>mongoose.Promise</code> Property</h2>
+<p>The Mongoose singleton has a <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-Promise"><code>Promise</code> property</a> that you can use to set the promise library Mongoose uses. For example, you can make Mongoose use the popular <a href="https://www.npmjs.com/package/bluebird">Bluebird promise library</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Bluebird = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);
+
+<span class="hljs-comment">// Make Mongoose use Bluebird instead of built-in promises.</span>
+mongoose.Promise = Bluebird;
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Model({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Neo'</span> });
+
+<span class="hljs-keyword">const</span> promise = doc.save();
+promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// false</span>
+promise <span class="hljs-keyword">instanceof</span> Bluebird; <span class="hljs-comment">// true</span></code></pre>
+<p>If you haven&#39;t upgraded to Mongoose 5 yet, you might see the below
+deprecation warning in Mongoose 4.x:</p>
+<pre><code>WARNING: Mongoose: mpromise (mongoose<span class="hljs-string">'s default promise library) is deprecated, plug in your own promise library instead</span></code></pre><p>To resolve that deprecation warning, you would add the below code:</p>
+<pre><code class="language-javascript">mongoose.Promise = global.Promise;</code></pre>
+<p>That&#39;s because one of the breaking changes in Mongoose 5 was switching to
+using Node.js&#39; native promises. Mongoose 4 was released before ES6, so it
+had its own promise implementation that was slightly different from native <a href="/tutorials/fundamentals/promise">JavaScript promises</a>.</p>
+<p>If you see <code>mongoose.Promise = global.Promise</code> in code that uses Mongoose 5,
+please delete it. Mongoose 5 uses native promises by default, so that code
+does nothing in Mongoose 5.</p>
+<h2 id="queries-are-not-promises">Queries are not Promises</h2>
+<p>While <code>save()</code> returns a promise, functions like <a href="/tutorials/mongoose/find">Mongoose&#39;s <code>find()</code></a> return a <a href="https://mongoosejs.com/docs/queries.html">Mongoose <code>Query</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> query = Model.find();
+
+query <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// false</span>
+query <span class="hljs-keyword">instanceof</span> mongoose.Query; <span class="hljs-comment">// true</span></code></pre>
+<p>Mongoose queries are <a href="https://en.wiktionary.org/wiki/thenable">thenables</a>.
+In other words, queries have a <a href="https://mongoosejs.com/docs/api/query.html#query_Query-then"><code>then()</code> function</a> that behaves similarly to the <a href="/tutorials/fundamentals/then">Promise <code>then()</code> function</a>. So you can use queries with <a href="/tutorials/fundamentals/then#chaining">promise chaining</a> and <a href="/tutorials/fundamentals/async-await">async/await</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Using queries with promise chaining</span>
+Model.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Mr. Anderson'</span> }).
+  then(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> Model.updateOne({ <span class="hljs-attr">_id</span>: doc._id }, { <span class="hljs-attr">name</span>: <span class="hljs-string">'Neo'</span> })).
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Model.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Neo'</span> })).
+  then(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(doc.name)); <span class="hljs-comment">// 'Neo'</span>
+
+<span class="hljs-comment">// Using queries with async/await</span>
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> Model.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Neo'</span> });
+<span class="hljs-built_in">console</span>.log(doc.name); <span class="hljs-comment">// 'Neo'</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Mongoose Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/mongoose/populate">Introduction to Mongoose Populate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/objectid">ObjectIds in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/schema">Introduction to Mongoose Schemas</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/connect">Connecting to MongoDB with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find-by-id">Find By ID in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find">Learn Mongoose find() by Example</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/query">An Introduction to Queries in Mongoose</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

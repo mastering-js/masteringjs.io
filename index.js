@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Promises in Mongoose',
+      raw: './tutorials/mongoose/promise.md',
+      url: '/tutorials/mongoose/promise',
+      description: 'Comparing two arrays in JavaScript can be tricky. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-03-23')
+    },
+    {
       title: 'Compare Arrays in JavaScript',
       raw: './tutorials/fundamentals/compare-arrays.md',
       url: '/tutorials/fundamentals/compare-arrays',
