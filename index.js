@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The Promise `catch()` Function in JavaScript',
+      raw: './tutorials/fundamentals/catch.md',
+      url: '/tutorials/fundamentals/catch',
+      description: 'The `catch()` function is a convenient bit of syntactic sugar that helps you handle promise errors. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-03-25')
+    },
+    {
       title: 'Promises in Mongoose',
       raw: './tutorials/mongoose/promise.md',
       url: '/tutorials/mongoose/promise',

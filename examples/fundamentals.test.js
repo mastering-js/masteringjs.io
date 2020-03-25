@@ -3506,6 +3506,89 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Promise catch', function() {
+    it('basic example', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      p.catch(err => {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+
+    it('with chain', async function() {
+      const p = Promise.resolve('Na');
+
+      return p.
+        then(str => str + ' Na').
+        then(str => str + ' Na').
+        then(str => str + ' Na').
+        then(() => { throw new Error('Batman!') }).
+        then(() => console.log('Will not print')).
+        catch(err => {
+          err.message; // 'Batman!'
+          // acquit:ignore:start
+          assert.equal(err.message, 'Batman!');
+          // acquit:ignore:end
+        });
+    });
+
+    it('rethrow', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      return p.
+        catch(err => { throw err; }). // Rethrow the error
+        catch(err => {
+          err.message; // 'Oops!'
+          // acquit:ignore:start
+          assert.equal(err.message, 'Oops!');
+          // acquit:ignore:end
+        });
+    });
+
+    it('unwrap', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      const answer = await p.catch(() => 42);
+      answer; // 42
+      // acquit:ignore:start
+      assert.equal(answer, 42);
+      // acquit:ignore:end
+
+      return p.
+        catch(() => 42).
+        then(answer => {
+          answer; // 42
+          // acquit:ignore:start
+          assert.equal(answer, 42);
+          // acquit:ignore:end
+        });
+    });
+
+    it('golang in js', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      const err = await p.catch(err => err);
+      err.message; // 'Oops!'
+      // acquit:ignore:start
+      assert.equal(err.message, 'Oops!');
+      // acquit:ignore:end
+    });
+
+    it('with then', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      return p.then(() => {}, function onRejected(err) {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
