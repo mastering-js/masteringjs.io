@@ -56,7 +56,7 @@ async function run() {
       title: 'Promises in Mongoose',
       raw: './tutorials/mongoose/promise.md',
       url: '/tutorials/mongoose/promise',
-      description: 'Comparing two arrays in JavaScript can be tricky. Here\'s what you need to know.',
+      description: 'Everything you need to know about the `mongoose.Promise` property.',
       tags: ['mongoose'],
       date: moment('2020-03-23')
     },
