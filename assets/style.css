@@ -233,3 +233,7 @@ li {
 #carbonads a{color:#333;text-decoration:none}
 
 .carbon-poweredby{display:block;color:#777!important}
+
+.carbon-text {
+  display: block;
+}
