@@ -258,4 +258,47 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Authorization header', function() {
+    it('on GET', async function() {
+      // Send a GET request with the authorization header set to
+      // the string 'my secret token'
+      const res = await axios.get('https://httpbin.org/get', {
+        headers: {
+          authorization: 'my secret token'
+        }
+      });
+      // acquit:ignore:start
+      assert.equal(res.data.headers.Authorization, 'my secret token');
+      // acquit:ignore:end
+    });
+
+    it('case insensitive', async function() {
+      // Send a GET request with the authorization header set to
+      // the string 'my secret token'
+      const res = await axios.get('https://httpbin.org/get', {
+        headers: {
+          'Authorization': 'my secret token'
+        }
+      });
+      // acquit:ignore:start
+      assert.equal(res.data.headers.Authorization, 'my secret token');
+      // acquit:ignore:end
+    });
+
+    it('on POST', async function() {
+      // Send a POST request with the authorization header set to
+      // the string 'my secret token'. With `post()`, the 3rd parameter
+      // is the request options, not the 2nd parameter like with `get()`.
+      const body = {};
+      const res = await axios.post('https://httpbin.org/post', body, {
+        headers: {
+          'Authorization': 'my secret token'
+        }
+      });
+      // acquit:ignore:start
+      assert.equal(res.data.headers.Authorization, 'my secret token');
+      // acquit:ignore:end
+    });
+  });
 });
