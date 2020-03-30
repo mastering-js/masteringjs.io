@@ -1,4 +1,4 @@
-The easiest way to make a POST request with [Axios](/axios) is the
+The easiest way to make a PUT request with [Axios](/axios) is the
 [`axios.put()` function](https://github.com/axios/axios#example). The first 
 parameter to `axios.put()` is the URL, and the 2nd
 is the [HTTP request body](https://en.wikipedia.org/wiki/HTTP_message_body).
