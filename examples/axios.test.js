@@ -193,4 +193,69 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('#then', function() {
+    it('is a promise', async function() {
+      const axios = require('axios');
+
+      const req = axios.get('https://httpbin.org/get?hello=world');
+
+      req instanceof Promise; // true
+      // acquit:ignore:start
+      assert.ok(req instanceof Promise);
+      // acquit:ignore:end
+
+      const res = await req;
+      res.data.args; // { hello: 'world' }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { hello: 'world' });
+      // acquit:ignore:end
+      return req.then(res => {
+        res.data.args; // { hello: 'world' }
+        // acquit:ignore:start
+        assert.deepEqual(res.data.args, { hello: 'world' });
+        // acquit:ignore:end
+      });
+    });
+
+    it('error handling', async function() {
+      const axios = require('axios');
+
+      const err = await axios.get('https://httpbin.org/status/404').
+        then(() => null, err => err);
+
+      err.response.status; // 404
+      err.response.statusText; // 'NOT FOUND'
+      // acquit:ignore:start
+      assert.equal(err.response.status, 404);
+      assert.equal(err.response.statusText, 'NOT FOUND');
+      // acquit:ignore:end
+    });
+
+    it('executes immediately', async function() {
+      const axios = require('axios');
+      const express = require('express');
+
+      // Create a dummy Express server that stores all inbound
+      // requests
+      const app = express();
+      const requests = [];
+      app.get('*', function(req, res) {
+        requests.push(req);
+        res.json({ ok: 1 });
+      });
+      const server = await app.listen(3000);
+
+      // Send a request without calling `then()`.
+      axios.get('http://localhost:3000');
+
+      // The server got the request.
+      await new Promise(resolve => setTimeout(resolve, 100));
+      requests.length; // 1
+      // acquit:ignore:start
+      assert.equal(requests.length, 1);
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });

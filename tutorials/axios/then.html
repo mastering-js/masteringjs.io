@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The `then()` Function in Axios - Mastering JS</title>
+
+    <meta property="og:title" content="The `then()` Function in Axios" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Axios request objects have a `then()` function, which means you can use them with promise chains and async/await. Here's what you need to know." />
+    <meta name="description" content="Axios request objects have a `then()` function, which means you can use them with promise chains and async/await. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        <h1>The `then()` Function in Axios</h1>
+        <div class="date">
+          Mar 30, 2020
+        </div>
+        
+  <p><a href="/axios">Axios</a> requests are actually <a href="/tutorials/fundamentals/promise">promises</a>. Than means you
+can use them with <a href="/tutorials/fundamentals/then#chaining">promise chaining</a> and <a href="/tutorials/fundamentals/async-await">async/await</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> req = axios.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);
+
+req <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> req;
+res.data.args; <span class="hljs-comment">// { hello: 'world' }</span>
+<span class="hljs-keyword">return</span> req.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+  res.data.args; <span class="hljs-comment">// { hello: 'world' }</span>
+});</code></pre>
+<h2 id="handling-errors">Handling Errors</h2>
+<p>Axios fulfills the request promise when the server responds with an <a href="https://www.w3.org/Protocols/HTTP/HTRESP.html">HTTP success code</a>, or rejects
+the request promise when the server responds with an HTTP error.
+If an error occurs, you can handle the error with <code>.then()</code> or <code>.catch()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/404'</span>).
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-literal">null</span>, err =&gt; err);
+
+err.response.status; <span class="hljs-comment">// 404</span>
+err.response.statusText; <span class="hljs-comment">// 'NOT FOUND'</span></code></pre>
+<h2 id="axios-requests-execute-immediately">Axios Requests Execute Immediately</h2>
+<p>You do <strong>not</strong> need to call <code>.then()</code> or <code>.catch()</code> to execute an
+Axios request. Axios executes the request immediately on its own.
+So even if you don&#39;t call <code>then()</code>, your server will still get the
+request.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+
+<span class="hljs-comment">// Create a dummy Express server that stores all inbound</span>
+<span class="hljs-comment">// requests</span>
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-keyword">const</span> requests = [];
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  requests.push(req);
+  res.json({ <span class="hljs-attr">ok</span>: <span class="hljs-number">1</span> });
+});
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-comment">// Send a request without calling `then()`.</span>
+axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
+
+<span class="hljs-comment">// The server got the request.</span>
+<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
+requests.length; <span class="hljs-comment">// 1</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/form-data">Post Form Data With Axios</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/axios/create">The `create()` Function in Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/post">POST Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/error-handling">HTTP Request Error Handling With Axios Interceptors</a></li>
+  
+
+    <li><a href="/tutorials/axios/basic_auth">Basic Auth Using the Axios HTTP Client</a></li>
+  
+
+    <li><a href="/tutorials/axios/headers">Setting Request Headers with Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `then()` Function in Axios',
+      raw: './tutorials/axios/then.md',
+      url: '/tutorials/axios/then',
+      description: 'Axios request objects have a `then()` function, which means you can use them with promise chains and async/await. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-03-30')
+    },
+    {
       title: 'JavaScript Create Promise',
       raw: './tutorials/fundamentals/promise-create.md',
       url: '/tutorials/fundamentals/promise-create',
