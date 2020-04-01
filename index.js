@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Set the Authorization Header with Axios',
+      raw: './tutorials/axios/authorization.md',
+      url: '/tutorials/axios/authorization',
+      description: 'Here\'s how you can set the authorization header on an Axios HTTP request.',
+      tags: ['axios'],
+      date: moment('2020-04-01')
+    },
+    {
       title: 'The `then()` Function in Axios',
       raw: './tutorials/axios/then.md',
       url: '/tutorials/axios/then',
