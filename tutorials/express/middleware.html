@@ -50,11 +50,16 @@
 </div>
 
       <div class="content">
-        <h1>Express Middleware</h1>
-        <div class="date">
-          Aug 29, 2019
-        </div>
         
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/express">Express</a>
+  </div>
+  <h1>Express Middleware</h1>
+  <div class="date">
+    Aug 29, 2019
+  </div>
   <p>When an Express server receives an HTTP request, it executes a list of <a href="https://expressjs.com/en/guide/using-middleware.html">middleware</a> functions. The middleware functions are responsible for <a href="/tutorials/express/req">handling the request</a> and <a href="/tutorials/express/res">crafting a response</a>.</p>
 <p>You will usually see middleware defined as a function with 3 parameters: <code>req</code>, <code>res</code>, and <code>next</code>. The biggest exception to this rule is <a href="https://thecodebarbarian.com/80-20-guide-to-express-error-handling">error handling middleware</a>.
 To add a middleware function to your Express app, you call <a href="http://expressjs.com/en/4x/api.html#app.use"><code>app.use()</code></a>.</p>

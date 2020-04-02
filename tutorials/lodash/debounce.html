@@ -50,11 +50,16 @@
 </div>
 
       <div class="content">
-        <h1>Throttling Functions With Lodash's debounce() Function</h1>
-        <div class="date">
-          Aug 13, 2019
-        </div>
         
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/lodash">Lodash</a>
+  </div>
+  <h1>Throttling Functions With Lodash's debounce() Function</h1>
+  <div class="date">
+    Aug 13, 2019
+  </div>
   <p><a href="https://lodash.com/docs/4.17.15#debounce">Lodash&#39;s <code>debounce()</code> function</a> lets you delay invoking a function until a certain number of milliseconds passes. One common use case for <code>debounce()</code> is HTTP API calls for autocompletes: suppose when the user is typing in an input, you only want to execute an HTTP request once. Below is a stubbed out example of how <code>debounce()</code> works.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> wait = <span class="hljs-number">100</span>;
 el.addEventListener(<span class="hljs-string">'change'</span>, _.debounce(autocomplete, wait));

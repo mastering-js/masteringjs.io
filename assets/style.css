@@ -172,6 +172,11 @@ li {
   text-align: center;
 }
 
+.breadcrumbs {
+  font-size: 0.8em;
+  color: #ddd;
+}
+
 @media (max-width: 1000px) {
   .allwrapper {
     padding: 15px;

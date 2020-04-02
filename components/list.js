@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = ({ posts }, limit) => `
+module.exports = ({ posts, title }, limit) => `
+<h1>${title}</h1>
 <div class="list">
   ${posts.slice(0, limit).map(post).join('\n')}
 </div>

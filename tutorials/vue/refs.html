@@ -50,11 +50,16 @@
 </div>
 
       <div class="content">
-        <h1>An Introduction To Vue $refs</h1>
-        <div class="date">
-          Feb 3, 2020
-        </div>
         
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+  </div>
+  <h1>An Introduction To Vue $refs</h1>
+  <div class="date">
+    Feb 3, 2020
+  </div>
   <p>The <a href="https://vuejs.org/v2/guide/components-edge-cases.html#Accessing-Child-Component-Instances-amp-Child-Elements"><code>$refs</code> property in Vue</a> is used to reference <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">DOM elements</a> in the Vue instance&#39;s templates.</p>
 <p>A common use case for <code>$refs</code> is <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus">focusing</a> on a DOM element when a certain event happens. <a href="https://www.w3schools.com/jsref/prop_text_autofocus.asp">The <code>autofocus</code> property</a> works on page loads. But what if you want to give focus back to the <code>username</code> input if login failed?</p>
 <p>If you give the <code>username</code> input a <code>ref</code> attribute in your template, you can then access

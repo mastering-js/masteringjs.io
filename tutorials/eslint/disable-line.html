@@ -50,11 +50,16 @@
 </div>
 
       <div class="content">
-        <h1>Disable ESLint for a Single Line</h1>
-        <div class="date">
-          Nov 28, 2019
-        </div>
         
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/eslint">Eslint</a>
+  </div>
+  <h1>Disable ESLint for a Single Line</h1>
+  <div class="date">
+    Nov 28, 2019
+  </div>
   <p>You can disable ESLint for a given line using a <a href="https://eslint.org/docs/2.13.1/user-guide/configuring#disabling-rules-with-inline-comments"><code>// eslint-disable-line</code> comment</a>. For example, the below code would
 cause ESLint to complain because of the <a href="https://eslint.org/docs/rules/no-use-before-define"><code>no-use-before-define</code> rule</a> if you remove the <code>eslint-disable-line</code> comment.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = getAnswer(); <span class="hljs-comment">// eslint-disable-line</span>
