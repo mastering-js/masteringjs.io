@@ -1,10 +1,14 @@
 'use strict';
 
 module.exports = ({ posts, title }, limit) => `
-<h1>${title}</h1>
+${displayTitle(title)}
 <div class="list">
   ${posts.slice(0, limit).map(post).join('\n')}
 </div>
+`;
+
+const displayTitle = t => t == null ? '' : `
+<h1>${t}</h1>
 `;
 
 const post = p => `
