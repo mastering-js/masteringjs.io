@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'PUT Requests with Axios',
+      raw: './tutorials/axios/put.md',
+      url: '/tutorials/axios/put',
+      description: 'Sending an HTTP PUT request with Axios is easy. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-04-03')
+    },
+    {
       title: 'Set the Authorization Header with Axios',
       raw: './tutorials/axios/authorization.md',
       url: '/tutorials/axios/authorization',

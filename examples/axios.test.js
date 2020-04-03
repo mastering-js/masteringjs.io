@@ -85,6 +85,39 @@ describe('axios', function() {
     });
   });
 
+  describe('PUT requests', function() {
+    it('basic example', async function() {
+      const res = await axios.put('https://httpbin.org/put', { hello: 'world' });
+
+      res.data.json; // { hello: 'world' }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.json, { hello: 'world' });
+      // acquit:ignore:end
+    });
+
+    it('headers', async function() {
+      const res = await axios.put('https://httpbin.org/put', { hello: 'world' });
+
+      res.data.headers['Content-Type']; // application/json;charset=utf-8
+      // acquit:ignore:start
+      assert.equal(res.data.headers['Content-Type'],
+        'application/json;charset=utf-8');
+      // acquit:ignore:end
+    });
+
+    it('string', async function() {
+      const res = await axios.put('https://httpbin.org/put', 'hello=world');
+
+      res.data.form; // { hello: 'world' }
+      res.data.headers['Content-Type']; // application/x-www-form-urlencoded
+      // acquit:ignore:start
+      assert.deepEqual(res.data.form, { hello: 'world' });
+      assert.equal(res.data.headers['Content-Type'],
+        'application/x-www-form-urlencoded');
+      // acquit:ignore:end
+    });
+  });
+
   describe('basic auth', function() {
     it('works', async function() {
       const res = await axios.get('https://httpbin.org/basic-auth/foo/bar', {
