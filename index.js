@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Lodash\'s `filter()` Function',
+      raw: './tutorials/lodash/filter.md',
+      url: '/tutorials/lodash/filter',
+      description: 'Lodash has a `filter()` function that lets you filter an array using a custom function. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2020-04-06')
+    },
+    {
       title: 'PUT Requests with Axios',
       raw: './tutorials/axios/put.md',
       url: '/tutorials/axios/put',

@@ -373,6 +373,80 @@ describe('lodash', function() {
        // acquit:ignore:end
     });
   });
+
+  describe('filter', function() {
+    it('basic example', function() {
+      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+      _.filter(arr, isEven); // [2, 4, 6, 8]
+      function isEven(v) { return v % 2 === 0; }
+      // acquit:ignore:start
+      assert.deepEqual(_.filter(arr, isEven), [2, 4, 6, 8]);
+      // acquit:ignore:end
+    });
+
+    it('arrow and truthy', function() {
+      const arr = [null, false, 0, 'hello'];
+
+      _.filter(arr, v => v); // ['hello']
+      // acquit:ignore:start
+      assert.deepEqual(_.filter(arr, v => v), ['hello']);
+      // acquit:ignore:end
+    });
+
+    it('array of objects with prop name', function() {
+      const arr = [
+        {},
+        { hello: null },
+        { hello: false },
+        { hello: 0 },
+        { hello: 'world' }
+      ];
+
+      _.filter(arr, 'hello'); // [{ hello: 'world' }]
+      // acquit:ignore:start
+      assert.deepEqual(_.filter(arr, 'hello'), [{ hello: 'world' }]);
+      // acquit:ignore:end
+    });
+
+    it('using matches', function() {
+      const arr = [
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander' },
+        { firstName: 'Beverly', lastName: 'Crusher', rank: 'Commander' },
+        { firstName: 'Wesley', lastName: 'Crusher', rank: 'Ensign' }
+      ];
+
+      // ['Riker', 'Crusher']
+      _.filter(arr, { rank: 'Commander' }).map(v => v.lastName);
+
+      // ['Beverly', 'Wesley']
+      _.filter(arr, { lastName: 'Crusher' }).map(v => v.firstName);
+
+      // ['Beverly']
+      _.filter(arr, { lastName: 'Crusher', rank: 'Commander' }).map(v => v.firstName);
+      // acquit:ignore:start
+      assert.deepEqual(_.filter(arr, { rank: 'Commander' }).map(v => v.lastName),
+        ['Riker', 'Crusher']);
+      assert.deepEqual(_.filter(arr, { lastName: 'Crusher' }).map(v => v.firstName),
+        ['Beverly', 'Wesley']);
+      assert.deepEqual(_.filter(arr, { lastName: 'Crusher', rank: 'Commander' }).map(v => v.firstName),
+        ['Beverly']);
+      // acquit:ignore:end
+    });
+
+    it('collections', function() {
+      const obj = {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4
+      };
+      _.filter(obj, v => v % 2 === 0); // [2, 4]
+      // acquit:ignore:start
+      assert.deepEqual(_.filter(obj, v => v % 2 === 0), [2, 4]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

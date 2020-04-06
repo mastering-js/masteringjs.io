@@ -7,6 +7,7 @@ module.exports = ({ tutorials, tutorial }) => `
     <a href="/all">Tutorials</a>
     /
     <a href="/${tutorial.tags[0]}">${capitalize(tutorial.tags[0])}</a>
+    /
   </div>
   <h1>${tutorial.title}</h1>
   <div class="date">
