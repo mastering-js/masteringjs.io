@@ -447,6 +447,47 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('map', function() {
+    it('string', function() {
+      const arr = [
+        { firstName: 'Will', lastName: 'Riker', rank: 'Commander' },
+        { firstName: 'Beverly', lastName: 'Crusher', rank: 'Commander' },
+        { firstName: 'Wesley', lastName: 'Crusher', rank: 'Ensign' }
+      ];
+
+      _.map(arr, 'firstName'); // ['Will', 'Beverly', 'Wesley']
+      // Equivalent:
+      _.map(arr, v => v.firstName); // ['Will', 'Beverly', 'Wesley']
+      // acquit:ignore:start
+      assert.deepEqual(_.map(arr, 'firstName'), ['Will', 'Beverly', 'Wesley']);
+      assert.deepEqual(_.map(arr, v => v.firstName), ['Will', 'Beverly', 'Wesley']);
+      // acquit:ignore:end
+    });
+
+    it('basic example', function() {
+      const arr = [1, 2, 3, 4];
+
+      _.map(arr, v => v * 2); // [2, 4, 6, 8]
+      // acquit:ignore:start
+      assert.deepEqual(_.map(arr, v => v * 2), [2, 4, 6, 8]);
+      // acquit:ignore:end
+    });
+
+    it('object', function() {
+      const obj = {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4
+      };
+
+      _.map(obj, v => v * 2); // [2, 4, 6, 8]
+      // acquit:ignore:start
+      assert.deepEqual(_.map(obj, v => v * 2), [2, 4, 6, 8]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

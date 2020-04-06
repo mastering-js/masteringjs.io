@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lodash's `map()` Function - Mastering JS</title>
+
+    <meta property="og:title" content="Lodash's `map()` Function" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Lodash has a `map()` function that transform arrays and objects key by key. Here's what you need to know." />
+    <meta name="description" content="Lodash has a `map()` function that transform arrays and objects key by key. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/lodash">Lodash</a>
+    /
+  </div>
+  <h1>Lodash's `map()` Function</h1>
+  <div class="date">
+    Apr 8, 2020
+  </div>
+  <p>Given an array <code>arr</code> and a function <code>fn</code>, <a href="https://lodash.com/docs/4.17.15#map">Lodash&#39;s <code>map()</code> function</a> returns an array containing the return values of <code>fn()</code> on every element in the array.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+_.map(arr, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span></code></pre>
+<h2 id="on-arrays-of-objects">On Arrays of Objects</h2>
+<p>Given an array of objects, you can pass a string as <code>fn</code> instead of a function
+to get array containing each object&#39;s value for the property <code>fn</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Beverly'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Crusher'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
+  { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Wesley'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Crusher'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Ensign'</span> }
+];
+
+_.map(arr, <span class="hljs-string">'firstName'</span>); <span class="hljs-comment">// ['Will', 'Beverly', 'Wesley']</span>
+<span class="hljs-comment">// Equivalent:</span>
+_.map(arr, v =&gt; v.firstName); <span class="hljs-comment">// ['Will', 'Beverly', 'Wesley']</span></code></pre>
+<h2 id="on-objects">On Objects</h2>
+<p>You can also call <code>_.map()</code> on an object. <code>_.map(obj, fn)</code> behaves like
+<code>_.map(Object.values(obj), fn)</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">one</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">two</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">three</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">four</span>: <span class="hljs-number">4</span>
+};
+
+_.map(obj, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Lodash Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/lodash/filter">Lodash's `filter()` Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/clone">Cloning an Object with Lodash</a></li>
+  
+
+    <li><a href="/tutorials/lodash/debounce">Throttling Functions With Lodash's debounce() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/find">Using Lodash's find() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/get">Safe Navigation With Lodash's get() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/sortby">Sorting Arrays With Lodash's sortBy() Function</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
