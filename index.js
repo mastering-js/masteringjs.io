@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Lodash\'s `map()` Function',
+      raw: './tutorials/lodash/map.md',
+      url: '/tutorials/lodash/map',
+      description: 'Lodash has a `map()` function that transform arrays and objects key by key. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2020-04-08')
+    },
+    {
       title: 'Lodash\'s `filter()` Function',
       raw: './tutorials/lodash/filter.md',
       url: '/tutorials/lodash/filter',
