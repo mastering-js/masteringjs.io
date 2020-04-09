@@ -488,6 +488,104 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('merge', function() {
+    it('basic example', function() {
+      const destination = { name: 'Will Riker', rank: 'Commander' };
+      const source = { ship: 'USS Enterprise' };
+
+      _.merge(destination, source);
+      destination.name; // 'Will Riker'
+      destination.rank; // 'Commander'
+      destination.ship; // 'USS Enterprise'
+      // acquit:ignore:start
+      assert.deepEqual(destination, {
+        name: 'Will Riker',
+        rank: 'Commander',
+        ship: 'USS Enterprise'
+      });
+      // acquit:ignore:end
+    });
+
+    it('copy', function() {
+      const obj = {
+        name: {
+          first: 'Will',
+          last: 'Riker'
+        }
+      };
+
+      const deepClone = _.merge({}, obj);
+      deepClone.name === obj.name; // false
+
+      deepClone.name.first = 'Thomas';
+      obj.name.first; // 'Will'
+      // acquit:ignore:start
+      assert.ok(deepClone.name !== obj.name);
+      assert.equal(obj.name.first, 'Will');
+      // acquit:ignore:end
+
+      const shallowClone = _.assign({}, obj);
+      shallowClone.name === obj.name; // true
+
+      shallowClone.name.first = 'Thomas';
+      obj.name.first; // 'Thomas'
+      // acquit:ignore:start
+      assert.ok(shallowClone.name === obj.name);
+      assert.equal(obj.name.first, 'Thomas');
+      // acquit:ignore:end
+    });
+
+    it('undefined', function() {
+      let destination = {
+        firstName: 'Will',
+        lastName: 'Riker',
+        rank: 'Commander'
+      };
+
+      // Since `source.rank` is undefined, `merge()` won't overwrite
+      // `destination.rank`.
+      _.merge(destination, { firstName: 'Thomas', rank: undefined });
+      destination.firstName; // 'Thomas'
+      destination.rank; // 'Commander'
+
+      destination = {
+        firstName: 'Will',
+        lastName: 'Riker',
+        rank: 'Commander'
+      };
+      // But `_.assign()` and `Object.assign()` overwrite `destination.rank`.
+      _.assign(destination, { firstName: 'Thomas', rank: undefined });
+      destination.firstName; // 'Thomas'
+      destination.rank; // undefined
+    });
+
+    it('classes', function() {
+      class Ship {};
+      Ship.prototype.shipName = 'USS Enterprise';
+      const ship = new Ship();
+
+      // `merge()` copies inherited properties, so it will copy
+      // `shipName`
+      const merged = _.merge({ name: 'Will Riker', rank: 'Commander' }, ship);
+      merged.shipName; // 'USS Enterprise'
+      
+      // `assign()` does **not** copy inherited properties.
+      const assigned = Object.assign({ name: 'Will Riker', rank: 'Commander' }, ship);
+      assigned.shipName; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(merged, {
+        name: 'Will Riker',
+        rank: 'Commander',
+        shipName: 'USS Enterprise'
+      });
+      assert.deepEqual(assigned, {
+        name: 'Will Riker',
+        rank: 'Commander'
+      });
+      // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

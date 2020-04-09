@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lodash's `merge()` Function - Mastering JS</title>
+
+    <meta property="og:title" content="Lodash's `merge()` Function" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Lodash has a `merge()` function behaves like `Object.assign()`, but with a couple key differences. Here's what you need to know." />
+    <meta name="description" content="Lodash has a `merge()` function behaves like `Object.assign()`, but with a couple key differences. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/lodash">Lodash</a>
+    /
+  </div>
+  <h1>Lodash's `merge()` Function</h1>
+  <div class="date">
+    Apr 9, 2020
+  </div>
+  <p>Given two objects <code>destination</code> and <code>source</code>, <a href="https://lodash.com/docs/4.17.15#merge">Lodash&#39;s <code>merge()</code> function</a> copies the 2nd object&#39;s <a href="/tutorials/fundamentals/hasownproperty">own properties</a> and inherited properties into the first object.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> destination = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> };
+<span class="hljs-keyword">const</span> source = { <span class="hljs-attr">ship</span>: <span class="hljs-string">'USS Enterprise'</span> };
+
+_.merge(destination, source);
+destination.name; <span class="hljs-comment">// 'Will Riker'</span>
+destination.rank; <span class="hljs-comment">// 'Commander'</span>
+destination.ship; <span class="hljs-comment">// 'USS Enterprise'</span></code></pre>
+<p>Sounds a lot like <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html"><code>Object.assign()</code></a>, right? While <code>merge()</code> is very
+similar to <code>Object.assign()</code> and <code>_.assign()</code>, there are a couple
+minor differences.</p>
+<h2 id="differences-between-merge-and-assign">Differences Between <code>merge()</code> and <code>assign()</code></h2>
+<p>The first detail is that <code>merge()</code> copies objects <em>recursively</em>,
+so <code>_.merge()</code> is a <a href="/tutorials/fundamentals/shallow-copy">deep copy</a>
+whereas <code>_.assign()</code> is a shallow copy.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">name</span>: {
+    <span class="hljs-attr">first</span>: <span class="hljs-string">'Will'</span>,
+    <span class="hljs-attr">last</span>: <span class="hljs-string">'Riker'</span>
+  }
+};
+
+<span class="hljs-keyword">const</span> deepClone = _.merge({}, obj);
+deepClone.name === obj.name; <span class="hljs-comment">// false</span>
+
+deepClone.name.first = <span class="hljs-string">'Thomas'</span>;
+obj.name.first; <span class="hljs-comment">// 'Will'</span>
+
+<span class="hljs-keyword">const</span> shallowClone = _.assign({}, obj);
+shallowClone.name === obj.name; <span class="hljs-comment">// true</span>
+
+shallowClone.name.first = <span class="hljs-string">'Thomas'</span>;
+obj.name.first; <span class="hljs-comment">// 'Thomas'</span></code></pre>
+<p>The second detail is how <code>merge()</code> handles <code>undefined</code>. If the <code>source</code>
+has a key whose value is strictly equal to <code>undefined</code>, <code>merge()</code> will
+not overwrite that key in the <code>destination</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> destination = {
+  <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>,
+  <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>
+};
+
+<span class="hljs-comment">// Since `source.rank` is undefined, `merge()` won't overwrite</span>
+<span class="hljs-comment">// `destination.rank`.</span>
+_.merge(destination, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Thomas'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-literal">undefined</span> });
+destination.firstName; <span class="hljs-comment">// 'Thomas'</span>
+destination.rank; <span class="hljs-comment">// 'Commander'</span>
+
+destination = {
+  <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Will'</span>,
+  <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Riker'</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>
+};
+<span class="hljs-comment">// But `_.assign()` and `Object.assign()` overwrite `destination.rank`.</span>
+_.assign(destination, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Thomas'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-literal">undefined</span> });
+destination.firstName; <span class="hljs-comment">// 'Thomas'</span>
+destination.rank; <span class="hljs-comment">// undefined</span></code></pre>
+<p>Another difference comes in when you consider how <code>merge()</code> handles <a href="/tutorials/fundamentals/class">classes</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ship</span> </span>{};
+Ship.prototype.shipName = <span class="hljs-string">'USS Enterprise'</span>;
+<span class="hljs-keyword">const</span> ship = <span class="hljs-keyword">new</span> Ship();
+
+<span class="hljs-comment">// `merge()` copies inherited properties, so it will copy</span>
+<span class="hljs-comment">// `shipName`</span>
+<span class="hljs-keyword">const</span> merged = _.merge({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> }, ship);
+merged.shipName; <span class="hljs-comment">// 'USS Enterprise'</span>
+
+<span class="hljs-comment">// `assign()` does **not** copy inherited properties.</span>
+<span class="hljs-keyword">const</span> assigned = <span class="hljs-built_in">Object</span>.assign({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> }, ship);
+assigned.shipName; <span class="hljs-comment">// undefined</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Lodash Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/lodash/map">Lodash's `map()` Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/filter">Lodash's `filter()` Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/clone">Cloning an Object with Lodash</a></li>
+  
+
+    <li><a href="/tutorials/lodash/debounce">Throttling Functions With Lodash's debounce() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/find">Using Lodash's find() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/get">Safe Navigation With Lodash's get() Function</a></li>
+  
+
+    <li><a href="/tutorials/lodash/sortby">Sorting Arrays With Lodash's sortBy() Function</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

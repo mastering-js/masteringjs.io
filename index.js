@@ -37,10 +37,18 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Lodash\'s `merge()` Function',
+      raw: './tutorials/lodash/merge.md',
+      url: '/tutorials/lodash/merge',
+      description: 'Lodash has a `merge()` function behaves like `Object.assign()`, but with a couple key differences. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2020-04-09')
+    },
+    {
       title: 'Lodash\'s `map()` Function',
       raw: './tutorials/lodash/map.md',
       url: '/tutorials/lodash/map',
-      description: 'Lodash has a `map()` function that transform arrays and objects key by key. Here\'s what you need to know.',
+      description: 'Lodash has a `map()` function that transform arrays and objects value by value. Here\'s what you need to know.',
       tags: ['lodash'],
       date: moment('2020-04-08')
     },
