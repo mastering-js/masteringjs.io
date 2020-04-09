@@ -103,9 +103,8 @@ li {
 }
 
 .links {
-  padding-top: 4px;
+  margin-top: 0.2em;
   float: right;
-  margin-right: 1em;
 }
 
 .links a {
