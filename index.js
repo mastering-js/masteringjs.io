@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Lodash\'s `pick()` Function',
+      raw: './tutorials/lodash/pick.md',
+      url: '/tutorials/lodash/pick',
+      description: 'Lodash has a `pick()` function that creates a new object from a subset of the given object\'s keys. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2020-04-10')
+    },
+    {
       title: 'Lodash\'s `merge()` Function',
       raw: './tutorials/lodash/merge.md',
       url: '/tutorials/lodash/merge',
