@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Bluebird Promises',
+      raw: './tutorials/fundamentals/bluebird.md',
+      url: '/tutorials/fundamentals/bluebird',
+      description: 'Bluebird is a popular alternative Promise library for JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-13')
+    },
+    {
       title: 'Lodash\'s `merge()` Function',
       raw: './tutorials/lodash/merge.md',
       url: '/tutorials/lodash/merge',
