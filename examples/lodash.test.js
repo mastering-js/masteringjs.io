@@ -586,6 +586,65 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('pick', function() {
+    it('basic example', function() {
+      const obj = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+      const picked = _.pick(obj, ['name', 'rank']);
+
+      picked === obj; // false
+      picked.name; // 'Will Riker'
+      picked.rank; // 'Commander'
+      picked.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(picked, { name: 'Will Riker', rank: 'Commander' });
+      // acquit:ignore:end
+    });
+
+    it('dotted', function() {
+      const obj = {
+        name: {
+          first: 'Will',
+          last: 'Riker'
+        },
+        rank: 'Commander',
+        age: 29
+      };
+      const picked = _.pick(obj, ['name.last', 'rank']);
+
+      picked === obj; // false
+      picked.name.first; // undefined
+      picked.name.last; // 'Riker'
+      picked.rank; // 'Commander'
+      picked.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(picked, { name: { last: 'Riker' }, rank: 'Commander' });
+      // acquit:ignore:end
+    });
+
+    it('no errors', function() {
+      const obj = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+      // Lodash will ignore 'this.is.not.in.the.object', because
+      // that path isn't in the object.
+      const picked = _.pick(obj, ['name', 'this.is.not.in.the.object']);
+
+      picked === obj; // false
+      picked.name; // 'Will Riker'
+      picked.rank; // undefined
+      picked.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(picked, { name: 'Will Riker' });
+      // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;
