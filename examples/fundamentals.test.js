@@ -2336,6 +2336,43 @@ describe('Fundamentals', function() {
     });
   });
 
+  describe('Promise Reject', function() {
+    it('basic example', async function() {
+      const p = Promise.reject(new Error('Oops!'));
+
+      return p.catch(err => {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+
+    it('with constructor', async function() {
+      const p = new Promise((resolve, reject) => {
+        reject(new Error('Oops!'));
+      });
+
+      return p.catch(err => {
+        err.message; // 'Oops!'
+        // acquit:ignore:start
+        assert.equal(err.message, 'Oops!');
+        // acquit:ignore:end
+      });
+    });
+
+    it('non-error', async function() {
+      const p = Promise.reject(42);
+
+      return p.catch(err => {
+        err; // 42
+        // acquit:ignore:start
+        assert.equal(err, 42);
+        // acquit:ignore:end
+      });
+    });
+  });
+
   describe('Array#filter', function() {
     it('even/odd', function() {
       const numbers = [1, 2, 3, 4, 5, 6];
