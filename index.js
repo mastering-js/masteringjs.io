@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JavaScript Promise Chaining',
+      raw: './tutorials/fundamentals/promise-chaining.md',
+      url: '/tutorials/fundamentals/promise-chaining',
+      description: 'Promise chaining is a powerful pattern for composing promises. The key benefit is that you can handle all errors with one `catch()` handler. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-15')
+    },
+    {
       title: 'Using Bluebird Promises',
       raw: './tutorials/fundamentals/bluebird.md',
       url: '/tutorials/fundamentals/bluebird',

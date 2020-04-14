@@ -2274,6 +2274,68 @@ describe('Fundamentals', function() {
     });
   });
 
+  describe('Promise Chaining', function() {
+    it('basic example', async function() {
+      const start = Date.now();
+      return Promise.resolve().
+        then(() => new Promise(resolve => setTimeout(resolve, 50))).
+        then(() => new Promise(resolve => setTimeout(resolve, 50))).
+        then(v => {
+          console.log(Date.now() - start); // About 100ms passed
+          // acquit:ignore:start
+          assert.ok(Date.now() - start >= 100 && Date.now() - start <= 250);
+          // acquit:ignore:end
+        });
+    });
+
+    it('return values', async function() {
+      return Promise.resolve(1).
+        // If `onFulfilled()` returns a promise, JavaScript calls the
+        // next `onFulfilled()` with the fulfilled value of the promise
+        // your `onFulfilled()` returned.
+        then(v => new Promise(resolve => setTimeout(() => resolve(v + 1), 10))).
+        then(v => new Promise(resolve => setTimeout(() => resolve(v + 1), 10))).
+        then(v => new Promise(resolve => setTimeout(() => resolve(v + 1), 10))).
+        // If `onFulfilled()` returns a value that isn't a promise,
+        // JavaScript calls the next `onFulfilled()` with that value.
+        then(v => v + 1).
+        then(v => {
+          console.log(v); // 5
+          // acquit:ignore:start
+          assert.equal(v, 5);
+          // acquit:ignore:end
+        });
+    });
+
+    it('error handling', async function() {
+      Promise.resolve(1).
+        then(v => v + 1).
+        // Async error in the middle of the chain goes straight
+        // to `catch()`.
+        then(() => Promise.reject(new Error('Oops'))).
+        then(v => v + 1).
+        catch(err => {
+          err.message; // 'Oops'
+          // acquit:ignore:start
+          assert.equal(err.message, 'Oops');
+          // acquit:ignore:end
+        });
+      
+      Promise.resolve(1).
+        then(v => v + 1).
+        // Sync error in the middle of the chain goes straight
+        // to `catch()` too.
+        then(() => { throw new Error('Oops'); }).
+        then(v => v + 1).
+        catch(err => {
+          err.message; // 'Oops'
+          // acquit:ignore:start
+          assert.equal(err.message, 'Oops');
+          // acquit:ignore:end
+        });
+    });
+  });
+
   describe('Array#filter', function() {
     it('even/odd', function() {
       const numbers = [1, 2, 3, 4, 5, 6];
