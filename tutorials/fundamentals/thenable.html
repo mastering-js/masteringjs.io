@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Thenables in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Thenables in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="A thenable is an object that behaves like a promise for the purposes of chaining and async/await, but is not necessarily a promise. Here's what you need to know." />
+    <meta name="description" content="A thenable is an object that behaves like a promise for the purposes of chaining and async/await, but is not necessarily a promise. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Thenables in JavaScript</h1>
+  <div class="date">
+    Apr 17, 2020
+  </div>
+  <p>In JavaScript, a <em>thenable</em> is an object that has a <a href="/tutorials/fundamentals/then"><code>then()</code> function</a>. All promises are thenables, but not
+all thenables are promises.</p>
+<p>Many promise patterns, like <a href="/tutorials/fundamentals/promise-chaining">chaining</a>
+and <a href="/tutorials/fundamentals/async-await">async/await</a>, work with any
+thenable. For example, you can use thenables in a promise chain:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
+<span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
+<span class="hljs-comment">// the value `42` after 10ms.</span>
+<span class="hljs-keyword">const</span> thenable = {
+  <span class="hljs-attr">then</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">onFulfilled</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> onFulfilled(<span class="hljs-number">42</span>), <span class="hljs-number">10</span>);
+  }
+};
+
+<span class="hljs-built_in">Promise</span>.resolve().
+  then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> thenable).
+  then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
+    v; <span class="hljs-comment">// 42</span>
+  });</code></pre>
+<p>You can also use thenables with <code>await</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
+<span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
+<span class="hljs-comment">// the value `42` after 10ms.</span>
+<span class="hljs-keyword">const</span> thenable = {
+  <span class="hljs-attr">then</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">onFulfilled</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> onFulfilled(<span class="hljs-number">42</span>), <span class="hljs-number">10</span>);
+  }
+};
+
+<span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> thenable;
+v; <span class="hljs-comment">// 42</span></code></pre>
+<h2 id="thenables-in-the-wild">Thenables in the Wild</h2>
+<p>Many libraries implement thenables to enable async/await support.
+For example, <a href="/tutorials/mongoose/query">Mongoose queries</a> are
+thenables, although they also have an <code>exec()</code> function that returns
+a promise. <a href="https://visionmedia.github.io/superagent/">Superagent</a> is
+a popular HTTP client that also uses thenables. However, neither
+Mongoose queries nor Superagent requests are actually promises.</p>
+<p>Other libraries use promises directly. For example, <a href="/tutorials/axios/then">Axios requests are promises</a> in the sense that they are <code>instanceof Promise</code>.</p>
+<p>You can convert an arbitrary thenable to a promise using <code>Promise.resolve()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
+<span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
+<span class="hljs-comment">// the value `42` after 10ms.</span>
+<span class="hljs-keyword">const</span> thenable = {
+  <span class="hljs-attr">then</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">onFulfilled</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> onFulfilled(<span class="hljs-number">42</span>), <span class="hljs-number">10</span>);
+  }
+};
+
+<span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.resolve(thenable);
+p <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> p;
+v; <span class="hljs-comment">// 42</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/promise-reject">Reject a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-chaining">JavaScript Promise Chaining</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/bluebird">Using Bluebird Promises</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-create">JavaScript Create Promise</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/catch">The Promise `catch()` Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-arrays">Compare Arrays in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-dates">Compare Dates in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
