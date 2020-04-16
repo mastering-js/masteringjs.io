@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Reject a Promise in JavaScript',
+      raw: './tutorials/fundamentals/promise-reject.md',
+      url: '/tutorials/fundamentals/promise-reject',
+      description: 'Rejecting a promise in JavaScript is how you mark a promise as errored. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-16')
+    },
+    {
       title: 'JavaScript Promise Chaining',
       raw: './tutorials/fundamentals/promise-chaining.md',
       url: '/tutorials/fundamentals/promise-chaining',
