@@ -2373,6 +2373,66 @@ describe('Fundamentals', function() {
     });
   });
 
+  describe('Thenable', function() {
+    it('with chaining', async function() {
+      // A thenable is an object with a `then()` function. The
+      // below thenable behaves like a promise that fulfills with
+      // the value `42` after 10ms.
+      const thenable = {
+        then: function(onFulfilled) {
+          setTimeout(() => onFulfilled(42), 10);
+        }
+      };
+
+      Promise.resolve().
+        then(() => thenable).
+        then(v => {
+          v; // 42
+          // acquit:ignore:start
+          assert.equal(v, 42);
+          // acquit:ignore:end
+        });
+    });
+
+    it('with await', async function() {
+      // A thenable is an object with a `then()` function. The
+      // below thenable behaves like a promise that fulfills with
+      // the value `42` after 10ms.
+      const thenable = {
+        then: function(onFulfilled) {
+          setTimeout(() => onFulfilled(42), 10);
+        }
+      };
+
+      const v = await thenable;
+      v; // 42
+      // acquit:ignore:start
+      assert.equal(v, 42);
+      // acquit:ignore:end
+    });
+
+    it('with resolve', async function() {
+      // A thenable is an object with a `then()` function. The
+      // below thenable behaves like a promise that fulfills with
+      // the value `42` after 10ms.
+      const thenable = {
+        then: function(onFulfilled) {
+          setTimeout(() => onFulfilled(42), 10);
+        }
+      };
+
+      const p = Promise.resolve(thenable);
+      p instanceof Promise; // true
+
+      const v = await p;
+      v; // 42
+      // acquit:ignore:start
+      assert.ok(p instanceof Promise);
+      assert.equal(v, 42);
+      // acquit:ignore:end
+    });
+  });
+
   describe('Array#filter', function() {
     it('even/odd', function() {
       const numbers = [1, 2, 3, 4, 5, 6];

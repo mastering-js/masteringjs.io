@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Thenables in JavaScript',
+      raw: './tutorials/fundamentals/thenable.md',
+      url: '/tutorials/fundamentals/thenable',
+      description: 'A thenable is an object that behaves like a promise for the purposes of chaining and async/await, but is not necessarily a promise. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-17')
+    },
+    {
       title: 'Reject a Promise in JavaScript',
       raw: './tutorials/fundamentals/promise-reject.md',
       url: '/tutorials/fundamentals/promise-reject',
