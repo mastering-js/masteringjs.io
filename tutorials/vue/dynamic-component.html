@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue Dynamic Components - Mastering JS</title>
+
+    <meta property="og:title" content="Vue Dynamic Components" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can use Vue's `component` component to render a different component based on the state of your app." />
+    <meta name="description" content="Here's how you can use Vue's `component` component to render a different component based on the state of your app." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Vue Dynamic Components</h1>
+  <div class="date">
+    Apr 22, 2020
+  </div>
+  <p><a href="https://vuejs.org/v2/guide/components.html#Dynamic-Components">Vue&#39;s <code>component</code> component</a> can dynamically render a different component based on the state of your data. The <code>is</code> attribute is how you can tell
+<code>component</code> what component to render. For example, below is a
+simple tab UI:</p>
+<div id="vue-tab-example"></div>
+
+<style>
+  .buttons button {
+    border: 0px;
+    background-color: #ddd;
+    padding: 5px;
+  }
+  .buttons button.selected {
+    background-color: #F0DB4F;
+  }
+  .tab-content {
+    padding: 5px;
+    border: 1px solid #ddd;
+  }
+</style>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+Vue.component('home', {
+  template: '<div>This is the home tab</div>'
+});
+Vue.component('about', {
+  template: '<div>This tab talks about us</div>'
+});
+Vue.component('contact', {
+  template: '<div>This tab provides contact info</div>'
+});
+
+const app = new Vue({
+  data: () => ({ tab: 'home' }),
+  methods: {
+    selected: function(tab) {
+      return tab === this.tab ? 'selected' : '';
+    }
+  },
+  template: `
+    <div>
+      <div class="buttons">
+        <button @click="tab = 'home'" :class="selected('home')">
+          Home
+        </button>
+        <button @click="tab = 'about'" :class="selected('about')">
+          About Us
+        </button>
+        <button @click="tab = 'contact'" :class="selected('contact')">
+          Contact Us
+        </button>
+      </div>
+      <component class="tab-content" :is="tab"></component>
+    </div>
+  `
+});
+app.$mount('#vue-tab-example');
+</script>
+
+<p>The above tabbed UI consists of 3 different <a href="/tutorials/vue/components">Vue components</a>: <code>home</code>, <code>about</code>, and <code>contact</code>.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'home'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;This is the home tab&lt;/div&gt;'</span>
+});
+Vue.component(<span class="hljs-string">'about'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;This tab talks about us&lt;/div&gt;'</span>
+});
+Vue.component(<span class="hljs-string">'contact'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;This tab provides contact info&lt;/div&gt;'</span>
+});</code></pre>
+<p>Using <code>component</code> and <code>:is</code>, Vue can render different components based
+on the state of <code>tab</code>:</p>
+<pre><code>&lt;component <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"tab-content"</span> :is=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span></span></code></pre><p>Whenever <code>tab</code> changes, Vue changes what component is rendered. Below
+is the full Vue app that handles the state of <code>tab</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">tab</span>: <span class="hljs-string">'home'</span> }),
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">selected</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tab</span>) </span>{
+      <span class="hljs-keyword">return</span> tab === <span class="hljs-keyword">this</span>.tab ? <span class="hljs-string">'selected'</span> : <span class="hljs-string">''</span>;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div class="buttons"&gt;
+        &lt;button @click="tab = 'home'" :class="selected('home')"&gt;
+          Home
+        &lt;/button&gt;
+        &lt;button @click="tab = 'about'" :class="selected('about')"&gt;
+          About Us
+        &lt;/button&gt;
+        &lt;button @click="tab = 'contact'" :class="selected('contact')"&gt;
+          Contact Us
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;component class="tab-content" :is="tab"&gt;&lt;/component&gt;
+    &lt;/div&gt;
+  `</span>
+});
+app.$mount(<span class="hljs-string">'#vue-tab-example'</span>);</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/modal">Show a Modal in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-for">Vue v-for Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/unit-testing">Two Patterns for Unit Testing Vue Apps</a></li>
+  
+
+    <li><a href="/tutorials/vue/refs">An Introduction To Vue $refs</a></li>
+  
+
+    <li><a href="/tutorials/vue/config">An Overview of the vue.config.js File</a></li>
+  
+
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
