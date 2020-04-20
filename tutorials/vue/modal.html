@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Show a Modal in Vue - Mastering JS</title>
+
+    <meta property="og:title" content="Show a Modal in Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="A modal is an in-app pop-up. Here's how you can build a basic modal component in Vue." />
+    <meta name="description" content="A modal is an in-app pop-up. Here's how you can build a basic modal component in Vue." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Show a Modal in Vue</h1>
+  <div class="date">
+    Apr 20, 2020
+  </div>
+  <p>A modal is a pop-up built entirely in JavaScript. <a href="https://vuejs.org/v2/examples/modal.html">Vue makes it easy to build a modal component</a> using <a href="/tutorials/vue/slots">Vue slots</a>. Click the below button to see a basic modal.</p>
+<div id="vue-modal-example"></div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+</style>
+
+<script type="text/javascript">
+Vue.component('modal', {
+  template: `
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div class="modal-body">
+            <slot name="body">
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+  `
+});
+
+const app = new Vue({
+  data: () => ({ showModal: false }),
+  template: `
+    <div>
+      <button @click="showModal = true">Show Modal</button>
+      <modal v-if="showModal" @close="showModal = false">
+        <template v-slot:body>
+          Hello, modal!
+        </template>
+      </modal>
+    </div>
+  `
+});
+app.$mount('#vue-modal-example');
+</script>
+
+<h2 id="building-a-modal-component">Building A Modal Component</h2>
+<p>The modal component can be broken down into 4 important elements:
+the mask, the container, the header, and the footer. Here&#39;s how these
+elements appear on the screen.</p>
+<img src="/assets/modal-diagram.png">
+
+<p>The mask is the grey background that partially hides the page, and
+the container is the white box that contains the header and footer.
+Below is the CSS for the above modal, slightly modified from <a href="https://vuejs.org/v2/examples/modal.html">this page</a>.</p>
+<pre><code class="language-css">.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition=&quot;modal&quot; when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}</code></pre>
+<p>The modal component is a standard Vue component with 2 named slots: <code>header</code>
+and <code>footer</code>. Below is the <code>modal</code> component definition.</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'modal'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+  &lt;transition name="modal"&gt;
+    &lt;div class="modal-mask"&gt;
+      &lt;div class="modal-wrapper"&gt;
+        &lt;div class="modal-container"&gt;
+          &lt;div class="modal-body"&gt;
+            &lt;slot name="body"&gt;
+            &lt;/slot&gt;
+          &lt;/div&gt;
+
+          &lt;div class="modal-footer"&gt;
+            &lt;slot name="footer"&gt;
+              &lt;button class="modal-default-button" @click="$emit('close')"&gt;
+                OK
+              &lt;/button&gt;
+            &lt;/slot&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/transition&gt;
+  `</span>
+});</code></pre>
+<p>The <code>modal</code> component doesn&#39;t do much by itself. It just exposes
+2 named slots. The <code>footer</code> slot has a default value that emits a
+&#39;close&#39; event whenever the user clicks the &#39;OK&#39; button.</p>
+<h2 id="usage">Usage</h2>
+<p>How do you actually use this modal component? You need to <a href="/tutorials/vue/v-if">conditionally render this component using <code>v-if</code></a>, because, if the modal component is rendered, the mask will hide the page. Below is the
+Vue app that powers this page&#39;s modal:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">showModal</span>: <span class="hljs-literal">false</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;button @click="showModal = true"&gt;Show Modal&lt;/button&gt;
+      &lt;modal v-if="showModal" @close="showModal = false"&gt;
+        &lt;template v-slot:body&gt;
+          Hello, modal!
+        &lt;/template&gt;
+      &lt;/modal&gt;
+    &lt;/div&gt;
+  `</span>
+});
+app.$mount(<span class="hljs-string">'#vue-modal-example'</span>);</code></pre>
+<p>The <code>v-if</code> directive tells Vue to only mount the modal if <code>setModal</code> is true.
+Clicking the button sets <code>showModal = true</code>, which tells Vue to mount the
+modal. The <code>&lt;template v-slot:body&gt;</code> tells Vue what HTML to render in the
+<code>body</code> slot. Since there&#39;s no <code>footer</code> slot, Vue uses the default <code>footer</code> HTML.</p>
+<p>Finally, once the modal emits a &#39;close&#39; event, this template is responsible
+for hiding the modal. The <code>modal</code> component is <strong>not</strong> allowed to close itself,
+the calling code is responsible for hiding it.</p>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/v-for">Vue v-for Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/unit-testing">Two Patterns for Unit Testing Vue Apps</a></li>
+  
+
+    <li><a href="/tutorials/vue/refs">An Introduction To Vue $refs</a></li>
+  
+
+    <li><a href="/tutorials/vue/config">An Overview of the vue.config.js File</a></li>
+  
+
+    <li><a href="/tutorials/vue/lifecycle">Vue Component Lifecycle</a></li>
+  
+
+    <li><a href="/tutorials/vue/conditional-class">Conditional Classes in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/form">Building a Basic Form with Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

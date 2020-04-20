@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Show a Modal in Vue',
+      raw: './tutorials/vue/modal.md',
+      url: '/tutorials/vue/modal',
+      description: 'A modal is an in-app pop-up. Here\'s how you can build a basic modal component in Vue.',
+      tags: ['vue'],
+      date: moment('2020-04-20')
+    },
+    {
       title: 'Thenables in JavaScript',
       raw: './tutorials/fundamentals/thenable.md',
       url: '/tutorials/fundamentals/thenable',
