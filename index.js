@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Dynamic Components',
+      raw: './tutorials/vue/dynamic-component.md',
+      url: '/tutorials/vue/dynamic-component',
+      description: 'Here\'s how you can use Vue\'s `component` component to render a different component based on the state of your app.',
+      tags: ['vue'],
+      date: moment('2020-04-22')
+    },
+    {
       title: 'Show a Modal in Vue',
       raw: './tutorials/vue/modal.md',
       url: '/tutorials/vue/modal',
