@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Router Redirects',
+      raw: './tutorials/vue/router-redirect.md',
+      url: '/tutorials/vue/router-redirect',
+      description: 'Here\'s how you can redirect to a different URL using Vue Router, using the built-in `redirect` option or programatically.',
+      tags: ['vue'],
+      date: moment('2020-04-24')
+    },
+    {
       title: 'Vue Dynamic Components',
       raw: './tutorials/vue/dynamic-component.md',
       url: '/tutorials/vue/dynamic-component',
