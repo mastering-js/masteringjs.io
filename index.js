@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Read Local Files in JavaScript with FileReader',
+      raw: './tutorials/fundamentals/filereader.md',
+      url: '/tutorials/fundamentals/filereader',
+      description: 'The FileReader class lets you read files from a native file input. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-27')
+    },
+    {
       title: 'Vue Router Redirects',
       raw: './tutorials/vue/router-redirect.md',
       url: '/tutorials/vue/router-redirect',

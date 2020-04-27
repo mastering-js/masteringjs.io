@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Read Local Files in JavaScript with FileReader - Mastering JS</title>
+
+    <meta property="og:title" content="Read Local Files in JavaScript with FileReader" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="The FileReader class lets you read files from a native file input. Here's what you need to know." />
+    <meta name="description" content="The FileReader class lets you read files from a native file input. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Read Local Files in JavaScript with FileReader</h1>
+  <div class="date">
+    Apr 27, 2020
+  </div>
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">JavaScript&#39;s <code>FileReader</code></a> is a class that enables you to read a file on the user&#39;s
+machine from JavaScript running in the browser. <code>FileReader</code> is typically
+used to read data from an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file"><code>&lt;input type=&quot;file&quot;&gt;</code></a>.</p>
+<p>For example, suppose you have a file input on your page with id <code>select-file</code>.
+Here&#39;s how you can print out the contents of the currently selected file.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> file = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#select-file'</span>).files[<span class="hljs-number">0</span>];
+<span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader();
+
+reader.onload = <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(res.target.result); <span class="hljs-comment">// Print file contents</span>
+};
+reader.onerror = <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err);
+
+reader.readAsText(file);</code></pre>
+<p>Below is a live example that prints file contents to the console
+every time you select a different file. Click Ctrl+Shift+J on Linux/Windows
+or Cmd+J on OSX to open up the Chrome console and try it out!</p>
+<input type="file" id="select-file">
+
+<script>
+  const input = document.querySelector('#select-file');
+
+  input.addEventListener('change', () => {
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = res => {
+      console.log(res.target.result); // Print file contents
+    };
+    reader.onerror = err => console.log(err);
+
+    reader.readAsText(file);
+  });
+</script>
+
+<p><code>FileReader</code> is well supported in modern browsers, as well as IE10.
+Note that <code>FileReader</code> is a browser API, so, while most browsers
+support it, <code>FileReader</code> is <strong>not</strong> part of Node.js.</p>
+<h2 id="with-promises-and-asyncawait">With Promises and Async/Await</h2>
+<p>The <code>FileReader</code> class&#39; async API isn&#39;t ideal for usage with <a href="/tutorials/fundamentals/async-await">async/await</a> or <a href="/tutorials/fundamentals/promise-chaining">promise chaining</a>. Here&#39;s how you can wrap a <code>FileReader</code>
+in a promise for chaining:</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">readFile</span>(<span class="hljs-params">file</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader();
+
+    reader.onload = <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+      resolve(res.target.result);
+    };
+    reader.onerror = <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> reject(err);
+
+    reader.readAsText(file);
+  });
+}</code></pre>
+<p>With the above <code>readFile()</code> helper, you can read a file in an async
+function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onSubmit</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> file = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#select-file'</span>).files[<span class="hljs-number">0</span>];
+
+  <span class="hljs-keyword">const</span> contents = <span class="hljs-keyword">await</span> readFile(file);
+}</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/thenable">Thenables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-reject">Reject a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-chaining">JavaScript Promise Chaining</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/bluebird">Using Bluebird Promises</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-create">JavaScript Create Promise</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/catch">The Promise `catch()` Function in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-arrays">Compare Arrays in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
