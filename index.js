@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'FormData in JavaScript',
+      raw: './tutorials/fundamentals/formdata.md',
+      url: '/tutorials/fundamentals/formdata',
+      description: 'The `FormData` class is useful for uploading files from JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-05-01')
+    },
+    {
       title: 'Blobs in JavaScript',
       raw: './tutorials/fundamentals/blob.md',
       url: '/tutorials/fundamentals/blob',
