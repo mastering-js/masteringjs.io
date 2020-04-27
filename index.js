@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Blobs in JavaScript',
+      raw: './tutorials/fundamentals/blob.md',
+      url: '/tutorials/fundamentals/blob',
+      description: 'Blobs (binary large objects) are a file-like data structure in JavaScript. Like buffers, but for the client side. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-04-29')
+    },
+    {
       title: 'Read Local Files in JavaScript with FileReader',
       raw: './tutorials/fundamentals/filereader.md',
       url: '/tutorials/fundamentals/filereader',
