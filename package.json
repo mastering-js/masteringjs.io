@@ -27,8 +27,8 @@
     "mongoose": "5.x",
     "mongoose-beautiful-unique-validation": "7.x",
     "nightmare": "3.x",
-    "puppeteer": "2.x",
     "pug": "2.x",
+    "puppeteer": "2.x",
     "serve": "11.x",
     "sinon": "7.x",
     "vue": "2.x",
@@ -37,6 +37,7 @@
     "vue-template-compiler": "2.x",
     "vuex": "3.x",
     "webpack": "4.32.2",
+    "webpack-cli": "3.3.11",
     "ws": "7.x"
   },
   "scripts": {

@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Webpack Externals',
+      raw: './tutorials/webpack/externals.md',
+      url: '/tutorials/webpack/externals',
+      description: 'Externals let you exclude certain imports from the bundle so they can be resolved at runtime (like loaded via a script tag). Here\'s what you need to know.',
+      tags: ['webpack'],
+      date: moment('2020-05-04')
+    },
+    {
       title: 'FormData in JavaScript',
       raw: './tutorials/fundamentals/formdata.md',
       url: '/tutorials/fundamentals/formdata',
