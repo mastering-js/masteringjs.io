@@ -195,6 +195,7 @@ li {
     width: 100%;
     margin-top: 55px;
     padding: 15px;
+    box-sizing: border-box;
   }
 
   .branding {
