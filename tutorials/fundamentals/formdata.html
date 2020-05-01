@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FormData in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="FormData in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="The `FormData` class is useful for uploading files from JavaScript. Here's what you need to know." />
+    <meta name="description" content="The `FormData` class is useful for uploading files from JavaScript. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>FormData in JavaScript</h1>
+  <div class="date">
+    May 1, 2020
+  </div>
+  <p>The JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData class</a> is often used to <a href="/tutorials/axios/form-data">upload files using JavaScript</a>. For example, given a JavaScript file input:</p>
+<pre><code>&lt;input type=<span class="hljs-string">"file"</span> id=<span class="hljs-string">"my-input"</span>&gt;</code></pre><p>You can upload the selected file by creating a <code>FormData</code> class and passing
+it to <a href="/tutorials/axios/post">Axios&#39; <code>post()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#my-input'</span>);
+
+<span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
+formData.append(<span class="hljs-string">'myFile'</span>, input.files[<span class="hljs-number">0</span>]);
+
+axios.post(<span class="hljs-string">'/upload'</span>, formData, {
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>
+  }
+});</code></pre>
+<p>In short, the <code>FormData</code> class is the easiest way to upload a file
+from JavaScript without submitting an actual HTML form.</p>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/blob">Blobs in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filereader">Read Local Files in JavaScript with FileReader</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/thenable">Thenables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-reject">Reject a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-chaining">JavaScript Promise Chaining</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/bluebird">Using Bluebird Promises</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-create">JavaScript Create Promise</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

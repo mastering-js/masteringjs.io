@@ -334,4 +334,16 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('FormData', function() {
+    it('works in node', async function() {
+      const axios = require('axios');
+      const FormData = require('form-data');
+
+      const form = new FormData();
+      form.append('key', 'value');
+      const res = await axios.post('https://httpbin.org/post', form);
+      console.log(res.data);
+    });
+  });
 });
