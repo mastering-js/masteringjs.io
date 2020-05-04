@@ -63,7 +63,7 @@ you're testing code that requires `FormData` in Node.js, you need
 to use a polyfill like the [form-data npm module](https://www.npmjs.com/package/form-data).
 
 ```javascript
-[require:Axios FormData works in node$]
+[require:axios FormData works in node$]
 ```
 
 Since `FormData` is a browser API, you don't need to bundle it when
