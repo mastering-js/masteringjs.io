@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Using Webpack CSS Loader - Mastering JS</title>
+
+    <meta property="og:title" content="Using Webpack CSS Loader" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can use Webpack and the css-loader package to import styles." />
+    <meta name="description" content="Here's how you can use Webpack and the css-loader package to import styles." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/webpack">Webpack</a>
+    /
+  </div>
+  <h1>Using Webpack CSS Loader</h1>
+  <div class="date">
+    May 8, 2020
+  </div>
+  <p><a href="https://webpack.js.org/loaders/css-loader/">Webpack&#39;s CSS Loader</a>
+handles bundling CSS assets. Using the <a href="https://www.npmjs.com/package/css-loader">css-loader npm module</a>, you can import CSS as a plain string in your JavaScript.</p>
+<p>For example, given the below <code>app.js</code> file:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> css = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./style.css'</span>).toString();
+<span class="hljs-built_in">console</span>.log(css);</code></pre>
+<p>And the below <code>style.css</code> file:</p>
+<pre><code>h1 { <span class="hljs-attr">color</span>: green; }</code></pre><p>The below Webpack config will compile <code>app.js</code> into a bundle that prints
+<code>h1 { color: green; }</code> when it is run, either in Node.js or in the browser.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">entry</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/app.js`</span>,
+  <span class="hljs-attr">module</span>: {
+    <span class="hljs-attr">rules</span>: [
+      {
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,
+        <span class="hljs-attr">use</span>: <span class="hljs-string">'css-loader'</span>,
+        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">'.css'</span>, <span class="hljs-string">'.js'</span>]
+  },
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">'main.js'</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/dist`</span>
+  }
+};</code></pre>
+<h2 id="why-css-loader-matters">Why CSS Loader Matters</h2>
+<p>Being able to load CSS as a string is neat, but typically not useful
+on its own. That&#39;s why CSS Loader is usually used in conjunction with
+other loaders, like <a href="https://www.npmjs.com/package/style-loader">style-loader</a>.
+By default, style-loader inserts one <code>&lt;style&gt;</code> tag into the page&#39;s <code>&lt;head&gt;</code> for every
+imported CSS file. So given the below <code>app.js</code> file:</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./style.css'</span>);
+
+<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'body'</span>).innerHTML = <span class="hljs-string">'&lt;h1&gt;Hello, World&lt;/h1&gt;'</span>;</code></pre>
+<p>And the below <code>webpack.config.js</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+
+<span class="hljs-keyword">const</span> config = {
+  <span class="hljs-attr">entry</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/app.js`</span>,
+  <span class="hljs-attr">module</span>: {
+    <span class="hljs-attr">rules</span>: [
+      {
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,
+        <span class="hljs-attr">use</span>: [<span class="hljs-string">'style-loader'</span>, <span class="hljs-string">'css-loader'</span>],
+        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">'.css'</span>, <span class="hljs-string">'.js'</span>]
+  },
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">'main.js'</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/dist`</span>
+  }
+};</code></pre>
+<p>You get a green &quot;Hello, World&quot; with no <code>&lt;style&gt;</code> tags.</p>
+<p>Using CSS loader to import styles is overkill for most apps, and
+you normally shouldn&#39;t use it. CSS loader is often used to get
+scoped styles, but <a href="https://vue-loader.vuejs.org/guide/scoped-css.html">Vue already supports scoped CSS</a>. So CSS loader can be useful
+if you need scoped styles but can&#39;t use <a href="/tutorials/vue/templates#single-file-components">Vue&#39;s single file components</a>.</p>
+
+  
+  <hr>
+  
+    <h2>More Webpack Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/webpack/typescript">Using Webpack to Compile TypeScript</a></li>
+  
+
+    <li><a href="/tutorials/webpack/externals">Webpack Externals</a></li>
+  
+
+    <li><a href="/tutorials/webpack/bundle-analyzer">Analyze JavaScript Bundles with Webpack Bundle Analyzer</a></li>
+  
+
+    <li><a href="/tutorials/webpack/config">An Introduction to Webpack Configs</a></li>
+  
+
+    <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
+  
+
+    <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
+  
+
+    <li><a href="/tutorials/webpack/node">Running Webpack from Node.js</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
