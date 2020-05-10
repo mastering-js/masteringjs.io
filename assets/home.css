@@ -76,11 +76,15 @@
 }
 
 .pill-vue {
-  background-image: url("/assets/vue-transparent.png");
+  background-image: url("/assets/vue-transparent.svg");
+  background-size: 50% !important;
+  background-repeat: no-repeat;
 }
 
 .pill-webpack {
-  background-image: url("/assets/webpack-transparent.png");
+  background-image: url("/assets/webpack-transparent.svg");
+  background-size: 50% !important;
+  background-repeat: no-repeat;
 }
 
 .pill-dark {

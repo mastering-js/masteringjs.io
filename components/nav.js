@@ -6,7 +6,7 @@ module.exports = () => `
 <div class="nav">
   <div class="branding">
     <div class="logo">
-      <img src="/assets/logo.png" alt="Mastering JS Logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
     </div>
     <div class="name">
       <a href="/">Mastering JS</a>
