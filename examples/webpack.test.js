@@ -103,4 +103,78 @@ describe('Webpack', function() {
     assert.ok(fs.existsSync(`${__dirname}/bin/app.min.js`));
     // acquit:ignore:end
   });
+
+  describe('CSS Loader', function() {
+    before(function() {
+      function myApp() {
+        require('./style.css');
+
+        document.querySelector('#content').innerHTML = '<h1>Hello, World</h1>';
+      }
+
+      fs.writeFileSync(`${__dirname}/example/app.js`,
+        myApp.toString().concat(`\nmyApp();`));
+      fs.writeFileSync(`${__dirname}/example/style.css`,
+        'h1 { color: green }');
+    });
+
+    it('works correctly', async function() {
+      const webpack = require('webpack');
+
+      const config = {
+        entry: `${__dirname}/example/app.js`,
+        module: {
+          rules: [
+            {
+              test: /\.css$/,
+              use: ['style-loader', 'css-loader'],
+              exclude: /node_modules/
+            }
+          ]
+        },
+        resolve: {
+          extensions: ['.css', '.js']
+        },
+        output: {
+          filename: 'main.js',
+          path: `${__dirname}/example/dist`
+        }
+      };
+      // acquit:ignore:start
+      const compiler = webpack(config);
+
+      // `compiler.run()` doesn't support promises yet, only callbacks
+      await new Promise((resolve, reject) => {
+        compiler.run((err, res) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(res);
+        });
+      });
+
+      const puppeteer = require('puppeteer');
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      page.setContent(`
+        <html>
+          <body>
+            <div id="content"></div>
+            <script>
+              ${fs.readFileSync(__dirname + '/example/dist/main.js', 'utf8')}
+            </script>
+          </body>
+        </html>    
+      `);
+      let res =
+        await page.evaluate(() => document.querySelector('#content').innerHTML);
+      assert.equal(res, '<h1>Hello, World</h1>');
+
+      res =
+        await page.evaluate(() => getComputedStyle(document.querySelector('#content h1')).color);
+      assert.equal(res, 'rgb(0, 128, 0)');
+      await browser.close();
+      // acquit:ignore:end
+    });
+  });
 });

@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Using Webpack to Compile TypeScript - Mastering JS</title>
+
+    <meta property="og:title" content="Using Webpack to Compile TypeScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Webpack can bundle and compile TypeScript using ts-loader. Here's what you need to know." />
+    <meta name="description" content="Webpack can bundle and compile TypeScript using ts-loader. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/webpack">Webpack</a>
+    /
+  </div>
+  <h1>Using Webpack to Compile TypeScript</h1>
+  <div class="date">
+    May 6, 2020
+  </div>
+  <p>Here&#39;s <a href="https://webpack.js.org/guides/typescript/">the official guide for using Webpack to compile TypeScript</a>. This tutorial provides an abridged version
+explaining how to use Webpack to compile <code>.ts</code> files.</p>
+<h2 id="webpack-config">Webpack Config</h2>
+<p>Everything in Webpack starts with the <a href="/tutorials/webpack/config">Webpack config</a>. The key part of <code>webpack.config.js</code> for transpilers is the <code>module.rules</code>
+option. This is where you tell Webpack to use a special loader to
+compile a file before bundling. For TypeScript, you need the
+<a href="https://www.npmjs.com/package/ts-loader">ts-loader npm module</a>, in
+addition to the <a href="https://www.npmjs.com/package/typescript">typescript npm module</a>.</p>
+<pre><code>npm install typescript ts-loader</code></pre><p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">entry</span>: <span class="hljs-string">'./index.ts'</span>,
+  <span class="hljs-attr">module</span>: {
+    <span class="hljs-comment">// Use `ts-loader` on any file that ends in '.ts'</span>
+    rules: [
+      {
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.ts$/</span>,
+        <span class="hljs-attr">use</span>: <span class="hljs-string">'ts-loader'</span>,
+        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+      },
+    ],
+  },
+  <span class="hljs-comment">// Bundle '.ts' files as well as '.js' files.</span>
+  resolve: {
+    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">'.ts'</span>, <span class="hljs-string">'.js'</span>],
+  },
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">'main.js'</span>,
+    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${process.cwd()}</span>/dist`</span>,
+  }
+};</code></pre>
+<h2 id="compiling-a-typescript-file">Compiling a TypeScript File</h2>
+<p>Below is the <code>index.ts</code> file:</p>
+<pre><code><span class="hljs-keyword">const</span> str: string = <span class="hljs-string">'Hello, World'</span>;
+
+<span class="hljs-built_in">console</span>.log(str);</code></pre><p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
+<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"./index.ts"</span>]}</code></pre><p>Run <code>node ./dist/main.js</code> and you should see Node print out &quot;Hello, World&quot;.</p>
+<pre><code>$ node ./dist/main.js 
+Hello, World
+$</code></pre>
+  
+  <hr>
+  
+    <h2>More Webpack Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
+  
+
+    <li><a href="/tutorials/webpack/externals">Webpack Externals</a></li>
+  
+
+    <li><a href="/tutorials/webpack/bundle-analyzer">Analyze JavaScript Bundles with Webpack Bundle Analyzer</a></li>
+  
+
+    <li><a href="/tutorials/webpack/config">An Introduction to Webpack Configs</a></li>
+  
+
+    <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
+  
+
+    <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
+  
+
+    <li><a href="/tutorials/webpack/node">Running Webpack from Node.js</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

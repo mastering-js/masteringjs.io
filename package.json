@@ -46,6 +46,10 @@
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
   },
   "dependencies": {
-    "lighthouse": "^5.6.0"
+    "css-loader": "^3.5.3",
+    "lighthouse": "^5.6.0",
+    "style-loader": "^1.2.0",
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3"
   }
 }

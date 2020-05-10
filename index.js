@@ -37,6 +37,22 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Webpack CSS Loader',
+      raw: './tutorials/webpack/css-loader.md',
+      url: '/tutorials/webpack/css-loader',
+      description: 'Here\'s how you can use Webpack and the css-loader package to import styles.',
+      tags: ['webpack'],
+      date: moment('2020-05-08')
+    },
+    {
+      title: 'Using Webpack to Compile TypeScript',
+      raw: './tutorials/webpack/typescript.md',
+      url: '/tutorials/webpack/typescript',
+      description: 'Webpack can bundle and compile TypeScript using ts-loader. Here\'s what you need to know.',
+      tags: ['webpack'],
+      date: moment('2020-05-06')
+    },
+    {
       title: 'Webpack Externals',
       raw: './tutorials/webpack/externals.md',
       url: '/tutorials/webpack/externals',
