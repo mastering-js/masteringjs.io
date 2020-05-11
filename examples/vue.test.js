@@ -1031,7 +1031,8 @@ describe('Vue', function() {
         }
       }
       // acquit:ignore:start
-      await mounted.call(app);
+      console.log('app', app.$options.mounted)
+      await app.$options.mounted[0].call(app);
       const data = await renderToString(app);
       assert.ok(data.includes('Leanne Graham'));
       // acquit:ignore:end
