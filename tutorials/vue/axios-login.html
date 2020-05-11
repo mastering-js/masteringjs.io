@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue Login with Axios - Mastering JS</title>
+
+    <meta property="og:title" content="Vue Login with Axios" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can build a basic login form using Vue and Axios." />
+    <meta name="description" content="Here's how you can build a basic login form using Vue and Axios." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Vue Login with Axios</h1>
+  <div class="date">
+    May 15, 2020
+  </div>
+  <p>In this tutorial, you&#39;ll learn how to build a Vue form that
+authenticates using <a href="https://swagger.io/docs/specification/authentication/basic-authentication/">HTTP basic auth</a> and <a href="/axios">Axios</a>.</p>
+<h2 id="setup-with-axios">Setup with Axios</h2>
+<p><a href="http://httpbin.org/#/Auth/get_basic_auth__user___passwd_">HTTPBin offers a free sample endpoint to test basic auth</a>. The endpoint URL includes the correct username and password for test purposes. For example, the URL <code>https://httpbin.org/basic-auth/foo/bar</code> succeeds if you send it properly formatted basic auth for username &#39;foo&#39; and password &#39;bar&#39;, and fails if you don&#39;t.</p>
+<p>If you pass the <code>auth</code> option to <code>axios.get()</code>, Axios will automatically format basic auth.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/basic-auth/foo/bar'</span>, {
+  <span class="hljs-comment">// Axios looks for the `auth` option, and, if it is set, formats a</span>
+  <span class="hljs-comment">// basic auth header for you automatically.</span>
+  auth: {
+    <span class="hljs-attr">username</span>: <span class="hljs-string">'foo'</span>,
+    <span class="hljs-attr">password</span>: <span class="hljs-string">'bar'</span>
+  }
+});
+res.status; <span class="hljs-comment">// 200</span></code></pre>
+<h2 id="vue-login-form">Vue Login Form</h2>
+<p><a href="/tutorials/vue/form">Building a form in Vue</a> is easy: just use <a href="/tutorials/vue/v-model"><code>v-model</code></a>. When the user submits the login form, call the <code>login()</code> method
+that uses the above Axios logic.</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+      <span class="hljs-attr">username</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">password</span>: <span class="hljs-string">''</span>,
+      <span class="hljs-attr">error</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>
+    }),
+    <span class="hljs-attr">methods</span>: {
+      <span class="hljs-attr">login</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> auth = { <span class="hljs-attr">username</span>: <span class="hljs-keyword">this</span>.username, <span class="hljs-attr">password</span>: <span class="hljs-keyword">this</span>.password };
+        <span class="hljs-comment">// Correct username is 'foo' and password is 'bar'</span>
+        <span class="hljs-keyword">const</span> url = <span class="hljs-string">'https://httpbin.org/basic-auth/foo/bar'</span>;
+        <span class="hljs-keyword">this</span>.success = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">this</span>.error = <span class="hljs-literal">null</span>;
+
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(url, { auth }).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.data);
+          <span class="hljs-keyword">this</span>.success = <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">catch</span> (err) {
+          <span class="hljs-keyword">this</span>.error = err.message;
+        }
+      }
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;form @submit="login()"&gt;
+        &lt;h1&gt;Login&lt;/h1&gt;
+        &lt;div&gt;
+          &lt;input type="string" placeholder="Username" v-model="username"&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;input type="password" placeholder="Password" v-model="password"&gt;
+        &lt;/div&gt;
+        &lt;div v-if="error"&gt;
+          {{error}}
+        &lt;/div&gt;
+        &lt;div v-if="success" id="success"&gt;
+          Logged in Successfully
+        &lt;/div&gt;
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/router-link">The `router-link` Component in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/router-redirect">Vue Router Redirects</a></li>
+  
+
+    <li><a href="/tutorials/vue/dynamic-component">Vue Dynamic Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/modal">Show a Modal in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/v-for">Vue v-for Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/vue/unit-testing">Two Patterns for Unit Testing Vue Apps</a></li>
+  
+
+    <li><a href="/tutorials/vue/refs">An Introduction To Vue $refs</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

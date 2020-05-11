@@ -1881,6 +1881,77 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  it('login form', async function() {
+    // acquit:ignore:start
+    this.timeout(10000);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+
+    const fn = function() {
+      // acquit:ignore:end
+      const app = new Vue({
+        data: () => ({
+          username: '',
+          password: '',
+          error: null,
+          success: false
+        }),
+        methods: {
+          login: async function() {
+            const auth = { username: this.username, password: this.password };
+            // Correct username is 'foo' and password is 'bar'
+            const url = 'https://httpbin.org/basic-auth/foo/bar';
+            this.success = false;
+            this.error = null;
+
+            try {
+              const res = await axios.get(url, { auth }).then(res => res.data);
+              this.success = true;
+            } catch (err) {
+              this.error = err.message;
+            }
+          }
+        },
+        template: `
+          <form @submit="login()">
+            <h1>Login</h1>
+            <div>
+              <input type="string" placeholder="Username" v-model="username">
+            </div>
+            <div>
+              <input type="password" placeholder="Password" v-model="password">
+            </div>
+            <div v-if="error">
+              {{error}}
+            </div>
+            <div v-if="success" id="success">
+              Logged in Successfully
+            </div>
+            <button type="submit">Submit</button>
+          </div>
+        `
+      });
+      // acquit:ignore:start
+      app.$mount('#content');
+    };
+
+    const html = createVueHTMLScaffolding(fn.toString());
+    await page.setContent(html);
+
+    await page.evaluate(() => {
+      document.querySelector('input[type="string"]').value = 'foo';
+      document.querySelector('input[type="string"]').dispatchEvent(new Event('input'));
+
+      document.querySelector('input[type="password"]').value = 'bar';
+      document.querySelector('input[type="password"]').dispatchEvent(new Event('input'));
+
+      document.querySelector('form').dispatchEvent(new Event('submit'));
+    });
+
+    await page.waitForSelector('#success');
+    // acquit:ignore:end
+  });
 });
 
 function createVueHTMLScaffolding(code) {
@@ -1888,6 +1959,7 @@ function createVueHTMLScaffolding(code) {
     <html>
       <body>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 
         <div id="content"></div>
     
