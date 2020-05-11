@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>An Introduction to Mongoose SchemaTypes - Mastering JS</title>
+
+    <meta property="og:title" content="An Introduction to Mongoose SchemaTypes" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="In Mongoose, a SchemaType is a configuration object for a given path within a schema. Here's what you need to know." />
+    <meta name="description" content="In Mongoose, a SchemaType is a configuration object for a given path within a schema. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/mongoose">Mongoose</a>
+    /
+  </div>
+  <h1>An Introduction to Mongoose SchemaTypes</h1>
+  <div class="date">
+    May 20, 2020
+  </div>
+  <p>In <a href="https://mongoosejs.com/">Mongoose</a>, a <a href="https://mongoosejs.com/docs/schematypes.html">SchemaType</a> is a configuration object for a single path within a schema.
+A SchemaType says what type the path should be, how to validate that path, what
+the default value for the path is, and other Mongoose-specific config options.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
+
+schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
+schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span></code></pre>
+<p>The <code>SchemaType</code> class is just a base class. There are several classes
+that inherit from <code>SchemaType</code> that represent different core Mongoose Types:</p>
+<ul>
+<li><code>mongoose.Schema.Types.String</code></li>
+<li><code>mongoose.Schema.Types.Number</code></li>
+<li><code>mongoose.Schema.Types.Date</code></li>
+<li><code>mongoose.Schema.Types.Buffer</code></li>
+<li><code>mongoose.Schema.Types.Boolean</code></li>
+<li><code>mongoose.Schema.Types.Mixed</code></li>
+<li><code>mongoose.Schema.Types.ObjectId</code> (or, equivalently, <code>mongoose.ObjectId</code>)</li>
+<li><code>mongoose.Schema.Types.Array</code></li>
+<li><code>mongoose.Schema.Types.Decimal128</code></li>
+<li><code>mongoose.Schema.Types.Map</code></li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
+
+schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
+schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">instanceof</span> mongoose.Schema.Types.String; <span class="hljs-comment">// true</span>
+
+schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
+schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.Schema.Types.Number; <span class="hljs-comment">// true</span></code></pre>
+<h2 id="working-with-schematypes">Working With SchemaTypes</h2>
+<p>You normally don&#39;t have to work with <code>SchemaType</code> instances directly.
+You can declare validators and defaults in your <a href="/tutorials/mongoose/schema">schema definition</a>. For example, the below example sets the default <code>age</code> to 25
+and adds a validator that ensures <code>age</code> is at least 21.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({
+  <span class="hljs-attr">age</span>: {
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>,
+    <span class="hljs-attr">default</span>: <span class="hljs-number">25</span>,
+    <span class="hljs-attr">validate</span>: <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v &gt;= <span class="hljs-number">21</span>
+  }
+});</code></pre>
+<p>The above is how you normally declare defaults and validators in Mongoose.
+But there&#39;s nothing stopping you from adding them on the <code>age</code> SchemaType
+after creating your schema.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Equivalent:</span>
+<span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
+
+schema.path(<span class="hljs-string">'age'</span>).default(<span class="hljs-number">25</span>);
+schema.path(<span class="hljs-string">'age'</span>).validate(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v &gt;= <span class="hljs-number">21</span>);</code></pre>
+<p>The latter syntax is equivalent to the former, but isn&#39;t commonly used.
+The most common case for working with <code>SchemaType</code> instances directly
+is with <a href="https://thecodebarbarian.com/mongoose-4.12-single-embedded-discriminators.html">embedded discriminators</a>.</p>
+<p>For example, suppose you have an <code>Order</code> schema, and an <code>Order</code>
+has an embedded list of <code>products</code>. Each product may be a book,
+computer, or something else, and each type of product can have different properties.
+Embedded discriminators let an array store subdocuments that conform
+to different schemas based on each subdocument&#39;s <code>__t</code> property.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> productSchema = <span class="hljs-keyword">new</span> Schema({
+  <span class="hljs-attr">imageURL</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>
+}, { <span class="hljs-attr">discriminatorKey</span>: <span class="hljs-string">'__t'</span> });
+
+<span class="hljs-keyword">const</span> bookSchema = <span class="hljs-keyword">new</span> Schema({
+  <span class="hljs-attr">author</span>: <span class="hljs-built_in">String</span>
+});
+
+<span class="hljs-keyword">const</span> computerSchema = <span class="hljs-keyword">new</span> Schema({
+  <span class="hljs-attr">ramGB</span>: <span class="hljs-built_in">Number</span>
+});
+
+<span class="hljs-keyword">const</span> orderSchema = <span class="hljs-keyword">new</span> Schema({
+  <span class="hljs-attr">createdAt</span>: <span class="hljs-built_in">Date</span>,
+  <span class="hljs-attr">product</span>: [productSchema]
+});
+
+<span class="hljs-comment">// Add discriminators to the `products` SchemaType.</span>
+orderSchema.path(<span class="hljs-string">'products'</span>).discriminator(<span class="hljs-string">'Book'</span>, bookSchema);
+orderSchema.path(<span class="hljs-string">'products'</span>).discriminator(<span class="hljs-string">'Computer'</span>, computerSchema);
+
+<span class="hljs-keyword">const</span> Order = mongoose.model(<span class="hljs-string">'Order'</span>, orderSchema);</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Mongoose Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/mongoose/aggregate">An Introduction to Mongoose Aggregate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/promise">Promises in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/populate">Introduction to Mongoose Populate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/objectid">ObjectIds in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/schema">Introduction to Mongoose Schemas</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/connect">Connecting to MongoDB with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find-by-id">Find By ID in Mongoose</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
