@@ -494,6 +494,163 @@ describe('Mongoose', function() {
     });
   });
 
+  describe('Aggregate', function() {
+    let Character;
+  
+    beforeEach(async function() {
+      Character = mongoose.model('Character', mongoose.Schema({
+        name: String,
+        age: Number,
+        rank: String
+      }));
+  
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+    });
+
+    it('basic match', async function() {
+      // acquit:ignore:start
+      await Character.deleteMany({});
+      // acquit:ignore:end
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+
+      const filter = { age: { $gte: 30 } };
+      let docs = await Character.aggregate([
+        { $match: filter }
+      ]);
+
+      docs.length; // 1
+      docs[0].name; // 'Jean-Luc Picard'
+      docs[0].age // 59
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      assert.equal(docs[0].name, 'Jean-Luc Picard');
+      // acquit:ignore:end
+
+      // `$match` is similar to `find()`
+      docs = await Character.find(filter);
+      docs.length; // 1
+      docs[0].name; // 'Jean-Luc Picard'
+      docs[0].age // 59
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      assert.equal(docs[0].name, 'Jean-Luc Picard');
+      // acquit:ignore:end
+    });
+
+    it('group', async function() {
+      let docs = await Character.aggregate([
+        {
+          $group: {
+            // Each `_id` must be unique, so if there are multiple
+            // documents with the same age, MongoDB will increment `count`.
+            _id: '$age',
+            count: { $sum: 1 }
+          }
+        }
+      ]);
+
+      docs.length; // 4
+      docs.sort((d1, d2) => d1._id - d2._id);
+      docs[0]; // { _id: 24, count: 1 }
+      docs[1]; // { _id: 28, count: 1 }
+      docs[2]; // { _id: 29, count: 2 }
+      docs[3]; // { _id: 59, count: 1 }
+      // acquit:ignore:start
+      assert.deepEqual(docs, [
+        { _id: 24, count: 1 },
+        { _id: 28, count: 1 },
+        { _id: 29, count: 2 },
+        { _id: 59, count: 1 }
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('combined', async function() {
+      let docs = await Character.aggregate([
+        { $match: { age: { $lt: 30 } } },
+        {
+          $group: {
+            _id: '$age',
+            count: { $sum: 1 }
+          }
+        }
+      ]);
+
+      docs.length; // 3
+      docs.sort((d1, d2) => d1._id - d2._id);
+      docs[0]; // { _id: 24, count: 1 }
+      docs[1]; // { _id: 28, count: 1 }
+      docs[2]; // { _id: 29, count: 2 }
+      // acquit:ignore:start
+      assert.deepEqual(docs, [
+        { _id: 24, count: 1 },
+        { _id: 28, count: 1 },
+        { _id: 29, count: 2 }
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('chaining', async function() {
+      let docs = await Character.aggregate().
+        match({ age: { $lt: 30 } }).
+        group({ _id: '$age', count: { $sum: 1 } });
+
+      docs.length; // 3
+      docs.sort((d1, d2) => d1._id - d2._id);
+      docs[0]; // { _id: 24, count: 1 }
+      docs[1]; // { _id: 28, count: 1 }
+      docs[2]; // { _id: 29, count: 2 }
+      // acquit:ignore:start
+      assert.deepEqual(docs, [
+        { _id: 24, count: 1 },
+        { _id: 28, count: 1 },
+        { _id: 29, count: 2 }
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('middleware', async function() {
+      // acquit:ignore:start
+      mongoose.deleteModel(/Character/);
+      // acquit:ignore:end
+      const characterSchema = Schema({ name: String, age: Number });
+      characterSchema.pre('aggregate', function() {
+        // Add a `$match` to the beginning of the pipeline
+        this.pipeline().unshift({ $match: { age: { $lt: 30 } } });
+      });
+      const Character = mongoose.model('Character', characterSchema);
+
+      // The `pre('aggregate')` adds a `$match` to the pipeline.
+      let docs = await Character.aggregate().
+        group({ _id: '$age', count: { $sum: 1 } });
+
+      docs.length; // 3
+      docs.sort((d1, d2) => d1._id - d2._id);
+      docs[0]; // { _id: 24, count: 1 }
+      docs[1]; // { _id: 28, count: 1 }
+      docs[2]; // { _id: 29, count: 2 }
+      // acquit:ignore:start
+      assert.deepEqual(docs, [
+        { _id: 24, count: 1 },
+        { _id: 28, count: 1 },
+        { _id: 29, count: 2 }
+      ]);
+      // acquit:ignore:end
+    });
+  });
+
   describe('Model.find()', function() {
     let Character;
 

@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Mongoose Aggregate',
+      raw: './tutorials/mongoose/aggregate.md',
+      url: '/tutorials/mongoose/aggregate',
+      description: 'Aggregations in Mongoose let you perform complex transformations on your data in MongoDB. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-05-18')
+    },
+    {
       title: 'Vue Login with Axios',
       raw: './tutorials/vue/axios-login.md',
       url: '/tutorials/vue/axios-login',

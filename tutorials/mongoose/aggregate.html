@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>An Introduction to Mongoose Aggregate - Mastering JS</title>
+
+    <meta property="og:title" content="An Introduction to Mongoose Aggregate" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Aggregations in Mongoose let you perform complex transformations on your data in MongoDB. Here's what you need to know." />
+    <meta name="description" content="Aggregations in Mongoose let you perform complex transformations on your data in MongoDB. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/mongoose">Mongoose</a>
+    /
+  </div>
+  <h1>An Introduction to Mongoose Aggregate</h1>
+  <div class="date">
+    May 18, 2020
+  </div>
+  <p><a href="https://mongoosejs.com/docs/api/model.html#model_Model.aggregate">Mongoose&#39;s <code>aggregate()</code> function</a>
+is how you use <a href="https://docs.mongodb.com/manual/aggregation/">MongoDB&#39;s aggregation framework</a> with Mongoose. Mongoose&#39;s <code>aggregate()</code> is a thin wrapper, so any aggregation query that works in the <a href="https://docs.mongodb.com/manual/mongo/">MongoDB shell</a> should work in Mongoose without any changes.</p>
+<h2 id="what-is-the-aggregation-framework">What is the Aggregation Framework?</h2>
+<p>Syntactically, an aggregation framework query is an array of stages. A
+<em>stage</em> is an object description of how MongoDB should transform any
+document coming into the stage. The first stage feeds documents into
+the second stage, and so on, so you can compose transformations using
+stages. The array of stages you pass to the <code>aggregate()</code> function
+is called an aggregation <em>pipeline</em>.</p>
+<h3 id="the-match-stage">The <code>$match</code> Stage</h3>
+<p>The <code>$match</code> stage filters out documents that don&#39;t match the given
+<code>filter</code> parameter, similar to filters for <a href="/tutorials/mongoose/find">Mongoose&#39;s <code>find()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Character.create([
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
+]);
+
+<span class="hljs-keyword">const</span> filter = { <span class="hljs-attr">age</span>: { <span class="hljs-attr">$gte</span>: <span class="hljs-number">30</span> } };
+<span class="hljs-keyword">let</span> docs = <span class="hljs-keyword">await</span> Character.aggregate([
+  { <span class="hljs-attr">$match</span>: filter }
+]);
+
+docs.length; <span class="hljs-comment">// 1</span>
+docs[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
+docs[<span class="hljs-number">0</span>].age <span class="hljs-comment">// 59</span>
+
+<span class="hljs-comment">// `$match` is similar to `find()`</span>
+docs = <span class="hljs-keyword">await</span> Character.find(filter);
+docs.length; <span class="hljs-comment">// 1</span>
+docs[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
+docs[<span class="hljs-number">0</span>].age <span class="hljs-comment">// 59</span></code></pre>
+<h3 id="the-group-stage">The <code>$group</code> Stage</h3>
+<p>Aggregations can do much more than just filter documents. You can also use
+the aggregation framework to tranform documents. For example, the <code>$group</code>
+stage behaves like a <a href="http://thecodebarbarian.com/javascript-reduce-in-5-examples.html"><code>reduce()</code> function</a>. For example, the <code>$group</code> stage
+lets you count how many characters have a given <code>age</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> docs = <span class="hljs-keyword">await</span> Character.aggregate([
+  {
+    <span class="hljs-attr">$group</span>: {
+      <span class="hljs-comment">// Each `_id` must be unique, so if there are multiple</span>
+      <span class="hljs-comment">// documents with the same age, MongoDB will increment `count`.</span>
+      _id: <span class="hljs-string">'$age'</span>,
+      <span class="hljs-attr">count</span>: { <span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span> }
+    }
+  }
+]);
+
+docs.length; <span class="hljs-comment">// 4</span>
+docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
+docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
+docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span>
+docs[<span class="hljs-number">3</span>]; <span class="hljs-comment">// { _id: 59, count: 1 }</span></code></pre>
+<h3 id="combining-multiple-stages">Combining Multiple Stages</h3>
+<p>The aggregation pipeline&#39;s strength is its composability. For example,
+you can combine the previous two examples to only group characters
+by <code>age</code> if their <code>age</code> is <code>&lt; 30</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> docs = <span class="hljs-keyword">await</span> Character.aggregate([
+  { <span class="hljs-attr">$match</span>: { <span class="hljs-attr">age</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">30</span> } } },
+  {
+    <span class="hljs-attr">$group</span>: {
+      <span class="hljs-attr">_id</span>: <span class="hljs-string">'$age'</span>,
+      <span class="hljs-attr">count</span>: { <span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span> }
+    }
+  }
+]);
+
+docs.length; <span class="hljs-comment">// 3</span>
+docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
+docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
+docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+<h2 id="mongoose-aggregate-class">Mongoose <code>Aggregate</code> Class</h2>
+<p>Mongoose&#39;s <code>aggregate()</code> function returns an instance of Mongoose&#39;s
+<a href="https://mongoosejs.com/docs/api/aggregate.html"><code>Aggregate</code> class</a>.
+<code>Aggregate</code> instances are <a href="/tutorials/fundamentals/thenable">thenable</a>,
+so you can use them with <code>await</code> and <a href="/tutorials/fundamentals/promise-chaining">promise chaining</a>.</p>
+<p>The <code>Aggregate</code> class also supports a chaining interface for building
+aggregation pipelines. For example, the below code shows an alternative
+syntax for building an aggregation pipeline with a <code>$match</code> followed by
+a <code>$group</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> docs = <span class="hljs-keyword">await</span> Character.aggregate().
+  match({ <span class="hljs-attr">age</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">30</span> } }).
+  group({ <span class="hljs-attr">_id</span>: <span class="hljs-string">'$age'</span>, <span class="hljs-attr">count</span>: { <span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span> } });
+
+docs.length; <span class="hljs-comment">// 3</span>
+docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
+docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
+docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+<p><a href="https://mongoosejs.com/docs/middleware.html">Mongoose middleware</a> also
+supports <code>pre(&#39;aggregate&#39;)</code> and <code>post(&#39;aggregate&#39;)</code> hooks. You can use
+aggregation middleware to transform the aggregation pipeline.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characterSchema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
+characterSchema.pre(<span class="hljs-string">'aggregate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Add a `$match` to the beginning of the pipeline</span>
+  <span class="hljs-keyword">this</span>.pipeline().unshift({ <span class="hljs-attr">$match</span>: { <span class="hljs-attr">age</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">30</span> } } });
+});
+<span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, characterSchema);
+
+<span class="hljs-comment">// The `pre('aggregate')` adds a `$match` to the pipeline.</span>
+<span class="hljs-keyword">let</span> docs = <span class="hljs-keyword">await</span> Character.aggregate().
+  group({ <span class="hljs-attr">_id</span>: <span class="hljs-string">'$age'</span>, <span class="hljs-attr">count</span>: { <span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span> } });
+
+docs.length; <span class="hljs-comment">// 3</span>
+docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
+docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
+docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Mongoose Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/mongoose/promise">Promises in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/populate">Introduction to Mongoose Populate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/objectid">ObjectIds in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/schema">Introduction to Mongoose Schemas</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/connect">Connecting to MongoDB with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find-by-id">Find By ID in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/find">Learn Mongoose find() by Example</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
