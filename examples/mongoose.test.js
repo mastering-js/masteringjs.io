@@ -678,6 +678,125 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+  
+  describe('Array', function() {
+    it('instanceof', async function() {
+      const blogPostSchema = Schema({
+        title: String,
+        tags: [String]
+      }, { versionKey: false });
+      const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+      const doc = new BlogPost({
+        title: 'Intro to JavaScript',
+        tags: ['programming']
+      });
+
+      Array.isArray(doc.tags); // true
+      doc.tags.isMongooseArray; // true
+      // acquit:ignore:start
+      assert.ok(Array.isArray(doc.tags));
+      assert.ok(doc.tags.isMongooseArray);
+      // acquit:ignore:end
+    });
+
+    it('doc array instanceof', async function() {
+      const groupSchema = Schema({
+        name: String,
+        members: [{ firstName: String, lastName: String }]
+      });
+      const Group = mongoose.model('Group', groupSchema);
+
+      const doc = new Group({
+        title: 'Jedi Order',
+        members: [{ firstName: 'Luke', lastName: 'Skywalker' }]
+      });
+
+      Array.isArray(doc.members); // true
+      doc.members.isMongooseArray; // true
+      doc.members.isMongooseDocumentArray; // true
+      // acquit:ignore:start
+      assert.ok(Array.isArray(doc.members));
+      assert.ok(doc.members.isMongooseArray);
+      assert.ok(doc.members.isMongooseDocumentArray);
+      // acquit:ignore:end
+    });
+
+    it('doc array modify', async function() {
+      const groupSchema = Schema({
+        name: String,
+        members: [{ firstName: String, lastName: String }]
+      }, { versionKey: false });
+      const Group = mongoose.model('Group', groupSchema);
+
+      const doc = new Group({
+        title: 'Jedi Order',
+        members: [{ firstName: 'Luke', lastName: 'Skywalker' }]
+      });
+      await doc.save();
+
+      mongoose.set('debug', true);
+      
+      doc.members[0].firstName = 'Anakin';
+      // Prints:
+      // Mongoose: groups.updateOne({ _id: ObjectId("...") },
+      // { '$set': { 'members.0.firstName': 'Anakin' } }, { session: null })
+      await doc.save();
+      // acquit:ignore:start
+      mongoose.set('debug', false);
+      // acquit:ignore:end
+    });
+
+    it('direct index set', async function() {
+      const blogPostSchema = Schema({
+        title: String,
+        tags: [String]
+      }, { versionKey: false });
+      const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+      const doc = new BlogPost({
+        title: 'Intro to JavaScript',
+        tags: ['programming']
+      });
+      await doc.save();
+
+      // This change won't end up in the database!
+      doc.tags[0] = 'JavaScript';
+      await doc.save();
+
+      const fromDb = await BlogPost.findOne({ _id: doc._id });
+      fromDb.tags; // ['programming']
+      // acquit:ignore:start
+      assert.deepEqual(fromDb.tags, ['programming']);
+      // acquit:ignore:end
+    });
+
+    it('direct index workaround', async function() {
+      // acquit:ignore:start
+      const blogPostSchema = Schema({
+        title: String,
+        tags: [String]
+      }, { versionKey: false });
+      const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+
+      const doc = new BlogPost({
+        title: 'Intro to JavaScript',
+        tags: ['programming']
+      });
+      await doc.save();
+      // acquit:ignore:end
+      // This change works. `set()` is a special method on Mongoose
+      // arrays that triggers change tracking.
+      doc.tags.set(0, 'JavaScript');
+      await doc.save();
+
+      const fromDb = await BlogPost.findOne({ _id: doc._id });
+      fromDb.tags; // ['JavaScript']
+      // acquit:ignore:start
+      assert.deepEqual(fromDb.tags, ['JavaScript']);
+      // acquit:ignore:end
+    });
+  });
 
   describe('Model.find()', function() {
     let Character;

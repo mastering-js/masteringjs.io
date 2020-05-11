@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Mongoose Arrays',
+      raw: './tutorials/mongoose/array.md',
+      url: '/tutorials/mongoose/array',
+      description: 'Mongoose arrays supports arrays of primitives and arrays of subdocuments. Here\'s how you can work with Mongoose arrays effectively.',
+      tags: ['mongoose'],
+      date: moment('2020-05-22')
+    },
+    {
       title: 'An Introduction to Mongoose SchemaTypes',
       raw: './tutorials/mongoose/schematype.md',
       url: '/tutorials/mongoose/schematype',
