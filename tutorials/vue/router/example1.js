@@ -16,8 +16,8 @@ const app = new Vue({
   template: `
     <div id="rendered-content">
       <div>
-        <router-link to="/home">Home</router-link>
-        <router-link to="/about">About Us</router-link>
+        <router-link to="/home" tag="button">Home</router-link>
+        <router-link to="/about" tag="button">About Us</router-link>
       </div>
       <div>
         <router-view></router-view>
