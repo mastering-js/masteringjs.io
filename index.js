@@ -37,12 +37,12 @@ async function run() {
 
   const tutorials = [
     {
-      title: 'The `mounted()` Hook in Vue',
-      raw: './tutorials/vue/mounted.md',
-      url: '/tutorials/vue/mounted',
-      description: 'The `mounted()` hook is the most commonly used lifecycle hook in Vue. Here\'s what you can use `mounted()` for and why you should use it rather than the `created()` hook.',
+      title: 'The `router-link` Component in Vue',
+      raw: './tutorials/vue/router-link.md',
+      url: '/tutorials/vue/router-link',
+      description: 'The `router-link` component is the preferred way to create links with Vue router. Here\'s what you need to know.',
       tags: ['vue'],
-      date: moment('2020-05-11')
+      date: moment('2020-05-13')
     },
     {
       title: 'Using Webpack CSS Loader',
