@@ -37,7 +37,7 @@ module.exports = () => `
     <div class="hero">
       <div class="overview">
         <h1>Become a Full-Stack Mongoose Expert</h1>
-        <div>
+        <div class="tagline">
           The complete guide to building and maintaining <b>fast, production-ready</b> apps with Mongoose, written by <b>Mongoose's Lead Developer</b>.
         </div>
         <div class="cta">
