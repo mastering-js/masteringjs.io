@@ -53,6 +53,14 @@ async function run() {
       date: moment('2020-05-13')
     },
     {
+      title: 'The `mounted()` Hook in Vue',
+      raw: './tutorials/vue/mounted.md',
+      url: '/tutorials/vue/mounted',
+      description: 'The `mounted()` hook is the most commonly used lifecycle hook in Vue. Here\'s what you can use `mounted()` for and why you should use it rather than the `created()` hook.',
+      tags: ['vue'],
+      date: moment('2020-05-11')
+    },
+    {
       title: 'Using Webpack CSS Loader',
       raw: './tutorials/webpack/css-loader.md',
       url: '/tutorials/webpack/css-loader',
