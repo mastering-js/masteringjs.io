@@ -1,0 +1,95 @@
+body {
+  font-size: 16px;
+  padding-bottom: 100px;
+}
+
+.hero {
+  width: 100%;
+  background-color: #74DCE3;
+  height: 700px;
+  color: #222;
+  margin-bottom: 100px;
+}
+
+button {
+  margin-top: 0.5em;
+  width: 320px;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 4px;
+  padding: 0.25em;
+  border: 0px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.buy {
+  background-color: #F0DB4F;
+  border: 4px solid #F0DB4F;
+}
+
+.preview {
+  background-color: transparent;
+  border: 4px solid #ddd;
+}
+
+.hero .overview {
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 30px;
+  padding-top: 200px;
+}
+
+.hero .overview h1 {
+  text-align: left;
+  display: inline-block;
+  width: 690px;
+}
+
+.hero .overview div {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  font-size: 1.25em;
+  line-height: 1.5em;
+  width: 690px;
+  margin-bottom: 0.5em;
+}
+
+.hero .cover {
+  float: right;
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 30px;
+}
+
+.hero .cover img {
+  height: 640px;
+}
+
+.section {
+  width: 1000px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25em;
+  line-height: 1.75em;
+}
+
+.section h2 {
+  text-align: center;
+}
+
+p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    margin-top: 65px;
+  }
+}

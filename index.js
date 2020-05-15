@@ -1433,6 +1433,8 @@ async function run() {
     content: list({ posts: tutorials, title: 'All Tutorials' }),
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
+
+  fs.writeFileSync('./ebooks/mastering-mongoose.html', require('./components/ebooks/mongoose')());
 }
 
 function capitalize(str) {
