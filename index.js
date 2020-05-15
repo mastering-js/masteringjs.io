@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Login with Axios',
+      raw: './tutorials/vue/axios-login.md',
+      url: '/tutorials/vue/axios-login',
+      description: 'Here\'s how you can build a basic login form using Vue and Axios.',
+      tags: ['vue'],
+      date: moment('2020-05-15')
+    },
+    {
       title: 'The `router-link` Component in Vue',
       raw: './tutorials/vue/router-link.md',
       url: '/tutorials/vue/router-link',
