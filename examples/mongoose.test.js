@@ -651,6 +651,34 @@ describe('Mongoose', function() {
     });
   });
 
+  describe('SchemaType', function() {
+    it('basic example', function() {
+      const schema = Schema({ name: String, age: Number });
+
+      schema.path('name') instanceof mongoose.SchemaType; // true
+      schema.path('age') instanceof mongoose.SchemaType; // true
+      // acquit:ignore:start
+      assert.ok(schema.path('name') instanceof mongoose.SchemaType);
+      assert.ok(schema.path('age') instanceof mongoose.SchemaType);
+      // acquit:ignore:end
+    });
+
+    it('with inheritance', function() {
+      const schema = Schema({ name: String, age: Number });
+
+      schema.path('name') instanceof mongoose.SchemaType; // true
+      schema.path('name') instanceof mongoose.Schema.Types.String; // true
+
+      schema.path('age') instanceof mongoose.SchemaType; // true
+      schema.path('age') instanceof mongoose.Schema.Types.Number; // true
+      // acquit:ignore:start
+      assert.ok(schema.path('name') instanceof mongoose.SchemaType);
+      assert.ok(schema.path('name') instanceof mongoose.Schema.Types.String);
+      assert.ok(schema.path('age') instanceof mongoose.SchemaType);
+      // acquit:ignore:end
+    });
+  });
+
   describe('Model.find()', function() {
     let Character;
 

@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Mongoose SchemaTypes',
+      raw: './tutorials/mongoose/schematype.md',
+      url: '/tutorials/mongoose/schematype',
+      description: 'In Mongoose, a SchemaType is a configuration object for a given path within a schema. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-05-20')
+    },
+    {
       title: 'An Introduction to Mongoose Aggregate',
       raw: './tutorials/mongoose/aggregate.md',
       url: '/tutorials/mongoose/aggregate',
