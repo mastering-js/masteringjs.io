@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>An Introduction to Mongoose Arrays - Mastering JS</title>
+
+    <meta property="og:title" content="An Introduction to Mongoose Arrays" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Mongoose arrays supports arrays of primitives and arrays of subdocuments. Here's how you can work with Mongoose arrays effectively." />
+    <meta name="description" content="Mongoose arrays supports arrays of primitives and arrays of subdocuments. Here's how you can work with Mongoose arrays effectively." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/mongoose">Mongoose</a>
+    /
+  </div>
+  <h1>An Introduction to Mongoose Arrays</h1>
+  <div class="date">
+    May 22, 2020
+  </div>
+  <p><a href="https://mongoosejs.com/docs/schematypes.html#arrays">Mongoose&#39;s <code>Array</code> class</a> extends
+vanilla JavaScript arrays with additional Mongoose functionality.
+For example, suppose you have a blog post schema with an array of <code>tags</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> blogPostSchema = Schema({
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">tags</span>: [<span class="hljs-built_in">String</span>]
+});</code></pre>
+<p>When you create a new <code>BlogPost</code> document, the <code>tags</code> property is
+an instance of the vanilla <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">JavaScript array</a> class. But it also has
+some special properties.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> blogPostSchema = Schema({
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">tags</span>: [<span class="hljs-built_in">String</span>]
+}, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
+<span class="hljs-keyword">const</span> BlogPost = mongoose.model(<span class="hljs-string">'BlogPost'</span>, blogPostSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> BlogPost({
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Intro to JavaScript'</span>,
+  <span class="hljs-attr">tags</span>: [<span class="hljs-string">'programming'</span>]
+});
+
+<span class="hljs-built_in">Array</span>.isArray(doc.tags); <span class="hljs-comment">// true</span>
+doc.tags.isMongooseArray; <span class="hljs-comment">// true</span></code></pre>
+<p>For example, Mongoose intercepts <code>push()</code> calls on the <code>tags</code> array,
+and is smart enough to update the document using <code>$push</code> when you <code>save()</code> the document.</p>
+<pre><code class="language-javascript">mongoose.set(<span class="hljs-string">'debug'</span>, <span class="hljs-literal">true</span>);
+
+doc.tags.push(<span class="hljs-string">'web development'</span>);
+<span class="hljs-comment">// Because of 'debug' mode, will print:</span>
+<span class="hljs-comment">// Mongoose: blogposts.updateOne({ _id: ObjectId(...) }, { '$push': { tags: { '$each': [ 'web development' ] } } }, { session: null })</span>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
+<h2 id="document-arrays">Document Arrays</h2>
+<p>The <code>tags</code> example is an array of primitives. Mongoose also supports
+arrays of subdocuments. Here&#39;s how you can define an array of
+<code>members</code>, each with a <code>firstName</code> and <code>lastName</code> property.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> groupSchema = Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">members</span>: [{ <span class="hljs-attr">firstName</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-built_in">String</span> }]
+});</code></pre>
+<p><code>doc.members</code> is an instance of a vanilla JavaScript array, so it
+has all the usual functions, like <code>slice()</code> and <code>filter()</code>. But
+it also has some Mongoose-specific functionality baked in.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> groupSchema = Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">members</span>: [{ <span class="hljs-attr">firstName</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-built_in">String</span> }]
+});
+<span class="hljs-keyword">const</span> Group = mongoose.model(<span class="hljs-string">'Group'</span>, groupSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Group({
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Jedi Order'</span>,
+  <span class="hljs-attr">members</span>: [{ <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Luke'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Skywalker'</span> }]
+});
+
+<span class="hljs-built_in">Array</span>.isArray(doc.members); <span class="hljs-comment">// true</span>
+doc.members.isMongooseArray; <span class="hljs-comment">// true</span>
+doc.members.isMongooseDocumentArray; <span class="hljs-comment">// true</span></code></pre>
+<p>For example, if you set the 0th member&#39;s <code>firstName</code>, Mongoose will translate that to a set 
+on <code>member.0.firstName</code> when you call <code>save()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> groupSchema = Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">members</span>: [{ <span class="hljs-attr">firstName</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-built_in">String</span> }]
+}, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
+<span class="hljs-keyword">const</span> Group = mongoose.model(<span class="hljs-string">'Group'</span>, groupSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Group({
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Jedi Order'</span>,
+  <span class="hljs-attr">members</span>: [{ <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Luke'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Skywalker'</span> }]
+});
+<span class="hljs-keyword">await</span> doc.save();
+
+mongoose.set(<span class="hljs-string">'debug'</span>, <span class="hljs-literal">true</span>);
+
+doc.members[<span class="hljs-number">0</span>].firstName = <span class="hljs-string">'Anakin'</span>;
+<span class="hljs-comment">// Prints:</span>
+<span class="hljs-comment">// Mongoose: groups.updateOne({ _id: ObjectId("...") },</span>
+<span class="hljs-comment">// { '$set': { 'members.0.firstName': 'Anakin' } }, { session: null })</span>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
+<h2 id="caveat-with-setting-array-indexes">Caveat With Setting Array Indexes</h2>
+<p>Mongoose has a <a href="https://mongoosejs.com/docs/faq.html#array-changes-not-saved">known issue with setting array indexes directly</a>. For example, if you set <code>doc.tags[0]</code>,
+Mongoose change tracking won&#39;t pick up that change.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> blogPostSchema = Schema({
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">tags</span>: [<span class="hljs-built_in">String</span>]
+}, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
+<span class="hljs-keyword">const</span> BlogPost = mongoose.model(<span class="hljs-string">'BlogPost'</span>, blogPostSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> BlogPost({
+  <span class="hljs-attr">title</span>: <span class="hljs-string">'Intro to JavaScript'</span>,
+  <span class="hljs-attr">tags</span>: [<span class="hljs-string">'programming'</span>]
+});
+<span class="hljs-keyword">await</span> doc.save();
+
+<span class="hljs-comment">// This change won't end up in the database!</span>
+doc.tags[<span class="hljs-number">0</span>] = <span class="hljs-string">'JavaScript'</span>;
+<span class="hljs-keyword">await</span> doc.save();
+
+<span class="hljs-keyword">const</span> fromDb = <span class="hljs-keyword">await</span> BlogPost.findOne({ <span class="hljs-attr">_id</span>: doc._id });
+fromDb.tags; <span class="hljs-comment">// ['programming']</span></code></pre>
+<p>To work around this caveat, you need to inform Mongoose&#39;s change
+tracking of the change, either using the <a href="https://mongoosejs.com/docs/api/document.html#document_Document-markModified"><code>markModified()</code> method</a> or by explicitly calling <a href="https://mongoosejs.com/docs/api/array.html#mongoosearray_MongooseArray-set"><code>MongooseArray#set()</code></a> on the array element as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// This change works. `set()` is a special method on Mongoose</span>
+<span class="hljs-comment">// arrays that triggers change tracking.</span>
+doc.tags.set(<span class="hljs-number">0</span>, <span class="hljs-string">'JavaScript'</span>);
+<span class="hljs-keyword">await</span> doc.save();
+
+<span class="hljs-keyword">const</span> fromDb = <span class="hljs-keyword">await</span> BlogPost.findOne({ <span class="hljs-attr">_id</span>: doc._id });
+fromDb.tags; <span class="hljs-comment">// ['JavaScript']</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Mongoose Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/mongoose/schematype">An Introduction to Mongoose SchemaTypes</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/aggregate">An Introduction to Mongoose Aggregate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/promise">Promises in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/populate">Introduction to Mongoose Populate</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/objectid">ObjectIds in Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/schema">Introduction to Mongoose Schemas</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/connect">Connecting to MongoDB with Mongoose</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
