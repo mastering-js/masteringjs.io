@@ -275,6 +275,11 @@ p, ul, li {
     text-align: center;
   }
 
+  .hero .overview div.tagline {
+    width: 100%;
+    text-align: center;
+  }
+
   .cover-mobile {
     display: block;
     margin-top: 25px;
