@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="allwrapper">
@@ -70,19 +72,14 @@
   <div class="date">
     May 14, 2019
   </div>
-  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-  <div id="default_demo"></div>
+  <div id="default_masteringjsio"></div>
   <script>
-  (function(){
-    if(typeof _bsa !== 'undefined' && _bsa) {
-      // format, zoneKey, segment:value, options
-      _bsa.init('default', 'CKYD623M', 'placement:demo', {
-        target: '#default_demo',
-        align: 'horizontal'
-      });
-    }
-  })();
-  </script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
   <p>The <a href="http://expressjs.com/en/4x/api.html#res.redirect"><code>res.redirect()</code> function</a> lets you redirect the user to a different URL by sending an <a href="https://en.wikipedia.org/wiki/HTTP_302">HTTP response with status 302</a>. The HTTP client (browser, <a href="https://masteringjs.io/tutorials/axios/headers">Axios</a>, etc.) will then &quot;follow&quot; the redirect and send an HTTP request to the new URL as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 

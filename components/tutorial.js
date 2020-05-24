@@ -13,19 +13,14 @@ module.exports = ({ tutorials, tutorial }) => `
   <div class="date">
     ${tutorial.date ? tutorial.date.format('ll') : ''}
   </div>
-  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-  <div id="default_demo"></div>
+  <div id="default_masteringjsio"></div>
   <script>
-  (function(){
-    if(typeof _bsa !== 'undefined' && _bsa) {
-      // format, zoneKey, segment:value, options
-      _bsa.init('default', 'CKYD623M', 'placement:demo', {
-        target: '#default_demo',
-        align: 'horizontal'
-      });
-    }
-  })();
-  </script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
   ${tutorial.content}
   ${cta(tutorial)}
   <hr>

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="allwrapper">
@@ -70,19 +72,14 @@
   <div class="date">
     Jun 20, 2019
   </div>
-  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-  <div id="default_demo"></div>
+  <div id="default_masteringjsio"></div>
   <script>
-  (function(){
-    if(typeof _bsa !== 'undefined' && _bsa) {
-      // format, zoneKey, segment:value, options
-      _bsa.init('default', 'CKYD623M', 'placement:demo', {
-        target: '#default_demo',
-        align: 'horizontal'
-      });
-    }
-  })();
-  </script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
   <p>The difference between the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>String#substring()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>String#substr()</code></a> functions is a common source of confusion. Even experienced JavaScript developers mix them up sometimes. There&#39;s also a third way to get a substring, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>String#slice()</code> function</a>, that you may see in the wild. In this tutorial, you&#39;ll learn the difference between these 3 ways to get a substring in JavaScript.</p>
 <h2 id="stringsubstring"><code>String#substring()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring"><code>substring()</code> function</a> is the most common way to get a substring in JavaScript. It takes two parameters: <code>indexStart</code> and <code>indexEnd</code>. It returns the portion of the string that starts at <code>indexStart</code> and ends the character immediately preceding <code>indexEnd</code>. For example:</p>

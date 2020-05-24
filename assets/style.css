@@ -184,6 +184,12 @@ li {
   color: #ddd;
 }
 
+/* cpc ads */
+
+.default-image img {
+  width: auto !important;
+}
+
 /** Mobile */
 
 @media (max-width: 1000px) {
