@@ -40,7 +40,7 @@ async function run() {
       title: 'Disable a Button in JavaScript',
       raw: './tutorials/fundamentals/disable-button.md',
       url: '/tutorials/fundamentals/disable-button',
-      description: 'Mongoose arrays supports arrays of primitives and arrays of subdocuments. Here\'s how you can work with Mongoose arrays effectively.',
+      description: 'Here\'s how you can disable a button using vanilla JavaScript.',
       tags: ['fundamentals'],
       date: moment('2020-05-25')
     },
