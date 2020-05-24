@@ -70,6 +70,19 @@
   <div class="date">
     Jul 4, 2019
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p><a href="https://vuejs.org/v2/guide/conditional.html#v-if">The <code>v-if</code> directive</a> allows you to conditionally render a block. It differs from <a href="https://vuejs.org/v2/guide/conditional.html#v-if-vs-v-show"><code>v-show</code></a> in that <code>v-if</code> doesn&#39;t actually create the element if its expression evaluates to <code>false</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">render</span>: <span class="hljs-literal">false</span> }),

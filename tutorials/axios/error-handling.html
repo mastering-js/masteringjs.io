@@ -70,6 +70,19 @@
   <div class="date">
     May 17, 2019
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p>By default, <a href="https://www.npmjs.com/package/axios">Axios</a> error messages only include the status code. This is a sensible default, but the default error message is often not helpful.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = express();
 app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {

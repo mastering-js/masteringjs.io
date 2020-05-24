@@ -70,6 +70,19 @@
   <div class="date">
     Jan 15, 2020
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">Server-sent events</a> are a new HTTP API for pushing events from the server to the client. Unlike <a href="/tutorials/node/websockets">websockets</a>, server-sent events (SSE for short) are built
 on top of the HTTP protocol, so no need for <code>ws://</code> URLs or additional npm modules.
 Server-side events also <a href="https://www.html5rocks.com/en/tutorials/eventsource/basics/#toc-reconnection-timeout">handle reconnecting automatically</a>, so you don&#39;t have to write

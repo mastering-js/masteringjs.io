@@ -70,6 +70,19 @@
   <div class="date">
     Jan 2, 2020
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p>In JavaScript, there are technically <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">4 different ways of comparing whether 2 values are equal</a>. The 2 most common ways are the <a href="https://codeburst.io/javascript-showdown-vs-7be792be15b5"><code>==</code> operator and the <code>===</code> operator</a>, also known as <em>abstract equality comparison</em> and <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-strict-equality-comparison"><em>strict equality comparison</em></a>.</p>
 <h2 id="strict-equality-with-">Strict Equality With <code>===</code></h2>
 <p>Given 2 values <code>x</code> and <code>y</code>, here&#39;s how JavaScript checks whether <code>x === y</code>:</p>

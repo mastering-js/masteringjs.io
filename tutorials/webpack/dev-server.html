@@ -70,6 +70,19 @@
   <div class="date">
     Jun 17, 2019
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p><a href="https://www.npmjs.com/package/webpack-dev-server">webpack-dev-server</a> is Webpack&#39;s officially supported CLI-based tool for starting a static server for your assets. While you <a href="/tutorials/webpack/node">don&#39;t need any CLI tools to use Webpack</a>, webpack-dev-server gives you a single command that starts a static server with built-in live reload.</p>
 <h2 id="setup">Setup</h2>
 <p>To run webpack-dev-server, you need to install <a href="https://www.npmjs.com/package/webpack">webpack</a> <strong>and</strong> <a href="https://www.npmjs.com/package/webpack-cli">webpack-cli</a> in addition to webpack-dev-server.</p>

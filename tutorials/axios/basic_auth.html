@@ -70,6 +70,19 @@
   <div class="date">
     May 4, 2019
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p><a href="https://swagger.io/docs/specification/authentication/basic-authentication/">Basic auth</a> is a common way to handle logging in with username and password via HTTP. If you&#39;re using <a href="https://www.npmjs.com/package/axios">Axios</a> as your HTTP client, you get basic auth for free.</p>
 <p><a href="http://httpbin.org/#/Auth/get_basic_auth__user___passwd_">HTTPBin offers a free sample endpoint to test basic auth</a>. The endpoint URL includes the correct username and password for test purposes. For example, the URL <code>https://httpbin.org/basic-auth/foo/bar</code> succeeds if you send it properly formatted basic auth for username &#39;foo&#39; and password &#39;bar&#39;, and fails if you don&#39;t.</p>
 <p>If you pass the <code>auth</code> option to <code>axios.get()</code>, axios will properly format basic auth for you as shown below.</p>

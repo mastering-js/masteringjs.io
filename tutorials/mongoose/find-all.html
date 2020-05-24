@@ -70,6 +70,19 @@
   <div class="date">
     Jun 24, 2019
   </div>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <div id="default_demo"></div>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      // format, zoneKey, segment:value, options
+      _bsa.init('default', 'CKYD623M', 'placement:demo', {
+        target: '#default_demo',
+        align: 'horizontal'
+      });
+    }
+  })();
+  </script>
   <p>Suppose you have a <a href="https://mongoosejs.com/docs/models.html">Mongoose model</a> <code>User</code>
 that contains all your app&#39;s users. To get a list of all users in the collection, call <a href="https://mongoosejs.com/docs/api/model.html#model_Model.find"><code>User.find()</code></a> with an empty object as the first parameter:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, Schema({
