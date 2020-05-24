@@ -255,6 +255,12 @@ li {
   li {
     line-height: 2em;
   }
+
+  /* CPC ads */
+
+  #_default_ a._default_ {
+    width: auto !important;
+  }
 }
 
 /* CPM ads */
