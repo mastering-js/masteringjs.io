@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Disable a Button in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Disable a Button in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can disable a button using vanilla JavaScript." />
+    <meta name="description" content="Here's how you can disable a button using vanilla JavaScript." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Disable a Button in JavaScript</h1>
+  <div class="date">
+    May 25, 2020
+  </div>
+  <p>In JavaScript, <a href="https://www.w3schools.com/jsref/prop_pushbutton_disabled.asp">button elements have a <code>disabled</code> property</a> that you can set to prevent clicking on the button.
+For example, suppose you have a button that shows an alert when you click it:</p>
+<pre><code class="language-html">&lt;button id="my-alert-button"&gt;Show Alert&lt;/button&gt;
+&lt;script&gt;
+  document.querySelector('#my-alert-button').addEventListener('click', function() {
+    alert('Clicked on button!');
+  });
+&lt;/script&gt;</code></pre>
+<p>Here&#39;s a live version of the above button.</p>
+<p><button id="my-alert-button-1">Show Alert</button></p>
+<script>
+  document.querySelector('#my-alert-button-1').addEventListener('click', function() {
+    alert('Clicked on button!');
+  });
+</script>
+
+<p>If you set a <code>disabled</code> property on the button, clicking the button
+won&#39;t do anything.</p>
+<pre><code class="language-html">&lt;button id="my-alert-button"&gt;Disabled Button&lt;/button&gt;
+&lt;script&gt;
+  document.querySelector('#my-alert-button').addEventListener('click', function() {
+    alert('Clicked on button!');
+  });
+  // Now clicking on the button won't do anything
+  document.querySelector('#my-alert-button').disabled = true;
+&lt;/script&gt;</code></pre>
+<p><button id="my-alert-button-2">Disabled Button</button></p>
+<script>
+  document.querySelector('#my-alert-button-2').addEventListener('click', function() {
+    alert('Clicked on button!');
+  });
+  // Now clicking on the button won't do anything
+  document.querySelector('#my-alert-button-2').disabled = true;
+</script>
+
+<h2 id="with-forms">With Forms</h2>
+<p>Buttons can also be used to submit <a href="https://www.w3schools.com/jsref/dom_obj_form.asp">forms</a>.
+For example, clicking on the below button triggers a &#39;submit&#39; event
+on <code>my-form</code>. Hitting the &quot;enter&quot; key while the text input has focus
+also submits the form.</p>
+<pre><code class="language-html">&lt;form id=<span class="hljs-string">"my-form"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Sample Input"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit Form<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+&lt;script&gt;
+  <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#my-form'</span>).addEventListener(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+    ev.preventDefault();
+    alert(<span class="hljs-string">'Form submitted!'</span>);
+  });
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<form id="my-form-1">
+  <input type="text" placeholder="Sample Input">
+  <button type="submit">Submit Form</button>
+</form>
+<script>
+  document.querySelector('#my-form-1').addEventListener('submit', function(ev) {
+    ev.preventDefault();
+    alert('Form submitted!');
+  });
+</script>
+
+<p>However, if you disable the button, you also disable submitting the form.
+Note that you don&#39;t get a &#39;submit&#39; event on <code>my-form</code> below when you
+click on the button, nor when you hit &quot;enter&quot; while the text input has focus.</p>
+<pre><code class="language-html">&lt;form id=<span class="hljs-string">"my-form"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Sample Input"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>Submit Form<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+&lt;script&gt;
+  <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#my-form'</span>).addEventListener(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+    ev.preventDefault();
+    alert(<span class="hljs-string">'Form submitted!'</span>);
+  });
+  <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#my-form button'</span>).disabled = <span class="hljs-literal">true</span>;
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<form id="my-form-2">
+  <input type="text" placeholder="Sample Input">
+  <button type="submit">Submit Form</button>
+</form>
+<script>
+  document.querySelector('#my-form-2').addEventListener('submit', function(ev) {
+    ev.preventDefault();
+    alert('Form submitted!');
+  });
+  document.querySelector('#my-form-2 button').disabled = true;
+</script>
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/formdata">FormData in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/blob">Blobs in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filereader">Read Local Files in JavaScript with FileReader</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/thenable">Thenables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-reject">Reject a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-chaining">JavaScript Promise Chaining</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/bluebird">Using Bluebird Promises</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

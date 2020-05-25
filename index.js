@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Disable a Button in JavaScript',
+      raw: './tutorials/fundamentals/disable-button.md',
+      url: '/tutorials/fundamentals/disable-button',
+      description: 'Here\'s how you can disable a button using vanilla JavaScript.',
+      tags: ['fundamentals'],
+      date: moment('2020-05-25')
+    },
+    {
       title: 'An Introduction to Mongoose Arrays',
       raw: './tutorials/mongoose/array.md',
       url: '/tutorials/mongoose/array',
