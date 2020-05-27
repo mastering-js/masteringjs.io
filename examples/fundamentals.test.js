@@ -3748,6 +3748,49 @@ describe('Fundamentals', function() {
       });
     });
   });
+
+  describe('IIFE', function() {
+    let called = [];
+
+    beforeEach(function() {
+      called = [];
+      sinon.stub(console, 'log').callsFake(msg => called.push(msg));
+    });
+
+    afterEach(function() {
+      console.log.restore();
+    });
+
+    it('basic example', function() {
+      // Prints "Hello, World!"
+      (function() {
+        console.log('Hello, World!');
+      })();
+      // acquit:ignore:start
+      assert.deepEqual(called, [['Hello, World!']]);
+      // acquit:ignore:end
+    });
+
+    it('arrow', function() {
+      // Prints "Hello, World!"
+      (() => {
+        console.log('Hello, World!');
+      })();
+      // acquit:ignore:start
+      assert.deepEqual(called, [['Hello, World!']]);
+      // acquit:ignore:end
+    });
+
+    it ('async', async function() {
+      const answer = await async function() {
+        return 42;
+      }();
+      answer; // 42
+      // acquit:ignore:start
+      assert.equal(answer, 42);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

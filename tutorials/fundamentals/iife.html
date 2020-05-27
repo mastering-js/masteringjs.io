@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Immediately Invoked Function Expressions (IIFE) in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Immediately Invoked Function Expressions (IIFE) in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Immediately invoked function expressions (IIFE) is a design pattern commonly used to encapsulate variables. Here's what you need to know." />
+    <meta name="description" content="Immediately invoked function expressions (IIFE) is a design pattern commonly used to encapsulate variables. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Immediately Invoked Function Expressions (IIFE) in JavaScript</h1>
+  <div class="date">
+    May 27, 2020
+  </div>
+  <p>An <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">immediately invoked function expression</a> (IIFE for short) is a JavaScript design pattern that declares an
+anonymous function and immediately executes it.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Prints "Hello, World!"</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>);
+})();</code></pre>
+<p>You can also use arrow functions with the IIFE pattern:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Prints "Hello, World!"</span>
+(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>);
+})();</code></pre>
+<p>The parenthesis around <code>function() { ... }</code> are mandatory: without those
+parenthesis, you would get a syntax error. That&#39;s because the parenthesis
+tell the JavaScript language parser to treat the function definition as
+an <a href="/tutorials/fundamentals/expressions">expression</a>.</p>
+<h2 id="why-iifes">Why IIFEs?</h2>
+<p>IIFEs are useful because they can define local variables that aren&#39;t
+accessible outside the IIFE. For example, IIFEs are often used to
+execute JavaScript in the browser without polluting global scope.</p>
+<pre><code class="language-html">&lt;script&gt;
+  <span class="hljs-comment">// Execute some code immediately without defining `answer` as a</span>
+  <span class="hljs-comment">// global variable.</span>
+  (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> answer = <span class="hljs-number">42</span>;
+  })();
+
+  <span class="hljs-keyword">typeof</span> answer; <span class="hljs-comment">// 'undefined'</span>
+&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+<p>You may also see IIFEs for cases where you want some temporary
+variables for one calculation that you don&#39;t want to expose to
+other calculations. For example, suppose you want to compute
+the total cost of a shopping cart, but don&#39;t want the <code>salesTax</code>
+variable to leak to the surrounding scope:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> subtotal = <span class="hljs-number">40</span>;
+<span class="hljs-keyword">const</span> total = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> salesTax = product.salesTaxRate * subtotal;
+  <span class="hljs-keyword">return</span> subtotal + salesTax;
+})();</code></pre>
+<h2 id="with-unary-operators">With Unary Operators</h2>
+<p>You can omit the parenthesis around IIFEs if you use the IIFE with
+a unary operator, like the <a href="/tutorials/fundamentals/void#immediately-invoked-function-expressions-iifes"><code>void</code> operator</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Prints 'Hello, World'</span>
+<span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World'</span>); }();</code></pre>
+<p>You&#39;re unlikely to see the <code>void</code> pattern in production, but this
+pattern is useful with <a href="/tutorials/fundamentals/async-await">async functions</a>
+because <code>await</code> is a unary operator. So you can <code>await</code> on an
+async IIFE:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = <span class="hljs-keyword">await</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}();
+answer; <span class="hljs-comment">// 42</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/disable-button">Disable a Button in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/formdata">FormData in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/blob">Blobs in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filereader">Read Local Files in JavaScript with FileReader</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/thenable">Thenables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-reject">Reject a Promise in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/promise-chaining">JavaScript Promise Chaining</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

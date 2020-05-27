@@ -37,6 +37,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Immediately Invoked Function Expressions (IIFE) in JavaScript',
+      raw: './tutorials/fundamentals/iife.md',
+      url: '/tutorials/fundamentals/iife',
+      description: 'Immediately invoked function expressions (IIFE) is a design pattern commonly used to encapsulate variables. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-05-27')
+    },
+    {
       title: 'Disable a Button in JavaScript',
       raw: './tutorials/fundamentals/disable-button.md',
       url: '/tutorials/fundamentals/disable-button',
