@@ -84,7 +84,6 @@
       ev.preventDefault();
       var username = document.querySelector('#username').value;
       document.querySelector('#github-username button').disabled = true;
-      console.log('Send post?');
       axios.post('https://meanit-aristotle.app.mongoosecloud.io/api/sendMongooseInvite', { username: username }).
         then(function(res) {
           document.querySelector('#result').innerHTML = 'Invitation sent. Check your GitHub email address.';
