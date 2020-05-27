@@ -1,0 +1,333 @@
+body {
+  font-size: 16px;
+  padding-bottom: 100px;
+}
+
+.hero {
+  width: 100%;
+  background-color: #74DCE3;
+  height: 700px;
+  color: #222;
+  margin-bottom: 100px;
+}
+
+button {
+  margin-top: 0.5em;
+  width: 320px;
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 4px;
+  padding: 0.25em;
+  border: 0px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.buy {
+  background-color: #F0DB4F;
+  border: 4px solid #F0DB4F;
+}
+
+.preview {
+  background-color: transparent;
+  border: 4px solid #ddd;
+}
+
+.hero .overview {
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 30px;
+  padding-top: 200px;
+}
+
+.hero .overview h1 {
+  text-align: left;
+  display: inline-block;
+  width: 690px;
+}
+
+.hero .overview div.tagline, .hero .overview div.cta {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  font-size: 1.25em;
+  line-height: 1.5em;
+  width: 690px;
+  margin-bottom: 0.5em;
+}
+
+.hero .cover {
+  float: right;
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 30px;
+}
+
+.hero .cover img {
+  height: 640px;
+}
+
+.section {
+  width: 1000px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25em;
+  line-height: 1.75em;
+}
+
+.section h2 {
+  text-align: center;
+}
+
+p, ul, li {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.author-pic {
+  float: left;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 50px;
+}
+
+.author-bio {
+  float: right;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.sticky-promo {
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 1000;
+  padding: 10px;
+  width: 200px;
+  height: 80px;
+  box-shadow: rgba(44, 62, 80, 0.23) 0px 0.4em 0.8em -2px, rgba(102, 119, 136, 0.2) 0px 1px 2px;
+}
+
+.sticky-promo .cover {
+  float: left;
+}
+
+.sticky-promo .cta {
+  float: right;
+  width: 130px;
+  font-size: 0.8em;
+}
+
+.sticky-promo .cta h3 {
+  font-size: 2em;
+  margin-top: 3px;
+  margin-bottom: 0.25em;
+}
+
+.sticky-promo img {
+  height: 80px;
+}
+
+.section img {
+  width: 100%;
+}
+
+.sample-app .app-preview {
+  float: left;
+  width: 30%;
+  box-sizing: border-box;
+  padding: 25px;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+
+.sample-app p:first-child {
+  margin-top: 0px;
+}
+
+.sample-app .app-preview img {
+  border: 1px solid #ddd;
+}
+
+.sample-app .description {
+  float: right;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-top: 0px;
+}
+
+#purchase .cover {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 25px;
+}
+
+#purchase .cover img {
+  width: 100%;
+}
+
+#purchase .details {
+  margin-top: 60px;
+  float: right;
+  width: 50%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+}
+
+#purchase h3 {
+  margin-top: 0px;
+  background-color: #74DCE3;
+  text-align: center;
+  padding: 10px;
+}
+
+#purchase .price {
+  margin: 10px;
+  text-align: center;
+}
+
+#purchase .small {
+  font-size: 0.6em;
+  color: #666;
+  padding: 10px;
+  line-height: 1.25em;
+}
+
+.paypal-button {
+  text-align: center;
+}
+
+.cover-mobile {
+  display: none;
+}
+
+.sticky-promo-mobile {
+  display: none;
+}
+
+.hide {
+  display: none !important;
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    margin-top: 65px;
+  }
+
+  .sticky-promo {
+    display: none;
+  }
+
+  .sticky-promo-mobile {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    padding: 0px;
+    background-color: #F0DB4F;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .sticky-promo-mobile a {
+    color: #222;
+  }
+
+  .sticky-promo-mobile img {
+    height: 80px;
+    position: relative;
+    top: -40px;
+  }
+
+  .sticky-promo-mobile div {
+    display: inline-block;
+    position: relative;
+    top: -53px;
+    font-size: 1.5em;
+    margin-left: 0.5em;
+  }
+
+  .hero {
+    height: auto;
+  }
+
+  .hero .cover {
+    display: none;
+  }
+
+  .hero .overview {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .hero .overview h1, .hero .overview div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero .overview div.tagline {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cover-mobile {
+    display: block;
+    margin-top: 25px;
+  }
+
+  .cover-mobile img {
+    width: 100%;
+  }
+
+  .section {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .author .author-pic {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+  .author .author-bio {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .sample-app .app-preview {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+  .sample-app .description {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+  #purchase .cover {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+  #purchase .details {
+    float: none;
+    width: 100%;
+    padding: 0px;
+  }
+
+  ul {
+    padding-left: 1em;
+  }
+}
