@@ -1,0 +1,16 @@
+.request-invite {
+  text-align: center;
+}
+
+.button {
+  margin-top: 0.5em;
+}
+
+.description {
+  font-size: 1.25em;
+  margin-bottom: 1em;
+}
+
+#result {
+  margin-top: 0.5em;
+}

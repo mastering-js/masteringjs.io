@@ -8,6 +8,7 @@ const layout = require('./components/layout');
 const list = require('./components/list');
 const marked = require('marked');
 const moment = require('moment');
+const requestInvite = require('./components/request-invite');
 const transform = require('acquit-require');
 const tutorialTemplate = require('./components/tutorial');
 
@@ -1435,6 +1436,12 @@ async function run() {
   }));
 
   fs.writeFileSync('./ebooks/mastering-mongoose.html', require('./components/ebooks/mongoose')());
+  
+  fs.writeFileSync('./request-invite.html', layout({
+    title: 'Request Invite',
+    content: requestInvite(),
+    description: ''
+  }));
 }
 
 function capitalize(str) {
