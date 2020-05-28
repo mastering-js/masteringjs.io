@@ -41,13 +41,17 @@ module.exports = () => `
           The complete guide to building and maintaining <b>fast, production-ready</b> apps with Mongoose, written by <b>Mongoose's Lead Developer</b>.
         </div>
         <div class="cta">
-          <button class="buy">
-            Buy the eBook
-          </button>
+          <a href="#purchase">
+            <button class="buy">
+              Buy the eBook
+            </button>
+          </a>
           <br>
-          <button class="preview">
-            Preview First Chapter
-          </button>
+          <a href="https://masteringmongoose.com">
+            <button class="preview">
+              Preview
+            </button>
+          </a>
         </div>
 
         <div class="cover-mobile">
