@@ -1475,7 +1475,8 @@ async function run() {
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 
-  fs.writeFileSync('./ebooks/mastering-mongoose.html', require('./components/ebooks/mongoose')());
+  fs.writeFileSync('./ebooks/mastering-mongoose.html',
+    require('./components/ebooks/mongoose')());
   
   fs.writeFileSync('./request-invite.html', layout({
     title: 'Request Invite',
