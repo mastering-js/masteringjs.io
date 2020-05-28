@@ -14,6 +14,7 @@ module.exports = () => `
     <div class="links">
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
     </div>
     <div style="clear: both"></div>
 
@@ -27,5 +28,6 @@ module.exports = () => `
 <div class="links-mobile">
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
 </div>
 `;
