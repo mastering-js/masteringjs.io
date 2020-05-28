@@ -13,7 +13,10 @@ module.exports = () => `
     <link rel="stylesheet" href="/assets/ebook.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
-    <meta name="twitter:card" content="The official Mongoose eBook for developers who need to become Mongoose experts fast."></meta>
+    <meta name="twitter:card" content="summary_large_image"></meta>
+    <meta name="twitter:title" content="Mastering Mongoose"></meta>
+    <meta name="twitter:description" content="The official Mongoose eBook for developers who need to become Mongoose experts fast."></meta>
+    <meta name="twitter:image" content="https://mastering-mongoose.netlify.app/images/mastering-mongoose.jpg" />
     <meta property="og:image" content="https://mastering-mongoose.netlify.app/images/mastering-mongoose.jpg" />
   </head>
 
