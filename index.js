@@ -1482,6 +1482,11 @@ async function run() {
     content: requestInvite(),
     description: ''
   }));
+  fs.writeFileSync('./ebooks/mastering-mongoose-thankyou.html', layout({
+    title: 'Request Invite',
+    content: require('./components/ebooks/mastering-mongoose-thankyou')(),
+    description: ''
+  }));
 }
 
 function capitalize(str) {
