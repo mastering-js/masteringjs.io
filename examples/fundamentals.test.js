@@ -3781,13 +3781,81 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
 
-    it ('async', async function() {
+    it('async', async function() {
       const answer = await async function() {
         return 42;
       }();
       answer; // 42
       // acquit:ignore:start
       assert.equal(answer, 42);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('forEach object', function() {
+    let called = [];
+
+    beforeEach(function() {
+      called = [];
+      sinon.stub(console, 'log').callsFake(function() { called.push([...arguments]); });
+    });
+
+    afterEach(function() {
+      console.log.restore();
+    });
+
+    it('using keys', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        rank: 'Captain'
+      };
+
+      // Prints "name Jean-Luc Picard" followed by "rank Captain"
+      Object.keys(obj).forEach(key => {
+        console.log(key, obj[key]);
+      });
+      // acquit:ignore:start
+      assert.deepEqual(called, [
+        ['name', 'Jean-Luc Picard'],
+        ['rank', 'Captain']
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('using values', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        rank: 'Captain'
+      };
+
+      // Prints "Jean-Luc Picard" followed by "Captain"
+      Object.values(obj).forEach(val => {
+        console.log(val);
+      });
+      // acquit:ignore:start
+      assert.deepEqual(called, [
+        ['Jean-Luc Picard'],
+        ['Captain']
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('using entries', function() {
+      const obj = {
+        name: 'Jean-Luc Picard',
+        rank: 'Captain'
+      };
+
+      // Prints "name Jean-Luc Picard" followed by "rank Captain"
+      Object.entries(obj).forEach(entry => {
+        const [key, value] = entry;
+        console.log(key, value);
+      });
+      // acquit:ignore:start
+      assert.deepEqual(called, [
+        ['name', 'Jean-Luc Picard'],
+        ['rank', 'Captain']
+      ]);
       // acquit:ignore:end
     });
   });

@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Iterating Through an Object with `forEach()`',
+      raw: './tutorials/fundamentals/foreach-object.md',
+      url: '/tutorials/fundamentals/foreach-object',
+      description: 'You can use `forEach()` to iterate over a JavaScript object using `Object.key()`, `Object.values()`, and `Object.entries()`. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-05-29')
+    },
+    {
       title: 'Immediately Invoked Function Expressions (IIFE) in JavaScript',
       raw: './tutorials/fundamentals/iife.md',
       url: '/tutorials/fundamentals/iife',
