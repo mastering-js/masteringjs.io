@@ -1649,4 +1649,142 @@ describe('Mongoose', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('save', function() {
+    it('insert new document', async function() {
+      const Person = mongoose.model('Person', Schema({
+        name: String,
+        rank: String
+      }));
+
+      const doc = new Person({
+        name: 'Will Riker',
+        rank: 'Commander'
+      });
+      // Inserts a new document with `name = 'Will Riker'` and
+      // `rank = 'Commander'`
+      await doc.save();
+
+      const person = await Person.findOne();
+      person.name; // 'Will Riker'
+      // acquit:ignore:start
+      assert.equal(person.name, 'Will Riker');
+      // acquit:ignore:end
+    });
+
+    it('update existing', async function() {
+      // acquit:ignore:start
+      const Person = mongoose.model('Person', Schema({
+        name: String,
+        rank: String
+      }));
+
+      const _doc = new Person({
+        name: 'Will Riker',
+        rank: 'Commander'
+      });
+      await _doc.save();
+      // acquit:ignore:end
+      const person = await Person.findOne();
+      person.name; // 'Will Riker'
+
+      // Mongoose _tracks changes_ on documents. Mongoose
+      // tracks that you set the `rank` property, and persists
+      // that change to the database.
+      person.rank = 'Captain';
+      await person.save();
+
+      // Load the document from the database and see the changes
+      const docs = await Person.find();
+
+      docs.length; // 1
+      docs[0].rank; // 'Captain'
+      // acquit:ignore:start
+      assert.equal(docs.length, 1);
+      assert.equal(docs[0].rank, 'Captain');
+      // acquit:ignore:end
+    });
+
+    it('validation', async function() {
+      const Person = mongoose.model('Person', Schema({
+        name: String,
+        age: Number
+      }));
+
+      const doc = await Person.create({ name: 'Will Riker', age: 29 });
+
+      // Setting `age` to an invalid value is ok...
+      doc.age = 'Lollipop';
+
+      // But trying to `save()` the document errors out
+      const err = await doc.save().catch(err => err);
+      err; // Cast to Number failed for value "Lollipop" at path "age"
+      // acquit:ignore:start
+      assert.ok(err);
+      // acquit:ignore:end
+
+      // But then `save()` succeeds if you set `age` to a valid value.
+      doc.age = 30;
+      await doc.save();
+    });
+
+    it('pre save', async function() {
+      const schema = Schema({ name: String, age: Number });
+      schema.pre('save', function() {
+        // In 'save' middleware, `this` is the document being saved.
+        console.log('Save', this.name);
+      });
+      const Person = mongoose.model('Person', schema);
+
+      const doc = new Person({ name: 'Will Riker', age: 29 });
+
+      // Prints "Save Will Riker"
+      await doc.save();
+    });
+
+    it('post save', async function() {
+      const schema = Schema({ name: String, age: Number });
+      schema.pre('save', function() {
+        this.$locals.start = Date.now();
+      });
+      schema.post('save', function() {
+        console.log('Saved in', Date.now() - this.$locals.start, 'ms');
+      });
+      const Person = mongoose.model('Person', schema);
+
+      const doc = new Person({ name: 'Will Riker', age: 29 });
+
+      // Prints something like "Saved in 12 ms"
+      await doc.save();
+    });
+
+    it('child middleware', async function() {
+      const shipSchema = Schema({ name: String, registry: String });
+      shipSchema.pre('save', function() {
+        console.log('Save', this.registry);
+      });
+      const schema = Schema({
+        name: String,
+        rank: String,
+        ship: shipSchema
+      });
+      const Person = mongoose.model('Person', schema);
+
+      const doc = new Person({
+        name: 'Will Riker',
+        age: 29,
+        ship: {
+          name: 'Enterprise',
+          registry: 'NCC-1701-D'
+        }
+      });
+
+      // Prints "Save NCC-1701-D"
+      await doc.save();
+
+      doc.ship.registry = 'NCC-1701-E';
+      // Prints "Save NCC-1701-E"
+      await doc.save();
+    });
+  });
 });

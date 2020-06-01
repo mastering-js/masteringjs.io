@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Mongoose\'s `save()` Function',
+      raw: './tutorials/mongoose/save.md',
+      url: '/tutorials/mongoose/save',
+      description: 'Mongoose\'s `save()` function persists the changes you made to a document to the database. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-06-01')
+    },
+    {
       title: 'Iterating Through an Object with `forEach()`',
       raw: './tutorials/fundamentals/foreach-object.md',
       url: '/tutorials/fundamentals/foreach-object',
