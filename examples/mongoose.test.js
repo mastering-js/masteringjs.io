@@ -1836,4 +1836,80 @@ describe('Mongoose', function() {
       explain.queryPlanner;
     });
   });
+
+  describe('find like', function() {
+    it('basic example', async function() {
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      await User.create([
+        { email: 'sergei@google.com' },
+        { email: 'bill@microsoft.com' },
+        { email: 'test@gmail.com' },
+        { email: 'gmail@google.com' }
+      ]);
+
+      const docs = await User.find({ email: /gmail/ });
+      docs.length; // 2
+      docs.map(doc => doc.email).sort(); // ['gmail@google.com', 'test@gmail.com']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.email).sort(),
+        ['gmail@google.com', 'test@gmail.com']);
+      // acquit:ignore:end
+    });
+
+    it('regexp', async function() {
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      await User.create([
+        { email: 'sergei@google.com' },
+        { email: 'bill@microsoft.com' },
+        { email: 'test@gmail.com' },
+        { email: 'gmail@google.com' }
+      ]);
+
+      const docs = await User.find({ email: { $regex: '+foo' } });
+      docs.length; // 2
+      docs.map(doc => doc.email).sort(); // ['gmail@google.com', 'test@gmail.com']
+      // acquit:ignore:start
+      assert.deepEqual(docs.map(doc => doc.email).sort(),
+        ['gmail@google.com', 'test@gmail.com']);
+      // acquit:ignore:end
+    });
+
+    it('regexp escape', async function() {
+      const escapeStringRegexp = require('escape-string-regexp');
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      await User.create([
+        { email: 'sergei@google.com' },
+        { email: 'bill@microsoft.com' },
+        { email: 'test+foo@gmail.com' },
+      ]);
+
+      const $regex = escapeStringRegexp('+foo');
+      const docs = await User.find({ email: { $regex } });
+      
+      docs.length; // 1
+      docs[0].email; // 'test+foo@gmail.com'
+
+      // Throws: MongoError: Regular expression is invalid: nothing to repeat
+      // acquit:ignore:start
+      try {
+      // acquit:ignore:end
+      await User.find({ email: { $regex: '+foo' } });
+      // acquit:ignore:start
+      } catch(err) {
+        assert.ok(err.message.includes('Regular expression is invalid'));
+      }
+      assert.deepEqual(docs.map(doc => doc.email).sort(),
+        ['test+foo@gmail.com']);
+      // acquit:ignore:end
+    });
+  });
 });
