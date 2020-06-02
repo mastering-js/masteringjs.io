@@ -217,7 +217,7 @@ module.exports = () => `
           <li>Access to sample app GitHub repo</li>
         </ul>
         <div class="price">
-          <strike>$45</strike> <b>$42</b>
+          <b>$39.99</b>
         </div>
         <div class="paypal-button">
           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
