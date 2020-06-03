@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using MongoDB Explain with Mongoose',
+      raw: './tutorials/mongoose/explain.md',
+      url: '/tutorials/mongoose/explain',
+      description: 'Mongoose queries have an `explain()` helper that let you inspect what indexes a query used. Here\'s how you can use `explain()` to figure out how a query performed.',
+      tags: ['mongoose'],
+      date: moment('2020-06-03')
+    },
+    {
       title: 'An Introduction to Mongoose\'s `save()` Function',
       raw: './tutorials/mongoose/save.md',
       url: '/tutorials/mongoose/save',
