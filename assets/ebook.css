@@ -110,6 +110,7 @@ p, ul, li {
   padding: 10px;
   width: 200px;
   height: 80px;
+  background-color: #fafafa;
   box-shadow: rgba(44, 62, 80, 0.23) 0px 0.4em 0.8em -2px, rgba(102, 119, 136, 0.2) 0px 1px 2px;
 }
 
