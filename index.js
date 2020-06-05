@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '`find()` with LIKE in Mongoose',
+      raw: './tutorials/mongoose/find-like.md',
+      url: '/tutorials/mongoose/find-like',
+      description: 'MongoDB does not have a LIKE operator akin to SQL, but MongoDB does support queries by regular expressions. Here\'s how you can use regexp queries to simulate SQL\'s LIKE operator in Mongoose.',
+      tags: ['mongoose'],
+      date: moment('2020-06-05')
+    },
+    {
       title: 'Using MongoDB Explain with Mongoose',
       raw: './tutorials/mongoose/explain.md',
       url: '/tutorials/mongoose/explain',
