@@ -3859,6 +3859,32 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('capitalize first letter', function() {
+    it('works', function() {
+      const str = 'captain Picard';
+
+      const caps = str.charAt(0).toUpperCase() + str.slice(1);
+      caps; // 'Captain Picard'
+      // acquit:ignore:start
+      assert.equal(caps, 'Captain Picard');
+      // acquit:ignore:end
+    });
+
+    it('all words', function() {
+      const str = 'captain picard';
+
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+
+      const caps = str.split(' ').map(capitalize).join(' ');
+      caps; // 'Captain Picard'
+      // acquit:ignore:start
+      assert.equal(caps, 'Captain Picard');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
