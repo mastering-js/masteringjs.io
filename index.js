@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'An Introduction to Symbols in JavaScript',
+      raw: './tutorials/fundamentals/symbol.md',
+      url: '/tutorials/fundamentals/symbol',
+      description: 'Symbols are a way to create hidden properties on JavaScript objects. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-06-19')
+    },
+    {
       title: 'Get Query String Values in Vanilla JavaScript',
       raw: './tutorials/fundamentals/query-string.md',
       url: '/tutorials/fundamentals/query-string',
