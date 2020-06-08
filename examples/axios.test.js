@@ -3,6 +3,7 @@
 const assert = require('assert');
 const axios = require('axios');
 const express = require('express');
+const sinon = require('sinon');
 
 describe('axios', function() {
   it('setting headers with GET', async function() {
@@ -344,6 +345,112 @@ describe('axios', function() {
       form.append('key', 'value');
       const res = await axios.post('https://httpbin.org/post', form);
       console.log(res.data);
+    });
+  });
+
+  describe('Interceptors', function() {
+    let called = [];
+    const _log = console.log;
+
+    beforeEach(function() {
+      called = [];
+      sinon.stub(console, 'log').callsFake(msg => called.push(msg));
+    });
+
+    afterEach(function() {
+      console.log.restore();
+      const axios = require('axios');
+      axios.interceptors.request.handlers = [];
+      axios.interceptors.response.handlers = [];
+    });
+
+    it('print request', async function() {
+      const axios = require('axios');
+
+      axios.interceptors.request.use(req => {
+        console.log(`${req.method} ${req.url}`);
+        // Important: request interceptors **must** return the request.
+        return req;
+      });
+
+      // Prints "get https://httpbin.org/get"
+      await axios.get('https://httpbin.org/get');
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, ['get https://httpbin.org/get']);
+      // acquit:ignore:end
+
+      // Prints "post https://httpbin.org/post"
+      await axios.post('https://httpbin.org/post', {});
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, [
+        'get https://httpbin.org/get',
+        'post https://httpbin.org/post'
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('print response', async function() {
+      const axios = require('axios');
+
+      axios.interceptors.request.use(req => {
+        console.log(`${req.method} ${req.url}`);
+        // Important: request interceptors **must** return the request.
+        return req;
+      });
+
+      axios.interceptors.response.use(res => {
+        console.log(res.data.json);
+        // Important: response interceptors **must** return the response.
+        return res;
+      });
+
+      // Prints "post https://httpbin.org/post" followed by "{ answer: 42 }"
+      await axios.post('https://httpbin.org/post', { answer: 42 });
+      // acquit:ignore:start
+      assert.deepStrictEqual(called, [
+        'post https://httpbin.org/post',
+        { answer: 42 }
+      ]);
+      // acquit:ignore:end
+    });
+
+    it('authorization header', async function() {
+      axios.interceptors.request.use(req => {
+        // `req` is the Axios request config, so you can modify
+        // the `headers`.
+        req.headers.authorization = 'my secret token';
+        return req;
+      });
+
+      // Automatically sets the authorization header because
+      // of the request interceptor
+      const res = await axios.get('https://httpbin.org/get');
+
+      // acquit:ignore:start
+      assert.equal(res.data.headers.Authorization, 'my secret token');
+      // acquit:ignore:end
+    });
+
+    it('error handling', async function() {
+      axios.interceptors.response.use(
+        res => res,
+        err => {
+          if (err.response.status === 404) {
+            throw new Error(`${err.config.url} not found`);
+          }
+          throw err;
+        }
+      );
+
+      // Automatically sets the authorization header because
+      // of the request interceptor
+      const err = await axios.get('https://httpbin.org/status/404').
+        then(() => null, err => err);
+
+      err.message; // "https://httpbin.org/status/404 not found"
+      // acquit:ignore:start
+      assert.equal(err.message, 'https://httpbin.org/status/404 not found');
+      // acquit:ignore:end
     });
   });
 });
