@@ -3885,6 +3885,30 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('URLSearchParams', function() {
+    it('works', function() {
+      const querystring = '?answer=42';
+      const params = new URLSearchParams(querystring);
+
+      params.get('answer'); // '42'
+      // acquit:ignore:start
+      assert.strictEqual(params.get('answer'), '42');
+      // acquit:ignore:end
+    });
+
+    it('keys and entries', function() {
+      const querystring = '?answer=42&question=unknown';
+      const params = new URLSearchParams(querystring);
+
+      Array.from(params.keys()); // ['answer', 'question']
+      Array.from(params.entries()); // [['answer', '42'], ['question', 'unknown']]
+      // acquit:ignore:start
+      assert.deepEqual(Array.from(params.keys()), ['answer', 'question']);
+      assert.deepStrictEqual(Array.from(params.entries()), [['answer', '42'], ['question', 'unknown']]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
