@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Error Handling in Axios using `catch()`',
+      raw: './tutorials/axios/catch.md',
+      url: '/tutorials/axios/catch',
+      description: 'Axios requests are JavaScript promises, so you can use the `.catch()` function to handle errors. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-06-10')
+    },
+    {
       title: 'Axios Interceptors',
       raw: './tutorials/axios/interceptors.md',
       url: '/tutorials/axios/interceptors',
