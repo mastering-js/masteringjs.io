@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'POST JSON with Axios',
+      raw: './tutorials/axios/post-json.md',
+      url: '/tutorials/axios/post-json',
+      description: 'Axios automatically serializes JavaScript objects into JSON, but you can also send a manually serialized JSON string. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-06-12')
+    },
+    {
       title: 'Error Handling in Axios using `catch()`',
       raw: './tutorials/axios/catch.md',
       url: '/tutorials/axios/catch',
