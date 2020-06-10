@@ -28,9 +28,21 @@ module.exports = params => `
       <div class="content">
         ${params.content}
       </div>
+      ${floatAd(params.ad)}
     </div>
 
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>
 `;
+
+function floatAd(ad) {
+  if (!ad) {
+    return '';
+  }
+  return `
+  <div class="ad-right">
+    ${ad}
+  </div>
+  `;
+}

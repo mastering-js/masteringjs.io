@@ -210,6 +210,14 @@ input[type="text"], input[type="password"], input[type="number"] {
   width: auto !important;
 }
 
+.ad-right {
+  position: fixed;
+  right: 0px;
+  bottom: 194px;
+  width: 160px;
+  padding: 15px;
+}
+
 /** Mobile */
 
 @media (max-width: 1000px) {
@@ -280,6 +288,10 @@ input[type="text"], input[type="password"], input[type="number"] {
 
   #_default_ a._default_ {
     width: auto !important;
+  }
+
+  .ad-right {
+    display: none;
   }
 }
 
