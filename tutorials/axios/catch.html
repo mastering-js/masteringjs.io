@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Error Handling in Axios using `catch()` - Mastering JS</title>
+
+    <meta property="og:title" content="Error Handling in Axios using `catch()`" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Axios requests are JavaScript promises, so you can use the `.catch()` function to handle errors. Here's what you need to know." />
+    <meta name="description" content="Axios requests are JavaScript promises, so you can use the `.catch()` function to handle errors. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/axios">Axios</a>
+    /
+  </div>
+  <h1>Error Handling in Axios using `catch()`</h1>
+  <div class="date">
+    Jun 10, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>Axios requests are promises, which means they have a <a href="/tutorials/axios/then"><code>then()</code> function</a> for <a href="/tutorials/fundamentals/promise-chaining">promise chaining</a>, and
+a <code>catch()</code> function for handling errors. Below is how you can <code>catch()</code>
+an error in Axios.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/404'</span>).
+  catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+
+err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>; <span class="hljs-comment">// true</span>
+err.message; <span class="hljs-comment">// 'Request failed with status code 404'</span></code></pre>
+<p>Axios&#39; <code>catch()</code> behaves exactly the same as the <a href="/tutorials/fundamentals/catch">promise <code>catch()</code> function</a>. So you can use promise chaining, and add a <code>catch()</code> at the
+end to handle any errors that occur in the promise chain.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/200'</span>).
+  <span class="hljs-comment">// Will throw a TypeError because the property doesn't exist.</span>
+  then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.doesNotExist.throwAnError).
+  catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+
+err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>You can also use <code>catch()</code> to transform the error, just make sure you
+rethrow the error afterwards.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> error;
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/404'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err.response.status === <span class="hljs-number">404</span>) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${err.config.url}</span> not found`</span>);
+    }
+    <span class="hljs-keyword">throw</span> err;
+  });
+} <span class="hljs-keyword">catch</span> (err) {
+  error = err;
+}
+
+error.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not found"</span></code></pre>
+<p>You can also make Axios <a href="/tutorials/axios/interceptors#error-handling">transform errors automatically using interceptors</a>.</p>
+
+  
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/interceptors">Axios Interceptors</a></li>
+  
+
+    <li><a href="/tutorials/axios/put">PUT Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/authorization">Set the Authorization Header with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/then">The `then()` Function in Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/form-data">Post Form Data With Axios</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios">Using Axios with Vue</a></li>
+  
+
+    <li><a href="/tutorials/axios/create">The `create()` Function in Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

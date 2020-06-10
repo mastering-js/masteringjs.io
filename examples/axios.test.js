@@ -453,4 +453,49 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('catch', function() {
+    it('basic error', async function() {
+      const err = await axios.get('https://httpbin.org/status/404').
+        catch(err => err);
+      
+      err instanceof Error; // true
+      err.message; // 'Request failed with status code 404'
+      // acquit:ignore:start
+      assert.ok(err instanceof Error);
+      assert.equal(err.message, 'Request failed with status code 404');
+      // acquit:ignore:end
+    });
+
+    it('chain', async function() {
+      const err = await axios.get('https://httpbin.org/status/200').
+        // Will throw a TypeError because the property doesn't exist.
+        then(res => res.doesNotExist.throwAnError).
+        catch(err => err);
+      
+      err instanceof TypeError; // true
+      // acquit:ignore:start
+      assert.ok(err instanceof TypeError);
+      // acquit:ignore:end
+    });
+
+    it('rethrow', async function() {
+      let error;
+      try {
+        await axios.get('https://httpbin.org/status/404').catch(err => {
+          if (err.response.status === 404) {
+            throw new Error(`${err.config.url} not found`);
+          }
+          throw err;
+        });
+      } catch (err) {
+        error = err;
+      }
+
+      error.message; // "https://httpbin.org/status/404 not found"
+      // acquit:ignore:start
+      assert.equal(error.message, 'https://httpbin.org/status/404 not found');
+      // acquit:ignore:end
+    });
+  });
 });
