@@ -498,4 +498,47 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('post json', function() {
+    it('automatically serializes', async function() {
+      // Axios automatically serializes `{ answer: 42 }` into JSON.
+      const res = await axios.post('https://httpbin.org/post', { answer: 42 });
+
+      res.data.data; // '{"answer":42}'
+      res.data.headers['Content-Type']; // 'application/json;charset=utf-8',
+      // acquit:ignore:start
+      assert.equal(res.data.data, '{"answer":42}');
+      assert.equal(res.data.headers['Content-Type'], 'application/json;charset=utf-8');
+      // acquit:ignore:end
+    });
+
+    it('with string', async function() {
+      const json = JSON.stringify({ answer: 42 });
+      const res = await axios.post('https://httpbin.org/post', json);
+
+      // Axios automatically sets the `Content-Type` based on the
+      // 2nd parameter to `axios.post()`.
+      res.data.headers['Content-Type']; // 'application/x-www-form-urlencoded',
+      // acquit:ignore:start
+      assert.equal(res.data.headers['Content-Type'], 'application/x-www-form-urlencoded');
+      // acquit:ignore:end
+    });
+
+    it('content-type with string', async function() {
+      const json = JSON.stringify({ answer: 42 });
+      const res = await axios.post('https://httpbin.org/post', json, {
+        headers: {
+          // Overwrite Axios's automatically set Content-Type
+          'Content-Type': 'application/json'
+        }
+      });
+
+      res.data.data; // '{"answer":42}'
+      res.data.headers['Content-Type']; // 'application/json',
+      // acquit:ignore:start
+      assert.equal(res.data.data, '{"answer":42}');
+      assert.equal(res.data.headers['Content-Type'], 'application/json');
+      // acquit:ignore:end
+    });
+  });
 });
