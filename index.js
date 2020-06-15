@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Capitalize the First Letter of a String in JavaScript',
+      raw: './tutorials/fundamentals/capitalize-first-letter.md',
+      url: '/tutorials/fundamentals/capitalize-first-letter',
+      description: 'Here\'s how you can capitalize the first letter of a JavaScript string without any external libraries.',
+      tags: ['fundamentals'],
+      date: moment('2020-06-15')
+    },
+    {
       title: 'POST JSON with Axios',
       raw: './tutorials/axios/post-json.md',
       url: '/tutorials/axios/post-json',
