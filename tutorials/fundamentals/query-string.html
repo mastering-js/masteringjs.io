@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get Query String Values in Vanilla JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Get Query String Values in Vanilla JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can parse the query string parameters in vanilla JavaScript." />
+    <meta name="description" content="Here's how you can parse the query string parameters in vanilla JavaScript." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Get Query String Values in Vanilla JavaScript</h1>
+  <div class="date">
+    Jun 17, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>The <a href="https://www.w3schools.com/jsref/prop_loc_search.asp"><code>window.location.search</code> property</a>
+contains the raw query string. For example, if you open <code>http://localhost:5000/?answer=42</code>,
+then <code>window.location.search</code> will equal <code>&#39;?answer=42&#39;</code>.</p>
+<p>You can parse the query string using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"><code>URLSearchParams</code> class</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?answer=42'</span>;
+<span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
+
+params.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// '42'</span></code></pre>
+<p>Instances of <code>URLSearchParams</code> are similar to JavaScript maps. In order to
+get all keys in the search string, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/keys"><code>keys()</code> function</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/entries"><code>entries()</code> function</a>. Keep in
+mind these functions return JavaScript iterators, <strong>not</strong> arrays, so you need to
+use <code>Array.from()</code> to convert them.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?answer=42&amp;question=unknown'</span>;
+<span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
+
+<span class="hljs-built_in">Array</span>.from(params.keys()); <span class="hljs-comment">// ['answer', 'question']</span>
+<span class="hljs-built_in">Array</span>.from(params.entries()); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span></code></pre>
+<h2 id="without-urlsearchparams">Without <code>URLSearchParams</code></h2>
+<p>The <code>URLSearchParams</code> class enjoys reasonable browser support and works
+in Node.js. The big caveat is that <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#Browser_compatibility"><code>URLSearchParams</code> is <strong>not</strong> supported in Internet Explorer</a>.</p>
+<p>The <code>URLSearchParams</code> class handles a lot of edge cases for you, but, in
+many cases, you can get away with the below simple function for parsing
+the query string.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parse</span>(<span class="hljs-params">qs</span>) </span>{
+  <span class="hljs-keyword">return</span> qs.
+    replace(<span class="hljs-regexp">/^\?/</span>, <span class="hljs-string">''</span>).
+    split(<span class="hljs-string">'&amp;'</span>).
+    map(<span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span> str.split(<span class="hljs-string">'='</span>).map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">decodeURIComponent</span>(v)));
+}
+
+parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/capitalize-first-letter">Capitalize the First Letter of a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-object">Iterating Through an Object with `forEach()`</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/iife">Immediately Invoked Function Expressions (IIFE) in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/disable-button">Disable a Button in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/formdata">FormData in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/blob">Blobs in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filereader">Read Local Files in JavaScript with FileReader</a></li>
+  
+    </ul>
+  
+
+      </div>
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

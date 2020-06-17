@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Get Query String Values in Vanilla JavaScript',
+      raw: './tutorials/fundamentals/query-string.md',
+      url: '/tutorials/fundamentals/query-string',
+      description: 'Here\'s how you can parse the query string parameters in vanilla JavaScript.',
+      tags: ['fundamentals'],
+      date: moment('2020-06-17')
+    },
+    {
       title: 'Capitalize the First Letter of a String in JavaScript',
       raw: './tutorials/fundamentals/capitalize-first-letter.md',
       url: '/tutorials/fundamentals/capitalize-first-letter',
