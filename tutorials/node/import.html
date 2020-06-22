@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Using `import` Statements in Node.js - Mastering JS</title>
+
+    <meta property="og:title" content="Using `import` Statements in Node.js" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Node has limited support for ES6 import statements. Here's how you can make JavaScript that uses `import` work in Node." />
+    <meta name="description" content="Node has limited support for ES6 import statements. Here's how you can make JavaScript that uses `import` work in Node." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/node">Node</a>
+    /
+  </div>
+  <h1>Using `import` Statements in Node.js</h1>
+  <div class="date">
+    Jun 24, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://thecodebarbarian.com/nodejs-12-imports">Node.js 12 introduced support for the <code>import</code> statement</a> behind a <code>--experimental-modules</code> flag and a <a href="https://nodejs.org/api/esm.html#esm_package_json_type_field"><code>package.json</code> configuration option</a>. Node.js 14 removes the need
+for the <code>--experimental-modules</code> flag, but you still need to configure your <code>package.json</code>.
+Here&#39;s how you can use ES6 imports in Node.</p>
+<h2 id="setup">Setup</h2>
+<p>Suppose you have two JavaScript files: <code>index.js</code> and <code>test.js</code>. The <code>test.js</code> file
+exports a simple function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World'</span>);
+}</code></pre>
+<p>The <code>index.js</code> file imports the <code>test.js</code> file:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> test <span class="hljs-keyword">from</span> <span class="hljs-string">'./test.js'</span>;
+
+test();</code></pre>
+<p>When using ES6 imports in Node.js, you must put the file extension <code>.js</code>, except for <a href="http://2ality.com/2019/04/nodejs-esm-impl.html#es-module-specifiers-in-nodejs">so-called &quot;bare paths&quot;</a> for importing packages your <code>./node_modules</code>. Putting <code>import test from &#39;./test&#39;</code> will throw an error.</p>
+<p>To run <code>index.js</code>, you need to create a <code>package.json</code> file with a <a href="https://nodejs.org/api/esm.html#esm_package_json_type_field"><code>type</code> property</a> set to <code>&quot;module&quot;</code>.
+Below is a minimal <code>package.json</code> file to enable running <code>index.js</code> in Node.js 14, or Node.js 12 with <code>--experimental-modules</code>.</p>
+<pre><code class="language-javascript">{ <span class="hljs-string">"type"</span>: <span class="hljs-string">"module"</span> }</code></pre>
+<h2 id="importing-npm-modules">Importing NPM Modules</h2>
+<p>To import a module you installed via <a href="https://thecodebarbarian.com/an-introduction-to-npm">npm</a>, you can import the package name. The below example
+shows how you can import <a href="https://mongoosejs.com/">Mongoose</a> using ES6 imports.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> mongoose <span class="hljs-keyword">from</span> <span class="hljs-string">'mongoose'</span>;
+
+<span class="hljs-built_in">console</span>.log(mongoose.version); <span class="hljs-comment">// 5.9.19</span></code></pre>
+<p>Node.js takes care of the quirks of interopability between CommonJS (Node&#39;s <code>require()</code>)
+and ESM (ES6 <code>import</code>). So even though Mongoose 5 uses CommonJS internally, your project
+can <code>import</code> it as it would any ESM module.</p>
+<p>Note that bare paths <strong>only</strong> work for the top-level npm module, not for files in the
+npm module. For example, you can get Lodash&#39;s <code>omit()</code> function in CommonJS by calling
+<code>require(&#39;lodash/omit&#39;)</code>. Using ESM imports, you need to add <code>.js</code> at the end.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> omit <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/omit.js'</span>;
+
+<span class="hljs-built_in">console</span>.log(omit({ <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> }, [<span class="hljs-string">'b'</span>])); <span class="hljs-comment">// { a: 1 }</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Node Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/node/http-request">Making an HTTP Request in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/google-cloud-storage">Upload Files to Google Cloud Storage in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer">Node.js Buffer Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/node/lambda">Deploy a Function to Lambda Using the Node.js AWS SDK</a></li>
+  
+
+    <li><a href="/tutorials/node/promisify">The `util.promisify()` Function in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/mocha/async">How to Test Async Code with Mocha</a></li>
+  
+
+    <li><a href="/tutorials/mocha/chai">Using the Chai Assertion Library with Mocha</a></li>
+  
+    </ul>
+  
+
+      </div>
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
