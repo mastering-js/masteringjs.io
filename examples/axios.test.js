@@ -541,4 +541,17 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('get request', function() {
+    it('basic example', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://httpbin.org/get?answer=42');
+
+      res.data.args; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { answer: 42 });
+      // acquit:ignore:end
+    });
+  });
 });

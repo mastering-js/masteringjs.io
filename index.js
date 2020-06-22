@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Making an HTTP Request in Node.js',
+      raw: './tutorials/node/http-request.md',
+      url: '/tutorials/node/http-request',
+      description: 'Node\'s built-in HTTP library lets you make HTTP requests, but is hard to work with. Here\'s what you need to know.',
+      tags: ['node', 'axios'],
+      date: moment('2020-06-22')
+    },
+    {
       title: 'An Introduction to Symbols in JavaScript',
       raw: './tutorials/fundamentals/symbol.md',
       url: '/tutorials/fundamentals/symbol',
