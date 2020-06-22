@@ -3988,6 +3988,51 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('array iterate', function() {
+    let _console = console;
+    let messages = [];
+
+    beforeEach(function() {
+      messages = [];
+      console = {
+        log: msg => messages.push(msg)
+      };
+    });
+
+    afterEach(function() {
+      console = _console;
+    });
+
+    it('non-numeric', async function() {
+      const arr = ['a', 'b', 'c'];
+      arr['bad'] = 'alpha';
+
+      for (let key in arr) {
+        console.log(arr[key]); // Prints: a, b, c, alpha
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c', 'alpha']);
+      messages = [];
+      // acquit:ignore:end
+
+      // However, `for/of` skips non-numeric keys
+      for (const val of arr) {
+        console.log(val); // Prints: a, b, c
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c']);
+      messages = [];
+      // acquit:ignore:end
+
+      // So does `forEach()`
+      arr.forEach(val => console.log(val)); // Prints: a, b, c
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c']);
+      messages = [];
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
