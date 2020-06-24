@@ -135,7 +135,7 @@ doc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
 updatedDoc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
 <p>Generally, <code>Document#updateOne()</code> is rarely useful. You&#39;re better off using <code>save()</code> and using <code>Model.updateOne()</code> for cases when <code>save()</code> is not flexible enough.</p>
 <h2 id="using-modelfindoneandupdate">Using <code>Model.findOneAndUpdate()</code></h2>
-<p>The <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> behaves similarly to <code>updateOne()</code>: it atomically updates the first document that matches the first parameter <code>filter</code>. Unlike <code>updateOne()</code>, it gives you back the updated document.</p>
+<p>The <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> or its variation <a href="https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate"><code>Model.findByIdAndUpdate()</code></a> behave similarly to <code>updateOne()</code>: they atomically update the first document that matches the first parameter <code>filter</code>. Unlike <code>updateOne()</code>, it gives you back the updated document.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.findOneAndUpdate(
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> },
   { <span class="hljs-attr">title</span>: <span class="hljs-string">'King in the North'</span> },
