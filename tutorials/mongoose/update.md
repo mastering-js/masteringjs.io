@@ -50,7 +50,7 @@ Generally, `Document#updateOne()` is rarely useful. You're better off using `sav
 Using `Model.findOneAndUpdate()`
 --------------------------------
 
-The [`Model.findOneAndUpdate()` function](https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate) behaves similarly to `updateOne()`: it atomically updates the first document that matches the first parameter `filter`. Unlike `updateOne()`, it gives you back the updated document.
+The [`Model.findOneAndUpdate()` function](https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate) or its variation The [`Model.findByIdAndUpdate()` function](https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate) behave similarly to `updateOne()`: they atomically update the first document that matches the first parameter `filter`. Unlike `updateOne()`, it gives you back the updated document.
 
 ```javascript
 [require:Mongoose.*update.*findOneAndUpdate]
