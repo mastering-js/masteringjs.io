@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using `import` Statements in Node.js',
+      raw: './tutorials/node/import.md',
+      url: '/tutorials/node/import',
+      description: 'Node has limited support for ES6 import statements. Here\'s how you can make JavaScript that uses `import` work in Node.',
+      tags: ['node'],
+      date: moment('2020-06-24')
+    },
+    {
       title: 'Making an HTTP Request in Node.js',
       raw: './tutorials/node/http-request.md',
       url: '/tutorials/node/http-request',
