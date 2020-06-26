@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Import vs Require in Node.js',
+      raw: './tutorials/node/import-vs-require.md',
+      url: '/tutorials/node/import-vs-require',
+      description: 'Now that Node.js has native support for ESM imports, should you use `require()` or `import`? Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-06-26')
+    },
+    {
       title: 'Using `import` Statements in Node.js',
       raw: './tutorials/node/import.md',
       url: '/tutorials/node/import',

@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Import vs Require in Node.js - Mastering JS</title>
+
+    <meta property="og:title" content="Import vs Require in Node.js" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Now that Node.js has native support for ESM imports, should you use `require()` or `import`? Here's what you need to know." />
+    <meta name="description" content="Now that Node.js has native support for ESM imports, should you use `require()` or `import`? Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/node">Node</a>
+    /
+  </div>
+  <h1>Import vs Require in Node.js</h1>
+  <div class="date">
+    Jun 26, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://thecodebarbarian.com/nodejs-12-imports">Node.js introduced support for the <code>import</code> statement</a> in Node.js 12, although you need to opt in by setting a <a href="https://nodejs.org/api/esm.html#esm_package_json_type_field"><code>package.json</code> configuration option</a>.
+However, Node.js has no plans to drop support for <code>require()</code> (CommonJS). Which should
+you use?</p>
+<p>Below is a high-level summary of the tradeoffs:</p>
+<ol>
+<li>ESM <code>import</code> is part of the JavaScript language spec, <code>require()</code> is not.</li>
+<li><code>import</code> requires a special configuration option in <code>package.json</code>.</li>
+<li><code>import</code> does not support importing JSON files. You&#39;ll get a <code>Unknown file extension &quot;.json&quot;</code> error if you try to <code>import</code> a file that ends in <code>.json</code>.</li>
+<li>Even though ESM modules work in both the browser and Node.js, there&#39;s no guarantee that your Node.js code will work in the browser and vice-versa.</li>
+<li>Several Node.js features don&#39;t work with ESM: <code>NODE_PATH</code>, <code>__dirname</code>, <code>__filename</code>, and <code>require.extensions</code> don&#39;t work if you opt in to <code>{ &quot;type&quot;: &quot;module&quot; }</code>.</li>
+</ol>
+<h2 id="recommendations">Recommendations</h2>
+<p>Even though there are numerous tradeoffs, none of the tradeoffs is sufficiently important
+for us to recommend using one or the other in all cases. Here&#39;s a few reasons why you
+might prefer one over the other:</p>
+<ol>
+<li>If you&#39;re building a full-stack application and want to use the same syntax all the way through, using ESM imports is a good choice.</li>
+<li>If your app uses <code>__dirname</code> for relative file paths with <code>fs</code>, you need to use <code>require()</code> or refactor your app.</li>
+<li>If you rely on importing JSON files (configuration, seed data, etc.) you need to use <code>require()</code>, or refactor your app to instead read JSON files using <code>fs</code>.</li>
+</ol>
+<p>For now, Mastering JS will stick to using <code>require()</code>, because that&#39;s what we&#39;re used to and we don&#39;t know of a compelling enough reason to switch.</p>
+
+  
+  <hr>
+  
+    <h2>More Node Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/node/import">Using `import` Statements in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/http-request">Making an HTTP Request in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/google-cloud-storage">Upload Files to Google Cloud Storage in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer">Node.js Buffer Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/node/lambda">Deploy a Function to Lambda Using the Node.js AWS SDK</a></li>
+  
+
+    <li><a href="/tutorials/node/promisify">The `util.promisify()` Function in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/mocha/async">How to Test Async Code with Mocha</a></li>
+  
+    </ul>
+  
+
+      </div>
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
