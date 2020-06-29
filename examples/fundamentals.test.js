@@ -3909,6 +3909,52 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('iterator', function() {
+    it('for of', async function() {
+      const oneThruTen = {
+        [Symbol.iterator]: function() {
+          let num = 0;
+          return { next: () => ({ value: ++num, done: num > 10 }) }
+        }
+      };
+
+      for (const num of oneThruTen) {
+        num; // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+      }
+      // acquit:ignore:start
+      assert.deepEqual(Array.from(oneThruTen), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      // acquit:ignore:end
+    });
+
+    it('array from', async function() {
+      const oneThruTen = {
+        [Symbol.iterator]: function() {
+          let num = 0;
+          return { next: () => ({ value: ++num, done: num > 10 }) }
+        }
+      };
+
+      Array.from(oneThruTen); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      // acquit:ignore:start
+      assert.deepEqual(Array.from(oneThruTen), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      // acquit:ignore:end
+    });
+
+    it('spread', async function() {
+      const oneThruTen = {
+        [Symbol.iterator]: function() {
+          let num = 0;
+          return { next: () => ({ value: ++num, done: num > 10 }) }
+        }
+      };
+
+      [...oneThruTen]; // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      // acquit:ignore:start
+      assert.deepEqual([...oneThruTen], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
