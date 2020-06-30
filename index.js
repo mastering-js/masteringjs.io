@@ -1565,6 +1565,10 @@ async function run() {
       ad = `
       <a href="https://pluralsight.pxf.io/c/1321469/431400/7490" id="431400"><img src="//a.impactradius-go.com/display-ad/7490-431400" border="0" alt="" width="160" height="600"/></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
       `;
+    } else if (tutorial.tags[0] === 'mongoose') {
+      ad = `
+      <a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600"/></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
+      `;
     }
 
     const html = layout({ ...tutorial, ad });
