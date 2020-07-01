@@ -3955,6 +3955,39 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('array filter', function() {
+    it('even numbers', async function() {
+      const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      nums.filter(function isEven(num) {
+        return num % 2 === 0;
+      }); // [2, 4, 6, 8, 10]
+      // acquit:ignore:start
+      assert.deepEqual(nums.filter(num => num % 2 === 0), [2, 4, 6, 8, 10]);
+      // acquit:ignore:end
+    });
+
+    it('even indexes', async function() {
+      const names = [
+        'James',
+        'John',
+        'Robert',
+        'Michael',
+        'William'
+      ];
+
+      names.filter(function isOddIndex(el, index) {
+        return index % 2 === 1;
+      }); // ['John', 'Michael']
+      // acquit:ignore:start
+      const v = names.filter(function isOddIndex(el, index) {
+        return index % 2 === 1;
+      }); // ['John', 'Michael']
+      assert.deepEqual(v, ['John', 'Michael']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

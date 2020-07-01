@@ -38,6 +38,22 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The JavaScript Array `filter()` Method',
+      raw: './tutorials/fundamentals/array-filter.md',
+      url: '/tutorials/fundamentals/array-filter',
+      description: 'The `filter()` method creates a new array of elements that match a given test. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-01')
+    },
+    {
+      title: 'JavaScript Iterators',
+      raw: './tutorials/fundamentals/iterator.md',
+      url: '/tutorials/fundamentals/iterator',
+      description: 'Iterators and iterables define sequences of values in JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-06-29')
+    },
+    {
       title: 'JavaScript Iterators',
       raw: './tutorials/fundamentals/iterator.md',
       url: '/tutorials/fundamentals/iterator',
