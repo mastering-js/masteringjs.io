@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Iterate through an Array in JavaScript',
+      raw: './tutorials/fundamentals/array-iterate.md',
+      url: '/tutorials/fundamentals/array-iterate',
+      description: 'There are numerous ways to iterate through an array in JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-03')
+    },
+    {
       title: 'The JavaScript Array `filter()` Method',
       raw: './tutorials/fundamentals/array-filter.md',
       url: '/tutorials/fundamentals/array-filter',
