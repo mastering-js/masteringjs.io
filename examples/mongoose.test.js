@@ -1887,9 +1887,9 @@ describe('Mongoose', function() {
       }));
 
       await User.create([
-        { email: 'sergei@google.com' },
+        { email: 'sergey@google.com' },
         { email: 'bill@microsoft.com' },
-        { email: 'test+foo@gmail.com' },
+        { email: 'test+foo@gmail.com' }
       ]);
 
       const $regex = escapeStringRegexp('+foo');
@@ -1909,6 +1909,55 @@ describe('Mongoose', function() {
       }
       assert.deepEqual(docs.map(doc => doc.email).sort(),
         ['test+foo@gmail.com']);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('create', function() {
+    it('basic example', async function() {
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      const doc = await User.create({ email: 'bill@microsoft.com' });
+      doc instanceof User; // true
+      doc.email; // 'bill@microsoft.com'
+      // acquit:ignore:start
+      assert.ok(doc instanceof User);
+      assert.equal(doc.email, 'bill@microsoft.com');
+      // acquit:ignore:end
+    });
+
+    it('multiple', async function() {
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      const docs = await User.create([
+        { email: 'sergey@google.com' },
+        { email: 'bill@microsoft.com' }
+      ]);
+      docs[0] instanceof User; // true
+      docs[0].email; // 'sergey@google.com'
+      docs[1].email; // 'bill@microsoft.com'
+      // acquit:ignore:start
+      assert.ok(docs[0] instanceof User);
+      assert.equal(docs[0].email, 'sergey@google.com');
+      assert.equal(docs[1].email, 'bill@microsoft.com');
+      // acquit:ignore:end
+    });
+
+    it('insertMany', async function() {
+      const User = mongoose.model('User', mongoose.Schema({
+        email: String
+      }));
+
+      const [doc] = await User.insertMany([{ email: 'bill@microsoft.com' }]);
+      doc instanceof User; // true
+      doc.email; // 'bill@microsoft.com'
+      // acquit:ignore:start
+      assert.ok(doc instanceof User);
+      assert.equal(doc.email, 'bill@microsoft.com');
       // acquit:ignore:end
     });
   });

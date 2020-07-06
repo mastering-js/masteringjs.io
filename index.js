@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `create()` Function in Mongoose',
+      raw: './tutorials/mongoose/create.md',
+      url: '/tutorials/mongoose/create',
+      description: 'Mongoose\'s `create()` function is a convenience wrapper around `save()`. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-07-15')
+    },
+    {
       title: 'Understanding `unique` in Mongoose',
       raw: './tutorials/mongoose/unique.md',
       url: '/tutorials/mongoose/unique',
