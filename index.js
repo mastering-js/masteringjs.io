@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Watch vs Computed in Vue',
+      raw: './tutorials/vue/watch-vs-computed.md',
+      url: '/tutorials/vue/watch-vs-computed',
+      description: 'Watchers and computed properties are two ways to update one value when another value changes. Here\'s how they are different.',
+      tags: ['vue'],
+      date: moment('2020-07-06')
+    },
+    {
       title: 'How to Iterate through an Array in JavaScript',
       raw: './tutorials/fundamentals/array-iterate.md',
       url: '/tutorials/fundamentals/array-iterate',

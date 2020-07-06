@@ -1952,6 +1952,52 @@ describe('Vue', function() {
     await page.waitForSelector('#success');
     // acquit:ignore:end
   });
+
+  describe('watch vs computed', function() {
+    it('using computed', async function() {
+      const app = new Vue({
+        data: () => ({ items: [{ id: 1, price: 10, quantity: 2 }] }),
+        computed: {
+          numItems: function numItems() {
+            return this.items.reduce((sum, item) => sum + item.quantity, 0);
+          }
+        },
+        template: `<div>numItems is {{numItems}}</div>`
+      });
+      // acquit:ignore:start
+      let res = await renderToString(app);
+      assert.ok(res.includes('numItems is 2'), res);
+
+      app.items[0].quantity = 3;
+      res = await renderToString(app);
+      assert.ok(res.includes('numItems is 3'), res);
+      // acquit:ignore:end
+    });
+
+    it('using watch', async function() {
+      const app = new Vue({
+        data: () => ({
+          items: [{ id: 1, price: 10, quantity: 2 }],
+          numItems: 2
+        }),
+        watch: {
+          items: function updateNumItems() {
+            this.numItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
+          }
+        },
+        template: `<div>numItems is {{numItems}}</div>`
+      });
+      // acquit:ignore:start
+      let res = await renderToString(app);
+      assert.ok(res.includes('numItems is 2'), res);
+
+      // Doesn't work with SSR
+      // app.items = [{ id: 1, price: 10, quantity: 3 }];
+      // res = await renderToString(app);
+      // assert.ok(res.includes('numItems is 3'), res);
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
