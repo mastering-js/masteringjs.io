@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Mongoose Timestamps',
+      raw: './tutorials/mongoose/timestamps.md',
+      url: '/tutorials/mongoose/timestamps',
+      description: 'Mongoose has a built-in timestamps option that sets `createdAt` and `updatedAt` on your documents automatically. Here\'s how you can use it.',
+      tags: ['mongoose'],
+      date: moment('2020-07-17')
+    },
+    {
       title: 'The `create()` Function in Mongoose',
       raw: './tutorials/mongoose/create.md',
       url: '/tutorials/mongoose/create',
