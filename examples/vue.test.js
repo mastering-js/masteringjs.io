@@ -1998,6 +1998,26 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('click', function() {
+    it('basic example', async function() {
+      // Click the "Add" button twice to make the <h1> show
+      // "Row row row your boat"
+      const app = new Vue({
+        data: () => ({ message: 'Row' }),
+        template: `
+        <div>
+          <h1>{{message}} your boat</h1>
+          <button v-on:click="message += ' row'">Add</button>
+        </div>
+        `
+      });
+      // acquit:ignore:start
+      let res = await renderToString(app);
+      assert.ok(res.includes('Row your boat'), res);
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
