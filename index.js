@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Loading Vue via CDN',
+      raw: './tutorials/vue/cdn.md',
+      url: '/tutorials/vue/cdn',
+      description: 'You don\'t have to use bundlers to compile Vue, you can easily load Vue from a CDN. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-07-10')
+    },
+    {
       title: 'Handling Click Events with Vue',
       raw: './tutorials/vue/click.md',
       url: '/tutorials/vue/click',
