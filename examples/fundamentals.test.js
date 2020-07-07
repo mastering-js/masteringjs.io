@@ -3955,6 +3955,84 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('array filter', function() {
+    it('even numbers', async function() {
+      const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      nums.filter(function isEven(num) {
+        return num % 2 === 0;
+      }); // [2, 4, 6, 8, 10]
+      // acquit:ignore:start
+      assert.deepEqual(nums.filter(num => num % 2 === 0), [2, 4, 6, 8, 10]);
+      // acquit:ignore:end
+    });
+
+    it('even indexes', async function() {
+      const names = [
+        'James',
+        'John',
+        'Robert',
+        'Michael',
+        'William'
+      ];
+
+      names.filter(function isOddIndex(el, index) {
+        return index % 2 === 1;
+      }); // ['John', 'Michael']
+      // acquit:ignore:start
+      const v = names.filter(function isOddIndex(el, index) {
+        return index % 2 === 1;
+      }); // ['John', 'Michael']
+      assert.deepEqual(v, ['John', 'Michael']);
+      // acquit:ignore:end
+    });
+  });
+
+  describe('array iterate', function() {
+    let _console = console;
+    let messages = [];
+
+    beforeEach(function() {
+      messages = [];
+      console = {
+        log: msg => messages.push(msg)
+      };
+    });
+
+    afterEach(function() {
+      console = _console;
+    });
+
+    it('non-numeric', async function() {
+      const arr = ['a', 'b', 'c'];
+      arr['bad'] = 'alpha';
+
+      for (let key in arr) {
+        console.log(arr[key]); // Prints: a, b, c, alpha
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c', 'alpha']);
+      messages = [];
+      // acquit:ignore:end
+
+      // However, `for/of` skips non-numeric keys
+      for (const val of arr) {
+        console.log(val); // Prints: a, b, c
+      }
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c']);
+      messages = [];
+      // acquit:ignore:end
+
+      // So does `forEach()`
+      arr.forEach(val => console.log(val)); // Prints: a, b, c
+      // acquit:ignore:start
+      assert.deepEqual(messages, ['a', 'b', 'c']);
+      messages = [];
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {

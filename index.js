@@ -38,6 +38,38 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Watch vs Computed in Vue',
+      raw: './tutorials/vue/watch-vs-computed.md',
+      url: '/tutorials/vue/watch-vs-computed',
+      description: 'Watchers and computed properties are two ways to update one value when another value changes. Here\'s how they are different.',
+      tags: ['vue'],
+      date: moment('2020-07-06')
+    },
+    {
+      title: 'How to Iterate through an Array in JavaScript',
+      raw: './tutorials/fundamentals/array-iterate.md',
+      url: '/tutorials/fundamentals/array-iterate',
+      description: 'There are numerous ways to iterate through an array in JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-03')
+    },
+    {
+      title: 'The JavaScript Array `filter()` Method',
+      raw: './tutorials/fundamentals/array-filter.md',
+      url: '/tutorials/fundamentals/array-filter',
+      description: 'The `filter()` method creates a new array of elements that match a given test. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-01')
+    },
+    {
+      title: 'JavaScript Iterators',
+      raw: './tutorials/fundamentals/iterator.md',
+      url: '/tutorials/fundamentals/iterator',
+      description: 'Iterators and iterables define sequences of values in JavaScript. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-06-29')
+    },
+    {
       title: 'JavaScript Iterators',
       raw: './tutorials/fundamentals/iterator.md',
       url: '/tutorials/fundamentals/iterator',
