@@ -320,6 +320,16 @@ input[type="text"], input[type="password"], input[type="number"] {
   #carbonads {
     display: none !important;
   }
+
+  .right-banner {
+    display: none;
+  }
+}
+
+@media (max-height: 820px) {
+  .right-banner {
+    display: none;
+  }
 }
 
 #carbonads a{color:#333;text-decoration:none}
