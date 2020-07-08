@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Handling Click Events with Vue',
+      raw: './tutorials/vue/click.md',
+      url: '/tutorials/vue/click',
+      description: 'Vue\'s v-on:click lets you attach click handlers to DOM elements. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-07-08')
+    },
+    {
       title: 'Watch vs Computed in Vue',
       raw: './tutorials/vue/watch-vs-computed.md',
       url: '/tutorials/vue/watch-vs-computed',
