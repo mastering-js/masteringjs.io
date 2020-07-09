@@ -78,14 +78,6 @@ async function run() {
       date: moment('2020-06-29')
     },
     {
-      title: 'JavaScript Iterators',
-      raw: './tutorials/fundamentals/iterator.md',
-      url: '/tutorials/fundamentals/iterator',
-      description: 'Iterators and iterables define sequences of values in JavaScript. Here\'s what you need to know.',
-      tags: ['fundamentals'],
-      date: moment('2020-06-29')
-    },
-    {
       title: 'Import vs Require in Node.js',
       raw: './tutorials/node/import-vs-require.md',
       url: '/tutorials/node/import-vs-require',
