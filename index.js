@@ -1053,34 +1053,7 @@ async function run() {
       url: '/tutorials/mongoose/connect',
       description: 'The `mongoose.connect()` function is the most common way to connect to MongoDB with Mongoose. This tutorial describes how to use `mongoose.connect()` and how to troubleshoot common issues.',
       tags: ['mongoose'],
-      date: moment('2019-08-01')
-    },
-    {
-      title: 'Object.assign() in JavaScript',
-      raw: './tutorials/fundamentals/assign.md',
-      url: '/tutorials/fundamentals/assign',
-      description: 'The `Object.assign()` function lets you assign properties from one object to another. You can use it to shallow copy objects or assign multiple properties at once.',
-      tags: ['fundamentals'],
-      date: moment('2019-07-30')
-    },
-    {
-      title: '3 Ways to Concatenate Strings in JavaScript',
-      raw: './tutorials/fundamentals/string-concat.md',
-      url: '/tutorials/fundamentals/string-concat',
-      description: 'You can concatenate strings in JavaScript using the `+` operator, the `Array#join()` function, or the `String#concat()` function. Here\'s what you need to know.',
-      tags: ['fundamentals'],
-      date: moment('2019-07-29')
-    },
-    {
-      title: 'Safe Navigation With Lodash\'s get() Function',
-      raw: './tutorials/lodash/get.md',
-      url: '/tutorials/lodash/get',
-      description: 'Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property \'prop\' of undefined" errors. Here\'s what you need to know.',
-      tags: ['lodash'],
-      date: moment('2019-07-26')
-    },
-    {
-      title: 'Sorting Arrays With Lodash\'s sortBy() Function',
+      date: moment('2019-08-01'),
       raw: './tutorials/lodash/sortby.md',
       url: '/tutorials/lodash/sortby',
       description: 'Lodash has a `sortBy()` function that provides some neat syntactic sugar on top of `Array#sort()`. This tutorial will teach you what you need to know about `_.sortBy()`.',
@@ -1395,7 +1368,7 @@ async function run() {
       title: 'Maps in JavaScript',
       raw: './tutorials/fundamentals/map.md',
       url: '/tutorials/fundamentals/map',
-      description: 'Learn how to use ES6 maps in JavaScript',
+      description: 'Learn how to use ES6 maps.',
       tags: ['fundamentals'],
       date: moment('2019-05-29')
     },
@@ -1605,6 +1578,12 @@ async function run() {
 
   for (const tutorial of tutorials) {
     console.log(tutorial);
+
+    if (tutorial.tags[0] === 'mongoose') {
+      //ad = `
+      //<a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600" class="right-banner" /></a>      `;
+      tutorial.cta = 'mongoose';
+    }
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
     let ad = null;
@@ -1614,9 +1593,6 @@ async function run() {
       ad = `
       <a href="https://pluralsight.pxf.io/c/1321469/431400/7490" id="431400"><img src="//a.impactradius-go.com/display-ad/7490-431400" border="0" alt="" width="160" height="600" class="right-banner" /></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
       `;
-    } else if (tutorial.tags[0] === 'mongoose') {
-      ad = `
-      <a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600" class="right-banner" /></a>      `;
     }
 
     const html = layout({ ...tutorial, ad });
