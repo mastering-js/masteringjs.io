@@ -331,7 +331,8 @@ async function run() {
       url: '/tutorials/fundamentals/thenable',
       description: 'A thenable is an object that behaves like a promise for the purposes of chaining and async/await, but is not necessarily a promise. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-17')
+      date: moment('2020-04-17'),
+      cta: 'asyncawait'
     },
     {
       title: 'Reject a Promise in JavaScript',
@@ -339,7 +340,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-reject',
       description: 'Rejecting a promise in JavaScript is how you mark a promise as errored. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-16')
+      date: moment('2020-04-16'),
+      cta: 'asyncawait'
     },
     {
       title: 'JavaScript Promise Chaining',
@@ -347,7 +349,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-chaining',
       description: 'Promise chaining is a powerful pattern for composing promises. The key benefit is that you can handle all errors with one `catch()` handler. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-15')
+      date: moment('2020-04-15'),
+      cta: 'asyncawait'
     },
     {
       title: 'Using Bluebird Promises',
@@ -355,7 +358,8 @@ async function run() {
       url: '/tutorials/fundamentals/bluebird',
       description: 'Bluebird is a popular alternative Promise library for JavaScript. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-13')
+      date: moment('2020-04-13'),
+      cta: 'asyncawait'
     },
     {
       title: 'Lodash\'s `pick()` Function',
@@ -628,7 +632,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-new',
       description: 'When you call `new Promise` in JavaScript, you invoke the Promise constructor. Here\'s how you can use the Promise constructor like a pro.',
       tags: ['fundamentals'],
-      date: moment('2020-01-24')
+      date: moment('2020-01-24'),
+      cta: 'asyncawait'
     },
     {
       title: 'Resolve a Promise in JavaScript',
@@ -636,7 +641,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-resolve',
       description: 'Resolving a promise in JavaScript is how you mark a promise as fulfilled. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-01-22')
+      date: moment('2020-01-22'),
+      cta: 'asyncawait'
     },
     {
       title: 'The `Promise.all()` Function in JavaScript',
@@ -644,7 +650,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-all',
       description: 'The `Promise.all()` function lets you execute multiple promises in parallel, and accumulates the results. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-01-20')
+      date: moment('2020-01-20'),
+      cta: 'asyncawait'
     },
     {
       title: 'What is a Webhook?',
@@ -924,7 +931,8 @@ async function run() {
       url: '/tutorials/fundamentals/then',
       description: 'The `then()` function is the primary way you interact with promises in JavaScript, including promise chaining.',
       tags: ['fundamentals'],
-      date: moment('2019-09-11')
+      date: moment('2019-09-11'),
+      cta: 'asyncawait'
     },
     {
       title: 'Promises in JavaScript',
@@ -932,7 +940,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise',
       description: 'A promise is an object that represents an asynchronous operation. Promises are JavaScript\'s fundamental concurrency primitive - here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2019-09-10')
+      date: moment('2019-09-10'),
+      cta: 'asyncawait'
     },
     {
       title: 'ObjectIds in Mongoose',

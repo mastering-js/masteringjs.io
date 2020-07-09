@@ -169,6 +169,14 @@ li {
   color: #333;
 }
 
+.cta {
+  line-height: 1.5em;
+}
+
+.cta a {
+  font-weight: bold;
+}
+
 .cta img {
   width: auto !important;
   border: 0px;
