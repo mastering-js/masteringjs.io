@@ -169,6 +169,14 @@ li {
   color: #333;
 }
 
+.cta {
+  line-height: 1.5em;
+}
+
+.cta a {
+  font-weight: bold;
+}
+
 .cta img {
   width: auto !important;
   border: 0px;
@@ -319,6 +327,16 @@ input[type="text"], input[type="password"], input[type="number"] {
 @media (max-width: 1185px) {
   #carbonads {
     display: none !important;
+  }
+
+  .right-banner {
+    display: none;
+  }
+}
+
+@media (max-height: 820px) {
+  .right-banner {
+    display: none;
   }
 }
 
