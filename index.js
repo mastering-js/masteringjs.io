@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding `unique` in Mongoose',
+      raw: './tutorials/mongoose/unique.md',
+      url: '/tutorials/mongoose/unique',
+      description: 'Mongoose lets you define schema paths as `unique`, but the `unique` option has a few important caveats. Here\'s what you need to know.',
+      tags: ['mongoose'],
+      date: moment('2020-07-13')
+    },
+    {
       title: 'Loading Vue via CDN',
       raw: './tutorials/vue/cdn.md',
       url: '/tutorials/vue/cdn',
