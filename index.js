@@ -110,14 +110,6 @@ async function run() {
       date: moment('2020-06-29')
     },
     {
-      title: 'JavaScript Iterators',
-      raw: './tutorials/fundamentals/iterator.md',
-      url: '/tutorials/fundamentals/iterator',
-      description: 'Iterators and iterables define sequences of values in JavaScript. Here\'s what you need to know.',
-      tags: ['fundamentals'],
-      date: moment('2020-06-29')
-    },
-    {
       title: 'Import vs Require in Node.js',
       raw: './tutorials/node/import-vs-require.md',
       url: '/tutorials/node/import-vs-require',
@@ -363,7 +355,8 @@ async function run() {
       url: '/tutorials/fundamentals/thenable',
       description: 'A thenable is an object that behaves like a promise for the purposes of chaining and async/await, but is not necessarily a promise. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-17')
+      date: moment('2020-04-17'),
+      cta: 'asyncawait'
     },
     {
       title: 'Reject a Promise in JavaScript',
@@ -371,7 +364,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-reject',
       description: 'Rejecting a promise in JavaScript is how you mark a promise as errored. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-16')
+      date: moment('2020-04-16'),
+      cta: 'asyncawait'
     },
     {
       title: 'JavaScript Promise Chaining',
@@ -379,7 +373,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-chaining',
       description: 'Promise chaining is a powerful pattern for composing promises. The key benefit is that you can handle all errors with one `catch()` handler. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-15')
+      date: moment('2020-04-15'),
+      cta: 'asyncawait'
     },
     {
       title: 'Using Bluebird Promises',
@@ -387,7 +382,8 @@ async function run() {
       url: '/tutorials/fundamentals/bluebird',
       description: 'Bluebird is a popular alternative Promise library for JavaScript. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-04-13')
+      date: moment('2020-04-13'),
+      cta: 'asyncawait'
     },
     {
       title: 'Lodash\'s `pick()` Function',
@@ -660,7 +656,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-new',
       description: 'When you call `new Promise` in JavaScript, you invoke the Promise constructor. Here\'s how you can use the Promise constructor like a pro.',
       tags: ['fundamentals'],
-      date: moment('2020-01-24')
+      date: moment('2020-01-24'),
+      cta: 'asyncawait'
     },
     {
       title: 'Resolve a Promise in JavaScript',
@@ -668,7 +665,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-resolve',
       description: 'Resolving a promise in JavaScript is how you mark a promise as fulfilled. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-01-22')
+      date: moment('2020-01-22'),
+      cta: 'asyncawait'
     },
     {
       title: 'The `Promise.all()` Function in JavaScript',
@@ -676,7 +674,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise-all',
       description: 'The `Promise.all()` function lets you execute multiple promises in parallel, and accumulates the results. Here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2020-01-20')
+      date: moment('2020-01-20'),
+      cta: 'asyncawait'
     },
     {
       title: 'What is a Webhook?',
@@ -956,7 +955,8 @@ async function run() {
       url: '/tutorials/fundamentals/then',
       description: 'The `then()` function is the primary way you interact with promises in JavaScript, including promise chaining.',
       tags: ['fundamentals'],
-      date: moment('2019-09-11')
+      date: moment('2019-09-11'),
+      cta: 'asyncawait'
     },
     {
       title: 'Promises in JavaScript',
@@ -964,7 +964,8 @@ async function run() {
       url: '/tutorials/fundamentals/promise',
       description: 'A promise is an object that represents an asynchronous operation. Promises are JavaScript\'s fundamental concurrency primitive - here\'s what you need to know.',
       tags: ['fundamentals'],
-      date: moment('2019-09-10')
+      date: moment('2019-09-10'),
+      cta: 'asyncawait'
     },
     {
       title: 'ObjectIds in Mongoose',
@@ -1076,34 +1077,7 @@ async function run() {
       url: '/tutorials/mongoose/connect',
       description: 'The `mongoose.connect()` function is the most common way to connect to MongoDB with Mongoose. This tutorial describes how to use `mongoose.connect()` and how to troubleshoot common issues.',
       tags: ['mongoose'],
-      date: moment('2019-08-01')
-    },
-    {
-      title: 'Object.assign() in JavaScript',
-      raw: './tutorials/fundamentals/assign.md',
-      url: '/tutorials/fundamentals/assign',
-      description: 'The `Object.assign()` function lets you assign properties from one object to another. You can use it to shallow copy objects or assign multiple properties at once.',
-      tags: ['fundamentals'],
-      date: moment('2019-07-30')
-    },
-    {
-      title: '3 Ways to Concatenate Strings in JavaScript',
-      raw: './tutorials/fundamentals/string-concat.md',
-      url: '/tutorials/fundamentals/string-concat',
-      description: 'You can concatenate strings in JavaScript using the `+` operator, the `Array#join()` function, or the `String#concat()` function. Here\'s what you need to know.',
-      tags: ['fundamentals'],
-      date: moment('2019-07-29')
-    },
-    {
-      title: 'Safe Navigation With Lodash\'s get() Function',
-      raw: './tutorials/lodash/get.md',
-      url: '/tutorials/lodash/get',
-      description: 'Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property \'prop\' of undefined" errors. Here\'s what you need to know.',
-      tags: ['lodash'],
-      date: moment('2019-07-26')
-    },
-    {
-      title: 'Sorting Arrays With Lodash\'s sortBy() Function',
+      date: moment('2019-08-01'),
       raw: './tutorials/lodash/sortby.md',
       url: '/tutorials/lodash/sortby',
       description: 'Lodash has a `sortBy()` function that provides some neat syntactic sugar on top of `Array#sort()`. This tutorial will teach you what you need to know about `_.sortBy()`.',
@@ -1418,7 +1392,7 @@ async function run() {
       title: 'Maps in JavaScript',
       raw: './tutorials/fundamentals/map.md',
       url: '/tutorials/fundamentals/map',
-      description: 'Learn how to use ES6 maps in JavaScript',
+      description: 'Learn how to use ES6 maps.',
       tags: ['fundamentals'],
       date: moment('2019-05-29')
     },
@@ -1628,6 +1602,12 @@ async function run() {
 
   for (const tutorial of tutorials) {
     console.log(tutorial);
+
+    if (tutorial.tags[0] === 'mongoose') {
+      //ad = `
+      //<a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600" class="right-banner" /></a>      `;
+      tutorial.cta = 'mongoose';
+    }
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
     let ad = null;
@@ -1635,11 +1615,7 @@ async function run() {
 
     if (tutorial.tags[0] === 'eslint') {
       ad = `
-      <a href="https://pluralsight.pxf.io/c/1321469/431400/7490" id="431400"><img src="//a.impactradius-go.com/display-ad/7490-431400" border="0" alt="" width="160" height="600"/></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
-      `;
-    } else if (tutorial.tags[0] === 'mongoose') {
-      ad = `
-      <a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600"/></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
+      <a href="https://pluralsight.pxf.io/c/1321469/431400/7490" id="431400"><img src="//a.impactradius-go.com/display-ad/7490-431400" border="0" alt="" width="160" height="600" class="right-banner" /></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
       `;
     }
 
