@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Copy an Array in JavaScript',
+      raw: './tutorials/fundamentals/copy-array.md',
+      url: '/tutorials/fundamentals/copy-array',
+      description: 'Here\'s several ways you can copy an array in JavaScript.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-29')
+    },
+    {
       title: 'Debugging "TypeError: X is not a function" in JavaScript',
       raw: './tutorials/fundamentals/typeerror-is-not-a-function.md',
       url: '/tutorials/fundamentals/typeerror-is-not-a-function',
