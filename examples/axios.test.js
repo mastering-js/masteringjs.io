@@ -565,4 +565,71 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('response body', function() {
+    it('basic example', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
+
+      res.constructor.name; // 'Object', means `res` is a POJO
+
+      // `res.data` contains the parsed response body
+      res.data; // { args: { answer: 42 }, ... }
+      res.data instanceof Object; // true
+      // acquit:ignore:start
+      assert.equal(res.constructor.name, 'Object');
+      assert.deepEqual(res.data.args, { answer: 42 });
+      // acquit:ignore:end
+    });
+
+    it('json content type', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
+
+      res.headers['content-type']; // 'application/json'
+      // acquit:ignore:start
+      assert.deepEqual(res.headers['content-type'], 'application/json');
+      // acquit:ignore:end
+    });
+
+    it('html content type', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://httpbin.org/html');
+
+      res.headers['content-type']; // 'text/html; charset=utf-8'
+
+      typeof res.data; // 'string'
+      res.data; // '... <h1>Herman Melville - Moby-Dick</h1> ...'
+      // acquit:ignore:start
+      assert.deepEqual(res.headers['content-type'], 'text/html; charset=utf-8');
+      assert.equal(typeof res.data, 'string');
+      assert.ok(res.data.includes('<h1>Herman Melville - Moby-Dick</h1>'));
+      // acquit:ignore:end
+    });
+
+    it('arraybuffer', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://images.unsplash.com/photo-1506812574058-fc75fa93fead', {
+        responseType: 'arraybuffer'
+      });
+
+      const fs = require('fs');
+      fs.writeFileSync('./south-beach.jpg', res.data);
+    });
+
+    it('stream', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://images.unsplash.com/photo-1506812574058-fc75fa93fead', {
+        responseType: 'stream'
+      });
+
+      const fs = require('fs');
+      res.data.pipe(fs.createWriteStream('./south-beach.jpg'));
+    });
+  });
 });
