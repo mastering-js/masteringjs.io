@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Convert an Array into an Object in JavaScript',
+      raw: './tutorials/fundamentals/array-to-object.md',
+      url: '/tutorials/fundamentals/array-to-object',
+      description: 'Here\'s how you can convert a JavaScript array into an object.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-31')
+    },
+    {
       title: 'Copy an Array in JavaScript',
       raw: './tutorials/fundamentals/copy-array.md',
       url: '/tutorials/fundamentals/copy-array',
