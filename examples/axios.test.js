@@ -553,5 +553,16 @@ describe('axios', function() {
       assert.deepEqual(res.data.args, { answer: 42 });
       // acquit:ignore:end
     });
+
+    it('params', async function() {
+      const axios = require('axios');
+
+      const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
+
+      res.data.args; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { answer: 42 });
+      // acquit:ignore:end
+    });
   });
 });

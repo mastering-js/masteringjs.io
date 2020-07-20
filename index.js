@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'GET Requests with Axios',
+      raw: './tutorials/axios/get.md',
+      url: '/tutorials/axios/get',
+      description: 'Axios makes it easy to send HTTP GET requests, including serializing query string parameters. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-07-20')
+    },
+    {
       title: 'Mongoose Timestamps',
       raw: './tutorials/mongoose/timestamps.md',
       url: '/tutorials/mongoose/timestamps',

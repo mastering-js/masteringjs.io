@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Set the Authorization Header with Axios - Mastering JS</title>
+    <title>GET Requests with Axios - Mastering JS</title>
 
-    <meta property="og:title" content="Set the Authorization Header with Axios" />
+    <meta property="og:title" content="GET Requests with Axios" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can set the authorization header on an Axios HTTP request." />
-    <meta name="description" content="Here's how you can set the authorization header on an Axios HTTP request." />
+    <meta property="og:description" content="Axios makes it easy to send HTTP GET requests, including serializing query string parameters. Here's what you need to know." />
+    <meta name="description" content="Axios makes it easy to send HTTP GET requests, including serializing query string parameters. Here's what you need to know." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -70,9 +70,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Set the Authorization Header with Axios</h1>
+  <h1>GET Requests with Axios</h1>
   <div class="date">
-    Apr 1, 2020
+    Jul 20, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -82,40 +82,38 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/axios/headers">Setting request headers with Axios</a> is easy.
-Here&#39;s how you can set the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Authorization header</a>, which is typically used to send
-access tokens to a server.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'</span>
+  <p>The easiest way to make a GET request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the
+<a href="https://github.com/axios/axios#example"><code>axios.get()</code> function</a>. The first 
+parameter to <code>axios.get()</code> is the URL. For example, below is how you make a GET request
+to the URL <code>httpbin.org/get?answer=42</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>);
+
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+<h2 id="the-options-parameter">The <code>options</code> Parameter</h2>
+<p>The 2nd parameter to <code>axios.get()</code> is the <a href="https://github.com/axios/axios#request-config">Axios options</a>.
+For example, you don&#39;t have to serialize the query string <code>?answer=42</code> yourself. Axios will serialize
+<code>options.params</code> and add it to the query string for you. The below request is equivalent:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+<p>The <code>options</code> parameter is also how you set any <a href="/tutorials/axios/headers">request headers</a>. For example,
+below is how you set the <code>Test-Header</code> header on a GET request.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-comment">// httpbin.org gives you the headers in the response</span>
+<span class="hljs-comment">// body `res.data`.</span>
+<span class="hljs-comment">// See: https://httpbin.org/#/HTTP_Methods/get_get</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
   <span class="hljs-attr">headers</span>: {
-    <span class="hljs-attr">authorization</span>: <span class="hljs-string">'my secret token'</span>
+    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
   }
-});</code></pre>
-<p>HTTP headers are case-insensitive, so whether you use <code>&#39;authorization&#39;</code>
-or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
-  }
-});</code></pre>
-<p>The actual format of the authorization header depends on what auth
-strategy the server uses. For example, here&#39;s how you can <a href="/tutorials/axios/basic_auth">use Basic Auth with Axios</a>.</p>
-<h2 id="with-post-requests">With <a href="/tutorials/axios/post">POST Requests</a></h2>
-<p>Setting the authorization header is a little different with <code>post()</code>,
-because the 2nd parameter to <code>post()</code> is the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages">request body</a>. You should pass
-the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a POST request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'. With `post()`, the 3rd parameter</span>
-<span class="hljs-comment">// is the request options, not the 2nd parameter like with `get()`.</span>
-<span class="hljs-keyword">const</span> body = {};
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, body, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
-  }
-});</code></pre>
+});
+
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
 
   
   <hr>
@@ -123,9 +121,6 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/get">GET Requests with Axios</a></li>
-  
-
     <li><a href="/tutorials/node/http-request">Making an HTTP Request in Node.js</a></li>
   
 
@@ -139,6 +134,9 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
   
 
     <li><a href="/tutorials/axios/put">PUT Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/authorization">Set the Authorization Header with Axios</a></li>
   
 
     <li><a href="/tutorials/axios/then">The `then()` Function in Axios</a></li>
