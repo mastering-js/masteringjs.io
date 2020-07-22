@@ -27,7 +27,7 @@ Axios parses the response based on the HTTP response's `Content-Type` header. Wh
 is `application/json`, Axios will automatically try to parse the response into a JavaScript object.
 
 ```javascript
-[require:axios response body json content-type$]
+[require:axios response body json content type$]
 ```
 
 Keep in mind that the response headers are sent by the server. So if the server sends back a different content
