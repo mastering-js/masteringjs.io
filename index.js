@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Get the HTTP Response Body with Axios',
+      raw: './tutorials/axios/response-body.md',
+      url: '/tutorials/axios/response-body',
+      description: 'When you `await` on an Axios request, you get back an Axios response object. Here\'s how you can get the HTTP response body from an Axios response object.',
+      tags: ['axios'],
+      date: moment('2020-07-23')
+    },
+    {
       title: 'GET Requests with Axios',
       raw: './tutorials/axios/get.md',
       url: '/tutorials/axios/get',
