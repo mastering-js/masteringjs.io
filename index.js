@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'GET Request Query Params with Axios',
+      raw: './tutorials/axios/get-query-params.md',
+      url: '/tutorials/axios/get-query-params',
+      description: 'Axios can automatically serialize query strings for you. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-07-25')
+    },
+    {
       title: 'Get the HTTP Response Body with Axios',
       raw: './tutorials/axios/response-body.md',
       url: '/tutorials/axios/response-body',

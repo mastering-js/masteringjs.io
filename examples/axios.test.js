@@ -632,4 +632,49 @@ describe('axios', function() {
       res.data.pipe(fs.createWriteStream('./south-beach.jpg'));
     });
   });
+
+  describe('query string', function() {
+    it('URLSearchParams', async function() {
+      const params = new URLSearchParams([['answer', 42]]);
+
+      const res = await axios.get('https://httpbin.org/get', { params });
+      res.data.args; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { answer: 42 });
+      // acquit:ignore:end
+    });
+
+    it('toJSON', async function() {
+      const moment = require('moment');
+
+      const params = {
+        answer: { toJSON: () => 42 },
+        time: moment('2016-06-01')
+      };
+
+      const res = await axios.get('https://httpbin.org/get', { params });
+      res.data.args; // { answer: 42, time: "\"2016-06-01T04:00:00.000Z\"" }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { answer: 42, time: '"2016-06-01T04:00:00.000Z"' });
+      // acquit:ignore:end
+    });
+
+    it('paramsSerializer', async function() {
+      const params = { answer: 42 };
+
+      const res = await axios.get('https://httpbin.org/get', {
+        params,
+        paramsSerializer: function paramsSerializer(params) {
+          // "Hide" the `answer` param
+          return Object.entries(Object.assign({}, params,  { answer: 'HIDDEN' })).
+            map(([key, value]) => `${key}=${value}`).
+            join('&');
+        }
+      });
+      res.data.args; // { answer: 'HIDDEN' }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, { answer: 'HIDDEN' });
+      // acquit:ignore:end
+    });
+  });
 });
