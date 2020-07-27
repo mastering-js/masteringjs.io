@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Debugging "TypeError: X is not a function" in JavaScript',
+      raw: './tutorials/fundamentals/typeerror-is-not-a-function.md',
+      url: '/tutorials/fundamentals/typeerror-is-not-a-function',
+      description: '"TypeError: X is not a function" errors can be confusing. Here\'s what this error message means and how you can fix it.',
+      tags: ['fundamentals'],
+      date: moment('2020-07-27')
+    },
+    {
       title: 'GET Request Query Params with Axios',
       raw: './tutorials/axios/get-query-params.md',
       url: '/tutorials/axios/get-query-params',
