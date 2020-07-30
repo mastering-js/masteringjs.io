@@ -2493,10 +2493,10 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
 
       // All other values are "truthy", meaning `!v === false`
-      !1; // true
-      !({}); // true
-      !({ valueOf: () => 0 }); // true
-      !' '; // true
+      !1; // false
+      !({}); // false
+      !({ valueOf: () => 0 }); // false
+      !' '; // false
       // acquit:ignore:start
       assert.ok(!!1);
       assert.ok(!!({}));
