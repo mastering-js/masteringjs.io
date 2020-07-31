@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>The JavaScript Array `filter()` Method - Mastering JS</title>
+    <title>Convert an Array into an Object in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="The JavaScript Array `filter()` Method" />
+    <meta property="og:title" content="Convert an Array into an Object in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="The `filter()` method creates a new array of elements that match a given test. Here's what you need to know." />
-    <meta name="description" content="The `filter()` method creates a new array of elements that match a given test. Here's what you need to know." />
+    <meta property="og:description" content="Here's how you can convert a JavaScript array into an object." />
+    <meta name="description" content="Here's how you can convert a JavaScript array into an object." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -70,9 +70,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>The JavaScript Array `filter()` Method</h1>
+  <h1>Convert an Array into an Object in JavaScript</h1>
   <div class="date">
-    Jul 1, 2020
+    Jul 31, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -82,33 +82,21 @@
 	  }
 	})();
 	</script>
-  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array#filter()</code> function</a> in JavaScript returns a new array with all the
-elements from the original array that the given <a href="/tutorials/fundamentals/callbacks">callback</a> returns <a href="/tutorials/fundamentals/truthy">truthy</a> for.</p>
-<p>For example, given an array of numbers 1-10, below is how you can use <code>filter()</code> to
-return an array of even numbers.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
+  <p>In JavaScript, <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">arrays are technically objects</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'hello'</span>, <span class="hljs-string">'world'</span>];
 
-nums.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
-  <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
-}); <span class="hljs-comment">// [2, 4, 6, 8, 10]</span></code></pre>
-<p>The <code>filter()</code> function returns a new array whose elements are the elements of
-<code>nums</code> for which <code>isEven()</code> returned <code>true</code>.</p>
-<h2 id="the-index-argument">The <code>index</code> Argument</h2>
-<p>JavaScript calls the <code>filter()</code> callback with 3 arguments. The first argument is
-the element in the array, and the 2nd argument is the index in the array.</p>
-<p>For example, below is how you can get an array with only the odd indexes of the original
-array:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> names = [
-  <span class="hljs-string">'James'</span>,
-  <span class="hljs-string">'John'</span>,
-  <span class="hljs-string">'Robert'</span>,
-  <span class="hljs-string">'Michael'</span>,
-  <span class="hljs-string">'William'</span>
-];
+arr <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>For example, you can use <code>Object.keys()</code> and <code>Object.entries()</code> to get all the array&#39;s keys.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Object</span>.keys(arr); <span class="hljs-comment">// ['0', '1']</span>
+<span class="hljs-built_in">Object</span>.entries(arr); <span class="hljs-comment">// [ [ '0', 'hello' ], [ '1', 'world' ] ]</span></code></pre>
+<p>However, sometimes it is convenient to convert an array into a <a href="/tutorials/fundamentals/pojo">POJO</a>.
+The easiest way to do that is using <code>Object.assign()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.assign({}, arr);
 
-names.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isOddIndex</span>(<span class="hljs-params">el, index</span>) </span>{
-  <span class="hljs-keyword">return</span> index % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
-}); <span class="hljs-comment">// ['John', 'Michael']</span></code></pre>
+obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">Array</span>.isArray(obj); <span class="hljs-comment">// false</span>
+
+obj; <span class="hljs-comment">// { '0': 'hello', '1': 'world' }</span></code></pre>
 
   
   <hr>
@@ -116,9 +104,6 @@ names.filter(<span class="hljs-function"><span class="hljs-keyword">function</sp
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/array-to-object">Convert an Array into an Object in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/copy-array">Copy an Array in JavaScript</a></li>
   
 
@@ -126,6 +111,9 @@ names.filter(<span class="hljs-function"><span class="hljs-keyword">function</sp
   
 
     <li><a href="/tutorials/fundamentals/array-iterate">How to Iterate through an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-filter">The JavaScript Array `filter()` Method</a></li>
   
 
     <li><a href="/tutorials/fundamentals/iterator">JavaScript Iterators</a></li>
