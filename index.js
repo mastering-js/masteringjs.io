@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understanding ESLint Rules',
+      raw: './tutorials/eslint/rules.md',
+      url: '/tutorials/eslint/rules',
+      description: 'Rules are how you configure ESLint. By configuring which rules are errors or warnings, you can build your own ESLint config. Here\'s what you need to know.',
+      tags: ['eslint'],
+      date: moment('2020-08-03')
+    },
+    {
       title: 'Convert an Array into an Object in JavaScript',
       raw: './tutorials/fundamentals/array-to-object.md',
       url: '/tutorials/fundamentals/array-to-object',
