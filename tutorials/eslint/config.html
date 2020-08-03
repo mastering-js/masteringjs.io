@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Intro to ESLint Config Files - Mastering JS</title>
+
+    <meta property="og:title" content="Intro to ESLint Config Files" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="ESLint config files let you define what rules ESLint enforces and what environment your project is targetting. Here's what you need to know." />
+    <meta name="description" content="ESLint config files let you define what rules ESLint enforces and what environment your project is targetting. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/eslint">Eslint</a>
+    /
+  </div>
+  <h1>Intro to ESLint Config Files</h1>
+  <div class="date">
+    Aug 5, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>You can <a href="https://eslint.org/docs/user-guide/configuring">configure ESLint</a> using either a <code>.eslint.*</code> file or an
+<code>eslintConfig</code> option in your <code>package.json</code> file. Your <code>.eslint.*</code> file may be either <code>.eslintrc.json</code>, <code>.eslintrc.js</code>, or
+<code>.eslintrc.yml</code>.</p>
+<p>Below is a simple <code>.eslintrc.json</code> file that enables the <a href="https://eslint.org/docs/rules/no-unused-vars"><code>no-unused-vars</code> ESLint rule</a>:</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-unused-vars"</span>: <span class="hljs-string">"error"</span>
+  }
+}</code></pre>
+<p>You can also define your ESLint config as a JavaScript object that exports a file. Below is the equivalent <code>.eslintrc.js</code> file.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">parserOptions</span>: {
+    <span class="hljs-attr">ecmaVersion</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-attr">rules</span>: {
+    no-unused-vars: <span class="hljs-string">'error'</span>
+  }
+};</code></pre>
+<p>If you prefer <a href="https://yaml.org/">YAML</a>, you can also write a <code>.eslintrc.yml</code> file.</p>
+<pre><code class="language-yaml">parserOptions:
+  ecmaVersion: <span class="hljs-number">2020</span>
+rules:
+  no-unused-vars: error</code></pre>
+<p>Given each of the above ESLint config files, running ESLint on the below script <code>test.js</code> will print a &quot;&#39;message&#39; is assigned a value but never used&quot; error.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> message = <span class="hljs-string">'Hello, World'</span>;</code></pre>
+<p>Below is the output when you run <code>eslint</code> from the command line on the above <code>test.js</code> file.</p>
+<pre><code>$ ./node_modules/.bin/eslint ./test.js 
+
+/scratch/test.js
+  <span class="hljs-number">1</span>:<span class="hljs-number">7</span>  error  <span class="hljs-string">'message'</span> is assigned a value but never used  no-unused-vars
+
+✖ <span class="hljs-number">1</span> problem (<span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings)
+
+$ </code></pre><h2 id="rules">Rules</h2>
+<p>The <code>rules</code> option is the most important. <a href="/tutorials/eslint/rules">ESLint rules</a> let you configure what patterns
+ESLint treats as errors or warnings. The <code>rules</code> option is a map from ESLint rule names to rule configurations. A
+rule configuration may be either a string or an array.</p>
+<p>If a rule configuration is a string, it must be either <code>&#39;off&#39;</code>, <code>&#39;warn&#39;</code>, or <code>&#39;error&#39;</code>. <code>&#39;off&#39;</code> tells ESLint to ignore
+the given rule. <code>&#39;warn&#39;</code> tells ESLint to treat violations of the given as a warning. And <code>&#39;error&#39;</code> tells ESLint to error out when the given rule is violated. For example, below is a <code>.eslintrc.json</code> that treats <code>no-unused-vars</code> as a warning.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-unused-vars"</span>: <span class="hljs-string">"warn"</span>
+  }
+}</code></pre>
+<p>If the rule configuration is an array, the first element of the array must be a string (either <code>&#39;off&#39;</code>, <code>&#39;warn&#39;</code>, or <code>&#39;error&#39;</code>), and the 2nd element is options for configuring that individual rule. For example, the below <code>.eslintrc.json</code> tells ESLint to error out when any line of code is more than 66 characters long using the <a href="https://eslint.org/docs/rules/max-len"><code>max-len</code> rule</a>.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"max-len"</span>: [<span class="hljs-string">"error"</span>, { <span class="hljs-string">"code"</span>: <span class="hljs-number">66</span> }]
+  }
+}</code></pre>
+<h2 id="using-extends">Using <code>extends</code></h2>
+<p>Listing out every single ESLint rule you want to use is often infeasible, so ESLint provides an <a href="https://eslint.org/docs/user-guide/configuring#extending-configuration-files"><code>extends</code> option</a>
+that lets you extend an existing ESLint config, and make overrides.</p>
+<p>For practical purposes, we recommend using ESLint&#39;s built-in <code>eslint:recommended</code> config as a starting point if you&#39;re
+building your own ESLint config.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"extends"</span>: <span class="hljs-string">"eslint:recommended"</span>
+}</code></pre>
+<p>You can find a <a href="https://eslint.org/docs/rules/">complete list of rules in ESLint&#39;s recommended config here</a>.
+You can overwrite individual rules in ESLint&#39;s recommended config by specifying your own <code>rules</code> property.
+For example, the below ESLint config uses the recommended config, <strong>except</strong> for disabling the <code>no-undef</code> rule.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"extends"</span>: <span class="hljs-string">"eslint:recommended"</span>,
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-undef"</span>: <span class="hljs-string">"off"</span>
+  }
+}</code></pre>
+<h2 id="parser-options">Parser Options</h2>
+<p>The <code>parserOptions</code> config option tells ESLint what version of JavaScript you&#39;re targeting. For example, the below JavaScript is valid when you set <code>parserOptions.ecmaVersion</code> to <code>2017</code>:</p>
+<pre><code class="language-javascript">(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>);
+})();</code></pre>
+<p>However, if you change <code>parser.ecmaVersion</code> to <code>2016</code>, ESLint will fail with the below error, because async functions were introduced in ES2017.</p>
+<pre><code>$ ./node_modules/.bin/eslint ./test.js 
+
+/scratch/test.js
+  <span class="hljs-number">1</span>:<span class="hljs-number">8</span>  error  Parsing error: Unexpected token <span class="hljs-function"><span class="hljs-keyword">function</span>
+
+✖ 1 <span class="hljs-title">problem</span> (<span class="hljs-params"><span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings</span>)
+
+<span class="hljs-title">$</span> </span></code></pre><p>ESLint also has built-in support for <a href="https://thecodebarbarian.com/overview-of-jsx-with-non-react-examples.html">JSX</a>.
+For example, suppose you have the below <code>test.js</code> file:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> hello = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &lt;h1&gt;Hello, World&lt;<span class="hljs-regexp">/h1&gt;;</span></code></pre>
+<p>Normally, ESLint would throw an error <code>Parsing error: Unexpected token &lt;</code> on the above script. But you can enable
+JSX by setting <code>parserOptions.ecmaFeatures.jsx</code> to <code>true</code> as shown below.</p>
+<pre><code class="language-javascript">{ 
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>,
+    <span class="hljs-string">"ecmaFeatures"</span>: {
+      <span class="hljs-string">"jsx"</span>: <span class="hljs-literal">false</span>
+    }
+  }
+} </code></pre>
+<h2 id="environments">Environments</h2>
+<p>Just specifying the <code>ecmaVersion</code> isn&#39;t always enough. Different JavaScript runtimes and frameworks have different global
+variables and semantics. For example, the below script works fine in Node.js, but not in browsers because browsers
+don&#39;t have a global variable <code>process</code>.</p>
+<pre><code class="language-javascript">process.env.MESSAGE = <span class="hljs-string">'Hello, World'</span>;</code></pre>
+<p>With the below ESLint config, you&#39;ll get a &quot;&#39;process&#39; is not defined&quot; error.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-undef"</span>: <span class="hljs-string">"error"</span>
+  }
+}</code></pre>
+<p>But once you tell ESLint that this script will run in Node.js using <code>&quot;env&quot;: { &quot;node&quot;: true }</code>, ESLint won&#39;t error
+out on the above script.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"env"</span>: {
+    <span class="hljs-string">"node"</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-undef"</span>: <span class="hljs-string">"error"</span>
+  }
+}</code></pre>
+<p>Another commonly used <code>env</code> is <code>browser</code>, which tells ESLint that this script will run in the browser. This lets your
+script access browser-only global variables, like <code>window</code>.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"env"</span>: {
+    <span class="hljs-string">"browser"</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"no-undef"</span>: <span class="hljs-string">"error"</span>
+  }
+}</code></pre>
+<p>The ESLint docs have a <a href="https://eslint.org/docs/user-guide/configuring#specifying-environments">complete list of supported environments</a>.</p>
+<h2 id="plugins">Plugins</h2>
+<p>ESLint comes with a <a href="https://eslint.org/docs/rules/">wide variety of built-in rules</a>, but you can also find numerous
+plugins that have additional rules on npm. Many ESLint plugins provide additional rules for working with specific libraries and frameworks.</p>
+<p>For example, <a href="https://www.npmjs.com/package/eslint-plugin-vue">eslint-plugin-vue</a> provides extra Vue-specific
+rules. After running <code>npm install eslint-plugin-vue</code>, you can add a list of <code>plugins</code> to your ESLint config that
+includes &#39;eslint-plugin-vue&#39;, or just &#39;vue&#39; for short because ESLint is smart enough to prefix &#39;eslint-plugin-&#39; for you.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"plugins"</span>: [<span class="hljs-string">"eslint-plugin-vue"</span>]
+}</code></pre>
+<p>Once you do that,
+you get access to Vue-specific rules like <a href="https://eslint.vuejs.org/rules/no-async-in-computed-properties.html"><code>no-async-in-computed-properties</code></a>. The below ESLint config turns on the <code>no-async-in-computed-properties</code> rule.</p>
+<pre><code class="language-javascript">{
+  <span class="hljs-string">"parserOptions"</span>: {
+    <span class="hljs-string">"ecmaVersion"</span>: <span class="hljs-number">2020</span>
+  },
+  <span class="hljs-string">"plugins"</span>: [<span class="hljs-string">"eslint-plugin-vue"</span>],
+  <span class="hljs-string">"rules"</span>: {
+    <span class="hljs-string">"vue/no-async-in-computed-properties"</span>: <span class="hljs-string">"error"</span>
+  }
+}</code></pre>
+<p>If you run ESLint on the below <code>test.js</code> file, the <code>vue/no-async-in-computed-properties</code> rule will error out because
+<code>badProperty</code> is set to an async function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
+
+<span class="hljs-built_in">module</span>.exports = Vue.component(<span class="hljs-string">'bad-component'</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Hello&lt;/h1&gt;'</span>,
+  <span class="hljs-attr">computed</span>: {
+    <span class="hljs-attr">badProperty</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; }
+  }
+});</code></pre>
+<pre><code>$ ./node_modules/.bin/eslint ./test.js 
+
+/scratch/test.js
+  <span class="hljs-number">6</span>:<span class="hljs-number">18</span>  error  Unexpected <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">declaration</span> <span class="hljs-title">in</span> "<span class="hljs-title">badProperty</span>" <span class="hljs-title">computed</span> <span class="hljs-title">property</span>  <span class="hljs-title">vue</span>/<span class="hljs-title">no</span>-<span class="hljs-title">async</span>-<span class="hljs-title">in</span>-<span class="hljs-title">computed</span>-<span class="hljs-title">properties</span>
+
+✖ 1 <span class="hljs-title">problem</span> (<span class="hljs-params"><span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings</span>)
+
+<span class="hljs-title">$</span> </span></code></pre>
+  
+  <hr>
+  
+    <h2>More Eslint Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/eslint/rules">Understanding ESLint Rules</a></li>
+  
+
+    <li><a href="/tutorials/eslint/disable-line">Disable ESLint for a Single Line</a></li>
+  
+
+    <li><a href="/tutorials/eslint/ignore">Ignore Lines and Files In ESLint</a></li>
+  
+    </ul>
+  
+
+      </div>
+      
+  <div class="ad-right">
+    
+      <a href="https://pluralsight.pxf.io/c/1321469/431400/7490" id="431400"><img src="//a.impactradius-go.com/display-ad/7490-431400" border="0" alt="" width="160" height="600" class="right-banner" /></a><img height="0" width="0" src="//pluralsight.pxf.io/i/1321469/431400/7490" style="position:absolute;visibility:hidden;" border="0" />
+      
+  </div>
+  
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
