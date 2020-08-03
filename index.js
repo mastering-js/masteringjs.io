@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using JavaScript `map()` and `filter()` Together for Composition',
+      raw: './tutorials/fundamentals/map-filter.md',
+      url: '/tutorials/fundamentals/map-filter',
+      description: 'When used together, JavaScript\'s `map()` and `filter()` functions let you write more composable code. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-08-14')
+    },
+    {
       title: 'Understand the JavaScript Array Filter Function in 5 Examples',
       raw: './tutorials/fundamentals/array-filter-function.md',
       url: '/tutorials/fundamentals/array-filter-function',

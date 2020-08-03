@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Using JavaScript `map()` and `filter()` Together for Composition - Mastering JS</title>
+
+    <meta property="og:title" content="Using JavaScript `map()` and `filter()` Together for Composition" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="When used together, JavaScript's `map()` and `filter()` functions let you write more composable code. Here's what you need to know." />
+    <meta name="description" content="When used together, JavaScript's `map()` and `filter()` functions let you write more composable code. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Using JavaScript `map()` and `filter()` Together for Composition</h1>
+  <div class="date">
+    Aug 14, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>JavaScript&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array#map()</code></a> and <a href="/tutorials/fundamentals/array-filter"><code>Array#filter()</code></a> functions are great when used together because they allow you
+to <em>compose</em> simple functions.</p>
+<p>For example, here&#39;s a basic use case for <code>filter()</code>: filtering out all numbers that are less than 100 from a numeric array.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">25</span>, <span class="hljs-number">125</span>, <span class="hljs-number">75</span>, <span class="hljs-number">200</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atLeast100</span>(<span class="hljs-params">num</span>) </span>{
+  <span class="hljs-keyword">return</span> num &gt;= <span class="hljs-number">100</span>;
+}
+
+nums.filter(atLeast100); <span class="hljs-comment">// [125, 200]</span></code></pre>
+<p>This function works fine on an array of numbers. But what happens when you need to find the number of products based
+on <code>price</code>? Do you need a separate <code>priceAtLeast100()</code> function? No, you can just use <code>map()</code> to transform the <code>products</code>
+array to fit what the <code>atLeast100</code> function expects.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> products = [
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'T-Shirt'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">25</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Headphones'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">125</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Keyboard'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">75</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Monitor'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">200</span> }
+];
+
+<span class="hljs-comment">// Gets the number of products whose price is at least 100.</span>
+products.map(<span class="hljs-function"><span class="hljs-params">product</span> =&gt;</span> product.price).filter(atLeast100).length;</code></pre>
+<p>This is an example of <a href="https://whatthefuck.is/composition">composition</a>: by combining <code>map()</code> and <code>filter()</code>, you can reuse the simple <code>atLeast100()</code> function to operate on a slightly different input.</p>
+<h2 id="filter-then-map">Filter then Map</h2>
+<p>The previous example shows why you might want to use <code>map()</code> followed by <code>filter()</code>. There&#39;s also cases where you may
+want to use <code>filter()</code> followed by <code>map()</code>. For example, you may want to check that a nested property exists before
+calling <code>map()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> orders = [
+  { <span class="hljs-attr">quantity</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">item</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">'T-Shirt'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">25</span> } },
+  { <span class="hljs-attr">quantity</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">item</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">'Keyboard'</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">75</span> } },
+  <span class="hljs-comment">// Maybe there was a bug and a order with a null `item` ended up in the database!</span>
+  { <span class="hljs-attr">quantity</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">item</span>: <span class="hljs-literal">null</span> }
+];
+
+<span class="hljs-keyword">const</span> orderedItemNames = orders.
+  filter(<span class="hljs-function"><span class="hljs-params">order</span> =&gt;</span> order.item != <span class="hljs-literal">null</span>).
+  map(<span class="hljs-function"><span class="hljs-params">order</span> =&gt;</span> order.item.name);</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/array-filter-function">Understand the JavaScript Array Filter Function in 5 Examples</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter-array-of-objects">Filter an Array of Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-to-object">Convert an Array into an Object in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/copy-array">Copy an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeerror-is-not-a-function">Debugging "TypeError: X is not a function" in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-iterate">How to Iterate through an Array in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-filter">The JavaScript Array `filter()` Method</a></li>
+  
+    </ul>
+  
+
+      </div>
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
