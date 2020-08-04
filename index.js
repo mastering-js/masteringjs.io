@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Get the Length of a Buffer in Node.js',
+      raw: './tutorials/node/buffer-length.md',
+      url: '/tutorials/node/buffer-length',
+      description: 'Node.js buffers have a length property that contains the number of bytes in the buffer. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-08-19')
+    },
+    {
       title: 'Compare Two Buffers in Node.js',
       raw: './tutorials/node/buffer-compare.md',
       url: '/tutorials/node/buffer-compare',

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get the Length of a Buffer in Node.js - Mastering JS</title>
+
+    <meta property="og:title" content="Get the Length of a Buffer in Node.js" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Node.js buffers have a length property that contains the number of bytes in the buffer. Here's what you need to know." />
+    <meta name="description" content="Node.js buffers have a length property that contains the number of bytes in the buffer. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+
+    
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/node">Node</a>
+    /
+  </div>
+  <h1>Get the Length of a Buffer in Node.js</h1>
+  <div class="date">
+    Aug 19, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="/tutorials/node/buffer">Node.js buffers</a> are objects that store arbitrary binary data. Buffers have a
+<a href="https://nodejs.org/api/buffer.html#buffer_buf_length"><code>length</code> property</a> that contains the number of bytes
+in the buffer.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
+
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
+<p>For buffers containing UTF8 encoded strings, the buffer&#39;s length is equivalent to the length of the string. For
+example, if you read a text file from the file system using <code>fs</code>, the resulting buffer&#39;s length is the same as
+the number of characters in the text file.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+fs.writeFileSync(<span class="hljs-string">'./test.txt'</span>, <span class="hljs-string">'Hello, World'</span>);
+
+<span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./test.txt'</span>);
+
+Buffer.isBuffer(buf); <span class="hljs-comment">// true</span>
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
+<h2 id="allocated-vs-actual">Allocated vs Actual</h2>
+<p>Note that <code>Buffer#length</code> contains the number of <em>allocated</em> bytes for the buffer, <strong>not</strong> how many bytes are
+actually used. Often these two are equivalent, but they may be different.</p>
+<p>For example, if you allocate a 100-byte buffer using <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_alloc_size_fill_encoding"><code>Buffer.alloc()</code></a>, the buffer&#39;s length will always be 100, regardless
+of the buffer&#39;s contents.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">100</span>);
+
+buf.length; <span class="hljs-comment">// 100, even though the buffer contains 100 `0` bytes</span>
+
+<span class="hljs-comment">// Write 'Hello, World' to the buffer starting at offset 0</span>
+buf.write(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-number">0</span>);
+
+buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Node Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/node/buffer-compare">Compare Two Buffers in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/import-vs-require">Import vs Require in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/import">Using `import` Statements in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/http-request">Making an HTTP Request in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/google-cloud-storage">Upload Files to Google Cloud Storage in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer">Node.js Buffer Tutorial</a></li>
+  
+
+    <li><a href="/tutorials/node/lambda">Deploy a Function to Lambda Using the Node.js AWS SDK</a></li>
+  
+    </ul>
+  
+
+      </div>
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

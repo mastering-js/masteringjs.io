@@ -515,6 +515,43 @@ describe('Node', function() {
       assert.deepEqual(buffers.map(buf => buf.toString('utf8')), ['A', 'B', 'C']);
       // acquit:ignore:end
     });
+
+    it('length', function() {
+      const buf = Buffer.from('Hello, World', 'utf8');
+
+      buf.length; // 12, same as 'Hello, World'.length
+      // acquit:ignore:start
+      assert.equal(buf.length, 12);
+      // acquit:ignore:end
+    });
+
+    it('length of file', function() {
+      const fs = require('fs');
+      fs.writeFileSync('./test.txt', 'Hello, World');
+
+      const buf = fs.readFileSync('./test.txt');
+
+      Buffer.isBuffer(buf); // true
+      buf.length; // 12, same as 'Hello, World'.length
+      // acquit:ignore:start
+      assert.ok(Buffer.isBuffer(buf));
+      assert.equal(buf.length, 12);
+      // acquit:ignore:end
+    });
+
+    it('alloc length', function() {
+      const buf = Buffer.alloc(100);
+
+      buf.length; // 100, even though the buffer contains 100 `0` bytes
+
+      // Write 'Hello, World' to the buffer starting at offset 0
+      buf.write('Hello, World', 0);
+
+      buf.length; // still 100, because there's 100 bytes allocated.
+      // acquit:ignore:start
+      assert.equal(buf.length, 100);
+      // acquit:ignore:end
+    });
   });
 
   describe('Google Cloud', function() {
