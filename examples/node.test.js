@@ -426,6 +426,15 @@ describe('Node', function() {
       buf; // '<Buffer 7b 0a 20 20 22 6e 61 6d 65 22 ...>'
     });
 
+    it('toString default', function() {
+      const buf = Buffer.from('Hello, World', 'utf8');
+
+      buf.toString(); // 'Hello, World'
+      // acquit:ignore:start
+      assert.equal(buf.toString(), 'Hello, World');
+      // acquit:ignore:end
+    });
+
     it('toString utf8', function() {
       const fs = require('fs');
 
@@ -444,6 +453,16 @@ describe('Node', function() {
       assert.ok(buf instanceof Buffer);
       // acquit:ignore:end
       buf.toString('hex'); // '7b0a2020...'
+    });
+
+    it('toString base64', function() {
+      const fs = require('fs');
+
+      const buf = fs.readFileSync('./package.json');
+      // acquit:ignore:start
+      assert.ok(buf instanceof Buffer);
+      // acquit:ignore:end
+      buf.toString('base64'); // 'ewogICJuYW1lI...'
     });
 
     it('from string', function() {
