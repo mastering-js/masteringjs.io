@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Intro to ESLint Config Files',
+      raw: './tutorials/eslint/config.md',
+      url: '/tutorials/eslint/config',
+      description: 'ESLint config files let you define what rules ESLint enforces and what environment your project is targetting. Here\'s what you need to know.',
+      tags: ['eslint'],
+      date: moment('2020-08-05')
+    },
+    {
       title: 'Understanding ESLint Rules',
       raw: './tutorials/eslint/rules.md',
       url: '/tutorials/eslint/rules',
