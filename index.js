@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using ESLint\'s --fix Flag',
+      raw: './tutorials/eslint/fix.md',
+      url: '/tutorials/eslint/fix',
+      description: 'Running `eslint --fix` tells ESLint to automatically fix common errors. Here\'s what you need to know.',
+      tags: ['eslint'],
+      date: moment('2020-08-07')
+    },
+    {
       title: 'Intro to ESLint Config Files',
       raw: './tutorials/eslint/config.md',
       url: '/tutorials/eslint/config',
