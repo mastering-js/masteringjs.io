@@ -64,7 +64,7 @@
 }
 
 .pill-axios {
-  background-image: url("/assets/http.png");
+  background-image: url("/assets/http-transparent.svg");
 }
 
 .pill-mongoose {
