@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Filter an Array of Objects in JavaScript',
+      raw: './tutorials/fundamentals/filter-array-of-objects.md',
+      url: '/tutorials/fundamentals/filter-array-of-objects',
+      description: 'JavaScript arrays have a `filter()` method that quickly lets you get just the elements of an array that match a given condition. Here\'s how you can use it to filter an array of objects.',
+      tags: ['fundamentals'],
+      date: moment('2020-08-10')
+    },
+    {
       title: 'Using ESLint\'s --fix Flag',
       raw: './tutorials/eslint/fix.md',
       url: '/tutorials/eslint/fix',
