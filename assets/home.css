@@ -87,6 +87,24 @@
   background-repeat: no-repeat;
 }
 
+.pill-node {
+  background-image: url("/assets/node-transparent.svg");
+  background-size: 50% !important;
+  background-repeat: no-repeat;
+}
+
+.pill-eslint {
+  background-image: url("/assets/eslint-transparent.svg");
+  background-size: 50% !important;
+  background-repeat: no-repeat;
+}
+
+.pill-mocha {
+  background-image: url("/assets/mocha-transparent.svg");
+  background-size: 50% !important;
+  background-repeat: no-repeat;
+}
+
 .pill-dark {
   background-color: #ddd;
   background-position: center;

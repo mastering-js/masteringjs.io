@@ -57,6 +57,15 @@ module.exports = ({ posts }) => `
         <div class="pill pill-webpack pill-dark">
           <a href="/webpack">Webpack</a>
         </div>
+        <div class="pill pill-node pill-dark" style="margin-left: 0px">
+          <a href="/node">Node.js</a>
+        </div>
+        <div class="pill pill-eslint pill-dark">
+          <a href="/eslint">ESLint</a>
+        </div>
+        <div class="pill pill-mocha pill-dark">
+          <a href="/mocha">Mocha</a>
+        </div>
 
         <h1>Latest Tutorials</h1>
         ${list({ posts }, 20)}
