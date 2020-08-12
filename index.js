@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Understand the JavaScript Array Filter Function in 5 Examples',
+      raw: './tutorials/fundamentals/array-filter-function.md',
+      url: '/tutorials/fundamentals/array-filter-function',
+      description: 'JavaScript arrays have a `filter()` method that quickly lets you get just the elements of an array that match a given condition. Here\'s 5 common patterns with the `filter()` function.',
+      tags: ['fundamentals'],
+      date: moment('2020-08-12')
+    },
+    {
       title: 'Filter an Array of Objects in JavaScript',
       raw: './tutorials/fundamentals/filter-array-of-objects.md',
       url: '/tutorials/fundamentals/filter-array-of-objects',
