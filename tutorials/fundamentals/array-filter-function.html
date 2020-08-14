@@ -119,7 +119,7 @@ may see the below pattern:</p>
 <span class="hljs-keyword">const</span> deadpool = characters[<span class="hljs-number">4</span>];
 
 <span class="hljs-comment">// Create a new array that excludes exactly one element</span>
-characters = characters.filter(<span class="hljs-function"><span class="hljs-params">character</span> =&gt;</span> character === deadpool);</code></pre>
+characters = characters.filter(<span class="hljs-function"><span class="hljs-params">character</span> =&gt;</span> character !== deadpool);</code></pre>
 <p>The <code>filter()</code> function is the most common way to &quot;remove&quot; an element without modifying the existing array. The <a href="/tutorials/fundamentals/array-splice"><code>Array#splice()</code> method</a> modifies the existing array, which violates immutability.</p>
 <h2 id="4-using-lodashs-matches">4) Using Lodash&#39;s <code>matches()</code></h2>
 <p><a href="https://lodash.com/docs/4.17.15#matches">Lodash&#39;s <code>matches()</code> function</a> is a neat tool for creating filter functions
