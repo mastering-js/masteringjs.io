@@ -48,7 +48,7 @@ let characters = [
 const deadpool = characters[4];
 
 // Create a new array that excludes exactly one element
-characters = characters.filter(character => character === deadpool);
+characters = characters.filter(character => character !== deadpool);
 ```
 
 The `filter()` function is the most common way to "remove" an element without modifying the existing array. The [`Array#splice()` method](/tutorials/fundamentals/array-splice) modifies the existing array, which violates immutability.
