@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Two Buffers in Node.js',
+      raw: './tutorials/node/buffer-compare.md',
+      url: '/tutorials/node/buffer-compare',
+      description: 'Node.js buffers have a static function `compare()` that lets you check if two buffers are equal. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-08-17')
+    },
+    {
       title: 'Using JavaScript `map()` and `filter()` Together for Composition',
       raw: './tutorials/fundamentals/map-filter.md',
       url: '/tutorials/fundamentals/map-filter',

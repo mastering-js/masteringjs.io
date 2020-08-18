@@ -484,6 +484,37 @@ describe('Node', function() {
       assert.equal(obj.buffer.toString('utf8'), 'Hello, World');
       // acquit:ignore:end
     });
+
+    it('compare', function() {
+      const buf1 = Buffer.from('Hello, World', 'utf8');
+      const buf2 = Buffer.from('Hello, World', 'utf8');
+      const buf3 = Buffer.from('Different buffer', 'utf8');
+
+      Buffer.compare(buf1, buf2); // 0, means the 2 buffers are equal
+      // acquit:ignore:start
+      assert.strictEqual(Buffer.compare(buf1, buf2), 0);
+      // acquit:ignore:end
+
+      Buffer.compare(buf1, buf3); // 1, means buf1 < buf3
+      // acquit:ignore:start
+      assert.strictEqual(Buffer.compare(buf1, buf3), 1);
+      // acquit:ignore:end
+    });
+
+    it('sort', function() {
+      const buffers = [
+        Buffer.from('A', 'utf8'),
+        Buffer.from('C', 'utf8'),
+        Buffer.from('B', 'utf8')
+      ];
+
+      buffers.sort(Buffer.compare);
+
+      buffers.map(buf => buf.toString('utf8')); // ['A', 'B', 'C']
+      // acquit:ignore:start
+      assert.deepEqual(buffers.map(buf => buf.toString('utf8')), ['A', 'B', 'C']);
+      // acquit:ignore:end
+    });
   });
 
   describe('Google Cloud', function() {
