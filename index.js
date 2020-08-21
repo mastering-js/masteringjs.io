@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using the Buffer `toString()` Function in Node.js',
+      raw: './tutorials/node/buffer-to-string.md',
+      url: '/tutorials/node/buffer-to-string',
+      description: 'Node.js buffers have a `toString()` method you can use to convert raw data into various encodings, like hex and base64. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-08-21')
+    },
+    {
       title: 'Get the Length of a Buffer in Node.js',
       raw: './tutorials/node/buffer-length.md',
       url: '/tutorials/node/buffer-length',
