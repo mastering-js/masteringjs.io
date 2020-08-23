@@ -1,5 +1,6 @@
 'use strict';
 
+const footer = require('./footer');
 const nav = require('./nav');
 
 module.exports = params => `
@@ -28,6 +29,8 @@ module.exports = params => `
       <div class="content">
         ${params.content}
       </div>
+
+      ${footer()}
       ${floatAd(params.ad)}
     </div>
 

@@ -1,5 +1,6 @@
 'use strict';
 
+const footer = require('./footer');
 const list = require('./list');
 const nav = require('./nav');
 
@@ -71,6 +72,8 @@ module.exports = ({ posts }) => `
         ${list({ posts }, 20)}
       </div>
     </div>
+
+    ${footer()}
 
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>

@@ -1,5 +1,6 @@
 'use strict';
 
+const footer = require('../footer');
 const nav = require('../nav');
 
 const defaultPrice = `<b>$39.99</b>`;
@@ -244,6 +245,8 @@ module.exports = ({ paypalButton, price }) => `
       </div>
       <div style="clear: both"></div>
     </div>
+
+    ${footer()}
 
     <script type="text/javascript">
       window.addEventListener('scroll', function() {

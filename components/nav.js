@@ -1,7 +1,5 @@
 'use strict';
 
-const track = require('./track');
-
 module.exports = () => `
 <div class="nav">
   <div class="branding">
@@ -17,8 +15,6 @@ module.exports = () => `
       <a href="/ebooks/mastering-mongoose">eBooks</a>
     </div>
     <div style="clear: both"></div>
-
-    ${track()}
   </div>
 </div>
 <label class="hamburger-menu" for="burger-check">
