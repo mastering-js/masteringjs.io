@@ -1039,4 +1039,34 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('render html', function() {
+    it('from string', async function() {
+      const html = '<h1>Hello, World!</h1>';
+
+      const express = require('express');
+
+      const app = express();
+      app.get('*', (req, res) => {
+        // That's all you need to do! If you pass a string to `res.send()`,
+        // Express sets the response-type header to `text/html`
+        res.send(html);
+      });
+
+      const server = await app.listen(3000);
+
+      // Example of using the server
+      const axios = require('axios');
+
+      const res = await axios.get('http://localhost:3000');
+      res.headers['content-type']; // 'text/html; charset=utf-8'
+      res.data; // '<h1>Hello, World!</h1>'
+      // acquit:ignore:start
+      await server.close();
+
+      assert.equal(res.headers['content-type'], 'text/html; charset=utf-8');
+      assert.equal(res.data, '<h1>Hello, World!</h1>');
+      // acquit:ignore:end
+    });
+  });
 });

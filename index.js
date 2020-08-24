@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Express Render HTML',
+      raw: './tutorials/express/render-html.md',
+      url: '/tutorials/express/render-html',
+      description: 'Given some plain HTML, how do you render it using Express? Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-08-26')
+    },
+    {
       title: 'Params in Express',
       raw: './tutorials/express/params.md',
       url: '/tutorials/express/params',
