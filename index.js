@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Express Template Engines',
+      raw: './tutorials/express/template-engine.md',
+      url: '/tutorials/express/template-engine',
+      description: 'Express template engines let you plug in support for templating languages like Pug (AKA Jade), Handlebars, or anything else. Here\'s how you can use existing templating engines, or write your own.',
+      tags: ['express'],
+      date: moment('2020-08-28')
+    },
+    {
       title: 'Express Render HTML',
       raw: './tutorials/express/render-html.md',
       url: '/tutorials/express/render-html',
