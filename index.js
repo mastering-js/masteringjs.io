@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Email Validation in JavaScript',
+      raw: './tutorials/fundamentals/email-validation.md',
+      url: '/tutorials/fundamentals/email-validation',
+      description: 'There are a couple of ways to validate email addresses in JavaScript: using regular expressions, synchronous libraries, or APIs. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-08-31')
+    },
+    {
       title: 'Express Template Engines',
       raw: './tutorials/express/template-engine.md',
       url: '/tutorials/express/template-engine',

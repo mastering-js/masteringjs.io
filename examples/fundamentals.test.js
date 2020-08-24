@@ -4033,6 +4033,19 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('email validation', function() {
+    it('npm module', async function() {
+      const { validate } = require('email-validator');
+
+      validate('foo@bar.co'); // true
+      validate('this-personal-info-is-too-long-it-must-be-less-than-64-characters@bar.co'); // false
+      // acquit:ignore:start
+      assert.ok(validate('foo@bar.co'));
+      assert.ok(!validate('this-personal-info-is-too-long-it-must-be-less-than-64-characters@bar.co'));
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
