@@ -888,7 +888,7 @@ describe('Express', function() {
       const server = await app.listen(3000);
       // Demo of making a request to the server
       const axios = require('axios');
-      const res = await axios.get('http://localhost:3000/user/42')
+      const res = await axios.get('http://localhost:3000/user/42');
 
       res.data; // { userId: '42' }
       // acquit:ignore:start

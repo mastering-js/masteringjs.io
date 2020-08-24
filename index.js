@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Params in Express',
+      raw: './tutorials/express/params.md',
+      url: '/tutorials/express/params',
+      description: 'Express requests have a `params` object that contains route parameters, as well as a `query` object that contains query parameters. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-08-24')
+    },
+    {
       title: 'Using the Buffer `toString()` Function in Node.js',
       raw: './tutorials/node/buffer-to-string.md',
       url: '/tutorials/node/buffer-to-string',
