@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Serving Static Files in Express - Mastering JS</title>
+    <title>Express Render HTML - Mastering JS</title>
 
-    <meta property="og:title" content="Serving Static Files in Express" />
+    <meta property="og:title" content="Express Render HTML" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can serve static assets directly from a folder using Node.js and Express." />
-    <meta name="description" content="Here's how you can serve static assets directly from a folder using Node.js and Express." />
+    <meta property="og:description" content="Given some plain HTML, how do you render it using Express? Here's what you need to know." />
+    <meta name="description" content="Given some plain HTML, how do you render it using Express? Here's what you need to know." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -55,9 +55,9 @@
     <a href="/express">Express</a>
     /
   </div>
-  <h1>Serving Static Files in Express</h1>
+  <h1>Express Render HTML</h1>
   <div class="date">
-    Mar 12, 2020
+    Aug 26, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -67,26 +67,33 @@
 	  }
 	})();
 	</script>
-  <p><a href="http://expressjs.com/">Express</a> has a built-in <a href="/tutorials/express/middleware">middleware</a> for serving static files from a directory. For example, suppose you have a <code>public</code> directory that contains files like images, CSS, and HTML.</p>
-<pre><code>$ ls -l public/
-total <span class="hljs-number">48</span>
--rw-r--r--  <span class="hljs-number">1</span> ubuntu  ubuntu   <span class="hljs-number">1666</span> Mar <span class="hljs-number">12</span> <span class="hljs-number">14</span>:<span class="hljs-number">17</span> home.css
--rw-r--r--@ <span class="hljs-number">1</span> ubuntu  ubuntu  <span class="hljs-number">17092</span> Mar <span class="hljs-number">12</span> <span class="hljs-number">14</span>:<span class="hljs-number">17</span> logo.png
-$ </code></pre><p>You can use <a href="https://expressjs.com/en/starter/static-files.html">the <code>express.static</code> middleware</a> to make it possible to access files from this folder via HTTP.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+  <p><a href="http://expressjs.com/">Express</a> makes it easy to render plain HTML, either from a JavaScript string or from
+a file. Given an HTML string, all you need to do is call <a href="http://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></a>, Express takes care of setting the <code>content-type</code> header for you:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> html = <span class="hljs-string">'&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span>;
+
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 
 <span class="hljs-keyword">const</span> app = express();
-app.use(express.static(<span class="hljs-string">'./public'</span>));
+app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  <span class="hljs-comment">// That's all you need to do! If you pass a string to `res.send()`,</span>
+  <span class="hljs-comment">// Express sets the response-type header to `text/html`</span>
+  res.send(html);
+});
 
-app.listen(<span class="hljs-number">3000</span>);</code></pre>
-<p>With the above script, you can open <code>http://localhost:3000/home.css</code> in your browser and see the CSS file.</p>
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px" alt="Displaying a CSS file in Google Chrome">
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
 
-<h2 id="serving-html-files">Serving HTML Files</h2>
-<p>The <code>static</code> middleware is how you can use Express to serve static HTML files. If you have a vanilla HTML file <code>test.html</code>, you can open that file in your browser and the browser will render the HTML.</p>
-<img src="https://codebarbarian-images.s3.amazonaws.com/static-example-2.png" class="inline-image" style="width: 400px" alt="Displaying an HTML file in Google Chrome">
+<span class="hljs-comment">// Example of using the server</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
-<p>This means that you can use <code>express.static()</code> to host an entire frontend web app, including JavaScript, CSS, images, and HTML.</p>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
+res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'text/html; charset=utf-8'</span>
+res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span></code></pre>
+<h2 id="from-a-file">From a File</h2>
+<p>If your HTML is in a file <code>test.html</code>, rather than a string, you can use <a href="/tutorials/express/sendfile">Express&#39; <code>sendFile()</code> function</a>. The only caveat is that you <strong>must</strong> specify the absolute path to <code>test.html</code>.</p>
+<pre><code class="language-javascript">app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
+  <span class="hljs-comment">// `__dirname` contains the directory that this code is in.</span>
+  res.sendFile(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/test.html`</span>);
+});</code></pre>
 
   
   <hr>
@@ -94,13 +101,13 @@ app.listen(<span class="hljs-number">3000</span>);</code></pre>
     <h2>More Express Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/express/render-html">Express Render HTML</a></li>
-  
-
     <li><a href="/tutorials/express/params">Params in Express</a></li>
   
 
     <li><a href="/tutorials/express/sendfile">Send Static Files in Express with sendFile()</a></li>
+  
+
+    <li><a href="/tutorials/express/static">Serving Static Files in Express</a></li>
   
 
     <li><a href="/tutorials/express/websockets">Handling Websockets with Express</a></li>
