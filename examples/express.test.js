@@ -3,6 +3,7 @@
 const FormData = require('form-data');
 const assert = require('assert');
 const axios = require('axios');
+const fs = require('fs');
 
 process.on('unhandledRejection', () => {});
 
@@ -1066,6 +1067,78 @@ describe('Express', function() {
 
       assert.equal(res.headers['content-type'], 'text/html; charset=utf-8');
       assert.equal(res.data, '<h1>Hello, World!</h1>');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('template engine', function() {
+    it('pug', async function() {
+      // acquit:ignore:start
+      fs.writeFileSync('./views/test.pug', 'h1\n  | Hello, #{name}!');
+      // acquit:ignore:end
+      const express = require('express');
+
+      const app = express();
+      // Use `pug` to preprocess all calls to `res.render()`.
+      app.set('view engine', 'pug');
+
+      app.get('*', (req, res) => {
+        // Assuming the Pug code is in `views/test.pug`
+        res.render('test', { name: 'World' });
+      });
+
+      const server = await app.listen(3000);
+
+      // Example of using the server
+      const axios = require('axios');
+
+      const res = await axios.get('http://localhost:3000');
+      res.data; // '<h1>Hello, World!</h1>'
+      // acquit:ignore:start
+      await server.close();
+
+      assert.equal(res.data, '<h1>Hello, World!</h1>');
+      // acquit:ignore:end
+    });
+
+    it('vue', async function() {
+      // acquit:ignore:start
+      fs.writeFileSync('./views/test.template', '<h1>Hello, {{name}}</h1>');
+      // acquit:ignore:end
+      const Vue = require('vue');
+      const express = require('express');
+      const { renderToString } = require('vue-server-renderer').createRenderer();
+      const { promisify } = require('util');
+
+      const app = express();
+      // Tell Express how to pre-process '.template' files using Vue server renderer.
+      app.engine('template', function templateEngine(filePath, options, callback) {
+        (async function() {
+          const content = await promisify(fs.readFile).call(fs, filePath, 'utf8');
+          const app = new Vue({ template: content, data: options });
+          const html = await renderToString(app);
+
+          callback(null, html);
+        })().catch(err => callback(err));
+      });
+      app.set('view engine', 'template');
+
+      app.get('*', (req, res) => {
+        // Assuming the Vue code is in `views/test.template`
+        res.render('test', { name: 'World' });
+      });
+
+      const server = await app.listen(3000);
+
+      // Example of using the server
+      const axios = require('axios');
+
+      const res = await axios.get('http://localhost:3000');
+      res.data; // '<h1 data-server-rendered="true">Hello, World</h1>'
+      // acquit:ignore:start
+      await server.close();
+
+      assert.equal(res.data, '<h1 data-server-rendered="true">Hello, World</h1>');
       // acquit:ignore:end
     });
   });
