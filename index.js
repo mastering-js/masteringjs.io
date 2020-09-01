@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Two JavaScript Strings, Ignoring Case',
+      raw: './tutorials/fundamentals/compare-strings-ignore-case.md',
+      url: '/tutorials/fundamentals/compare-strings-ignore-case',
+      description: 'Here\'s how you can compare two strings in JavaScript, ignoring case.',
+      tags: ['fundamentals'],
+      date: moment('2020-09-04')
+    },
+    {
       title: 'Upload a File in JavaScript',
       raw: './tutorials/fundamentals/upload-file.md',
       url: '/tutorials/fundamentals/upload-file',
