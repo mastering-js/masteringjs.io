@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Upload a File in JavaScript',
+      raw: './tutorials/fundamentals/upload-file.md',
+      url: '/tutorials/fundamentals/upload-file',
+      description: 'Uploading a file to a server is a common task in JavaScript. Here\'s how you can upload a file and handle the upload on the server side using Node.js',
+      tags: ['fundamentals'],
+      date: moment('2020-09-02')
+    },
+    {
       title: 'Email Validation in JavaScript',
       raw: './tutorials/fundamentals/email-validation.md',
       url: '/tutorials/fundamentals/email-validation',
