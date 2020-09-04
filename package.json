@@ -22,7 +22,7 @@
     "formidable": "1.2.1",
     "highlight.js": "9.12.0",
     "lodash": "4.x",
-    "marked": "0.6.x",
+    "marked": "1.1.x",
     "mathjs": "5.9.x",
     "mocha": "6.x",
     "moment": "2.x",
