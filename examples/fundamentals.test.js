@@ -4046,6 +4046,46 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('string equals ignore case', function() {
+    it('using toLowerCase', function() {
+      const str1 = 'Bill@microsoft.com';
+      const str2 = 'bill@microsoft.com';
+
+      str1 === str2; // false
+      str1.toLowerCase() === str2.toLowerCase(); // true
+      // acquit:ignore:start
+      assert.ok(!(str1 === str2));
+      assert.ok(str1.toLowerCase() === str2.toLowerCase());
+      // acquit:ignore:end
+    });
+
+    it('using localeCompare', function() {
+      const str1 = 'Bill@microsoft.com';
+      const str2 = 'bill@microsoft.com';
+
+      str1 === str2; // false
+      
+      // 0, means these two strings are equal according to `localeCompare()`
+      str1.localeCompare(str2, undefined, { sensitivity: 'accent' });
+      // acquit:ignore:start
+      assert.ok(!(str1 === str2));
+      assert.equal(str1.localeCompare(str2, undefined, { sensitivity: 'accent' }), 0);
+      // acquit:ignore:end
+    });
+
+    it('sorting', function() {
+      const strings = ['Alpha', 'Zeta', 'alpha', 'zeta'];
+      
+      strings.sort((str1, str2) => str1.localeCompare(str2, undefined, { sensitivity: 'accent' }));
+
+      // Case insensitive sorting: ['Alpha', 'alpha', 'Zeta', 'zeta']
+      strings;
+      // acquit:ignore:start
+      assert.deepEqual(strings, ['Alpha', 'alpha', 'Zeta', 'zeta']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
