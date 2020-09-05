@@ -70,8 +70,12 @@
   <p>There are numerous libraries, like <a href="https://www.npmjs.com/package/moment">moment</a>, that allow you to format dates in JavaScript. However, you don&#39;t need them for basic date formatting: the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString"><code>Date#toLocaleString()</code> function</a> lets you convert dates into custom string formats with no outside libraries.</p>
 <h2 id="introducing-tolocalestring">Introducing <code>toLocaleString()</code></h2>
 <p>The <code>toLocaleString()</code> function takes 2 arguments:</p>
-<p>1) A string <code>locale</code> that represents the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument">high level format of the date</a>, like <code>&#39;en-US&#39;</code> or <code>&#39;default&#39;</code>.</p>
-<p>2) An object <code>options</code> that contains how to format various date components, like <code>month</code> or <code>minutes</code>.</p>
+<ol>
+<li><p>A string <code>locale</code> that represents the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument">high level format of the date</a>, like <code>&#39;en-US&#39;</code> or <code>&#39;default&#39;</code>.</p>
+</li>
+<li><p>An object <code>options</code> that contains how to format various date components, like <code>month</code> or <code>minutes</code>.</p>
+</li>
+</ol>
 <p>Here&#39;s an example of formatting a date to include the short form of the weekday and the full date.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// No 'Z' at the end means JavaScript will use the server's timezone</span>
 <span class="hljs-comment">// as opposed to UTC.</span>

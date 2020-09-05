@@ -75,7 +75,8 @@ option. This is where you tell Webpack to use a special loader to
 compile a file before bundling. For TypeScript, you need the
 <a href="https://www.npmjs.com/package/ts-loader">ts-loader npm module</a>, in
 addition to the <a href="https://www.npmjs.com/package/typescript">typescript npm module</a>.</p>
-<pre><code>npm install typescript ts-loader</code></pre><p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
+<pre><code>npm install typescript ts-loader</code></pre>
+<p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-attr">entry</span>: <span class="hljs-string">'./index.ts'</span>,
   <span class="hljs-attr">module</span>: {
@@ -101,11 +102,14 @@ addition to the <a href="https://www.npmjs.com/package/typescript">typescript np
 <p>Below is the <code>index.ts</code> file:</p>
 <pre><code><span class="hljs-keyword">const</span> str: string = <span class="hljs-string">'Hello, World'</span>;
 
-<span class="hljs-built_in">console</span>.log(str);</code></pre><p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
-<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"./index.ts"</span>]}</code></pre><p>Run <code>node ./dist/main.js</code> and you should see Node print out &quot;Hello, World&quot;.</p>
+<span class="hljs-built_in">console</span>.log(str);</code></pre>
+<p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
+<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"./index.ts"</span>]}</code></pre>
+<p>Run <code>node ./dist/main.js</code> and you should see Node print out &quot;Hello, World&quot;.</p>
 <pre><code>$ node ./dist/main.js 
 Hello, World
 $</code></pre>
+
   
   <hr>
   

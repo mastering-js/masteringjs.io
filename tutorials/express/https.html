@@ -82,7 +82,8 @@ Created a <span class="hljs-keyword">new</span> certificate valid <span class="h
  - <span class="hljs-string">"localhost"</span>
 
 The certificate is at <span class="hljs-string">"./localhost.pem"</span> and the key at <span class="hljs-string">"./localhost-key.pem"</span> ✅
-</code></pre><p>Now that you have <code>localhost.pem</code> and <code>localhost-key.pem</code>, let&#39;s use them to start an <a href="http://expressjs.com/">Express</a> server that responds to <code>https://localhost</code>. To do this, you will need to read the <code>localhost.pem</code> and <code>localhost-key.pem</code> files, and pass them to <a href="https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener">Node.js&#39; native <code>https.createServer()</code> function</a>.</p>
+</code></pre>
+<p>Now that you have <code>localhost.pem</code> and <code>localhost-key.pem</code>, let&#39;s use them to start an <a href="http://expressjs.com/">Express</a> server that responds to <code>https://localhost</code>. To do this, you will need to read the <code>localhost.pem</code> and <code>localhost-key.pem</code> files, and pass them to <a href="https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener">Node.js&#39; native <code>https.createServer()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 <span class="hljs-keyword">const</span> https = <span class="hljs-built_in">require</span>(<span class="hljs-string">'https'</span>);
 

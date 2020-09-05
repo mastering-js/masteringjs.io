@@ -90,7 +90,8 @@ variables. Every ESLint rule has a name: this rule is called <code>no-unused-var
 
 ✖ <span class="hljs-number">1</span> problem (<span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings)
 
-$ </code></pre><h2 id="error-vs-warning">Error vs Warning</h2>
+$ </code></pre>
+<h2 id="error-vs-warning">Error vs Warning</h2>
 <p>The <code>&quot;no-unused-vars&quot;: &quot;error&quot;</code> line tells ESLint that unused variables should cause the linter to fail. ESLint also
 supports making a rule a <a href="https://eslint.org/docs/user-guide/configuring#configuring-rules">warning as opposed to an error</a>.
 ESLint will still succeed if the only rule violations are warnings.</p>
@@ -113,7 +114,8 @@ ESLint will still succeed if the only rule violations are warnings.</p>
 
 $ echo $?
 <span class="hljs-number">0</span>
-$ </code></pre><p>The <code>echo $?</code> command is how you <a href="https://shapeshed.com/unix-exit-codes/">get the exit code of the last command in Linux</a>. Exit code <code>0</code> means that the command succeeded, so <code>eslint</code> succeeded even though there were warnings.</p>
+$ </code></pre>
+<p>The <code>echo $?</code> command is how you <a href="https://shapeshed.com/unix-exit-codes/">get the exit code of the last command in Linux</a>. Exit code <code>0</code> means that the command succeeded, so <code>eslint</code> succeeded even though there were warnings.</p>
 <h2 id="more-complex-rules">More Complex Rules</h2>
 <p>The <code>no-unused-vars</code> rule doesn&#39;t leave much room for configuration: either a variable is unused, or it isn&#39;t.
 A more interesting rule is the <a href="https://eslint.org/docs/rules/max-len"><code>max-len</code> rule</a>, which enforces the maximum
@@ -140,7 +142,8 @@ than 66 characters.</p>
 
 ✖ <span class="hljs-number">1</span> problem (<span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings)
 
-$ </code></pre><h2 id="custom-rules-from-npm">Custom Rules from npm</h2>
+$ </code></pre>
+<h2 id="custom-rules-from-npm">Custom Rules from npm</h2>
 <p>ESLint has a <a href="https://eslint.org/docs/rules/">wide variety of built-in rules</a>, but you can also find new
 rules on npm. Many ESLint plugins provide additional rules for working with specific libraries and frameworks.</p>
 <p>For example, <a href="https://www.npmjs.com/package/eslint-plugin-vue">eslint-plugin-vue</a> provides extra Vue-specific
@@ -173,6 +176,7 @@ you get access to Vue-specific rules like <a href="https://eslint.vuejs.org/rule
 ✖ 1 <span class="hljs-title">problem</span> (<span class="hljs-params"><span class="hljs-number">1</span> error, <span class="hljs-number">0</span> warnings</span>)
 
 <span class="hljs-title">$</span> </span></code></pre>
+
   
   <hr>
   

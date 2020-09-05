@@ -125,7 +125,8 @@ implicitly converts all values in the array into strings before sorting.
 So the above <code>sort()</code> is actually sorting based on the below string values:</p>
 <pre><code>[ <span class="hljs-string">'Fri May 31 2019 20:00:00 GMT-0400 (Eastern Daylight Time)'</span>,
   <span class="hljs-string">'Thu May 31 2018 20:00:00 GMT-0400 (Eastern Daylight Time)'</span>,
-  <span class="hljs-string">'Wed May 31 2017 20:00:00 GMT-0400 (Eastern Daylight Time)'</span> ]</code></pre><p>In other words, JavaScript implicitly sorts arrays of dates based on the
+  <span class="hljs-string">'Wed May 31 2017 20:00:00 GMT-0400 (Eastern Daylight Time)'</span> ]</code></pre>
+<p>In other words, JavaScript implicitly sorts arrays of dates based on the
 day of the week by default.</p>
 <p>To sort dates based on which date happened first,
 you need to pass a <code>compare()</code> <a href="/tutorials/fundamentals/callbacks">callback</a>

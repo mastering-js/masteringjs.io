@@ -76,12 +76,16 @@ there are situations where
 <h2 id="syntax">Syntax</h2>
 <p>When you see <code>=&gt;</code>, you&#39;re looking at an arrow function. There are
 two ways to declare an arrow function:</p>
-<p>1) Without curly braces <code>{}</code>. With this syntax, the arrow function has an implicit return. For example, the below arrow function returns 42, even though there&#39;s no <code>return</code>.</p>
+<ol>
+<li>Without curly braces <code>{}</code>. With this syntax, the arrow function has an implicit return. For example, the below arrow function returns 42, even though there&#39;s no <code>return</code>.</li>
+</ol>
 <pre><code class="language-javascript"><span class="hljs-comment">// 'getAnswer()` is an arrow function that returns 42</span>
 <span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>;
 
 getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
-<p>2) With curly braces <code>{}</code>. With this syntax, the arrow function does not have an implicit <code>return</code>.</p>
+<ol start="2">
+<li>With curly braces <code>{}</code>. With this syntax, the arrow function does not have an implicit <code>return</code>.</li>
+</ol>
 <pre><code class="language-javascript"><span class="hljs-comment">// 'getAnswer()` is an arrow function that returns 42</span>
 <span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
@@ -126,8 +130,10 @@ noop = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</s
 <span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;</code></pre>
 <h2 id="why-arrow-functions">Why Arrow Functions?</h2>
 <p>Arrow functions have two major advantages:</p>
-<p>1) Implicit return for one-line functions means more concise code
-2) <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this">Lexical <code>this</code></a>. <code>this</code> in the arrow function is the same as <code>this</code> outside the arrow function.</p>
+<ol>
+<li>Implicit return for one-line functions means more concise code</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this">Lexical <code>this</code></a>. <code>this</code> in the arrow function is the same as <code>this</code> outside the arrow function.</li>
+</ol>
 <p>For example, suppose you try to call <code>setTimeout()</code> in a
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions">class method</a>. If you use a normal function as opposed to
 an arrow function, <code>this</code> will <strong>not</strong> be an instance of <code>MyClass</code>.</p>

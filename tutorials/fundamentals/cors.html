@@ -73,7 +73,8 @@ to a different origin. Browsers restrict cross-origin requests from JavaScript,
 so if you use <code>fetch()</code> or <a href="/axios">Axios</a> to make a request to an
 <a href="/tutorials/express/cors">Express server that doesn&#39;t use CORS</a>, you&#39;ll
 see the below error message:</p>
-<pre><code>Access to fetch at <span class="hljs-string">'http://localhost:3000/'</span> <span class="hljs-keyword">from</span> origin <span class="hljs-string">'http://localhost:5000'</span> has been blocked by CORS policy: No <span class="hljs-string">'Access-Control-Allow-Origin'</span> header is present on the requested resource. If an opaque response serves your needs, set the request<span class="hljs-string">'s mode to '</span>no-cors<span class="hljs-string">' to fetch the resource with CORS disabled.</span></code></pre><h2 id="what-qualifies-as-cross-origin">What Qualifies as Cross-Origin?</h2>
+<pre><code>Access to fetch at <span class="hljs-string">'http://localhost:3000/'</span> <span class="hljs-keyword">from</span> origin <span class="hljs-string">'http://localhost:5000'</span> has been blocked by CORS policy: No <span class="hljs-string">'Access-Control-Allow-Origin'</span> header is present on the requested resource. If an opaque response serves your needs, set the request<span class="hljs-string">'s mode to '</span>no-cors<span class="hljs-string">' to fetch the resource with CORS disabled.</span></code></pre>
+<h2 id="what-qualifies-as-cross-origin">What Qualifies as Cross-Origin?</h2>
 <p>You can think of your origin as what shows up in the URL bar in your browser. For
 example, suppose you have a browser tab open to <code>http://localhost:5000/tutorials/fundamentals/pojo</code>.</p>
 <img class="inline-image" src="https://i.imgur.com/eag0HC8.png">

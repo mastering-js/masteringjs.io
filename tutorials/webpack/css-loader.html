@@ -73,7 +73,8 @@ handles bundling CSS assets. Using the <a href="https://www.npmjs.com/package/cs
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> css = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./style.css'</span>).toString();
 <span class="hljs-built_in">console</span>.log(css);</code></pre>
 <p>And the below <code>style.css</code> file:</p>
-<pre><code>h1 { <span class="hljs-attr">color</span>: green; }</code></pre><p>The below Webpack config will compile <code>app.js</code> into a bundle that prints
+<pre><code>h1 { <span class="hljs-attr">color</span>: green; }</code></pre>
+<p>The below Webpack config will compile <code>app.js</code> into a bundle that prints
 <code>h1 { color: green; }</code> when it is run, either in Node.js or in the browser.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-attr">entry</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/app.js`</span>,

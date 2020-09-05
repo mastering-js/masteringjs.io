@@ -120,7 +120,8 @@ for updating values. You should only use watchers for &quot;side effects&quot; l
 });</code></pre>
 <p>On the other hand, if you try to update a computed property, Vue will treat
 it as a no-op and print the below warning:</p>
-<pre><code>[Vue warn]: Computed property <span class="hljs-string">"numItems"</span> was assigned to but it has no setter.</code></pre><p>So <code>numItems</code> is guaranteed to stay in sync with the contents of <code>items</code>, even
+<pre><code>[Vue warn]: Computed property <span class="hljs-string">"numItems"</span> was assigned to but it has no setter.</code></pre>
+<p>So <code>numItems</code> is guaranteed to stay in sync with the contents of <code>items</code>, even
 if you accidentally try to overwrite it.</p>
 <h2 id="when-to-use-watchers">When to Use Watchers</h2>
 <p>The Vue docs recommend using watchers when <a href="https://vuejs.org/v2/guide/computed.html#Watchers">you want to perform async operations in response to changing data</a>. For example, if you want to automatically save the <code>cart</code> every time it changes, you might

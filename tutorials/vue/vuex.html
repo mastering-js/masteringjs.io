@@ -73,10 +73,16 @@
 <span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
 Vue.use(Vuex);</code></pre>
 <p>Next, let&#39;s define a template that displays a single number <code>count</code> that&#39;s stored in Vuex. This script has 4 steps:</p>
-<p>1) Create a Vuex store. To create a Vuex store, you need to define <a href="https://vuex.vuejs.org/guide/state.html">state</a>, <a href="https://vuex.vuejs.org/guide/mutations.html">mutations</a>, and <a href="https://vuex.vuejs.org/guide/actions.html">actions</a>.</p>
-<p>2) Create a Vue app that&#39;s wired up to use the Vuex store.</p>
-<p>3) Render the app using vue-server-renderer.</p>
-<p>4) Dispatch an action and re-render the app using vue-server-renderer.</p>
+<ol>
+<li><p>Create a Vuex store. To create a Vuex store, you need to define <a href="https://vuex.vuejs.org/guide/state.html">state</a>, <a href="https://vuex.vuejs.org/guide/mutations.html">mutations</a>, and <a href="https://vuex.vuejs.org/guide/actions.html">actions</a>.</p>
+</li>
+<li><p>Create a Vue app that&#39;s wired up to use the Vuex store.</p>
+</li>
+<li><p>Render the app using vue-server-renderer.</p>
+</li>
+<li><p>Dispatch an action and re-render the app using vue-server-renderer.</p>
+</li>
+</ol>
 <pre><code class="language-javascript"><span class="hljs-comment">/**
  * Step 1: Create a Vuex store.
  * Vuex stores have 3 primary concepts:

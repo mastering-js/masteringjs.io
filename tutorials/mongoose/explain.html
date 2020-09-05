@@ -144,7 +144,8 @@ explain.queryPlanner;</code></pre>
     }
   },
   <span class="hljs-attr">rejectedPlans</span>: []
-}</code></pre><p>The <code>winningPlan</code> property is a recursive structure: <code>winningPlan</code> points
+}</code></pre>
+<p>The <code>winningPlan</code> property is a recursive structure: <code>winningPlan</code> points
 to the last stage in the winning query plan, and each stage has an
 <code>inputStage</code> property that described the previous stage.</p>
 <p>In the above plan, there are two stages: &#39;IXSCAN&#39; and &#39;FETCH&#39;. That means
@@ -178,7 +179,8 @@ collection scan:</p>
     <span class="hljs-attr">docsExamined</span>: <span class="hljs-number">5</span>
   },
   <span class="hljs-attr">allPlansExecution</span>: []
-}</code></pre><p>The important details to note here are the top-level <code>executionTimeMillis</code>
+}</code></pre>
+<p>The important details to note here are the top-level <code>executionTimeMillis</code>
 and <code>totalDocsExamined</code> properties. <code>executionTimeMillis</code> is the amount of time
 MongoDB spent executing the query, and <code>totalDocsExamined</code> is the number
 of documents MongoDB had to look at to answer the query.</p>
@@ -210,7 +212,8 @@ important details excluded for brevity:</p>
     }
   },
   <span class="hljs-attr">allPlansExecution</span>: []
-}</code></pre><p>The above <code>executionStats</code> output says that there were two stages: &#39;IXSCAN&#39; and &#39;FETCH&#39;.
+}</code></pre>
+<p>The above <code>executionStats</code> output says that there were two stages: &#39;IXSCAN&#39; and &#39;FETCH&#39;.
 The &#39;IXSCAN&#39; stage executed in 0ms and resulted in one document being sent to the
 &#39;FETCH&#39; stage. The &#39;FETCH&#39; stage examined 1 document, and returned 1 document,
 which was the final result of the query.</p>

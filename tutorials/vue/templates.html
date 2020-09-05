@@ -137,7 +137,8 @@ data;</code></pre>
   module.exports = {
     data: () =&gt; ({ message: 'Hello World' })
   };
-&lt;/script&gt;</code></pre><p>So in order to compile your component, you need a build step. There are numerous tools that can do this for you, like <a href="https://www.npmjs.com/package/vueify">the Vueify transform for Browserify</a> and <a href="https://www.npmjs.com/package/vue-loader">vue-loader for Webpack</a>. Under the hood, both of these tools use <a href="https://www.npmjs.com/package/vue-template-compiler"><code>vue-template-compiler</code></a>. Here&#39;s an example of using vue-template-compiler directly to compile Vue syntax into a component:</p>
+&lt;/script&gt;</code></pre>
+<p>So in order to compile your component, you need a build step. There are numerous tools that can do this for you, like <a href="https://www.npmjs.com/package/vueify">the Vueify transform for Browserify</a> and <a href="https://www.npmjs.com/package/vue-loader">vue-loader for Webpack</a>. Under the hood, both of these tools use <a href="https://www.npmjs.com/package/vue-template-compiler"><code>vue-template-compiler</code></a>. Here&#39;s an example of using vue-template-compiler directly to compile Vue syntax into a component:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> compiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-template-compiler'</span>);
 <span class="hljs-keyword">const</span> parsed = compiler.parseComponent(<span class="hljs-string">`
   &lt;template&gt;

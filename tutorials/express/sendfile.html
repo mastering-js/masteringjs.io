@@ -70,7 +70,8 @@
   <p><a href="https://expressjs.com/en/api.html#res.sendFile">Express&#39; <code>sendFile()</code> function</a> lets you send a raw file as a response to an HTTP request. You can think of <code>res.sendFile()</code> as <a href="/tutorials/express/static">Express&#39; <code>static</code></a> middleware for a single endpoint.</p>
 <h2 id="using-sendfile">Using <code>sendFile()</code></h2>
 <p>Suppose you have an HTML file <code>test.html</code> that looks like this:</p>
-<pre><code>&lt;h1&gt;Hello, World&lt;<span class="hljs-regexp">/h1&gt;</span></code></pre><p>You can make Express serve this HTML file as an HTTP response using <code>res.sendFile()</code> by passing the path to <code>test.html</code>. Note that the path must be absolute <em>unless</em> you specify the <code>root</code> option.</p>
+<pre><code>&lt;h1&gt;Hello, World&lt;<span class="hljs-regexp">/h1&gt;</span></code></pre>
+<p>You can make Express serve this HTML file as an HTTP response using <code>res.sendFile()</code> by passing the path to <code>test.html</code>. Note that the path must be absolute <em>unless</em> you specify the <code>root</code> option.</p>
 <pre><code class="language-javascript">app.get(<span class="hljs-string">'/myendpoint'</span>, (req, res) =&gt; {
   res.sendFile(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/test.html`</span>);
 });</code></pre>

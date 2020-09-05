@@ -137,7 +137,8 @@ Vue.component(<span class="hljs-string">'contact'</span>, {
 });</code></pre>
 <p>Using <code>component</code> and <code>:is</code>, Vue can render different components based
 on the state of <code>tab</code>:</p>
-<pre><code>&lt;component <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"tab-content"</span> :is=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span></span></code></pre><p>Whenever <code>tab</code> changes, Vue changes what component is rendered. Below
+<pre><code>&lt;component <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"tab-content"</span> :is=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span></span></code></pre>
+<p>Whenever <code>tab</code> changes, Vue changes what component is rendered. Below
 is the full Vue app that handles the state of <code>tab</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">tab</span>: <span class="hljs-string">'home'</span> }),

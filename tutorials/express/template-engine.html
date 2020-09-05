@@ -75,7 +75,8 @@ as well as how to write your own minimal template engine that enables Express to
 Express. Pug is a whitespace-sensitive HTML templating language that supports loops and conditionals. For example,
 below is some valid Pug code:</p>
 <pre><code>h1
-  | Hello, #{name}!</code></pre><p>Suppose the above code is in the <code>views/test.pug</code> file. Below is how you can use Express to render <code>test.pug</code> for
+  | Hello, #{name}!</code></pre>
+<p>Suppose the above code is in the <code>views/test.pug</code> file. Below is how you can use Express to render <code>test.pug</code> for
 you. Note the <code>app.set(&#39;view engine&#39;, &#39;pug&#39;)</code> call is how you tell Express to use Pug for templating. The string &#39;pug&#39;
 refers to the npm module you want to use as your template engine.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);

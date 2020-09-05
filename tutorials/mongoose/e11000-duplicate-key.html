@@ -71,7 +71,8 @@
 same value for a field that&#39;s <a href="https://mongoosejs.com/docs/validation.html#the-unique-option-is-not-a-validator">defined as <code>unique</code> in your Mongoose schema</a>.</p>
 <p>Mongoose models have an <code>_id</code> field that&#39;s <a href="https://docs.mongodb.com/manual/core/index-single/">always unique</a>. If you try to insert two documents with the same <code>_id</code>, you get the below error message.</p>
 <pre><code>MongoError: E11000 duplicate key error collection: test.customers index: _id_
-dup key: { : ObjectId(<span class="hljs-string">'5cc5ea092dca872442916cf5'</span>) }</code></pre><p>The <code>test.customers</code> part represents the MongoDB collection that the error occurred in. The <code>_id_</code> string is the name of the unique index, and the <code>ObjectId()</code> is the duplicate value.</p>
+dup key: { : ObjectId(<span class="hljs-string">'5cc5ea092dca872442916cf5'</span>) }</code></pre>
+<p>The <code>test.customers</code> part represents the MongoDB collection that the error occurred in. The <code>_id_</code> string is the name of the unique index, and the <code>ObjectId()</code> is the duplicate value.</p>
 <p>The below code is one way you might get the above error message. MongoDB collections always have a unique index on <code>_id</code>, so trying to insert a document
 with a duplicate id will cause a duplicate key error.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> CharacterModel = mongoose.model(<span class="hljs-string">'Character'</span>,

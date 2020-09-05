@@ -70,7 +70,8 @@
   <p><a href="https://www.npmjs.com/package/webpack-dev-server">webpack-dev-server</a> is Webpack&#39;s officially supported CLI-based tool for starting a static server for your assets. While you <a href="/tutorials/webpack/node">don&#39;t need any CLI tools to use Webpack</a>, webpack-dev-server gives you a single command that starts a static server with built-in live reload.</p>
 <h2 id="setup">Setup</h2>
 <p>To run webpack-dev-server, you need to install <a href="https://www.npmjs.com/package/webpack">webpack</a> <strong>and</strong> <a href="https://www.npmjs.com/package/webpack-cli">webpack-cli</a> in addition to webpack-dev-server.</p>
-<pre><code>npm install webpack@<span class="hljs-number">4.</span>x webpack-cli@<span class="hljs-number">3.</span>x webpack-dev-server@<span class="hljs-number">3.</span>x</code></pre><p>Suppose you have an <code>index.js</code> file that uses <a href="https://www.npmjs.com/package/axios">Axios</a> to make an HTTP request and display the result in an <code>&lt;h1&gt;</code>.</p>
+<pre><code>npm install webpack@<span class="hljs-number">4.</span>x webpack-cli@<span class="hljs-number">3.</span>x webpack-dev-server@<span class="hljs-number">3.</span>x</code></pre>
+<p>Suppose you have an <code>index.js</code> file that uses <a href="https://www.npmjs.com/package/axios">Axios</a> to make an HTTP request and display the result in an <code>&lt;h1&gt;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
 axios.get(<span class="hljs-string">'http://httpbin.org/get?answer=42'</span>).
@@ -102,7 +103,8 @@ axios.get(<span class="hljs-string">'http://httpbin.org/get?answer=42'</span>).
 };</code></pre>
 <h2 id="running-the-dev-server">Running the Dev Server</h2>
 <p>To run webpack-dev-server, run the following command.</p>
-<pre><code>./node_modules/.bin/webpack-dev-server</code></pre><p>Once you run webpack-dev-server, you should see the below output.</p>
+<pre><code>./node_modules/.bin/webpack-dev-server</code></pre>
+<p>Once you run webpack-dev-server, you should see the below output.</p>
 <img class="inline-image" src="https://i.imgur.com/NLYDUnU.png">
 
 <p>Live reload means that changes you make in your JavaScript file propagate to the browser without you needing to refresh the page. For example, if you change &#39;answer&#39; from 42 to 43 in <code>index.js</code>, Webpack automatically recompiles <code>index.js</code> and the browser automatically reloads without you having to do anything.</p>

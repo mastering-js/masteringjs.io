@@ -96,7 +96,8 @@ promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in"
 promise <span class="hljs-keyword">instanceof</span> Bluebird; <span class="hljs-comment">// true</span></code></pre>
 <p>If you haven&#39;t upgraded to Mongoose 5 yet, you might see the below
 deprecation warning in Mongoose 4.x:</p>
-<pre><code>WARNING: Mongoose: mpromise (mongoose<span class="hljs-string">'s default promise library) is deprecated, plug in your own promise library instead</span></code></pre><p>To resolve that deprecation warning, you would add the below code:</p>
+<pre><code>WARNING: Mongoose: mpromise (mongoose<span class="hljs-string">'s default promise library) is deprecated, plug in your own promise library instead</span></code></pre>
+<p>To resolve that deprecation warning, you would add the below code:</p>
 <pre><code class="language-javascript">mongoose.Promise = global.Promise;</code></pre>
 <p>That&#39;s because one of the breaking changes in Mongoose 5 was switching to
 using Node.js&#39; native promises. Mongoose 4 was released before ES6, so it

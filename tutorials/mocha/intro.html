@@ -94,7 +94,8 @@ describe(<span class="hljs-string">'sum()'</span>, <span class="hljs-function"><
 <img src="https://i.imgur.com/U86yp6T.png" style="width: 400px">
 
 <p>If you try to run <code>node test.js</code>, you will get the below error message:</p>
-<pre><code><span class="hljs-built_in">ReferenceError</span>: describe is not defined</code></pre><h2 id="assertion-libraries">Assertion Libraries</h2>
+<pre><code><span class="hljs-built_in">ReferenceError</span>: describe is not defined</code></pre>
+<h2 id="assertion-libraries">Assertion Libraries</h2>
 <p>Unlike many other test frameworks, Mocha doesn&#39;t come with a built-in assertion library. The previous example used <a href="https://nodejs.org/api/assert.html">Node.js&#39; built-in <code>assert</code> library</a>. Many popular JavaScript libraries and frameworks, like <a href="https://github.com/expressjs/express/blob/e1b45ebd050b6f06aa38cda5aaf0c21708b0c71e/test/Router.js">Express</a>, use Mocha and Node.js <code>assert</code> for tests.</p>
 <p>At its most basic level, an assertion library throws an error if a certain condition is not met. For example, the below code will throw an <code>AssertionError</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Throws "AssertionError [ERR_ASSERTION]: false == true"</span>

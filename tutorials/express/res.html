@@ -110,7 +110,8 @@ response.headers[<span class="hljs-string">'content-type'</span>]; <span class="
 <p>Express supports <a href="https://github.com/expressjs/express/wiki#template-engines">several different popular templating languages</a>. For example,
 you can use the <a href="https://www.npmjs.com/package/pug">Pug language</a> (formerly known as Jade).</p>
 <p>Given the below Pug code in <code>views/test.pug</code>:</p>
-<pre><code>h1= message</code></pre><p>The below Express route handler will render an <code>h1</code> tag that contains
+<pre><code>h1= message</code></pre>
+<p>The below Express route handler will render an <code>h1</code> tag that contains
 &#39;Hello, World&#39;. You do not need to install any libraries other than <a href="https://www.npmjs.com/package/pug">pug</a> or explicitly <code>require()</code> pug.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);

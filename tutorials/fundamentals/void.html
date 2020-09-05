@@ -88,7 +88,8 @@ cases:</p>
 <span class="hljs-built_in">console</span>.log(bar(<span class="hljs-string">'test'</span>));</code></pre>
 <p>However, <code>void</code> is an operator. That means, if you try to name a variable <code>void</code>,
 JavaScript will throw the below error.</p>
-<pre><code><span class="hljs-built_in">SyntaxError</span>: Unexpected token <span class="hljs-keyword">void</span></code></pre><p>Some JavaScript projects prefer <code>void 0</code> instead of <code>undefined</code> to avoid accidentally creating variables named <code>undefined</code>. There is <a href="https://eslint.org/docs/2.0.0/rules/no-undefined">even an ESLint rule to disallow <code>undefined</code></a> for this reason.</p>
+<pre><code><span class="hljs-built_in">SyntaxError</span>: Unexpected token <span class="hljs-keyword">void</span></code></pre>
+<p>Some JavaScript projects prefer <code>void 0</code> instead of <code>undefined</code> to avoid accidentally creating variables named <code>undefined</code>. There is <a href="https://eslint.org/docs/2.0.0/rules/no-undefined">even an ESLint rule to disallow <code>undefined</code></a> for this reason.</p>
 <h2 id="no-op-for-a-tags">No-Op for <code>&lt;a&gt;</code> Tags</h2>
 <p>Another use case for the <code>void</code> operator is to make an <code>&lt;a&gt;</code> tag with a <code>javascript:</code>
 URI do nothing. An <code>&lt;a&gt;</code> tag is not valid HTML unless it has a <code>name</code> or <code>href</code> property, so <code>javascript: void(0)</code> is a common trick to make an <code>&lt;a&gt;</code> tag render correctly without adding an actual link.</p>

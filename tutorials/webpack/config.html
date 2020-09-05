@@ -110,7 +110,8 @@ Entrypoint main = main.js
 WARNING <span class="hljs-keyword">in</span> configuration
 The <span class="hljs-string">'mode'</span> option has not been set, webpack will fallback to <span class="hljs-string">'production'</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">this</span> value. Set <span class="hljs-string">'mode'</span> option to <span class="hljs-string">'development'</span> or <span class="hljs-string">'production'</span> to enable defaults <span class="hljs-keyword">for</span> each environment.
 You can also set it to <span class="hljs-string">'none'</span> to disable any <span class="hljs-keyword">default</span> behavior. Learn more: https:<span class="hljs-comment">//webpack.js.org/configuration/mode/</span>
-</code></pre><p>Webpack generated a bundled <code>main.js</code> file that you can then load in the browser:</p>
+</code></pre>
+<p>Webpack generated a bundled <code>main.js</code> file that you can then load in the browser:</p>
 <pre><code class="language-html">&lt;html&gt;
   &lt;head&gt;
     &lt;script src="dist/main.js"&gt;&lt;/script&gt;
@@ -180,7 +181,8 @@ option. This is where you tell Webpack to use a special loader to
 compile a file before bundling. For TypeScript, you need the
 <a href="https://www.npmjs.com/package/ts-loader">ts-loader npm module</a>, in
 addition to the <a href="https://www.npmjs.com/package/typescript">typescript npm module</a>.</p>
-<pre><code>npm install typescript ts-loader</code></pre><p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
+<pre><code>npm install typescript ts-loader</code></pre>
+<p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-attr">entry</span>: <span class="hljs-string">'./src/index.ts'</span>,
   <span class="hljs-attr">module</span>: {
@@ -205,8 +207,10 @@ addition to the <a href="https://www.npmjs.com/package/typescript">typescript np
 <p>Below is the <code>index.ts</code> file:</p>
 <pre><code><span class="hljs-keyword">const</span> str: string = <span class="hljs-string">'Hello, World'</span>;
 
-<span class="hljs-built_in">console</span>.log(str);</code></pre><p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
-<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"src/index.ts"</span>]}</code></pre><p>Running <code>./node_modules/.bin/webpack</code> should give you the below output:</p>
+<span class="hljs-built_in">console</span>.log(str);</code></pre>
+<p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
+<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"src/index.ts"</span>]}</code></pre>
+<p>Running <code>./node_modules/.bin/webpack</code> should give you the below output:</p>
 <pre><code>$ ./node_modules/.bin/webpack
 Hash: <span class="hljs-number">63</span>b83086be302b9d23c8
 Version: webpack <span class="hljs-number">4.42</span><span class="hljs-number">.0</span>
@@ -219,7 +223,8 @@ Entrypoint main = main.js
 
 WARNING <span class="hljs-keyword">in</span> configuration
 The <span class="hljs-string">'mode'</span> option has not been set, webpack will fallback to <span class="hljs-string">'production'</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">this</span> value. Set <span class="hljs-string">'mode'</span> option to <span class="hljs-string">'development'</span> or <span class="hljs-string">'production'</span> to enable defaults <span class="hljs-keyword">for</span> each environment.
-You can also set it to <span class="hljs-string">'none'</span> to disable any <span class="hljs-keyword">default</span> behavior. Learn more: https:<span class="hljs-comment">//webpack.js.org/configuration/mode/</span></code></pre><p>And then you can finally run <code>node ./dist/main.js</code>!</p>
+You can also set it to <span class="hljs-string">'none'</span> to disable any <span class="hljs-keyword">default</span> behavior. Learn more: https:<span class="hljs-comment">//webpack.js.org/configuration/mode/</span></code></pre>
+<p>And then you can finally run <code>node ./dist/main.js</code>!</p>
 
   
   <hr>

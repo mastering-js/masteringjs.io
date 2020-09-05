@@ -72,9 +72,11 @@ are the npm packages that are adding the most to your bundle size,
 so you can see where to focus when trying to trim your bundle size.</p>
 <h2 id="setup">Setup</h2>
 <p>First, you need to install Webpack, webpack-cli, and webpack-bundle-analyzer:</p>
-<pre><code>npm install webpack webpack-cli webpack-bundle-analyzer</code></pre><p>Next, let&#39;s install <a href="/vue">Vue</a> and <a href="/axios">Axios</a> to put together
+<pre><code>npm install webpack webpack-cli webpack-bundle-analyzer</code></pre>
+<p>Next, let&#39;s install <a href="/vue">Vue</a> and <a href="/axios">Axios</a> to put together
 a trivial Vue app.</p>
-<pre><code>npm install vue axios</code></pre><p>Here&#39;s an <code>src/index.js</code> file creates a simple Vue app.</p>
+<pre><code>npm install vue axios</code></pre>
+<p>Here&#39;s an <code>src/index.js</code> file creates a simple Vue app.</p>
 <pre><code><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
@@ -93,11 +95,13 @@ a trivial Vue app.</p>
       then(<span class="hljs-function"><span class="hljs-params">user</span> =&gt;</span> { <span class="hljs-keyword">this</span>.user = user; }).
       catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(err));
   }
-});</code></pre><h2 id="running-the-bundle-analyzer">Running the Bundle Analyzer</h2>
+});</code></pre>
+<h2 id="running-the-bundle-analyzer">Running the Bundle Analyzer</h2>
 <p>To run the bundle analyzer, first you need to run Webpack with the
 <code>--profile</code> and <code>--json</code> flags to export the raw data that the bundle
 analyzer needs:</p>
-<pre><code>$ ./node_modules/.bin/webpack --profile --json &gt; stats.json</code></pre><p>The <code>stats.json</code> file looks something like this:</p>
+<pre><code>$ ./node_modules/.bin/webpack --profile --json &gt; stats.json</code></pre>
+<p>The <code>stats.json</code> file looks something like this:</p>
 <pre><code>$ head stats.json 
 {
   <span class="hljs-string">"errors"</span>: [],
@@ -109,8 +113,10 @@ analyzer needs:</p>
   <span class="hljs-string">"time"</span>: <span class="hljs-number">269</span>,
   <span class="hljs-string">"builtAt"</span>: <span class="hljs-number">1583167656248</span>,
   <span class="hljs-string">"publicPath"</span>: <span class="hljs-string">""</span>,
-$</code></pre><p>Next, run the Webpack bundle analyzer on the <code>stats.json</code> file:</p>
-<pre><code>$ ./node_modules/.bin/webpack-bundle-analyzer stats.json</code></pre><p>Webpack bundle analyzer will open up a browser window with the tree
+$</code></pre>
+<p>Next, run the Webpack bundle analyzer on the <code>stats.json</code> file:</p>
+<pre><code>$ ./node_modules/.bin/webpack-bundle-analyzer stats.json</code></pre>
+<p>Webpack bundle analyzer will open up a browser window with the tree
 map:</p>
 <img src="https://codebarbarian-images.s3.amazonaws.com/bundle-analyzer.png" class="inline-image">
 

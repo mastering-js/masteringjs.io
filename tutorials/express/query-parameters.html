@@ -69,10 +69,12 @@
 	</script>
   <p>The <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> portion of
 a URL is the part of the URL after the question mark <code>?</code>. For example:</p>
-<pre><code>?answer=<span class="hljs-number">42</span></code></pre><p>Each <code>key=value</code> pair is called a <em>query parameter</em>. If your query string has 
+<pre><code>?answer=<span class="hljs-number">42</span></code></pre>
+<p>Each <code>key=value</code> pair is called a <em>query parameter</em>. If your query string has 
 multiple query parameters, they&#39;re separated by <code>&amp;</code>. For example, the below
 string has 2 query parameters, <code>a</code> and <code>b</code>.</p>
-<pre><code>?a=<span class="hljs-number">1</span>&amp;b=<span class="hljs-number">2</span></code></pre><p>Express automatically parses query parameters for you and stores them
+<pre><code>?a=<span class="hljs-number">1</span>&amp;b=<span class="hljs-number">2</span></code></pre>
+<p>Express automatically parses query parameters for you and stores them
 on the <a href="/tutorials/express/req">request object</a> as <a href="http://expressjs.com/en/4x/api.html#req.query"><code>req.query</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
@@ -90,7 +92,8 @@ res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span></code></pre>
 <h2 id="objects-and-arrays-in-query-strings">Objects and Arrays in Query Strings</h2>
 <p>If a query parameter appears multiple times in the query string, Express
 will group the values into an array. For example, given the below query string:</p>
-<pre><code>?color=black&amp;color=yellow</code></pre><p>Express will set <code>req.query.color</code> to an array <code>[&#39;black&#39;, &#39;yellow&#39;]</code>.</p>
+<pre><code>?color=black&amp;color=yellow</code></pre>
+<p>Express will set <code>req.query.color</code> to an array <code>[&#39;black&#39;, &#39;yellow&#39;]</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
 app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {

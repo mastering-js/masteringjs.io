@@ -116,7 +116,8 @@
 });</code></pre>
 <p>If you call <code>done()</code> with no arguments, you&#39;re telling Mocha that your test succeeded. If you pass a parameter, Mocha assumes that parameter is an error.</p>
 <p>Make sure you call <code>done()</code>! If you don&#39;t call <code>done()</code>, your Mocha test will time out. You&#39;ll see the below error:</p>
-<pre><code><span class="hljs-built_in">Error</span>: Timeout <span class="hljs-keyword">of</span> <span class="hljs-number">2000</span>ms exceeded. For <span class="hljs-keyword">async</span> tests and hooks, ensure <span class="hljs-string">"done()"</span> is called</code></pre><p>If you see this error, either you need to <a href="https://mochajs.org/#test-level">increase your Mocha test timeout</a> or there&#39;s some bug in your code that&#39;s preventing <code>done()</code> from getting called.</p>
+<pre><code><span class="hljs-built_in">Error</span>: Timeout <span class="hljs-keyword">of</span> <span class="hljs-number">2000</span>ms exceeded. For <span class="hljs-keyword">async</span> tests and hooks, ensure <span class="hljs-string">"done()"</span> is called</code></pre>
+<p>If you see this error, either you need to <a href="https://mochajs.org/#test-level">increase your Mocha test timeout</a> or there&#39;s some bug in your code that&#39;s preventing <code>done()</code> from getting called.</p>
 
   
   <hr>
