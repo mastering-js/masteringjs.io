@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vue Error Handling - Mastering JS</title>
+
+    <meta property="og:title" content="Vue Error Handling" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Vue instances have a neat `errorCaptured` function that Vue calls whenever an error occurs in a method or lifecycle hook. Here's what you need to know." />
+    <meta name="description" content="Vue instances have a neat `errorCaptured` function that Vue calls whenever an error occurs in a method or lifecycle hook. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Vue Error Handling</h1>
+  <div class="date">
+    Sep 16, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://vuejs.org/v2/api/#errorCaptured">Vue instances have an <code>errorCaptured</code> hook</a> that Vue calls whenever an <a href="https://github.com/vuejs/vue/issues/6953#issuecomment-340335435">event handler or lifecycle hook throws an error</a>. For example,
+the below code will increment a counter because the child component <code>test</code> throws an error every time the button is clicked.</p>
+<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'test'</span>, {
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
+  });
+
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught error'</span>, err.message);
+      ++<span class="hljs-keyword">this</span>.count;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;span id="count"&gt;{{count}}&lt;/span&gt;
+      &lt;test&gt;&lt;/test&gt;
+    &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<h2 id="errorcaptured-only-catches-errors-in-nested-components"><code>errorCaptured</code> Only Catches Errors in Nested Components</h2>
+<p>A common gotcha is that Vue does <strong>not</strong> call <code>errorCaptured</code> when the error occurs in the same component that the
+<code>errorCaptured</code> hook is registered on. For example, if you remove the &#39;test&#39; component from the above example and
+inline the <code>button</code> in the top-level Vue instance, Vue will <strong>not</strong> call <code>errorCaptured</code>.</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+    <span class="hljs-comment">// Vue won't call this hook, because the error occurs in this Vue</span>
+    <span class="hljs-comment">// instance, not a child component.</span>
+    errorCaptured: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught error'</span>, err.message);
+      ++<span class="hljs-keyword">this</span>.count;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;span id="count"&gt;{{count}}&lt;/span&gt;
+      &lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;
+    &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<h2 id="async-errors">Async Errors</h2>
+<p>On the bright side, Vue does call <code>errorCaptured()</code> when an async function throws an error. For example, if a child
+component asynchronously throws an error, Vue will still bubble up the error to the parent.</p>
+<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'test'</span>, {
+    <span class="hljs-attr">methods</span>: {
+      <span class="hljs-comment">// Vue bubbles up async errors to the parent's `errorCaptured()`, so</span>
+      <span class="hljs-comment">// every time you click on the button, Vue will call the `errorCaptured()`</span>
+      <span class="hljs-comment">// hook with `err.message = 'Oops'`</span>
+      test: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>));
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>);
+      }
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="test()"&gt;Throw&lt;/button&gt;'</span>
+  });
+
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught error'</span>, err.message);
+      ++<span class="hljs-keyword">this</span>.count;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;span id="count"&gt;{{count}}&lt;/span&gt;
+      &lt;test&gt;&lt;/test&gt;
+    &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<h2 id="error-propagation">Error Propagation</h2>
+<p>You might have noticed the <code>return false</code> line in the previous examples. If your <code>errorCaptured()</code> function does not return <code>false</code>, Vue will bubble up the error to parent components&#39; <code>errorCaptured()</code>:</p>
+<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'level2'</span>, {
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
+  });
+
+  Vue.component(<span class="hljs-string">'level1'</span>, {
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Level 1 error'</span>, err.message);
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;level2&gt;&lt;/level2&gt;'</span>
+  });
+
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-comment">// Since the level1 component's `errorCaptured()` didn't return `false`,</span>
+      <span class="hljs-comment">// Vue will bubble up the error.</span>
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught top-level error'</span>, err.message);
+      ++<span class="hljs-keyword">this</span>.count;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;span id="count"&gt;{{count}}&lt;/span&gt;
+      &lt;level1&gt;&lt;/level1&gt;
+    &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<p>On the other hand, if your <code>errorCaptured()</code> function returns <code>false</code>, Vue will stop propagation of that error:</p>
+<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'level2'</span>, {
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
+  });
+
+  Vue.component(<span class="hljs-string">'level1'</span>, {
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Level 1 error'</span>, err.message);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;level2&gt;&lt;/level2&gt;'</span>
+  });
+
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
+    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-comment">// Since the level1 component's `errorCaptured()` returned `false`,</span>
+      <span class="hljs-comment">// Vue won't call this function.</span>
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught top-level error'</span>, err.message);
+      ++<span class="hljs-keyword">this</span>.count;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;span id="count"&gt;{{count}}&lt;/span&gt;
+      &lt;level1&gt;&lt;/level1&gt;
+    &lt;/div&gt;
+    `</span>
+  });</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/vue-test-utils">Getting Started with Vue Test Utils</a></li>
+  
+
+    <li><a href="/tutorials/vue/cdn">Loading Vue via CDN</a></li>
+  
+
+    <li><a href="/tutorials/vue/click">Handling Click Events with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/watch-vs-computed">Watch vs Computed in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios-login">Vue Login with Axios</a></li>
+  
+
+    <li><a href="/tutorials/vue/router-link">The `router-link` Component in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/mounted">The `mounted()` Hook in Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
