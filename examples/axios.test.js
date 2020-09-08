@@ -84,6 +84,35 @@ describe('axios', function() {
         'application/x-www-form-urlencoded');
       // acquit:ignore:end
     });
+
+    it('using method option', async function() {
+      const axios = require('axios');
+
+      // Equivalent to `axios.post('https://httpbin.org/post')`
+      const res = await axios({
+        url: 'https://httpbin.org/post',
+        method: 'post'
+      });
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, {});
+      // acquit:ignore:end
+    });
+
+    it('using data option', async function() {
+      const axios = require('axios');
+
+      // Equivalent to `axios.post('https://httpbin.org/post', { answer: 42 })`
+      const res = await axios({
+        url: 'https://httpbin.org/post',
+        method: 'post',
+        data: { answer: 42 }
+      });
+
+      res.data.json; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.json, { answer: 42 });
+      // acquit:ignore:end
+    });
   });
 
   describe('PUT requests', function() {
@@ -563,6 +592,19 @@ describe('axios', function() {
       res.data.args; // { answer: 42 }
       // acquit:ignore:start
       assert.deepEqual(res.data.args, { answer: 42 });
+      // acquit:ignore:end
+    });
+
+    it('using method option', async function() {
+      const axios = require('axios');
+
+      // Equivalent to `axios.get('https://httpbin.org/get')`
+      const res = await axios({
+        url: 'https://httpbin.org/get',
+        method: 'get'
+      });
+      // acquit:ignore:start
+      assert.deepEqual(res.data.args, {});
       // acquit:ignore:end
     });
   });
