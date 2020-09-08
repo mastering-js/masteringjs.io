@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Axios GET with Data',
+      raw: './tutorials/axios/get-with-data.md',
+      url: '/tutorials/axios/get-with-data',
+      description: 'Axios\' `data` parameter ends up in the HTTP request body, so you can\'t send GET requests with `data`. Here\'s a workaround.',
+      tags: ['axios'],
+      date: moment('2020-09-08')
+    },
+    {
       title: 'Compare Two JavaScript Strings, Ignoring Case',
       raw: './tutorials/fundamentals/compare-strings-ignore-case.md',
       url: '/tutorials/fundamentals/compare-strings-ignore-case',

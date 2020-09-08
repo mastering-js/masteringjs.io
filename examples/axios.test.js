@@ -557,6 +557,7 @@ describe('axios', function() {
     it('params', async function() {
       const axios = require('axios');
 
+      // Equivalent to `axios.get('https://httpbin.org/get?answer=42')`
       const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
 
       res.data.args; // { answer: 42 }

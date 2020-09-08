@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Basic Auth Using the Axios HTTP Client - Mastering JS</title>
+    <title>Axios GET with Data - Mastering JS</title>
 
-    <meta property="og:title" content="Basic Auth Using the Axios HTTP Client" />
+    <meta property="og:title" content="Axios GET with Data" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to do HTTP basic authentication using Axios" />
-    <meta name="description" content="Learn how to do HTTP basic authentication using Axios" />
+    <meta property="og:description" content="Axios' `data` parameter ends up in the HTTP request body, so you can't send GET requests with `data`. Here's a workaround." />
+    <meta name="description" content="Axios' `data` parameter ends up in the HTTP request body, so you can't send GET requests with `data`. Here's a workaround." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -55,9 +55,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Basic Auth Using the Axios HTTP Client</h1>
+  <h1>Axios GET with Data</h1>
   <div class="date">
-    May 4, 2019
+    Sep 8, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -67,29 +67,20 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://swagger.io/docs/specification/authentication/basic-authentication/">Basic auth</a> is a common way to handle logging in with username and password via HTTP. If you&#39;re using <a href="https://www.npmjs.com/package/axios">Axios</a> as your HTTP client, you get basic auth for free.</p>
-<p><a href="http://httpbin.org/#/Auth/get_basic_auth__user___passwd_">HTTPBin offers a free sample endpoint to test basic auth</a>. The endpoint URL includes the correct username and password for test purposes. For example, the URL <code>https://httpbin.org/basic-auth/foo/bar</code> succeeds if you send it properly formatted basic auth for username &#39;foo&#39; and password &#39;bar&#39;, and fails if you don&#39;t.</p>
-<p>If you pass the <code>auth</code> option to <code>axios.get()</code>, axios will properly format basic auth for you as shown below.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/basic-auth/foo/bar'</span>, {
-  <span class="hljs-comment">// Axios looks for the `auth` option, and, if it is set, formats a</span>
-  <span class="hljs-comment">// basic auth header for you automatically.</span>
-  auth: {
-    <span class="hljs-attr">username</span>: <span class="hljs-string">'foo'</span>,
-    <span class="hljs-attr">password</span>: <span class="hljs-string">'bar'</span>
-  }
-});
-res.status; <span class="hljs-comment">// 200</span></code></pre>
-<p>If login failed, HTTPBin will respond with an HTTP 401, which Axios bubbles up as a <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">promise rejection</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.
-  get(<span class="hljs-string">'https://httpbin.org/basic-auth/foo/bar'</span>, {
-    <span class="hljs-attr">auth</span>: {
-      <span class="hljs-attr">username</span>: <span class="hljs-string">'foo'</span>,
-      <span class="hljs-attr">password</span>: <span class="hljs-string">'baz'</span> <span class="hljs-comment">// Bad password</span>
-    }
-  }).
-  catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "Request failed with status code 401"</span>
-err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></code></pre>
+  <p><a href="/tutorials/axios/post">Axios&#39; <code>post()</code> function</a> supports a <code>data</code> parameter that becomes the HTTP request body.
+On the other hand, <a href="/tutorials/axios/get"><code>axios.get()</code></a> does <strong>not</strong> support this parameter. The 2nd parameter to
+<code>axios.get()</code> is the Axios options.</p>
+<p>That&#39;s because, while the HTTP spec does not specifically forbid sending a request body with a GET request,
+older versions of the HTTP spec say that <a href="https://stackoverflow.com/questions/978061/http-get-with-request-body">HTTP servers <em>should</em> ignore GET request bodies</a>. So most HTTP services don&#39;t support GET request bodies.</p>
+<h2 id="use-params-instead">Use <code>params</code> Instead</h2>
+<p>Instead of sending your data using the <code>data</code> parameter, you can use the <code>params</code> option to tell Axios to put
+your parameters in the <a href="/tutorials/fundamentals/query-string">query string</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 
   
   <hr>
@@ -97,9 +88,6 @@ err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></co
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/get-with-data">Axios GET with Data</a></li>
-  
-
     <li><a href="/tutorials/axios/get-query-params">GET Request Query Params with Axios</a></li>
   
 
@@ -116,6 +104,9 @@ err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></co
   
 
     <li><a href="/tutorials/axios/catch">Error Handling in Axios using `catch()`</a></li>
+  
+
+    <li><a href="/tutorials/axios/interceptors">Axios Interceptors</a></li>
   
     </ul>
   
