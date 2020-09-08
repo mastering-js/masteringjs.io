@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Axios DELETE Requests',
+      raw: './tutorials/axios/delete.md',
+      url: '/tutorials/axios/delete',
+      description: 'Here\'s how you can send an HTTP DELETE request with Axios, including how to send a request body with a DELETE request.',
+      tags: ['axios'],
+      date: moment('2020-09-11')
+    },
+    {
       title: 'Axios Options',
       raw: './tutorials/axios/options.md',
       url: '/tutorials/axios/options',
