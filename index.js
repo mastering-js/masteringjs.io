@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Axios Options',
+      raw: './tutorials/axios/options.md',
+      url: '/tutorials/axios/options',
+      description: 'Axios\' `options` parameter contains numerous options for configuring HTTP requests. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-09-09')
+    },
+    {
       title: 'Axios GET with Data',
       raw: './tutorials/axios/get-with-data.md',
       url: '/tutorials/axios/get-with-data',
