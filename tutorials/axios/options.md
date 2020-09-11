@@ -1,5 +1,5 @@
 The 2nd parameter to [`axios.get()`](/tutorials/axios/get) and 3rd parameter to [`axios.post()`](/tutorials/axios/post)
-and [`axios.put()`](/tutorials/axios/post) is an `options` object, also known as the Axios request config. You can find
+and [`axios.put()`](/tutorials/axios/put) is an `options` object, also known as the Axios request config. You can find
 a [complete list of options on the Axios docs](https://www.npmjs.com/package/axios#request-config).
 
 Below is a list of the most important options. Click on an option to read more about it.

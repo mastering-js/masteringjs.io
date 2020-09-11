@@ -720,4 +720,24 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('delete request', function() {
+    it('basic example', async function() {
+      const res = await axios.delete('https://httpbin.org/delete');
+      
+      res.status; // 200
+      // acquit:ignore:start
+      assert.equal(res.status, 200);
+      // acquit:ignore:end
+    });
+
+    it('body', async function() {
+      const res = await axios.delete('https://httpbin.org/delete', { data: { answer: 42 } });
+
+      res.data.json; // { answer: 42 }
+      // acquit:ignore:start
+      assert.deepEqual(res.data.json, { answer: 42 });
+      // acquit:ignore:end
+    });
+  });
 });

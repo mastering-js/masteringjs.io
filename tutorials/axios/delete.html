@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>HTTP Request Error Handling With Axios Interceptors - Mastering JS</title>
+    <title>Axios DELETE Requests - Mastering JS</title>
 
-    <meta property="og:title" content="HTTP Request Error Handling With Axios Interceptors" />
+    <meta property="og:title" content="Axios DELETE Requests" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to use Axios interceptors to make HTTP error messages readable" />
-    <meta name="description" content="Learn how to use Axios interceptors to make HTTP error messages readable" />
+    <meta property="og:description" content="Here's how you can send an HTTP DELETE request with Axios, including how to send a request body with a DELETE request." />
+    <meta name="description" content="Here's how you can send an HTTP DELETE request with Axios, including how to send a request body with a DELETE request." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -55,9 +55,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>HTTP Request Error Handling With Axios Interceptors</h1>
+  <h1>Axios DELETE Requests</h1>
   <div class="date">
-    May 17, 2019
+    Sep 11, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -67,33 +67,16 @@
 	  }
 	})();
 	</script>
-  <p>By default, <a href="https://www.npmjs.com/package/axios">Axios</a> error messages only include the status code. This is a sensible default, but the default error message is often not helpful.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = express();
-app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  res.status(<span class="hljs-number">404</span>).json({ <span class="hljs-attr">message</span>: <span class="hljs-string">`Could not find page <span class="hljs-subst">${req.url}</span>`</span> });
-});
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+  <p>Axios has a <code>axios.delete()</code> function that makes it easy to send an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE">HTTP DELETE request</a> to a given URL.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>);
 
-<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>).
-  catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-<span class="hljs-comment">// "Request failed with status code 404"</span>
-err.message;</code></pre>
-<p>Thankfully, Axios makes it easy to transform errors so the error message makes sense for your application. <a href="https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index#//dash_ref/Category/Interceptors/1">Axios interceptors</a> allow you to transform all errors coming out of Axios.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Create an Axios instance to </span>
-<span class="hljs-keyword">const</span> client = axios.create();
-<span class="hljs-comment">// Interceptors take 2 parameters:</span>
-<span class="hljs-comment">// Axios calls the first function if the request succeeds</span>
-<span class="hljs-comment">// Axios calls the second function if the request fails</span>
-client.interceptors.response.use(
-  <span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res,
-  err =&gt; {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(err.response.data.message);
-  }
-)
-<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> client.get(<span class="hljs-string">'http://localhost:3000/test'</span>).
-  catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-<span class="hljs-comment">// "Could not find page /test"</span>
-err.message;</code></pre>
+res.status; <span class="hljs-comment">// 200</span></code></pre>
+<p>Unlike <a href="/tutorials/axios/post"><code>axios.post()</code></a> and <a href="/tutorials/axios/put"><code>axios.put()</code></a>, the 2nd param to <code>axios.delete()</code>
+is the <a href="/tutorials/axios/options"><code>axios.post()</code></a>, <strong>not</strong> the request body. To send a request body with a DELETE request,
+you should use the <a href="/tutorials/axios/options#data"><code>data</code> option</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>, { <span class="hljs-attr">data</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+
+res.data.json; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 
   
   <hr>
@@ -101,9 +84,6 @@ err.message;</code></pre>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
-  
-
     <li><a href="/tutorials/axios/options">Axios Options</a></li>
   
 
@@ -120,6 +100,9 @@ err.message;</code></pre>
   
 
     <li><a href="/tutorials/node/http-request">Making an HTTP Request in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/axios/post-json">POST JSON with Axios</a></li>
   
     </ul>
   
