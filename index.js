@@ -1792,6 +1792,9 @@ async function run() {
       //<a href="/ebooks/mastering-mongoose"><img src="/assets/images/ebooks/mongoose-banner.png" border="0" alt="" width="160" height="600" class="right-banner" /></a>      `;
       tutorial.cta = 'mongoose';
     }
+    if (tutorial.tags[0] === 'express') {
+      tutorial.cta = 'express';
+    }
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
     let ad = null;
