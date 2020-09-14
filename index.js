@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Getting Started with Vue Test Utils',
+      raw: './tutorials/vue/vue-test-utils.md',
+      url: '/tutorials/vue/vue-test-utils',
+      description: 'Vue Test Utils is Vue\'s official unit testing library for Node.js. Here\'s how you can get started testing Vue components in Node with Vue Test Utils.',
+      tags: ['vue'],
+      date: moment('2020-09-14')
+    },
+    {
       title: 'Axios DELETE Requests',
       raw: './tutorials/axios/delete.md',
       url: '/tutorials/axios/delete',
