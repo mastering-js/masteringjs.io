@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vue Error Handling',
+      raw: './tutorials/vue/error-handling.md',
+      url: '/tutorials/vue/error-handling',
+      description: 'Vue instances have a neat `errorCaptured` function that Vue calls whenever an error occurs in a method or lifecycle hook. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-09-16')
+    },
+    {
       title: 'Getting Started with Vue Test Utils',
       raw: './tutorials/vue/vue-test-utils.md',
       url: '/tutorials/vue/vue-test-utils',

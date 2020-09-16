@@ -2018,6 +2018,256 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('errorCaptured', function() {
+    it('basic example', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        Vue.component('test', {
+          template: '<button v-on:click="notAMethod()">Throw</button>'
+        });
+
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          errorCaptured: function(err) {
+            console.log('Caught error', err.message);
+            ++this.count;
+            return false;
+          },
+          template: `
+          <div>
+            <span id="count">{{count}}</span>
+            <test></test>
+          </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 1);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 2);
+      // acquit:ignore:end
+    });
+
+    it('same component', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          // Vue won't call this hook, because the error occurs in this Vue
+          // instance, not a child component.
+          errorCaptured: function(err) {
+            console.log('Caught error', err.message);
+            ++this.count;
+            return false;
+          },
+          template: `
+          <div>
+            <span id="count">{{count}}</span>
+            <button v-on:click="notAMethod()">Throw</button>
+          </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+      // acquit:ignore:end
+    });
+
+    it('async', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        Vue.component('test', {
+          methods: {
+            // Vue bubbles up async errors to the parent's `errorCaptured()`, so
+            // every time you click on the button, Vue will call the `errorCaptured()`
+            // hook with `err.message = 'Oops'`
+            test: async function test() {
+              await new Promise(resolve => setTimeout(resolve, 50));
+              throw new Error('Oops!');
+            }
+          },
+          template: '<button v-on:click="test()">Throw</button>'
+        });
+
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          errorCaptured: function(err) {
+            console.log('Caught error', err.message);
+            ++this.count;
+            return false;
+          },
+          template: `
+          <div>
+            <span id="count">{{count}}</span>
+            <test></test>
+          </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 1);
+      // acquit:ignore:end
+    });
+
+    it('multi level propagation', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        Vue.component('level2', {
+          template: '<button v-on:click="notAMethod()">Throw</button>'
+        });
+
+        Vue.component('level1', {
+          errorCaptured: function(err) {
+            console.log('Level 1 error', err.message);
+          },
+          template: '<level2></level2>'
+        });
+
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          errorCaptured: function(err) {
+            // Since the level1 component's `errorCaptured()` didn't return `false`,
+            // Vue will bubble up the error.
+            console.log('Caught top-level error', err.message);
+            ++this.count;
+            return false;
+          },
+          template: `
+          <div>
+            <span id="count">{{count}}</span>
+            <level1></level1>
+          </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 1);
+      // acquit:ignore:end
+    });
+
+    it('stop propagation', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+
+      const fn = function() {
+        // acquit:ignore:end
+        Vue.component('level2', {
+          template: '<button v-on:click="notAMethod()">Throw</button>'
+        });
+
+        Vue.component('level1', {
+          errorCaptured: function(err) {
+            console.log('Level 1 error', err.message);
+            return false;
+          },
+          template: '<level2></level2>'
+        });
+
+        const app = new Vue({
+          data: () => ({ count: 0 }),
+          errorCaptured: function(err) {
+            // Since the level1 component's `errorCaptured()` returned `false`,
+            // Vue won't call this function.
+            console.log('Caught top-level error', err.message);
+            ++this.count;
+            return false;
+          },
+          template: `
+          <div>
+            <span id="count">{{count}}</span>
+            <level1></level1>
+          </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+
+      let count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('#count').innerHTML.trim());
+      assert.equal(count, 0);
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
