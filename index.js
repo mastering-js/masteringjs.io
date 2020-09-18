@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Drawing SVG Graphics with Vue',
+      raw: './tutorials/vue/svg.md',
+      url: '/tutorials/vue/svg',
+      description: 'Vue has great support for SVG graphics, letting you draw customized images and charts. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-09-18')
+    },
+    {
       title: 'Vue Error Handling',
       raw: './tutorials/vue/error-handling.md',
       url: '/tutorials/vue/error-handling',
