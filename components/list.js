@@ -1,6 +1,20 @@
 'use strict';
 
-module.exports = ({ posts, title }, limit) => `
+module.exports = ({ posts, title, hero }, limit) => `
+<style>
+  .hero img {
+    border: 0px;
+    padding: 0;
+  }
+
+  .hero p {
+    padding-bottom: 0.5em;
+    font-size: 1.25em;
+  }
+</style>
+<div class="hero">
+  ${hero}
+</div>
 ${displayTitle(title)}
 <div class="list">
   ${posts.slice(0, limit).map(post).join('\n')}

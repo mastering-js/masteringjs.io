@@ -1853,9 +1853,18 @@ async function run() {
   }
 
   for (const [tag, tutorials] of byTag.entries()) {
+    let hero = '';
+    try {
+      hero = require('./components/heros/' + tag)();
+    } catch (err) {}
+
     fs.writeFileSync(`./${tag}.html`, layout({
       title: `${capitalize(tag)} Tutorials`,
-      content: list({ posts: tutorials, title: `${capitalize(tag)} Tutorials` }),
+      content: list({
+        posts: tutorials,
+        title: `${capitalize(tag)} Tutorials`,
+        hero
+      }),
       description: `Bite-sized ${capitalize(tag)} tutorials for busy developers`
     }));
   }
