@@ -29,7 +29,7 @@
     "mathjs": "5.9.x",
     "mocha": "6.x",
     "moment": "2.x",
-    "mongoose": "5.x",
+    "mongoose": "^5.10.6",
     "mongoose-beautiful-unique-validation": "7.x",
     "nightmare": "3.x",
     "pug": "2.x",

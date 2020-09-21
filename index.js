@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using npm update',
+      raw: './tutorials/npm/update.md',
+      url: '/tutorials/npm/update',
+      description: '`npm update` lets you update a package that you previously installed. Here\'s what you need to know.',
+      tags: ['npm'],
+      date: moment('2020-09-23')
+    },
+    {
       title: 'Uninstall a Package with npm',
       raw: './tutorials/npm/uninstall-package.md',
       url: '/tutorials/npm/uninstall-package',
