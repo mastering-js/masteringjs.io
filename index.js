@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Websocket Server in Node.js',
+      raw: './tutorials/node/websocket-server.md',
+      url: '/tutorials/node/websocket-server',
+      description: 'The ws package lets you start a websocket server in Node.js. You can also integrate ws with frameworks like Express. Here\'s how.',
+      tags: ['node'],
+      date: moment('2020-09-28')
+    },
+    {
       title: 'Get the Installed Version of an npm Package',
       raw: './tutorials/npm/version.md',
       url: '/tutorials/npm/version',
