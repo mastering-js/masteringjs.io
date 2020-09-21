@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Check Your Node.js Version',
+      raw: './tutorials/node/version.md',
+      url: '/tutorials/node/version',
+      description: 'Checking what version of Node.js you\'re using is easy. You can either run `node --version`, or print `process.version`. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-10-02')
+    },
+    {
       title: 'HTTP Servers in Node.js',
       raw: './tutorials/node/http-server.md',
       url: '/tutorials/node/http-server',
