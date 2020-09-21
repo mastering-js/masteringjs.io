@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'HTTP Servers in Node.js',
+      raw: './tutorials/node/http-server.md',
+      url: '/tutorials/node/http-server',
+      description: 'Node.js has a built-in HTTP server class that you can use to respond to HTTP requests. Here\'s what you need to know.',
+      tags: ['node'],
+      date: moment('2020-09-30')
+    },
+    {
       title: 'Websocket Server in Node.js',
       raw: './tutorials/node/websocket-server.md',
       url: '/tutorials/node/websocket-server',

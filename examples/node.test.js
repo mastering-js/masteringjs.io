@@ -625,4 +625,26 @@ describe('Node', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('http server', function() {
+    it('hello, world', async function() {
+      const http = require('http');
+
+      // You usually don't call `new http.Server()`, the `http.createServer()`
+      // function creates a new `Server` instance for you.
+      const server = http.createServer((req, res) => res.end('Hello, World!'));
+
+      server instanceof http.Server; // true
+      // acquit:ignore:start
+      assert.ok(server instanceof http.Server);
+      // acquit:ignore:end
+      await server.listen(3000);
+      // acquit:ignore:start
+      const axios = require('axios');
+
+      const res = await axios.get('http://localhost:3000');
+      assert.equal(res.data, 'Hello, World!');
+      // acquit:ignore:end
+    });
+  });
 });
