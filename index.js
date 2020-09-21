@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Get the Installed Version of an npm Package',
+      raw: './tutorials/npm/version.md',
+      url: '/tutorials/npm/version',
+      description: '`npm list` lets you get the currently installed version of a given package. Here\'s what you need to know.',
+      tags: ['npm'],
+      date: moment('2020-09-23')
+    },
+    {
       title: 'Using npm update',
       raw: './tutorials/npm/update.md',
       url: '/tutorials/npm/update',
