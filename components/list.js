@@ -13,7 +13,7 @@ module.exports = ({ posts, title, hero }, limit) => `
   }
 </style>
 <div class="hero">
-  ${hero}
+  ${hero ? hero : ''}
 </div>
 ${displayTitle(title)}
 <div class="list">

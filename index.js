@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Uninstall a Package with npm',
+      raw: './tutorials/npm/uninstall-package.md',
+      url: '/tutorials/npm/uninstall-package',
+      description: '`npm uninstall` lets you uninstall a package that you previously installed, including all of the package\'s dependencies. Here\'s what you need to know.',
+      tags: ['npm'],
+      date: moment('2020-09-21')
+    },
+    {
       title: 'Drawing SVG Graphics with Vue',
       raw: './tutorials/vue/svg.md',
       url: '/tutorials/vue/svg',
