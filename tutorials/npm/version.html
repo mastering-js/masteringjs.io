@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Get the Installed Version of an npm Package - Mastering JS</title>
+
+    <meta property="og:title" content="Get the Installed Version of an npm Package" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="`npm list` lets you get the currently installed version of a given package. Here's what you need to know." />
+    <meta name="description" content="`npm list` lets you get the currently installed version of a given package. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/npm">Npm</a>
+    /
+  </div>
+  <h1>Get the Installed Version of an npm Package</h1>
+  <div class="date">
+    Sep 23, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>When you want to report a bug in an npm package, most packages ask you for what
+version of the package you&#39;re using. Just looking at <code>package.json</code> isn&#39;t enough
+if you&#39;re using semver ranges. If your <code>package.json</code> file says <code>&quot;mongoose&quot;: &quot;5.x&quot;</code>,
+&#39;5.x&#39; is <strong>not</strong> a version, it&#39;s a <a href="https://docs.npmjs.com/misc/semver#ranges"><em>range</em></a>.</p>
+<p>To get what version of Mongoose you currently have installed, run <code>npm list mongoose</code>,
+or <code>npm ls mongoose</code> for short. For example, here&#39;s the result of running <code>npm list mongoose</code> from the <a href="https://github.com/vkarpov15/masteringjs.io">Mastering JS git repo</a>.
+It shows that the currently installed version of Mongoose is v5.10.6.</p>
+<pre><code>$ npm list mongoose
+masteringjs.io@ /path/to/masteringjs.io
+└── mongoose@<span class="hljs-number">5.10</span><span class="hljs-number">.6</span> 
+
+$ </code></pre>
+<h2 id="listing-multiple-packages">Listing Multiple Packages</h2>
+<p>Running <code>npm list</code> without a package name prints all installed packages, including
+their dependencies, with version numbers. The output of <code>npm list</code> is typically too big
+to read, but the beginning looks like this:</p>
+<pre><code>masteringjs.io@ /path/to/masteringjs.io
+├── @awaitjs/express@<span class="hljs-number">0.3</span><span class="hljs-number">.0</span>
+├─┬ @google-cloud/storage@<span class="hljs-number">4.3</span><span class="hljs-number">.1</span>
+│ ├─┬ @google-cloud/common@<span class="hljs-number">2.4</span><span class="hljs-number">.0</span>
+│ │ ├── @google-cloud/projectify@<span class="hljs-number">1.0</span><span class="hljs-number">.4</span>
+...</code></pre>
+<p>However, you can make the output more usable by using <code>--depth=0</code> to
+only show the version of top-level dependencies.</p>
+<pre><code>npm list --depth=<span class="hljs-number">0</span></code></pre>
+<p>Below is the beginning of the output of <code>npm list --depth=0</code> for the Mastering JS
+git repo:</p>
+<pre><code>masteringjs.io@ /path/to/masteringjs.io
+├── @awaitjs/express@<span class="hljs-number">0.3</span><span class="hljs-number">.0</span>
+├── @google-cloud/storage@<span class="hljs-number">4.3</span><span class="hljs-number">.1</span>
+├── @vue/test-utils@<span class="hljs-number">1.0</span><span class="hljs-number">.5</span>
+├── acquit@<span class="hljs-number">1.1</span><span class="hljs-number">.0</span>
+├── acquit-ignore@<span class="hljs-number">0.1</span><span class="hljs-number">.1</span>
+├── acquit-<span class="hljs-built_in">require</span>@<span class="hljs-number">0.1</span><span class="hljs-number">.1</span>
+├── adm-zip@<span class="hljs-number">0.4</span><span class="hljs-number">.14</span>
+├── apollo-server@<span class="hljs-number">2.17</span><span class="hljs-number">.0</span>
+├── aws-sdk@<span class="hljs-number">2.756</span><span class="hljs-number">.0</span>
+├── axios@<span class="hljs-number">0.19</span><span class="hljs-number">.2</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Npm Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/npm/update">Using npm update</a></li>
+  
+
+    <li><a href="/tutorials/npm/uninstall-package">Uninstall a Package with npm</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
