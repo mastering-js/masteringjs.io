@@ -35,7 +35,6 @@ button {
 
 .hero .overview {
   float: left;
-  text-align: center;
   box-sizing: border-box;
   width: 50%;
   padding: 30px;
@@ -45,7 +44,6 @@ button {
 .hero .overview h1 {
   text-align: left;
   display: inline-block;
-  width: 690px;
 }
 
 .hero .overview div.tagline, .hero .overview div.cta {
@@ -54,7 +52,6 @@ button {
   text-align: left;
   font-size: 1.25em;
   line-height: 1.5em;
-  width: 690px;
   margin-bottom: 0.5em;
 }
 
@@ -224,6 +221,10 @@ p, ul, li {
 
   .sticky-promo {
     display: none;
+  }
+
+  .hero .overview div.cta {
+    text-align: center;
   }
 
   .sticky-promo-mobile {
