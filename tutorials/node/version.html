@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Get the Length of a Buffer in Node.js - Mastering JS</title>
+    <title>How to Check Your Node.js Version - Mastering JS</title>
 
-    <meta property="og:title" content="Get the Length of a Buffer in Node.js" />
+    <meta property="og:title" content="How to Check Your Node.js Version" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Node.js buffers have a length property that contains the number of bytes in the buffer. Here's what you need to know." />
-    <meta name="description" content="Node.js buffers have a length property that contains the number of bytes in the buffer. Here's what you need to know." />
+    <meta property="og:description" content="Checking what version of Node.js you're using is easy. You can either run `node --version`, or print `process.version`. Here's what you need to know." />
+    <meta name="description" content="Checking what version of Node.js you're using is easy. You can either run `node --version`, or print `process.version`. Here's what you need to know." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
@@ -55,9 +55,9 @@
     <a href="/node">Node</a>
     /
   </div>
-  <h1>Get the Length of a Buffer in Node.js</h1>
+  <h1>How to Check Your Node.js Version</h1>
   <div class="date">
-    Aug 19, 2020
+    Oct 2, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -67,35 +67,16 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/node/buffer">Node.js buffers</a> are objects that store arbitrary binary data. Buffers have a
-<a href="https://nodejs.org/api/buffer.html#buffer_buf_length"><code>length</code> property</a> that contains the number of bytes
-in the buffer.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
-
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
-<p>For buffers containing UTF8 encoded strings, the buffer&#39;s length is equivalent to the length of the string. For
-example, if you read a text file from the file system using <code>fs</code>, the resulting buffer&#39;s length is the same as
-the number of characters in the text file.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
-fs.writeFileSync(<span class="hljs-string">'./test.txt'</span>, <span class="hljs-string">'Hello, World'</span>);
-
-<span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./test.txt'</span>);
-
-Buffer.isBuffer(buf); <span class="hljs-comment">// true</span>
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
-<h2 id="allocated-vs-actual">Allocated vs Actual</h2>
-<p>Note that <code>Buffer#length</code> contains the number of <em>allocated</em> bytes for the buffer, <strong>not</strong> how many bytes are
-actually used. Often these two are equivalent, but they may be different.</p>
-<p>For example, if you allocate a 100-byte buffer using <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_alloc_size_fill_encoding"><code>Buffer.alloc()</code></a>, the buffer&#39;s length will always be 100, regardless
-of the buffer&#39;s contents.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.alloc(<span class="hljs-number">100</span>);
-
-buf.length; <span class="hljs-comment">// 100, even though the buffer contains 100 `0` bytes</span>
-
-<span class="hljs-comment">// Write 'Hello, World' to the buffer starting at offset 0</span>
-buf.write(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-number">0</span>);
-
-buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span></code></pre>
+  <p>The easiest way to check what version of Node.js you&#39;re using is to run
+<code>node --version</code> from your terminal. This will print your version of Node.js
+as shown below.</p>
+<pre><code>$ node --version
+v10<span class="hljs-number">.16</span><span class="hljs-number">.3</span>
+$ </code></pre>
+<p>You can also get the currently running version of Node.js from Node.js&#39;
+built-in <a href="https://nodejs.org/api/process.html#process_process_version"><code>process.version</code> property</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// `process` is a built-in global in Node.js, no need to `require()`</span>
+<span class="hljs-built_in">console</span>.log(process.version); <span class="hljs-comment">// 'v10.16.3'</span></code></pre>
 
   
   <hr>
@@ -103,9 +84,6 @@ buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes a
     <h2>More Node Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/node/version">How to Check Your Node.js Version</a></li>
-  
-
     <li><a href="/tutorials/node/http-server">HTTP Servers in Node.js</a></li>
   
 
@@ -113,6 +91,9 @@ buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes a
   
 
     <li><a href="/tutorials/node/buffer-to-string">Using the Buffer `toString()` Function in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer-length">Get the Length of a Buffer in Node.js</a></li>
   
 
     <li><a href="/tutorials/node/buffer-compare">Compare Two Buffers in Node.js</a></li>
