@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Break Out of a JavaScript forEach() Loop',
+      raw: './tutorials/fundamentals/foreach-break.md',
+      url: '/tutorials/fundamentals/foreach-break',
+      description: 'The `break` keyword doesn\'t work with `forEach()`, but there are several ways to simulate `break` with `forEach()`. Here\'s how.',
+      tags: ['fundamentals'],
+      date: moment('2020-10-05')
+    },
+    {
       title: 'How to Check Your Node.js Version',
       raw: './tutorials/node/version.md',
       url: '/tutorials/node/version',
