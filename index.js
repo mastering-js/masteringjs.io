@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Continue in JavaScript forEach()',
+      raw: './tutorials/fundamentals/foreach-continue.md',
+      url: '/tutorials/fundamentals/foreach-continue',
+      description: 'The `continue` keyword doesn\'t work with `forEach()`, but there are ways to skip to the next iteration of a `forEach()`. Here\'s how.',
+      tags: ['fundamentals'],
+      date: moment('2020-10-07')
+    },
+    {
       title: 'How to Break Out of a JavaScript forEach() Loop',
       raw: './tutorials/fundamentals/foreach-break.md',
       url: '/tutorials/fundamentals/foreach-break',
