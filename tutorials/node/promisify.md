@@ -17,6 +17,7 @@ Assumptions
 -----------
 
 How does `util.promisify()` work under the hood? There's a [polyfill on npm](https://www.npmjs.com/package/util.promisify), you can read the [full implementation here](https://github.com/ljharb/util.promisify/blob/master/implementation.js).
+You can also find the [Node.js implementation here](https://github.com/nodejs/node/blob/master/lib/internal/util.js#L277-L322), although, for educational purposes, the polyfill is a bit easier to read.
 
 The key idea behind `util.promisify()` is that it [adds a callback function to the parameters you passed in](https://github.com/ljharb/util.promisify/blob/40a839a8db3d79699688d27f6613a827056428c8/implementation.js#L58-L59). That callback function resolves or rejects the promise the promisified function returns.
 
