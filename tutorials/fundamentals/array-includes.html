@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JavaScript Array `includes()` - Mastering JS</title>
+
+    <meta property="og:title" content="JavaScript Array `includes()`" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="The `includes()` array method tells you whether an array contains the given element. Here's what you need to know." />
+    <meta name="description" content="The `includes()` array method tells you whether an array contains the given element. Here's what you need to know." />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>JavaScript Array `includes()`</h1>
+  <div class="date">
+    Oct 13, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes"><code>Array#includes()</code> method</a> returns <code>true</code> if the array contains a given element, or <code>false</code> otherwise.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
+
+arr.includes(<span class="hljs-string">'b'</span>); <span class="hljs-comment">// true</span>
+arr.includes(<span class="hljs-string">'z'</span>); <span class="hljs-comment">// false</span>
+arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span></code></pre>
+<h2 id="equality-comparison">Equality Comparison</h2>
+<p>The <code>includes()</code> method uses the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality">&quot;SameValueZero&quot; algorithm</a> for determining if two values are equal. For almost all
+cases, &quot;SameValueZero&quot; is equivalent to <a href="/tutorials/fundamentals/equals">strict equality using <code>===</code></a>. In particular,
+<code>includes()</code> does <strong>not</strong> do any type coercion.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];
+
+arr.includes(<span class="hljs-string">'1'</span>); <span class="hljs-comment">// true</span>
+arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>The <code>includes()</code> only treats two objects as equal if they are the same reference:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> };
+<span class="hljs-keyword">const</span> obj2 = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> };
+
+<span class="hljs-keyword">const</span> arr = [obj1];
+
+arr.includes(obj1); <span class="hljs-comment">// true</span>
+arr.includes(obj2); <span class="hljs-comment">// false</span></code></pre>
+<p>The only difference is how SameValueZero handles <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>. In JavaScript, <code>NaN !== NaN</code>. However, <code>includes()</code> can correctly find <code>NaN</code> and <code>Number.NaN</code> in an
+array.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-literal">NaN</span>];
+
+arr.includes(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
+arr.includes(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">// true</span>
+
+arr[<span class="hljs-number">0</span>] === <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="environment-support">Environment Support</h2>
+<p>The <code>includes()</code> method was introduced in <a href="https://2ality.com/2016/02/array-prototype-includes.html">ES2016</a>, which makes
+it a relatively new feature. In particular, no version Internet Explorer supports <code>includes()</code>. If you expect your
+JavaScript to run in Internet Explorer or versions of Node.js before 5.0.0, you should use <code>indexOf()</code>, which enjoys
+better browser support and is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf">equivalent <em>except</em> for <code>NaN</code></a>.</p>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/foreach-index">Get The Current Array Index in JavaScript forEach()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-continue">Using Continue in JavaScript forEach()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-continue">Using Continue in JavaScript forEach()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-break">How to Break Out of a JavaScript forEach() Loop</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/compare-strings-ignore-case">Compare Two JavaScript Strings, Ignoring Case</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/upload-file">Upload a File in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/email-validation">Email Validation in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

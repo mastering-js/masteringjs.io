@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JavaScript Array `includes()`',
+      raw: './tutorials/fundamentals/array-includes.md',
+      url: '/tutorials/fundamentals/array-includes',
+      description: 'The `includes()` array method tells you whether an array contains the given element. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-10-13')
+    },
+    {
       title: 'Get The Current Array Index in JavaScript forEach()',
       raw: './tutorials/fundamentals/foreach-index.md',
       url: '/tutorials/fundamentals/foreach-index',

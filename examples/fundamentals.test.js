@@ -4086,6 +4086,61 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('Array includes', function() {
+    it('basic case', function() {
+      const arr = ['a', 'b', 'c'];
+
+      arr.includes('b'); // true
+      arr.includes('z'); // false
+      arr.includes(1); // false
+      // acquit:ignore:start
+      assert.ok(arr.includes('b'));
+      assert.ok(!arr.includes('z'));
+      assert.ok(!arr.includes(1));
+      // acquit:ignore:end
+    });
+
+    it('types', function() {
+      const arr = ['1', '2', '3'];
+
+      arr.includes('1'); // true
+      arr.includes(1); // false
+      // acquit:ignore:start
+      assert.ok(arr.includes('1'));
+      assert.ok(!arr.includes(1));
+      // acquit:ignore:end
+    });
+
+    it('objects', function() {
+      const obj1 = { name: 'Jean-Luc Picard' };
+      const obj2 = { name: 'Jean-Luc Picard' };
+
+      const arr = [obj1];
+
+      arr.includes(obj1); // true
+      arr.includes(obj2); // false
+      // acquit:ignore:start
+      assert.ok(arr.includes(obj1));
+      assert.ok(!arr.includes(obj2));
+      // acquit:ignore:end
+    });
+
+    it('NaN', function() {
+      const arr = [NaN];
+
+      arr.includes(NaN); // true
+      arr.includes(Number.NaN); // true
+
+      arr[0] === NaN; // false
+      // acquit:ignore:start
+      assert.ok(arr.includes(NaN));
+      assert.ok(arr.includes(Number.NaN));
+
+      assert.ok(!(arr[0] === NaN));
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
