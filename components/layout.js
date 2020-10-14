@@ -14,6 +14,8 @@ module.exports = params => `
     <meta property="og:type" content="article" />
     <meta property="og:description" content="${params.description}" />
     <meta name="description" content="${params.description}" />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
