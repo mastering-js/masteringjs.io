@@ -12,8 +12,8 @@ module.exports = params => `
     <meta property="og:title" content="${params.title}" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="${params.description}" />
-    <meta name="description" content="${params.description}" />
+    <meta property="og:description" content="${params.description.replace(/\"/g, '\'')}" />
+    <meta name="description" content="${params.description.replace(/\"/g, '\'')}" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
