@@ -16,7 +16,7 @@
     "cors": "2.8.5",
     "email-validator": "2.0.4",
     "escape-string-regexp": "4.0.0",
-    "eslint": "^6.7.1",
+    "eslint": "6.x",
     "express": "~4.16",
     "express-static": "1.2.6",
     "form-data": "2.5.1",
