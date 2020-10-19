@@ -1,7 +1,7 @@
 {
   "name": "masteringjs.io",
   "devDependencies": {
-    "@awaitjs/express": "0.3.0",
+    "@awaitjs/express": "0.6.x",
     "@google-cloud/storage": "4.3.1",
     "@vue/test-utils": "1.0.5",
     "acquit": "1.x",
