@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'JavaScript Append to Array',
+      raw: './tutorials/fundamentals/array-append.md',
+      url: '/tutorials/fundamentals/array-append',
+      description: 'The `push()` function is the most common way to add a new element to a JavaScript array, but there are a few other alternatives. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-10-20')
+    },
+    {
       title: 'JavaScript Array `includes()`',
       raw: './tutorials/fundamentals/array-includes.md',
       url: '/tutorials/fundamentals/array-includes',

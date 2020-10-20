@@ -4141,6 +4141,77 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('array append', function() {
+    it('push', function() {
+      const arr = ['a', 'b', 'c'];
+
+      arr.push('d');
+      arr; // ['a', 'b', 'c', 'd']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd']);
+      // acquit:ignore:end
+
+      arr.push('e', 'f');
+      arr; // ['a', 'b', 'c', 'd', 'e', 'f']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e', 'f']);
+      // acquit:ignore:end
+    });
+
+    it('unshift', function() {
+      const arr = ['d', 'e', 'f'];
+
+      arr.unshift('c');
+      arr; // ['c', 'd', 'e', 'f']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['c', 'd', 'e', 'f']);
+      // acquit:ignore:end
+
+      arr.unshift('a', 'b');
+      arr; // ['a', 'b', 'c', 'd', 'e', 'f']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e', 'f']);
+      // acquit:ignore:end
+    });
+
+    it('concat', function() {
+      let arr = ['c'];
+
+      arr = arr.concat(['d', 'e']);
+      arr; // ['c', 'd', 'e']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['c', 'd', 'e']);
+      // acquit:ignore:end
+
+      // You can also use `concat()` to add to the beginning of
+      // the array, just make sure you call `concat()` on an array
+      // containing the elements you want to add to the beginning.
+      arr = ['a', 'b'].concat(arr);
+      arr; // ['a', 'b', 'c', 'd', 'e']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e']);
+      // acquit:ignore:end
+    });
+
+    it('spread', function() {
+      let arr = ['c'];
+
+      // Append to the end:
+      arr = [...arr, 'd', 'e'];
+      arr; // ['c', 'd', 'e']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['c', 'd', 'e']);
+      // acquit:ignore:end
+
+      // Append to the beginning:
+      arr = ['a', 'b', ...arr];
+      arr; // ['a', 'b', 'c', 'd', 'e']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
