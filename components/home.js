@@ -10,7 +10,13 @@ module.exports = ({ posts }) => `
   <head>
     <title>Mastering JS</title>
 
+    <meta property="og:title" content="Mastering JS" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:description" content="Bite-sized full stack JavaScript tutorials for busy developers" />
     <meta name="description" content="Bite-sized full stack JavaScript tutorials for busy developers">
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/home.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Inconsolata:400,700" rel="stylesheet">
