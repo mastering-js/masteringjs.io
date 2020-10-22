@@ -78,13 +78,13 @@ str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment
 <img src="/assets/includes-browser-compat.png">
 
 <p><em>Compatibility table from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#Browser_compatibility">Mozilla Developer Network</a></em></p>
-<p>If you need to support Internet Explorer, you should instead use the [String#indexOf()` function](<a href="https://www.w3schools.com/jsref/jsref_indexof.asp">https://www.w3schools.com/jsref/jsref_indexof.asp</a>), which has been a part of JavaScript since ES1 in 1997.</p>
+<p>If you need to support Internet Explorer, you should instead use the <a href="https://www.w3schools.com/jsref/jsref_indexof.asp"><code>String#indexOf()</code> method</a>, which has been a part of JavaScript since ES1 in 1997.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
 
 str.indexOf(<span class="hljs-string">'Stark'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
 str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 <p>In general, if you have any doubt about whether code will run in an environment that supports <code>includes()</code>, you should use <code>indexOf()</code>. The <code>includes()</code> function&#39;s syntax is only marginally more concise than <code>indexOf()</code>.</p>
-<h2 id="case-insensitive-search">Case Insensitive Search</h2>
+<h2 id="case-insensitive-search"><a href="/tutorials/fundamentals/compare-strings-ignore-case">Case Insensitive Search</a></h2>
 <p>Both <code>String#includes()</code> and <code>String#indexOf()</code> are case sensitive. Neither function supports regular expressions. To do case insensitive search, you can use regular expressions and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String#match()</code> function</a>, or you can convert both the string and substring to lower case using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase"><code>String#toLowerCase()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'arya stark'</span>;
 
