@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Axios vs Fetch: Which Should You Use?',
+      raw: './tutorials/axios/vs-fetch.md',
+      url: '/tutorials/axios/vs-fetch',
+      description: 'Should you use Axios or browsers\' native `fetch()`? Here\'s why you should use Axios.',
+      tags: ['axios'],
+      date: moment('2020-10-28')
+    },
+    {
       title: 'Using Axios\' Proxy Option',
       raw: './tutorials/axios/proxy.md',
       url: '/tutorials/axios/proxy',
