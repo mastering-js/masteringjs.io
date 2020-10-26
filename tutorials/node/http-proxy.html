@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create a Simple HTTP Proxy in Node.js - Mastering JS</title>
+
+    <meta property="og:title" content="Create a Simple HTTP Proxy in Node.js" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can create a simple HTTP proxy in Node.js." />
+    <meta name="description" content="Here's how you can create a simple HTTP proxy in Node.js." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/node">Node</a>
+    /
+  </div>
+  <h1>Create a Simple HTTP Proxy in Node.js</h1>
+  <div class="date">
+    Oct 30, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>The <a href="https://www.npmjs.com/package/http-proxy">http-proxy package on npm</a> is the most popular way to create an
+HTTP proxy in Node.js. Below is a standalone script that shows how to use http-proxy with Express, and make a
+<a href="/tutorials/axios/proxy">proxied HTTP request using Axios</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">const</span> httpProxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http-proxy'</span>);
+
+<span class="hljs-comment">// Create a proxy and listen on port 3000</span>
+<span class="hljs-keyword">const</span> proxy = httpProxy.createProxyServer({});
+<span class="hljs-keyword">const</span> app = express();
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-comment">// Prints "Request GET https://httpbin.org/get?answer=42"</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Request'</span>, req.method, req.url);
+  proxy.web(req, res, { <span class="hljs-attr">target</span>: <span class="hljs-string">`<span class="hljs-subst">${req.protocol}</span>://<span class="hljs-subst">${req.hostname}</span>`</span> });
+});
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://httpbin.org/get?answer=42'</span>, {
+  <span class="hljs-comment">// `proxy` means the request actually goes to the server listening</span>
+  <span class="hljs-comment">// on localhost:3000, but the request says it is meant for</span>
+  <span class="hljs-comment">// 'http://httpbin.org/get?answer=42'</span>
+  proxy: {
+    <span class="hljs-attr">host</span>: <span class="hljs-string">'localhost'</span>,
+    <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
+  }
+});
+<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
+<p>The http-proxy package doesn&#39;t require you to use Express. You can also use <a href="/node/http-server">Node&#39;s built-in <code>HTTPServer</code> class</a>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
+<span class="hljs-keyword">const</span> httpProxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http-proxy'</span>);
+
+<span class="hljs-keyword">const</span> proxy = httpProxy.createProxyServer({});
+http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Request'</span>, req.method, req.url);
+  proxy.web(req, res, { <span class="hljs-attr">target</span>: <span class="hljs-string">`<span class="hljs-subst">${req.protocol}</span>://<span class="hljs-subst">${req.hostname}</span>`</span> });
+}).listen(<span class="hljs-number">3000</span>);</code></pre>
+<h2 id="modifying-requests">Modifying Requests</h2>
+<p>With a proxy server, there&#39;s two HTTP requests: the inbound request that the proxy server received, and the outbound
+request that the proxy server sends. In the previous examples, the inbound request is the same as the outbound request.
+However, many proxy servers modify outbound requests. For example, you may want your proxy server to set an HTTP header.</p>
+<p>In order to modify the outbound request, you <a href="https://www.npmjs.com/package/http-proxy#setup-a-stand-alone-proxy-server-with-proxy-request-header-re-writing">need to listen to http-proxy&#39;s &#39;proxyReq&#39; event</a>, which gives you access to the outbound request that http-proxy will send. For example, here&#39;s how you can set the &#39;Authorization&#39; header on all outbound requests:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> proxy = httpProxy.createProxyServer({});
+proxy.on(<span class="hljs-string">'proxyReq'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">proxyReq</span>) </span>{
+  proxyReq.setHeader(<span class="hljs-string">'Authorization'</span>, <span class="hljs-string">'my-secret-key'</span>);
+});
+
+<span class="hljs-keyword">const</span> app = express();
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  proxy.web(req, res, { <span class="hljs-attr">target</span>: <span class="hljs-string">`<span class="hljs-subst">${req.protocol}</span>://<span class="hljs-subst">${req.hostname}</span>`</span> });
+});
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Node Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/node/version">How to Check Your Node.js Version</a></li>
+  
+
+    <li><a href="/tutorials/node/http-server">HTTP Servers in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/websocket-server">Websocket Server in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer-to-string">Using the Buffer `toString()` Function in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer-length">Get the Length of a Buffer in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/buffer-compare">Compare Two Buffers in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/node/import-vs-require">Import vs Require in Node.js</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

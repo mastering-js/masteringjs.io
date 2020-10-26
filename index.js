@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Create a Simple HTTP Proxy in Node.js',
+      raw: './tutorials/node/http-proxy.md',
+      url: '/tutorials/node/http-proxy',
+      description: 'Here\'s how you can create a simple HTTP proxy in Node.js.',
+      tags: ['node'],
+      date: moment('2020-10-30')
+    },
+    {
       title: 'Axios vs Fetch: Which Should You Use?',
       raw: './tutorials/axios/vs-fetch.md',
       url: '/tutorials/axios/vs-fetch',
