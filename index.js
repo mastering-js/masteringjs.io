@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Using Axios\' Proxy Option',
+      raw: './tutorials/axios/proxy.md',
+      url: '/tutorials/axios/proxy',
+      description: 'Axios has a `proxy` option that lets you send requests through a proxy. Here\'s how it works.',
+      tags: ['axios'],
+      date: moment('2020-10-26')
+    },
+    {
       title: 'JavaScript Append to Array',
       raw: './tutorials/fundamentals/array-append.md',
       url: '/tutorials/fundamentals/array-append',
@@ -60,14 +68,6 @@ async function run() {
       description: 'Here\'s how you can get the current index (counter) the `forEach()` loop is on.',
       tags: ['fundamentals'],
       date: moment('2020-10-09')
-    },
-    {
-      title: 'Using Continue in JavaScript forEach()',
-      raw: './tutorials/fundamentals/foreach-continue.md',
-      url: '/tutorials/fundamentals/foreach-continue',
-      description: 'The `continue` keyword doesn\'t work with `forEach()`, but there are ways to skip to the next iteration of a `forEach()`. Here\'s how.',
-      tags: ['fundamentals'],
-      date: moment('2020-10-07')
     },
     {
       title: 'Using Continue in JavaScript forEach()',

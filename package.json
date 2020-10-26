@@ -22,6 +22,7 @@
     "form-data": "2.5.1",
     "formidable": "1.2.1",
     "highlight.js": "9.12.0",
+    "http-proxy": "1.18.x",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
     "lodash": "4.x",
