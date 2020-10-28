@@ -4210,6 +4210,14 @@ describe('Fundamentals', function() {
       // acquit:ignore:start
       assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e']);
       // acquit:ignore:end
+
+      arr = ['c'];
+      // Append to the middle:
+      arr = ['a', 'b', ...arr, 'd', 'e'];
+      arr; // ['a', 'b', 'c', 'd', 'e']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e']);
+      // acquit:ignore:end
     });
   });
 });
