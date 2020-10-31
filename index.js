@@ -38,6 +38,30 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Create a Simple HTTP Proxy in Node.js',
+      raw: './tutorials/node/http-proxy.md',
+      url: '/tutorials/node/http-proxy',
+      description: 'Here\'s how you can create a simple HTTP proxy in Node.js.',
+      tags: ['node'],
+      date: moment('2020-10-30')
+    },
+    {
+      title: 'Axios vs Fetch: Which Should You Use?',
+      raw: './tutorials/axios/vs-fetch.md',
+      url: '/tutorials/axios/vs-fetch',
+      description: 'Should you use Axios or browsers\' native `fetch()`? Here\'s why you should use Axios.',
+      tags: ['axios'],
+      date: moment('2020-10-28')
+    },
+    {
+      title: 'Using Axios\' Proxy Option',
+      raw: './tutorials/axios/proxy.md',
+      url: '/tutorials/axios/proxy',
+      description: 'Axios has a `proxy` option that lets you send requests through a proxy. Here\'s how it works.',
+      tags: ['axios'],
+      date: moment('2020-10-26')
+    },
+    {
       title: 'JavaScript Append to Array',
       raw: './tutorials/fundamentals/array-append.md',
       url: '/tutorials/fundamentals/array-append',
@@ -60,14 +84,6 @@ async function run() {
       description: 'Here\'s how you can get the current index (counter) the `forEach()` loop is on.',
       tags: ['fundamentals'],
       date: moment('2020-10-09')
-    },
-    {
-      title: 'Using Continue in JavaScript forEach()',
-      raw: './tutorials/fundamentals/foreach-continue.md',
-      url: '/tutorials/fundamentals/foreach-continue',
-      description: 'The `continue` keyword doesn\'t work with `forEach()`, but there are ways to skip to the next iteration of a `forEach()`. Here\'s how.',
-      tags: ['fundamentals'],
-      date: moment('2020-10-07')
     },
     {
       title: 'Using Continue in JavaScript forEach()',
