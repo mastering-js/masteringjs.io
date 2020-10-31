@@ -11,7 +11,7 @@ array. However, since `forEach()` is a function rather than a loop, using [the `
 ```
 
 [We recommend using `for/of` loops to iterate through an array](/tutorials/fundamentals/array-iterate#summary) unless you have a good reason not to. However, if you find yourself stuck with a `forEach()` that needs to stop after a certain point
-and refactoring to use `for/of` is not an option, here's three workarounds:
+and refactoring to use `for/of` is not an option, here's 4 workarounds:
 
 ## 1. Use `every()` instead of `forEach()`
 
@@ -78,3 +78,21 @@ let shouldSkip = false;
 
 This approach is clunky and inelegant, but it works with minimum mental overhead. You can use this approach if the
 previous approaches seem too clever.
+
+## 4. Modify the array length
+
+The `forEach()` function respects changes to the array's `length` property. So you can force
+`forEach()` to break out of the loop early by overwriting the array's `length` property as
+shown below.
+
+```javascript
+const myNums = [1, 2, 3, 4, 5];
+myNums.forEach((v, index, arr) => {
+  console.log(v);
+  if (val > 3) {
+    arr.length = index + 1; // Behaves like `break`
+  }
+}
+```
+
+While this approach works, it also mutates the array! If you change the array's length, you effectively truncate the array: subsequent operations, like `for/of` or `JSON.stringify()` will only go through the shortened version of the array. Using this approach to break out of a `forEach()` loop is **not** recommended.

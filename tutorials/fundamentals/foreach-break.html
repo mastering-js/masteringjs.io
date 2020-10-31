@@ -78,7 +78,7 @@ array. However, since <code>forEach()</code> is a function rather than a loop, u
   }
 });</code></pre>
 <p><a href="/tutorials/fundamentals/array-iterate#summary">We recommend using <code>for/of</code> loops to iterate through an array</a> unless you have a good reason not to. However, if you find yourself stuck with a <code>forEach()</code> that needs to stop after a certain point
-and refactoring to use <code>for/of</code> is not an option, here&#39;s three workarounds:</p>
+and refactoring to use <code>for/of</code> is not an option, here&#39;s 4 workarounds:</p>
 <h2 id="1-use-every-instead-of-foreach">1. Use <code>every()</code> instead of <code>forEach()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every"><code>every()</code> function</a> behaves exactly like <code>forEach()</code>, except it stops iterating through the array whenever the callback function returns
 a <a href="/tutorials/fundamentals/falsy">falsy value</a>.</p>
@@ -126,6 +126,18 @@ set <code>shouldSkip</code> to <code>true</code>, the <code>forEach()</code> cal
 });</code></pre>
 <p>This approach is clunky and inelegant, but it works with minimum mental overhead. You can use this approach if the
 previous approaches seem too clever.</p>
+<h2 id="4-modify-the-array-length">4. Modify the array length</h2>
+<p>The <code>forEach()</code> function respects changes to the array&#39;s <code>length</code> property. So you can force
+<code>forEach()</code> to break out of the loop early by overwriting the array&#39;s <code>length</code> property as
+shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> myNums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+myNums.forEach(<span class="hljs-function">(<span class="hljs-params">v, index, arr</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(v);
+  <span class="hljs-keyword">if</span> (val &gt; <span class="hljs-number">3</span>) {
+    arr.length = index + <span class="hljs-number">1</span>; <span class="hljs-comment">// Behaves like `break`</span>
+  }
+}</code></pre>
+<p>While this approach works, it also mutates the array! If you change the array&#39;s length, you effectively truncate the array: subsequent operations, like <code>for/of</code> or <code>JSON.stringify()</code> will only go through the shortened version of the array. Using this approach to break out of a <code>forEach()</code> loop is <strong>not</strong> recommended.</p>
 
   
   <hr>
