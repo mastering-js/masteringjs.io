@@ -69,11 +69,12 @@
 	  }
 	})();
 	</script>
-  <p>In general, there are 3 ways to create a new promise in JavaScript:</p>
+  <p>In general, there are 4 ways to create a new promise in JavaScript:</p>
 <ul>
 <li>Using <a href="https://masteringjs.io/tutorials/fundamentals/promise-new">the <code>Promise</code> constructor</a></li>
 <li>Using the static helpers <a href="/tutorials/fundamentals/promise-resolve"><code>Promise.resolve()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject"><code>Promise.reject()</code></a></li>
 <li>Chaining with the <a href="/tutorials/fundamentals/then"><code>then()</code> function</a> or <a href="/tutorials/fundamentals/catch"><code>catch()</code> function</a></li>
+<li>Call an <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async function</a></li>
 </ul>
 <h2 id="using-the-promise-constructor">Using the Promise Constructor</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise constructor</a> takes a single parameter, an <code>executor</code> function.
@@ -122,6 +123,15 @@ p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</
 
 p2 <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
 p2 === p; <span class="hljs-comment">// false</span></code></pre>
+<h2 id="async-functions">Async Functions</h2>
+<p>When you call an async function, JavaScript returns a new promise. No matter what you <code>return</code>
+from an async function, JavaScript always returns a promise, so make sure you <a href="/tutorials/fundamentals/async-await"><code>await</code></a> on
+async function calls!</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
+}
+
+test() <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span></code></pre>
 <h2 id="without-executing">Without Executing</h2>
 <p><a href="/tutorials/fundamentals/promise">JavaScript promises</a> are <a href="https://staltz.com/cold-and-hot-callbacks.html">&quot;hot&quot;</a> in the sense that JavaScript executes the executor function immediately.</p>
 <p>If you find yourself wanting a &quot;cold&quot; promise in the sense that your

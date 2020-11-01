@@ -1,8 +1,9 @@
-In general, there are 3 ways to create a new promise in JavaScript:
+In general, there are 4 ways to create a new promise in JavaScript:
 
 - Using [the `Promise` constructor](https://masteringjs.io/tutorials/fundamentals/promise-new)
 - Using the static helpers [`Promise.resolve()`](/tutorials/fundamentals/promise-resolve) and [`Promise.reject()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject)
 - Chaining with the [`then()` function](/tutorials/fundamentals/then) or [`catch()` function](/tutorials/fundamentals/catch)
+- Call an [async function](https://thecodebarbarian.com/async-functions-in-javascript.html)
 
 Using the Promise Constructor
 -------------------------
@@ -65,6 +66,21 @@ const p2 = p.then(str => `${str} World`);
 
 p2 instanceof Promise; // true
 p2 === p; // false
+```
+
+Async Functions
+---------------
+
+When you call an async function, JavaScript returns a new promise. No matter what you `return`
+from an async function, JavaScript always returns a promise, so make sure you [`await`](/tutorials/fundamentals/async-await) on
+async function calls!
+
+```javascript
+async function test() {
+  return 42;
+}
+
+test() instanceof Promise; // true
 ```
 
 Without Executing
