@@ -645,6 +645,62 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('isEqual', function() {
+    it('basic example', function() {
+      const obj1 = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+      const obj2 = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+
+      obj1 === obj1; // true
+      // `===` only checks if two objects are the same reference, not if the
+      // the two objects have the exact same keys and values.
+      obj1 === obj2; // false
+
+      // Lodash's `isEqual()` checks if the two objects have the same keys
+      // and values:
+      _.isEqual(obj1, obj2); // true
+      // acquit:ignore:start
+      assert.ok(_.isEqual(obj1, obj2));
+      // acquit:ignore:end
+    });
+
+    it('built-in classes', function() {
+      const obj1 = {
+        date: new Date('2020/06/01'),
+        num: new Number(1)
+      };
+      const obj2 = {
+        date: new Date('2020/06/01'),
+        num: 1
+      };
+
+      _.isEqual(obj1, obj2); // true
+      // acquit:ignore:start
+      assert.ok(_.isEqual(obj1, obj2));
+      // acquit:ignore:end
+    });
+
+    it('using classes', function() {
+      const obj1 = { name: 'Will Riker', rank: 'Commander' };
+
+      class Character {}
+      const obj2 = new Character();
+      Object.assign(obj2, { name: 'Will Riker', rank: 'Commander' });
+
+      _.isEqual(obj1, obj2); // false
+      // acquit:ignore:start
+      assert.ok(!_.isEqual(obj1, obj2));
+      // acquit:ignore:end
+    });
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

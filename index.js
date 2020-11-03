@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Objects with Lodash',
+      raw: './tutorials/lodash/compare-objects.md',
+      url: '/tutorials/lodash/compare-objects',
+      description: 'Lodash\'s `isEqual()` function provides a deep equality check for comparing objects. Here\'s what you need to know.',
+      tags: ['lodash'],
+      date: moment('2020-11-06')
+    },
+    {
       title: 'NaN in JavaScript',
       raw: './tutorials/fundamentals/nan.md',
       url: '/tutorials/fundamentals/nan',
