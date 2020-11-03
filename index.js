@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Equality in JavaScript',
+      raw: './tutorials/fundamentals/equality.md',
+      url: '/tutorials/fundamentals/equality',
+      description: 'There are 4 different algorithms JavaScript uses to determine whether two values are equal. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-11-03')
+    },
+    {
       title: 'Create a Simple HTTP Proxy in Node.js',
       raw: './tutorials/node/http-proxy.md',
       url: '/tutorials/node/http-proxy',
