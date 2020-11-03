@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'NaN in JavaScript',
+      raw: './tutorials/fundamentals/nan.md',
+      url: '/tutorials/fundamentals/nan',
+      description: '`NaN`, "Not a Number", is a value that JavaScript returns when you attempt to use a non-numeric value as a number. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-11-04')
+    },
+    {
       title: 'Equality in JavaScript',
       raw: './tutorials/fundamentals/equality.md',
       url: '/tutorials/fundamentals/equality',
