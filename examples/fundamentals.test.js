@@ -4220,6 +4220,13 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('NaN', function() {
+    it('from parseInt', function() {
+      const val = parseInt('bad', 10);
+      val; // NaN
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
