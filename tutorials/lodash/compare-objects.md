@@ -17,7 +17,7 @@ Built-in Classes
 In addition, `isEqual()` is smart enough to [compare arrays](/tutorials/fundamentals/compare-arrays), dates, `Number` instances, and other built-in classes:
 
 ```javascript
-[require: lodash isEqual built-in classes$]
+[require:lodash isEqual built-in classes$]
 ```
 
 This makes `isEqual()` ideal for checking if two [POJOs](/tutorials/fundamentals/pojo) have the same data.
@@ -30,7 +30,7 @@ even though the two objects in the below example have the same keys and values, 
 is an instance of the `Character` class and `obj1` is not.
 
 ```javascript
-[require: lodash isEqual using classes$]
+[require:lodash isEqual using classes$]
 ```
 
 Depending on your use case, this may be an issue. However, in general, you should only use `isEqual()` for
