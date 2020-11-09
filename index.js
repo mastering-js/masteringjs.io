@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Vuex Getters',
+      raw: './tutorials/vue/vuex-getters.md',
+      url: '/tutorials/vue/vuex-getters',
+      description: 'Getters are how you bind store data to local data in your Vue components. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-11-09')
+    },
+    {
       title: 'Compare Objects with Lodash',
       raw: './tutorials/lodash/compare-objects.md',
       url: '/tutorials/lodash/compare-objects',

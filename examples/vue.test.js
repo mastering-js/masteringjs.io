@@ -2268,6 +2268,114 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('vuex getters', function() {
+    it('basic example', function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: {
+          firstName: 'Bill',
+          lastName: 'Gates'
+        },
+        getters: {
+          fullName: state => `${state.firstName} ${state.lastName}`
+        }
+      });
+
+      store.getters.fullName; // 'Bill Gates'
+      // acquit:ignore:start
+      assert.equal(store.getters.fullName, 'Bill Gates');
+      // acquit:ignore:end
+    });
+
+    it('reactive', function() {
+      // acquit:ignore:start
+      const Vuex = require('vuex');
+      // acquit:ignore:end
+      const store = new Vuex.Store({
+        state: {
+          firstName: 'Bill',
+          lastName: 'Gates'
+        },
+        getters: {
+          fullName: state => `${state.firstName} ${state.lastName}`
+        },
+        mutations: {
+          changeFirstName(state, val) {
+            state.firstName = val;
+          }
+        }
+      });
+      
+      // When you commit a change, the next time you access the getter you get
+      // an updated value!
+      store.commit('changeFirstName', 'William');
+      store.getters.fullName; // 'William Gates'
+      // acquit:ignore:start
+      assert.equal(store.getters.fullName, 'William Gates');
+      // acquit:ignore:end
+    });
+
+    it('component using fullName', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+      
+      const fn = function() {
+        Vue.use(Vuex);
+        // acquit:ignore:end
+        const store = new Vuex.Store({
+          state: {
+            firstName: 'Bill',
+            lastName: 'Gates'
+          },
+          getters: {
+            fullName: state => `${state.firstName} ${state.lastName}`
+          },
+          mutations: {
+            changeFirstName(state, val) {
+              state.firstName = val;
+            }
+          }
+        });
+
+        const app = new Vue({
+          store,
+          computed: Vuex.mapGetters(['fullName']),
+          methods: {
+            toggleName: function() {
+              const newName = this.fullName === 'William Gates' ? 'Bill' : 'William';
+              this.$store.commit('changeFirstName', newName);
+            }
+          },
+          template: `
+            <div>
+              <h1>{{fullName}}</h1>
+              <button v-on:click="toggleName">
+                Toggle
+              </button>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+      
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+      
+      let fullName = await page.evaluate(() => document.querySelector('h1').innerHTML.trim());
+      assert.equal(fullName, 'Bill Gates');
+
+      page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+
+      fullName = await page.evaluate(() => document.querySelector('h1').innerHTML.trim());
+      assert.equal(fullName, 'William Gates');
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
@@ -2275,6 +2383,7 @@ function createVueHTMLScaffolding(code) {
     <html>
       <body>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vuex/dist/vuex.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 
         <div id="content"></div>

@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vuex Getters - Mastering JS</title>
+
+    <meta property="og:title" content="Vuex Getters" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Getters are how you bind store data to local data in your Vue components. Here's what you need to know." />
+    <meta name="description" content="Getters are how you bind store data to local data in your Vue components. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Vuex Getters</h1>
+  <div class="date">
+    Nov 9, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://vuex.vuejs.org/guide/getters.html#property-style-access">Vuex getters</a> behave a lot like <a href="https://mongoosejs.com/docs/tutorials/getters-setters.html">Mongoose getters</a>: they&#39;re special properties that are computed from
+other properties when you access them.</p>
+<p>For example, suppose your store contains a user&#39;s <code>firstName</code> and <code>lastName</code>. You can write a getter that returns
+the user&#39;s <code>fullName</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Bill'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Gates'</span>
+  },
+  <span class="hljs-attr">getters</span>: {
+    <span class="hljs-attr">fullName</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${state.firstName}</span> <span class="hljs-subst">${state.lastName}</span>`</span>
+  }
+});
+
+store.getters.fullName; <span class="hljs-comment">// 'Bill Gates'</span></code></pre>
+<h2 id="change-tracking">Change Tracking</h2>
+<p>Vuex getters react to changes in the store&#39;s state just like <a href="/tutorials/vue/computed">computed properties</a>. So
+if you update one of the state properties the getter relies on, the getter value updates too:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Bill'</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Gates'</span>
+  },
+  <span class="hljs-attr">getters</span>: {
+    <span class="hljs-attr">fullName</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${state.firstName}</span> <span class="hljs-subst">${state.lastName}</span>`</span>
+  },
+  <span class="hljs-attr">mutations</span>: {
+    changeFirstName(state, val) {
+      state.firstName = val;
+    }
+  }
+});
+
+<span class="hljs-comment">// When you commit a change, the next time you access the getter you get</span>
+<span class="hljs-comment">// an updated value!</span>
+store.commit(<span class="hljs-string">'changeFirstName'</span>, <span class="hljs-string">'William'</span>);
+store.getters.fullName; <span class="hljs-comment">// 'William Gates'</span></code></pre>
+<h2 id="mapgetters"><code>mapGetters()</code></h2>
+<p>What makes getters so interesting is that you can use them in your component&#39;s
+<a href="/tutorials/vue/computed">computed properties</a>, so your UI updates whenever the state changes.
+For example, below is a component that displays the computed <code>fullName</code> and updates automatically whenever
+the <code>fullName</code> changes:</p>
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+    <span class="hljs-attr">state</span>: {
+      <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Bill'</span>,
+      <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Gates'</span>
+    },
+    <span class="hljs-attr">getters</span>: {
+      <span class="hljs-attr">fullName</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${state.firstName}</span> <span class="hljs-subst">${state.lastName}</span>`</span>
+    },
+    <span class="hljs-attr">mutations</span>: {
+      changeFirstName(state, val) {
+        state.firstName = val;
+      }
+    }
+  });
+
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    store,
+    <span class="hljs-attr">computed</span>: Vuex.mapGetters([<span class="hljs-string">'fullName'</span>]),
+    <span class="hljs-attr">methods</span>: {
+      <span class="hljs-attr">toggleName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> newName = <span class="hljs-keyword">this</span>.fullName === <span class="hljs-string">'William Gates'</span> ? <span class="hljs-string">'Bill'</span> : <span class="hljs-string">'William'</span>;
+        <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'changeFirstName'</span>, newName);
+      }
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;h1&gt;{{fullName}}&lt;/h1&gt;
+        &lt;button v-on:click="toggleName"&gt;
+          Toggle
+        &lt;/button&gt;
+      &lt;/div&gt;
+    `</span>
+  });</code></pre>
+<p>This is easy to write by hand for one computed property, but can get unwieldy if you need many computed properties.
+That&#39;s why Vuex has a neat <code>mapGetters()</code> helper that takes a list of property names and returns a list of computed
+property functions.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  store,
+  <span class="hljs-comment">// Equivalent to the previous example</span>
+  computed: Vuex.mapGetters([<span class="hljs-string">'fullName'</span>]),
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-attr">toggleName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">const</span> newName = <span class="hljs-keyword">this</span>.fullName === <span class="hljs-string">'William Gates'</span> ? <span class="hljs-string">'Bill'</span> : <span class="hljs-string">'William'</span>;
+      <span class="hljs-keyword">this</span>.$store.commit(<span class="hljs-string">'changeFirstName'</span>, newName);
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;h1&gt;{{fullName}}&lt;/h1&gt;
+      &lt;button v-on:click="toggleName"&gt;
+        Toggle
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/error-handling">Vue Error Handling</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-test-utils">Getting Started with Vue Test Utils</a></li>
+  
+
+    <li><a href="/tutorials/vue/cdn">Loading Vue via CDN</a></li>
+  
+
+    <li><a href="/tutorials/vue/click">Handling Click Events with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/watch-vs-computed">Watch vs Computed in Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/axios-login">Vue Login with Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
