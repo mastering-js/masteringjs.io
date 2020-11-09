@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>What are Vuex Actions? - Mastering JS</title>
+
+    <meta property="og:title" content="What are Vuex Actions?" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Vuex actions are a neat way to handle async logic with Vuex. Here's what you need to know." />
+    <meta name="description" content="Vuex actions are a neat way to handle async logic with Vuex. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>What are Vuex Actions?</h1>
+  <div class="date">
+    Nov 13, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>In Vuex, <a href="https://vuex.vuejs.org/guide/actions.html">actions</a> are functions that call <a href="https://vuex.vuejs.org/guide/mutations.html">mutations</a>. Actions exist because <a href="https://vuex.vuejs.org/guide/mutations.html#mutations-must-be-synchronous">mutations <em>must</em> be synchronous</a>, whereas actions can be asynchronous.</p>
+<p>You can define actions by passing a <a href="/tutorials/fundamentals/pojo">POJO</a> as the <code>actions</code> property to the
+<a href="https://vuex.vuejs.org/api/#vuex-store">Vuex store</a> constructor as shown below. To &quot;call&quot; an action, you
+should use the <a href="https://vuex.vuejs.org/api/#dispatch"><code>Store#dispatch()</code> function</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">mutations</span>: {
+    <span class="hljs-attr">increment</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ++state.count
+  },
+  <span class="hljs-attr">actions</span>: {
+    <span class="hljs-attr">incrementDelay</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+      <span class="hljs-comment">// Wait 50ms</span>
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>));
+
+      context.commit(<span class="hljs-string">'increment'</span>);
+    }
+  }
+});
+
+<span class="hljs-comment">// To "call" an action, you should use call `dispatch()` function with</span>
+<span class="hljs-comment">// the action's name.</span>
+<span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'incrementDelay'</span>);
+store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+<h2 id="whats-the-point-of-actions">What&#39;s the Point of Actions?</h2>
+<p>The obvious question to ask about actions is &quot;why actions?&quot; Vuex stores have a <a href="https://vuex.vuejs.org/api/#dispatch"><code>commit()</code> function</a> that lets any function commit mutations, so you could just as easily do this:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">mutations</span>: {
+    <span class="hljs-attr">increment</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ++state.count
+  }
+});
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">incrementDelay</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Wait 50ms</span>
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>));
+
+  store.commit(<span class="hljs-string">'increment'</span>);
+}
+
+<span class="hljs-comment">// Instead of dispatching an action, you could just call an</span>
+<span class="hljs-comment">// async function.</span>
+<span class="hljs-keyword">await</span> incrementDelay();
+store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+<p>In isolation, the async function approach above is better because it doesn&#39;t depend on any particular framework.
+You can just call a function and that&#39;s it. Plus you can just use <code>incrementDelay()</code> as a method on your Vue instance
+and get <a href="/tutorials/vue/error-handling">error handling</a> for free.</p>
+<p>But there&#39;s one very cool benefit of using actions: the <a href="https://vuex.vuejs.org/api/#subscribeaction"><code>subscribeAction</code> API</a>. Vue lets you register a <a href="/tutorials/fundamentals/callbacks">callback</a> that Vue will call
+every time an action is dispatched.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">mutations</span>: {
+    <span class="hljs-attr">increment</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ++state.count
+  },
+  <span class="hljs-attr">actions</span>: {
+    <span class="hljs-attr">incrementDelay</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+      <span class="hljs-comment">// Wait 50ms</span>
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>));
+
+      context.commit(<span class="hljs-string">'increment'</span>);
+    }
+  }
+});
+
+store.subscribeAction(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">action, state</span>) </span>{
+  <span class="hljs-comment">// Prints "{ type: 'incrementDelay', payload: undefined }"</span>
+  <span class="hljs-built_in">console</span>.log(action);
+});
+
+<span class="hljs-comment">// To "call" an action, you should use call `dispatch()` function with</span>
+<span class="hljs-comment">// the action's name.</span>
+<span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'incrementDelay'</span>);
+store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+<p>The <code>subscribeAction()</code> API is the basis for many <a href="https://vuex.vuejs.org/guide/plugins.html">Vuex plugins</a>, so
+using actions can let you better leverage the Vue community&#39;s plugins.</p>
+<h2 id="mapactions"><code>mapActions()</code></h2>
+<p>Actions are great, but how do you use them with Vue components? Vuex has a neat <a href="https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components"><code>mapActions()</code> function</a> that converts actions to Vue instance methods
+as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">mutations</span>: {
+    <span class="hljs-attr">increment</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ++state.count
+  },
+  <span class="hljs-attr">getters</span>: {
+    <span class="hljs-attr">count</span>: <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.count
+  },
+  <span class="hljs-attr">actions</span>: {
+    <span class="hljs-attr">incrementDelay</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+      <span class="hljs-comment">// Wait 50ms</span>
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>));
+
+      context.commit(<span class="hljs-string">'increment'</span>);
+    }
+  }
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  store,
+  <span class="hljs-attr">methods</span>: Vuex.mapActions([<span class="hljs-string">'incrementDelay'</span>]),
+  <span class="hljs-attr">computed</span>: Vuex.mapGetters([<span class="hljs-string">'count'</span>]),
+  <span class="hljs-attr">mounted</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.incrementDelay(); <span class="hljs-comment">// Dispatches "incrementDelay"</span>
+  },
+  <span class="hljs-comment">// Displays 0, then 1 after 50ms</span>
+  template: <span class="hljs-string">`&lt;h1&gt;{{count}}&lt;/h1&gt;`</span>
+});</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/vuex-store">What is a Vuex Store?</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-getters">Vuex Getters</a></li>
+  
+
+    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/error-handling">Vue Error Handling</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-test-utils">Getting Started with Vue Test Utils</a></li>
+  
+
+    <li><a href="/tutorials/vue/cdn">Loading Vue via CDN</a></li>
+  
+
+    <li><a href="/tutorials/vue/click">Handling Click Events with Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

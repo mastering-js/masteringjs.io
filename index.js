@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What are Vuex Actions?',
+      raw: './tutorials/vue/vuex-actions.md',
+      url: '/tutorials/vue/vuex-actions',
+      description: 'Vuex actions are a neat way to handle async logic with Vuex. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-11-13')
+    },
+    {
       title: 'What is a Vuex Store?',
       raw: './tutorials/vue/vuex-store.md',
       url: '/tutorials/vue/vuex-store',
