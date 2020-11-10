@@ -2343,7 +2343,11 @@ describe('Vue', function() {
 
         const app = new Vue({
           store,
-          computed: Vuex.mapGetters(['fullName']),
+          computed: {
+            fullName: function() {
+              return this.$store.getters.fullName;
+            }
+          },
           methods: {
             toggleName: function() {
               const newName = this.fullName === 'William Gates' ? 'Bill' : 'William';

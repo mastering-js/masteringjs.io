@@ -130,7 +130,11 @@ the <code>fullName</code> changes:</p>
 
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     store,
-    <span class="hljs-attr">computed</span>: Vuex.mapGetters([<span class="hljs-string">'fullName'</span>]),
+    <span class="hljs-attr">computed</span>: {
+      <span class="hljs-attr">fullName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$store.getters.fullName;
+      }
+    },
     <span class="hljs-attr">methods</span>: {
       <span class="hljs-attr">toggleName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">const</span> newName = <span class="hljs-keyword">this</span>.fullName === <span class="hljs-string">'William Gates'</span> ? <span class="hljs-string">'Bill'</span> : <span class="hljs-string">'William'</span>;
