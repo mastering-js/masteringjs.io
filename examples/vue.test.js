@@ -2380,6 +2380,133 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('vuex store', function() {
+    it('basic example', function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: { count: 0 }
+      });
+
+      store.state; // { count: 0 }
+      // acquit:ignore:start
+      assert.deepEqual(store.state, { count: 0 });
+      // acquit:ignore:end
+    });
+
+    it('mutations', function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: { count: 0 },
+        mutations: {
+          increment: store => store.count += 1,
+          decrement: store => store.count -= 1
+        }
+      });
+
+      store.state; // { count: 0 }
+      // acquit:ignore:start
+      assert.deepEqual(store.state, { count: 0 });
+      // acquit:ignore:end
+
+      store.commit('increment');
+      store.state; // { count: 1 }
+      // acquit:ignore:start
+      assert.deepEqual(store.state, { count: 1 });
+      // acquit:ignore:end
+
+      store.commit('decrement');
+      store.state; // { count: 0 }
+      // acquit:ignore:start
+      assert.deepEqual(store.state, { count: 0 });
+      // acquit:ignore:end
+    });
+
+    it('getters', function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: { count: 0 },
+        getters: {
+          count: store => store.count
+        },
+        mutations: {
+          increment: store => store.count += 1,
+          decrement: store => store.count -= 1
+        }
+      });
+
+      store.getters.count; // 0
+      // acquit:ignore:start
+      assert.equal(store.getters.count, 0);
+      // acquit:ignore:end
+
+      store.commit('increment');
+      store.getters.count; // 1
+      // acquit:ignore:start
+      assert.equal(store.getters.count, 1);
+      // acquit:ignore:end
+    });
+
+    it('in browser', async function() {
+      // acquit:ignore:start
+      this.timeout(10000);
+      const browser = await puppeteer.launch({ headless: false });
+      const page = await browser.newPage();
+      
+      const fn = function() {
+        // acquit:ignore:end
+        Vue.use(Vuex);
+
+        const store = new Vuex.Store({
+          state: { count: 0 },
+          getters: {
+            count: state => state.count
+          },
+          mutations: {
+            increment: store => store.count += 1,
+            decrement: store => store.count -= 1
+          }
+        });
+
+        const app = new Vue({
+          store,
+          computed: {
+            count: function() {
+              return this.$store.getters.count;
+            }
+          },
+          template: `
+            <div>
+              <h1>{{count}}</h1>
+              <button v-on:click="$store.commit('increment')" id="increment">
+                Increment
+              </button>
+              <button v-on:click="$store.commit('decrement')" id="decrement">
+                Decrement
+              </button>
+            </div>
+          `
+        });
+        // acquit:ignore:start
+        app.$mount('#content');
+      };
+      
+      const html = createVueHTMLScaffolding(fn.toString());
+      await page.setContent(html);
+      
+      let count = await page.evaluate(() => document.querySelector('h1').innerHTML.trim());
+      assert.equal(count, '0');
+
+      page.evaluate(() => document.querySelector('#increment').dispatchEvent(new Event('click')));
+
+      count = await page.evaluate(() => document.querySelector('h1').innerHTML.trim());
+      assert.equal(count, '1');
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {

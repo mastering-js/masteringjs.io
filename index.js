@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What is a Vuex Store?',
+      raw: './tutorials/vue/vuex-store.md',
+      url: '/tutorials/vue/vuex-store',
+      description: 'Vuex stores are containers for your app\'s state. Here\'s what you need to know.',
+      tags: ['vue'],
+      date: moment('2020-11-11')
+    },
+    {
       title: 'Vuex Getters',
       raw: './tutorials/vue/vuex-getters.md',
       url: '/tutorials/vue/vuex-getters',
