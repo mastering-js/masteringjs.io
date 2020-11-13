@@ -2507,6 +2507,99 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('vuex actions', function() {
+    it('basic example', async function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: {
+          count: 0
+        },
+        mutations: {
+          increment: state => ++state.count
+        },
+        actions: {
+          incrementDelay: async function(context) {
+            // Wait 50ms
+            await new Promise(resolve => setTimeout(resolve, 50));
+  
+            context.commit('increment');
+          }
+        }
+      });
+  
+      // To "call" an action, you should use call `dispatch()` function with
+      // the action's name.
+      await store.dispatch('incrementDelay');
+      store.state.count; // 1
+      // acquit:ignore:start
+      assert.equal(store.state.count, 1);
+      // acquit:ignore:end
+    });
+
+    it('vs async function', async function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: {
+          count: 0
+        },
+        mutations: {
+          increment: state => ++state.count
+        }
+      });
+
+      async function incrementDelay() {
+        // Wait 50ms
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        store.commit('increment');
+      }
+  
+      // Instead of dispatching an action, you could just call an
+      // async function.
+      await incrementDelay();
+      store.state.count; // 1
+      // acquit:ignore:start
+      assert.equal(store.state.count, 1);
+      // acquit:ignore:end
+    });
+
+    it('subscribeAction', async function() {
+      const Vuex = require('vuex');
+
+      const store = new Vuex.Store({
+        state: {
+          count: 0
+        },
+        mutations: {
+          increment: state => ++state.count
+        },
+        actions: {
+          incrementDelay: async function(context) {
+            // Wait 50ms
+            await new Promise(resolve => setTimeout(resolve, 50));
+  
+            context.commit('increment');
+          }
+        }
+      });
+
+      store.subscribeAction(function callback(action, state) {
+        // Prints "{ type: 'incrementDelay', payload: undefined }"
+        console.log(action);
+      });
+  
+      // To "call" an action, you should use call `dispatch()` function with
+      // the action's name.
+      await store.dispatch('incrementDelay');
+      store.state.count; // 1
+      // acquit:ignore:start
+      assert.equal(store.state.count, 1);
+      // acquit:ignore:end
+    });
+  });
 });
 
 function createVueHTMLScaffolding(code) {
