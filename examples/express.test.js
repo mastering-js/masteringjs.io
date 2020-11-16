@@ -4,6 +4,7 @@ const FormData = require('form-data');
 const assert = require('assert');
 const axios = require('axios');
 const fs = require('fs');
+const sinon = require('sinon');
 
 process.on('unhandledRejection', () => {});
 
@@ -1139,6 +1140,135 @@ describe('Express', function() {
       await server.close();
 
       assert.equal(res.data, '<h1 data-server-rendered="true">Hello, World</h1>');
+      // acquit:ignore:end
+    });
+  });
+
+  describe('use', function() {
+    it('basic example', async function() {
+      // acquit:ignore:start
+      let called = [];
+      sinon.stub(console, 'log').callsFake(msg => called.push(msg));
+      // acquit:ignore:end
+      const app = require('express')();
+
+      app.use((req, res, next) => {
+        // For example, a GET request to `/test` will print "GET /test"
+        console.log(`${req.method} ${req.url}`);
+
+        next();
+      });
+
+      app.get('/test', (req, res, next) => {
+        res.send('ok');
+      });
+
+      // Test the above app using Axios
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      // Prints "get /test"
+      const res = await axios.get('http://localhost:3000/test');
+      // aquit:ignore:start
+      assert.equal(res.data, 'ok');
+      assert.deepEqual(called, ['GET /test']);
+      console.log.restore();
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('cors', async function() {
+      const app = require('express')();
+
+      // This response will **NOT** have CORS headers, because order matters.
+      // Express will run the CORS middleware _after_ this route handler.
+      app.get('/nocors', (req, res) => {
+        res.send('ok');
+      });
+
+      app.use(require('cors')());
+
+      // This response will have CORS headers, because this route handler
+      // is after the CORS middleware in the middleware list.
+      app.get('/cors', (req, res) => {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/nocors');
+      assert.ok(!res.headers['access-control-allow-origin']);
+      
+      res = await axios.get('http://localhost:3000/cors');
+      assert.ok(res.headers['access-control-allow-origin']);
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('body parser', async function() {
+      const express = require('express');
+      const app = express();
+
+      // `body` will always be `undefined` in the HTTP response, because
+      // Express will run the JSON body parser _after_ this route handler.
+      app.post('/nobody', (req, res) => {
+        res.json({ body: req.body });
+      });
+
+      app.use(express.json());
+
+      // `body` will contain the inbound request body.
+      app.post('/body', (req, res) => {
+        res.json({ body: req.body });
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.post('http://localhost:3000/nobody', { test: 42 });
+      assert.strictEqual(res.data.body, undefined);
+      
+      res = await axios.post('http://localhost:3000/body', { test: 42 });
+      assert.deepEqual(res.data.body, { test: 42 });
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('path param', async function() {
+      const app = require('express')();
+
+      app.use('/cors', require('cors')());
+
+      // This response will **NOT** have CORS headers, because the path '/nocors'
+      // doesn't start with '/cors'
+      app.get('/nocors', (req, res) => {
+        res.send('ok');
+      });
+
+      // This response will have CORS headers
+      app.get('/cors', (req, res) => {
+        res.send('ok');
+      });
+
+      // This response will also have CORS headers, because '/cors/test' starts
+      // with '/cors'
+      app.get('/cors/test', (req, res) => {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/nocors');
+      assert.ok(!res.headers['access-control-allow-origin']);
+      
+      res = await axios.get('http://localhost:3000/cors');
+      assert.ok(res.headers['access-control-allow-origin']);
+
+      await server.close();
       // acquit:ignore:end
     });
   });

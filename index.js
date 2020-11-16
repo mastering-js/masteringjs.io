@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `app.use()` Function in Express',
+      raw: './tutorials/express/app-use.md',
+      url: '/tutorials/express/app-use',
+      description: 'Express apps have a `use()` function that adds a new middleware to the middleware stack. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-11-16')
+    },
+    {
       title: 'What are Vuex Actions?',
       raw: './tutorials/vue/vuex-actions.md',
       url: '/tutorials/vue/vuex-actions',
