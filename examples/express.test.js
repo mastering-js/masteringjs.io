@@ -1169,7 +1169,7 @@ describe('Express', function() {
       const axios = require('axios');
       // Prints "get /test"
       const res = await axios.get('http://localhost:3000/test');
-      // aquit:ignore:start
+      // acquit:ignore:start
       assert.equal(res.data, 'ok');
       assert.deepEqual(called, ['GET /test']);
       console.log.restore();

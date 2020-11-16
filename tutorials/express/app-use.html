@@ -90,13 +90,7 @@ app.get(<span class="hljs-string">'/test'</span>, (req, res, next) =&gt; {
 
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-comment">// Prints "get /test"</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>);
-<span class="hljs-comment">// aquit:ignore:start</span>
-assert.equal(res.data, <span class="hljs-string">'ok'</span>);
-assert.deepEqual(called, [<span class="hljs-string">'GET /test'</span>]);
-<span class="hljs-built_in">console</span>.log.restore();
-<span class="hljs-keyword">await</span> server.close();
-<span class="hljs-comment">// acquit:ignore:end</span></code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>);</code></pre>
 <h2 id="the-middleware-stack">The Middleware Stack</h2>
 <p>In Express, everything is middleware. Internally, an Express app has a middleware <em>stack</em>, and calling <code>use()</code> adds
 a new <em>layer</em> to the stack. Functions that define route handlers, like <code>get()</code> and <code>post()</code> also add layers to the stack. 
