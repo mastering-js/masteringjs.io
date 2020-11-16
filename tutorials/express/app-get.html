@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Query Parameters in Express - Mastering JS</title>
+    <title>The `app.get()` Function in Express - Mastering JS</title>
 
-    <meta property="og:title" content="Query Parameters in Express" />
+    <meta property="og:title" content="The `app.get()` Function in Express" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Express automatically parses the URL query string and stores the parsed parameters in `req.query`. Here's what you need to know." />
-    <meta name="description" content="Express automatically parses the URL query string and stores the parsed parameters in `req.query`. Here's what you need to know." />
+    <meta property="og:description" content="Express apps have a `get()` function that creates a new route handler for GET requests. Here's what you need to know." />
+    <meta name="description" content="Express apps have a `get()` function that creates a new route handler for GET requests. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,9 +57,9 @@
     <a href="/express">Express</a>
     /
   </div>
-  <h1>Query Parameters in Express</h1>
+  <h1>The `app.get()` Function in Express</h1>
   <div class="date">
-    Oct 25, 2019
+    Nov 18, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -69,71 +69,53 @@
 	  }
 	})();
 	</script>
-  <p>The <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> portion of
-a URL is the part of the URL after the question mark <code>?</code>. For example:</p>
-<pre><code>?answer=<span class="hljs-number">42</span></code></pre>
-<p>Each <code>key=value</code> pair is called a <em>query parameter</em>. If your query string has 
-multiple query parameters, they&#39;re separated by <code>&amp;</code>. For example, the below
-string has 2 query parameters, <code>a</code> and <code>b</code>.</p>
-<pre><code>?a=<span class="hljs-number">1</span>&amp;b=<span class="hljs-number">2</span></code></pre>
-<p>Express automatically parses query parameters for you and stores them
-on the <a href="/tutorials/express/req">request object</a> as <a href="http://expressjs.com/en/4x/api.html#req.query"><code>req.query</code></a>.</p>
+  <p>Express&#39; <a href="https://expressjs.com/en/api.html#app.get"><code>app.get()</code> function</a> lets you define a <em>route handler</em> for GET
+requests to a given URL. For example, the below code registers a route handler that Express will call when it receives
+an HTTP GET request to <code>/test</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
-app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  req.query; <span class="hljs-comment">// { a: '1', b: '2' }</span>
-  res.json(req.query);
+<span class="hljs-comment">// If you receive a GET request with `url = '/test'`, always</span>
+<span class="hljs-comment">// send back an HTTP response with body 'ok'.</span>
+app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<h2 id="regular-expressions">Regular Expressions</h2>
+<p>The first parameter to <code>app.get()</code> is called the <code>path</code>. The <code>path</code> string supports several <a href="https://expressjs.com/en/guide/routing.html#route-paths">special characters</a> that let you use a subset of regular expressions in path strings.</p>
+<p>For example, you may see <code>app.get(&#39;*&#39;)</code> in tutorials: this registers a route handler for <em>all</em> GET requests.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// Send back an HTTP response with body 'ok' whenever you</span>
+<span class="hljs-comment">// receive a GET request, regardless of the URL.</span>
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<p><code>?</code>, <code>+</code>, <code>*</code>, <code>(</code>, <code>)</code>, and <code>:</code> are special characters in Express paths. Although you typically shouldn&#39;t use these
+characters as literals in URLs, you can escape them with a <code>\</code>:</p>
+<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Express app literal plus$]</code></pre>
+<p>We typically don&#39;t recommend using <code>*</code>, <code>+</code>, <code>?</code>, <code>(</code>, or <code>)</code> in Express route paths. They are rarely useful, especially
+since Express supports specifying a JavaScript regular expression as a path:</p>
+<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Express app regexp$]</code></pre>
+<h2 id="route-parameters">Route Parameters</h2>
+<p><a href="/tutorials/express/route-parameters">Route parameters</a> are essentially variables defined from named sections of the URL.
+Express parses the URL, pulls the value in the named section, and stores it in the <a href="https://expressjs.com/en/4x/api.html#req.params"><code>req.params</code> property</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// `:userId` is a route parameter. Express will capture whatever</span>
+<span class="hljs-comment">// string comes after `/user/` in the URL and store it in</span>
+<span class="hljs-comment">// `req.params.userId`</span>
+app.get(<span class="hljs-string">'/user/:userId'</span>, (req, res) =&gt; {
+  req.params; <span class="hljs-comment">// { userId: '42' }</span>
+  res.json(req.params);
 });
 
 <span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
 <span class="hljs-comment">// Demo of making a request to the server</span>
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/?a=1&amp;b=2'</span>)
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42'</span>);
 
-res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span></code></pre>
-<h2 id="objects-and-arrays-in-query-strings">Objects and Arrays in Query Strings</h2>
-<p>If a query parameter appears multiple times in the query string, Express
-will group the values into an array. For example, given the below query string:</p>
-<pre><code>?color=black&amp;color=yellow</code></pre>
-<p>Express will set <code>req.query.color</code> to an array <code>[&#39;black&#39;, &#39;yellow&#39;]</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
-
-app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  req.query; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span>
-  res.json(req.query);
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-<span class="hljs-comment">// Demo of making a request to the server</span>
-<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-<span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow'</span>;
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
-
-res.data; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span></code></pre>
-<p>If you use square brackets in a query string parameter, Express will parse
-that parameter as an object. For example, Express will parse the below
-query string into <code>{ shoe: { color: &#39;white&#39; } }</code></p>
-<pre><code class="language-javascript">?shoe[color]=white</code></pre>
-<p>This default behavior is often a nasty surprise and <a href="https://blog.websecurify.com/2014/08/hacking-nodejs-and-mongodb.html">can cause security vulnerabilities</a>. To prevent Express from parsing
-square brackets as object properties,
-you should set the <a href="https://expressjs.com/en/api.html#app.settings.table"><code>query parser</code> app setting to &#39;simple&#39;</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
-
-<span class="hljs-comment">// Only parse query parameters into strings, not objects</span>
-app.set(<span class="hljs-string">'query parser'</span>, <span class="hljs-string">'simple'</span>);
-
-app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  req.query; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span>
-  res.json(req.query);
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-<span class="hljs-comment">// Demo of making a request to the server</span>
-<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-<span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow&amp;shoe[color]=white'</span>;
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
-
-res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span></code></pre>
+res.data; <span class="hljs-comment">// { userId: '42' }</span></code></pre>
+<p>Route parameters allow you to specify a parameterized GET route handler for a class of URLs. They&#39;re very useful for
+building REST APIs.</p>
 
   <hr>
 <div class="cta">
@@ -174,9 +156,6 @@ res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[colo
     <h2>More Express Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/express/app-get">The `app.get()` Function in Express</a></li>
-  
-
     <li><a href="/tutorials/express/app-use">The `app.use()` Function in Express</a></li>
   
 
@@ -193,6 +172,9 @@ res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[colo
   
 
     <li><a href="/tutorials/express/static">Serving Static Files in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/websockets">Handling Websockets with Express</a></li>
   
     </ul>
   

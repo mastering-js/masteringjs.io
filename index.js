@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `app.get()` Function in Express',
+      raw: './tutorials/express/app-get.md',
+      url: '/tutorials/express/app-get',
+      description: 'Express apps have a `get()` function that creates a new route handler for GET requests. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-11-18')
+    },
+    {
       title: 'The `app.use()` Function in Express',
       raw: './tutorials/express/app-use.md',
       url: '/tutorials/express/app-use',

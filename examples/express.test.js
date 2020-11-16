@@ -1272,4 +1272,80 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('app get', function() {
+    it('basic example', async function() {
+      const app = require('express')();
+
+      // If you receive a GET request with `url = '/test'`, always
+      // send back an HTTP response with body 'ok'.
+      app.get('/test', function routeHandler(req, res) {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/test');
+      assert.equal(res.data, 'ok');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('wildcard', async function() {
+      const app = require('express')();
+
+      // Send back an HTTP response with body 'ok' whenever you
+      // receive a GET request, regardless of the URL.
+      app.get('*', function routeHandler(req, res) {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/test');
+      assert.equal(res.data, 'ok');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('literal plus', async function() {
+      const app = require('express')();
+
+      // Escape '+' so it is treated as a literal.
+      app.get('/\\+', function routeHandler(req, res) {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/+');
+      assert.equal(res.data, 'ok');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+
+    it('regexp', async function() {
+      const app = require('express')();
+
+      // Handle any GET request whose URL starts with '/test/'
+      app.get(/^\/test\//i, function routeHandler(req, res) {
+        res.send('ok');
+      });
+      // acquit:ignore:start
+      const server = await app.listen(3000);
+
+      const axios = require('axios');
+      let res = await axios.get('http://localhost:3000/test/foo');
+      assert.equal(res.data, 'ok');
+
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
