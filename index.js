@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What Does `app.use(express.static())` Do in Express?',
+      raw: './tutorials/express/app-use-static.md',
+      url: '/tutorials/express/app-use-static',
+      description: 'Calling `app.use(express.static())` adds a middleware to your Express app that serves static files. Here\'s what you need to know.',
+      tags: ['express'],
+      date: moment('2020-11-20')
+    },
+    {
       title: 'The `app.get()` Function in Express',
       raw: './tutorials/express/app-get.md',
       url: '/tutorials/express/app-get',
