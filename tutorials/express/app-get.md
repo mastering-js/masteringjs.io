@@ -21,14 +21,14 @@ For example, you may see `app.get('*')` in tutorials: this registers a route han
 characters as literals in URLs, you can escape them with a `\`:
 
 ```javascript
-[require:Express app literal plus$]
+[require:Express app get literal plus$]
 ```
 
 We typically don't recommend using `*`, `+`, `?`, `(`, or `)` in Express route paths. They are rarely useful, especially
 since Express supports specifying a JavaScript regular expression as a path:
 
 ```javascript
-[require:Express app regexp$]
+[require:Express app get regexp$]
 ```
 
 Route Parameters
