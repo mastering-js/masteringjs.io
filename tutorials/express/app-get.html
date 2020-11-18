@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Route Parameters in Express - Mastering JS</title>
+    <title>The `app.get()` Function in Express - Mastering JS</title>
 
-    <meta property="og:title" content="Route Parameters in Express" />
+    <meta property="og:title" content="The `app.get()` Function in Express" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Express route parameters allow your users to pass parameters in the URL. Here's what you need to know." />
-    <meta name="description" content="Express route parameters allow your users to pass parameters in the URL. Here's what you need to know." />
+    <meta property="og:description" content="Express apps have a `get()` function that creates a new route handler for GET requests. Here's what you need to know." />
+    <meta name="description" content="Express apps have a `get()` function that creates a new route handler for GET requests. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,9 +57,9 @@
     <a href="/express">Express</a>
     /
   </div>
-  <h1>Route Parameters in Express</h1>
+  <h1>The `app.get()` Function in Express</h1>
   <div class="date">
-    Oct 23, 2019
+    Nov 18, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -69,9 +69,45 @@
 	  }
 	})();
 	</script>
-  <p>In <a href="https://expressjs.com/">Express</a>, <a href="https://expressjs.com/en/guide/routing.html#route-parameters">route parameters</a> are essentially
-variables derived from named sections of the URL. Express captures
-the value in the named section and stores it in <a href="https://expressjs.com/en/4x/api.html#req.params">the <code>req.params</code> property</a>.</p>
+  <p>Express&#39; <a href="https://expressjs.com/en/api.html#app.get"><code>app.get()</code> function</a> lets you define a <em>route handler</em> for GET
+requests to a given URL. For example, the below code registers a route handler that Express will call when it receives
+an HTTP GET request to <code>/test</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// If you receive a GET request with `url = '/test'`, always</span>
+<span class="hljs-comment">// send back an HTTP response with body 'ok'.</span>
+app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<h2 id="regular-expressions">Regular Expressions</h2>
+<p>The first parameter to <code>app.get()</code> is called the <code>path</code>. The <code>path</code> string supports several <a href="https://expressjs.com/en/guide/routing.html#route-paths">special characters</a> that let you use a subset of regular expressions in path strings.</p>
+<p>For example, you may see <code>app.get(&#39;*&#39;)</code> in tutorials: this registers a route handler for <em>all</em> GET requests.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// Send back an HTTP response with body 'ok' whenever you</span>
+<span class="hljs-comment">// receive a GET request, regardless of the URL.</span>
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<p><code>?</code>, <code>+</code>, <code>*</code>, <code>(</code>, <code>)</code>, and <code>:</code> are special characters in Express paths. Although you typically shouldn&#39;t use these
+characters as literals in URLs, you can escape them with a <code>\</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// Escape '+' so it is treated as a literal.</span>
+app.get(<span class="hljs-string">'/\\+'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<p>We typically don&#39;t recommend using <code>*</code>, <code>+</code>, <code>?</code>, <code>(</code>, or <code>)</code> in Express route paths. They are rarely useful, especially
+since Express supports specifying a JavaScript regular expression as a path:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// Handle any GET request whose URL starts with '/test/'</span>
+app.get(<span class="hljs-regexp">/^\/test\//i</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});</code></pre>
+<h2 id="route-parameters">Route Parameters</h2>
+<p><a href="/tutorials/express/route-parameters">Route parameters</a> are essentially variables defined from named sections of the URL.
+Express parses the URL, pulls the value in the named section, and stores it in the <a href="https://expressjs.com/en/4x/api.html#req.params"><code>req.params</code> property</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
 <span class="hljs-comment">// `:userId` is a route parameter. Express will capture whatever</span>
@@ -88,33 +124,8 @@ app.get(<span class="hljs-string">'/user/:userId'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42'</span>);
 
 res.data; <span class="hljs-comment">// { userId: '42' }</span></code></pre>
-<p>You can define multiple route parameters in a URL. In the below example,
-the Express route is <code>/users/:userId/books/:bookId</code>, so <code>req.params.userId</code>
-will contain the <a href="/tutorials/fundamentals/substring">substring</a> after <code>/users/</code> and before <code>/books/</code>, and <code>req.params.bookId</code> will contain everything after <code>/books/</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
-
-app.get(<span class="hljs-string">'/user/:userId/books/:bookId'</span>, (req, res) =&gt; {
-  req.params; <span class="hljs-comment">// { userId: '42', bookId: '101' }</span>
-  res.json(req.params);
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-<span class="hljs-comment">// Demo of making a request to the server</span>
-<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42/books/101'</span>)
-
-res.data; <span class="hljs-comment">// { userId: '42', bookId: '101' }</span></code></pre>
-<h2 id="why-route-parameters">Why Route Parameters?</h2>
-<p>Route parameters have some convenient properties that reduce the amount of
-validation you need to do versus using <a href="/tutorials/express/query-parameters">query parameters</a> or <a href="/tutorials/express/body">request bodies</a>:</p>
-<ul>
-<li>A route parameter is never <code>null</code> or <code>undefined</code>. For example, a request to <code>GET /users</code> above will cause an HTTP 404, and not call the route handler for <code>/users/:userId/books/:bookId</code>.</li>
-<li>A route parameter is always a string with positive length. For example, <code>GET /user/42/books/</code> also causes an HTTP 404.</li>
-</ul>
-<p>If you&#39;re defining an HTTP API in Express, it is usually better to make a 
-parameter a route parameter rather than a query parameter or a body parameter
-if possible. If your parameter is mandatory and doesn&#39;t need to be an object,
-route parameters are generally the way to go.</p>
+<p>Route parameters allow you to specify a parameterized GET route handler for a class of URLs. They&#39;re very useful for
+building REST APIs.</p>
 
   <hr>
 <div class="cta">
@@ -155,9 +166,6 @@ route parameters are generally the way to go.</p>
     <h2>More Express Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/express/app-get">The `app.get()` Function in Express</a></li>
-  
-
     <li><a href="/tutorials/express/app-use">The `app.use()` Function in Express</a></li>
   
 
@@ -174,6 +182,9 @@ route parameters are generally the way to go.</p>
   
 
     <li><a href="/tutorials/express/static">Serving Static Files in Express</a></li>
+  
+
+    <li><a href="/tutorials/express/websockets">Handling Websockets with Express</a></li>
   
     </ul>
   
