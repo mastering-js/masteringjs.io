@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Handling Websockets with Express - Mastering JS</title>
+    <title>What Does `app.use(express.static())` Do in Express? - Mastering JS</title>
 
-    <meta property="og:title" content="Handling Websockets with Express" />
+    <meta property="og:title" content="What Does `app.use(express.static())` Do in Express?" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Handling websockets with an Express server in Node.js is easy with the ws module. Here's how it works." />
-    <meta name="description" content="Handling websockets with an Express server in Node.js is easy with the ws module. Here's how it works." />
+    <meta property="og:description" content="Calling `app.use(express.static())` adds a middleware to your Express app that serves static files. Here's what you need to know." />
+    <meta name="description" content="Calling `app.use(express.static())` adds a middleware to your Express app that serves static files. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,9 +57,9 @@
     <a href="/express">Express</a>
     /
   </div>
-  <h1>Handling Websockets with Express</h1>
+  <h1>What Does `app.use(express.static())` Do in Express?</h1>
   <div class="date">
-    Mar 9, 2020
+    Nov 20, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -69,44 +69,56 @@
 	  }
 	})();
 	</script>
-  <p>The <a href="https://www.npmjs.com/package/ws">ws npm module</a> is the de facto library for 
-<a href="/tutorials/node/websockets">websockets in Node.js</a>. It has <a href="https://www.npmjs.com/package/ws#external-https-server">built-in support for Node.js&#39; native <code>http</code> servers</a>. But, unfortunately, very
-few developers use Node&#39;s built-in HTTP package directly, they usually use <a href="/express">Express</a>.</p>
-<p>Integrating the ws package with Express is easy. There is also an <a href="https://www.npmjs.com/package/express-ws">express-ws module on npm</a>, but I&#39;ve never managed to get that module to work. Here&#39;s how you can use the ws package to listen to websockets on an
-Express server.</p>
-<h2 id="listening-to-websockets-with-express">Listening to Websockets with Express</h2>
-<p>The ws package supports native Node.js HTTP servers. Conveniently, <a href="http://expressjs.com/en/4x/api.html#app.listen">Express&#39; <code>listen()</code> function</a> returns a native Node.js HTTP server. So you can use the same process described in the <a href="https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server">ws docs</a>:</p>
+  <p>In Express, <code>app.use(express.static())</code> adds a <a href="/tutorials/express/static">middleware for serving static files</a>
+to your Express app.</p>
+<p>For example, suppose you have the below <code>public</code> directory in your project:</p>
+<pre><code>$ ls -l public/
+total <span class="hljs-number">48</span>
+-rw-r--r--  <span class="hljs-number">1</span> ubuntu  ubuntu   <span class="hljs-number">1666</span> Mar <span class="hljs-number">12</span> <span class="hljs-number">14</span>:<span class="hljs-number">17</span> home.css
+-rw-r--r--@ <span class="hljs-number">1</span> ubuntu  ubuntu  <span class="hljs-number">17092</span> Mar <span class="hljs-number">12</span> <span class="hljs-number">14</span>:<span class="hljs-number">17</span> logo.png
+$ </code></pre>
+<p>You can use <a href="https://expressjs.com/en/starter/static-files.html">the <code>express.static</code> middleware</a> to make it possible to access files from this folder via HTTP.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
-<span class="hljs-keyword">const</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-comment">// The first parameter to `express.static()` is the directory to serve.</span>
+app.use(express.static(<span class="hljs-string">'./public'</span>));
+
+app.listen(<span class="hljs-number">3000</span>);</code></pre>
+<p>With the above script, you can open <code>http://localhost:3000/home.css</code> in your browser and see the CSS file.</p>
+<img src="https://codebarbarian-images.s3.amazonaws.com/static-example.png" class="inline-image" style="width: 400px" alt="Displaying a CSS file in Google Chrome">
+
+<h2 id="order-matters">Order Matters!</h2>
+<p>Keep in mind the <a href="/tutorials/express/app-use"><code>app.use()</code> function</a> executes <a href="/tutorials/express/middleware">middleware</a> in order.
+The <code>express.static()</code> middleware returns an HTTP 404 if it can&#39;t find a file, so
+that means you should typically call <code>app.use(express.static())</code> <strong>after</strong> the rest of your app. Otherwise you&#39;ll end
+up with an HTTP 404 error:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+app.use(express.static(<span class="hljs-string">'./public'</span>));
+
+<span class="hljs-comment">// Don't do this! If you do an HTTP request to `/test`, you'll get an</span>
+<span class="hljs-comment">// HTTP 404 because this route handler is after `express.static()`!</span>
+app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
+});
+
+app.listen(<span class="hljs-number">3000</span>);</code></pre>
+<p>Make sure you put <code>express.static()</code> last:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 
 <span class="hljs-keyword">const</span> app = express();
 
-<span class="hljs-comment">// Set up a headless websocket server that prints any</span>
-<span class="hljs-comment">// events that come in.</span>
-<span class="hljs-keyword">const</span> wsServer = <span class="hljs-keyword">new</span> ws.Server({ <span class="hljs-attr">noServer</span>: <span class="hljs-literal">true</span> });
-wsServer.on(<span class="hljs-string">'connection'</span>, socket =&gt; {
-  socket.on(<span class="hljs-string">'message'</span>, message =&gt; <span class="hljs-built_in">console</span>.log(message));
+<span class="hljs-comment">// Works! Express will handle requests to `/test`, and defer to</span>
+<span class="hljs-comment">// the `static` middleware for requests for other URLs.</span>
+app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{
+  res.send(<span class="hljs-string">'ok'</span>);
 });
 
-<span class="hljs-comment">// `server` is a vanilla Node.js HTTP server, so use</span>
-<span class="hljs-comment">// the same ws upgrade process described here:</span>
-<span class="hljs-comment">// https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server</span>
-<span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">3000</span>);
-server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&gt; {
-  wsServer.handleUpgrade(request, socket, head, socket =&gt; {
-    wsServer.emit(<span class="hljs-string">'connection'</span>, socket, request);
-  });
-});</code></pre>
-<h2 id="testing">Testing</h2>
-<p>How do you actually connect to this server? <a href="https://www.npmjs.com/package/ws#sending-and-receiving-text-data">ws also has a websocket client implementation</a> as well as the server implementation.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);
+app.use(express.static(<span class="hljs-string">'./public'</span>));
 
-<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> ws(<span class="hljs-string">'ws://localhost:3000'</span>);
-
-client.on(<span class="hljs-string">'open'</span>, () =&gt; {
-  <span class="hljs-comment">// Causes the server to print "Hello"</span>
-  client.send(<span class="hljs-string">'Hello'</span>);
-});</code></pre>
+app.listen(<span class="hljs-number">3000</span>);</code></pre>
 
   <hr>
 <div class="cta">
@@ -147,9 +159,6 @@ client.on(<span class="hljs-string">'open'</span>, () =&gt; {
     <h2>More Express Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/express/app-use-static">What Does `app.use(express.static())` Do in Express?</a></li>
-  
-
     <li><a href="/tutorials/express/app-get">The `app.get()` Function in Express</a></li>
   
 
@@ -166,6 +175,9 @@ client.on(<span class="hljs-string">'open'</span>, () =&gt; {
   
 
     <li><a href="/tutorials/express/sendfile">Send Static Files in Express with sendFile()</a></li>
+  
+
+    <li><a href="/tutorials/express/static">Serving Static Files in Express</a></li>
   
     </ul>
   
