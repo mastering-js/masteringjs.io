@@ -41,7 +41,7 @@ const express = require('express');
 const app = express();
 app.use(express.static('./public'));
 
-// Don't do this! If you do an HTTP request to `/test`, you'll get an
+// Don't do this! If you send a request to `GET /test`, you'll get an
 // HTTP 404 because this route handler is after `express.static()`!
 app.get('/test', function requestHandler(req, res) {
   res.send('ok');

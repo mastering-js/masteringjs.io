@@ -98,7 +98,7 @@ up with an HTTP 404 error:</p>
 <span class="hljs-keyword">const</span> app = express();
 app.use(express.static(<span class="hljs-string">'./public'</span>));
 
-<span class="hljs-comment">// Don't do this! If you do an HTTP request to `/test`, you'll get an</span>
+<span class="hljs-comment">// Don't do this! If you send a request to `GET /test`, you'll get an</span>
 <span class="hljs-comment">// HTTP 404 because this route handler is after `express.static()`!</span>
 app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requestHandler</span>(<span class="hljs-params">req, res</span>) </span>{
   res.send(<span class="hljs-string">'ok'</span>);
