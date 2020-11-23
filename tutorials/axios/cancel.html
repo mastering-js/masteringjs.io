@@ -69,11 +69,29 @@
 	  }
 	})();
 	</script>
-  <p><a href="/axios">Axios</a> supports a <a href="https://www.pluralsight.com/guides/all-need-to-know-about-axios">limited mechanism for cancelling requests</a>.</p>
+  <p><a href="/axios">Axios</a> supports a <a href="https://www.pluralsight.com/guides/all-need-to-know-about-axios">limited mechanism for cancelling requests</a>. The syntax is straightforward: you pass a <code>cancelToken</code> option
+to your Axios request, and calling <code>cancel()</code> makes your request error out.</p>
 <h2 id="the-canceltoken-option">The <code>cancelToken</code> Option</h2>
 <p>The <a href="/tutorials/axios/options"><code>options</code> parameter to Axios functions</a> supports a <code>cancelToken</code>
 option. The Axios global has a <code>CancelToken</code> object that can <a href="https://github.com/axios/axios#cancellation">create a cancel token</a> for you as shown below.</p>
-<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Axios cancel basic example$]</code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> source = axios.CancelToken.source();
+<span class="hljs-keyword">const</span> cancelToken = source.token;
+<span class="hljs-keyword">const</span> req = axios.get(<span class="hljs-string">'http://httpbin.org/get?answer=42'</span>, {
+  cancelToken
+});
+
+<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setImmediate(resolve, <span class="hljs-number">0</span>));
+
+<span class="hljs-comment">// To cancel the request, call `cancel()` on the `source`.</span>
+source.cancel(<span class="hljs-string">'test cancellation'</span>);
+
+<span class="hljs-comment">// Cancellation results in a rejected promise. But you can use</span>
+<span class="hljs-comment">// Axios' `isCancel()` function to check whether the error is</span>
+<span class="hljs-comment">// due to a cancelled request.</span>
+<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> req.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+axios.isCancel(err); <span class="hljs-comment">// true</span></code></pre>
 <p>Note that <code>axios.CancelToken.source()</code> returns a source object, not the token itself. Make sure you
 pass the token as the <code>cancelToken</code> option, <strong>not</strong> the source object. Otherwise you&#39;ll get a
 <a href="https://decker.medium.com/typeerror-config-canceltoken-throwifrequested-is-not-a-function-6b7b20b54fa2">&quot;config.cancelToken.throwIfRequested is not a function&quot; error</a>.</p>
@@ -87,7 +105,31 @@ does <strong>not</strong> guarantee that the HTTP request doesn&#39;t end up get
 That&#39;s because there&#39;s no way to cancel an HTTP request in general once the request has already been
 sent over the network. If Axios has already sent the request, all cancel does is cause your Axios
 request to error out and ignore any response the server sends after cancellation.</p>
-<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Axios cancel client and server$]</code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-comment">// Express never sends a response, so this request will hang forever.</span>
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Got request!'</span>);
+});
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
+
+<span class="hljs-comment">// Now make an HTTP request to the server and cancel it.</span>
+<span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+<span class="hljs-keyword">const</span> source = axios.CancelToken.source();
+<span class="hljs-keyword">const</span> cancelToken = source.token;
+<span class="hljs-keyword">const</span> req = axios.get(<span class="hljs-string">'http://localhost:3000'</span>, {
+  cancelToken
+});
+
+<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">500</span>));
+
+source.cancel(<span class="hljs-string">'test cancellation'</span>);
+
+<span class="hljs-comment">// Got error, but still prints "Got request!"</span>
+<span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> req.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
+axios.isCancel(err); <span class="hljs-comment">// true</span></code></pre>
 <p>So is cancellation useless? Not necessarily. Cancelling requests can be useful in the browser if
 you want to clean up any outstanding requests when, say, the user navigates to another page. Just
 remember: even if you cancel a request, there is a good chance the request will still end up going

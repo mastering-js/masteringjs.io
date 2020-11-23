@@ -1,4 +1,5 @@
-[Axios](/axios) supports a [limited mechanism for cancelling requests](https://www.pluralsight.com/guides/all-need-to-know-about-axios).
+[Axios](/axios) supports a [limited mechanism for cancelling requests](https://www.pluralsight.com/guides/all-need-to-know-about-axios). The syntax is straightforward: you pass a `cancelToken` option
+to your Axios request, and calling `cancel()` makes your request error out.
 
 The `cancelToken` Option
 ------------------------
@@ -7,7 +8,7 @@ The [`options` parameter to Axios functions](/tutorials/axios/options) supports 
 option. The Axios global has a `CancelToken` object that can [create a cancel token](https://github.com/axios/axios#cancellation) for you as shown below.
 
 ```javascript
-[require:Axios cancel basic example$]
+[require:axios cancel basic example$]
 ```
 
 Note that `axios.CancelToken.source()` returns a source object, not the token itself. Make sure you
@@ -30,7 +31,7 @@ sent over the network. If Axios has already sent the request, all cancel does is
 request to error out and ignore any response the server sends after cancellation.
 
 ```javascript
-[require:Axios cancel client and server$]
+[require:axios cancel client and server$]
 ```
 
 So is cancellation useless? Not necessarily. Cancelling requests can be useful in the browser if
