@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Clone an Object in JavaScript',
+      raw: './tutorials/fundamentals/clone.md',
+      url: '/tutorials/fundamentals/clone',
+      description: 'There are several ways to shallow clone an object in vanilla JavaScript, and a couple of ways to deep clone an object. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-11-25')
+    },
+    {
       title: 'Axios Cancel Request',
       raw: './tutorials/axios/cancel.md',
       url: '/tutorials/axios/cancel',
