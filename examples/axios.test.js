@@ -772,4 +772,58 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('cancel', function() {
+    it('basic example', async function() {
+      const axios = require('axios');
+
+      const source = axios.CancelToken.source();
+      const cancelToken = source.token;
+      const req = axios.get('http://httpbin.org/get?answer=42', {
+        cancelToken
+      });
+
+      await new Promise(resolve => setImmediate(resolve, 0));
+
+      // To cancel the request, call `cancel()` on the `source`.
+      source.cancel('test cancellation');
+
+      // Cancellation results in a rejected promise. But you can use
+      // Axios' `isCancel()` function to check whether the error is
+      // due to a cancelled request.
+      const err = await req.catch(err => err);
+      axios.isCancel(err); // true
+    });
+
+    it('client and server', async function() {
+      const express = require('express');
+
+      const app = express();
+      // Express never sends a response, so this request will hang forever.
+      app.get('*', function(req, res) {
+        console.log('Got request!');
+      });
+
+      const server = await app.listen(3000);
+
+      // Now make an HTTP request to the server and cancel it.
+      const axios = require('axios');
+      const source = axios.CancelToken.source();
+      const cancelToken = source.token;
+      const req = axios.get('http://localhost:3000', {
+        cancelToken
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      source.cancel('test cancellation');
+
+      // Got error, but still prints "Got request!"
+      const err = await req.catch(err => err);
+      axios.isCancel(err); // true
+      // acquit:ignore:start
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });

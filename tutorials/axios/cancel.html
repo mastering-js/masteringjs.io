@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Axios Cancel Request - Mastering JS</title>
+
+    <meta property="og:title" content="Axios Cancel Request" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Axios supports cancelling HTTP requests using cancel tokens. Here's what you need to know." />
+    <meta name="description" content="Axios supports cancelling HTTP requests using cancel tokens. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/axios">Axios</a>
+    /
+  </div>
+  <h1>Axios Cancel Request</h1>
+  <div class="date">
+    Nov 23, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="/axios">Axios</a> supports a <a href="https://www.pluralsight.com/guides/all-need-to-know-about-axios">limited mechanism for cancelling requests</a>.</p>
+<h2 id="the-canceltoken-option">The <code>cancelToken</code> Option</h2>
+<p>The <a href="/tutorials/axios/options"><code>options</code> parameter to Axios functions</a> supports a <code>cancelToken</code>
+option. The Axios global has a <code>CancelToken</code> object that can <a href="https://github.com/axios/axios#cancellation">create a cancel token</a> for you as shown below.</p>
+<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Axios cancel basic example$]</code></pre>
+<p>Note that <code>axios.CancelToken.source()</code> returns a source object, not the token itself. Make sure you
+pass the token as the <code>cancelToken</code> option, <strong>not</strong> the source object. Otherwise you&#39;ll get a
+<a href="https://decker.medium.com/typeerror-config-canceltoken-throwifrequested-is-not-a-function-6b7b20b54fa2">&quot;config.cancelToken.throwIfRequested is not a function&quot; error</a>.</p>
+<p>The <code>source.cancel()</code> function takes a single parameter: an optional error message. The error
+message is just for passing a reason for the cancellation, you can use whatever string makes sense
+for your application, or omit the message entirely.</p>
+<h2 id="how-does-cancellation-actually-work">How Does Cancellation Actually Work?</h2>
+<p>Under the hood, when you <code>cancel()</code> a request, Axios calls <a href="https://nodejs.org/api/http.html#http_request_abort"><code>ClientRequest#abort()</code> in Node.js</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/abort"><code>XMLHttpRequest#abort()</code></a> in the browser. However, this
+does <strong>not</strong> guarantee that the HTTP request doesn&#39;t end up getting sent to the server.</p>
+<p>For example, the below script still prints &quot;Got request!&quot; even though Axios cancels the request.
+That&#39;s because there&#39;s no way to cancel an HTTP request in general once the request has already been
+sent over the network. If Axios has already sent the request, all cancel does is cause your Axios
+request to error out and ignore any response the server sends after cancellation.</p>
+<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:Axios cancel client and server$]</code></pre>
+<p>So is cancellation useless? Not necessarily. Cancelling requests can be useful in the browser if
+you want to clean up any outstanding requests when, say, the user navigates to another page. Just
+remember: even if you cancel a request, there is a good chance the request will still end up going
+to the server. So if you send a <a href="/tutorials/axios/put">PUT request</a> that modifies data, that request
+may still get to the server and modify the data, so your client may be out of date if you cancel
+an HTTP request.</p>
+
+  
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/vs-fetch">Axios vs Fetch: Which Should You Use?</a></li>
+  
+
+    <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
+  
+
+    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
+  
+
+    <li><a href="/tutorials/axios/options">Axios Options</a></li>
+  
+
+    <li><a href="/tutorials/axios/get-with-data">Axios GET with Data</a></li>
+  
+
+    <li><a href="/tutorials/axios/get-query-params">GET Request Query Params with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/response-body">Get the HTTP Response Body with Axios</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

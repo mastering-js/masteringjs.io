@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Axios Cancel Request',
+      raw: './tutorials/axios/cancel.md',
+      url: '/tutorials/axios/cancel',
+      description: 'Axios supports cancelling HTTP requests using cancel tokens. Here\'s what you need to know.',
+      tags: ['axios'],
+      date: moment('2020-11-23')
+    },
+    {
       title: 'What Does `app.use(express.static())` Do in Express?',
       raw: './tutorials/express/app-use-static.md',
       url: '/tutorials/express/app-use-static',
