@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'The `toString()` Function in JavaScript',
+      raw: './tutorials/fundamentals/tostring.md',
+      url: '/tutorials/fundamentals/tostring',
+      description: 'The `toString()` method converts values into strings. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-11-30')
+    },
+    {
       title: 'Clone an Object in JavaScript',
       raw: './tutorials/fundamentals/clone.md',
       url: '/tutorials/fundamentals/clone',
