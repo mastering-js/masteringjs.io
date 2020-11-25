@@ -701,6 +701,35 @@ describe('lodash', function() {
       // acquit:ignore:end
     });
   });
+
+  it('deepClone', function() {
+    const obj1 = {
+      date: new Date('2019-06-01'),
+      buffer: Buffer.from('hello, world'),
+      a: { value: true }
+    };
+    
+    const obj2 = _.cloneDeep(obj1);
+
+    obj1.date === obj2.date; // false
+    obj1.date.toString() === obj2.date.toString(); // true
+    // acquit:ignore:start
+    assert.ok(obj1.date !== obj2.date); // false
+    assert.ok(obj1.date.toString() === obj2.date.toString()); // true
+    // acquit:ignore:end
+
+    obj1.buffer === obj2.buffer; // false
+    obj1.buffer.toString('utf8') === obj2.buffer.toString('utf8'); // true
+    // acquit:ignore:start
+    assert.ok(obj1.buffer !== obj2.buffer); // false
+    assert.ok(obj1.buffer.toString('utf8') === obj2.buffer.toString('utf8')); // true
+    // acquit:ignore:end
+
+    obj1.a === obj2.a; // false
+    // acquit:ignore:start
+    assert.ok(obj1.a !== obj2.a);
+    // acquit:ignore:end
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

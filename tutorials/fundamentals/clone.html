@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Clone an Object in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Clone an Object in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="There are several ways to shallow clone an object in vanilla JavaScript, and a couple of ways to deep clone an object. Here's what you need to know." />
+    <meta name="description" content="There are several ways to shallow clone an object in vanilla JavaScript, and a couple of ways to deep clone an object. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Clone an Object in JavaScript</h1>
+  <div class="date">
+    Nov 25, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>&quot;Cloning&quot; an object in JavaScript means creating a new object with the same properties as the
+original object. Objects in JavaScript are stored by reference, which means that two variables
+can point to the same object in memory. Modifying one object variable can impact other variables.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">a</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">b</span>: <span class="hljs-literal">true</span> };
+<span class="hljs-keyword">const</span> obj2 = obj1;
+
+obj2.c = <span class="hljs-literal">true</span>;
+obj1.c; <span class="hljs-comment">// true, because `obj1` points to the same object as `obj2`</span></code></pre>
+<p>The two most common reasons to clone objects in JavaScript are:</p>
+<ol>
+<li>Copying data so you can modify the object without affecting the original object</li>
+<li>Working with frameworks that rely on immutability for diffing, like <a href="https://reactjs.org/docs/update.html">React</a></li>
+</ol>
+<p>Whether you&#39;re cloning for one of these reasons, or a different reason entirely, is important for
+determining what pattern you should use for cloning. Here are 3 different approaches:</p>
+<h2 id="shallow-clone-using-spread-operator-or-objectassign">Shallow Clone using Spread Operator or <code>Object.assign()</code></h2>
+<p>The easiest ways to shallow clone an object in vanilla JavaScript are using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread operator</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign"><code>Object.assign()</code> function</a>. These approaches are functionally similar, but the <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html">spread operator is slightly faster</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">a</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">b</span>: <span class="hljs-literal">true</span> };
+
+<span class="hljs-comment">// Copy `obj1` using the spread operator:</span>
+<span class="hljs-keyword">const</span> obj2 = { ...obj1 };
+
+<span class="hljs-comment">// Copy `obj1` using the `Object.assign()` function:</span>
+<span class="hljs-keyword">const</span> obj3 = <span class="hljs-built_in">Object</span>.assign({}, obj1);
+
+obj2.c = <span class="hljs-literal">true</span>;
+obj3.d = <span class="hljs-literal">true</span>;
+<span class="hljs-built_in">Object</span>.keys(obj1); <span class="hljs-comment">// ['a', 'b']</span></code></pre>
+<p>The spread operator is commonly used for <a href="https://redux.js.org/recipes/using-object-spread-operator">immutable updates for React projects</a>. The idea is that every time you update an object, you clone
+the object. Cloning the object every time you update it makes checking for changes easier, because
+you can use <code>===</code> to check whether the object changed.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> oldState = { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">username</span>: <span class="hljs-string">'test'</span> };
+
+<span class="hljs-comment">// Instead of `++oldState.count`, you can clone and create a new object</span>
+<span class="hljs-keyword">const</span> newState = { ...oldState, <span class="hljs-attr">count</span>: <span class="hljs-number">1</span> };
+
+<span class="hljs-comment">// Checking if something changed is much easier!</span>
+oldState === newState; <span class="hljs-comment">// false</span></code></pre>
+<p>While pattern of copying objects to modify them is common, do <strong>not</strong> use this approach unless
+you&#39;re using React and you&#39;re sure you need to. In most cases, cloning a whole object to modify
+one property is highly wasteful, and this pattern can also lead to bugs in other frameworks.</p>
+<h2 id="deep-clone-using-jsonstringify">Deep Clone using <code>JSON.stringify()</code></h2>
+<p>Shallow cloning using the spread operator is easy and relatively fast. But, because it is a
+<a href="/tutorials/fundamentals/shallow-copy">shallow clone rather than a deep clone</a>, it doesn&#39;t recursively
+clone nested objects!</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = {
+  <span class="hljs-attr">a</span>: { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">b</span>: { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> }
+};
+
+<span class="hljs-comment">// Copy `obj1` using the spread operator:</span>
+<span class="hljs-keyword">const</span> obj2 = { ...obj1 };
+
+obj2.a.value = <span class="hljs-literal">false</span>;
+<span class="hljs-comment">// false, because `a` points to the same object after shallow cloning!</span>
+obj1.a.value;</code></pre>
+<p>In other words, &quot;deep clone&quot; just means &quot;recursively shallow clone all objects.&quot; One trick you
+can use to deep clone an object <em>without</em> writing any recursion yourself is to use <code>JSON.parse(JSON.stringify(obj1))</code>. In other words, convert the object you want to clone into JSON, and then
+parse it again.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = {
+  <span class="hljs-attr">a</span>: { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">b</span>: { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> }
+};
+
+<span class="hljs-comment">// Deep clone `obj1` using parse and stringify.</span>
+<span class="hljs-keyword">const</span> obj2 = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj1));
+
+obj2.a.value = <span class="hljs-literal">false</span>;
+<span class="hljs-comment">// true, because `obj2` is a deep clone</span>
+obj1.a.value;</code></pre>
+<p>While <code>JSON.parse(JSON.stringify())</code> is easy, it comes with a lot of caveats. Using this pattern
+works fine if your object only contains primitive values, <a href="/tutorials/fundamentals/pojo">POJOs</a>, and <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">arrays</a>. But once you introduce
+classes like <code>Date</code>, this pattern fails to actually clone the object, because <code>JSON.stringify()</code> converts dates to strings.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>) };
+<span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
+
+obj.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span>
+copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span></code></pre>
+<h2 id="deep-clone-using-lodash">Deep Clone Using Lodash</h2>
+<p><a href="https://lodash.com/docs/4.17.15#cloneDeep">Lodash&#39;s <code>deepClone()</code> function</a> is a much more robust
+deep clone than <code>JSON.parse(JSON.stringify())</code>. It handles many common edge cases, like dates and
+<a href="/tutorials/node/buffer">Node.js buffers</a>. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = {
+  <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>),
+  <span class="hljs-attr">buffer</span>: Buffer.from(<span class="hljs-string">'hello, world'</span>),
+  <span class="hljs-attr">a</span>: { <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> }
+};
+
+<span class="hljs-keyword">const</span> obj2 = _.cloneDeep(obj1);
+
+obj1.date === obj2.date; <span class="hljs-comment">// false</span>
+obj1.date.toString() === obj2.date.toString(); <span class="hljs-comment">// true</span>
+
+obj1.buffer === obj2.buffer; <span class="hljs-comment">// false</span>
+obj1.buffer.toString(<span class="hljs-string">'utf8'</span>) === obj2.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// true</span>
+
+obj1.a === obj2.a; <span class="hljs-comment">// false</span></code></pre>
+<p>If you&#39;re looking to copy an arbitrary object that may contain nested objects so you can safely
+modify any property without affecting the original object, <code>_.cloneDeep()</code> is the way to go.
+Recursively using the spread operator is tricky if you don&#39;t know the structure of the object,
+although you can use the spread operator if you know for a fact the objects you&#39;re cloning don&#39;t
+have nested objects.</p>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/nan">NaN in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/equality">Equality in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-append">JavaScript Append to Array</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-includes">JavaScript Array `includes()`</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-index">Get The Current Array Index in JavaScript forEach()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-continue">Using Continue in JavaScript forEach()</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach-break">How to Break Out of a JavaScript forEach() Loop</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
