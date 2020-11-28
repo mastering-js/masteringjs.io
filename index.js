@@ -2027,6 +2027,9 @@ async function run() {
     if (tutorial.tags[0] === 'express') {
       tutorial.cta = 'express';
     }
+    if (tutorial.tags[0] === 'vue') {
+      tutorial.cta = 'vueschool';
+    }
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
     let ad = null;
