@@ -79,8 +79,9 @@ This is one of the most common uses for <code>toString()</code>:</p>
 num.toString(); <span class="hljs-comment">// '42'</span>
 <span class="hljs-keyword">typeof</span> num.toString(); <span class="hljs-comment">// 'string'</span>
 
-<span class="hljs-comment">// Can also use `toString()` on a number literal</span>
-<span class="hljs-number">42.</span>toString(); <span class="hljs-comment">// '42'</span></code></pre>
+<span class="hljs-comment">// Can also use `toString()` on a number literal as long as you</span>
+<span class="hljs-comment">// use parentheses.</span>
+(<span class="hljs-number">42</span>).toString(); <span class="hljs-comment">// '42'</span></code></pre>
 <p>All <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">primitive values</a> <strong>except</strong> <code>null</code> and <code>undefined</code> have a <code>toString()</code> function: strings, numbers, booleans, BigInts, and
 <a href="/tutorials/fundamentals/symbol">symbols</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// String:</span>

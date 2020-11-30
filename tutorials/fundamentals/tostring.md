@@ -13,8 +13,9 @@ const num = 42;
 num.toString(); // '42'
 typeof num.toString(); // 'string'
 
-// Can also use `toString()` on a number literal
-42.toString(); // '42'
+// Can also use `toString()` on a number literal as long as you
+// use parentheses.
+(42).toString(); // '42'
 ```
 
 All [primitive values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) **except** `null` and `undefined` have a `toString()` function: strings, numbers, booleans, BigInts, and
