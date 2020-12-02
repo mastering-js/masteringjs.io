@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: '`null` in JavaScript',
+      raw: './tutorials/fundamentals/null.md',
+      url: '/tutorials/fundamentals/null',
+      description: 'In JavaScript, `null` is a primitive that represents the intentional absence of a value. Here\'s what you need to know.',
+      tags: ['fundamentals'],
+      date: moment('2020-12-02')
+    },
+    {
       title: 'The `toString()` Function in JavaScript',
       raw: './tutorials/fundamentals/tostring.md',
       url: '/tutorials/fundamentals/tostring',
