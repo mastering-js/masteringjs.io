@@ -4227,6 +4227,35 @@ describe('Fundamentals', function() {
       val; // NaN
     });
   });
+
+  it('compare dates without time', function() {
+    const d1 = new Date('2020-06-01T12:00:00.000Z');
+    const d2 = new Date('2020-06-01T12:30:00.000Z');
+    const d3 = new Date('2020-05-01T12:00:00.000Z');
+
+    d1.toDateString() === d2.toDateString(); // true
+    d1.toDateString() === d3.toDateString(); // false
+    // acquit:ignore:start
+    assert.ok(d1.toDateString() === d2.toDateString());
+    assert.ok(!(d1.toDateString() === d3.toDateString()));
+    // acquit:ignore:end
+  });
+
+  it('compare dates with UTC', function() {
+    const d1 = new Date('2020-06-01T00:00:01.000Z');
+    const d2 = new Date('2020-06-01T02:00:00.000Z');
+    const d3 = new Date('2020-05-31T23:59:59.000Z');
+
+    // The first part of the `toUTCString()` output format according to:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toDateString
+    const format = 'Www, dd Mmm yyyy';
+    d1.toUTCString().slice(0, format.length) === d2.toUTCString().slice(0, format.length); // true
+    d1.toUTCString().slice(0, format.length) === d3.toUTCString().slice(0, format.length); // false
+    // acquit:ignore:start
+    assert.ok(d1.toUTCString().slice(0, format.length) === d2.toUTCString().slice(0, format.length));
+    assert.ok(!(d1.toUTCString().slice(0, format.length) === d3.toUTCString().slice(0, format.length)));
+    // acquit:ignore:end
+  });
 });
 
 if (!Array.prototype.flat) {

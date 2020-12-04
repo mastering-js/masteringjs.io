@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Compare Two Dates, Ignoring Time, in JavaScript',
+      raw: './tutorials/fundamentals/compare-dates-without-time.md',
+      url: '/tutorials/fundamentals/compare-dates-without-time',
+      description: 'Here\'s how you can compare two dates in JavaScript, ignoring the time component.',
+      tags: ['fundamentals'],
+      date: moment('2020-12-04')
+    },
+    {
       title: '`null` in JavaScript',
       raw: './tutorials/fundamentals/null.md',
       url: '/tutorials/fundamentals/null',
