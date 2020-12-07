@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Components in Vue 3',
+      raw: './tutorials/vue/vue-3-components.md',
+      url: '/tutorials/vue/vue-3-components',
+      description: 'Vue 3 was released on September 18, 2020. Here\'s what you need to know about defining components in Vue 3 vs Vue 2.',
+      tags: ['vue'],
+      date: moment('2020-12-09')
+    },
+    {
       title: 'What\'s New in Vue 3',
       raw: './tutorials/vue/vue-3.md',
       url: '/tutorials/vue/vue-3',
