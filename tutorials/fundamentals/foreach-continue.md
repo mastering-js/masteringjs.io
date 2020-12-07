@@ -44,5 +44,4 @@ Instead of using an `if` statement, just `filter()` out the values you don't wan
 [1, 2, 3, 4, 5].filter(v => v % 2 === 0).forEach(v => {
   console.log(v);
 });
-~   
 ```
