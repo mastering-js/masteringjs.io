@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'What\'s New in Vue 3',
+      raw: './tutorials/vue/vue-3.md',
+      url: '/tutorials/vue/vue-3',
+      description: 'Vue 3 was released on September 18, 2020. Here\'s how you can get started building a basic app with Vue 3 and no other dependencies.',
+      tags: ['vue'],
+      date: moment('2020-12-07')
+    },
+    {
       title: 'Compare Two Dates, Ignoring Time, in JavaScript',
       raw: './tutorials/fundamentals/compare-dates-without-time.md',
       url: '/tutorials/fundamentals/compare-dates-without-time',
