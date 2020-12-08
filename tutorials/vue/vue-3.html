@@ -104,14 +104,22 @@ in Vue 3, after a couple minor changes:</p>
 <script src="https://unpkg.com/vue@3.x"></script>
 <script>
   const app = Vue.createApp({
-    data: () => ({ message: 'Row' }),
-    template: `
+  template: '<counter></counter>'
+});
+
+app.component('counter', {
+  template: `
     <div>
-      <h1>{{message}} your boat</h1>
-      <button v-on:click="message += ' row'">Add</button>
+      <h1>{{article.title}}: {{article.pageViews}} Page Views</h1>
+      <button v-on:click="++article.pageViews">Increment Page Views</button>
     </div>
-    `
-  }).mount('#content');
+  `,
+  setup: function() {
+    const article = Vue.reactive({ title: 'Vue 3 Reactivity', pageViews: 100 });
+    return { article };
+  }
+});
+app.mount('#content');
 </script>
 
 <p>We needed to make 2 changes to make this app work in Vue 3:</p>
@@ -231,6 +239,9 @@ app.component(<span class="hljs-string">'hello'</span>, {
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
+  
+
     <li><a href="/tutorials/vue/vue-3-components">Components in Vue 3</a></li>
   
 
@@ -247,9 +258,6 @@ app.component(<span class="hljs-string">'hello'</span>, {
   
 
     <li><a href="/tutorials/vue/error-handling">Vue Error Handling</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-test-utils">Getting Started with Vue Test Utils</a></li>
   
     </ul>
   

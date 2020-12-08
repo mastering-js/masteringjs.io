@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'Reactivity in Vue 3',
+      raw: './tutorials/vue/reactivity.md',
+      url: '/tutorials/vue/reactivity',
+      description: 'Here\'s what you need to know about Vue 3\'s brand new reactivity system, based on ES6 proxies.',
+      tags: ['vue'],
+      date: moment('2020-12-11')
+    },
+    {
       title: 'Components in Vue 3',
       raw: './tutorials/vue/vue-3-components.md',
       url: '/tutorials/vue/vue-3-components',
