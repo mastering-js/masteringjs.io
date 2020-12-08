@@ -46,22 +46,14 @@ Below is a live example:
 <script src="https://unpkg.com/vue@3.x"></script>
 <script>
   const app = Vue.createApp({
-  template: '<counter></counter>'
-});
-
-app.component('counter', {
-  template: `
+    data: () => ({ message: 'Row' }),
+    template: `
     <div>
-      <h1>{{article.title}}: {{article.pageViews}} Page Views</h1>
-      <button v-on:click="++article.pageViews">Increment Page Views</button>
+      <h1>{{message}} your boat</h1>
+      <button v-on:click="message += ' row'">Add</button>
     </div>
-  `,
-  setup: function() {
-    const article = Vue.reactive({ title: 'Vue 3 Reactivity', pageViews: 100 });
-    return { article };
-  }
-});
-app.mount('#content');
+    `
+  }).mount('#content');
 </script>
 
 We needed to make 2 changes to make this app work in Vue 3:
