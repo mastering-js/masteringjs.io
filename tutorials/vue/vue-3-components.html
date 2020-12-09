@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Components in Vue 3 - Mastering JS</title>
+
+    <meta property="og:title" content="Components in Vue 3" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Vue 3 was released on September 18, 2020. Here's what you need to know about defining components in Vue 3 vs Vue 2." />
+    <meta name="description" content="Vue 3 was released on September 18, 2020. Here's what you need to know about defining components in Vue 3 vs Vue 2." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>Components in Vue 3</h1>
+  <div class="date">
+    Dec 9, 2020
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="/tutorials/vue/vue-3">Vue 3</a> has made some slight changes to how <a href="/tutorials/vue/components">Vue components</a> work. The basic syntax for creating Vue components hasn&#39;t changed much, but there&#39;s a lot
+of new features for you to take advantage of. Here&#39;s an overview of how components have changed
+in Vue 3.</p>
+<h2 id="components-are-scoped-to-apps">Components are Scoped to Apps</h2>
+<p>If you drop Vue 3 into an existing Vue 2 codebase, odds are the first error you&#39;ll see is <code>TypeError: Vue is not a constructor</code>. That&#39;s because the <code>Vue</code> global is now no longer a class. Instead of using
+<code>new Vue()</code> to create a new app, you should use <code>Vue.createApp()</code>. And, instead of registering
+components globally using <code>Vue.component()</code>, you register components on apps using <code>app.component()</code>.</p>
+<p>For example, below is a component in Vue 2:</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span>
+  }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input v-model="name"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-comment">// Displays "Hello, World" initially, changes based on input</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p>Below is how you would rewrite it for Vue 3:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create an app using `createApp()` that uses the `hello` component</span>
+<span class="hljs-keyword">const</span> app = Vue.createApp({
+  <span class="hljs-comment">// Displays "Hello, World" initially, changes based on input</span>
+  template: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
+});
+
+<span class="hljs-comment">// Register the `hello` component</span>
+app.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span>
+  }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input v-model="name"&gt;&lt;/input&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+app.mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p>That&#39;s it! There are 4 necessary changes:</p>
+<ul>
+<li>Use <code>createApp()</code> instead of <code>new Vue()</code></li>
+<li>Use <code>app.component()</code> instead of <code>Vue.component()</code></li>
+<li>Switch the order of definition, so you define the <code>app</code> before the component</li>
+<li>Use <code>mount()</code> instead of <code>$mount()</code></li>
+</ul>
+<h2 id="emit-changes"><code>$emit()</code> Changes</h2>
+<p>The basics still work: you still define <code>props</code> the same way, and you can still <code>$emit()</code> events
+from your component. The only difference is that you now need to explicitly define what events your
+component emits like how you explicitly define a list of <code>props</code>.</p>
+<p>Below is an example of how you can use <code>$emit()</code> with Vue 2:</p>
+<pre><code class="language-javascript">Vue.component(<span class="hljs-string">'input-name'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// When you click the "Update" button, Vue will emit an event `update`</span>
+  <span class="hljs-comment">// to the parent, with the current state of 'name'.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input type="text" v-model="name"&gt;
+      &lt;button v-on:click="$emit('update', name)"&gt;
+        Update
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// To listen to the 'update' event, you create the `input-name`</span>
+  <span class="hljs-comment">// component with a `v-on:update` attribute. `$event` contains</span>
+  <span class="hljs-comment">// the value of the 2nd parameter to `$emit()`.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input-name v-on:update="setName($event)"&gt;&lt;/input-name&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>,
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-comment">// Define a method that Vue will call to handle the 'update' event.</span>
+    setName: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) </span>{
+      <span class="hljs-keyword">this</span>.name = v;
+    }
+  }
+});
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<p>Below is how you would change the above example to work with Vue 3. Besides the usual <code>createApp()</code>
+and <code>app.component()</code> changes, this example also adds a list of events the component <code>emits</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// To listen to the 'update' event, you create the `input-name`</span>
+  <span class="hljs-comment">// component with a `v-on:update` attribute. `$event` contains</span>
+  <span class="hljs-comment">// the value of the 2nd parameter to `$emit()`.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;div&gt;
+        &lt;input-name v-on:update="setName($event)"&gt;&lt;/input-name&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Hello, {{name}}&lt;/h1&gt;
+    &lt;/div&gt;
+  `</span>,
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-comment">// Define a method that Vue will call to handle the 'update' event.</span>
+    setName: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) </span>{
+      <span class="hljs-keyword">this</span>.name = v;
+    }
+  }
+});
+
+app.component(<span class="hljs-string">'input-name'</span>, {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-comment">// New property in Vue 3:</span>
+  emits: [<span class="hljs-string">'update'</span>],
+  <span class="hljs-comment">// When you click the "Update" button, Vue will emit an event `update`</span>
+  <span class="hljs-comment">// to the parent, with the current state of 'name'.</span>
+  template: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;input type="text" v-model="name"&gt;
+      &lt;button v-on:click="$emit('update', name)"&gt;
+        Update
+      &lt;/button&gt;
+    &lt;/div&gt;
+  `</span>
+});
+
+app.mount(<span class="hljs-string">'#content'</span>);</code></pre>
+<h2 id="the-setup-hook">The <code>setup()</code> Hook</h2>
+<p>The <a href="https://v3.vuejs.org/guide/composition-api-introduction.html">Composition API</a> is one of the most <a href="https://learnvue.co/2019/12/how-vue3-is-designed-for-both-hobby-devs-and-large-projects/">touted improvements in Vue 3</a>. And the Composition API starts with the <code>setup()</code> function, which is <a href="https://learnvue.co/2020/03/how-to-use-lifecycle-hooks-in-vue3/">similar to the <code>created()</code> hook</a>, but much more powerful. For example, you can use the Vue global&#39;s <code>onMounted()</code> function to add a new <code>mounted()</code> hook to your component from the <code>setup()</code> function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">to</span>: <span class="hljs-string">'World'</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello v-bind:to="to"&gt;&lt;/hello&gt;'</span>
+});
+
+<span class="hljs-comment">// Prints 'Mounted from component!' followed by 'Mounted from setup!'</span>
+app.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'to'</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1&gt;Hello, {{to}}&lt;/h1&gt;'</span>,
+  <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mounted from component!'</span>);
+  },
+  <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">props</span>) </span>{
+    Vue.onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mounted from setup!'</span>));
+    <span class="hljs-keyword">return</span> {};
+  }
+});</code></pre>
+<p>The most interesting part of the composition API is that it lets you <a href="https://learnvue.co/2020/03/how-to-use-lifecycle-hooks-in-vue3/">define Vue components without explicitly instantiating a component</a> using a syntax reminiscent of React hooks. For example, you can rewrite the above <code>hello</code> component using just the <code>setup()</code> function:</p>
+<pre><code class="language-javascript">app.component(<span class="hljs-string">'hello'</span>, {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'to'</span>],
+  <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    Vue.onMounted(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Mounted!'</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> Vue.h(<span class="hljs-string">'h1'</span>, <span class="hljs-string">'Hello, '</span> + props.to);
+  }
+});</code></pre>
+<p>Not only can you define hooks in <code>setup()</code>, you can also <a href="https://composition-api.vuejs.org/api.html#template-refs">return a <code>render()</code> function</a> and effectively define your template in the <code>setup()</code> function as well as shown above.</p>
+<p>The neat part of the Composition API is that you don&#39;t have to use it. It&#39;s just another tool in the
+Vue utility belt. For example, we generally don&#39;t recommend using JSX-like <code>render()</code> functions because
+we prefer <a href="https://www.getrevue.co/profile/masteringjs/issues/building-and-testing-email-templating-using-vue-257729">plain old HTML templates for portability and versatility</a>. But, in certain cases,
+this pattern can be very useful, like if you&#39;re migrating a legacy React app to Vue.</p>
+
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
+
+  <br><br>
+
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vuemasterclass.png">
+    </a>
+  </div>
+ </div>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-actions">What are Vuex Actions?</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-store">What is a Vuex Store?</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-getters">Vuex Getters</a></li>
+  
+
+    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/error-handling">Vue Error Handling</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-test-utils">Getting Started with Vue Test Utils</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

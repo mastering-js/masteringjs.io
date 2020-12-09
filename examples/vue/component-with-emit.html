@@ -1,25 +1,11 @@
 <html>
   <body>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+      <script src="https://unpkg.com/vue@3.x"></script>
 
     <div id="content"></div>
 
     <script type="text/javascript">
-      Vue.component('input-name', {
-        data: () => ({ name: 'World' }),
-        // When you click the "Update" button, Vue will emit an event `update`
-        // to the parent, with the current state of 'name'.
-        template: `
-          <div>
-            <input type="text" v-model="name">
-            <button v-on:click="$emit('update', name)">
-              Update
-            </button>
-          </div>
-        `
-      });
-
-      const app = new Vue({
+      const app = Vue.createApp({
         data: () => ({ name: 'World' }),
         // To listen to the 'update' event, you create the `input-name`
         // component with a `v-on:update` attribute. `$event` contains
@@ -39,7 +25,24 @@
           }
         }
       });
-      app.$mount('#content');
+
+      app.component('input-name', {
+        data: () => ({ name: 'World' }),
+        // New property in Vue 3:
+        emits: ['update'],
+        // When you click the "Update" button, Vue will emit an event `update`
+        // to the parent, with the current state of 'name'.
+        template: `
+          <div>
+            <input type="text" v-model="name">
+            <button v-on:click="$emit('update', name)">
+              Update
+            </button>
+          </div>
+        `
+      });
+
+      app.mount('#content');
     </script>
   </body>
 </html>
