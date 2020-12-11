@@ -347,3 +347,8 @@ input[type="text"], input[type="password"], input[type="number"] {
 .carbon-text {
   display: block;
 }
+
+#default_masteringjsio {
+  height: 95px;
+  padding-top: 10px;
+}
