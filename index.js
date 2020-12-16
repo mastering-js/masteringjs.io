@@ -38,6 +38,14 @@ async function run() {
 
   const tutorials = [
     {
+      title: 'How to Use forEach() in JavaScript',
+      raw: './tutorials/fundamentals/foreach.md',
+      url: '/tutorials/fundamentals/foreach',
+      description: 'JavaScript\'s `forEach()` function is one of several ways to iterate through an array in JavaScript. Here\'s what you need to know about `forEach()`.',
+      tags: ['fundamentals'],
+      date: moment('2020-12-16')
+    },
+    {
       title: 'Reactivity in Vue 3',
       raw: './tutorials/vue/reactivity.md',
       url: '/tutorials/vue/reactivity',
@@ -1934,8 +1942,8 @@ async function run() {
     },
     {
       title: '8 Neat Examples with forEach() in JavaScript',
-      raw: './tutorials/fundamentals/foreach.md',
-      url: '/tutorials/fundamentals/foreach',
+      raw: './tutorials/fundamentals/foreach-examples.md',
+      url: '/tutorials/fundamentals/foreach-examples',
       description: 'Learn how to iterate nested arrays, object keys, and other values using forEach() in JavaScript',
       tags: ['fundamentals'],
       date: moment('2019-05-15')

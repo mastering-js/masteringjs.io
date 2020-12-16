@@ -1,6 +1,6 @@
 There are several ways to iterate through an array in JavaScript, and there's a lot
 of debate about which way is the right way. Generally speaking, there are 4 common
-pattern:
+patterns:
 
 1. Simple `for` Loop: `for (let i = 0; i < arr.length; ++i)`
 2. Functional methods like `forEach()`: `arr.forEach((v, i) => { /* ... */ })`

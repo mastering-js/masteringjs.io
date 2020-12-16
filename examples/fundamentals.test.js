@@ -305,6 +305,7 @@ describe('Fundamentals', function() {
     });
 
     it('example 1', function() {
+      // Prints "a", "b", "c"
       ['a', 'b', 'c'].forEach(v => {
         console.log(v);
       });
@@ -418,6 +419,35 @@ describe('Fundamentals', function() {
       // acquit:ignore:start
       assert.deepStrictEqual(called, ['a', 'c', 'a', void 0, 'c']);
       // acquit:ignore:end
+    });
+
+    it('with arguments and iterators', function() {
+      function test() {
+        // Throws "TypeError: arguments.forEach is not a function"
+        arguments.forEach(val => console.log(val));
+      }
+
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      test();
+      // acquit:ignore:start
+      }, /arguments.forEach is not a function/);
+      // acquit:ignore:end
+
+      const map = new Map([['key', 'value']]);
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      // Throws "TypeError: map.keys(...).forEach is not a function"
+      map.keys().forEach(val => console.log(val));
+      // acquit:ignore:start
+      }, /forEach is not a function/);
+      // acquit:ignore:end
+
+      // Must use `Array.from()` to convert iterable to array
+      // before using `forEach()`
+      Array.from(map.keys()).forEach(val => console.log(val));
     });
   });
 
