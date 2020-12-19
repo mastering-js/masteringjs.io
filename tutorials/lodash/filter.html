@@ -80,7 +80,7 @@ _.filter(arr, isEven); <span class="hljs-comment">// [2, 4, 6, 8]</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">v</span>) </span>{ <span class="hljs-keyword">return</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>; }</code></pre>
 <p>The function you pass to <code>filter()</code> is called the <em>predicate</em>. If
 the predicate returns a <a href="/tutorials/fundamentals/falsy">falsy</a> value
-(like <code>null</code>, <code>undefined</code>, <code>0</code>, or <code>&#39;&#39;</code>), Lodash filters that value out.</p>
+(like <a href="/tutorials/fundamentals/null"><code>null</code></a>, <code>undefined</code>, <code>0</code>, or <code>&#39;&#39;</code>), Lodash filters that value out.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-string">'hello'</span>];
 
 _.filter(arr, v =&gt; v); <span class="hljs-comment">// ['hello']</span></code></pre>

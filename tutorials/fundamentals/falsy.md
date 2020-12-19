@@ -14,7 +14,7 @@ The `console.log()` will only run if `v` is **not** one of the below values:
 - `0`
 - `0n`: 0 as a [BigInt](http://thecodebarbarian.com/an-overview-of-bigint-in-node-js.html)
 - `''`: Empty string
-- `null`
+- [`null`](/tutorials/fundamentals/null)
 - `undefined`
 - `NaN`
 

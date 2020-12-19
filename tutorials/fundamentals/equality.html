@@ -92,7 +92,7 @@ you care about <code>NaN</code>. The distinction between <code>+0</code> and <co
 supports several <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-abstract-equality-comparison">implicit type conversions</a>. Here&#39;s a brief overview:</p>
 <ol>
 <li>If <code>x</code> and <code>y</code> are the same type, check if <code>x === y</code>.</li>
-<li>If <code>x</code> and <code>y</code> are both either <code>null</code> or <code>undefined</code>, return <code>true</code>.</li>
+<li>If <code>x</code> and <code>y</code> are both either <a href="/tutorials/fundamentals/null"><code>null</code></a> or <code>undefined</code>, return <code>true</code>.</li>
 <li>If <code>x</code> is a number and <code>y</code> is a string, convert <code>y</code> to a number and then compare using <code>===</code>. Similarly, if <code>x</code> is a boolean or string, and <code>y</code> is a number, convert <code>x</code> to a number.</li>
 <li>If <code>x</code> or <code>y</code> is a boolean, convert the other value of a number and compare them.</li>
 <li>If <code>x</code> is an object and <code>y</code> is a symbol, string, or number, try to convert <code>x</code> to a primitive using valueOf() and then compare using <code>===</code>.</li>

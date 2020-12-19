@@ -7,7 +7,7 @@ for which the function returned a [truthy](/tutorials/fundamentals/truthy) value
 
 The function you pass to `filter()` is called the _predicate_. If
 the predicate returns a [falsy](/tutorials/fundamentals/falsy) value
-(like `null`, `undefined`, `0`, or `''`), Lodash filters that value out.
+(like [`null`](/tutorials/fundamentals/null), `undefined`, `0`, or `''`), Lodash filters that value out.
 
 ```javascript
 [require:lodash filter arrow and truthy$]

@@ -85,7 +85,7 @@ await User.create([
 Handling `null` Values
 --------------------
 
-Since `null` is a distinct value, you cannot save two users that have a `null` email. Similarly,
+Since [`null`](/tutorials/fundamentals/null) is a distinct value, you cannot save two users that have a `null` email. Similarly,
 you cannot save two users that don't have an `email` property.
 
 ```javascript

@@ -2,7 +2,7 @@ In Mongoose, the [`Model.findById()` function](https://mongoosejs.com/docs/api/m
 find one document by its `_id`. The `findById()` function takes in a single
 parameter, the document id. It returns a [promise](/tutorials/fundamentals/promise) that resolves to the
 [Mongoose document](https://mongoosejs.com/docs/documents.html) if MongoDB found 
-a document with the given `id`, or `null` if no document was found.
+a document with the given `id`, or [`null`](/tutorials/fundamentals/null) if no document was found.
 
 ```javascript
 [require:Mongoose.*findById.*basic]

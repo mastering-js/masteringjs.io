@@ -123,7 +123,7 @@ by their <a href="https://thecodebarbarian.com/the-80-20-guide-to-json-stringify
 libraries. However, comparing <code>JSON.stringify()</code> output has an unfortunate
 edge case that may be a problem depending on your use case. Since <code>undefined</code>
 isn&#39;t a valid JSON value, the below arrays have the same <code>JSON.stringify()</code> output,
-because <code>JSON.stringify()</code> converts <code>undefined</code> to <code>null</code>.</p>
+because <code>JSON.stringify()</code> converts <code>undefined</code> to <a href="/tutorials/fundamentals/null"><code>null</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> a = [<span class="hljs-literal">undefined</span>];
 <span class="hljs-keyword">const</span> b = [<span class="hljs-literal">null</span>];</code></pre>
 <h2 id="using-lodashs-isequal">Using Lodash&#39;s <code>isEqual()</code></h2>

@@ -51,7 +51,7 @@ Edge Cases
 ----------
 
 If you're populating a single document and the referenced document doesn't exist,
-Mongoose will set the populated property to `null`.
+Mongoose will set the populated property to [`null`](/tutorials/fundamentals/null).
 
 ```javascript
 [require:Mongoose Populate.*missing docs$]

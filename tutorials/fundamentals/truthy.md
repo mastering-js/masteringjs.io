@@ -17,7 +17,7 @@ Remember that there are [only 7 values in JavaScript that are falsy](/tutorials/
 - `0`
 - `0n`: 0 as a [BigInt](http://thecodebarbarian.com/an-overview-of-bigint-in-node-js.html)
 - `''`: Empty string
-- `null`
+- [`null`](/tutorials/fundamentals/null)
 - `undefined`
 - `NaN`
 

@@ -1,6 +1,6 @@
 The [`_.get()` function in Lodash](https://lodash.com/docs/4.17.15#get) lets you
 get deeply nested properties in an object without worrying about whether an 
-intermediate property is `null` or `undefined`. For example, suppose you have
+intermediate property is [`null`](/tutorials/fundamentals/null) or `undefined`. For example, suppose you have
 the below object:
 
 ```javascript

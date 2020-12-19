@@ -129,7 +129,7 @@ also delete the <code>unique</code> index, and you will be able to save duplicat
   { <span class="hljs-attr">email</span>: <span class="hljs-string">'sergey@google.com'</span> }
 ]);</code></pre>
 <h2 id="handling-null-values">Handling <code>null</code> Values</h2>
-<p>Since <code>null</code> is a distinct value, you cannot save two users that have a <code>null</code> email. Similarly,
+<p>Since <a href="/tutorials/fundamentals/null"><code>null</code></a> is a distinct value, you cannot save two users that have a <code>null</code> email. Similarly,
 you cannot save two users that don&#39;t have an <code>email</code> property.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Throws because both documents have undefined `email`</span>
 <span class="hljs-keyword">await</span> User.create([

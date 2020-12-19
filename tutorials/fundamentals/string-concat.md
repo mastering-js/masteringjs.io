@@ -19,7 +19,7 @@ You can also use `+=`, where `a += b` is a shorthand for `a = a + b`.
 
 If the left hand side of the `+` operator is a string, JavaScript will coerce
 the right hand side to a string. That means it is safe to concatenate objects,
-numbers, `null`, and `undefined`.
+numbers, [`null`](/tutorials/fundamentals/null), and `undefined`.
 
 ```javascript
 [require:Fundamentals.*concat.*null]

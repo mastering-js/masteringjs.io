@@ -119,7 +119,7 @@ promise.then(<span class="hljs-literal">null</span>, err =&gt; {
   err.message; <span class="hljs-comment">// 'Oops!'</span>
 });</code></pre>
 <p>Both <code>onFulfilled()</code> and <code>onRejected()</code> are optional. If <code>onFulfilled()</code> is
-<code>null</code> like in the above example, JavaScript will do nothing if the promise is
+<a href="/tutorials/fundamentals/null"><code>null</code></a> like in the above example, JavaScript will do nothing if the promise is
 fulfilled. If you call <code>.then()</code> without an <code>onRejected()</code> function and the
 promise rejects, that will lead to an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled rejection error message</a>.</p>
 <h2 id="then-vs-catch"><code>then()</code> vs <code>catch()</code></h2>

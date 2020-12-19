@@ -42,7 +42,7 @@ a promise that is already rejected, JavaScript calls `onRejected()`.
 ```
 
 Both `onFulfilled()` and `onRejected()` are optional. If `onFulfilled()` is
-`null` like in the above example, JavaScript will do nothing if the promise is
+[`null`](/tutorials/fundamentals/null) like in the above example, JavaScript will do nothing if the promise is
 fulfilled. If you call `.then()` without an `onRejected()` function and the
 promise rejects, that will lead to an [unhandled rejection error message](https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html).
 

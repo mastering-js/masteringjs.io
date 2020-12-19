@@ -21,7 +21,7 @@ Internal State With Components
 
 One advantage Vue has over React is [two way data binding on form elements](https://vuejs.org/v2/guide/forms.html). Forms in Vue are trivial using `v-model`, but they require a bit more work with React.
 
-Suppose you wanted to extend the `hello` component with an input, so the user can enter their name. You should add a [`data` function](https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function) to your component `definition` that returns the initial state of the component. Make sure you define an initial state for all the properties you want Vue to watch, even if it is `null`.
+Suppose you wanted to extend the `hello` component with an input, so the user can enter their name. You should add a [`data` function](https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function) to your component `definition` that returns the initial state of the component. Make sure you define an initial state for all the properties you want Vue to watch, even if it is [`null`](/tutorials/fundamentals/null).
 
 ```javascript
 [require:Vue.*component.*component state]

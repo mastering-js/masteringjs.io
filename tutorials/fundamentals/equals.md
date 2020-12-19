@@ -7,7 +7,7 @@ Given 2 values `x` and `y`, here's how JavaScript checks whether `x === y`:
 
 1. Check the types of `x` and `y`. If they are different types, return `false`.
 2. If `x` and `y` are numbers, first check if either `x` or `y` is `NaN`, and return `false` if one is `NaN`. If both `x` and `y` are either `+0` or `-0`, return `true`. Otherwise, check to see if they are the same number.
-3. If `x` and `y` are both `null` or both `undefined`, return `true`.
+3. If `x` and `y` are both [`null`](/tutorials/fundamentals/null) or both `undefined`, return `true`.
 4. If `x` and `y` are both booleans, both strings, or both symbols, compare them by value.
 5. If `x` and `y` are both objects, return true if and only if they reference the same object.
 

@@ -55,7 +55,7 @@ This approach is handy because it requires minimal code and no outside
 libraries. However, comparing `JSON.stringify()` output has an unfortunate
 edge case that may be a problem depending on your use case. Since `undefined`
 isn't a valid JSON value, the below arrays have the same `JSON.stringify()` output,
-because `JSON.stringify()` converts `undefined` to `null`.
+because `JSON.stringify()` converts `undefined` to [`null`](/tutorials/fundamentals/null).
 
 ```javascript
 const a = [undefined];

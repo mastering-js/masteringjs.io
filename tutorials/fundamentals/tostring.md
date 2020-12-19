@@ -18,7 +18,7 @@ typeof num.toString(); // 'string'
 (42).toString(); // '42'
 ```
 
-All [primitive values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) **except** `null` and `undefined` have a `toString()` function: strings, numbers, booleans, BigInts, and
+All [primitive values](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) **except** [`null`](/tutorials/fundamentals/null) and `undefined` have a `toString()` function: strings, numbers, booleans, BigInts, and
 [symbols](/tutorials/fundamentals/symbol).
 
 ```javascript

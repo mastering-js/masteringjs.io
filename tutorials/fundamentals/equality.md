@@ -27,7 +27,7 @@ Abstract Equality
 supports several [implicit type conversions](https://www.ecma-international.org/ecma-262/10.0/index.html#sec-abstract-equality-comparison). Here's a brief overview:
 
 1. If `x` and `y` are the same type, check if `x === y`.
-2. If `x` and `y` are both either `null` or `undefined`, return `true`.
+2. If `x` and `y` are both either [`null`](/tutorials/fundamentals/null) or `undefined`, return `true`.
 3. If `x` is a number and `y` is a string, convert `y` to a number and then compare using `===`. Similarly, if `x` is a boolean or string, and `y` is a number, convert `x` to a number.
 4. If `x` or `y` is a boolean, convert the other value of a number and compare them.
 5. If `x` is an object and `y` is a symbol, string, or number, try to convert `x` to a primitive using valueOf() and then compare using `===`.

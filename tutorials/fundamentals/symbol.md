@@ -1,4 +1,4 @@
-[Symbols](http://thecodebarbarian.com/a-practical-guide-to-symbols-in-javascript.html) are a primitive data type in JavaScript, like `number`, `boolean`, or `null`. They're often used to avoid property name conflicts, or to simulate private values on JavaScript objects.
+[Symbols](http://thecodebarbarian.com/a-practical-guide-to-symbols-in-javascript.html) are a primitive data type in JavaScript, like `number`, `boolean`, or [`null`](/tutorials/fundamentals/null). They're often used to avoid property name conflicts, or to simulate private values on JavaScript objects.
 
 You can create a symbol by calling the global function `Symbol()`:
 

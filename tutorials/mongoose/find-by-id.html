@@ -76,7 +76,7 @@
 find one document by its <code>_id</code>. The <code>findById()</code> function takes in a single
 parameter, the document id. It returns a <a href="/tutorials/fundamentals/promise">promise</a> that resolves to the
 <a href="https://mongoosejs.com/docs/documents.html">Mongoose document</a> if MongoDB found 
-a document with the given <code>id</code>, or <code>null</code> if no document was found.</p>
+a document with the given <code>id</code>, or <a href="/tutorials/fundamentals/null"><code>null</code></a> if no document was found.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">_id</span>: <span class="hljs-built_in">Number</span> }, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
 <span class="hljs-keyword">const</span> Model = mongoose.model(<span class="hljs-string">'MyModel'</span>, schema);
 

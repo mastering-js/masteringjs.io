@@ -6,7 +6,7 @@ as a string.
 ```
 
 Here's the general idea: the `typeof` operator returns [which of the 8 JavaScript data types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures) a given value is. There's one key exception to this
-rule: `null`.
+rule: [`null`](/tutorials/fundamentals/null).
 
 With `null`
 -----------

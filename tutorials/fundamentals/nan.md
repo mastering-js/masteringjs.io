@@ -43,7 +43,7 @@ Serializing
 
 One of the major reasons to avoid `NaN` is that most serializers don't have good support for `NaN`.
 
-For example, `NaN` is **not** representable in JSON. The [`JSON.stringify()` function](/tutorials/fundamentals/stringify) converts `NaN` into `null`:
+For example, `NaN` is **not** representable in JSON. The [`JSON.stringify()` function](/tutorials/fundamentals/stringify) converts `NaN` into [`null`](/tutorials/fundamentals/null):
 
 ```javascript
 const obj = { x: NaN };

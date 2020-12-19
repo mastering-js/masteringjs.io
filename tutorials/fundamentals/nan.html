@@ -96,7 +96,7 @@ v; <span class="hljs-comment">// NaN</span>
 <span class="hljs-keyword">typeof</span> v; <span class="hljs-comment">// "number"</span></code></pre>
 <h2 id="serializing">Serializing</h2>
 <p>One of the major reasons to avoid <code>NaN</code> is that most serializers don&#39;t have good support for <code>NaN</code>.</p>
-<p>For example, <code>NaN</code> is <strong>not</strong> representable in JSON. The <a href="/tutorials/fundamentals/stringify"><code>JSON.stringify()</code> function</a> converts <code>NaN</code> into <code>null</code>:</p>
+<p>For example, <code>NaN</code> is <strong>not</strong> representable in JSON. The <a href="/tutorials/fundamentals/stringify"><code>JSON.stringify()</code> function</a> converts <code>NaN</code> into <a href="/tutorials/fundamentals/null"><code>null</code></a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">x</span>: <span class="hljs-literal">NaN</span> };
 <span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{"x":null}'</span></code></pre>
 <p>On the other hand, <a href="https://mongoosejs.com/">Mongoose</a> validation throws an error when a numeric value is <code>NaN</code>:</p>
