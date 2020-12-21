@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Array `filter()` in JavaScript - Mastering JS</title>
+    <title>How to Filter an Object with JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Array `filter()` in JavaScript" />
+    <meta property="og:title" content="How to Filter an Object with JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="The `filter()` function in JavaScript lets you filter out array elements that don't match certain criteria. Here's what you need to know." />
-    <meta name="description" content="The `filter()` function in JavaScript lets you filter out array elements that don't match certain criteria. Here's what you need to know." />
+    <meta property="og:description" content="JavaScript arrays have a neat `filter()` function. Here's how you can use the `filter()` pattern with objects." />
+    <meta name="description" content="JavaScript arrays have a neat `filter()` function. Here's how you can use the `filter()` pattern with objects." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Array `filter()` in JavaScript</h1>
+  <h1>How to Filter an Object with JavaScript</h1>
   <div class="date">
-    Oct 15, 2019
+    Dec 21, 2020
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,7 +72,9 @@
 	  }
 	})();
 	</script>
-  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array#filter()</code> function</a> takes a <a href="/tutorials/fundamentals/callbacks"><code>callback</code> function</a>, and returns a new array of elements for which <code>callback</code> returns a truthy value.</p>
+  <p>JavaScript&#39;s <a href="/tutorials/fundamentals/filter">array <code>filter()</code> function</a> is a handy
+function that takes a function <code>callback</code> and returns a new array with just the
+elements for which <code>callback</code> returned <code>true</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];
 
 <span class="hljs-keyword">let</span> callback = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
@@ -82,28 +84,49 @@ even; <span class="hljs-comment">// [2, 4, 6]</span>
 callback = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
 <span class="hljs-keyword">const</span> odd = numbers.filter(callback);
 odd; <span class="hljs-comment">// [1, 3, 5]</span></code></pre>
-<p>Remember that <code>filter()</code> returns a new array. It does <strong>not</strong>
-modify the existing array.</p>
-<pre><code class="language-javascript">even === numbers; <span class="hljs-comment">// false</span>
-odd === numbers; <span class="hljs-comment">// false</span>
-even === odd; <span class="hljs-comment">// false</span>
+<p>Unfortunately, JavaScript objects don&#39;t have a <code>filter()</code> function. But that
+doesn&#39;t mean you can&#39;t use <code>filter()</code> to filter objects, you just need to
+be able to <a href="/tutorials/fundamentals/iterate-object">iterate over an object</a> and
+convert the object into an array using <a href="/tutorials/fundamentals/iterate-object#using-objectentries"><code>Object.entries()</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> numWins = {
+  <span class="hljs-string">'BUF'</span>: <span class="hljs-number">11</span>,
+  <span class="hljs-string">'MIA'</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-string">'NE'</span>: <span class="hljs-number">6</span>,
+  <span class="hljs-string">'NYJ'</span>: <span class="hljs-number">1</span>
+};
 
-numbers.length; <span class="hljs-comment">// 6, `filter()` does not modify `numbers`</span></code></pre>
-<p><code>filter()</code> behaves like a <a href="/tutorials/fundamentals/shallow-copy">shallow clone</a>: it only clones the top-level array, not any objects in the array.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> people = [
-  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
-  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
-  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
-];
+<span class="hljs-comment">// Convert `numWins` to a key/value array</span>
+<span class="hljs-comment">// `[['BUF', 11], ['MIA', 9], ...]`</span>
+<span class="hljs-keyword">const</span> asArray = <span class="hljs-built_in">Object</span>.entries(numWins);
 
-<span class="hljs-keyword">const</span> filtered = people.filter(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> p.rank === <span class="hljs-string">'Lieutenant'</span>);
+<span class="hljs-comment">// Use `filter()` to filter the key/value array</span>
+<span class="hljs-keyword">const</span> atLeast9Wins = asArray.filter(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> value &gt;= <span class="hljs-number">9</span>);
 
-<span class="hljs-comment">// Although `filtered` is a new array, it still points to</span>
-<span class="hljs-comment">// the same objects, so modifying an object in the filtered</span>
-<span class="hljs-comment">// array also affects the original array.</span>
-filtered[<span class="hljs-number">0</span>] === people[<span class="hljs-number">2</span>]; <span class="hljs-comment">// true</span>
-filtered[<span class="hljs-number">0</span>].rank = <span class="hljs-string">'Lieutenant Commander'</span>;
-people[<span class="hljs-number">2</span>].rank; <span class="hljs-comment">// 'Lieutenant Commander'</span></code></pre>
+<span class="hljs-comment">// Convert the key/value array back to an object:</span>
+<span class="hljs-comment">// `{ 'BUF': 11, 'MIA': 9 }`</span>
+<span class="hljs-keyword">const</span> atLeast9WinsObject = <span class="hljs-built_in">Object</span>.fromEntries(atLeast9Wins);</code></pre>
+<p>You can implement this logic as a one-liner, but it is a bit messy:</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filterObject</span>(<span class="hljs-params">obj, callback</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.fromEntries(<span class="hljs-built_in">Object</span>.entries(obj).
+    filter(<span class="hljs-function">(<span class="hljs-params">[key, val]</span>) =&gt;</span> callback(val, key)));
+}</code></pre>
+<p>You can implement this more elegantly using Lodash&#39;s <code>flow()</code> function, which behaves
+like a <a href="https://www.freecodecamp.org/news/pipe-and-compose-in-javascript-5b04004ac937/"><code>pipe()</code> function</a> that lets you chain static methods
+like <code>Object.fromEntries()</code> and <code>Object.entries()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> numWins = {
+  <span class="hljs-string">'BUF'</span>: <span class="hljs-number">11</span>,
+  <span class="hljs-string">'MIA'</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-string">'NE'</span>: <span class="hljs-number">6</span>,
+  <span class="hljs-string">'NYJ'</span>: <span class="hljs-number">1</span>
+};
+
+<span class="hljs-keyword">const</span> atLeast9Wins = _.flow([
+  <span class="hljs-built_in">Object</span>.entries,
+  arr =&gt; arr.filter(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> value &gt;= <span class="hljs-number">9</span>),
+  <span class="hljs-built_in">Object</span>.fromEntries
+])(numWins);
+
+atLeast9Wins; <span class="hljs-comment">// { BUF: 11, MIA: 9 }</span></code></pre>
 
   
   <hr>
@@ -111,9 +134,6 @@ people[<span class="hljs-number">2</span>].rank; <span class="hljs-comment">// '
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
   
 
@@ -130,6 +150,9 @@ people[<span class="hljs-number">2</span>].rank; <span class="hljs-comment">// '
   
 
     <li><a href="/tutorials/fundamentals/nan">NaN in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/equality">Equality in JavaScript</a></li>
   
     </ul>
   

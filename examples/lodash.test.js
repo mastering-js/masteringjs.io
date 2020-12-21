@@ -730,6 +730,26 @@ describe('lodash', function() {
     assert.ok(obj1.a !== obj2.a);
     // acquit:ignore:end
   });
+
+  it('filter object with flow', function() {
+    const numWins = {
+      'BUF': 11,
+      'MIA': 9,
+      'NE': 6,
+      'NYJ': 1
+    };
+
+    const atLeast9Wins = _.flow([
+      Object.entries,
+      arr => arr.filter(([key, value]) => value >= 9),
+      Object.fromEntries
+    ])(numWins);
+
+    atLeast9Wins; // { BUF: 11, MIA: 9 }
+    // acquit:ignore:start
+    assert.deepEqual(atLeast9Wins, { BUF: 11, MIA: 9 });
+    // acquit:ignore:end
+  });
 });
 
 const EventEmitter = require('events').EventEmitter;

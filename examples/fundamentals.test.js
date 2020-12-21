@@ -4286,6 +4286,29 @@ describe('Fundamentals', function() {
     assert.ok(!(d1.toUTCString().slice(0, format.length) === d3.toUTCString().slice(0, format.length)));
     // acquit:ignore:end
   });
+
+  it('filter object', function() {
+    const numWins = {
+      'BUF': 11,
+      'MIA': 9,
+      'NE': 6,
+      'NYJ': 1
+    };
+
+    // Convert `numWins` to a key/value array
+    // `[['BUF', 11], ['MIA', 9], ...]`
+    const asArray = Object.entries(numWins);
+
+    // Use `filter()` to filter the key/value array
+    const atLeast9Wins = asArray.filter(([key, value]) => value >= 9);
+
+    // Convert the key/value array back to an object:
+    // `{ 'BUF': 11, 'MIA': 9 }`
+    const atLeast9WinsObject = Object.fromEntries(atLeast9Wins);
+    // acquit:ignore:start
+    assert.deepEqual(atLeast9WinsObject, { BUF: 11, MIA: 9 });
+    // acquit:ignore:end
+  });
 });
 
 if (!Array.prototype.flat) {
