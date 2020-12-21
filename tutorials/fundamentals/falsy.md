@@ -16,7 +16,7 @@ The `console.log()` will only run if `v` is **not** one of the below values:
 - `''`: Empty string
 - [`null`](/tutorials/fundamentals/null)
 - `undefined`
-- `NaN`
+- [`NaN`](/tutorials/fundamentals/nan)
 
 These 7 values are the only falsy values in JavaScript. Any value that is not falsy is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/truthy). 
 

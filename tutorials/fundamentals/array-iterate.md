@@ -14,7 +14,7 @@ Below are several of the most important differences between the 4 common approac
 [Async/Await](/tutorials/fundamentals/async-await) Support
 -------------------
 
-The big gotcha with functional methods like `forEach()` is that, because you pass a
+The big gotcha with functional methods like [`forEach()`](/tutorials/fundamentals/foreach) is that, because you pass a
 separate function to `forEach()`, [using async/await with `forEach()` is hard](https://thecodebarbarian.com/basic-functional-programming-with-async-await.html). For example,
 the below code will print the numbers 0-9 in reverse order, because `forEach()` executes
 async functions in parallel and doesn't give you a way to handle errors.

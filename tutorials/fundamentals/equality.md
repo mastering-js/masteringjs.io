@@ -18,7 +18,7 @@ Strict equality, SameValueZero, and SameValue are almost equivalent. They only d
 **SameValueZero:** There's no way to use SameValueZero directly, but the [`Array#includes()` method](/tutorials/fundamentals/array-includes) uses SameValueZero internally. So, to try out SameValueZero, you can use `includes()`. The only difference between SameValue and SameValueZero is that SameValueZero treats `+0` as equal to `-0`: `[+0].includes(-0) === true`.
 
 As a developer, you should typically use `===`, with the understanding that you may need to add a special case if
-you care about `NaN`. The distinction between `+0` and `-0` is not important for most use cases.
+you care about [`NaN`](/tutorials/fundamentals/nan). The distinction between `+0` and `-0` is not important for most use cases.
 
 Abstract Equality
 -----------------

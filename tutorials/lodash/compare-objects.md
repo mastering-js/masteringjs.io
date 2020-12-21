@@ -4,7 +4,7 @@ Lodash has an [`isEqual()` function](https://lodash.com/docs/4.17.15#isEqual) th
 [require:lodash isEqual basic example$]
 ```
 
-When comparing primitive values, the `isEqual()` function uses [SameValueZero semantics](/tutorials/fundamentals/equality), which means that `NaN` is considered equal to itself, and `+0` is considered equal to `-0`.
+When comparing primitive values, the `isEqual()` function uses [SameValueZero semantics](/tutorials/fundamentals/equality), which means that [`NaN`](/tutorials/fundamentals/nan) is considered equal to itself, and `+0` is considered equal to `-0`.
 
 ```javascript
 _.isEqual({ x: NaN }, { x: NaN }); // true

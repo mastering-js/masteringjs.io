@@ -21,7 +21,7 @@ The `includes()` only treats two objects as equal if they are the same reference
 [require:Fundamentals Array includes objects$]
 ```
 
-The only difference is how SameValueZero handles [`NaN`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN). In JavaScript, `NaN !== NaN`. However, `includes()` can correctly find `NaN` and `Number.NaN` in an
+The only difference is how SameValueZero handles [`NaN`](/tutorials/fundamentals/nan). In JavaScript, `NaN !== NaN`. However, `includes()` can correctly find `NaN` and `Number.NaN` in an
 array.
 
 ```javascript

@@ -92,7 +92,7 @@ obj1 === obj2; <span class="hljs-comment">// false</span>
 <span class="hljs-comment">// Lodash's `isEqual()` checks if the two objects have the same keys</span>
 <span class="hljs-comment">// and values:</span>
 _.isEqual(obj1, obj2); <span class="hljs-comment">// true</span></code></pre>
-<p>When comparing primitive values, the <code>isEqual()</code> function uses <a href="/tutorials/fundamentals/equality">SameValueZero semantics</a>, which means that <code>NaN</code> is considered equal to itself, and <code>+0</code> is considered equal to <code>-0</code>.</p>
+<p>When comparing primitive values, the <code>isEqual()</code> function uses <a href="/tutorials/fundamentals/equality">SameValueZero semantics</a>, which means that <a href="/tutorials/fundamentals/nan"><code>NaN</code></a> is considered equal to itself, and <code>+0</code> is considered equal to <code>-0</code>.</p>
 <pre><code class="language-javascript">_.isEqual({ <span class="hljs-attr">x</span>: <span class="hljs-literal">NaN</span> }, { <span class="hljs-attr">x</span>: <span class="hljs-literal">NaN</span> }); <span class="hljs-comment">// true</span>
 _.isEqual({ <span class="hljs-attr">x</span>: +<span class="hljs-number">0</span> }, { <span class="hljs-attr">x</span>: <span class="hljs-number">-0</span> }); <span class="hljs-comment">// true</span></code></pre>
 <h2 id="built-in-classes">Built-in Classes</h2>

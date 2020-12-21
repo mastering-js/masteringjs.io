@@ -84,7 +84,7 @@ patterns:</p>
 <p>Below are several of the most important differences between the 4 common approaches.</p>
 <p><strong>TLDR:</strong> Prefer to use for-of (3) where possible. Simple <code>for</code> loop (1) is OK as well. Do <strong>not</strong> use <code>for/in</code>.</p>
 <h2 id="asyncawait-support"><a href="/tutorials/fundamentals/async-await">Async/Await</a> Support</h2>
-<p>The big gotcha with functional methods like <code>forEach()</code> is that, because you pass a
+<p>The big gotcha with functional methods like <a href="/tutorials/fundamentals/foreach"><code>forEach()</code></a> is that, because you pass a
 separate function to <code>forEach()</code>, <a href="https://thecodebarbarian.com/basic-functional-programming-with-async-await.html">using async/await with <code>forEach()</code> is hard</a>. For example,
 the below code will print the numbers 0-9 in reverse order, because <code>forEach()</code> executes
 async functions in parallel and doesn&#39;t give you a way to handle errors.</p>

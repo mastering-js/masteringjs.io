@@ -94,7 +94,7 @@ arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// 
 
 arr.includes(obj1); <span class="hljs-comment">// true</span>
 arr.includes(obj2); <span class="hljs-comment">// false</span></code></pre>
-<p>The only difference is how SameValueZero handles <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>. In JavaScript, <code>NaN !== NaN</code>. However, <code>includes()</code> can correctly find <code>NaN</code> and <code>Number.NaN</code> in an
+<p>The only difference is how SameValueZero handles <a href="/tutorials/fundamentals/nan"><code>NaN</code></a>. In JavaScript, <code>NaN !== NaN</code>. However, <code>includes()</code> can correctly find <code>NaN</code> and <code>Number.NaN</code> in an
 array.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-literal">NaN</span>];
 

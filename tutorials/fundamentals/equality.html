@@ -86,7 +86,7 @@
 <p><strong>SameValue:</strong> The <code>Object.is()</code> function implements the SameValue algorithm. With the SameValue algorithm, <code>NaN</code> is equal to itself: <code>Object.is(NaN, NaN) === true</code>. But, on the other hand, <code>+0</code> is not equal to <code>-0</code>: <code>Object.is(+0, -0) === false</code>.</p>
 <p><strong>SameValueZero:</strong> There&#39;s no way to use SameValueZero directly, but the <a href="/tutorials/fundamentals/array-includes"><code>Array#includes()</code> method</a> uses SameValueZero internally. So, to try out SameValueZero, you can use <code>includes()</code>. The only difference between SameValue and SameValueZero is that SameValueZero treats <code>+0</code> as equal to <code>-0</code>: <code>[+0].includes(-0) === true</code>.</p>
 <p>As a developer, you should typically use <code>===</code>, with the understanding that you may need to add a special case if
-you care about <code>NaN</code>. The distinction between <code>+0</code> and <code>-0</code> is not important for most use cases.</p>
+you care about <a href="/tutorials/fundamentals/nan"><code>NaN</code></a>. The distinction between <code>+0</code> and <code>-0</code> is not important for most use cases.</p>
 <h2 id="abstract-equality">Abstract Equality</h2>
 <p><a href="/tutorials/fundamentals/equals">Abstract equality has numerous differences</a>. The abstract equality algorithm
 supports several <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-abstract-equality-comparison">implicit type conversions</a>. Here&#39;s a brief overview:</p>

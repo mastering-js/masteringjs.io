@@ -16,7 +16,7 @@ of the below 7 values:
 - `''`: Empty string
 - `null`
 - `undefined`
-- `NaN`
+- [`NaN`](/tutorials/fundamentals/nan)
 
 ```javascript
 [require:Fundamentals.*logical operators not$]
