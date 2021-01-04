@@ -4,6 +4,22 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'JavaScript Trim String',
+    raw: './tutorials/fundamentals/trim-string.md',
+    url: '/tutorials/fundamentals/trim-string',
+    description: 'JavaScript strings have a neat `trim()` method that removes leading and trailing whitespace. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-01-04')
+  },
+  {
+    title: 'How to Filter an Object with JavaScript',
+    raw: './tutorials/fundamentals/filter-object.md',
+    url: '/tutorials/fundamentals/filter-object',
+    description: 'JavaScript arrays have a neat `filter()` function. Here\'s how you can use the `filter()` pattern with objects.',
+    tags: ['fundamentals'],
+    date: moment('2020-12-21')
+  },
+  {
     title: 'How to Filter an Object with JavaScript',
     raw: './tutorials/fundamentals/filter-object.md',
     url: '/tutorials/fundamentals/filter-object',

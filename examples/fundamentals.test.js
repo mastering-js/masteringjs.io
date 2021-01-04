@@ -4309,6 +4309,50 @@ describe('Fundamentals', function() {
     assert.deepEqual(atLeast9WinsObject, { BUF: 11, MIA: 9 });
     // acquit:ignore:end
   });
+
+  describe('trim', function() {
+    it('basic example', function() {
+      let str = ' hello world ';
+      str.trim(); // 'hello world'
+      // acquit:ignore:start
+      assert.equal(str.trim(), 'hello world');
+      // acquit:ignore:end
+
+      str = 'hello world ';
+      str.trim(); // 'hello world'
+      // acquit:ignore:start
+      assert.equal(str.trim(), 'hello world');
+      // acquit:ignore:end
+    });
+
+    it('tabs and newlines', function() {
+      let str = '\thello world\n';
+      str.trim(); // 'hello world'
+      // acquit:ignore:start
+      assert.equal(str.trim(), 'hello world');
+      // acquit:ignore:end
+    });
+
+    it('trimStart and trimEnd', function() {
+      let str = ' hello world ';
+      str.trimStart(); // 'hello world '
+      str.trimEnd(); // ' hello world'
+      // acquit:ignore:start
+      assert.equal(str.trimStart(), 'hello world ');
+      assert.equal(str.trimEnd(), ' hello world');
+      // acquit:ignore:end
+    });
+
+    it('trimStart regexp', function() {
+      let str = ' hello world ';
+      str.replace(/^\s+/, ''); // 'hello world '
+      str.replace(/\s+$/, ''); // ' hello world'
+      // acquit:ignore:start
+      assert.equal(str.replace(/^\s+/, ''), 'hello world ');
+      assert.equal(str.replace(/\s+$/, ''), ' hello world');
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
