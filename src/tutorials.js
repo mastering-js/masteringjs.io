@@ -20,14 +20,6 @@ module.exports = Object.freeze([
     date: moment('2020-12-21')
   },
   {
-    title: 'How to Filter an Object with JavaScript',
-    raw: './tutorials/fundamentals/filter-object.md',
-    url: '/tutorials/fundamentals/filter-object',
-    description: 'JavaScript arrays have a neat `filter()` function. Here\'s how you can use the `filter()` pattern with objects.',
-    tags: ['fundamentals'],
-    date: moment('2020-12-21')
-  },
-  {
     title: 'How to Use forEach() in JavaScript',
     raw: './tutorials/fundamentals/foreach.md',
     url: '/tutorials/fundamentals/foreach',
