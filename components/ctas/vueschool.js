@@ -12,7 +12,7 @@ module.exports = () => `
 
   <div class="cta-img-wrap">
     <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
-      <img src="/assets/vuemasterclass.png">
+      <img src="/assets/vueschool.png">
     </a>
   </div>
  </div>
