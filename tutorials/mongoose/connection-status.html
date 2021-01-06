@@ -7,8 +7,8 @@
     <meta property="og:title" content="Check Mongoose Connection Status" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="This is the placeholder description" />
-    <meta name="description" content="This is the placeholder description" />
+    <meta property="og:description" content="Mongoose connections have a `readyState` property that lets you check if Mongoose is connected to MongoDB. Here's what you need to know." />
+    <meta name="description" content="Mongoose connections have a `readyState` property that lets you check if Mongoose is connected to MongoDB. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -81,8 +81,7 @@
 <li>4 = invalid credentials</li>
 </ul>
 <p>These event names will emit when the state changes.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
 <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
 mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
@@ -104,8 +103,7 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});
-</code></pre>
+});</code></pre>
 
   <hr>
 <div class="cta">
