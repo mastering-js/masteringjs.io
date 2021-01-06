@@ -9,5 +9,5 @@
 These event names will emit when the state changes.
 
 ```javascript
-[require:Mongoose.*connect.*basic]
+[require:Mongoose.*connection-status.*gh-32]
 ```

@@ -1055,24 +1055,6 @@ describe('Mongoose', function() {
       // acquit:ignore:end
       // Connect to a MongoDB server running on 'localhost:27017' and use the
       // 'test' database.
-      console.log(mongoose.connection.readyState); //logs 0
-      mongoose.connection.on('connecting', () =>{ 
-        console.log('connecting')
-        console.log(mongoose.connection.readyState); //logs 2
-      });
-      mongoose.connection.on('connected', () => {
-        console.log('connected');
-        console.log(mongoose.connection.readyState); //logs 1
-      });
-      mongoose.connection.on('disconnecting', () => {
-        console.log('disconnecting');
-        console.log(mongoose.connection.readyState); // logs 3
-      });
-      mongoose.connection.on('disconnected', () => {
-        console.log('disconnected');
-        console.log(mongoose.connection.readyState); //logs 0
-      });
-
       await mongoose.connect('mongodb://localhost:27017/test', {
         useNewUrlParser: true // Boilerplate for Mongoose 5.x
       });
@@ -1977,6 +1959,36 @@ describe('Mongoose', function() {
       assert.ok(doc instanceof User);
       assert.equal(doc.email, 'bill@microsoft.com');
       // acquit:ignore:end
+    });
+  });
+  describe('connection-status', function() {
+    it('(gh-32)', async function() {
+        // acquit:ignore:start
+        await mongoose.disconnect();
+        // acquit:ignore:end
+        // Demonstrate the readyState and on event emitters
+        console.log(mongoose.connection.readyState); //logs 0
+        mongoose.connection.on('connecting', () => { 
+          console.log('connecting')
+          console.log(mongoose.connection.readyState); //logs 2
+        });
+        mongoose.connection.on('connected', () => {
+          console.log('connected');
+          console.log(mongoose.connection.readyState); //logs 1
+        });
+        mongoose.connection.on('disconnecting', () => {
+          console.log('disconnecting');
+          console.log(mongoose.connection.readyState); // logs 3
+        });
+        mongoose.connection.on('disconnected', () => {
+          console.log('disconnected');
+          console.log(mongoose.connection.readyState); //logs 0
+        });
+        // Connect to a MongoDB server running on 'localhost:27017' and use the
+        // 'test' database.
+        await mongoose.connect('mongodb://localhost:27017/test', {
+          useNewUrlParser: true // Boilerplate for Mongoose 5.x
+        });
     });
   });
 });

@@ -82,10 +82,9 @@
 </ul>
 <p>These event names will emit when the state changes.</p>
 <pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
-<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
 <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
-mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt;{ 
+mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
   <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 2</span>
 });
@@ -101,17 +100,11 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnected'</span>);
   <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
 });
-
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
 });
-
-<span class="hljs-comment">// Once you're connected to MongoDB, you can create a user model and</span>
-<span class="hljs-comment">// use it to save a user to the database.</span>
-<span class="hljs-keyword">const</span> userSchema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span> });
-<span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
-
-<span class="hljs-keyword">await</span> UserModel.create({ <span class="hljs-attr">name</span>: <span class="hljs-string">'test'</span> });
 </code></pre>
 
   <hr>
