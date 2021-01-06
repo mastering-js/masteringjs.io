@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Find All Documents in Mongoose - Mastering JS</title>
+    <title>Check Mongoose Connection Status - Mastering JS</title>
 
-    <meta property="og:title" content="How to Find All Documents in Mongoose" />
+    <meta property="og:title" content="Check Mongoose Connection Status" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="A tutorial about how to get all documents in a Mongoose model" />
-    <meta name="description" content="A tutorial about how to get all documents in a Mongoose model" />
+    <meta property="og:description" content="This is the placeholder description" />
+    <meta name="description" content="This is the placeholder description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>How to Find All Documents in Mongoose</h1>
+  <h1>Check Mongoose Connection Status</h1>
   <div class="date">
-    Jun 24, 2019
+    Jan 6, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,38 +72,40 @@
 	  }
 	})();
 	</script>
-  <p>Suppose you have a <a href="https://mongoosejs.com/docs/models.html">Mongoose model</a> <code>User</code>
-that contains all your app&#39;s users. To get a list of all users in the collection, call <a href="https://mongoosejs.com/docs/api/model.html#model_Model.find"><code>User.find()</code></a> with an empty object as the first parameter:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, Schema({
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}));
-
-<span class="hljs-comment">// Empty `filter` means "match all documents"</span>
-<span class="hljs-keyword">const</span> filter = {};
-<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);
+  <p><a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState">Mongoose has a readyState property in the Connection route of the API</a> that is of type <strong>property</strong> and will return a number representing the current state of the connection, 0-4. These states are as follows:</p>
+<ul>
+<li>0 = disconnected</li>
+<li>1 = connected</li>
+<li>2 = connecting</li>
+<li>3 = disconnecting</li>
+<li>4 = invalid credentials</li>
+</ul>
+<p>These event names will emit when the state changes.</p>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
+<span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
+mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 2</span>
+});
+mongoose.connection.on(<span class="hljs-string">'connected'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connected'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 1</span>
+});
+mongoose.connection.on(<span class="hljs-string">'disconnecting'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnecting'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">// logs 3</span>
+});
+mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnected'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
+});
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
+  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
+});
 </code></pre>
-<p>Equivalently, you can call <code>User.find()</code> with no arguments and get the same result.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> User.find();</code></pre>
-<h2 id="cursors">Cursors</h2>
-<p>Suppose your app is very popular and you have millions of users. Loading all your
-users into memory at once just won&#39;t work. To loop through all users one at a time without loading them all into memory at once, use a <a href="https://mongoosejs.com/docs/api/query.html#query_Query-cursor">cursor</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, Schema({
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}));
-
-<span class="hljs-comment">// Note no `await` here</span>
-<span class="hljs-keyword">const</span> cursor = User.find().cursor();
-
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> cursor.next(); doc != <span class="hljs-literal">null</span>; doc = <span class="hljs-keyword">await</span> cursor.next()) {
-  <span class="hljs-comment">// Use `doc`</span>
-}
-</code></pre>
-<p>Alternatively, you can use <a href="http://thecodebarbarian.com/getting-started-with-async-iterators-in-node-js">async iterators</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> doc <span class="hljs-keyword">of</span> User.find()) {
-  <span class="hljs-comment">// use `doc`</span>
-}</code></pre>
 
   <hr>
 <div class="cta">
@@ -126,9 +128,6 @@ users into memory at once just won&#39;t work. To loop through all users one at 
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/connection-status">Check Mongoose Connection Status</a></li>
-  
-
     <li><a href="/tutorials/mongoose/timestamps">Mongoose Timestamps</a></li>
   
 
@@ -145,6 +144,9 @@ users into memory at once just won&#39;t work. To loop through all users one at 
   
 
     <li><a href="/tutorials/mongoose/save">An Introduction to Mongoose's `save()` Function</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/array">An Introduction to Mongoose Arrays</a></li>
   
     </ul>
   

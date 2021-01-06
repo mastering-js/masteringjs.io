@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Check Mongoose Connection Status',
+    raw: './tutorials/mongoose/connection-status.md',
+    url: '/tutorials/mongoose/connection-status',
+    description: 'Here\'s how to use mongoose.connection.on() with a callback function instead of the readyState property.',
+    tags: ['mongoose'],
+    date: moment('2021-01-06')
+  },
+  {
     title: 'JavaScript Trim String',
     raw: './tutorials/fundamentals/trim-string.md',
     url: '/tutorials/fundamentals/trim-string',
