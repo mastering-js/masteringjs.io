@@ -72,12 +72,13 @@
 	  }
 	})();
 	</script>
-  <p><a href="&#39;https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState&#39;">&#39;Mongoose has a readyState property in the Connection route of the API&#39;</a> that is of type <strong>property</strong> and will return a number 0-3. These numbers represent the current state of the connection and are listed below:</p>
+  <p><a href="&#39;https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState&#39;">&#39;Mongoose has a readyState property in the Connection route of the API&#39;</a> that is of type <strong>property</strong> and will return a number representing the current state of the connection, 0-4. These states are as follows:</p>
 <ul>
 <li>0 = disconnected</li>
 <li>1 = connected</li>
 <li>2 = connecting</li>
 <li>3 = disconnecting</li>
+<li>4 = invalid credentials</li>
 </ul>
 <p>These event names will emit when the state changes.</p>
 
