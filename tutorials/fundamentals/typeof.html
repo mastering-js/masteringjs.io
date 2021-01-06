@@ -81,10 +81,12 @@ as a string.</p>
 <span class="hljs-keyword">typeof</span> BigInt(<span class="hljs-string">'1234'</span>); <span class="hljs-comment">// 'bigint'</span>
 <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'foo'</span>); <span class="hljs-comment">// 'symbol'</span>
 <span class="hljs-keyword">typeof</span> ({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }); <span class="hljs-comment">// 'object'</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}; <span class="hljs-comment">// 'function'</span>
 
 <span class="hljs-comment">// As far as `typeof` is concerned, all objects are the same.</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
-<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">new</span> MyClass()); <span class="hljs-comment">// 'object'</span></code></pre>
+<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">new</span> MyClass()); <span class="hljs-comment">// 'object'</span>
+</code></pre>
 <p>Here&#39;s the general idea: the <code>typeof</code> operator returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">which of the 8 JavaScript data types</a> a given value is. There&#39;s one key exception to this
 rule: <a href="/tutorials/fundamentals/null"><code>null</code></a>.</p>
 <h2 id="with-null">With <code>null</code></h2>

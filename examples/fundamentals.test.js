@@ -844,6 +844,7 @@ describe('Fundamentals', function() {
       typeof BigInt('1234'); // 'bigint'
       typeof Symbol('foo'); // 'symbol'
       typeof ({ answer: 42 }); // 'object'
+      typeof function() {}; // 'function'
 
       // As far as `typeof` is concerned, all objects are the same.
       class MyClass {}
@@ -854,6 +855,7 @@ describe('Fundamentals', function() {
       assert.equal(typeof true, 'boolean');
       assert.equal(typeof (void 0), 'undefined');
       assert.equal(typeof ({ answer: 42 }), 'object');
+      assert.equal(typeof (function() {}), 'function');
       assert.equal(typeof BigInt('1234'), 'bigint');
       assert.equal(typeof Symbol('foo'), 'symbol');
 
