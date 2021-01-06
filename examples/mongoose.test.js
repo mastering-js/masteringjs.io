@@ -1055,6 +1055,24 @@ describe('Mongoose', function() {
       // acquit:ignore:end
       // Connect to a MongoDB server running on 'localhost:27017' and use the
       // 'test' database.
+      console.log(mongoose.connection.readyState); //logs 0
+      mongoose.connection.on('connecting', () =>{ 
+        console.log('connecting')
+        console.log(mongoose.connection.readyState); //logs 2
+      });
+      mongoose.connection.on('connected', () => {
+        console.log('connected');
+        console.log(mongoose.connection.readyState); //logs 1
+      });
+      mongoose.connection.on('disconnecting', () => {
+        console.log('disconnecting');
+        console.log(mongoose.connection.readyState); // logs 3
+      });
+      mongoose.connection.on('disconnected', () => {
+        console.log('disconnected');
+        console.log(mongoose.connection.readyState); //logs 0
+      });
+
       await mongoose.connect('mongodb://localhost:27017/test', {
         useNewUrlParser: true // Boilerplate for Mongoose 5.x
       });
@@ -1065,6 +1083,7 @@ describe('Mongoose', function() {
       const UserModel = mongoose.model('User', userSchema);
 
       await UserModel.create({ name: 'test' });
+
     });
 
     it('error', async function() {
@@ -1075,7 +1094,6 @@ describe('Mongoose', function() {
       // Try to connect to `nota.domain`, which should fail
       const err = await mongoose.connect('mongodb://nota.domain:27017/test', options).
         catch(err => err);
-
       // 'failed to connect to server [nota.domain:27017] on first connect'
       err.message;
       // acquit:ignore:start

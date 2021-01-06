@@ -72,7 +72,7 @@
 	  }
 	})();
 	</script>
-  <p><a href="&#39;https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState&#39;">&#39;Mongoose has a readyState property in the Connection route of the API&#39;</a> that is of type <strong>property</strong> and will return a number representing the current state of the connection, 0-4. These states are as follows:</p>
+  <p><a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState">Mongoose has a readyState property in the Connection route of the API</a> that is of type <strong>property</strong> and will return a number representing the current state of the connection, 0-4. These states are as follows:</p>
 <ul>
 <li>0 = disconnected</li>
 <li>1 = connected</li>
@@ -81,6 +81,38 @@
 <li>4 = invalid credentials</li>
 </ul>
 <p>These event names will emit when the state changes.</p>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
+mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt;{ 
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 2</span>
+});
+mongoose.connection.on(<span class="hljs-string">'connected'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connected'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 1</span>
+});
+mongoose.connection.on(<span class="hljs-string">'disconnecting'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnecting'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">// logs 3</span>
+});
+mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnected'</span>);
+  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
+});
+
+<span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
+  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
+});
+
+<span class="hljs-comment">// Once you're connected to MongoDB, you can create a user model and</span>
+<span class="hljs-comment">// use it to save a user to the database.</span>
+<span class="hljs-keyword">const</span> userSchema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span> });
+<span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+
+<span class="hljs-keyword">await</span> UserModel.create({ <span class="hljs-attr">name</span>: <span class="hljs-string">'test'</span> });
+</code></pre>
 
   <hr>
 <div class="cta">
