@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Find All Documents in Mongoose - Mastering JS</title>
+    <title>Use .connect() and .createConnection() inside of an async function using await - Mastering JS</title>
 
-    <meta property="og:title" content="How to Find All Documents in Mongoose" />
+    <meta property="og:title" content="Use .connect() and .createConnection() inside of an async function using await" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="A tutorial about how to get all documents in a Mongoose model" />
-    <meta name="description" content="A tutorial about how to get all documents in a Mongoose model" />
+    <meta property="og:description" content="Placeholder description" />
+    <meta name="description" content="Placeholder description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>How to Find All Documents in Mongoose</h1>
+  <h1>Use .connect() and .createConnection() inside of an async function using await</h1>
   <div class="date">
-    Jun 24, 2019
+    Jan 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,36 +72,22 @@
 	  }
 	})();
 	</script>
-  <p>Suppose you have a <a href="https://mongoosejs.com/docs/models.html">Mongoose model</a> <code>User</code>
-that contains all your app&#39;s users. To get a list of all users in the collection, call <a href="https://mongoosejs.com/docs/api/model.html#model_Model.find"><code>User.find()</code></a> with an empty object as the first parameter:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, Schema({
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}));
-
-<span class="hljs-comment">// Empty `filter` means "match all documents"</span>
-<span class="hljs-keyword">const</span> filter = {};
-<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);</code></pre>
-<p>Equivalently, you can call <code>User.find()</code> with no arguments and get the same result.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> User.find();</code></pre>
-<h2 id="cursors">Cursors</h2>
-<p>Suppose your app is very popular and you have millions of users. Loading all your
-users into memory at once just won&#39;t work. To loop through all users one at a time without loading them all into memory at once, use a <a href="https://mongoosejs.com/docs/api/query.html#query_Query-cursor">cursor</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, Schema({
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}));
-
-<span class="hljs-comment">// Note no `await` here</span>
-<span class="hljs-keyword">const</span> cursor = User.find().cursor();
-
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> cursor.next(); doc != <span class="hljs-literal">null</span>; doc = <span class="hljs-keyword">await</span> cursor.next()) {
-  <span class="hljs-comment">// Use `doc`</span>
-}</code></pre>
-<p>Alternatively, you can use <a href="http://thecodebarbarian.com/getting-started-with-async-iterators-in-node-js">async iterators</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> doc <span class="hljs-keyword">of</span> User.find()) {
-  <span class="hljs-comment">// use `doc`</span>
-}</code></pre>
+  <p>Mongoose has two ways of connecting to a MongoDB database, <a href="https://mongoosejs.com/docs/connections.html">connect()</a> and <a href="https://mongoosejs.com/docs/connections.html#multiple_connections">createConnection()</a>. You can use these within an async function as follows:</p>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
+  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
+});
+</code></pre>
+<p>and for createConnection()</p>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-keyword">await</span> mongoose.createConnection(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
+  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>
+});
+</code></pre>
 
   <hr>
 <div class="cta">
@@ -124,9 +110,6 @@ users into memory at once just won&#39;t work. To loop through all users one at 
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/mongoose-connect-async">Use .connect() and .createConnection() inside of an async function using await</a></li>
-  
-
     <li><a href="/tutorials/mongoose/connection-status">Check Mongoose Connection Status</a></li>
   
 
@@ -143,6 +126,9 @@ users into memory at once just won&#39;t work. To loop through all users one at 
   
 
     <li><a href="/tutorials/mongoose/explain">Using MongoDB Explain with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/mongoose/save">An Introduction to Mongoose's `save()` Function</a></li>
   
     </ul>
   

@@ -1991,4 +1991,26 @@ describe('Mongoose', function() {
         });
     });
   });
+  describe('mongoose-connect-async', function() {
+    it('(gh-40a)', async function() {
+        // acquit:ignore:start
+        await mongoose.disconnect();
+        // acquit:ignore:end
+        // Connect to a MongoDB server running on 'localhost:27017' and use the
+        // 'test' database.
+        await mongoose.connect('mongodb://localhost:27017/test', {
+          useNewUrlParser: true // Boilerplate for Mongoose 5.x
+        });
+    });
+    it('(gh-40b)', async function() {
+      // acquit:ignore:start
+      await mongoose.disconnect();
+      // acquit:ignore:end
+      // Connect to a MongoDB server running on 'localhost:27017' and use the
+      // 'test' database.
+      await mongoose.createConnection('mongodb://localhost:27017/test', {
+        useNewUrlParser: true
+      });
+  });
+  });
 });
