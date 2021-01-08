@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Use .connect() and .createConnection() inside of an async function using await - Mastering JS</title>
+    <title>Mongoose Connect Using Async/Await - Mastering JS</title>
 
-    <meta property="og:title" content="Use .connect() and .createConnection() inside of an async function using await" />
+    <meta property="og:title" content="Mongoose Connect Using Async/Await" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder description" />
-    <meta name="description" content="Placeholder description" />
+    <meta property="og:description" content="How to use connect() and createConnection() in an async function." />
+    <meta name="description" content="How to use connect() and createConnection() in an async function." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,7 +60,7 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>Use .connect() and .createConnection() inside of an async function using await</h1>
+  <h1>Mongoose Connect Using Async/Await</h1>
   <div class="date">
     Jan 7, 2021
   </div>
@@ -73,21 +73,17 @@
 	})();
 	</script>
   <p>Mongoose has two ways of connecting to a MongoDB database, <a href="https://mongoosejs.com/docs/connections.html">connect()</a> and <a href="https://mongoosejs.com/docs/connections.html#multiple_connections">createConnection()</a>. You can use these within an async function as follows:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});
-</code></pre>
+});</code></pre>
 <p>and for createConnection()</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.createConnection(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>
-});
-</code></pre>
+});</code></pre>
 
   <hr>
 <div class="cta">
