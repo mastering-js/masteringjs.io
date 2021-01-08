@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Use .connect() and .createConnection() inside of an async function using await',
+    raw: './tutorials/mongoose/mongoose-connect-async.md',
+    url: '/tutorials/mongoose/mongoose-connect-async',
+    description: 'How to use connect() and creatConnection() in an async function.',
+    tags: ['mongoose'],
+    date: moment('2021-01-07')
+  },
+  {
     title: 'Check Mongoose Connection Status',
     raw: './tutorials/mongoose/connection-status.md',
     url: '/tutorials/mongoose/connection-status',

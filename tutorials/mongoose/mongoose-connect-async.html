@@ -2,18 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Check Mongoose Connection Status - Mastering JS</title>
+    <title>Use .connect() and .createConnection() inside of an async function using await - Mastering JS</title>
 
-    <meta property="og:title" content="Check Mongoose Connection Status" />
+    <meta property="og:title" content="Use .connect() and .createConnection() inside of an async function using await" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-<<<<<<< Updated upstream
-    <meta property="og:description" content="Mongoose connections have a `readyState` property that lets you check if Mongoose is connected to MongoDB. Here's what you need to know." />
-    <meta name="description" content="Mongoose connections have a `readyState` property that lets you check if Mongoose is connected to MongoDB. Here's what you need to know." />
-=======
-    <meta property="og:description" content="Here's how to use mongoose.connection.on() with a callback function instead of the readyState property." />
-    <meta name="description" content="Here's how to use mongoose.connection.on() with a callback function instead of the readyState property." />
->>>>>>> Stashed changes
+    <meta property="og:description" content="Placeholder description" />
+    <meta name="description" content="Placeholder description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -65,9 +60,9 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>Check Mongoose Connection Status</h1>
+  <h1>Use .connect() and .createConnection() inside of an async function using await</h1>
   <div class="date">
-    Jan 6, 2021
+    Jan 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -77,38 +72,22 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-readyState">Mongoose connections have a <code>readyState</code> property</a> that contains a number representing the current state of the connection, 0-4. These states are as follows:</p>
-<ul>
-<li>0 = disconnected</li>
-<li>1 = connected</li>
-<li>2 = connecting</li>
-<li>3 = disconnecting</li>
-<li>4 = invalid credentials</li>
-</ul>
-<p>These event names will emit when the state changes.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
-<span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
-mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
-  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 2</span>
-});
-mongoose.connection.on(<span class="hljs-string">'connected'</span>, () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connected'</span>);
-  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 1</span>
-});
-mongoose.connection.on(<span class="hljs-string">'disconnecting'</span>, () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnecting'</span>);
-  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">// logs 3</span>
-});
-mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'disconnected'</span>);
-  <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
-});
+  <p>Mongoose has two ways of connecting to a MongoDB database, <a href="https://mongoosejs.com/docs/connections.html">connect()</a> and <a href="https://mongoosejs.com/docs/connections.html#multiple_connections">createConnection()</a>. You can use these within an async function as follows:</p>
+<pre><code class="language-javascript">
 <span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});</code></pre>
+});
+</code></pre>
+<p>and for createConnection()</p>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<span class="hljs-comment">// 'test' database.</span>
+<span class="hljs-keyword">await</span> mongoose.createConnection(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
+  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>
+});
+</code></pre>
 
   <hr>
 <div class="cta">
@@ -131,7 +110,7 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/mongoose-connect-async">Use .connect() and .createConnection() inside of an async function using await</a></li>
+    <li><a href="/tutorials/mongoose/connection-status">Check Mongoose Connection Status</a></li>
   
 
     <li><a href="/tutorials/mongoose/timestamps">Mongoose Timestamps</a></li>
