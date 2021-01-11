@@ -1,4 +1,4 @@
-When making http requests in node, users have the option of using fetch(). Another option available to those developers is the axios library. Instead of having to do:  
+When making http requests, users have the option of using fetch() from the vanilla javascript library to be used on the frontend, or from importing node-fetch. Another option available to those developers is the axios library. Instead of having to do:  
 
 ```javascript
 [require:axios Node node]
@@ -10,7 +10,13 @@ You can do the following:
 [require:axios Node axios]
 ```
 
-If you were to be sending data through a POST request for example, the data would have to be of type:
+Or for a simple POST request:
+
+```javascript
+[require:axios.*POST requests.*basic example$]
+```
+
+When sending requests with data, the data can be of type:
 
 - string
 - object

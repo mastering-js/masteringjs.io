@@ -828,10 +828,20 @@ describe('axios', function() {
   });
   describe('Patch',function() {
     it('patch', async function() {
-      const axios = require('axios');
-      const res = await axios.patch('http://localhost:3000/make/request',{firstName: 'Masteringjs', lastName:'.io'});
+      const res = await axios.patch('https://httpbin.org/patch',{ firstName: 'Masteringjs' });
       
       res.data.headers['Content-Type']; //application/json;charset=utf-8
+    });
+    it('patch2', async function() {
+      const res = await axios.patch('https://httpbin.org/patch',{id: 12345} );
+
+      res.data.headers['Content-Type']; //application/json;charset=utf-8
+    });
+    it('patch3', async function() {
+      const res = await axios.patch('https://httpbin.org/patch',  'hello=world' );
+
+      res.data.headers['Content-Type']; // application/x-www-form-urlencoded
+      res.data.json; // { hello: 'world' }
     });
   });
   describe('Node', function() {

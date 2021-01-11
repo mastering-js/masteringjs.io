@@ -72,7 +72,7 @@
 	  }
 	})();
 	</script>
-  <p>When making http requests in node, users have the option of using fetch(). Another option available to those developers is the axios library. Instead of having to do:  </p>
+  <p>When making http requests, users have the option of using fetch() from the vanilla javascript library to be used on the frontend, or from importing node-fetch. Another option available to those developers is the axios library. Instead of having to do:  </p>
 <pre><code class="language-javascript"><span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`API/make/request`</span>, {
   <span class="hljs-attr">method</span>: <span class="hljs-string">"GET"</span>,
   <span class="hljs-attr">headers</span>:{
@@ -97,7 +97,12 @@
   <span class="hljs-built_in">console</span>.log(err);
 });
 </code></pre>
-<p>If you were to be sending data through a POST request for example, the data would have to be of type:</p>
+<p>Or for a simple POST request:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
+
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
+<p>When sending requests with data, the data can be of type:</p>
 <ul>
 <li>string</li>
 <li>object</li>
