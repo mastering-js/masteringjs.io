@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'JavaScript Enums',
+    raw: './tutorials/fundamentals/enum.md',
+    url: '/tutorials/fundamentals/enum',
+    description: 'JavaScript doesn\'t have an official enum type, but there are several design patterns that let you define enums using vanilla JavaScript. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-01-11')
+  },
+  {
     title: 'Mongoose Connect Using Async/Await',
     raw: './tutorials/mongoose/mongoose-connect-async.md',
     url: '/tutorials/mongoose/mongoose-connect-async',
