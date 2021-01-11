@@ -4,6 +4,22 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Make PATCH Requests with Axios',
+    raw: './tutorials/axios/axios-patch.md',
+    url: '/tutorials/axios/axios-patch',
+    description: 'placeholder',
+    tags: ['axios'],
+    date: moment('2021-01-11')
+  },
+  {
+    title: 'How to Use Axios in Node.js',
+    raw: './tutorials/axios/axios-node.md',
+    url: '/tutorials/axios/axios-node',
+    description: 'placeholder',
+    tags: ['axios'],
+    date: moment('2021-01-11')
+  },
+  {
     title: 'Mongoose Connect Using Async/Await',
     raw: './tutorials/mongoose/mongoose-connect-async.md',
     url: '/tutorials/mongoose/mongoose-connect-async',

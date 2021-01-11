@@ -826,4 +826,40 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+  describe('Patch',function() {
+    it('patch', async function() {
+      const axios = require('axios');
+      const res = await axios.patch('http://localhost:3000/make/request',{firstName: 'Masteringjs', lastName:'.io'});
+      
+      res.data.headers['Content-Type']; //application/json;charset=utf-8
+    });
+  });
+  describe('Node', function() {
+    it('node', async function() {
+
+      return fetch(`API/make/request`, {
+        method: "GET",
+        headers:{
+          Accept: 'define what to accept',
+          Authorization: "authorization"
+        },
+      }).then(response => {
+        return response
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+    it('axios', async function() {
+      const res = await axios.get('https://httpbin.org/get?answer=42',{
+        headers:{
+          Accept: 'accept',
+          Authorization: 'authorize'
+        },
+      }).then(response => {
+        return response;
+      }).catch(err => {
+        console.log(err);
+      });
+    })
+  });
 });
