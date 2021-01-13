@@ -846,7 +846,7 @@ describe('axios', function() {
   });
   describe('Node', function() {
     it('node', async function() {
-
+      const fetch = require('node-fetch');
       return fetch(`API/make/request`, {
         method: "GET",
         headers:{
