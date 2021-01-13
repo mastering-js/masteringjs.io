@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Setting Request Headers with Axios - Mastering JS</title>
+    <title>How to Use Axios in Node.js - Mastering JS</title>
 
-    <meta property="og:title" content="Setting Request Headers with Axios" />
+    <meta property="og:title" content="How to Use Axios in Node.js" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
-    <meta name="description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
+    <meta property="og:description" content="placeholder" />
+    <meta name="description" content="placeholder" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Setting Request Headers with Axios</h1>
+  <h1>How to Use Axios in Node.js</h1>
   <div class="date">
-    Apr 27, 2019
+    Jan 11, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,32 +72,50 @@
 	  }
 	})();
 	</script>
-  <p>To set <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP request headers</a> with
-an <a href="https://www.npmjs.com/package/axios">axios</a> GET request, you should pass
-an object with a <code>headers</code> property as the 2nd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-
-<span class="hljs-comment">// httpbin.org gives you the headers in the response</span>
-<span class="hljs-comment">// body `res.data`.</span>
-<span class="hljs-comment">// See: https://httpbin.org/#/HTTP_Methods/get_get</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
+  <p>When making http requests, users have the option of using fetch() from the vanilla javascript library to be used on the frontend, or from importing node-fetch. Another option available to those developers is the axios library. Instead of having to do:  </p>
+<pre><code class="language-javascript"><span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`API/make/request`</span>, {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">"GET"</span>,
+  <span class="hljs-attr">headers</span>:{
+    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'define what to accept'</span>,
+    <span class="hljs-attr">Authorization</span>: <span class="hljs-string">"authorization"</span>
+  },
+}).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> response
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(err);
 });
-
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
 </code></pre>
-<p>With PUT and POST requests, the 2nd argument is the request body, so you should
-pass an object with a <code>headers</code> property as the 3rd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
+<p>You can do the following:</p>
+<pre><code class="language-javascipt"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>,{
+  <span class="hljs-attr">headers</span>:{
+    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'accept'</span>,
+    <span class="hljs-attr">Authorization</span>: <span class="hljs-string">'authorize'</span>
+  },
+}).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> response;
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(err);
 });
-
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
 </code></pre>
+<p>Or for a simple POST request:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
+
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
+<p>When sending requests with data, the data can be of type:</p>
+<ul>
+<li>string</li>
+<li>object</li>
+<li>ArrayBuffer</li>
+<li>ArrayBufferView</li>
+<li>URLSearchParams</li>
+<li>Form Data</li>
+<li>File</li>
+<li>Blob</li>
+<li>Stream</li>
+<li>Buffer</li>
+</ul>
+<p><strong>Note:</strong> Stream and Buffer is for Node only while Form Data, File, and Blob is for the browser only.</p>
 
   
   <hr>
@@ -106,9 +124,6 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
     <ul>
     
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
 
     <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
@@ -124,6 +139,9 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
   
 
     <li><a href="/tutorials/axios/options">Axios Options</a></li>
+  
+
+    <li><a href="/tutorials/axios/get-with-data">Axios GET with Data</a></li>
   
     </ul>
   

@@ -826,4 +826,50 @@ describe('axios', function() {
       // acquit:ignore:end
     });
   });
+  describe('Patch',function() {
+    it('patch', async function() {
+      const res = await axios.patch('https://httpbin.org/patch',{ firstName: 'Masteringjs' });
+      
+      res.data.headers['Content-Type']; //application/json;charset=utf-8
+    });
+    it('patch2', async function() {
+      const res = await axios.patch('https://httpbin.org/patch',{id: 12345} );
+
+      res.data.headers['Content-Type']; //application/json;charset=utf-8
+    });
+    it('patch3', async function() {
+      const res = await axios.patch('https://httpbin.org/patch',  'hello=world' );
+
+      res.data.headers['Content-Type']; // application/x-www-form-urlencoded
+      res.data.json; // { hello: 'world' }
+    });
+  });
+  describe('Node', function() {
+    it('node', async function() {
+
+      return fetch(`API/make/request`, {
+        method: "GET",
+        headers:{
+          Accept: 'define what to accept',
+          Authorization: "authorization"
+        },
+      }).then(response => {
+        return response
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+    it('axios', async function() {
+      const res = await axios.get('https://httpbin.org/get?answer=42',{
+        headers:{
+          Accept: 'accept',
+          Authorization: 'authorize'
+        },
+      }).then(response => {
+        return response;
+      }).catch(err => {
+        console.log(err);
+      });
+    })
+  });
 });

@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Setting Request Headers with Axios - Mastering JS</title>
+    <title>How to Make PATCH Requests with Axios - Mastering JS</title>
 
-    <meta property="og:title" content="Setting Request Headers with Axios" />
+    <meta property="og:title" content="How to Make PATCH Requests with Axios" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
-    <meta name="description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
+    <meta property="og:description" content="placeholder" />
+    <meta name="description" content="placeholder" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Setting Request Headers with Axios</h1>
+  <h1>How to Make PATCH Requests with Axios</h1>
   <div class="date">
-    Apr 27, 2019
+    Jan 11, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,31 +72,21 @@
 	  }
 	})();
 	</script>
-  <p>To set <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP request headers</a> with
-an <a href="https://www.npmjs.com/package/axios">axios</a> GET request, you should pass
-an object with a <code>headers</code> property as the 2nd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+  <p>The easiest way to make a PATCH request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the axios.patch() function. The first parameter is the url to which the request will be made, and the second parameter is the data you will be sending to change. You can make a PATCH request with axios as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>,{ <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Masteringjs'</span> });
 
-<span class="hljs-comment">// httpbin.org gives you the headers in the response</span>
-<span class="hljs-comment">// body `res.data`.</span>
-<span class="hljs-comment">// See: https://httpbin.org/#/HTTP_Methods/get_get</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
-});
-
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
 </code></pre>
-<p>With PUT and POST requests, the 2nd argument is the request body, so you should
-pass an object with a <code>headers</code> property as the 3rd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
-});
+<p>If the second parameter is an object, axios will do a JSON.stringify on the object before sending the request. It also will specify the content-type to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">application/json</a>, allowing for smooth integration in most projects.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>,{<span class="hljs-attr">id</span>: <span class="hljs-number">12345</span>} );
 
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
+</code></pre>
+<p>If you pass a string as the second parameter, axios will set the content-type header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa">application/x-www-form-urlencoded</a>. This will turn the request body into a series of key-value pairs.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>,  <span class="hljs-string">'hello=world'</span> );
+
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
 </code></pre>
 
   
@@ -105,9 +95,6 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
     <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
 
@@ -124,6 +111,9 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
   
 
     <li><a href="/tutorials/axios/options">Axios Options</a></li>
+  
+
+    <li><a href="/tutorials/axios/get-with-data">Axios GET with Data</a></li>
   
     </ul>
   
