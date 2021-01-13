@@ -3,20 +3,28 @@
 const moment = require('moment');
 
 module.exports = Object.freeze([
-  {
+  /*{
     title: 'How to Make PATCH Requests with Axios',
     raw: './tutorials/axios/axios-patch.md',
     url: '/tutorials/axios/axios-patch',
     description: 'placeholder',
     tags: ['axios'],
-    date: moment('2021-01-11')
-  },
+    date: moment('2021-01-15')
+  },*/
   {
     title: 'How to Use Axios in Node.js',
     raw: './tutorials/axios/axios-node.md',
     url: '/tutorials/axios/axios-node',
-    description: 'placeholder',
+    description: 'Axios is an isomorphic HTTP client, which means it works the same way on both client and server. Here\'s how you can use Axios with Node.js.',
     tags: ['axios'],
+    date: moment('2021-01-13')
+  },
+  {
+    title: 'JavaScript Enums',
+    raw: './tutorials/fundamentals/enum.md',
+    url: '/tutorials/fundamentals/enum',
+    description: 'JavaScript doesn\'t have an official enum type, but there are several design patterns that let you define enums using vanilla JavaScript. Here\'s what you need to know.',
+    tags: ['fundamentals'],
     date: moment('2021-01-11')
   },
   {
