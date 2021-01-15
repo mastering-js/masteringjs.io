@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'How to Make PATCH Requests with Axios',
     raw: './tutorials/axios/axios-patch.md',
     url: '/tutorials/axios/axios-patch',
-    description: 'placeholder',
+    description: 'Sending an HTTP PATCH request with Axios is easy. Here\'s what you need to know.',
     tags: ['axios'],
     date: moment('2021-01-15')
   },
