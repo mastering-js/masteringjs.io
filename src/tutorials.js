@@ -3,14 +3,14 @@
 const moment = require('moment');
 
 module.exports = Object.freeze([
-  /*{
+  {
     title: 'How to Make PATCH Requests with Axios',
     raw: './tutorials/axios/axios-patch.md',
     url: '/tutorials/axios/axios-patch',
     description: 'placeholder',
     tags: ['axios'],
     date: moment('2021-01-15')
-  },*/
+  },
   {
     title: 'How to Use Axios in Node.js',
     raw: './tutorials/axios/axios-node.md',
