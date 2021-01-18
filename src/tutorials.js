@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use axios.all to make concurrent http requests',
+    raw: './tutorials/axios/axios-all.md',
+    url: '/tutorials/axios/axios-all',
+    description: 'This is a placeholder description',
+    tags: ['axios'],
+    date: moment('2021-01-18')
+  },
+  {
     title: 'How to Make PATCH Requests with Axios',
     raw: './tutorials/axios/axios-patch.md',
     url: '/tutorials/axios/axios-patch',
