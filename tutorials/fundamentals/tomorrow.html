@@ -77,7 +77,8 @@ for the current date of the month. The <a href="https://developer.mozilla.org/en
 <pre><code class="language-javascript"><span class="hljs-comment">// June 3, 2019 in local timezone</span>
 <span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/03'</span>);
 
-date.getDate(); <span class="hljs-comment">// 3</span></code></pre>
+date.getDate(); <span class="hljs-comment">// 3</span>
+</code></pre>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setDate"><code>Date#setDate()</code> function</a> sets the date of the month.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// June 3, 2019 in local timezone</span>
 <span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/03'</span>);
@@ -91,14 +92,16 @@ date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>
-});</code></pre>
+});
+</code></pre>
 <p>See <a href="https://masteringjs.io/tutorials/fundamentals/date_format">Format Dates Using Vanilla JavaScript</a>.</p>
 <p>So to get tomorrow&#39;s date, you need to <code>setDate()</code> the current date, plus one.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Current date</span>
 <span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
 
 <span class="hljs-comment">// Tomorrow's date</span>
-date.setDate(date.getDate() + <span class="hljs-number">1</span>);</code></pre>
+date.setDate(date.getDate() + <span class="hljs-number">1</span>);
+</code></pre>
 <p>JavaScript is smart enough to deal with month rollovers on its own, so even
 if today is June 30, the <code>date.getDate() + 1</code> approach works:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019/06/30'</span>);
@@ -112,7 +115,8 @@ date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">month</span>: <span class="hljs-string">'long'</span>,
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="using-momentjs">Using <a href="https://momentjs.com/">Moment.js</a></h2>
 <p>Moment has a handy <code>.add()</code> function that lets you easily add 1 day to
 the current moment.</p>
@@ -120,7 +124,8 @@ the current moment.</p>
 
 date.add(<span class="hljs-number">1</span>, <span class="hljs-string">'days'</span>);
 
-date.format(<span class="hljs-string">'YYYY/MM/DD'</span>); <span class="hljs-comment">// "2019/07/01"</span></code></pre>
+date.format(<span class="hljs-string">'YYYY/MM/DD'</span>); <span class="hljs-comment">// "2019/07/01"</span>
+</code></pre>
 
   
   <hr>
@@ -128,6 +133,9 @@ date.format(<span class="hljs-string">'YYYY/MM/DD'</span>); <span class="hljs-co
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/check-nans">How to Check for Nans in Javascript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
   
 
@@ -144,9 +152,6 @@ date.format(<span class="hljs-string">'YYYY/MM/DD'</span>); <span class="hljs-co
   
 
     <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/tostring">The `toString()` Function in JavaScript</a></li>
   
     </ul>
   

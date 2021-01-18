@@ -4355,6 +4355,34 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+    it('NaNs', function() {
+      isNaN(NaN); //true
+      isNaN(Number.NaN); //true
+      Number.isNaN(NaN); //true
+      let text = 'hello world!';
+      if (isNaN(text)) {
+        console.log(text);
+        text = '1';
+      }
+      if (isNaN(text)) {
+        console.log(text); // does not execute because '1' is a string representation of a number
+      }
+      if(!isNaN(text)){
+        console.log('Had to negate to get',text); // 1
+        text = 'he110 w0r1d';
+        text = +text //shortcut to convert a string to a number
+        console.log(text); //NaN
+      }
+      if(isNaN(text)){
+        console.log('could not convert he110 w0r1d to a number');
+      }
+    });
+    it('arrayNaNs', function() {
+      let arr = ['1','2','3','4',NaN,'5'];
+      if(arr.includes(NaN)) {
+        console.log(arr.findIndex(n => Number.isNaN(n))); // 4
+      }
+    });
 });
 
 if (!Array.prototype.flat) {

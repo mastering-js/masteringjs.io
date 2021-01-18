@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Check for Nans in Javascript',
+    raw: './tutorials/fundamentals/check-nans.md',
+    url: '/tutorials/fundamentals/check-nans',
+    description: 'placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-01-18')
+  },
+  {
     title: 'How to Make PATCH Requests with Axios',
     raw: './tutorials/axios/axios-patch.md',
     url: '/tutorials/axios/axios-patch',
