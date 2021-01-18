@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Check for Nans in Javascript - Mastering JS</title>
+    <title>How to Check for NaNs in Javascript - Mastering JS</title>
 
-    <meta property="og:title" content="How to Check for Nans in Javascript" />
+    <meta property="og:title" content="How to Check for NaNs in Javascript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="placeholder Description" />
@@ -60,7 +60,7 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Check for Nans in Javascript</h1>
+  <h1>How to Check for NaNs in Javascript</h1>
   <div class="date">
     Jan 18, 2021
   </div>
@@ -72,33 +72,19 @@
 	  }
 	})();
 	</script>
-  <p>When dealing with NaNs in your projects, it is important to understand what Nans are and how they work. NaN is a non-writable, non-configurable, non-enumerable property of the global object. You should avoid overriding it an instead error handle it when the situation arises in your project development. To do that however, you must check whether the value is a NaN. A interesting thing about Nans is that <code>NaN === NaN</code> and <code>Number.NaN === NaN</code> will return false as in the compiler&#39;s eyes they are not the same thing. Instead you can do the following:</p>
-<pre><code class="language-javascript"><span class="hljs-built_in">isNaN</span>(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">//true</span>
-<span class="hljs-built_in">isNaN</span>(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">//true</span>
-<span class="hljs-built_in">Number</span>.isNaN(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">//true</span>
+  <p>When dealing with NaNs in your projects, it is important to understand what <code>NaNs</code> are and how they work. <code>NaN</code> is a non-writable, non-configurable, non-enumerable property of the global object. It is of type number and insted of overriding it, you should error handle it when the situation arises in your project development. To do that however, you must check whether the value is a <code>NaN</code>. An interesting thing about <code>NaNs</code> is that <code>NaN !== NaN</code> and <code>Number.NaN !== NaN</code>. You should avoid using <code>isNan()</code> as it will check if the given value would result in a <code>NaN</code> if you tried to convert it to a number. Instead you can do the following:</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Number</span>.isNaN(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-keyword">let</span> text = <span class="hljs-string">'hello world!'</span>;
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">isNaN</span>(text)) {
-  <span class="hljs-built_in">console</span>.log(text);
-  text = <span class="hljs-string">'1'</span>;
-}
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">isNaN</span>(text)) {
-  <span class="hljs-built_in">console</span>.log(text); <span class="hljs-comment">// does not execute because '1' is a string representation of a number</span>
-}
-<span class="hljs-keyword">if</span>(!<span class="hljs-built_in">isNaN</span>(text)){
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Had to negate to get'</span>,text); <span class="hljs-comment">// 1</span>
-  text = <span class="hljs-string">'he110 w0r1d'</span>;
-  text = +text <span class="hljs-comment">//shortcut to convert a string to a number</span>
-  <span class="hljs-built_in">console</span>.log(text); <span class="hljs-comment">//NaN</span>
-}
-<span class="hljs-keyword">if</span>(<span class="hljs-built_in">isNaN</span>(text)){
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'could not convert he110 w0r1d to a number'</span>);
-}
+<span class="hljs-built_in">Number</span>.isNaN(text) <span class="hljs-comment">// true</span>
+text = <span class="hljs-string">'1'</span>;
+<span class="hljs-built_in">Number</span>.isNaN(text) <span class="hljs-comment">// false</span>
+text = <span class="hljs-string">'he110 w0r1d'</span>;
+text = +text; <span class="hljs-comment">// shortcut to convert a string to a number, this will return a NaN</span>
+text; <span class="hljs-comment">// NaN</span>
 </code></pre>
-<p>Another interesting thing about NaNs is that arrays have a hard time with them. For example, <code>arr.includes(NaN)</code> will return true if there is a NaN in the array whereas <code>arr.indexOf(NaN)</code> will return -1 with or without a NaN in the array. However, <code>arr.findIndex(n =&gt; Number.isNaN(n))</code> will give the correct index of a NaN in a given array.</p>
+<p>Another interesting thing about <code>NaNs</code> is that arrays have a hard time with them. For example, <code>arr.includes(NaN)</code> will return true if there is a <code>NaN</code> in the array whereas <code>arr.indexOf(NaN)</code> will return -1 with or without a <code>NaN</code> in the array. If you want the <code>indexOf()</code> a <code>NaN</code> in an array then ironically enough you should use <code>findIndex()</code> as follows: <code>arr.findIndex(n =&gt; Number.isNaN(n))</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'1'</span>,<span class="hljs-string">'2'</span>,<span class="hljs-string">'3'</span>,<span class="hljs-string">'4'</span>,<span class="hljs-literal">NaN</span>,<span class="hljs-string">'5'</span>];
-<span class="hljs-keyword">if</span>(arr.includes(<span class="hljs-literal">NaN</span>)) {
-  <span class="hljs-built_in">console</span>.log(arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n))); <span class="hljs-comment">// 4</span>
-}
+arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span>
 </code></pre>
 
   

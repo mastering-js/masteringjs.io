@@ -4,7 +4,7 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Check for Nans in Javascript',
+    title: 'How to Check for NaNs in Javascript',
     raw: './tutorials/fundamentals/check-nans.md',
     url: '/tutorials/fundamentals/check-nans',
     description: 'placeholder Description',
