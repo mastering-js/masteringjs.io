@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use axios.all to make concurrent http requests - Mastering JS</title>
+    <title>How to Use axios.all() to Make Concurrent HTTP Requests - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use axios.all to make concurrent http requests" />
+    <meta property="og:title" content="How to Use axios.all() to Make Concurrent HTTP Requests" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="This is a placeholder description" />
@@ -60,7 +60,7 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>How to Use axios.all to make concurrent http requests</h1>
+  <h1>How to Use axios.all() to Make Concurrent HTTP Requests</h1>
   <div class="date">
     Jan 18, 2021
   </div>
@@ -72,20 +72,14 @@
 	  }
 	})();
 	</script>
-  <p><code>axios.all()</code> is axios&#39;s own way of making concurrent http requests and getting back an array of the responses. Because you would be making multiple requests when using this, you should make an effort to make the code more readable. Making a request would look something like as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> requestone = <span class="hljs-string">'http://test1'</span>
-<span class="hljs-keyword">const</span> requesttwo = <span class="hljs-string">'http://test2'</span>
-<span class="hljs-keyword">const</span> requestthree = <span class="hljs-string">'http://test3'</span>
-
-<span class="hljs-keyword">const</span> axiosrequest1 = axios.get(requestone);
+  <p><code>axios.all()</code> is axios&#39;s own way of making concurrent http requests and getting back an array of the responses. We recommend assigning the return value of axios.get to a variable before passing it into axios.all() to make your code more readable. Making a request would look something like as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axiosrequest1 = axios.get(requestone);
 <span class="hljs-keyword">const</span> axiosrequest2 = axios.get(requesttwo);
 <span class="hljs-keyword">const</span> axiosrequest3 = axios.get(requestthree);
 <span class="hljs-comment">// you could also use destructuring in axios.spread</span>
-axios.all(axiosrequest1,axiosrequest2,axiosrequest3).then(axios.spread(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">values</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(values) <span class="hljs-comment">// an array containing the data from the 3 requess</span>
-})).catch(<span class="hljs-function"><span class="hljs-params">errors</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'oops'</span>);
-});
+<span class="hljs-keyword">await</span> axios.all(axiosrequest1, axiosrequest2, axiosrequest3).then(axios.spread(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">values</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(values) <span class="hljs-comment">// an array containing the data from the 3 requests</span>
+}));
 </code></pre>
 
   
