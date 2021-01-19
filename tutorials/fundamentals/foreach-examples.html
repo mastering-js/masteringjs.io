@@ -78,14 +78,16 @@
 <pre><code class="language-javascript"><span class="hljs-comment">// Prints "a", "b", "c"</span>
 [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>].forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(v);
-});</code></pre>
+});
+</code></pre>
 <h2 id="example-2-modifying-the-array">Example 2: Modifying the Array</h2>
 <p>Generally speaking, you shouldn&#39;t modify the array using <code>forEach()</code>. If you want to modify the array, you should use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>Array#map()</code></a> instead. But it is possible to modify the array using <code>forEach()</code>, and you may run into code that does so. Here&#39;s an example of converting each array element to upper case using <code>forEach()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
 arr.forEach(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> {
   arr[i] = v.toUpperCase();
 });
-arr; <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
+arr; <span class="hljs-comment">// ['A', 'B', 'C']</span>
+</code></pre>
 <h2 id="example-3-object-keys">Example 3: Object Keys</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code> function</a> returns an array that contains an object&#39;s keys. If you want to iterate through an object&#39;s keys using <code>forEach()</code>, you should use <code>Object.keys()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {
@@ -95,7 +97,8 @@ arr; <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
 };
 
 <span class="hljs-comment">// Prints "a", "b", "c"</span>
-<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(key));</code></pre>
+<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(key));
+</code></pre>
 <h2 id="example-4-object-keys-and-values">Example 4: Object Keys and Values</h2>
 <p>You can iterate through an object&#39;s keys using <code>forEach()</code> and <code>Object.keys()</code>. But what about iterating through both keys and values simultaneously? That&#39;s what the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries"><code>Object.entries()</code> function</a> is for. Given an object, <code>Object.entries()</code> returns an array of <code>[key, value]</code> pairs.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {
@@ -107,13 +110,15 @@ arr; <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
 <span class="hljs-comment">// Prints "a 1", "b 2", "c 3"</span>
 <span class="hljs-built_in">Object</span>.entries(obj).forEach(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(key + <span class="hljs-string">' '</span> + value)
-});</code></pre>
+});
+</code></pre>
 <h2 id="example-5-nested-arrays-and-flat">Example 5: Nested Arrays and <code>flat()</code></h2>
 <p>The <code>forEach()</code> function will iterate through the top-level array. If you have arrays of arrays, you need to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat"><code>Array#flat()</code></a> to flatten nested arrays first.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, [<span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], [[<span class="hljs-string">'d'</span>, [<span class="hljs-string">'e'</span>]]]];
 
 <span class="hljs-comment">// Prints "a", "b", "c", "d", "e". `3` is the maximum depth for flattening</span>
-arr.flat(<span class="hljs-number">3</span>).forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(v));</code></pre>
+arr.flat(<span class="hljs-number">3</span>).forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(v));
+</code></pre>
 <h2 id="example-6-adding-elements-to-the-array">Example 6: Adding Elements to the Array</h2>
 <p>The <code>forEach()</code> function sets the elements that will be called before calling your callback for the first time. In other words, if you add elements to the array in your <code>forEach()</code> callback, JavaScript will <strong>not</strong> call your callback on the new elements. No need to worry about causing an infinite loop by adding elements to your array in your <code>forEach()</code> callback.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
@@ -123,7 +128,8 @@ arr.flat(<span class="hljs-number">3</span>).forEach(<span class="hljs-function"
 arr.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
   arr.push(v.toUpperCase());
   <span class="hljs-built_in">console</span>.log(v);
-});</code></pre>
+});
+</code></pre>
 <h2 id="example-7-thisarg">Example 7: <code>thisArg</code></h2>
 <p>The <code>forEach()</code> function actually takes 2 parameters, <code>callback</code> and <code>thisArg</code>. The <code>thisArg</code> function lets you set the value of <code>this</code> in your <code>callback</code>. The <code>thisArg</code> argument is handy for functions that rely on <code>this</code>, like the <code>Stack</code> class in the below example.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>];
@@ -148,7 +154,8 @@ arr.forEach(stack.push, stack);
 <span class="hljs-comment">// Equivalent:</span>
 arr.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> stack.push(v));
 <span class="hljs-comment">// Also equivalent:</span>
-arr.forEach(stack.push.bind(stack));</code></pre>
+arr.forEach(stack.push.bind(stack));
+</code></pre>
 <h2 id="example-8-array-holes">Example 8: Array Holes</h2>
 <p>JavaScript arrays have some quirks. Specifically, the array <code>[&#39;a&#39;,, &#39;c&#39;]</code> is different than the array <code>[&#39;a&#39;, undefined, &#39;c&#39;]</code>, even though <code>arr[1] === undefined</code> in both cases. In <code>[&#39;a&#39;,, &#39;c&#39;]</code>, <code>arr[1]</code> is called an <a href="http://2ality.com/2015/09/holes-arrays-es6.html">&quot;array hole&quot;</a>.</p>
 <p>The <code>forEach()</code> function skips array holes. To get <code>forEach()</code> to treat array holes as <code>undefined</code>, you first need to <a href="http://2ality.com/2015/09/holes-arrays-es6.html#arrayfrom">get rid of array holes using <code>Array.from()</code></a>.</p>
@@ -158,7 +165,8 @@ arr.forEach(stack.push.bind(stack));</code></pre>
 arr.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(v));
 
 <span class="hljs-comment">// Prints "a", "undefined", "c". `Array.from()` removes holes</span>
-<span class="hljs-built_in">Array</span>.from(arr).forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(v));</code></pre>
+<span class="hljs-built_in">Array</span>.from(arr).forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(v));
+</code></pre>
 
   
   <hr>
@@ -166,6 +174,9 @@ arr.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/check-nans">How to Check for NaNs in Javascript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
   
 
@@ -182,9 +193,6 @@ arr.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;
   
 
     <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/tostring">The `toString()` Function in JavaScript</a></li>
   
     </ul>
   

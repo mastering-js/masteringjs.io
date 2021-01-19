@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>The JavaScript Array `filter()` Method - Mastering JS</title>
+    <title>How to Check for NaNs in Javascript - Mastering JS</title>
 
-    <meta property="og:title" content="The JavaScript Array `filter()` Method" />
+    <meta property="og:title" content="How to Check for NaNs in Javascript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="The `filter()` method creates a new array of elements that match a given test. Here's what you need to know." />
-    <meta name="description" content="The `filter()` method creates a new array of elements that match a given test. Here's what you need to know." />
+    <meta property="og:description" content="placeholder Description" />
+    <meta name="description" content="placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>The JavaScript Array `filter()` Method</h1>
+  <h1>How to Check for NaNs in Javascript</h1>
   <div class="date">
-    Jul 1, 2020
+    Jan 18, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,34 +72,19 @@
 	  }
 	})();
 	</script>
-  <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>Array#filter()</code> function</a> in JavaScript returns a new array with all the
-elements from the original array that the given <a href="/tutorials/fundamentals/callbacks">callback</a> returns <a href="/tutorials/fundamentals/truthy">truthy</a> for.</p>
-<p>For example, given an array of numbers 1-10, below is how you can use <code>filter()</code> to
-return an array of even numbers.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> nums = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
-
-nums.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
-  <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
-}); <span class="hljs-comment">// [2, 4, 6, 8, 10]</span>
+  <p>When dealing with NaNs in your projects, it is important to understand what <code>NaNs</code> are and how they work. <code>NaN</code> is a non-writable, non-configurable, non-enumerable property of the global object. It is of type number and insted of overriding it, you should error handle it when the situation arises in your project development. To do that however, you must check whether the value is a <code>NaN</code>. An interesting thing about <code>NaNs</code> is that <code>NaN !== NaN</code> and <code>Number.NaN !== NaN</code>. You should avoid using <code>isNan()</code> as it will check if the given value would result in a <code>NaN</code> if you tried to convert it to a number. Instead you can do the following:</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Number</span>.isNaN(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">'hello world!'</span>;
+<span class="hljs-built_in">Number</span>.isNaN(text) <span class="hljs-comment">// true</span>
+text = <span class="hljs-string">'1'</span>;
+<span class="hljs-built_in">Number</span>.isNaN(text) <span class="hljs-comment">// false</span>
+text = <span class="hljs-string">'he110 w0r1d'</span>;
+text = +text; <span class="hljs-comment">// shortcut to convert a string to a number, this will return a NaN</span>
+text; <span class="hljs-comment">// NaN</span>
 </code></pre>
-<p>The <code>filter()</code> function returns a new array whose elements are the elements of
-<code>nums</code> for which <code>isEven()</code> returned <code>true</code>.</p>
-<h2 id="the-index-argument">The <code>index</code> Argument</h2>
-<p>JavaScript calls the <code>filter()</code> callback with 3 arguments. The first argument is
-the element in the array, and the 2nd argument is the index in the array.</p>
-<p>For example, below is how you can get an array with only the odd indexes of the original
-array:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> names = [
-  <span class="hljs-string">'James'</span>,
-  <span class="hljs-string">'John'</span>,
-  <span class="hljs-string">'Robert'</span>,
-  <span class="hljs-string">'Michael'</span>,
-  <span class="hljs-string">'William'</span>
-];
-
-names.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isOddIndex</span>(<span class="hljs-params">el, index</span>) </span>{
-  <span class="hljs-keyword">return</span> index % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
-}); <span class="hljs-comment">// ['John', 'Michael']</span>
+<p>Another interesting thing about <code>NaNs</code> is that arrays have a hard time with them. For example, <code>arr.includes(NaN)</code> will return true if there is a <code>NaN</code> in the array whereas <code>arr.indexOf(NaN)</code> will return -1 with or without a <code>NaN</code> in the array. If you want the <code>indexOf()</code> a <code>NaN</code> in an array then ironically enough you should use <code>findIndex()</code> as follows: <code>arr.findIndex(n =&gt; Number.isNaN(n))</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'1'</span>,<span class="hljs-string">'2'</span>,<span class="hljs-string">'3'</span>,<span class="hljs-string">'4'</span>,<span class="hljs-literal">NaN</span>,<span class="hljs-string">'5'</span>];
+arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span>
 </code></pre>
 
   
@@ -108,9 +93,6 @@ names.filter(<span class="hljs-function"><span class="hljs-keyword">function</sp
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/check-nans">How to Check for NaNs in Javascript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
   
 
@@ -127,6 +109,9 @@ names.filter(<span class="hljs-function"><span class="hljs-keyword">function</sp
   
 
     <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/tostring">The `toString()` Function in JavaScript</a></li>
   
     </ul>
   

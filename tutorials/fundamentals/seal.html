@@ -84,14 +84,16 @@ sealed.answer = <span class="hljs-number">43</span>; <span class="hljs-comment">
 sealed.newProp = <span class="hljs-number">42</span>;
 
 <span class="hljs-comment">// TypeError: Cannot redefine property: answer</span>
-<span class="hljs-built_in">Object</span>.defineProperty(sealed, <span class="hljs-string">'answer'</span>, { <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span> });</code></pre>
+<span class="hljs-built_in">Object</span>.defineProperty(sealed, <span class="hljs-string">'answer'</span>, { <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span> });
+</code></pre>
 <p><code>seal()</code> is similar to <a href="/tutorials/fundamentals/freeze">the <code>Object.freeze()</code> function</a>, with one key difference: you can still write to existing properties on a sealed object, but you cannot write to a frozen object.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> sealed = <span class="hljs-built_in">Object</span>.seal({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
 <span class="hljs-keyword">const</span> frozen = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
 
 sealed.answer = <span class="hljs-number">43</span>; <span class="hljs-comment">// ok</span>
 <span class="hljs-comment">// TypeError: Cannot assign to read only property 'answer' of object '#&lt;Object&gt;'</span>
-frozen.answer = <span class="hljs-number">43</span>;</code></pre>
+frozen.answer = <span class="hljs-number">43</span>;
+</code></pre>
 <p>Like with <code>freeze()</code>, adding, removing, or re-configuring a property from a sealed 
 object only throws an error in <a href="/tutorials/fundamentals/strict">strict mode</a>.
 Otherwise it fails silently.</p>
@@ -114,6 +116,9 @@ established best practice, but try it out - you might be surprised by the result
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/check-nans">How to Check for NaNs in Javascript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
   
 
@@ -130,9 +135,6 @@ established best practice, but try it out - you might be surprised by the result
   
 
     <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/tostring">The `toString()` Function in JavaScript</a></li>
   
     </ul>
   

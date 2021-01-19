@@ -89,7 +89,8 @@ obj1.fn() === obj1; <span class="hljs-comment">// true</span>
 obj1.fn() === obj2; <span class="hljs-comment">// false</span>
 
 obj2.fn() === obj1; <span class="hljs-comment">// false</span>
-obj2.fn() === obj2; <span class="hljs-comment">// true</span></code></pre>
+obj2.fn() === obj2; <span class="hljs-comment">// true</span>
+</code></pre>
 <p>The important thing to note is that, since functions are plain old variables
 in JavaScript, <code>this</code> may change. One common way to mess up the value of
 <code>this</code> is to assign a function to an object and call the function without
@@ -103,7 +104,8 @@ an associated object. This is informally known as the function <a href="https://
 <span class="hljs-comment">// If you call `fn()` without a property access `.`, you're</span>
 <span class="hljs-comment">// implicitly setting the function context to `null`.</span>
 <span class="hljs-keyword">const</span> myFn = obj.fn;
-myFn() == <span class="hljs-literal">null</span>; <span class="hljs-comment">// true in strict mode</span></code></pre>
+myFn() == <span class="hljs-literal">null</span>; <span class="hljs-comment">// true in strict mode</span>
+</code></pre>
 <p><strong>TLDR:</strong> <code>this</code> is an <em>implicit parameter</em> to a function call. It contains
 whatever object the function was a property of when it was called.</p>
 <h2 id="with-classes">With <a href="/tutorials/fundamentals/class">Classes</a></h2>
@@ -117,7 +119,8 @@ whatever object the function was a property of when it was called.</p>
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
 
-obj.myFunction() === obj; <span class="hljs-comment">// true</span></code></pre>
+obj.myFunction() === obj; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="arrow-functions">Arrow Functions</h2>
 <p>Arrow functions are special because, unlike other functions, they have
 <em>lexical context</em>. That means <code>this</code> in an arrow function is the same
@@ -132,7 +135,8 @@ arrow() == <span class="hljs-literal">null</span>; <span class="hljs-comment">//
 <span class="hljs-comment">// Even though `arrow()` is attached to an object, it still</span>
 <span class="hljs-comment">// has the same context as the surrounding block.</span>
 obj.arrow() == <span class="hljs-literal">null</span>; <span class="hljs-comment">// true</span>
-obj.arrow() == <span class="hljs-keyword">this</span>; <span class="hljs-comment">// true</span></code></pre>
+obj.arrow() == <span class="hljs-keyword">this</span>; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="using-bind-call-and-apply">Using <code>bind()</code>, <code>call()</code>, and <code>apply()</code></h2>
 <p>Every JavaScript function has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call"><code>Function#call()</code> function</a> and a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply"><code>Function#apply()</code> function</a> that lets you set the value of <code>this</code> without explicitly attaching the function to an object. You can
 think of <code>call()</code> and <code>apply()</code> as letting you set the implicit parameter <code>this</code> explicitly.</p>
@@ -148,7 +152,8 @@ fn.apply(obj) === obj; <span class="hljs-comment">// true</span>
 
 <span class="hljs-keyword">const</span> copy = fn.bind(obj);
 copy() === obj; <span class="hljs-comment">// true</span>
-copy === fn; <span class="hljs-comment">// false</span></code></pre>
+copy === fn; <span class="hljs-comment">// false</span>
+</code></pre>
 
   
   <hr>
@@ -156,6 +161,9 @@ copy === fn; <span class="hljs-comment">// false</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/check-nans">How to Check for NaNs in Javascript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
   
 
@@ -172,9 +180,6 @@ copy === fn; <span class="hljs-comment">// false</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/tostring">The `toString()` Function in JavaScript</a></li>
   
     </ul>
   
