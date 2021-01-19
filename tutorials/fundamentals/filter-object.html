@@ -83,8 +83,7 @@ even; <span class="hljs-comment">// [2, 4, 6]</span>
 
 callback = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
 <span class="hljs-keyword">const</span> odd = numbers.filter(callback);
-odd; <span class="hljs-comment">// [1, 3, 5]</span>
-</code></pre>
+odd; <span class="hljs-comment">// [1, 3, 5]</span></code></pre>
 <p>Unfortunately, JavaScript objects don&#39;t have a <code>filter()</code> function. But that
 doesn&#39;t mean you can&#39;t use <code>filter()</code> to filter objects, you just need to
 be able to <a href="/tutorials/fundamentals/iterate-object">iterate over an object</a> and
@@ -105,8 +104,7 @@ convert the object into an array using <a href="/tutorials/fundamentals/iterate-
 
 <span class="hljs-comment">// Convert the key/value array back to an object:</span>
 <span class="hljs-comment">// `{ 'BUF': 11, 'MIA': 9 }`</span>
-<span class="hljs-keyword">const</span> atLeast9WinsObject = <span class="hljs-built_in">Object</span>.fromEntries(atLeast9Wins);
-</code></pre>
+<span class="hljs-keyword">const</span> atLeast9WinsObject = <span class="hljs-built_in">Object</span>.fromEntries(atLeast9Wins);</code></pre>
 <p>You can implement this logic as a one-liner, but it is a bit messy:</p>
 <pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filterObject</span>(<span class="hljs-params">obj, callback</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.fromEntries(<span class="hljs-built_in">Object</span>.entries(obj).
@@ -128,8 +126,7 @@ like <code>Object.fromEntries()</code> and <code>Object.entries()</code>.</p>
   <span class="hljs-built_in">Object</span>.fromEntries
 ])(numWins);
 
-atLeast9Wins; <span class="hljs-comment">// { BUF: 11, MIA: 9 }</span>
-</code></pre>
+atLeast9Wins; <span class="hljs-comment">// { BUF: 11, MIA: 9 }</span></code></pre>
 
   
   <hr>
@@ -137,7 +134,7 @@ atLeast9Wins; <span class="hljs-comment">// { BUF: 11, MIA: 9 }</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/check-nans">How to Check for NaNs in Javascript</a></li>
+    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>

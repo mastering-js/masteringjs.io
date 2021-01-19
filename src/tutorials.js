@@ -4,12 +4,12 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Check for NaNs in Javascript',
+    title: 'How to Check for `NaN` in Javascript',
     raw: './tutorials/fundamentals/check-nans.md',
-    url: '/tutorials/fundamentals/check-nans',
-    description: 'placeholder Description',
+    url: '/tutorials/fundamentals/check-nan',
+    description: 'Checking for `NaN` is tricky because `NaN === NaN` returns false in JavaScript. Here\'s how you can check whether a value is equal `NaN`.',
     tags: ['fundamentals'],
-    date: moment('2021-01-18')
+    date: moment('2021-01-19')
   },
   {
     title: 'How to Make PATCH Requests with Axios',
