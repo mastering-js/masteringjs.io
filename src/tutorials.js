@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The `db` Property in Mongoose',
+    raw: './tutorials/mongoose/db.md',
+    url: '/tutorials/mongoose/db',
+    description: 'Mongoose connections have a `db` property that lets you bypass Mongoose and talk to MongoDB directly. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2021-01-21')
+  },
+  {
     title: 'How to Check for `NaN` in Javascript',
     raw: './tutorials/fundamentals/check-nans.md',
     url: '/tutorials/fundamentals/check-nan',

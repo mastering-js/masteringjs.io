@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mongoose Connect Using Async/Await - Mastering JS</title>
+    <title>The `db` Property in Mongoose - Mastering JS</title>
 
-    <meta property="og:title" content="Mongoose Connect Using Async/Await" />
+    <meta property="og:title" content="The `db` Property in Mongoose" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="How to use connect() and createConnection() in an async function." />
-    <meta name="description" content="How to use connect() and createConnection() in an async function." />
+    <meta property="og:description" content="Mongoose connections have a `db` property that lets you bypass Mongoose and talk to MongoDB directly. Here's what you need to know." />
+    <meta name="description" content="Mongoose connections have a `db` property that lets you bypass Mongoose and talk to MongoDB directly. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>Mongoose Connect Using Async/Await</h1>
+  <h1>The `db` Property in Mongoose</h1>
   <div class="date">
-    Jan 7, 2021
+    Jan 21, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,18 +72,25 @@
 	  }
 	})();
 	</script>
-  <p>Mongoose has two ways of connecting to a MongoDB database, <a href="https://mongoosejs.com/docs/connections.html">connect()</a> and <a href="https://mongoosejs.com/docs/connections.html#multiple_connections">createConnection()</a>. You can use these within an async function as follows:</p>
+  <p>Mongoose provides numerous powerful features, like <a href="https://mongoosejs.com/docs/middleware.html">middleware</a> and <a href="https://mongoosejs.com/docs/validation.html">validation</a>. But sometimes you want to bypass Mongoose and use the <a href="https://www.npmjs.com/package/mongodb">MongoDB Node.js driver</a> directly. <a href="https://mongoosejs.com/docs/api/connection.html">Mongoose connections</a> have a <a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-db"><code>db</code> property</a> that let you access the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html">MongoDB driver&#39;s <code>db</code> handle</a>:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});</code></pre>
-<p>and for createConnection()</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
-<span class="hljs-comment">// 'test' database.</span>
-<span class="hljs-keyword">await</span> mongoose.createConnection(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
-  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>
-});</code></pre>
+});
+
+<span class="hljs-comment">// Get the current db's profiling level using:</span>
+<span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
+<span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
+<span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> mongoose.connection.db.profilingLevel();
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
+<p>The <code>db</code> property is usually enough, but there are some cases where you need the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html"><code>MongoClient</code> instance</a> instead of the <code>db</code> handle.</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// Get another db's profiling level using:</span>
+<span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
+<span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
+<span class="hljs-keyword">const</span> client = mongoose.connection.getClient();
+<span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> client.db(<span class="hljs-string">'otherdb'</span>).profilingLevel();
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -106,7 +113,7 @@
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>
+    <li><a href="/tutorials/mongoose/mongoose-connect-async">Mongoose Connect Using Async/Await</a></li>
   
 
     <li><a href="/tutorials/mongoose/connection-status">Check Mongoose Connection Status</a></li>
