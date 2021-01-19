@@ -873,12 +873,14 @@ describe('axios', function() {
     })
   });
   it('axios-all', async function() {
-    const axiosrequest1 = axios.get(requestone);
-    const axiosrequest2 = axios.get(requesttwo);
-    const axiosrequest3 = axios.get(requestthree);
-    // you could also use destructuring in axios.spread
-    await axios.all(axiosrequest1, axiosrequest2, axiosrequest3).then(axios.spread(function(values){
-      console.log(values) // an array containing the data from the 3 requests
+    const axiosrequest1 = axios.get('https://httpbin.org/get');
+    const axiosrequest2 = axios.get('https://httpbin.org/get');
+    const axiosrequest3 = axios.get('https://httpbin.org/get');
+    // you could also use destructuring to have an array of responses
+    await axios.all([axiosrequest1, axiosrequest2, axiosrequest3]).then(axios.spread(function(res1, res2, res3) {
+      console.log(res1);
+      console.log(res2);
+      console.log(res3);
     }));
   });
 });
