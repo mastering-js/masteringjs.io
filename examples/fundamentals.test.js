@@ -4355,6 +4355,32 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
+    it('NumberisNaNs', function() {
+      Number.isNaN(NaN); // true
+      Number.isNaN('test'); // false
+      let text = 'hello world!';
+      Number.isNaN(text); // true
+      text = '1';
+      Number.isNaN(text); // false
+      text = +text; // shortcut to convert a string to a number
+      Number.isNaN(text); // false
+      text = 'he110 w0r1d';
+      text = +text;
+      text; // NaN
+    });
+    it('isNaNs', function() {
+      isNaN(NaN); // true
+      isNaN('test'); // true
+      isNaN(2); //false
+      isNaN('2'); // false
+
+
+    });
+    it('arrayNaNs', function() {
+      let arr = ['1','2','3','4',NaN,'5'];
+      arr.findIndex(n => Number.isNaN(n)); // 4
+      
+    });
 });
 
 if (!Array.prototype.flat) {

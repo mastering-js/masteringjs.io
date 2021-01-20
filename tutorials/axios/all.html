@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Use axios.all() to Make Concurrent HTTP Requests" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="This is a placeholder description" />
-    <meta name="description" content="This is a placeholder description" />
+    <meta property="og:description" content="Here's how you can use `axios.all()` to make multiple HTTP requests in parallel." />
+    <meta name="description" content="Here's how you can use `axios.all()` to make multiple HTTP requests in parallel." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>How to Use axios.all() to Make Concurrent HTTP Requests</h1>
   <div class="date">
-    Jan 18, 2021
+    Jan 20, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,15 +72,16 @@
 	  }
 	})();
 	</script>
-  <p><code>axios.all()</code> is axios&#39;s own way of making concurrent http requests and getting back an array of the responses. We recommend assigning the return value of axios.get to a variable before passing it into axios.all() to make your code more readable. Making a request would look something like as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axiosrequest1 = axios.get(requestone);
-<span class="hljs-keyword">const</span> axiosrequest2 = axios.get(requesttwo);
-<span class="hljs-keyword">const</span> axiosrequest3 = axios.get(requestthree);
-<span class="hljs-comment">// you could also use destructuring in axios.spread</span>
-<span class="hljs-keyword">await</span> axios.all(axiosrequest1, axiosrequest2, axiosrequest3).then(axios.spread(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">values</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(values) <span class="hljs-comment">// an array containing the data from the 3 requests</span>
-}));
-</code></pre>
+  <p><code>axios.all()</code> is <a href="/axios">Axios</a>&#39;s own way of making concurrent HTTP requests and getting back an equal number of responses that you can have either in an array using destructuring or a separate variable for each one. We recommend assigning the return value of <a href="/tutorials/axios/get"><code>axios.get()</code></a> to a variable before passing it into <code>axios.all()</code> to make your code more readable as <code>axios.all()</code> takes a spread of requests. Here&#39;s how you can use <code>axios.all()</code> to make 3 requests in parallel:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axiosrequest1 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
+<span class="hljs-keyword">const</span> axiosrequest2 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
+<span class="hljs-keyword">const</span> axiosrequest3 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
+<span class="hljs-comment">// you could also use destructuring to have an array of responses</span>
+<span class="hljs-keyword">await</span> axios.all([axiosrequest1, axiosrequest2, axiosrequest3]).then(axios.spread(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res1, res2, res3</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(res1);
+  <span class="hljs-built_in">console</span>.log(res2);
+  <span class="hljs-built_in">console</span>.log(res3);
+}));</code></pre>
 
   
   <hr>
