@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use axios.all() to Make Concurrent HTTP Requests',
+    raw: './tutorials/axios/axios-all.md',
+    url: '/tutorials/axios/all',
+    description: 'Here\'s how you can use `axios.all()` to make multiple HTTP requests in parallel.',
+    tags: ['axios'],
+    date: moment('2021-01-20')
+  },
+  {
     title: 'How to Check for `NaN` in Javascript',
     raw: './tutorials/fundamentals/check-nans.md',
     url: '/tutorials/fundamentals/check-nan',
