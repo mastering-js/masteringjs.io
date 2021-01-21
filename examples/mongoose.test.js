@@ -2013,4 +2013,36 @@ describe('Mongoose', function() {
       });
     });
   });
+
+  it('using db', async function() {
+    // acquit:ignore:start
+    await mongoose.disconnect();
+    // acquit:ignore:end
+    // Connect to a MongoDB server running on 'localhost:27017' and use the
+    // 'test' database.
+    await mongoose.connect('mongodb://localhost:27017/test', {
+      useNewUrlParser: true // Boilerplate for Mongoose 5.x
+    });
+
+    // Get the current db's profiling level using:
+    // http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel
+    // Mongoose doesn't support getting the profiling level.
+    const profilingLevel = await mongoose.connection.db.profilingLevel();
+    profilingLevel; // 'off'
+    // acquit:ignore:start
+    assert.equal(profilingLevel, 'off');
+    // acquit:ignore:end
+  });
+
+  it('using getClient', async function() {
+    // Get another db's profiling level using:
+    // http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel
+    // Mongoose doesn't support getting the profiling level.
+    const client = mongoose.connection.getClient();
+    const profilingLevel = await client.db('otherdb').profilingLevel();
+    profilingLevel; // 'off'
+    // acquit:ignore:start
+    assert.equal(profilingLevel, 'off');
+    // acquit:ignore:end
+  });
 });
