@@ -101,10 +101,11 @@ async function run() {
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 
-  fs.writeFileSync('./ebooks/mastering-mongoose.html',
-    require('./components/ebooks/mongoose')({}));
-  fs.writeFileSync('./ebooks/mastering-mongoose-subscribers.html',
-    require('./components/ebooks/mongoose')({
+  const defaultSalesPageProps = { defaultPrice: '39.99', _generator: require('./components/ebooks/mongoose') };
+  const salesPages = [
+    { path: './ebooks/mastering-mongoose.html' },
+    {
+      path: './ebooks/mastering-mongoose-subscribers.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
@@ -113,10 +114,10 @@ async function run() {
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>      
       `,
-      price: '<strike>$39.99</strike> <b>$37.99</b>'
-    }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-wyncode.html',
-    require('./components/ebooks/mongoose')({
+      promoPrice: '37.99'
+    },
+    {
+      path: './ebooks/mastering-mongoose-wyncode.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
@@ -125,10 +126,10 @@ async function run() {
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
       `,
-      price: '<strike>$39.99</strike> <b>$35.99</b>'
-    }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-node-weekly.html',
-    require('./components/ebooks/mongoose')({
+      promoPrice: '35.99'
+    },
+    {
+      path: './ebooks/mastering-mongoose-node-weekly.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
@@ -137,10 +138,10 @@ async function run() {
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
       `,
-      price: '<strike>$39.99</strike> <b>$35.99</b>'
-    }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-jsla.html',
-    require('./components/ebooks/mongoose')({
+      promoPrice: '35.99'
+    },
+    {
+      path: './ebooks/mastering-mongoose-jsla.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
@@ -149,10 +150,10 @@ async function run() {
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
       `,
-      price: '<strike>$39.99</strike> <b>$35.99</b>'
-    }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-mongodb.html',
-    require('./components/ebooks/mongoose')({
+      promoPrice: '35.99'
+    },
+    {
+      path: './ebooks/mastering-mongoose-mongodb.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
@@ -161,10 +162,10 @@ async function run() {
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
       `,
-      price: '<strike>$39.99</strike> <b>$35.99</b>'
-    }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-javascript-jabber.html',
-    require('./components/ebooks/mongoose')({
+      promoPrice: '35.99'
+    },
+    {
+      path: './ebooks/mastering-mongoose-javascript-jabber.html',
       paypalButton: `
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -173,8 +174,14 @@ async function run() {
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
       `,
-      price: '<strike>$39.99</strike> <b>$35.99</b>'
-    }));
+      promoPrice: '35.99'
+    }
+  ].map(p => ({ ...defaultSalesPageProps, ...p }));
+
+  for (const salesPage of salesPages) {
+    console.log(salesPage.path)
+    fs.writeFileSync(salesPage.path, salesPage._generator({ ...salesPage }));
+  }
   
   fs.writeFileSync('./request-invite.html', layout({
     title: 'Request Invite',
