@@ -4358,23 +4358,26 @@ describe('Fundamentals', function() {
     it('NumberisNaNs', function() {
       Number.isNaN(NaN); // true
       Number.isNaN('test'); // false
+      // acquit:ignore:start
+      assert.ok(Number.isNaN(NaN));
+      assert.ok(!Number.isNaN('test'));
+      // acquit:ignore:end
       let text = 'hello world!';
-      Number.isNaN(text); // true
-      text = '1';
       Number.isNaN(text); // false
+      // acquit:ignore:start
+      assert.ok(!Number.isNaN(text));
+      // acquit:ignore:end
       text = +text; // shortcut to convert a string to a number
-      Number.isNaN(text); // false
-      text = 'he110 w0r1d';
-      text = +text;
-      text; // NaN
+      Number.isNaN(text); // true
+      // acquit:ignore:start
+      assert.ok(Number.isNaN(text));
+      // acquit:ignore:end
     });
     it('isNaNs', function() {
       isNaN(NaN); // true
       isNaN('test'); // true
-      isNaN(2); //false
+      isNaN(2); // false
       isNaN('2'); // false
-
-
     });
     it('arrayNaNs', function() {
       let arr = ['1','2','3','4',NaN,'5'];
