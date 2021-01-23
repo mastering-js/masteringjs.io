@@ -101,8 +101,9 @@ async function run() {
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 
-  const defaultSalesPageProps = { defaultPrice: '39.99', _generator: require('./components/ebooks/mongoose') };
-  const salesPages = [
+  let pages = [];
+  const defaultSalesPageProps = { defaultPrice: '39.99', template: require('./components/ebooks/mongoose') };
+  pages = pages.concat([
     { path: './ebooks/mastering-mongoose.html' },
     {
       path: './ebooks/mastering-mongoose-subscribers.html',
@@ -176,23 +177,27 @@ async function run() {
       `,
       promoPrice: '35.99'
     }
-  ].map(p => ({ ...defaultSalesPageProps, ...p }));
+  ].map(p => ({ ...defaultSalesPageProps, ...p })));
 
-  for (const salesPage of salesPages) {
-    console.log(salesPage.path)
-    fs.writeFileSync(salesPage.path, salesPage._generator({ ...salesPage }));
-  }
-  
-  fs.writeFileSync('./request-invite.html', layout({
+  pages.push({
+    path: './request-invite.html',
+    template: layout,
     title: 'Request Invite',
     content: requestInvite(),
     description: ''
-  }));
-  fs.writeFileSync('./ebooks/mastering-mongoose-thankyou.html', layout({
+  });
+  pages.push({
+    path: './ebooks/mastering-mongoose-thankyou.html',
+    template: layout,
     title: 'Request Invite',
     content: require('./components/ebooks/mastering-mongoose-thankyou')(),
     description: ''
-  }));
+  });
+
+  for (const page of pages) {
+    console.log(page.path)
+    fs.writeFileSync(page.path, page.template({ ...page }));
+  }
 }
 
 function capitalize(str) {
