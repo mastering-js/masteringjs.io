@@ -883,4 +883,25 @@ describe('axios', function() {
       console.log(res3);
     }));
   });
+  it('axios-call', async function() {
+    // Returns a lot of data including what you send.
+    await axios({
+      method: 'GET',
+      url: 'https://httpbin.org/get',
+      headers:{
+        Accept: 'application/json',
+      }
+    });
+    await axios({
+      method: 'POST',
+      url: 'https://httpbin.org/post',
+      data: {
+        firstName: 'Masteringjs',
+        lastName: 'io'
+      },
+      headers:{
+        Accept: 'application/json'
+      }
+    });
+  });
 });

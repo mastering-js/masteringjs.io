@@ -81,7 +81,8 @@ access tokens to a server.</p>
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-attr">authorization</span>: <span class="hljs-string">'my secret token'</span>
   }
-});</code></pre>
+});
+</code></pre>
 <p>HTTP headers are case-insensitive, so whether you use <code>&#39;authorization&#39;</code>
 or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
@@ -90,7 +91,8 @@ or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
   }
-});</code></pre>
+});
+</code></pre>
 <p>The actual format of the authorization header depends on what auth
 strategy the server uses. For example, here&#39;s how you can <a href="/tutorials/axios/basic_auth">use Basic Auth with Axios</a>.</p>
 <h2 id="with-post-requests">With <a href="/tutorials/axios/post">POST Requests</a></h2>
@@ -105,7 +107,8 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
   }
-});</code></pre>
+});
+</code></pre>
 
   
   <hr>
@@ -113,6 +116,9 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/axios-call">Calling Axios as a Function</a></li>
+  
+
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
@@ -129,9 +135,6 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
   
 
     <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
-  
-
-    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
   
     </ul>
   

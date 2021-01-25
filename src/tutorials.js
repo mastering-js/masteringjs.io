@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Calling Axios as a Function',
+    raw: './tutorials/axios/axios-call.md',
+    url: '/tutorials/axios/axios-call',
+    description: 'Placeholder Description',
+    tags: ['axios'],
+    date: moment('2021-01-25')
+  },
+  {
     title: 'The `db` Property in Mongoose',
     raw: './tutorials/mongoose/db.md',
     url: '/tutorials/mongoose/db',
