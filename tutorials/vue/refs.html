@@ -77,7 +77,8 @@
 <p>If you give the <code>username</code> input a <code>ref</code> attribute in your template, you can then access
 the <code>username</code> input using <code>this.$refs.username</code> as shown below. You can then call
 the <a href="https://www.w3schools.com/jsref/met_html_focus.asp">built-in <code>Element#focus()</code> function</a> to give focus to the <code>username</code> input.</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">username</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">''</span>, <span class="hljs-attr">failed</span>: <span class="hljs-literal">false</span> }),
     <span class="hljs-attr">methods</span>: {
       <span class="hljs-attr">login</span>: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -100,7 +101,8 @@ the <a href="https://www.w3schools.com/jsref/met_html_focus.asp">built-in <code>
         &lt;/div&gt;
       &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <h2 id="with-v-for">With <code>v-for</code></h2>
 <p>When you use <code>ref</code> with <a href="https://vuejs.org/v2/guide/list.html">the <code>v-for</code> directive</a>,
 Vue gives you a native <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">JavaScript array</a> of elements, not just a single element.</p>
@@ -108,7 +110,8 @@ Vue gives you a native <a href="http://thecodebarbarian.com/the-80-20-guide-to-j
 to be able to navigate between inputs using the up and down arrow keys.
 You can access the individual <code>&lt;input&gt;</code> elements using <code>$refs</code> and call
 <code>focus()</code> whenever the user presses up or down:</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">cells</span>: [<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>, <span class="hljs-string">'baz'</span>].map(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> ({ val })) }),
     <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">let</span> cur = <span class="hljs-number">0</span>;
@@ -140,7 +143,8 @@ You can access the individual <code>&lt;input&gt;</code> elements using <code>$r
         &lt;/div&gt;
       &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 
   <hr>
 <div class="cta">

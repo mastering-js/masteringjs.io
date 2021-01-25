@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Make PATCH Requests with Axios - Mastering JS</title>
+    <title>Axios Response `data` Property - Mastering JS</title>
 
-    <meta property="og:title" content="How to Make PATCH Requests with Axios" />
+    <meta property="og:title" content="Axios Response `data` Property" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Sending an HTTP PATCH request with Axios is easy. Here's what you need to know." />
-    <meta name="description" content="Sending an HTTP PATCH request with Axios is easy. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>How to Make PATCH Requests with Axios</h1>
+  <h1>Axios Response `data` Property</h1>
   <div class="date">
-    Jan 15, 2021
+    Jan 25, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,21 +72,10 @@
 	  }
 	})();
 	</script>
-  <p>The easiest way to make a PATCH request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the axios.patch() function. The first parameter is the url to which the request will be made, and the second parameter is the data you will be sending to change. You can make a PATCH request with axios as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'MasteringJS'</span> });
-
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
-</code></pre>
-<p>If the second parameter is an object, axios will do a JSON.stringify on the object before sending the request. It also will specify the content-type to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">application/json</a>, allowing for smooth integration in most projects.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">id</span>: <span class="hljs-number">12345</span> });
-
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
-</code></pre>
-<p>If you pass a string as the second parameter, axios will set the content-type header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa">application/x-www-form-urlencoded</a>. This will turn the request body into a series of key-value pairs.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, <span class="hljs-string">'hello=world'</span>);
-
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span>
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+  <p>When making a standard axios request, the response gives back six properties including <code>data</code>, the one we will be discussing. <code>data</code> is simply the response that was provided by the server.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+<span class="hljs-built_in">console</span>.log(res.data); <span class="hljs-comment">// Returns a lot of data</span>
+});
 </code></pre>
 
   
@@ -95,10 +84,10 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/axios-data">Axios Response `data` Property</a></li>
+    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
-    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
+    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
   
 
     <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
