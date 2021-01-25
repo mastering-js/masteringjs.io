@@ -85,7 +85,8 @@ your parameters in the <a href="/tutorials/fundamentals/query-string">query stri
 <span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 
   
   <hr>
@@ -93,6 +94,9 @@ res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+  
+
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
@@ -109,9 +113,6 @@ res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
   
 
     <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
-  
-
-    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
   
     </ul>
   

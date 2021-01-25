@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Set the Authorization Header with Axios - Mastering JS</title>
+    <title>How to Validate Unique Emails with Mongoose - Mastering JS</title>
 
-    <meta property="og:title" content="Set the Authorization Header with Axios" />
+    <meta property="og:title" content="How to Validate Unique Emails with Mongoose" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can set the authorization header on an Axios HTTP request." />
-    <meta name="description" content="Here's how you can set the authorization header on an Axios HTTP request." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Set the Authorization Header with Axios</h1>
+  <h1>How to Validate Unique Emails with Mongoose</h1>
   <div class="date">
-    Apr 1, 2020
+    Jan 25, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,41 +72,28 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/axios/headers">Setting request headers with Axios</a> is easy.
-Here&#39;s how you can set the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Authorization header</a>, which is typically used to send
-access tokens to a server.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-attr">authorization</span>: <span class="hljs-string">'my secret token'</span>
-  }
-});
+  <p>With Mongoose, you can prevent duplicates in your databases using <a href="https://mongoosejs.com/docs/validation.html">Validation</a>. Validation is defined in the SchemaType and is a middleware. You can also create your own validation in the schema or you can use Mongooses&#39;s built in validation.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello World'</span>);
 </code></pre>
-<p>HTTP headers are case-insensitive, so whether you use <code>&#39;authorization&#39;</code>
-or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
-  }
-});
-</code></pre>
-<p>The actual format of the authorization header depends on what auth
-strategy the server uses. For example, here&#39;s how you can <a href="/tutorials/axios/basic_auth">use Basic Auth with Axios</a>.</p>
-<h2 id="with-post-requests">With <a href="/tutorials/axios/post">POST Requests</a></h2>
-<p>Setting the authorization header is a little different with <code>post()</code>,
-because the 2nd parameter to <code>post()</code> is the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages">request body</a>. You should pass
-the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Send a POST request with the authorization header set to</span>
-<span class="hljs-comment">// the string 'my secret token'. With `post()`, the 3rd parameter</span>
-<span class="hljs-comment">// is the request options, not the 2nd parameter like with `get()`.</span>
-<span class="hljs-keyword">const</span> body = {};
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, body, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
-  }
+<p>It is important to note that the <code>unique</code> option is not a validator. It is a shortahnd for creating a MongoDB unique index on, in this case, <code>email</code>. If you wait for the index to be built, you can use either Mongoose&#39;s <code>Model.on(&#39;index&#39;)</code> event or you can you Mongoose&#39;s promised based alternative, <code>Model.init()</code>, which is shown below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, mongoose.Schema({
+  <span class="hljs-attr">email</span>:{ 
+  <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>
+}
+}));
+<span class="hljs-keyword">await</span> User.create([
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> },
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> },
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'test@gmail.com'</span> },
+]);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> User.find()); <span class="hljs-comment">// Prints the information associated with the three emails above.</span>
+<span class="hljs-keyword">await</span> User.init().then(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> }, <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(err); <span class="hljs-comment">// Prints error message</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> User.find()); <span class="hljs-comment">// Prints the same as the first console.log() as the duplicate email did not go through</span>
+ });
 });
 </code></pre>
 
@@ -116,9 +103,6 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
-  
-
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
@@ -135,6 +119,9 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
   
 
     <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
+  
+
+    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
   
     </ul>
   

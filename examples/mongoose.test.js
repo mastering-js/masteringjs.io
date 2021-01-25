@@ -245,7 +245,7 @@ describe('Mongoose', function() {
         res.json(doc);
       });
 
-      const server = await app.listen(3000);
+      const server = app.listen(3000);
 
       // "<h1 id="hello">Hello</h1>"
       await axios.get('http://localhost:3000').then(res => res.data.html);
@@ -1146,7 +1146,7 @@ describe('Mongoose', function() {
       assert.equal(doc.name, 'Jean-Luc Picard');
       assert.equal(doc.age, 59);
 
-      const _doc = await UserModel.collection.findOne();
+      const _doc = UserModel.collection.findOne();
       assert.equal(_doc.age, 60);
       // acquit:ignore:end
     });
@@ -2044,5 +2044,49 @@ describe('Mongoose', function() {
     // acquit:ignore:start
     assert.equal(profilingLevel, 'off');
     // acquit:ignore:end
+  });
+
+  it('unique-validates-email', async function() {
+    const User = mongoose.model('User', mongoose.Schema({
+      email:{ 
+      type: String,
+      required: true,
+      unique: true
+    }
+    }));
+    await User.create([
+        { email: 'gmail@google.com' },
+        { email: 'bill@microsoft.com' },
+        { email: 'test@gmail.com' },
+    ]);
+    console.log(await User.find()); // Prints the information associated with the three emails above.
+    await User.init().then(async function() {
+    User.create({ email: 'gmail@google.com' }, async function(err) {
+      console.log(err); // Prints error message
+      console.log(await User.find()); // Prints the same as the first console.log() as the duplicate email did not go through
+     });
+    });
+  });
+  it('validates-email', async function() {
+    const User = mongoose.model('User', mongoose.Schema({
+      email:{ 
+      type: String,
+      validate:{
+        validator: async function(v) {
+          const res = await User.find({email:v});
+          console.log(res);
+          if(res) console.log('No duplicates');
+          else console.log('Duplicate email');
+          }
+        }
+      }
+    }));
+    await User.create([
+      { email: 'gmail@google.com' },
+      { email: 'bill@microsoft.com' },
+      { email: 'test@gmail.com' },
+  ]).then(() => {
+    console.log(User.validate);
+  });
   });
 });
