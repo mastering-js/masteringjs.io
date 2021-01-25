@@ -81,7 +81,8 @@
 <li>4 = invalid credentials</li>
 </ul>
 <p>These event names will emit when the state changes.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
 <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
 mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
@@ -103,7 +104,8 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});</code></pre>
+});
+</code></pre>
 
   <hr>
 <div class="cta">
@@ -126,6 +128,9 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/mongoose/find-with-async">How to Use Mongoose find() with Async/Await</a></li>
+  
+
     <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>
   
 
@@ -142,9 +147,6 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
   
 
     <li><a href="/tutorials/mongoose/find-like">`find()` with LIKE in Mongoose</a></li>
-  
-
-    <li><a href="/tutorials/mongoose/explain">Using MongoDB Explain with Mongoose</a></li>
   
     </ul>
   

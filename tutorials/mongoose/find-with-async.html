@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>The `db` Property in Mongoose - Mastering JS</title>
+    <title>How to Use Mongoose find() with Async/Await - Mastering JS</title>
 
-    <meta property="og:title" content="The `db` Property in Mongoose" />
+    <meta property="og:title" content="How to Use Mongoose find() with Async/Await" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Mongoose connections have a `db` property that lets you bypass Mongoose and talk to MongoDB directly. Here's what you need to know." />
-    <meta name="description" content="Mongoose connections have a `db` property that lets you bypass Mongoose and talk to MongoDB directly. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/mongoose">Mongoose</a>
     /
   </div>
-  <h1>The `db` Property in Mongoose</h1>
+  <h1>How to Use Mongoose find() with Async/Await</h1>
   <div class="date">
-    Jan 21, 2021
+    Jan 25, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,27 +72,29 @@
 	  }
 	})();
 	</script>
-  <p>Mongoose provides numerous powerful features, like <a href="https://mongoosejs.com/docs/middleware.html">middleware</a> and <a href="https://mongoosejs.com/docs/validation.html">validation</a>. But sometimes you want to bypass Mongoose and use the <a href="https://www.npmjs.com/package/mongodb">MongoDB Node.js driver</a> directly. <a href="https://mongoosejs.com/docs/api/connection.html">Mongoose connections</a> have a <a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-db"><code>db</code> property</a> that let you access the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html">MongoDB driver&#39;s <code>db</code> handle</a>:</p>
+  <p>The Mongoose <code>find(filter,callback)</code> function allows you to query for documents with the given key(s)/value(s) and it will return an array of documents that match the given filter. You can use this function with asynchronous calls as follows:</p>
 <pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
-<span class="hljs-comment">// 'test' database.</span>
-<span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
-  <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});
-
-<span class="hljs-comment">// Get the current db's profiling level using:</span>
-<span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
-<span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
-<span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> mongoose.connection.db.profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
+<span class="hljs-keyword">await</span> Character.create([
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
+]);
+<span class="hljs-comment">// The query to find all the Lieutenants</span>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({<span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>}); <span class="hljs-comment">// will return Worf and Forge</span>
 </code></pre>
-<p>The <code>db</code> property is usually enough, but there are some cases where you need the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html"><code>MongoClient</code> instance</a> instead of the <code>db</code> handle.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Get another db's profiling level using:</span>
-<span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
-<span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
-<span class="hljs-keyword">const</span> client = mongoose.connection.getClient();
-<span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> client.db(<span class="hljs-string">'otherdb'</span>).profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
+<p>If you omit the filter parameter in the <code>find()</code> call, it will just return all documents in the form of an array.</p>
+<pre><code class="language-javascript">
+<span class="hljs-keyword">await</span> Character.create([
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> },
+  { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
+]);
+<span class="hljs-comment">// Parameter omitted</span>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find(); <span class="hljs-comment">// returns the above array with an _id property and __v property</span>
 </code></pre>
 
   <hr>
@@ -116,7 +118,7 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/find-with-async">How to Use Mongoose find() with Async/Await</a></li>
+    <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>
   
 
     <li><a href="/tutorials/mongoose/mongoose-connect-async">Mongoose Connect Using Async/Await</a></li>
