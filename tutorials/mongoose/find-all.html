@@ -81,8 +81,7 @@ that contains all your app&#39;s users. To get a list of all users in the collec
 
 <span class="hljs-comment">// Empty `filter` means "match all documents"</span>
 <span class="hljs-keyword">const</span> filter = {};
-<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);
-</code></pre>
+<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);</code></pre>
 <p>Equivalently, you can call <code>User.find()</code> with no arguments and get the same result.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">await</span> User.find();</code></pre>
 <h2 id="cursors">Cursors</h2>
@@ -98,8 +97,7 @@ users into memory at once just won&#39;t work. To loop through all users one at 
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> cursor.next(); doc != <span class="hljs-literal">null</span>; doc = <span class="hljs-keyword">await</span> cursor.next()) {
   <span class="hljs-comment">// Use `doc`</span>
-}
-</code></pre>
+}</code></pre>
 <p>Alternatively, you can use <a href="http://thecodebarbarian.com/getting-started-with-async-iterators-in-node-js">async iterators</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> doc <span class="hljs-keyword">of</span> User.find()) {
   <span class="hljs-comment">// use `doc`</span>
@@ -126,7 +124,7 @@ users into memory at once just won&#39;t work. To loop through all users one at 
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/find-with-async">How to Use Mongoose find() with Async/Await</a></li>
+    <li><a href="/tutorials/mongoose/find-async">How to Use Mongoose find() with Async/Await</a></li>
   
 
     <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>

@@ -86,12 +86,10 @@ a document with the given <code>id</code>, or <a href="/tutorials/fundamentals/n
 <span class="hljs-keyword">await</span> Model.findById(<span class="hljs-number">1</span>);
 
 <span class="hljs-comment">// `null` because no document was found</span>
-<span class="hljs-keyword">await</span> Model.findById(<span class="hljs-number">2</span>);
-</code></pre>
+<span class="hljs-keyword">await</span> Model.findById(<span class="hljs-number">2</span>);</code></pre>
 <p>When you call <code>findById(_id)</code>, Mongoose calls <code>findOne({ _id })</code> under the hood.
 That means <code>findById()</code> triggers <a href="https://mongoosejs.com/docs/middleware.html"><code>findOne()</code> middleware</a>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">_id</span>: <span class="hljs-built_in">Number</span> }, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">_id</span>: <span class="hljs-built_in">Number</span> }, { <span class="hljs-attr">versionKey</span>: <span class="hljs-literal">false</span> });
 schema.pre(<span class="hljs-string">'findOne'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Called `findOne()`'</span>);
 });
@@ -99,8 +97,7 @@ schema.pre(<span class="hljs-string">'findOne'</span>, <span class="hljs-functio
 <span class="hljs-keyword">await</span> Model.create({ <span class="hljs-attr">_id</span>: <span class="hljs-number">1</span> });
 
 <span class="hljs-comment">// Prints "Called `findOne()`" because `findById()` calls `findOne()`</span>
-<span class="hljs-keyword">await</span> Model.findById(<span class="hljs-number">1</span>);
-</code></pre>
+<span class="hljs-keyword">await</span> Model.findById(<span class="hljs-number">1</span>);</code></pre>
 <p><a href="https://mongoosejs.com/docs/tutorials/query_casting.html">Mongoose casts queries to match your schema</a>. That means if your
 <code>_id</code> is a <a href="https://docs.mongodb.com/manual/reference/method/ObjectId/">MongoDB ObjectId</a>, you can pass the <code>_id</code> as a string and Mongoose will convert it to an ObjectId for you.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> _id = <span class="hljs-string">'5d273f9ed58f5e7093b549b0'</span>;
@@ -114,8 +111,7 @@ schema.pre(<span class="hljs-string">'findOne'</span>, <span class="hljs-functio
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> Model.findById(_id);
 
 <span class="hljs-keyword">typeof</span> doc._id; <span class="hljs-comment">// 'object'</span>
-doc._id <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span>
-</code></pre>
+doc._id <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -138,7 +134,7 @@ doc._id <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <s
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/find-with-async">How to Use Mongoose find() with Async/Await</a></li>
+    <li><a href="/tutorials/mongoose/find-async">How to Use Mongoose find() with Async/Await</a></li>
   
 
     <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>

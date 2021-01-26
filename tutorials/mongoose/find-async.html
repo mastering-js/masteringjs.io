@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Use Mongoose find() with Async/Await" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Mongoose's `find()` function works with async/await. Here's how you can use async/await with Mongoose queries." />
+    <meta name="description" content="Mongoose's `find()` function works with async/await. Here's how you can use async/await with Mongoose queries." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -72,8 +72,12 @@
 	  }
 	})();
 	</script>
-  <p>The Mongoose <code>find(filter,callback)</code> function allows you to query for documents with the given key(s)/value(s) and it will return an array of documents that match the given filter. You can use this function with asynchronous calls as follows:</p>
-<pre><code class="language-javascript">
+  <p>The Mongoose <code>find(filter, callback)</code> function allows you to query for documents with the given key(s)/value(s) and it will return an array of documents that match the given filter. You can use this function with asynchronous calls as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, mongoose.Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-built_in">String</span>
+}));
 <span class="hljs-keyword">await</span> Character.create([
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
@@ -82,10 +86,14 @@
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
 ]);
 <span class="hljs-comment">// The query to find all the Lieutenants</span>
-<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({<span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>}); <span class="hljs-comment">// will return Worf and Forge</span>
-</code></pre>
-<p>If you omit the filter parameter in the <code>find()</code> call, it will just return all documents in the form of an array.</p>
-<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }); <span class="hljs-comment">// will return Worf and Forge</span></code></pre>
+<p>If you omit the filter parameter in the <code>find()</code> call, it will <a href="/tutorials/mongoose/find-all">find all documents</a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, mongoose.Schema({
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span>,
+  <span class="hljs-attr">rank</span>: <span class="hljs-built_in">String</span>
+}));
+<span class="hljs-comment">// acquit:ignore:end</span>
 <span class="hljs-keyword">await</span> Character.create([
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
@@ -94,8 +102,7 @@
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
 ]);
 <span class="hljs-comment">// Parameter omitted</span>
-<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find(); <span class="hljs-comment">// returns the above array with an _id property and __v property</span>
-</code></pre>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find(); <span class="hljs-comment">// returns the above array with an _id property and __v property</span></code></pre>
 
   <hr>
 <div class="cta">

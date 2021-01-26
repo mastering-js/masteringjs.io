@@ -94,8 +94,7 @@ some special properties.</p>
 });
 
 <span class="hljs-built_in">Array</span>.isArray(doc.tags); <span class="hljs-comment">// true</span>
-doc.tags.isMongooseArray; <span class="hljs-comment">// true</span>
-</code></pre>
+doc.tags.isMongooseArray; <span class="hljs-comment">// true</span></code></pre>
 <p>For example, Mongoose intercepts <code>push()</code> calls on the <code>tags</code> array,
 and is smart enough to update the document using <code>$push</code> when you <code>save()</code> the document.</p>
 <pre><code class="language-javascript">mongoose.set(<span class="hljs-string">'debug'</span>, <span class="hljs-literal">true</span>);
@@ -128,8 +127,7 @@ it also has some Mongoose-specific functionality baked in.</p>
 
 <span class="hljs-built_in">Array</span>.isArray(doc.members); <span class="hljs-comment">// true</span>
 doc.members.isMongooseArray; <span class="hljs-comment">// true</span>
-doc.members.isMongooseDocumentArray; <span class="hljs-comment">// true</span>
-</code></pre>
+doc.members.isMongooseDocumentArray; <span class="hljs-comment">// true</span></code></pre>
 <p>For example, if you set the 0th member&#39;s <code>firstName</code>, Mongoose will translate that to a set 
 on <code>member.0.firstName</code> when you call <code>save()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> groupSchema = Schema({
@@ -150,8 +148,7 @@ doc.members[<span class="hljs-number">0</span>].firstName = <span class="hljs-st
 <span class="hljs-comment">// Prints:</span>
 <span class="hljs-comment">// Mongoose: groups.updateOne({ _id: ObjectId("...") },</span>
 <span class="hljs-comment">// { '$set': { 'members.0.firstName': 'Anakin' } }, { session: null })</span>
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 <h2 id="caveat-with-setting-array-indexes">Caveat With Setting Array Indexes</h2>
 <p>Mongoose has a <a href="https://mongoosejs.com/docs/faq.html#array-changes-not-saved">known issue with setting array indexes directly</a>. For example, if you set <code>doc.tags[0]</code>,
 Mongoose change tracking won&#39;t pick up that change.</p>
@@ -172,19 +169,16 @@ doc.tags[<span class="hljs-number">0</span>] = <span class="hljs-string">'JavaSc
 <span class="hljs-keyword">await</span> doc.save();
 
 <span class="hljs-keyword">const</span> fromDb = <span class="hljs-keyword">await</span> BlogPost.findOne({ <span class="hljs-attr">_id</span>: doc._id });
-fromDb.tags; <span class="hljs-comment">// ['programming']</span>
-</code></pre>
+fromDb.tags; <span class="hljs-comment">// ['programming']</span></code></pre>
 <p>To work around this caveat, you need to inform Mongoose&#39;s change
 tracking of the change, either using the <a href="https://mongoosejs.com/docs/api/document.html#document_Document-markModified"><code>markModified()</code> method</a> or by explicitly calling <a href="https://mongoosejs.com/docs/api/array.html#mongoosearray_MongooseArray-set"><code>MongooseArray#set()</code></a> on the array element as shown below.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// This change works. `set()` is a special method on Mongoose</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// This change works. `set()` is a special method on Mongoose</span>
 <span class="hljs-comment">// arrays that triggers change tracking.</span>
 doc.tags.set(<span class="hljs-number">0</span>, <span class="hljs-string">'JavaScript'</span>);
 <span class="hljs-keyword">await</span> doc.save();
 
 <span class="hljs-keyword">const</span> fromDb = <span class="hljs-keyword">await</span> BlogPost.findOne({ <span class="hljs-attr">_id</span>: doc._id });
-fromDb.tags; <span class="hljs-comment">// ['JavaScript']</span>
-</code></pre>
+fromDb.tags; <span class="hljs-comment">// ['JavaScript']</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -207,7 +201,7 @@ fromDb.tags; <span class="hljs-comment">// ['JavaScript']</span>
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/find-with-async">How to Use Mongoose find() with Async/Await</a></li>
+    <li><a href="/tutorials/mongoose/find-async">How to Use Mongoose find() with Async/Await</a></li>
   
 
     <li><a href="/tutorials/mongoose/db">The `db` Property in Mongoose</a></li>

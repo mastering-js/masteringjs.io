@@ -5,8 +5,8 @@ const moment = require('moment');
 module.exports = Object.freeze([
   {title: 'How to Use Mongoose find() with Async/Await',
   raw: './tutorials/mongoose/find-with-async.md',
-  url: '/tutorials/mongoose/find-with-async',
-  description: 'Placeholder Description',
+  url: '/tutorials/mongoose/find-async',
+  description: 'Mongoose\'s `find()` function works with async/await. Here\'s how you can use async/await with Mongoose queries.',
   tags: ['mongoose'],
   date: moment('2021-01-25')
   },
