@@ -86,7 +86,7 @@
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
 ]);
 <span class="hljs-comment">// The query to find all the Lieutenants</span>
-<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }); <span class="hljs-comment">// will return Worf and Forge</span></code></pre>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }); <span class="hljs-comment">// will return Worf and La Forge</span></code></pre>
 <p>If you omit the filter parameter in the <code>find()</code> call, it will <a href="/tutorials/mongoose/find-all">find all documents</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, mongoose.Schema({
   <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,

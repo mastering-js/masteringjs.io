@@ -2060,7 +2060,7 @@ describe('Mongoose', function() {
           { name: 'Worf', age: 24, rank: 'Lieutenant' }
         ]);
         // The query to find all the Lieutenants
-        const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and Forge
+        const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and La Forge
     });
     it('nofind', async function() {
       const Character = mongoose.model('Character', mongoose.Schema({
