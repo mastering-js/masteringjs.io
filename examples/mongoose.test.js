@@ -2047,19 +2047,11 @@ describe('Mongoose', function() {
   });
   describe('mongoose-find-async', function() {
     it('find', async function() {
-        // acquit:ignore:start
-        await mongoose.disconnect();
-        // Connect to a MongoDB server running on 'localhost:27017' and use the
-        // 'test' database.
-        await mongoose.connect('mongodb://localhost:27017/test', {
-          useNewUrlParser: true // Boilerplate for Mongoose 5.x
-        });
         const Character = mongoose.model('Character', mongoose.Schema({
           name: String,
           age: Number,
           rank: String
         }));
-        // acquit:ignore:end
         await Character.create([
           { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
           { name: 'William Riker', age: 29, rank: 'Commander' },
@@ -2068,16 +2060,9 @@ describe('Mongoose', function() {
           { name: 'Worf', age: 24, rank: 'Lieutenant' }
         ]);
         // The query to find all the Lieutenants
-        const query = await Character.find({rank: 'Lieutenant'}); // will return Worf and Forge
+        const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and Forge
     });
     it('nofind', async function() {
-      // acquit:ignore:start
-      await mongoose.disconnect();
-      // Connect to a MongoDB server running on 'localhost:27017' and use the
-      // 'test' database.
-      await mongoose.connect('mongodb://localhost:27017/test', {
-        useNewUrlParser: true // Boilerplate for Mongoose 5.x
-      });
       const Character = mongoose.model('Character', mongoose.Schema({
         name: String,
         age: Number,
