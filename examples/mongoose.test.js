@@ -2063,6 +2063,7 @@ describe('Mongoose', function() {
         const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and La Forge
     });
     it('nofind', async function() {
+      // acquit:ignore:start
       const Character = mongoose.model('Character', mongoose.Schema({
         name: String,
         age: Number,
