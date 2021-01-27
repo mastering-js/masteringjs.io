@@ -885,7 +885,8 @@ describe('axios', function() {
   });
   it('axios-data', async function() {
     await axios.get('https://httpbin.org/get').then((res) => {
-    console.log(res.data); // Returns a lot of data
+    res.data; // Returns the data at the server we requested.
+    typeof res.data; // object
     });
   });
 });

@@ -72,11 +72,25 @@
 	  }
 	})();
 	</script>
-  <p>When making a standard axios request, the response gives back six properties including <code>data</code>, the one we will be discussing. <code>data</code> is simply the response that was provided by the server.</p>
+  <p>When making a standard axios request, the response contains six properties including <code>data</code>, the one we will be discussing. <code>data</code> is simply the response that was provided by the server. <code>data</code> could be anything, it could be a string, number, or object depending on what information you requested from the server. In the example below, data is an object as it contains a series of key value pairs.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
-<span class="hljs-built_in">console</span>.log(res.data); <span class="hljs-comment">// Returns a lot of data</span>
+res.data; <span class="hljs-comment">// Returns the data at the server we requested.</span>
+<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span>
 });
 </code></pre>
+<p><strong>res.data</strong> returns the following:</p>
+<pre><code>{
+<span class="hljs-attr">args</span>: {},
+<span class="hljs-attr">headers</span>: {
+<span class="hljs-attr">Accept</span>: <span class="hljs-string">'application/json, text/plain, _/_'</span>,
+<span class="hljs-attr">Host</span>: <span class="hljs-string">'httpbin.org'</span>,
+<span class="hljs-string">'User-Agent'</span>: <span class="hljs-string">'axios/0.19.2'</span>,
+<span class="hljs-string">'X-Amzn-Trace-Id'</span>: <span class="hljs-string">'Root=1-6011aa12-6d7a1ae8689dd32256ab1be7'</span>
+},
+<span class="hljs-attr">origin</span>: <span class="hljs-string">'99.138.93.108'</span>,
+<span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/get'</span>
+}</code></pre>
+<p><strong>Note:</strong> This is just an example and responses from different servers will vary. In this example, the unfiltered response, res, contains much more information about the request and response. This information could be helpful if the project your working on needs something from it or you are debugging, however, most of the time directly accessing the data is all that will be needed.</p>
 
   
   <hr>
