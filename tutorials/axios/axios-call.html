@@ -72,10 +72,10 @@
 	  }
 	})();
 	</script>
-  <p>To use axios in any of your projects you must first import it by assigning it to a variable, which is usually called axios, though you are free to name it anything else.
-<code>const axios = require(&#39;axios&#39;)</code></p>
-<p>Once that is done you can make different requests like <code>axios.get()</code> or <code>axios.post()</code> as needed. However, you can also make an <code>axios()</code> function call. The most barebones axios function call you could make is <code>axios(https://httpbin.org/get)</code> as the default for an <code>axios()</code> function call is the GET request.</p>
-<p>Think of the <code>axios()</code> function call similarly to an ajax call or a fetch request where you have to define what kind of request it is and what you want to send in the call as follows:</p>
+  <p>To use axios in any of your projects you must first import it by assigning it to a variable, which is usually called axios, though you are free to name it anything else.</p>
+<p><code>const axios = require(&#39;axios&#39;)</code></p>
+<p>Once that is done you can make different requests like <code>axios.get()</code> or <code>axios.post()</code> as needed. However, you can also make an <code>axios()</code> function call. The most barebones axios function call you could make is <code>axios(&#39;https://httpbin.org/get&#39;)</code> as the default for an <code>axios()</code> function call is the GET request.</p>
+<p>Think of the <code>axios()</code> function call similarly to a fetch request where you have to define what kind of request it is and what you want to send in the call as follows:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Returns a lot of data including what you send.</span>
 <span class="hljs-keyword">await</span> axios({
   <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
