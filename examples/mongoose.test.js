@@ -2060,11 +2060,10 @@ describe('Mongoose', function() {
         { email: 'bill@microsoft.com' },
         { email: 'test@gmail.com' }
     ]);
-    console.log(await User.find()); // Prints the information associated with the three emails above.
-    await User.init().then(function() {
-    User.create({ email: 'gmail@google.com' }, function(err) {
+    await User.find(); // Prints the information associated with the three emails above.
+    await User.init();
+    await User.create({ email: 'gmail@google.com' }, function(err) {
       console.log(err); // Prints error message
-     });
     });
   });
 });
