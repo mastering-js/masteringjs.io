@@ -884,18 +884,20 @@ describe('axios', function() {
     }));
   });
   it('axios-dataA', async function() {
-    await axios.get('https://httpbin.org/get').then((res) => {
-      res.data; // Returns the HTTP response body at the server we requested.
-      typeof res.data; // object
-    });
+    const res = await axios.get('https://httpbin.org/get')
+    res.data; // Returns the HTTP response body at the server we requested.
+    typeof res.data; // object
+    
   });
   it('axios-dataB', async function() {
-    await axios.get('https://httpbin.org/get', {
+   const res = await axios.get('https://httpbin.org/get', {
       responseType: 'text',
-      transformResponse: [data => data] // the name of the variable does not matter
-    }).then(res => {
-      res.data; // same data obtained from previous request
-      typeof res.data; // string
-    })
+      transformResponse: [v => v]
+    });
+    res.data; // same data obtained from previous request
+    typeof res.data; // string
+    // acquit:ignore:start
+    assert.equals(typeof res.data, 'string');
+    // acquit:ignore:end
   });
 });
