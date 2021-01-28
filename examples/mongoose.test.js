@@ -1,5 +1,6 @@
 'use strict';
 
+const { doesNotMatch } = require('assert');
 const assert = require('assert');
 const mongoose = require('mongoose');
 
@@ -2062,8 +2063,13 @@ describe('Mongoose', function() {
     ]);
     await User.find(); // Prints the information associated with the three emails above.
     await User.init();
-    await User.create({ email: 'gmail@google.com' }, function(err) {
-      console.log(err); // Prints error message
-    });
+    try{
+      await User.create({ email: 'gmail@google.com' });
+      done();
+    }
+    catch(error){
+      console.log(error); // Prints the error message
+   }
+   
   });
 });
