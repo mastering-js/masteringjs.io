@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Calling Axios as a Function',
+    raw: './tutorials/axios/axios-call.md',
+    url: '/tutorials/axios/call',
+    description: 'In addition to `axios.get()` and `axios.post()`, Axios itself is a function that you can call. Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2021-01-28')
+  },
+  {
     title: 'How to Use Mongoose find() with Async/Await',
     raw: './tutorials/mongoose/find-with-async.md',
     url: '/tutorials/mongoose/find-async',
