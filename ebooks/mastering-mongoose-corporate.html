@@ -1,18 +1,4 @@
-'use strict';
 
-const footer = require('../footer');
-const nav = require('../nav');
-
-const defaultButton = `
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="NRP4ZFCGJ5BLY">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-`;
-
-module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +17,33 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
   </head>
 
   <body>
-    ${nav()}
+    
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
     <div class="sticky-promo">
       <div class="cover">
         <img src="https://mastering-mongoose.netlify.app/images/mastering-mongoose.jpg">
@@ -227,10 +239,17 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
           <li>Access to sample app GitHub repo</li>
         </ul>
         <div class="price">
-          ${_displayPrice(promoPrice, defaultPrice)}
+          <strike>$39.99/Person</strike> <b>$99.00</b>
         </div>
         <div class="paypal-button">
-          ${paypalButton || defaultButton}       
+          
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="VYBY5BN38CP44">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+             
         </div>
         <div class="small">
           Have an issue? <a href="https://github.com/vkarpov15/masteringjs.io/issues">Report it on GitHub</a> and we'll respond within 24 hours.
@@ -245,7 +264,22 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
       <div style="clear: both"></div>
     </div>
 
-    ${footer()}
+    
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
 
     <script type="text/javascript">
       window.addEventListener('scroll', function() {
@@ -262,11 +296,3 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
     </script>
   </body>
 </html>
-`;
-
-function _displayPrice(promoPrice, defaultPrice) {
-  if (promoPrice == null) {
-    return `<b>$${defaultPrice}</b>`;
-  }
-  return `<strike>$${defaultPrice}</strike> <b>$${promoPrice}</b>`;
-}
