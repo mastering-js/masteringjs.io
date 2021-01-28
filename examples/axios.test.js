@@ -883,10 +883,19 @@ describe('axios', function() {
       console.log(res3);
     }));
   });
-  it('axios-data', async function() {
+  it('axios-dataA', async function() {
     await axios.get('https://httpbin.org/get').then((res) => {
-    res.data; // Returns the data at the server we requested.
-    typeof res.data; // object
+      res.data; // Returns the HTTP response body at the server we requested.
+      typeof res.data; // object
     });
+  });
+  it('axios-dataB', async function() {
+    await axios.get('https://httpbin.org/get', {
+      responseType: 'text',
+      transformResponse: [data => data] // the name of the variable does not matter
+    }).then(res => {
+      res.data; // same data obtained from previous request
+      typeof res.data; // string
+    })
   });
 });
