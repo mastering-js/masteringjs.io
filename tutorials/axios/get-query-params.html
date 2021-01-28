@@ -80,15 +80,13 @@
 <span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <p>You can set <code>options.params</code> to a <a href="/tutorials/fundamentals/pojo">POJO</a> as shown above, or to an
 instance of the JavaScript&#39;s built-in <a href="/tutorials/fundamentals/query-string"><code>URLSearchParams</code> class</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams([[<span class="hljs-string">'answer'</span>, <span class="hljs-number">42</span>]]);
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { params });
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <h2 id="customizing-serialization">Customizing Serialization</h2>
 <p>Axios&#39;s built-in query string serializer respects the <a href="http://thecodebarbarian.com/what-is-the-tojson-function-in-javascript.html"><code>toJSON()</code> function</a>, so it automatically serializes built-in custom JSON
 serialization, like <a href="http://thecodebarbarian.com/formatting-javascript-dates-with-moment-js.html">Moment objects</a>
@@ -101,8 +99,7 @@ or <a href="https://mongoosejs.com/docs/documents.html">Mongoose documents</a>.<
 };
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { params });
-res.data.args; <span class="hljs-comment">// { answer: 42, time: "\"2016-06-01T04:00:00.000Z\"" }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42, time: "\"2016-06-01T04:00:00.000Z\"" }</span></code></pre>
 <p>However, if you need more flexibility in how Axios serializes query strings, Axios supports a <code>paramsSerializer</code>
 option that lets you overwrite the function Axios to serialize.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> params = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
@@ -116,8 +113,7 @@ option that lets you overwrite the function Axios to serialize.</p>
       join(<span class="hljs-string">'&amp;'</span>);
   }
 });
-res.data.args; <span class="hljs-comment">// { answer: 'HIDDEN' }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 'HIDDEN' }</span></code></pre>
 
   
   <hr>
@@ -125,7 +121,7 @@ res.data.args; <span class="hljs-comment">// { answer: 'HIDDEN' }</span>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/axios-call">Calling Axios as a Function</a></li>
+    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
   
 
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
