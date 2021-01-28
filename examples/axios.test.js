@@ -884,24 +884,30 @@ describe('axios', function() {
     }));
   });
   it('axios-call', async function() {
-    // Returns a lot of data including what you send.
-    await axios({
+    let res = await axios({
       method: 'GET',
       url: 'https://httpbin.org/get',
       headers:{
         Accept: 'application/json',
       }
     });
-    await axios({
-      method: 'POST',
-      url: 'https://httpbin.org/post',
-      data: {
-        firstName: 'Masteringjs',
-        lastName: 'io'
-      },
-      headers:{
-        Accept: 'application/json'
-      }
-    });
+    
+    /*
+     * {
+     *   args: {},
+     *   headers: {
+     *     Accept: 'application/json',
+     *     Host: 'httpbin.org',
+     *     'User-Agent': 'axios/0.19.2',
+     *     'X-Amzn-Trace-Id': 'Root=1-6012eaed-26d1f5e15f3bbc4717e33844'
+     *   },
+     *   origin: '138.207.148.170',
+     *   url: 'https://httpbin.org/get'
+     * }
+     */
+    res.data;
+    // acquit:ignore:start
+    assert.equal(res.data.url, 'https://httpbin.org/get');
+    // acquit:ignore:end
   });
 });

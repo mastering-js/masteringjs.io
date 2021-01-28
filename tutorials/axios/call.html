@@ -77,25 +77,28 @@
 <span class="hljs-keyword">typeof</span> axios; <span class="hljs-comment">// 'function'</span></code></pre>
 <p>Once that is done you can make different requests like <code>axios.get()</code> or <code>axios.post()</code> as needed. However, you can also make an <code>axios()</code> function call. The most barebones axios function call you could make is <code>axios(&#39;https://httpbin.org/get&#39;)</code> as the default for an <code>axios()</code> function call is the GET request.</p>
 <p>Think of the <code>axios()</code> function call similarly to a fetch request where you have to define what kind of request it is and what you want to send in the call as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Returns a lot of data including what you send.</span>
-<span class="hljs-keyword">await</span> axios({
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> axios({
   <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
   <span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/get'</span>,
   <span class="hljs-attr">headers</span>:{
     <span class="hljs-attr">Accept</span>: <span class="hljs-string">'application/json'</span>,
   }
 });
-<span class="hljs-keyword">await</span> axios({
-  <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
-  <span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/post'</span>,
-  <span class="hljs-attr">data</span>: {
-    <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Masteringjs'</span>,
-    <span class="hljs-attr">lastName</span>: <span class="hljs-string">'io'</span>
-  },
-  <span class="hljs-attr">headers</span>:{
-    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'application/json'</span>
-  }
-});</code></pre>
+
+<span class="hljs-comment">/*
+ * {
+ *   args: {},
+ *   headers: {
+ *     Accept: 'application/json',
+ *     Host: 'httpbin.org',
+ *     'User-Agent': 'axios/0.19.2',
+ *     'X-Amzn-Trace-Id': 'Root=1-6012eaed-26d1f5e15f3bbc4717e33844'
+ *   },
+ *   origin: '138.207.148.170',
+ *   url: 'https://httpbin.org/get'
+ * }
+ */</span>
+res.data;</code></pre>
 
   
   <hr>
