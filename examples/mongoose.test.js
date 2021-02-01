@@ -2068,7 +2068,7 @@ describe('Mongoose', function() {
       done();
     }
     catch(error){
-      console.log(error); // Prints the error message
+      console.log(error); // Prints the error message which will say E11000 duplicate key error ...
    }
    
   });
