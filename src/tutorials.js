@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Global Variables in JavaScript',
+    raw: './tutorials/fundamentals/global-variable.md',
+    url: '/tutorials/fundamentals/global-variable',
+    description: 'Any JavaScript variable defined outside any function is a global variable, but that comes with caveats for Node.js and Webpack. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-02')
+  },
+  {
     title: 'Calling Axios as a Function',
     raw: './tutorials/axios/axios-call.md',
     url: '/tutorials/axios/call',
