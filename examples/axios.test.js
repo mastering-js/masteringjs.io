@@ -898,6 +898,32 @@ describe('axios', function() {
     typeof res.data; // string
     // acquit:ignore:start
     assert.equals(typeof res.data, 'string');
+  });
+  it('axios-call', async function() {
+    let res = await axios({
+      method: 'GET',
+      url: 'https://httpbin.org/get',
+      headers:{
+        Accept: 'application/json',
+      }
+    });
+    
+    /*
+     * {
+     *   args: {},
+     *   headers: {
+     *     Accept: 'application/json',
+     *     Host: 'httpbin.org',
+     *     'User-Agent': 'axios/0.19.2',
+     *     'X-Amzn-Trace-Id': 'Root=1-6012eaed-26d1f5e15f3bbc4717e33844'
+     *   },
+     *   origin: '138.207.148.170',
+     *   url: 'https://httpbin.org/get'
+     * }
+     */
+    res.data;
+    // acquit:ignore:start
+    assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
 });

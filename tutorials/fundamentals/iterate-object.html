@@ -97,8 +97,7 @@ the key/value pairs using <code>Object.entries()</code> and a <a href="https://t
 <span class="hljs-comment">// 'age: 23'</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.entries(obj)) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${key}</span>: <span class="hljs-subst">${value}</span>`</span>);
-}
-</code></pre>
+}</code></pre>
 <p>In JavaScript, an <em>entry</em> is an array with exactly 2 elements, where
 the first element is the <code>key</code> and the second element is the <code>value</code>.
 The entry pattern shows up in several other places in JavaScript, like
@@ -115,8 +114,7 @@ key/value pairs.</p>
 <span class="hljs-keyword">const</span> keyValuePairs = <span class="hljs-built_in">Object</span>.entries(obj);
 keyValuePairs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// ['name', 'Luke Skywalker']</span>
 keyValuePairs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// ['title', 'Jedi Knight']</span>
-keyValuePairs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// ['age', 23]</span>
-</code></pre>
+keyValuePairs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// ['age', 23]</span></code></pre>
 <h2 id="using-objectkeys">Using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a></h2>
 <p>The <code>Object.keys()</code> function returns an array of the object&#39;s
 keys, as opposed to both the keys and the values. You can then
@@ -133,8 +131,7 @@ use square brackets <code>[]</code> to get the object&#39;s values.</p>
 <span class="hljs-comment">// 'age: 23'</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys(obj)) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${key}</span>: <span class="hljs-subst">${obj[key]}</span>`</span>);
-}
-</code></pre>
+}</code></pre>
 <p>Why use <code>Object.keys()</code> versus <code>Object.entries()</code>? Because you
 can&#39;t change the value in an entry to change the value in the
 object.</p>
@@ -158,8 +155,7 @@ obj.title; <span class="hljs-comment">// 'Jedi Knight'</span>
   <span class="hljs-keyword">if</span> (key === <span class="hljs-string">'title'</span>) {
     obj[key] = <span class="hljs-string">'Jedi Master'</span>;
   }
-}
-</code></pre>
+}</code></pre>
 <h2 id="with-forin">With <a href="https://www.w3schools.com/jsref/jsref_forin.asp"><code>for/in</code></a></h2>
 <p>The <code>Object.keys()</code> and <code>Object.entries()</code> functions only loop
 over an <a href="/tutorials/fundamentals/hasownproperty">object&#39;s own properties</a>.
@@ -188,8 +184,7 @@ entries; <span class="hljs-comment">// [['name', 'Luke Skywalker'], ['age', '23'
 <span class="hljs-comment">// 'title: Jedi Knight'</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> obj) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${key}</span>: <span class="hljs-subst">${obj[key]}</span>`</span>);
-}
-</code></pre>
+}</code></pre>
 <p>Generally speaking, you should use <code>Object.keys()</code> or <code>Object.entries()</code>
 with POJOs to avoid accidentally picking up inheritted properties.
 But you can use <code>for/in</code> if you&#39;re sure you want to loop over
@@ -201,6 +196,9 @@ inheritted properties.</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
   
 
@@ -217,9 +215,6 @@ inheritted properties.</p>
   
 
     <li><a href="/tutorials/fundamentals/compare-dates-without-time">Compare Two Dates, Ignoring Time, in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
   
     </ul>
   

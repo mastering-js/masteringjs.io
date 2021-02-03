@@ -80,8 +80,7 @@ str.replace(<span class="hljs-regexp">/penny/g</span>, <span class="hljs-string"
 
 <span class="hljs-comment">// "A dollar saved is a penny earned" - only replaces the first</span>
 <span class="hljs-comment">// instance by default.</span>
-str.replace(<span class="hljs-string">'penny'</span>, <span class="hljs-string">'dollar'</span>);
-</code></pre>
+str.replace(<span class="hljs-string">'penny'</span>, <span class="hljs-string">'dollar'</span>);</code></pre>
 <p>Remember <a href="https://www.sitepoint.com/immutability-javascript/">JavaScript strings are immutable</a>. When you use <code>replace()</code>, you don&#39;t modify the original string.</p>
 <h2 id="replacement-patterns">Replacement Patterns</h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter">The <code>String#replace()</code> function has several special character sequences called &quot;replacement patterns&quot;</a>. Replacement patterns are useful when you want to replace all substrings that match a regular expression with a string that contains the match.</p>
@@ -97,6 +96,9 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
   
 
@@ -113,9 +115,6 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
   
 
     <li><a href="/tutorials/fundamentals/compare-dates-without-time">Compare Two Dates, Ignoring Time, in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
   
     </ul>
   

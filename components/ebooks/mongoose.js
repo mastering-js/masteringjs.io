@@ -3,7 +3,6 @@
 const footer = require('../footer');
 const nav = require('../nav');
 
-const defaultPrice = `39.99`;
 const defaultButton = `
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -13,7 +12,7 @@ const defaultButton = `
 </form>
 `;
 
-module.exports = ({ paypalButton, promoPrice }) => `
+module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -228,7 +227,7 @@ module.exports = ({ paypalButton, promoPrice }) => `
           <li>Access to sample app GitHub repo</li>
         </ul>
         <div class="price">
-          ${_displayPrice(promoPrice)}
+          ${_displayPrice(promoPrice, defaultPrice)}
         </div>
         <div class="paypal-button">
           ${paypalButton || defaultButton}       
@@ -265,7 +264,7 @@ module.exports = ({ paypalButton, promoPrice }) => `
 </html>
 `;
 
-function _displayPrice(promoPrice) {
+function _displayPrice(promoPrice, defaultPrice) {
   if (promoPrice == null) {
     return `<b>$${defaultPrice}</b>`;
   }

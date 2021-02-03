@@ -7,8 +7,8 @@
     <meta property="og:title" content="Axios Response `data` Property" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Axios responses have a `data` property that contains the HTTP response body. Here's what you need to know." />
+    <meta name="description" content="Axios responses have a `data` property that contains the HTTP response body. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>Axios Response `data` Property</h1>
   <div class="date">
-    Jan 25, 2021
+    Feb 3, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -77,8 +77,7 @@
 In the example below, <code>res.data</code> is an object as it contains a series of key value pairs.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>)
 res.data; <span class="hljs-comment">// Returns the HTTP response body at the server we requested.</span>
-<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span>
-</code></pre>
+<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span></code></pre>
 <p><code>res.data</code> returns the following:</p>
 <pre><code class="language-javascript">    {
     <span class="hljs-attr">args</span>: {},
@@ -108,7 +107,8 @@ The options for <code>responseType</code> are:</p>
  });
  res.data; <span class="hljs-comment">// same data obtained from previous request</span>
  <span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// string</span>
-</code></pre>
+ <span class="hljs-comment">// acquit:ignore:start</span>
+ assert.equals(<span class="hljs-keyword">typeof</span> res.data, <span class="hljs-string">'string'</span>);</code></pre>
 <p><strong>Note:</strong> This is just an example and responses from different servers will vary.
 In this example, the unfiltered response, <strong>res</strong>, contains much more information about the request and response.
 This information could be helpful if the project your working on needs something from it or you are debugging, however, most of the time directly accessing the data is all that will be needed.</p>
@@ -119,6 +119,9 @@ This information could be helpful if the project your working on needs something
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
@@ -135,9 +138,6 @@ This information could be helpful if the project your working on needs something
   
 
     <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
-  
-
-    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
   
     </ul>
   

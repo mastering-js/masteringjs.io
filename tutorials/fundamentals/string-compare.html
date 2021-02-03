@@ -82,8 +82,7 @@ str1 === str3; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// Always use `===`, because `==` can have some surprises</span>
 <span class="hljs-string">'1'</span> == <span class="hljs-number">1</span>; <span class="hljs-comment">// true</span>
-<span class="hljs-string">'2'</span> == <span class="hljs-number">2</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+<span class="hljs-string">'2'</span> == <span class="hljs-number">2</span>; <span class="hljs-comment">// true</span></code></pre>
 <h2 id="and"><code>&lt;</code> and <code>&gt;</code></h2>
 <p>Using <code>&lt;</code> and <code>&gt;</code> compares strings lexicographically according to <a href="https://www.w3.org/TR/xml-entity-names/bycodes.html">Unicode sort order</a>. That means digits are always <code>&lt;</code> uppercase letters, and uppercase letters are always <code>&lt;</code> lowercase letters.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'0'</span>;
@@ -93,8 +92,7 @@ str1 === str3; <span class="hljs-comment">// false</span>
 
 str1 &lt; str2; <span class="hljs-comment">// true</span>
 str2 &lt; str3; <span class="hljs-comment">// true</span>
-str3 &lt; str4; <span class="hljs-comment">// true</span>
-</code></pre>
+str3 &lt; str4; <span class="hljs-comment">// true</span></code></pre>
 <p>When comparing strings with length greater than 1, JavaScript compares character by character. If both strings start with the same character, JavaScript compares the 2nd characters of each string. The end of a string is always <code>&lt;</code> any character.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Empty string '' is `&lt;` all other strings</span>
 <span class="hljs-keyword">const</span> str1 = <span class="hljs-string">''</span>;
@@ -104,8 +102,7 @@ str3 &lt; str4; <span class="hljs-comment">// true</span>
 
 str1 &lt; str2; <span class="hljs-comment">// true</span>
 str2 &lt; str3; <span class="hljs-comment">// true</span>
-str3 &lt; str4; <span class="hljs-comment">// true</span>
-</code></pre>
+str3 &lt; str4; <span class="hljs-comment">// true</span></code></pre>
 <p>The <code>&lt;</code> and <code>&gt;</code> operators return <code>false</code> when comparing a string to a non-string:</p>
 <pre><code class="language-javascript"><span class="hljs-number">1</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
 <span class="hljs-string">'A'</span> &lt; <span class="hljs-number">1</span>; <span class="hljs-comment">// false</span>
@@ -114,8 +111,7 @@ str3 &lt; str4; <span class="hljs-comment">// true</span>
 <span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">null</span>; <span class="hljs-comment">// false</span>
 
 <span class="hljs-literal">undefined</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
-<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="sorting">Sorting</h2>
 <p>By default, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Description"><code>Array#sort()</code> function converts all values in an array to strings and then sorts them in Unicode sort order</a>. The <code>sort()</code> function puts <code>null</code> and <code>undefined</code> values at the end of the array.</p>
 <pre><code class="language-javascript"><span class="hljs-number">1</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
@@ -125,12 +121,10 @@ str3 &lt; str4; <span class="hljs-comment">// true</span>
 <span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">null</span>; <span class="hljs-comment">// false</span>
 
 <span class="hljs-literal">undefined</span> &lt; <span class="hljs-string">'A'</span>; <span class="hljs-comment">// false</span>
-<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+<span class="hljs-string">'A'</span> &lt; <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="-and-"><code>&lt;=</code> and <code>&gt;=</code></h2>
 <p>Be careful when using <code>&lt;=</code> and <code>&gt;=</code>, because these use the same type coercion that <code>==</code> does.</p>
-<pre><code class="language-javascript"><span class="hljs-string">'1'</span> &lt;= <span class="hljs-number">1</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+<pre><code class="language-javascript"><span class="hljs-string">'1'</span> &lt;= <span class="hljs-number">1</span>; <span class="hljs-comment">// true</span></code></pre>
 
   
   <hr>
@@ -138,6 +132,9 @@ str3 &lt; str4; <span class="hljs-comment">// true</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
   
 
@@ -154,9 +151,6 @@ str3 &lt; str4; <span class="hljs-comment">// true</span>
   
 
     <li><a href="/tutorials/fundamentals/compare-dates-without-time">Compare Two Dates, Ignoring Time, in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/null">`null` in JavaScript</a></li>
   
     </ul>
   

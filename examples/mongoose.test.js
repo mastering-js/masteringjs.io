@@ -2045,4 +2045,40 @@ describe('Mongoose', function() {
     assert.equal(profilingLevel, 'off');
     // acquit:ignore:end
   });
+  describe('mongoose-find-async', function() {
+    it('find', async function() {
+        const Character = mongoose.model('Character', mongoose.Schema({
+          name: String,
+          age: Number,
+          rank: String
+        }));
+        await Character.create([
+          { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+          { name: 'William Riker', age: 29, rank: 'Commander' },
+          { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+          { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+          { name: 'Worf', age: 24, rank: 'Lieutenant' }
+        ]);
+        // The query to find all the Lieutenants
+        const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and La Forge
+    });
+    it('nofind', async function() {
+      // acquit:ignore:start
+      const Character = mongoose.model('Character', mongoose.Schema({
+        name: String,
+        age: Number,
+        rank: String
+      }));
+      // acquit:ignore:end
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+      // Parameter omitted
+      const query = await Character.find(); // returns the above array with an _id property and __v property
+    });
+  });
 });
