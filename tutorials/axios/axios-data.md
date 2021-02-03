@@ -9,17 +9,17 @@ In the example below, `res.data` is an object as it contains a series of key val
 `res.data` returns the following:
 
 ```javascript
-    {
-    args: {},
-    headers: {
+{
+  args: {},
+  headers: {
     Accept: 'application/json, text/plain, _/_',
     Host: 'httpbin.org',
     'User-Agent': 'axios/0.19.2',
     'X-Amzn-Trace-Id': 'Root=1-6011aa12-6d7a1ae8689dd32256ab1be7'
-    },
-    origin: '99.138.93.108',
-    url: 'https://httpbin.org/get'
-    }
+  },
+  origin: '99.138.93.108',
+  url: 'https://httpbin.org/get'
+}
 ```
 
 If you wanted the data to be of a different type, you could use axios's `responseType` property in conjunction with the `transformResponse` property.

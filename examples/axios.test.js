@@ -890,7 +890,7 @@ describe('axios', function() {
     
   });
   it('axios-dataB', async function() {
-   const res = await axios.get('https://httpbin.org/get', {
+    const res = await axios.get('https://httpbin.org/get', {
       responseType: 'text',
       transformResponse: [v => v]
     });
