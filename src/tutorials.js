@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Axios Response `data` Property',
+    raw: './tutorials/axios/axios-data.md',
+    url: '/tutorials/axios/data',
+    description: 'Axios responses have a `data` property that contains the HTTP response body. Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2021-02-03')
+  },
+  {
     title: 'Global Variables in JavaScript',
     raw: './tutorials/fundamentals/global-variable.md',
     url: '/tutorials/fundamentals/global-variable',

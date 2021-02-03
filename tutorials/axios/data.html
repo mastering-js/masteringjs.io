@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Axios Response `data` Property - Mastering JS</title>
+
+    <meta property="og:title" content="Axios Response `data` Property" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Axios responses have a `data` property that contains the HTTP response body. Here's what you need to know." />
+    <meta name="description" content="Axios responses have a `data` property that contains the HTTP response body. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/axios">Axios</a>
+    /
+  </div>
+  <h1>Axios Response `data` Property</h1>
+  <div class="date">
+    Feb 3, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>When making a standard axios request, the response contains six properties including <code>data</code>, the one we will be discussing.
+<code>data</code> is simply the response that was provided by the server. <code>data</code> will usually be either a string, object, or undefined depending on what information you requested from the server.
+In the example below, <code>res.data</code> is an object as it contains a series of key value pairs.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>)
+res.data; <span class="hljs-comment">// Returns the HTTP response body at the server we requested.</span>
+<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span></code></pre>
+<p><code>res.data</code> returns the following:</p>
+<pre><code class="language-javascript">    {
+    <span class="hljs-attr">args</span>: {},
+    <span class="hljs-attr">headers</span>: {
+    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'application/json, text/plain, _/_'</span>,
+    <span class="hljs-attr">Host</span>: <span class="hljs-string">'httpbin.org'</span>,
+    <span class="hljs-string">'User-Agent'</span>: <span class="hljs-string">'axios/0.19.2'</span>,
+    <span class="hljs-string">'X-Amzn-Trace-Id'</span>: <span class="hljs-string">'Root=1-6011aa12-6d7a1ae8689dd32256ab1be7'</span>
+    },
+    <span class="hljs-attr">origin</span>: <span class="hljs-string">'99.138.93.108'</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/get'</span>
+    }</code></pre>
+<p>If you wanted the data to be of a different type, you could use axios&#39;s <code>responseType</code> property in conjunction with the <code>transformResponse</code> property.
+The options for <code>responseType</code> are:</p>
+<ol>
+<li>arraybuffer</li>
+<li>document</li>
+<li>json (default)</li>
+<li>text</li>
+<li>stream</li>
+<li>blob (browser only)</li>
+</ol>
+<p>Here is an example that is making the same exact request that returned an object but now will return a string.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
+   <span class="hljs-attr">responseType</span>: <span class="hljs-string">'text'</span>,
+   <span class="hljs-attr">transformResponse</span>: [<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v]
+ });
+ res.data; <span class="hljs-comment">// same data obtained from previous request</span>
+ <span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// string</span>
+ <span class="hljs-comment">// acquit:ignore:start</span>
+ assert.equals(<span class="hljs-keyword">typeof</span> res.data, <span class="hljs-string">'string'</span>);</code></pre>
+<p><strong>Note:</strong> This is just an example and responses from different servers will vary.
+In this example, the unfiltered response, <strong>res</strong>, contains much more information about the request and response.
+This information could be helpful if the project your working on needs something from it or you are debugging, however, most of the time directly accessing the data is all that will be needed.</p>
+
+  
+  <hr>
+  
+    <h2>More Axios Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
+    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
+  
+
+    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
+  
+
+    <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
+  
+
+    <li><a href="/tutorials/axios/vs-fetch">Axios vs Fetch: Which Should You Use?</a></li>
+  
+
+    <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
