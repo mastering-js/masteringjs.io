@@ -1,4 +1,4 @@
-In JavaScript, any variable defined outside any function is part of the [global scope](https://www.w3schools.com/js/js_scope.asp) and is a global variable that any function can access.
+In JavaScript, any variable defined outside any function or block is part of the [global scope](https://www.w3schools.com/js/js_scope.asp) and is a global variable that any function can access.
 
 ```javascript
 const answer = 42;
