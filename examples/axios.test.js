@@ -898,6 +898,7 @@ describe('axios', function() {
     typeof res.data; // string
     // acquit:ignore:start
     assert.equals(typeof res.data, 'string');
+    // acquit:ignore:end
   });
   it('axios-call', async function() {
     let res = await axios({
