@@ -87,8 +87,7 @@ obj.width; <span class="hljs-comment">// 5</span>
 <span class="hljs-comment">// The `instanceof` keyword is how you test whether an object was created</span>
 <span class="hljs-comment">// from a certain class.</span>
 obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// true</span>
-({}) <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// false</span>
-</code></pre>
+({}) <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// false</span></code></pre>
 <p>Technically, the <code>instanceof</code> operator checks the <a href="/tutorials/fundamentals/prototype#inheriting-from-another-class">prototype chain</a> to see if any constructor in the prototype chain is equal to the given class. That means if you use <a href="tutorials/fundamentals/class#inheritance">inheritance</a>, an instance of a subclass is also an instance of the base class.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>{}
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseClass</span> </span>{}
@@ -96,8 +95,7 @@ obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-co
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> SubClass();
 
 obj <span class="hljs-keyword">instanceof</span> SubClass; <span class="hljs-comment">// true</span>
-obj <span class="hljs-keyword">instanceof</span> BaseClass; <span class="hljs-comment">// true</span>
-</code></pre>
+obj <span class="hljs-keyword">instanceof</span> BaseClass; <span class="hljs-comment">// true</span></code></pre>
 <h2 id="the-object-class">The Object Class</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code> class</a> is the base class for all JavaScript classes.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
@@ -106,8 +104,7 @@ obj <span class="hljs-keyword">instanceof</span> BaseClass; <span class="hljs-co
 
 obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
 ({}) <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
-<span class="hljs-literal">null</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+<span class="hljs-literal">null</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span></code></pre>
 <p>You might be tempted to use <code>v instanceof Object</code> to check whether <code>v</code> is an object. That works for most cases, but <a href="https://2ality.com/2012/08/instanceof-object.html">there are several cases where an object is not <code>instanceof Object</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// `Object.prototype` is not technically `instanceof Object` because</span>
 <span class="hljs-comment">// prototype chains must end somewhere</span>
@@ -120,8 +117,7 @@ obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Obj
 MyClass.prototype = <span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>);
 
 <span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> MyClass(); <span class="hljs-comment">// 'object'</span>
-(<span class="hljs-keyword">new</span> MyClass()) <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+(<span class="hljs-keyword">new</span> MyClass()) <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="error-cases">Error Cases</h2>
 <p>The <code>instanceof</code> operator throws an error if the right hand side is not a function.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
@@ -134,8 +130,7 @@ obj <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comm
 obj <span class="hljs-keyword">instanceof</span> MyOtherClass; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// Throws "TypeError: Right-hand side of 'instanceof' is not callable"</span>
-obj <span class="hljs-keyword">instanceof</span> { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
-</code></pre>
+obj <span class="hljs-keyword">instanceof</span> { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };</code></pre>
 
   
   <hr>
