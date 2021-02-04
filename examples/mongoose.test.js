@@ -1,5 +1,6 @@
 'use strict';
 
+const { doesNotMatch } = require('assert');
 const assert = require('assert');
 const mongoose = require('mongoose');
 
@@ -245,7 +246,7 @@ describe('Mongoose', function() {
         res.json(doc);
       });
 
-      const server = await app.listen(3000);
+      const server = app.listen(3000);
 
       // "<h1 id="hello">Hello</h1>"
       await axios.get('http://localhost:3000').then(res => res.data.html);
@@ -1146,7 +1147,7 @@ describe('Mongoose', function() {
       assert.equal(doc.name, 'Jean-Luc Picard');
       assert.equal(doc.age, 59);
 
-      const _doc = await UserModel.collection.findOne();
+      const _doc = UserModel.collection.findOne();
       assert.equal(_doc.age, 60);
       // acquit:ignore:end
     });
@@ -2045,6 +2046,30 @@ describe('Mongoose', function() {
     assert.equal(profilingLevel, 'off');
     // acquit:ignore:end
   });
+
+  it('validates-email', async function() {
+    const User = mongoose.model('User', mongoose.Schema({
+      email: { 
+        type: String,
+        required: true,
+        match: /.+\@.+\..+/,
+        unique: true
+      }
+    }));
+    await User.create([
+        { email: 'gmail@google.com' },
+        { email: 'bill@microsoft.com' },
+        { email: 'test@gmail.com' }
+    ]);
+
+    await User.init();
+    try {
+      await User.create({ email: 'gmail@google.com' });
+    } catch(error) {
+      error.message; // 'E11000 duplicate key error...'
+    }
+  });
+   
   describe('mongoose-find-async', function() {
     it('find', async function() {
         const Character = mongoose.model('Character', mongoose.Schema({

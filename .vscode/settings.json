@@ -1,0 +1,4 @@
+{
+    "eslint.alwaysShowStatus": true,
+    "eslint.lintTask.enable": true
+}

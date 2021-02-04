@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Validate Unique Emails with Mongoose',
+    raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
+    url: '/tutorials/mongoose/mongoose-validate-unique-email',
+    description: 'Here\'s how you can validate emails, and ensure emails are unique, using Mongoose.',
+    tags: ['axios'],
+    date: moment('2021-02-04')
+  },
+  {
     title: 'Axios Response `data` Property',
     raw: './tutorials/axios/axios-data.md',
     url: '/tutorials/axios/data',
