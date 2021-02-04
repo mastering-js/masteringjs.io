@@ -82,8 +82,7 @@ res.constructor.name; <span class="hljs-comment">// 'Object', means `res` is a P
 
 <span class="hljs-comment">// `res.data` contains the parsed response body</span>
 res.data; <span class="hljs-comment">// { args: { answer: 42 }, ... }</span>
-res.data <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+res.data <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>An Axios response contains several other properties, like <code>status</code>, which contains the HTTP response status
 code (like <code>200</code> or <code>404</code>). But most of the time you don&#39;t care about the response code if the request
 succeeded, so you will often see code that gets the response body directly using <a href="/tutorials/fundamentals/promise-chaining">promise chaining</a>.</p>
@@ -98,8 +97,7 @@ is <code>application/json</code>, Axios will automatically try to parse the resp
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json'</span>
-</code></pre>
+res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json'</span></code></pre>
 <p>Keep in mind that the response headers are sent by the server. So if the server sends back a different content
 type, you may need to handle it the response yourself.</p>
 <p>For other content types, like <code>text/html</code>, the <code>res.data</code> property will be a string.</p>
@@ -110,8 +108,7 @@ type, you may need to handle it the response yourself.</p>
 res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'text/html; charset=utf-8'</span>
 
 <span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// 'string'</span>
-res.data; <span class="hljs-comment">// '... &lt;h1&gt;Herman Melville - Moby-Dick&lt;/h1&gt; ...'</span>
-</code></pre>
+res.data; <span class="hljs-comment">// '... &lt;h1&gt;Herman Melville - Moby-Dick&lt;/h1&gt; ...'</span></code></pre>
 <h2 id="streaming">Streaming</h2>
 <p>You can configure the type of the <code>data</code> property using Axios&#39; <code>responseType</code> object. By default,
 <code>responseType</code> is set to <code>&#39;json&#39;</code>, which means Axios will try to parse the response as JSON.</p>
@@ -123,8 +120,7 @@ res.data; <span class="hljs-comment">// '... &lt;h1&gt;Herman Melville - Moby-Di
 });
 
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
-fs.writeFileSync(<span class="hljs-string">'./south-beach.jpg'</span>, res.data);
-</code></pre>
+fs.writeFileSync(<span class="hljs-string">'./south-beach.jpg'</span>, res.data);</code></pre>
 <p>You can also set <code>responseType</code> to <code>&#39;stream&#39;</code> to get the response as a Node.js stream:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
@@ -133,8 +129,7 @@ fs.writeFileSync(<span class="hljs-string">'./south-beach.jpg'</span>, res.data)
 });
 
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
-res.data.pipe(fs.createWriteStream(<span class="hljs-string">'./south-beach.jpg'</span>));
-</code></pre>
+res.data.pipe(fs.createWriteStream(<span class="hljs-string">'./south-beach.jpg'</span>));</code></pre>
 
   
   <hr>
@@ -143,6 +138,12 @@ res.data.pipe(fs.createWriteStream(<span class="hljs-string">'./south-beach.jpg'
     <ul>
     
     <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+  
+
+    <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
+  
+
+    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
   
 
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
@@ -155,12 +156,6 @@ res.data.pipe(fs.createWriteStream(<span class="hljs-string">'./south-beach.jpg'
   
 
     <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
-  
-
-    <li><a href="/tutorials/axios/vs-fetch">Axios vs Fetch: Which Should You Use?</a></li>
-  
-
-    <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
   
     </ul>
   

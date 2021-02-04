@@ -7,8 +7,40 @@ module.exports = Object.freeze([
     title: 'How to Validate Unique Emails with Mongoose',
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can validate emails, and ensure emails are unique, using Mongoose.',
     tags: ['axios'],
+    date: moment('2021-02-04')
+  },
+  {
+    title: 'Axios Response `data` Property',
+    raw: './tutorials/axios/axios-data.md',
+    url: '/tutorials/axios/data',
+    description: 'Axios responses have a `data` property that contains the HTTP response body. Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2021-02-03')
+  },
+  {
+    title: 'Global Variables in JavaScript',
+    raw: './tutorials/fundamentals/global-variable.md',
+    url: '/tutorials/fundamentals/global-variable',
+    description: 'Any JavaScript variable defined outside any function is a global variable, but that comes with caveats for Node.js and Webpack. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-02')
+  },
+  {
+    title: 'Calling Axios as a Function',
+    raw: './tutorials/axios/axios-call.md',
+    url: '/tutorials/axios/call',
+    description: 'In addition to `axios.get()` and `axios.post()`, Axios itself is a function that you can call. Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2021-01-28')
+  },
+  {
+    title: 'How to Use Mongoose find() with Async/Await',
+    raw: './tutorials/mongoose/find-with-async.md',
+    url: '/tutorials/mongoose/find-async',
+    description: 'Mongoose\'s `find()` function works with async/await. Here\'s how you can use async/await with Mongoose queries.',
+    tags: ['mongoose'],
     date: moment('2021-01-25')
   },
   {

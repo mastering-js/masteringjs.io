@@ -2049,11 +2049,11 @@ describe('Mongoose', function() {
 
   it('validates-email', async function() {
     const User = mongoose.model('User', mongoose.Schema({
-      email:{ 
-      type: String,
-      required: true,
-      match: /.+\@.+\..+/,
-      unique: true
+      email: { 
+        type: String,
+        required: true,
+        match: /.+\@.+\..+/,
+        unique: true
       }
     }));
     await User.create([
@@ -2061,15 +2061,49 @@ describe('Mongoose', function() {
         { email: 'bill@microsoft.com' },
         { email: 'test@gmail.com' }
     ]);
-    await User.find(); // Prints the information associated with the three emails above.
+
     await User.init();
-    try{
+    try {
       await User.create({ email: 'gmail@google.com' });
-      done();
+    } catch(error) {
+      error.message; // 'E11000 duplicate key error...'
     }
-    catch(error){
-      console.log(error); // Prints the error message which will say E11000 duplicate key error ...
-   }
+  });
    
+  describe('mongoose-find-async', function() {
+    it('find', async function() {
+        const Character = mongoose.model('Character', mongoose.Schema({
+          name: String,
+          age: Number,
+          rank: String
+        }));
+        await Character.create([
+          { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+          { name: 'William Riker', age: 29, rank: 'Commander' },
+          { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+          { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+          { name: 'Worf', age: 24, rank: 'Lieutenant' }
+        ]);
+        // The query to find all the Lieutenants
+        const query = await Character.find({ rank: 'Lieutenant' }); // will return Worf and La Forge
+    });
+    it('nofind', async function() {
+      // acquit:ignore:start
+      const Character = mongoose.model('Character', mongoose.Schema({
+        name: String,
+        age: Number,
+        rank: String
+      }));
+      // acquit:ignore:end
+      await Character.create([
+        { name: 'Jean-Luc Picard', age: 59, rank: 'Captain' },
+        { name: 'William Riker', age: 29, rank: 'Commander' },
+        { name: 'Deanna Troi', age: 28, rank: 'Lieutenant Commander' },
+        { name: 'Geordi La Forge', age: 29, rank: 'Lieutenant' },
+        { name: 'Worf', age: 24, rank: 'Lieutenant' }
+      ]);
+      // Parameter omitted
+      const query = await Character.find(); // returns the above array with an _id property and __v property
+    });
   });
 });
