@@ -72,7 +72,8 @@
 	  }
 	})();
 	</script>
-  <p>With Mongoose, you can prevent duplicates in your databases using <a href="https://mongoosejs.com/docs/validation.html">validation</a>. Validation is defined in the SchemaType and is a middleware. You can also create your own validation in the schema or you can use Mongooses&#39;s built in validation. To prevent duplicates, we recommend using the <code>unique</code> property as it tells Mongoose each document should have a <a href="https://masteringjs.io/tutorials/mongoose/unique">unique</a> value for a given path. It is a shorthand for creating a MongoDB unique index on, in this case, <code>email</code>. If you wait for the index to be built, you can you Mongoose&#39;s promised based event, <code>Model.init()</code>, which is shown below::</p>
+  <p>With Mongoose, you can prevent duplicates in your databases using <a href="https://mongoosejs.com/docs/validation.html">validation</a>. Validation is defined in the SchemaType and is a middleware. You can also create your own validation in the schema or you can use Mongooses&#39;s built in validation. To prevent duplicates, we recommend using the <code>unique</code> property as it tells Mongoose each document should have a <a href="https://masteringjs.io/tutorials/mongoose/unique">unique</a> value for a given path. It is a shorthand for creating a MongoDB unique index on, in this case, <code>email</code>.</p>
+<p>If you wait for the index to be built, you can you Mongoose&#39;s promised based event, <code>Model.init()</code>, as shown below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, mongoose.Schema({
   <span class="hljs-attr">email</span>: { 
     <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
