@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Validate Unique Emails with Mongoose" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can validate emails, and ensure emails are unique, using Mongoose." />
+    <meta name="description" content="Here's how you can validate emails, and ensure emails are unique, using Mongoose." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>How to Validate Unique Emails with Mongoose</h1>
   <div class="date">
-    Jan 25, 2021
+    Feb 4, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,28 +73,26 @@
 	})();
 	</script>
   <p>With Mongoose, you can prevent duplicates in your databases using <a href="https://mongoosejs.com/docs/validation.html">validation</a>. Validation is defined in the SchemaType and is a middleware. You can also create your own validation in the schema or you can use Mongooses&#39;s built in validation. To prevent duplicates, we recommend using the <code>unique</code> property as it tells Mongoose each document should have a <a href="https://masteringjs.io/tutorials/mongoose/unique">unique</a> value for a given path. It is a shorthand for creating a MongoDB unique index on, in this case, <code>email</code>. If you wait for the index to be built, you can you Mongoose&#39;s promised based event, <code>Model.init()</code>, which is shown below::</p>
-<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, mongoose.Schema({
-   <span class="hljs-attr">email</span>:{ 
-   <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
-   <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
-   <span class="hljs-attr">match</span>: <span class="hljs-regexp">/.+\@.+\..+/</span>,
-   <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>
-   }
- }));
- <span class="hljs-keyword">await</span> User.create([
-     { <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> },
-     { <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> },
-     { <span class="hljs-attr">email</span>: <span class="hljs-string">'test@gmail.com'</span> }
- ]);
- <span class="hljs-keyword">await</span> User.find(); <span class="hljs-comment">// Prints the information associated with the three emails above.</span>
- <span class="hljs-keyword">await</span> User.init();
- <span class="hljs-keyword">try</span>{
-   <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> });
- }
-<span class="hljs-keyword">catch</span>(error){
-  <span class="hljs-built_in">console</span>.log(error); <span class="hljs-comment">// Prints the error message</span>
-}
-</code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, mongoose.Schema({
+  <span class="hljs-attr">email</span>: { 
+    <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+    <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">match</span>: <span class="hljs-regexp">/.+\@.+\..+/</span>,
+    <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>
+  }
+}));
+<span class="hljs-keyword">await</span> User.create([
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> },
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> },
+    { <span class="hljs-attr">email</span>: <span class="hljs-string">'test@gmail.com'</span> }
+]);
+
+<span class="hljs-keyword">await</span> User.init();
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'gmail@google.com'</span> });
+} <span class="hljs-keyword">catch</span>(error) {
+  error.message; <span class="hljs-comment">// 'E11000 duplicate key error...'</span>
+}</code></pre>
 <p>It is important to note that the <a href="https://mongoosejs.com/docs/validation.html#the-unique-option-is-not-a-validator">unique property</a> is not a validator.</p>
 
   
@@ -103,6 +101,12 @@
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
+  
+
+    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
 
@@ -116,12 +120,6 @@
   
 
     <li><a href="/tutorials/axios/vs-fetch">Axios vs Fetch: Which Should You Use?</a></li>
-  
-
-    <li><a href="/tutorials/axios/proxy">Using Axios' Proxy Option</a></li>
-  
-
-    <li><a href="/tutorials/axios/delete">Axios DELETE Requests</a></li>
   
     </ul>
   
