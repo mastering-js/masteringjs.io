@@ -19,12 +19,12 @@ module.exports = params => `
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
   
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>

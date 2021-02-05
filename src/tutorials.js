@@ -1636,6 +1636,33 @@ module.exports = Object.freeze([
     description: 'The `mongoose.connect()` function is the most common way to connect to MongoDB with Mongoose. This tutorial describes how to use `mongoose.connect()` and how to troubleshoot common issues.',
     tags: ['mongoose'],
     date: moment('2019-08-01'),
+  },
+  {
+    title: 'Object.assign() in JavaScript',
+    raw: './tutorials/fundamentals/assign.md',
+    url: '/tutorials/fundamentals/assign',
+    description: 'The `Object.assign()` function lets you assign properties from one object to another. You can use it to shallow copy objects or assign multiple properties at once.',
+    tags: ['fundamentals'],
+    date: moment('2019-07-30')
+  },
+  {
+    title: '3 Ways to Concatenate Strings in JavaScript',
+    raw: './tutorials/fundamentals/string-concat.md',
+    url: '/tutorials/fundamentals/string-concat',
+    description: 'You can concatenate strings in JavaScript using the `+` operator, the `Array#join()` function, or the `String#concat()` function. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2019-07-29')
+  },
+  {
+    title: 'Safe Navigation With Lodash\'s get() Function',
+    raw: './tutorials/lodash/get.md',
+    url: '/tutorials/lodash/get',
+    description: 'Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property \'prop\' of undefined" errors. Here\'s what you need to know.',
+    tags: ['lodash'],
+    date: moment('2019-07-26')
+  },
+  {
+    title: 'Sorting Arrays With Lodash\'s sortBy() Function',
     raw: './tutorials/lodash/sortby.md',
     url: '/tutorials/lodash/sortby',
     description: 'Lodash has a `sortBy()` function that provides some neat syntactic sugar on top of `Array#sort()`. This tutorial will teach you what you need to know about `_.sortBy()`.',

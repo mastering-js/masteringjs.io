@@ -7,14 +7,19 @@
     <meta property="og:title" content="Safe Navigation With Lodash's get() Function" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property 'prop' of undefined" errors. Here's what you need to know." />
-    <meta name="description" content="Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid "Cannot read property 'prop' of undefined" errors. Here's what you need to know." />
+    <meta property="og:description" content="Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid 'Cannot read property 'prop' of undefined' errors. Here's what you need to know." />
+    <meta name="description" content="Lodash has a `get()` function that helps with safe navigation (AKA the Elvis Operator, null coalescing). In other words, get() helps you avoid 'Cannot read property 'prop' of undefined' errors. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
   
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
@@ -35,21 +40,6 @@
       <a href="/ebooks/mastering-mongoose">eBooks</a>
     </div>
     <div style="clear: both"></div>
-
-    
-<script type="text/javascript">
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
-
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = function() {};
-  xhr.send(JSON.stringify({
-    path: window.location.pathname,
-    hostname: window.location.hostname
-  }));
-</script>
-
   </div>
 </div>
 <label class="hamburger-menu" for="burger-check">
@@ -84,7 +74,7 @@
 	</script>
   <p>The <a href="https://lodash.com/docs/4.17.15#get"><code>_.get()</code> function in Lodash</a> lets you
 get deeply nested properties in an object without worrying about whether an 
-intermediate property is <code>null</code> or <code>undefined</code>. For example, suppose you have
+intermediate property is <a href="/tutorials/fundamentals/null"><code>null</code></a> or <code>undefined</code>. For example, suppose you have
 the below object:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> landmark = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">'Golden Gate Bridge'</span>,
@@ -103,7 +93,8 @@ the below object:</p>
 };</code></pre>
 <p>To get the <code>location.geometry.type</code> property, you could use <code>landmark.location.geometry.type</code>. But if <code>landmark.location</code> is undefined,
 you would get the below error.</p>
-<pre><code><span class="hljs-built_in">TypeError</span>: Cannot read property <span class="hljs-string">'geometry'</span> <span class="hljs-keyword">of</span> <span class="hljs-literal">undefined</span></code></pre><p>The <code>_.get()</code> function lets you safely access the nested <code>location.geometry.type</code> property, without having to explicity check whether <code>landmark</code>, <code>landmark.location</code>, or <code>landmark.location.geometry</code> is undefined.</p>
+<pre><code><span class="hljs-built_in">TypeError</span>: Cannot read property <span class="hljs-string">'geometry'</span> <span class="hljs-keyword">of</span> <span class="hljs-literal">undefined</span></code></pre>
+<p>The <code>_.get()</code> function lets you safely access the nested <code>location.geometry.type</code> property, without having to explicity check whether <code>landmark</code>, <code>landmark.location</code>, or <code>landmark.location.geometry</code> is undefined.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// 'Point'</span>
 
 <span class="hljs-keyword">delete</span> landmark.location;
@@ -144,6 +135,9 @@ to explicitly check the return value using the <a href="https://developer.mozill
     <h2>More Lodash Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/lodash/compare-objects">Compare Objects with Lodash</a></li>
+  
+
     <li><a href="/tutorials/lodash/pick">Lodash's `pick()` Function</a></li>
   
 
@@ -161,13 +155,27 @@ to explicitly check the return value using the <a href="https://developer.mozill
 
     <li><a href="/tutorials/lodash/debounce">Throttling Functions With Lodash's debounce() Function</a></li>
   
-
-    <li><a href="/tutorials/lodash/find">Using Lodash's find() Function</a></li>
-  
     </ul>
   
 
       </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
       
     </div>
 
