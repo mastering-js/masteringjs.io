@@ -33,7 +33,7 @@ is `application/json`, Axios will automatically try to parse the response into a
 Keep in mind that the response headers are sent by the server. So if the server sends back a different content
 type, you may need to handle it the response yourself.
 
-For other content types, like `text/html`, the `res.data` property will be a string.
+For other content types, like `text/html`, the [`res.data` property](/tutorials/axios/data) will be a string.
 
 ```javascript
 [require:axios response body html content type$]

@@ -100,7 +100,7 @@ is <code>application/json</code>, Axios will automatically try to parse the resp
 res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json'</span></code></pre>
 <p>Keep in mind that the response headers are sent by the server. So if the server sends back a different content
 type, you may need to handle it the response yourself.</p>
-<p>For other content types, like <code>text/html</code>, the <code>res.data</code> property will be a string.</p>
+<p>For other content types, like <code>text/html</code>, the <a href="/tutorials/axios/data"><code>res.data</code> property</a> will be a string.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/html'</span>);

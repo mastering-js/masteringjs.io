@@ -13,7 +13,7 @@ Below is a list of the most important options. Click on an option to read more a
 ## `url`
 
 If you use a helper function like `axios.get()` or `axios.post()`, Axios automatically sets this option for you. But
-you can also set the `url` by using the `axios()` function, which takes the request config as its first parameter.
+you can also set the `url` by using the [`axios()` function](/tutorials/axios/call), which takes the request config as its first parameter.
 
 ```javascript
 [require:axios get request using method option$]
