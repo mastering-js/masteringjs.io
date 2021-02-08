@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Vue Single-File Components',
+    raw: './tutorials/vue/vue-sfc.md',
+    url: '/tutorials/fundamentals/vue-sfc',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-02-08')
+  },
+  {
     title: 'How to Validate Unique Emails with Mongoose',
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
