@@ -28,6 +28,15 @@ export default {
   }
 }
 </script>
+<style>
+.example {
+  color: red;
+}
+</style>
+
+<custom>
+Here is an example of a custom langue block.
+</custom>
 ```
 
 Another step to take when setting up your project work with single-file components is to configure the module bundler to understand
