@@ -146,7 +146,8 @@ on the <code>Mutation</code> type:</p>
   <span class="hljs-attr">query</span>: <span class="hljs-string">'{ getCount { count, time } }'</span>
 });
 
-data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 1581442587371 } }</span></code></pre>
+data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 1581442587371 } }</span>
+</code></pre>
 <p>Note that, to actually call a mutation, you need to start your
 GraphQL query with the string <code>&#39;mutation&#39;</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.post(handle.url, {
@@ -229,7 +230,8 @@ parameter to your mutation&#39;s resolver function:</p>
   <span class="hljs-attr">query</span>: <span class="hljs-string">'{ getCount { count, time } }'</span>
 });
 
-data.data; <span class="hljs-comment">// { getCount: { count: 5, time: 1581442587371 } }</span></code></pre>
+data.data; <span class="hljs-comment">// { getCount: { count: 5, time: 1581442587371 } }</span>
+</code></pre>
 
   
   <hr>

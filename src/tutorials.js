@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Chartjs with Vue',
+    raw: './tutorials/vue/vue-chartjs.md',
+    url: '/tutorials/vue/vue-chartjs',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-02-08')
+  },
+  {
     title: 'How to Validate Unique Emails with Mongoose',
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
