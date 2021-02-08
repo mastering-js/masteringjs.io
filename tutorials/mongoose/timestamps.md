@@ -31,8 +31,8 @@ doc.updatedAt; // 2020-07-06T20:37:09.071Z
 [Specific mongoose model write operations](https://mongoosejs.com/docs/api.html#query_Query-setOptions)
 allow you to skip timestamps provided that `timestamps` were set in the schema. To do so, you must set
 `timestamps` to `false` and the time will not be updated on that operation. If you want to prevent only one of those
-from updating, instead of setting timestamps to `false` as the value, add an object as the value with a key-value pair with
-the key(s) being `createdAt` and/or `updatedAt` and the value being `true` or `false`.
+from updating, instead of setting timestamps to `false` as the value, create an object with key-value pairs. The
+key(s) being `createdAt` and/or `updatedAt` and the value(s) being `true` or `false` depending on what you need.
 
 ```javascript
 [require:Update-Mongoose-Timestamps quick]
