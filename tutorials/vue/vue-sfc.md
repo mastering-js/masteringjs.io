@@ -12,7 +12,9 @@ as well as your own custom blocks, but the three core blocks are `<template>`, `
 When making a component, you do not need all three of these in the `.vue` file so you can omit a language block if
 your component does not need it as part of its function. An important note about the structure of `.vue` files is that
 `<template>` and `<script>` may only appear once while `<style>` and a custom block you implement may appear multiple times
-should the situation arise. Here is an example of a simple `.vue` file:
+should the situation arise. You can specify in the `<style>` tag whether you want the css to be local to the component.
+If you choose local (scoped) the parent component's style will not leak into that component.
+Here is an example of a simple `.vue` file:
 
 ```javascript
 <template>
@@ -28,7 +30,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .example {
   color: red;
 }
