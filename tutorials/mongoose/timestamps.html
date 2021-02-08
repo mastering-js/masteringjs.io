@@ -97,8 +97,8 @@ doc.updatedAt; <span class="hljs-comment">// 2020-07-06T20:37:09.071Z</span></co
 <p><a href="https://mongoosejs.com/docs/api.html#query_Query-setOptions">Specific mongoose model write operations</a>
 allow you to skip timestamps provided that <code>timestamps</code> were set in the schema. To do so, you must set
 <code>timestamps</code> to <code>false</code> and the time will not be updated on that operation. If you want to prevent only one of those
-from updating, instead of setting timestamps to <code>false</code> as the value, add an object as the value with a key-value pair with
-the key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value being <code>true</code> or <code>false</code>.</p>
+from updating, instead of setting timestamps to <code>false</code> as the value, create an object with key-value pairs. The
+key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value(s) being <code>true</code> or <code>false</code> depending on what you need.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
   <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
 }, { <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span> });
