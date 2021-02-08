@@ -78,7 +78,8 @@ the default value for the path is, and other Mongoose-specific config options.</
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
 
 schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
-schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span></code></pre>
+schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
+</code></pre>
 <p>The <code>SchemaType</code> class is just a base class. There are several classes
 that inherit from <code>SchemaType</code> that represent different core Mongoose Types:</p>
 <ul>
@@ -100,7 +101,8 @@ schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">
 schema.path(<span class="hljs-string">'name'</span>) <span class="hljs-keyword">instanceof</span> mongoose.Schema.Types.String; <span class="hljs-comment">// true</span>
 
 schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.SchemaType; <span class="hljs-comment">// true</span>
-schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.Schema.Types.Number; <span class="hljs-comment">// true</span></code></pre>
+schema.path(<span class="hljs-string">'age'</span>) <span class="hljs-keyword">instanceof</span> mongoose.Schema.Types.Number; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="working-with-schematypes">Working With SchemaTypes</h2>
 <p>You normally don&#39;t have to work with <code>SchemaType</code> instances directly.
 You can declare validators and defaults in your <a href="/tutorials/mongoose/schema">schema definition</a>. For example, the below example sets the default <code>age</code> to 25

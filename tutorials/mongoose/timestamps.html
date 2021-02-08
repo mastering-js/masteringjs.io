@@ -94,6 +94,20 @@ By default, <code>createdAt</code> and <code>updatedAt</code> are of type <code>
 
 doc.createdAt; <span class="hljs-comment">// 2020-07-06T20:36:59.414Z</span>
 doc.updatedAt; <span class="hljs-comment">// 2020-07-06T20:37:09.071Z</span></code></pre>
+<p><a href="https://mongoosejs.com/docs/api.html#query_Query-setOptions">Specific mongoose model write operations</a>
+allow you to skip timestamps provided that <code>timestamps</code> were set in the schema. To do so, you must set
+<code>timestamps</code> to <code>false</code> and the time will not be updated on that operation. If you want to prevent only one of those
+from updating, instead of setting timestamps to <code>false</code> as the value, add an object as the value with a key-value pair with
+the key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value being <code>true</code> or <code>false</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
+  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
+}, { <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span> });
+
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.findOneAndUpdate({<span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span>}, {<span class="hljs-attr">email</span>:<span class="hljs-string">'newtest@google.com'</span>}, 
+{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:{<span class="hljs-attr">createdAt</span>:<span class="hljs-literal">false</span>, <span class="hljs-attr">updatedAt</span>:<span class="hljs-literal">true</span>}});
+</code></pre>
 <h2 id="alternate-property-names">Alternate Property Names</h2>
 <p>By default, Mongoose uses <code>createdAt</code> and <code>updatedAt</code> as the property names for timestamps.
 But you can make Mongoose use any property name you like. For example, if you prefer <code>snake_case</code>

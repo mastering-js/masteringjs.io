@@ -2106,4 +2106,16 @@ describe('Mongoose', function() {
       const query = await Character.find(); // returns the above array with an _id property and __v property
     });
   });
+  describe('Update-Mongoose-Timestamps', function() {
+    it('quick', async function() {
+      const userSchema = mongoose.Schema({
+        email: String
+      }, { timestamps: true });
+      
+      const User = mongoose.model('User', userSchema);
+      
+      const doc = await User.findOneAndUpdate({email: 'test@google.com'}, {email:'newtest@google.com'}, 
+      {new:true, upsert: true, timestamps:{createdAt:false, updatedAt:true}});
+    });
+  });
 });
