@@ -6,7 +6,7 @@ module.exports = Object.freeze([
   {
     title: 'Vue Single-File Components',
     raw: './tutorials/vue/vue-sfc.md',
-    url: '/tutorials/fundamentals/vue-sfc',
+    url: '/tutorials/vue/vue-sfc',
     description: 'Placeholder Description',
     tags: ['vue'],
     date: moment('2021-02-08')
