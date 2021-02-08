@@ -86,7 +86,9 @@ as well as your own custom blocks, but the three core blocks are <code>&lt;templ
 When making a component, you do not need all three of these in the <code>.vue</code> file so you can omit a language block if
 your component does not need it as part of its function. An important note about the structure of <code>.vue</code> files is that
 <code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> may only appear once while <code>&lt;style&gt;</code> and a custom block you implement may appear multiple times
-should the situation arise. Here is an example of a simple <code>.vue</code> file:</p>
+should the situation arise. You can specify in the <code>&lt;style&gt;</code> tag whether you want the css to be local to the component.
+If you choose local (scoped) the parent component&#39;s style will not leak into that component.
+Here is an example of a simple <code>.vue</code> file:</p>
 <pre><code class="language-javascript">&lt;template&gt;
   &lt;div class="example"&gt;{{ msg }}&lt;/div&gt;
 &lt;/template&gt;
@@ -99,7 +101,16 @@ export default {
     }
   }
 }
-&lt;/script&gt;</code></pre>
+&lt;/script&gt;
+&lt;style scoped&gt;
+.example {
+  color: red;
+}
+&lt;/style&gt;
+
+&lt;custom&gt;
+Here is an example of a custom langue block.
+&lt;/custom&gt;</code></pre>
 <p>Another step to take when setting up your project work with single-file components is to configure the module bundler to understand
 what a <code>.vue</code> file is and what to do with it. You will need the <code>@vue/compiler-sfc</code> package as well as the <code>vue-loader</code> package.
 Below is an example of setting up the part of module bundler where you would tell it how to handle <code>.vue</code> files:</p>
