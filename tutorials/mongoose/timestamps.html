@@ -75,13 +75,16 @@
   <p><a href="https://mongoosejs.com/docs/guide.html#timestamps">Mongoose schemas have a <code>timestamps</code> option</a> that
 tells Mongoose to automatically manage <code>createdAt</code> and <code>updatedAt</code> properties on your documents.
 For example, here&#39;s how you can enable timestamps on a <code>User</code> model.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}, { <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span> });
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema(
+  {
+    <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>,
+  },
+  { <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span> }
+);
 
-<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">"User"</span>, userSchema);
 
-<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span> });
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">"test@google.com"</span> });
 
 doc.createdAt; <span class="hljs-comment">// 2020-07-06T20:36:59.414Z</span>
 doc.updatedAt; <span class="hljs-comment">// 2020-07-06T20:36:59.414Z</span>
@@ -89,14 +92,24 @@ doc.updatedAt; <span class="hljs-comment">// 2020-07-06T20:36:59.414Z</span>
 doc.createdAt <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>When you enable timestamps, Mongoose adds <code>createdAt</code> and <code>updatedAt</code> properties to your schema.
 By default, <code>createdAt</code> and <code>updatedAt</code> are of type <code>Date</code>. When you <a href="/tutorials/mongoose/update">update a document</a>, Mongoose automatically increments <code>updatedAt</code>.</p>
-<pre><code class="language-javascript">doc.email = <span class="hljs-string">'sergey@google.com'</span>;
+<pre><code class="language-javascript">doc.email = <span class="hljs-string">"sergey@google.com"</span>;
 <span class="hljs-keyword">await</span> doc.save();
 
 doc.createdAt; <span class="hljs-comment">// 2020-07-06T20:36:59.414Z</span>
 doc.updatedAt; <span class="hljs-comment">// 2020-07-06T20:37:09.071Z</span></code></pre>
 <p><a href="https://mongoosejs.com/docs/api.html#query_Query-setOptions">Specific mongoose model write operations</a>
 allow you to skip timestamps provided that <code>timestamps</code> were set in the schema. To do so, you must set
-<code>timestamps</code> to <code>false</code> and the time will not be updated on that operation. If you want to prevent only one of those
+<code>timestamps</code> to <code>false</code> and the time will not be updated on that operation.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
+  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
+}, { <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span> });
+
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.findOneAndUpdate({<span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span>}, {<span class="hljs-attr">email</span>:<span class="hljs-string">'newtest@google.com'</span>}, 
+{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:<span class="hljs-literal">false</span>});
+</code></pre>
+<p>If you want to prevent only one of those
 from updating, instead of setting timestamps to <code>false</code> as the value, create an object with key-value pairs. The
 key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value(s) being <code>true</code> or <code>false</code> depending on what you need.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
@@ -113,14 +126,14 @@ key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value(
 But you can make Mongoose use any property name you like. For example, if you prefer <code>snake_case</code>
 property names, you can make Mongoose use <code>created_at</code> and <code>updated_at</code> instead:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> opts = {
-  <span class="hljs-attr">createdAt</span>: <span class="hljs-string">'created_at'</span>,
-  <span class="hljs-attr">updatedAt</span>: <span class="hljs-string">'updated_at'</span>
+  <span class="hljs-attr">createdAt</span>: <span class="hljs-string">"created_at"</span>,
+  <span class="hljs-attr">updatedAt</span>: <span class="hljs-string">"updated_at"</span>,
 };
 
 <span class="hljs-keyword">const</span> userSchema = mongoose.Schema({ <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span> }, opts);
-<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+<span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">"User"</span>, userSchema);
 
-<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span> });
+<span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">"test@google.com"</span> });
 doc.updated_at; <span class="hljs-comment">// 2020-07-06T20:38:52.917Z</span></code></pre>
 <h2 id="with-unix-timestamps">With Unix Timestamps</h2>
 <p>Although date types are normally sufficient, you can also make Mongoose store timestamps
@@ -129,12 +142,15 @@ Mongoose schemas support a <code>timestamps.currentTime</code> option that lets 
 function to use for getting the current time.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> opts = {
   <span class="hljs-comment">// Make Mongoose use Unix time (seconds since Jan 1, 1970)</span>
-  timestamps: { <span class="hljs-attr">currentTime</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Date</span>.now() / <span class="hljs-number">1000</span>) }
+  timestamps: { <span class="hljs-attr">currentTime</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Date</span>.now() / <span class="hljs-number">1000</span>) },
 };
 
-<span class="hljs-keyword">const</span> userSchema = mongoose.Schema({
-  <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>
-}, opts);</code></pre>
+<span class="hljs-keyword">const</span> userSchema = mongoose.Schema(
+  {
+    <span class="hljs-attr">email</span>: <span class="hljs-built_in">String</span>,
+  },
+  opts
+);</code></pre>
 
   <hr>
 <div class="cta">
