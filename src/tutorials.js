@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Vue Single-File Components',
+    raw: './tutorials/vue/vue-sfc.md',
+    url: '/tutorials/vue/vue-sfc',
+    description: 'Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here\'s how you can get started with Vue single file components, including how to configure Webpack.',
+    tags: ['vue'],
+    date: moment('2021-02-10')
+  },
+  {
     title: 'How to Validate Unique Emails with Mongoose',
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',

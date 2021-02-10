@@ -81,8 +81,7 @@ an HTTP GET request to <code>/test</code>.</p>
 <span class="hljs-comment">// send back an HTTP response with body 'ok'.</span>
 app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
   res.send(<span class="hljs-string">'ok'</span>);
-});
-</code></pre>
+});</code></pre>
 <h2 id="regular-expressions">Regular Expressions</h2>
 <p>The first parameter to <code>app.get()</code> is called the <code>path</code>. The <code>path</code> string supports several <a href="https://expressjs.com/en/guide/routing.html#route-paths">special characters</a> that let you use a subset of regular expressions in path strings.</p>
 <p>For example, you may see <code>app.get(&#39;*&#39;)</code> in tutorials: this registers a route handler for <em>all</em> GET requests.</p>
@@ -92,8 +91,7 @@ app.get(<span class="hljs-string">'/test'</span>, <span class="hljs-function"><s
 <span class="hljs-comment">// receive a GET request, regardless of the URL.</span>
 app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
   res.send(<span class="hljs-string">'ok'</span>);
-});
-</code></pre>
+});</code></pre>
 <p><code>?</code>, <code>+</code>, <code>*</code>, <code>(</code>, <code>)</code>, and <code>:</code> are special characters in Express paths. Although you typically shouldn&#39;t use these
 characters as literals in URLs, you can escape them with a <code>\</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -101,8 +99,7 @@ characters as literals in URLs, you can escape them with a <code>\</code>:</p>
 <span class="hljs-comment">// Escape '+' so it is treated as a literal.</span>
 app.get(<span class="hljs-string">'/\\+'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
   res.send(<span class="hljs-string">'ok'</span>);
-});
-</code></pre>
+});</code></pre>
 <p>We typically don&#39;t recommend using <code>*</code>, <code>+</code>, <code>?</code>, <code>(</code>, or <code>)</code> in Express route paths. They are rarely useful, especially
 since Express supports specifying a JavaScript regular expression as a path:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -110,8 +107,7 @@ since Express supports specifying a JavaScript regular expression as a path:</p>
 <span class="hljs-comment">// Handle any GET request whose URL starts with '/test/'</span>
 app.get(<span class="hljs-regexp">/^\/test\//i</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeHandler</span>(<span class="hljs-params">req, res</span>) </span>{
   res.send(<span class="hljs-string">'ok'</span>);
-});
-</code></pre>
+});</code></pre>
 <h2 id="route-parameters">Route Parameters</h2>
 <p><a href="/tutorials/express/route-parameters">Route parameters</a> are essentially variables defined from named sections of the URL.
 Express parses the URL, pulls the value in the named section, and stores it in the <a href="https://expressjs.com/en/4x/api.html#req.params"><code>req.params</code> property</a>.</p>
@@ -130,8 +126,7 @@ app.get(<span class="hljs-string">'/user/:userId'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42'</span>);
 
-res.data; <span class="hljs-comment">// { userId: '42' }</span>
-</code></pre>
+res.data; <span class="hljs-comment">// { userId: '42' }</span></code></pre>
 <p>Route parameters allow you to specify a parameterized GET route handler for a class of URLs. They&#39;re very useful for
 building REST APIs.</p>
 

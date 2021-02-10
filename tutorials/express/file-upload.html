@@ -94,8 +94,7 @@ app.post(<span class="hljs-string">'/upload'</span>, <span class="hljs-function"
   });
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
 <p>The <code>/upload</code> route handler has 3 steps:</p>
 <ol>
 <li><p>Create a new form using <code>new formidable.IncomingForm()</code>. The <a href="https://www.npmjs.com/package/formidable#api"><code>IncomingForm</code> class</a> is the primary entry point to Formidable.</p>

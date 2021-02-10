@@ -83,8 +83,7 @@
 });
 
 <span class="hljs-comment">// Remove the class 'green' from the `div`</span>
-app.$data.isGreen = <span class="hljs-literal">false</span>;
-</code></pre>
+app.$data.isGreen = <span class="hljs-literal">false</span>;</code></pre>
 <p>You can conditionally bind multiple classes, and use the <a href="/tutorials/vue/bind#shorthand"><code>:</code> shorthand for <code>v-bind:</code></a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">green</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">small</span>: <span class="hljs-literal">false</span> }),
@@ -97,8 +96,7 @@ app.$data.isGreen = <span class="hljs-literal">false</span>;
 
 <span class="hljs-comment">// Remove the class 'green' from the `div` and add class 'small'</span>
 app.$data.green = <span class="hljs-literal">false</span>;
-app.$data.small = <span class="hljs-literal">true</span>;
-</code></pre>
+app.$data.small = <span class="hljs-literal">true</span>;</code></pre>
 <h2 id="string-syntax">String Syntax</h2>
 <p>The value you bind to class with <code>v-bind</code> can be a string, not just an
 object. For example, you can store the class name in a <code>data</code> string:</p>
@@ -113,8 +111,7 @@ object. For example, you can store the class name in a <code>data</code> string:
 
 <span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
 <span class="hljs-comment">// with the class 'small'</span>
-app.$data.myClass = <span class="hljs-string">'small'</span>;
-</code></pre>
+app.$data.myClass = <span class="hljs-string">'small'</span>;</code></pre>
 <p>Another neat approach is to <a href="https://vuejs.org/v2/guide/class-and-style.html#Array-Syntax">use the ternary operator</a> to decide which class the element will have:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">isGreen</span>: <span class="hljs-literal">true</span> }),
@@ -126,8 +123,7 @@ app.$data.myClass = <span class="hljs-string">'small'</span>;
 
 <span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
 <span class="hljs-comment">// with the class 'small'</span>
-app.$data.isGreen = <span class="hljs-literal">false</span>;
-</code></pre>
+app.$data.isGreen = <span class="hljs-literal">false</span>;</code></pre>
 <h2 id="array-syntax">Array Syntax</h2>
 <p>You can also bind the <code>class</code> to an array. Vue will then combine all
 elements in the array to form the final class binding. This lets you
@@ -143,8 +139,7 @@ mix and match string and object syntax in one declaration:</p>
 
 <span class="hljs-comment">// Remove the class 'green' from the `div` and replace it</span>
 <span class="hljs-comment">// with the class 'small'</span>
-app.$data.green = <span class="hljs-literal">false</span>;
-</code></pre>
+app.$data.green = <span class="hljs-literal">false</span>;</code></pre>
 
   <hr>
 <div class="cta">
@@ -170,6 +165,9 @@ app.$data.green = <span class="hljs-literal">false</span>;
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
   
 
@@ -186,9 +184,6 @@ app.$data.green = <span class="hljs-literal">false</span>;
   
 
     <li><a href="/tutorials/vue/vuex-getters">Vuex Getters</a></li>
-  
-
-    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
   
     </ul>
   

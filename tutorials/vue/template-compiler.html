@@ -92,8 +92,7 @@ Vue.component(<span class="hljs-string">'hello'</span>, {
 });
 
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello, World&lt;/h1&gt;</span>
-<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
-</code></pre>
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);</code></pre>
 <h2 id="parsing-a-vue-file">Parsing a <code>.vue</code> File</h2>
 <p>Vue-template-compiler has a separate function called <a href="https://www.npmjs.com/package/vue-template-compiler#compilerparsecomponentfile-options"><code>parseComponent()</code></a> that helps you compile single file components (<code>.vue</code> files) into JavaScript.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> compiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-template-compiler'</span>);
@@ -118,8 +117,7 @@ Vue.component(<span class="hljs-string">'app'</span>, appComponent);
 
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
-data;
-</code></pre>
+data;</code></pre>
 
   <hr>
 <div class="cta">
@@ -145,6 +143,9 @@ data;
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
   
 
@@ -161,9 +162,6 @@ data;
   
 
     <li><a href="/tutorials/vue/vuex-getters">Vuex Getters</a></li>
-  
-
-    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
   
     </ul>
   
