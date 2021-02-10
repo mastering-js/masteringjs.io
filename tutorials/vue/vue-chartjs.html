@@ -78,50 +78,52 @@ library in your Vuejs projects. If you do not wish to install the libraries, you
 browser via CDN. Because <code>vue-chartjs</code> is a wrapper of <code>chart.js</code>, every chart type is available for use when working
 with these libraries. When you import one of these chart types from <code>vue-chartjs</code>, you need to extend it. You can do so
 with the <code>extends</code> property as shown below</p>
-<pre><code class="language-javascript">&lt;script&gt;
-<span class="hljs-keyword">import</span> { Line } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-chartjs'</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">extends</span>: Line,
-  <span class="hljs-attr">props</span>: [<span class="hljs-string">'chartdata'</span>, <span class="hljs-string">'options'</span>],
-  mounted () {
-    <span class="hljs-keyword">this</span>.renderChart(<span class="hljs-keyword">this</span>.chartdata, <span class="hljs-keyword">this</span>.options);
-  }
-}
-&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
-<p>or the <code>mixins</code> property. If you choose to use the <code>mixins</code> property, you must enclose the import
-with brackets like as follows.</p>
-<pre><code class="language-javascript">&lt;script&gt;
-<span class="hljs-keyword">import</span> { Line } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-chartjs'</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">mixins</span>: [Line],
-  <span class="hljs-attr">props</span>: [<span class="hljs-string">'chartdata'</span>, <span class="hljs-string">'options'</span>],
-  mounted () {
-    <span class="hljs-keyword">this</span>.renderChart(<span class="hljs-keyword">this</span>.chartdata, <span class="hljs-keyword">this</span>.options);
-  }
-}
-&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
-<div id="content">
+<pre><code class="language-javascript">&lt;script src=<span class="hljs-string">"https://unpkg.com/vue"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+Vue.component(<span class="hljs-string">"line-chart"</span>, {
+  <span class="hljs-attr">extends</span>: VueChartJs.Line,
+  mounted() {
+    <span class="hljs-keyword">this</span>.renderChart(
+      {
+        <span class="hljs-attr">labels</span>: [
+          <span class="hljs-string">"January"</span>,
+          <span class="hljs-string">"February"</span>,
+          <span class="hljs-string">"March"</span>,
+          <span class="hljs-string">"April"</span>,
+          <span class="hljs-string">"May"</span>,
+          <span class="hljs-string">"June"</span>,
+          <span class="hljs-string">"July"</span>,
+        ],
+        <span class="hljs-attr">datasets</span>: [
+          {
+            <span class="hljs-attr">label</span>: <span class="hljs-string">"Data One"</span>,
+            <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">"#f87979"</span>,
+            <span class="hljs-attr">data</span>: [<span class="hljs-number">40</span>, <span class="hljs-number">39</span>, <span class="hljs-number">10</span>, <span class="hljs-number">40</span>, <span class="hljs-number">39</span>, <span class="hljs-number">80</span>, <span class="hljs-number">40</span>],
+          },
+        ],
+      },
+      { <span class="hljs-attr">responsive</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">maintainAspectRatio</span>: <span class="hljs-literal">false</span> }
+    );
+  },
+});</code></pre>
+<p>To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where
+the parameters for <code>this.renderChart()</code>
+are the data and any options you provide which you can pass in as props. Below you will find a live demonstration
+of the excerpt from above:</p>
+<div class="app">
 {{message}}
 <line-chart></line-chart>
 </div>
 
-<script src="https://unpkg.com/vue@3.x"></script>
+<script src="https://unpkg.com/vue"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 <script>
-const app = Vue.createApp({
-    data() {
-      return{
-        message: 'Hello World'
-      }
-     }
-  });
-app.component('line-chart', {
+Vue.component('line-chart', {
 extends: VueChartJs.Line,
-data: () => ({
-  chartdata:{
+mounted(){
+  this.renderChart({
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
@@ -130,24 +132,18 @@ data: () => ({
           data: [40, 39, 10, 40, 39, 80, 40]
         }
       ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-}),
-mounted(){
-  this.renderChart(this.chartdata, this.options);
+    }, {responsive: true, maintainAspectRatio: false})
   }
 });
-app.mount('#content');
+var vm = new Vue({
+  el: '.app',
+  data: {
+    message: 'Example'
+  }
+});
 
 </script>
 
-<p>To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where
-the parameters for <code>this.renderChart()</code>
-are the data and any options you provide which you can pass in as props. Below you will find a live demonstration
-of the excerpts from above:</p>
 <p><strong>Note:</strong> You can use <code>vue-chartjs</code> in your single-file components but you must omit the <code>&lt;template&gt;</code> tag as the one in your <code>.vue</code> file
 will be used instead of the one that you are extending from the library.</p>
 
