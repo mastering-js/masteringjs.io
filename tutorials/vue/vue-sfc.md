@@ -1,13 +1,12 @@
-Vue global components are great for small to medium sized projects but if your project becomes more complex,
+[JavaScript-based Vue components]/tutorials/vue/components) are great for small to medium sized projects but if your project becomes more complex,
 problems begin to arise like:
 
 - Every component name must be unique
 - No CSS support in the components
-- Restricted to HTML and JavaScript, instead of preprocessors like Pug or Babel
-- String templates lack syntax highlighting as well as requiring slashes for multiline HTML
+- String [templates](/tutorials/vue/templates) lack syntax highlighting as well as requiring slashes for multiline HTML
 
 However, Vue.js's single-file components solve all these problems! A single-file component has the extension `.vue`,
-which is made possible by a module bundler like Webpack or Browserify. A `.vue` file can have many top-level language blocks
+which means you need a compiler like [Webpack](/webpack) or Browserify. A `.vue` file can have many top-level language blocks
 as well as your own custom blocks, but the three core blocks are `<template>`, `<script>`, and `<style>`.
 When making a component, the three core blocks are optional. An important note about the structure of `.vue` files is that
 `<template>` and `<script>` may only appear once while `<style>` and a custom block you implement may appear multiple times. You can specify in the `<style>` tag whether you want the css to be local to the component.
@@ -45,26 +44,18 @@ Below is an example of configuring webpack to handle `.vue` files:
 
 ```javascript
 const { VueLoaderPlugin } = require("vue-loader");
-const devtools = require("./lib");
-const mongoose = require("mongoose");
-const webpack = require("webpack");
-const config = {
-  alias: {
-    vue: "vue/dist/vue.esm-bundler.js",
-  },
+
+module.exports = {
   module: {
     rules: [
-      // ... other rules
       {
         test: /\.vue$/,
-        loader: "vue-loader",
-      },
-    ],
+        loader: "vue-loader"
+      }
+    ]
   },
   plugins: [
-    // make sure to include the plugin!
-    new VueLoaderPlugin(),
-  ],
+    new VueLoaderPlugin()
+  ]
 };
-const compiler = webpack(config);
 ```

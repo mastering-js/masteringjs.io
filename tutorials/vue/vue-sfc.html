@@ -7,8 +7,8 @@
     <meta property="og:title" content="Vue Single-File Components" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
+    <meta name="description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>Vue Single-File Components</h1>
   <div class="date">
-    Feb 8, 2021
+    Feb 10, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,16 +72,15 @@
 	  }
 	})();
 	</script>
-  <p>Vue global components are great for small to medium sized projects but if your project becomes more complex,
+  <p>[JavaScript-based Vue components]/tutorials/vue/components) are great for small to medium sized projects but if your project becomes more complex,
 problems begin to arise like:</p>
 <ul>
 <li>Every component name must be unique</li>
 <li>No CSS support in the components</li>
-<li>Restricted to HTML and JavaScript, instead of preprocessors like Pug or Babel</li>
-<li>String templates lack syntax highlighting as well as requiring slashes for multiline HTML</li>
+<li>String <a href="/tutorials/vue/templates">templates</a> lack syntax highlighting as well as requiring slashes for multiline HTML</li>
 </ul>
 <p>However, Vue.js&#39;s single-file components solve all these problems! A single-file component has the extension <code>.vue</code>,
-which is made possible by a module bundler like Webpack or Browserify. A <code>.vue</code> file can have many top-level language blocks
+which means you need a compiler like <a href="/webpack">Webpack</a> or Browserify. A <code>.vue</code> file can have many top-level language blocks
 as well as your own custom blocks, but the three core blocks are <code>&lt;template&gt;</code>, <code>&lt;script&gt;</code>, and <code>&lt;style&gt;</code>.
 When making a component, the three core blocks are optional. An important note about the structure of <code>.vue</code> files is that
 <code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> may only appear once while <code>&lt;style&gt;</code> and a custom block you implement may appear multiple times. You can specify in the <code>&lt;style&gt;</code> tag whether you want the css to be local to the component.
@@ -113,28 +112,20 @@ Here is an example of a custom language block.
 what a <code>.vue</code> file is and what to do with it. You will need the <code>@vue/compiler-sfc</code> package as well as the <code>vue-loader</code> package.
 Below is an example of configuring webpack to handle <code>.vue</code> files:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> { VueLoaderPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"vue-loader"</span>);
-<span class="hljs-keyword">const</span> devtools = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./lib"</span>);
-<span class="hljs-keyword">const</span> mongoose = <span class="hljs-built_in">require</span>(<span class="hljs-string">"mongoose"</span>);
-<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">"webpack"</span>);
-<span class="hljs-keyword">const</span> config = {
-  <span class="hljs-attr">alias</span>: {
-    <span class="hljs-attr">vue</span>: <span class="hljs-string">"vue/dist/vue.esm-bundler.js"</span>,
-  },
+
+<span class="hljs-built_in">module</span>.exports = {
   <span class="hljs-attr">module</span>: {
     <span class="hljs-attr">rules</span>: [
-      <span class="hljs-comment">// ... other rules</span>
       {
         <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.vue$/</span>,
-        <span class="hljs-attr">loader</span>: <span class="hljs-string">"vue-loader"</span>,
-      },
-    ],
+        <span class="hljs-attr">loader</span>: <span class="hljs-string">"vue-loader"</span>
+      }
+    ]
   },
   <span class="hljs-attr">plugins</span>: [
-    <span class="hljs-comment">// make sure to include the plugin!</span>
-    <span class="hljs-keyword">new</span> VueLoaderPlugin(),
-  ],
-};
-<span class="hljs-keyword">const</span> compiler = webpack(config);</code></pre>
+    <span class="hljs-keyword">new</span> VueLoaderPlugin()
+  ]
+};</code></pre>
 
   <hr>
 <div class="cta">
