@@ -77,10 +77,7 @@ there is an excellent wrapper called <code>vue-chartjs</code>. You need both <co
 library in your Vuejs projects. If you do not wish to install the libraries, you can instead use it directly in the
 browser via CDN. Because <code>vue-chartjs</code> is a wrapper of <code>chart.js</code>, every chart type is available for use when working
 with these libraries. When you import one of these chart types from <code>vue-chartjs</code>, you need to extend it. You can do so
-with the <code>extends</code> property or the <code>mixins</code> property. If you choose to use the <code>mixins</code> property, you must enclose the import
-with brackets. To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where the parameters for <code>this.renderChart()</code>
-are the data and any options you provide which you can hardcode or pass in as props. If you hardcode it, the component becomes nonreusable
-so we recommend using props whenever you can as there really is no downside.</p>
+with the <code>extends</code> property as shown below</p>
 <pre><code class="language-javascript">&lt;script&gt;
 <span class="hljs-keyword">import</span> { Line } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-chartjs'</span>
 
@@ -88,10 +85,69 @@ so we recommend using props whenever you can as there really is no downside.</p>
   <span class="hljs-attr">extends</span>: Line,
   <span class="hljs-attr">props</span>: [<span class="hljs-string">'chartdata'</span>, <span class="hljs-string">'options'</span>],
   mounted () {
-    <span class="hljs-keyword">this</span>.renderChart(<span class="hljs-keyword">this</span>.chartdata, <span class="hljs-keyword">this</span>.options)
+    <span class="hljs-keyword">this</span>.renderChart(<span class="hljs-keyword">this</span>.chartdata, <span class="hljs-keyword">this</span>.options);
   }
 }
 &lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+<p>or the <code>mixins</code> property. If you choose to use the <code>mixins</code> property, you must enclose the import
+with brackets like as follows.</p>
+<pre><code class="language-javascript">&lt;script&gt;
+<span class="hljs-keyword">import</span> { Line } <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-chartjs'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">mixins</span>: [Line],
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'chartdata'</span>, <span class="hljs-string">'options'</span>],
+  mounted () {
+    <span class="hljs-keyword">this</span>.renderChart(<span class="hljs-keyword">this</span>.chartdata, <span class="hljs-keyword">this</span>.options);
+  }
+}
+&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>
+<div id="content">
+{{message}}
+<line-chart></line-chart>
+</div>
+
+<script src="https://unpkg.com/vue@3.x"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+<script>
+const app = Vue.createApp({
+    data() {
+      return{
+        message: 'Hello World'
+      }
+     }
+  });
+app.component('line-chart', {
+extends: VueChartJs.Line,
+data: () => ({
+  chartdata:{
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+}),
+mounted(){
+  this.renderChart(this.chartdata, this.options);
+  }
+});
+app.mount('#content');
+
+</script>
+
+<p>To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where
+the parameters for <code>this.renderChart()</code>
+are the data and any options you provide which you can pass in as props. Below you will find a live demonstration
+of the excerpts from above:</p>
 <p><strong>Note:</strong> You can use <code>vue-chartjs</code> in your single-file components but you must omit the <code>&lt;template&gt;</code> tag as the one in your <code>.vue</code> file
 will be used instead of the one that you are extending from the library.</p>
 

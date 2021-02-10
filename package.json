@@ -42,9 +42,9 @@
     "vue-server-renderer": "2.x",
     "vue-template-compiler": "2.x",
     "vuex": "3.x",
+    "web-vitals": "1.1.0",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.11",
-    "web-vitals": "1.1.0",
     "ws": "7.x"
   },
   "scripts": {
