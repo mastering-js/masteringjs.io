@@ -1,4 +1,4 @@
-[JavaScript-based Vue components]/tutorials/vue/components) are great for small to medium sized projects but if your project becomes more complex,
+[JavaScript-based Vue components](/tutorials/vue/components) are great for small to medium sized projects but if your project becomes more complex,
 problems begin to arise like:
 
 - Every component name must be unique
