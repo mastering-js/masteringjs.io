@@ -1,9 +1,8 @@
-Chart.js is a great library for visualizing data and displaying it in your projects. To use it with your Vuejs projects,
-there is an excellent wrapper called `vue-chartjs`. You need both `chart.js` and `vue-chartjs` if you wish to use this
-library in your Vuejs projects. If you do not wish to install the libraries, you can instead use it directly in the
-browser via CDN. Because `vue-chartjs` is a wrapper of `chart.js`, every chart type is available for use when working
-with these libraries. When you import one of these chart types from `vue-chartjs`, you need to extend it. You can do so
-with the `extends` property as shown below
+[Chart.js](https://www.chartjs.org/) is a great library for visualizing data and displaying it in your projects. To use it with your Vue projects,
+there is an excellent wrapper called `vue-chartjs`. `vue-chartjs` helps you integrate Chart.js with Vue components.
+
+You can install Chart.js and vue-chartjs from npm, or you can instead use it directly in the
+browser via CDN. To use one of [Chart.js' chart types](https://www.chartjs.org/docs/latest/charts/), you should use vue-chartjs' `extends` property as shown below.
 
 ```javascript
 <script src="https://unpkg.com/vue"></script>
@@ -39,8 +38,8 @@ Vue.component("line-chart", {
 
 To create the chart, you must call `this.renderChart()` in the `mounted()` hook where
 the parameters for `this.renderChart()`
-are the data and any options you provide which you can pass in as props. Below you will find a live demonstration
-of the excerpt from above:
+are the data and any options you provide which you can pass in as props. Below is a live demonstration
+of the code sample from above:
 
 <div class="app">
 {{message}}
@@ -75,5 +74,4 @@ var vm = new Vue({
 
 </script>
 
-**Note:** You can use `vue-chartjs` in your single-file components but you must omit the `<template>` tag as the one in your `.vue` file
-will be used instead of the one that you are extending from the library.
+**Note:** You can use `vue-chartjs` in your single-file components but you must omit the `<template>` tag as the one in your `.vue` file so it doesn't conflict with the [template](/tutorials/vue/templates) that vue-chartjs uses.

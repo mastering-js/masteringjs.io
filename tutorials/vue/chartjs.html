@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use Chartjs with Vue - Mastering JS</title>
+    <title>How to Use Chart.js with Vue - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use Chartjs with Vue" />
+    <meta property="og:title" content="How to Use Chart.js with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can use Chart.js and vue-chartjs to render charts in Vue." />
+    <meta name="description" content="Here's how you can use Chart.js and vue-chartjs to render charts in Vue." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use Chartjs with Vue</h1>
+  <h1>How to Use Chart.js with Vue</h1>
   <div class="date">
-    Feb 8, 2021
+    Feb 11, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,12 +72,10 @@
 	  }
 	})();
 	</script>
-  <p>Chart.js is a great library for visualizing data and displaying it in your projects. To use it with your Vuejs projects,
-there is an excellent wrapper called <code>vue-chartjs</code>. You need both <code>chart.js</code> and <code>vue-chartjs</code> if you wish to use this
-library in your Vuejs projects. If you do not wish to install the libraries, you can instead use it directly in the
-browser via CDN. Because <code>vue-chartjs</code> is a wrapper of <code>chart.js</code>, every chart type is available for use when working
-with these libraries. When you import one of these chart types from <code>vue-chartjs</code>, you need to extend it. You can do so
-with the <code>extends</code> property as shown below</p>
+  <p><a href="https://www.chartjs.org/">Chart.js</a> is a great library for visualizing data and displaying it in your projects. To use it with your Vue projects,
+there is an excellent wrapper called <code>vue-chartjs</code>. <code>vue-chartjs</code> helps you integrate Chart.js with Vue components.</p>
+<p>You can install Chart.js and vue-chartjs from npm, or you can instead use it directly in the
+browser via CDN. To use one of <a href="https://www.chartjs.org/docs/latest/charts/">Chart.js&#39; chart types</a>, you should use vue-chartjs&#39; <code>extends</code> property as shown below.</p>
 <pre><code class="language-javascript">&lt;script src=<span class="hljs-string">"https://unpkg.com/vue"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script src=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script src=<span class="hljs-string">"https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
@@ -109,8 +107,8 @@ Vue.component(<span class="hljs-string">"line-chart"</span>, {
 });</code></pre>
 <p>To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where
 the parameters for <code>this.renderChart()</code>
-are the data and any options you provide which you can pass in as props. Below you will find a live demonstration
-of the excerpt from above:</p>
+are the data and any options you provide which you can pass in as props. Below is a live demonstration
+of the code sample from above:</p>
 <div class="app">
 {{message}}
 <line-chart></line-chart>
@@ -144,8 +142,7 @@ var vm = new Vue({
 
 </script>
 
-<p><strong>Note:</strong> You can use <code>vue-chartjs</code> in your single-file components but you must omit the <code>&lt;template&gt;</code> tag as the one in your <code>.vue</code> file
-will be used instead of the one that you are extending from the library.</p>
+<p><strong>Note:</strong> You can use <code>vue-chartjs</code> in your single-file components but you must omit the <code>&lt;template&gt;</code> tag as the one in your <code>.vue</code> file so it doesn&#39;t conflict with the <a href="/tutorials/vue/templates">template</a> that vue-chartjs uses.</p>
 
   <hr>
 <div class="cta">
@@ -171,6 +168,9 @@ will be used instead of the one that you are extending from the library.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
   
 
@@ -187,9 +187,6 @@ will be used instead of the one that you are extending from the library.</p>
   
 
     <li><a href="/tutorials/vue/vuex-getters">Vuex Getters</a></li>
-  
-
-    <li><a href="/tutorials/vue/svg">Drawing SVG Graphics with Vue</a></li>
   
     </ul>
   
