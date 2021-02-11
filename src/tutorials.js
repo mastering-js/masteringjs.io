@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Chart.js with Vue',
+    raw: './tutorials/vue/vue-chartjs.md',
+    url: '/tutorials/vue/chartjs',
+    description: 'Here\'s how you can use Chart.js and vue-chartjs to render charts in Vue.',
+    tags: ['vue'],
+    date: moment('2021-02-11')
+  },
+  {
     title: 'Vue Single-File Components',
     raw: './tutorials/vue/vue-sfc.md',
     url: '/tutorials/vue/vue-sfc',
