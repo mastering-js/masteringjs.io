@@ -212,6 +212,15 @@ input[type="text"], input[type="password"], input[type="number"] {
   margin-bottom: 3px;
 }
 
+.image-pull-left {
+  float: left;
+  padding-right: 50px;
+}
+
+.image-pull-left img {
+  width: 200px;
+}
+
 /* cpc ads */
 
 .default-image img {
@@ -290,6 +299,15 @@ input[type="text"], input[type="password"], input[type="number"] {
 
   li {
     line-height: 2em;
+  }
+
+  .image-pull-left {
+    float: none;
+    padding-right: 10px;
+  }
+  
+  .image-pull-left img {
+    width: 100%;
   }
 
   /* CPC ads */
