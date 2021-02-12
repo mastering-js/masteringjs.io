@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Use Chart.js with Vue - Mastering JS</title>
+
+    <meta property="og:title" content="How to Use Chart.js with Vue" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can use Chart.js and vue-chartjs to render charts in Vue." />
+    <meta name="description" content="Here's how you can use Chart.js and vue-chartjs to render charts in Vue." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>How to Use Chart.js with Vue</h1>
+  <div class="date">
+    Feb 11, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://www.chartjs.org/">Chart.js</a> is a great library for visualizing data and displaying it in your projects. To use it with your Vue projects,
+there is an excellent wrapper called <code>vue-chartjs</code>. <code>vue-chartjs</code> helps you integrate Chart.js with Vue components.</p>
+<p>You can install Chart.js and vue-chartjs from npm, or you can instead use it directly in the
+browser via CDN. To use one of <a href="https://www.chartjs.org/docs/latest/charts/">Chart.js&#39; chart types</a>, you should use vue-chartjs&#39; <code>extends</code> property as shown below.</p>
+<pre><code class="language-javascript">&lt;script src=<span class="hljs-string">"https://unpkg.com/vue"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+Vue.component(<span class="hljs-string">"line-chart"</span>, {
+  <span class="hljs-attr">extends</span>: VueChartJs.Line,
+  mounted() {
+    <span class="hljs-keyword">this</span>.renderChart(
+      {
+        <span class="hljs-attr">labels</span>: [
+          <span class="hljs-string">"January"</span>,
+          <span class="hljs-string">"February"</span>,
+          <span class="hljs-string">"March"</span>,
+          <span class="hljs-string">"April"</span>,
+          <span class="hljs-string">"May"</span>,
+          <span class="hljs-string">"June"</span>,
+          <span class="hljs-string">"July"</span>,
+        ],
+        <span class="hljs-attr">datasets</span>: [
+          {
+            <span class="hljs-attr">label</span>: <span class="hljs-string">"Data One"</span>,
+            <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">"#f87979"</span>,
+            <span class="hljs-attr">data</span>: [<span class="hljs-number">40</span>, <span class="hljs-number">39</span>, <span class="hljs-number">10</span>, <span class="hljs-number">40</span>, <span class="hljs-number">39</span>, <span class="hljs-number">80</span>, <span class="hljs-number">40</span>],
+          },
+        ],
+      },
+      { <span class="hljs-attr">responsive</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">maintainAspectRatio</span>: <span class="hljs-literal">false</span> }
+    );
+  },
+});</code></pre>
+<p>To create the chart, you must call <code>this.renderChart()</code> in the <code>mounted()</code> hook where
+the parameters for <code>this.renderChart()</code>
+are the data and any options you provide which you can pass in as props. Below is a live demonstration
+of the code sample from above:</p>
+<div class="app">
+{{message}}
+<line-chart></line-chart>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+<script>
+Vue.component('line-chart', {
+extends: VueChartJs.Line,
+mounted(){
+  this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+var vm = new Vue({
+  el: '.app',
+  data: {
+    message: 'Example'
+  }
+});
+
+</script>
+
+<p><strong>Note:</strong> You can use <code>vue-chartjs</code> in your single-file components but you must omit the <code>&lt;template&gt;</code> tag as the one in your <code>.vue</code> file so it doesn&#39;t conflict with the <a href="/tutorials/vue/templates">template</a> that vue-chartjs uses.</p>
+
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
+
+  <br><br>
+
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vueschool.png">
+    </a>
+  </div>
+ </div>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3-components">Components in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-actions">What are Vuex Actions?</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-store">What is a Vuex Store?</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
