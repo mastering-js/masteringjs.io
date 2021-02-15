@@ -3,7 +3,6 @@ For example, displaying stock market changes, or in chat applications which reus
 With this being said, below you will find an example of a simple Vue application that sends the current time to the user and where
 the user can send a simple message to the websocket.
 
-
 ```javascript
 [require:Vue vue-websocket]
 ```
