@@ -87,7 +87,8 @@ render each element in the array using <code>v-for</code>:</p>
       &lt;/ul&gt;
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <p>Vue also handles <a href="https://vuejs.org/v2/guide/list.html#Array-Change-Detection">array change detection</a>.
 If you were to <a href="/tutorials/fundamentals/array-splice">remove an element from the array using <code>splice()</code></a>, Vue would remove an <code>&lt;li&gt;</code> from the DOM for you.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Remove "Izzy Stradlin" from the array, and also from the `&lt;ul&gt;`</span>
@@ -96,7 +97,8 @@ If you were to <a href="/tutorials/fundamentals/array-splice">remove an element 
 <p>Although you can loop over an array of strings using <code>v-for</code>,
 it won&#39;t work with <code>v-model</code>. The <code>v-model</code> directive won&#39;t
 be able to update your array with any changes to the <code>&lt;input&gt;</code>.</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">people</span>: [<span class="hljs-string">'Axl Rose'</span>, <span class="hljs-string">'Slash'</span>, <span class="hljs-string">'Izzy Stradlin'</span>] }),
     <span class="hljs-comment">// 1 `&lt;input&gt;` for each person in `people`</span>
     template: <span class="hljs-string">`
@@ -111,7 +113,8 @@ be able to update your array with any changes to the <code>&lt;input&gt;</code>.
         &lt;/ul&gt;
       &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <div class="image-with-caption">
   <img src="/assets/v-for-model.png" style="width: 50%">
   <div class="caption">Even though the `input` is updated, the array doesn't change!</div>
@@ -120,7 +123,8 @@ be able to update your array with any changes to the <code>&lt;input&gt;</code>.
 <p>The way to work around this is to use an array of objects with <code>v-for</code>.
 Whenever you use <code>v-model</code> with <code>v-for</code>, make sure the property you&#39;re
 binding with <code>v-model</code> is an object property.</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
       <span class="hljs-attr">people</span>: [
         { <span class="hljs-attr">name</span>: <span class="hljs-string">'Axl Rose'</span> },
@@ -140,7 +144,8 @@ binding with <code>v-model</code> is an object property.</p>
         &lt;/ul&gt;
       &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <h2 id="with-objects">With Objects</h2>
 <p>You can also use <a href="https://vuejs.org/v2/guide/list.html#v-for-with-an-Object"><code>v-for</code> to loop over the keys of an object</a> using the <code>v-for=&quot;(value, key) in obj&quot;</code> syntax.
 Note that <code>v-for</code> only loops over <a href="/tutorials/fundamentals/hasownproperty">own properties</a>.</p>
@@ -164,7 +169,8 @@ Note that <code>v-for</code> only loops over <a href="/tutorials/fundamentals/ha
       &lt;/ul&gt;
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 
   <hr>
 <div class="cta">
@@ -190,6 +196,9 @@ Note that <code>v-for</code> only loops over <a href="/tutorials/fundamentals/ha
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
+  
+
     <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
   
 
@@ -206,9 +215,6 @@ Note that <code>v-for</code> only loops over <a href="/tutorials/fundamentals/ha
   
 
     <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
-  
-
-    <li><a href="/tutorials/vue/vuex-actions">What are Vuex Actions?</a></li>
   
     </ul>
   

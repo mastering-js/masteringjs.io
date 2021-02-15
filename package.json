@@ -44,12 +44,15 @@
     "vuex": "3.x",
     "web-vitals": "1.1.0",
     "webpack": "4.32.2",
-    "webpack-cli": "3.3.11",
-    "ws": "7.x"
+    "webpack-cli": "3.3.11"
   },
   "scripts": {
     "serve": "serve .",
     "server": "node ./server",
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
+  },
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "ws": "^7.4.2"
   }
 }

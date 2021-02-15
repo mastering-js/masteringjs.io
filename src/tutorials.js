@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Websockets With Your Vue Projects',
+    raw: './tutorials/vue/vue-websocket.md',
+    url: '/tutorials/vue/vue-websocket',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-02-15')
+  },
+  {
     title: 'Best Books to Learn Vue in 2021',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',

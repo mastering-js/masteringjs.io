@@ -2600,6 +2600,63 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+  it('vue-websocket', async function() {
+    // acquit:ignore:start
+    this.timeout(10000);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    // acquit:ignore:end
+    const fn = function() {
+      const app = new Vue({
+        data: function(){
+          return{
+          connection: null,
+          time: null
+          }
+        },
+        errorCaptured: function(err) {
+          console.log('Caught top-level error', err.message);
+          return false;
+        },
+        methods:{
+          sendMessage: function(message){
+            console.log(this.connection);
+            this.connection.send(message);
+          },
+        },
+        template: `
+          <div>
+            <h1>Hello</h1>
+            <h2>{{time}}</h2>
+              <button v-on:click="sendMessage('hello')">
+                Send Message
+              </button>
+          </div>
+        `,
+        mounted: function(){
+          console.log("starting the test");
+          this.connection = new WebSocket("ws://localhost:3000/");
+
+          this.connection.onmessage = (event) => {
+            console.log('onmessage event ', event);
+            console.log(event.data);
+            this.time = event.data;
+          }
+          console.log('this is connection',this.connection);
+          this.connection.onopen = function(event){
+            console.log('onopen event ', event);
+            console.log("successfully connected to the websocket");
+          }
+        }
+      });
+    app.$mount("#content");
+    };
+    // acquit:ignore:start
+    const html = createVueHTMLScaffolding(fn.toString());
+    await page.setContent(html);
+    page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+    // acquit:ignore:end
+  });
 });
 
 function createVueHTMLScaffolding(code) {
