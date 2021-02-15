@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>An Introduction to Vue CLI - Mastering JS</title>
+    <title>How to Use D3.js in Your Vue Projects - Mastering JS</title>
 
-    <meta property="og:title" content="An Introduction to Vue CLI" />
+    <meta property="og:title" content="How to Use D3.js in Your Vue Projects" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="A brief introduction to Vue CLI with video" />
-    <meta name="description" content="A brief introduction to Vue CLI with video" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>An Introduction to Vue CLI</h1>
+  <h1>How to Use D3.js in Your Vue Projects</h1>
   <div class="date">
-    Jun 7, 2019
+    Feb 15, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,26 +72,18 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://cli.vuejs.org/">Vue CLI</a> is a powerful tool for scaffolding new Vue projects with standard tooling, like <a href="https://babeljs.io/">Babel</a> and <a href="https://eslint.org/">ESLint</a>. To get started, run:</p>
-<pre><code>npm install @vue/cli</code></pre>
-<p>Then, run <code>./node_modules/.bin/vue ui</code> to get a nice GUI for scaffolding your Vue project. The below video walks through creating a project called <code>vue-sample</code> with the basic defaults.</p>
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/2c5169d3b661451b929b66d354b889be" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
-
-<p>To run the project, navigate to the <code>vue-sample</code> directory, and run <code>npm run serve</code>. Navigate to <code>localhost:8080</code> and you&#39;ll be able to see your new Vue project:</p>
-<img src="https://i.imgur.com/U3pXe4i.png">
-
-<p>This project comes with ESLint, so you can immediately run <code>npm run lint</code> to lint your project. The project also has built-in support for single file components and live reload. Open up <code>src/App.vue</code> and you should see the below:</p>
-<img src="https://i.imgur.com/EOBwXQd.png">
-
-<p>Modify the template to display &quot;Hello, World!&quot;:</p>
-<pre><code>&lt;template&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Vue logo"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/logo.png"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">"Hello, World!"</span>/&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
-<p>Once you save, you&#39;ll see the app automatically updated in your browser. That&#39;s live reloading!</p>
-<img src="https://i.imgur.com/ZIMlRsJ.png">
+  <p><a href="https://d3js.org/">D3.js</a> is a great library for visualizing data and displaying it in your projects.
+This library does not have the benefit of being able to import the cdn into your html, however,
+you can install it via a package manager. This library gives you the building blocks to make
+very aesthetically pleasing charts in projects.</p>
+<p>As of this writing, development for vue-d3-charts is currently frozen as the head maintainer does not have the time
+to continue improving this library. However, individuals are free to contribute <a href="https://github.com/Saigesp/vue-d3-charts">here</a>.
+We recommend using other data visualizing libraries as any issues you may run into while using
+this library will most likely not be solved for a good period of time.</p>
+<p>If you have chosen to use this library regardless of that fact, here is how you can integrate it into your Vue.js projects.
+This library is compatible with Vue 3 however these examples will be written in Vue 2. Below you will find an example
+of a bar graph:</p>
+<pre><code class="language-javascript">[<span class="hljs-built_in">require</span>:vue d3-bargraph]</code></pre>
 
   <hr>
 <div class="cta">
@@ -117,9 +109,6 @@
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
-  
-
     <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
   
 
@@ -136,6 +125,9 @@
   
 
     <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vuex-actions">What are Vuex Actions?</a></li>
   
     </ul>
   

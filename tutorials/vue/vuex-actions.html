@@ -98,7 +98,8 @@ should use the <a href="https://vuex.vuejs.org/api/#dispatch"><code>Store#dispat
 <span class="hljs-comment">// To "call" an action, you should use call `dispatch()` function with</span>
 <span class="hljs-comment">// the action's name.</span>
 <span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'incrementDelay'</span>);
-store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+store.state.count; <span class="hljs-comment">// 1</span>
+</code></pre>
 <h2 id="whats-the-point-of-actions">What&#39;s the Point of Actions?</h2>
 <p>The obvious question to ask about actions is &quot;why actions?&quot; Vuex stores have a <a href="https://vuex.vuejs.org/api/#dispatch"><code>commit()</code> function</a> that lets any function commit mutations, so you could just as easily do this:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
@@ -122,7 +123,8 @@ store.state.count; <span class="hljs-comment">// 1</span></code></pre>
 <span class="hljs-comment">// Instead of dispatching an action, you could just call an</span>
 <span class="hljs-comment">// async function.</span>
 <span class="hljs-keyword">await</span> incrementDelay();
-store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+store.state.count; <span class="hljs-comment">// 1</span>
+</code></pre>
 <p>In isolation, the async function approach above is better because it doesn&#39;t depend on any particular framework.
 You can just call a function and that&#39;s it. Plus you can just use <code>incrementDelay()</code> as a method on your Vue instance
 and get <a href="/tutorials/vue/error-handling">error handling</a> for free.</p>
@@ -155,7 +157,8 @@ store.subscribeAction(<span class="hljs-function"><span class="hljs-keyword">fun
 <span class="hljs-comment">// To "call" an action, you should use call `dispatch()` function with</span>
 <span class="hljs-comment">// the action's name.</span>
 <span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'incrementDelay'</span>);
-store.state.count; <span class="hljs-comment">// 1</span></code></pre>
+store.state.count; <span class="hljs-comment">// 1</span>
+</code></pre>
 <p>The <code>subscribeAction()</code> API is the basis for many <a href="https://vuex.vuejs.org/guide/plugins.html">Vuex plugins</a>, so
 using actions can let you better leverage the Vue community&#39;s plugins.</p>
 <h2 id="mapactions"><code>mapActions()</code></h2>
@@ -216,6 +219,9 @@ as shown below.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
+  
+
     <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
   
 
@@ -232,9 +238,6 @@ as shown below.</p>
   
 
     <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
-  
-
-    <li><a href="/tutorials/vue/vuex-store">What is a Vuex Store?</a></li>
   
     </ul>
   
