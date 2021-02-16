@@ -2605,8 +2605,8 @@ describe('Vue', function() {
     this.timeout(10000);
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
-    // acquit:ignore:end
     const fn = function() {
+    // acquit:ignore:end
       const app = new Vue({
         data: function(){
           return{
