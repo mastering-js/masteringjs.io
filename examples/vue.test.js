@@ -2600,51 +2600,6 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
-  it('d3-bargraph', async function() {
-    this.timeout(10000);
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-    const fn = function() {
-      const app = new Vue({
-        components:{
-          chart
-        },
-        data(){
-          return {
-            chart_data: [
-              {vue: 20, d3: 62, category: 'lorem'},
-              {vue: 28, d3: 47, category: 'ipsum'},
-              {vue: 35, d3: 36, category: 'dolor'},
-              {vue: 60, d3: 24, category: 'sit'},
-              {vue: 65, d3: 18, category: 'amet'},
-            ],
-        chart_config: {
-          key: 'category',
-          values: ['vue', 'd3'],
-          orientation: 'vertical',
-          color: {
-            keys: {
-              vue: '#41b882',
-              d3: '#b35899', 
-            },
-          },
-        },
-      }
-    },
-      template: `
-      <div>
-      <D3BarChart :config="chart_config" :datum="chart_data"></D3BarChart>
-      </div>
-      `
-      });
-      // acquit:ignore:start
-      app.$mount('#content');
-    };
-
-    const html = createVueHTMLScaffolding(fn.toString());
-    await page.setContent(html);
-    // acquit:ignore:end
-  });
 });
 
 function createVueHTMLScaffolding(code) {
