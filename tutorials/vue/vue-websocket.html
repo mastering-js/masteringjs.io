@@ -73,87 +73,56 @@
 	})();
 	</script>
   <p><a href="/tutorials/node/websockets">WebSockets</a> are a great tool for when you want to show real time changes in data.
-For example, a server can push stock market price changes to the client rather than the client needing to ask for the changes via a http request, or in chat applications which reuse the WebSocket connection for the current users.
+For example, a server can push stock market price changes to the client rather than the client needing to ask for the changes via a HTTP request.
 With this being said, below you will find an example of a simple Vue application that shows the current time to the user and where
 the user can send a simple message to the websocket.</p>
 <pre><code class="language-javascript">
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      <span class="hljs-keyword">return</span>{
-      <span class="hljs-attr">connection</span>: <span class="hljs-literal">null</span>,
-      <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span>
-      }
-    },
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span> }),
     <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught top-level error'</span>, err.message);
       <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    },
-    <span class="hljs-attr">methods</span>:{
-      <span class="hljs-attr">sendMessage</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">message</span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.connection);
-        <span class="hljs-keyword">this</span>.connection.send(message);
-      },
     },
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div&gt;
         &lt;h1&gt;Hello&lt;/h1&gt;
         &lt;h2&gt;{{time}}&lt;/h2&gt;
-          &lt;button v-on:click="sendMessage('hello')"&gt;
-            Send Message
-          &lt;/button&gt;
       &lt;/div&gt;
     `</span>,
     <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"starting the test"</span>);
-      <span class="hljs-keyword">this</span>.connection = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">"ws://localhost:3000/"</span>);
-
-      <span class="hljs-keyword">this</span>.connection.onmessage = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onmessage event '</span>, event);
-        <span class="hljs-built_in">console</span>.log(event.data);
+      <span class="hljs-keyword">let</span> connection = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">"ws://localhost:3000/"</span>);
+      connection.onmessage = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
         <span class="hljs-keyword">this</span>.time = event.data;
-      }
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'this is connection'</span>,<span class="hljs-keyword">this</span>.connection);
-      <span class="hljs-keyword">this</span>.connection.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onopen event '</span>, event);
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"successfully connected to the websocket"</span>);
-      }
+       }
     }
   });
-app.$mount(<span class="hljs-string">"#content"</span>);
+  app.$mount(<span class="hljs-string">"#content"</span>);
 };
 </code></pre>
 <p>The server code is:</p>
 <pre><code class="language-javascript"><span class="hljs-meta">"use strict"</span>;
 
-<span class="hljs-keyword">const</span> serverPort = <span class="hljs-number">3000</span>,
-  http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>),
-  express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>),
-  app = express(),
-  server = http.createServer(app),
-  WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">"ws"</span>),
-  websocketServer = <span class="hljs-keyword">new</span> WebSocket.Server({ server });
+<span class="hljs-keyword">const</span> serverPort = <span class="hljs-number">3000</span>;
+<span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>);
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-keyword">const</span> server = http.createServer(app)
+<span class="hljs-keyword">const</span> WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">"ws"</span>);
+<span class="hljs-keyword">const</span> websocketServer = <span class="hljs-keyword">new</span> WebSocket.Server({ server });
 
 <span class="hljs-comment">//when a websocket connection is established</span>
 websocketServer.on(<span class="hljs-string">"connection"</span>, (webSocketClient) =&gt; {
   <span class="hljs-comment">// send feedback to the incoming connection</span>
   webSocketClient.send(<span class="hljs-string">"The time is: "</span>);
-  <span class="hljs-comment">//when a message is received</span>
-  webSocketClient.on(<span class="hljs-string">"message"</span>, (message) =&gt; {
-    <span class="hljs-built_in">console</span>.log(message);
-    <span class="hljs-comment">//for each websocket client</span>
-    websocketServer.clients.forEach(<span class="hljs-function">(<span class="hljs-params">client</span>) =&gt;</span> {
-      <span class="hljs-comment">//send the client the current time</span>
-      setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-        <span class="hljs-keyword">let</span> time = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
-        client.send(time.toTimeString());
-      }, <span class="hljs-number">1000</span>);
-    });
-  });
+  setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">let</span> time = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+      webSocketClient.send(<span class="hljs-string">"the time is: "</span> + time.toTimeString());
+  }, <span class="hljs-number">1000</span>);
 });
 
 <span class="hljs-comment">//start the web server</span>
 server.listen(serverPort, () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Websocket server started on port `</span> + serverPort);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Websocket server started on port `</span> + serverPort);
 });</code></pre>
 
   <hr>
