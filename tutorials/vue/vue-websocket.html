@@ -93,7 +93,7 @@ the user can send a simple message to the websocket.</p>
       <span class="hljs-keyword">let</span> connection = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">"ws://localhost:3000/"</span>);
       connection.onmessage = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
         <span class="hljs-keyword">this</span>.time = event.data;
-       }
+      }
     }
   });
   app.$mount(<span class="hljs-string">"#content"</span>);

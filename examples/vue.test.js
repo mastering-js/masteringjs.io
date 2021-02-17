@@ -2623,7 +2623,7 @@ describe('Vue', function() {
           let connection = new WebSocket("ws://localhost:3000/");
           connection.onmessage = (event) => {
             this.time = event.data;
-           }
+          }
         }
       });
       app.$mount("#content");
