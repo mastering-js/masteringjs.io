@@ -37,7 +37,7 @@ str; // "Hello World!"
 With Custom Classes
 -------------------
 
-Remember that JavaScript expressions evaluate to a value. If your placeholder expression evaluates to a value that isn't a string, [`null`](/tutorials/fundamentals/null), or `undefined`, JavaScript will try to call the value's [`toString()` function](/tutorials/fundamentals/tostring) to convert the value to a string.
+Remember that JavaScript expressions evaluate to a value. If your placeholder expression evaluates to a non-[null](/tutorials/fundamentals/null) object, JavaScript will try to call the object's [`toString()` function](/tutorials/fundamentals/tostring) to convert it to a string.
 
 Here's how JavaScript handles objects in placeholders:
 

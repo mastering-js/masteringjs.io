@@ -97,7 +97,7 @@ str; <span class="hljs-comment">// "Hello World!"</span></code></pre>
 <span class="hljs-keyword">typeof</span> str; <span class="hljs-comment">// "string"</span>
 str; <span class="hljs-comment">// "Hello World!"</span></code></pre>
 <h2 id="with-custom-classes">With Custom Classes</h2>
-<p>Remember that JavaScript expressions evaluate to a value. If your placeholder expression evaluates to a value that isn&#39;t a string, <a href="/tutorials/fundamentals/null"><code>null</code></a>, or <code>undefined</code>, JavaScript will try to call the value&#39;s <a href="/tutorials/fundamentals/tostring"><code>toString()</code> function</a> to convert the value to a string.</p>
+<p>Remember that JavaScript expressions evaluate to a value. If your placeholder expression evaluates to a non-<a href="/tutorials/fundamentals/null">null</a> object, JavaScript will try to call the object&#39;s <a href="/tutorials/fundamentals/tostring"><code>toString()</code> function</a> to convert it to a string.</p>
 <p>Here&#39;s how JavaScript handles objects in placeholders:</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>{
   <span class="hljs-keyword">constructor</span>(name) {
