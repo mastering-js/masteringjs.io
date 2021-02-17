@@ -16,7 +16,7 @@ const serverPort = 3000;
 const http = require("http");
 const express = require("express");
 const app = express();
-const server = http.createServer(app)
+const server = http.createServer(app);
 const WebSocket = require("ws");
 const websocketServer = new WebSocket.Server({ server });
 
@@ -26,12 +26,12 @@ websocketServer.on("connection", (webSocketClient) => {
   webSocketClient.send("The time is: ");
   setInterval(() => {
       let time = new Date();
-      webSocketClient.send("the time is: " + time.toTimeString());
+      webSocketClient.send("The time is: " + time.toTimeString());
   }, 1000);
 });
 
 //start the web server
 server.listen(serverPort, () => {
-    console.log(`Websocket server started on port ` + serverPort);
+    console.log("Websocket server started on port " + serverPort);
 });
 ```

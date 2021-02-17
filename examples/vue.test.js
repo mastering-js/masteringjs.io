@@ -2609,18 +2609,13 @@ describe('Vue', function() {
     // acquit:ignore:end
       const app = new Vue({
         data: () => ({ time: null }),
-        errorCaptured: function(err) {
-          console.log('Caught top-level error', err.message);
-          return false;
-        },
         template: `
           <div>
-            <h1>Hello</h1>
             <h2>{{time}}</h2>
           </div>
         `,
         mounted: function(){
-          let connection = new WebSocket("ws://localhost:3000/");
+          let connection = new WebSocket('ws://localhost:3000/');
           connection.onmessage = (event) => {
             this.time = event.data;
           }

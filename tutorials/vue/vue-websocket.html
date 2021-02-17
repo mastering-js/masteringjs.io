@@ -79,18 +79,13 @@ the user can send a simple message to the websocket.</p>
 <pre><code class="language-javascript">
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span> }),
-    <span class="hljs-attr">errorCaptured</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Caught top-level error'</span>, err.message);
-      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    },
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div&gt;
-        &lt;h1&gt;Hello&lt;/h1&gt;
         &lt;h2&gt;{{time}}&lt;/h2&gt;
       &lt;/div&gt;
     `</span>,
     <span class="hljs-attr">mounted</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      <span class="hljs-keyword">let</span> connection = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">"ws://localhost:3000/"</span>);
+      <span class="hljs-keyword">let</span> connection = <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:3000/'</span>);
       connection.onmessage = <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
         <span class="hljs-keyword">this</span>.time = event.data;
       }
@@ -106,7 +101,7 @@ the user can send a simple message to the websocket.</p>
 <span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>);
 <span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
 <span class="hljs-keyword">const</span> app = express();
-<span class="hljs-keyword">const</span> server = http.createServer(app)
+<span class="hljs-keyword">const</span> server = http.createServer(app);
 <span class="hljs-keyword">const</span> WebSocket = <span class="hljs-built_in">require</span>(<span class="hljs-string">"ws"</span>);
 <span class="hljs-keyword">const</span> websocketServer = <span class="hljs-keyword">new</span> WebSocket.Server({ server });
 
@@ -116,13 +111,13 @@ websocketServer.on(<span class="hljs-string">"connection"</span>, (webSocketClie
   webSocketClient.send(<span class="hljs-string">"The time is: "</span>);
   setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       <span class="hljs-keyword">let</span> time = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
-      webSocketClient.send(<span class="hljs-string">"the time is: "</span> + time.toTimeString());
+      webSocketClient.send(<span class="hljs-string">"The time is: "</span> + time.toTimeString());
   }, <span class="hljs-number">1000</span>);
 });
 
 <span class="hljs-comment">//start the web server</span>
 server.listen(serverPort, () =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Websocket server started on port `</span> + serverPort);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Websocket server started on port "</span> + serverPort);
 });</code></pre>
 
   <hr>
