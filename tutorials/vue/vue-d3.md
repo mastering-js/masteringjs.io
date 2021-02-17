@@ -1,15 +1,7 @@
-[D3.js](https://d3js.org/) is a great library for visualizing data and displaying it in your projects. This library gives you the building blocks to make very aesthetically pleasing charts in projects. To use it
-with your Vue 3 projects, you can download a libray called `vue-d3-charts`
-which is built upon `D3.js`. `vue-d3-charts` does not support vue2 and so
-you will need to import `D3.js`.
-
-As of this writing, development for vue-d3-charts is currently frozen as the head maintainer does not have the time
-to continue improving this library. However, individuals are free to contribute [here](https://github.com/Saigesp/vue-d3-charts).
-We recommend using other data visualizing libraries as any issues you may run into while using
-this library will most likely not be solved for a good period of time.
+[D3.js](https://d3js.org/) is a great library for visualizing data and displaying it in your projects.
+This library gives you the building blocks to make cool charts in projects.
 
 Here is an example of using `D3.js` in Vue2 to create a bar graph.
-A great thing about `D3.js` is that you can import and parse a csv file from an online source to use directly in your visualizations.
 Below is the code:
 
 ```html
@@ -28,14 +20,23 @@ Vue.component('bargraph', {
             let margin = ({top: 30, right: 30, bottom: 70, left: 60});
             let width = 460 - margin.left - margin.right;
             let height = 400 - margin.top - margin.bottom;
-            var svg = d3.select("#example")
+            let info = [{Country: "United States", Value: "12394"},
+            {Country: "Russia",Value: "6148"},
+            {Country: "Germany (FRG)",Value: "1653"},
+            {Country: "France",Value: "2162"},
+            {Country: "United Kingdom",Value: "1214"},
+            {Country: "China",Value: "1131"},
+            {Country: "Spain",Value: "814"},
+            {Country: "Netherlands",Value: "1167"},
+            {Country: "Italy",Value: "660"},
+            {Country: "Israel",Value: "1263"}];
+            var svg = d3.select(this.$refs.example)
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
-            this.getData().then((info) => {
             // Add X axis
             var x = d3.scaleBand()
             .range([ 0, width ])
@@ -62,14 +63,10 @@ Vue.component('bargraph', {
                 .attr("y", function(d) { return y(d.Value); })
                 .attr("width", x.bandwidth())
                 .attr("height", function(d) { return height - y(d.Value); })
-                .attr("fill", "#69b3a2")
-            });
-                    },
-        getData: async function(){
-            return await d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv");
+                .attr("fill", "#69b3a2");
         }
     },
-    template: `<div id = "example"></div>`
+    template: `<div ref = "example"></div>`
 });
 var vm = new Vue({
   el: '.app',
@@ -83,27 +80,37 @@ Below you will find the demonstration of the code:
 
 <script src="https://d3js.org/d3.v6.js"></script>
 <script src="https://unpkg.com/vue"></script>
-<div class = "app">{{message}}
+<div class = "app">
+{{message}}
 <bargraph></bargraph>
 </div>
 <script type = "text/javascript">
-Vue.component('bargraph',{
-    mounted(){
+Vue.component('bargraph', {
+    mounted() {
         this.retrieveGraph();
     },
     methods: {
-        retrieveGraph: function(){
+        retrieveGraph: function() {
             let margin = ({top: 30, right: 30, bottom: 70, left: 60});
             let width = 460 - margin.left - margin.right;
             let height = 400 - margin.top - margin.bottom;
-            var svg = d3.select("#example")
+            let info = [{Country: "United States", Value: "12394"},
+            {Country: "Russia",Value: "6148"},
+            {Country: "Germany (FRG)",Value: "1653"},
+            {Country: "France",Value: "2162"},
+            {Country: "United Kingdom",Value: "1214"},
+            {Country: "China",Value: "1131"},
+            {Country: "Spain",Value: "814"},
+            {Country: "Netherlands",Value: "1167"},
+            {Country: "Italy",Value: "660"},
+            {Country: "Israel",Value: "1263"}];
+            var svg = d3.select(this.$refs.example)
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
-            this.getData().then((info) => {
             // Add X axis
             var x = d3.scaleBand()
             .range([ 0, width ])
@@ -130,14 +137,10 @@ Vue.component('bargraph',{
                 .attr("y", function(d) { return y(d.Value); })
                 .attr("width", x.bandwidth())
                 .attr("height", function(d) { return height - y(d.Value); })
-                .attr("fill", "#69b3a2")
-            });
-        },
-        getData: async function(){
-            return await d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/7_OneCatOneNum_header.csv");
+                .attr("fill", "#69b3a2");
         }
     },
-    template: `<div id = "example"></div>`
+    template: `<div ref = "example"></div>`
 });
 var vm = new Vue({
   el: '.app',
