@@ -62,7 +62,7 @@
   </div>
   <h1>How to Use Websockets With Your Vue Projects</h1>
   <div class="date">
-    Feb 15, 2021
+    Feb 18, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -76,8 +76,7 @@
 For example, a server can push stock market price changes to the client rather than the client needing to ask for the changes via a HTTP request.
 With this being said, below you will find an example of a simple Vue application that shows the current time to the user and where
 the user can send a simple message to the websocket.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span> }),
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div&gt;
@@ -92,8 +91,7 @@ the user can send a simple message to the websocket.</p>
     }
   });
   app.$mount(<span class="hljs-string">"#content"</span>);
-};
-</code></pre>
+};</code></pre>
 <p>The server code is:</p>
 <pre><code class="language-javascript"><span class="hljs-meta">"use strict"</span>;
 
