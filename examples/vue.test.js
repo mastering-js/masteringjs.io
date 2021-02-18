@@ -2625,8 +2625,8 @@ describe('Vue', function() {
         }
       });
       app.$mount("#content");
-    };
     // acquit:ignore:start
+    };
     const html = createVueHTMLScaffolding(fn.toString());
     await page.setContent(html);
     page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
