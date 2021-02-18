@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Websockets With Your Vue Projects',
+    raw: './tutorials/vue/vue-websocket.md',
+    url: '/tutorials/vue/vue-websocket',
+    description: 'Vue makes it easy to work with websockets. Here\'s an example of how you can use websockets in your Vue components.',
+    tags: ['vue'],
+    date: moment('2021-02-18')
+  },
+  {
     title: 'JavaScript String Interpolation',
     raw: './tutorials/fundamentals/string-interpolation.md',
     url: '/tutorials/fundamentals/string-interpolation',
