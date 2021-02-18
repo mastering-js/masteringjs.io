@@ -9,13 +9,22 @@ module.exports = Object.freeze([
     url: '/tutorials/vue/vue-websocket',
     description: 'Placeholder Description',
     tags: ['vue'],
-    date: moment('2021-02-15')
+    date: moment('2021-02-18')
+  },
+  {
+    title: 'JavaScript String Interpolation',
+    raw: './tutorials/fundamentals/string-interpolation.md',
+    url: '/tutorials/fundamentals/string-interpolation',
+    description: 'String interpolation means replacing placeholders in a string with computed values. Here\'s how you can do string interpolation in JavaScript using template literals.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-17'),
+    featured: true
   },
   {
     title: 'Best Books to Learn Vue in 2021',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',
-    description: 'Looking to learn Vue in 2021? Or looking to level up your Vue skills? Here\'s a list of books that can help!.',
+    description: 'Looking to learn Vue in 2021? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
     tags: ['vue'],
     date: moment('2021-02-12'),
     featured: true
