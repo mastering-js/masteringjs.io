@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use D3.js in Your Vue Projects',
+    raw: './tutorials/vue/vue-d3.md',
+    url: '/tutorials/vue/vue-d3',
+    description: 'Here\'s an example of how you can make a barchart in a Vue component with D3.js.',
+    tags: ['vue'],
+    date: moment('2021-02-19')
+  },
+  {
     title: 'How to Use Websockets With Your Vue Projects',
     raw: './tutorials/vue/vue-websocket.md',
     url: '/tutorials/vue/vue-websocket',

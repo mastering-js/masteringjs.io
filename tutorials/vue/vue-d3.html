@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Use D3.js in Your Vue Projects - Mastering JS</title>
+
+    <meta property="og:title" content="How to Use D3.js in Your Vue Projects" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's an example of how you can make a barchart in a Vue component with D3.js." />
+    <meta name="description" content="Here's an example of how you can make a barchart in a Vue component with D3.js." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>How to Use D3.js in Your Vue Projects</h1>
+  <div class="date">
+    Feb 19, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p><a href="https://d3js.org/">D3.js</a> is a great library for visualizing data and displaying it in your projects.
+This library gives you the building blocks to make cool charts in projects.</p>
+<p>Here is an example of using <code>D3.js</code> in Vue2 to create a bar graph.
+Below is the code:</p>
+<pre><code class="language-html">&lt;script src="https://d3js.org/d3.v6.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/vue"&gt;&lt;/script&gt;
+&lt;div class = "app"&gt;
+  &lt;bargraph&gt;&lt;/bargraph&gt;
+&lt;/div&gt;
+&lt;script type = "text/javascript"&gt;
+const info = [
+  {Country: "United States", Value: "12394"},
+  {Country: "Russia",Value: "6148"},
+  {Country: "Germany (FRG)",Value: "1653"},
+  {Country: "France",Value: "2162"},
+  {Country: "United Kingdom",Value: "1214"},
+  {Country: "China",Value: "1131"},
+  {Country: "Spain",Value: "814"},
+  {Country: "Netherlands",Value: "1167"},
+  {Country: "Italy",Value: "660"},
+  {Country: "Israel",Value: "1263"}
+];
+
+Vue.component('bargraph', {
+  mounted() {
+    this.retrieveGraph();
+  },
+  methods: {
+    retrieveGraph: function() {
+      let margin = ({top: 30, right: 30, bottom: 70, left: 60});
+      let width = 460 - margin.left - margin.right;
+      let height = 400 - margin.top - margin.bottom;
+      const svg = d3.select(this.$refs.example).
+        append("svg").
+        attr("width", width + margin.left + margin.right).
+        attr("height", height + margin.top + margin.bottom).
+        append("g").
+        attr("transform", `translate( ${margin.left} , ${margin.top} )`);
+      // Add X axis
+      const x = d3.scaleBand().
+        range([ 0, width ]).
+        domain(info.map(function(d) { return d.Country; })).
+        padding(0.2);
+      svg.append("g").
+        attr("transform", "translate(0," + height + ")").
+        call(d3.axisBottom(x)).
+        selectAll("text").
+        attr("transform", "translate(-10,0)rotate(-45)").
+        style("text-anchor", "end");
+      // Add Y axis
+      const y = d3.scaleLinear().
+        domain([0, 13000]).
+        range([ height, 0]);
+      svg.append("g").call(d3.axisLeft(y));
+      // Bars
+      svg.selectAll("mybar").
+        data(info).
+        enter().
+        append("rect").
+        attr("x", function(d) { return x(d.Country); }).
+        attr("y", function(d) { return y(d.Value); }).
+        attr("width", x.bandwidth()).
+        attr("height", function(d) { return height - y(d.Value); }).
+        attr("fill", "#69b3a2");
+    }
+  },
+  template: '&lt;div ref="example"&gt;&lt;/div&gt;'
+});
+const vm = new Vue({
+  el: '.app'
+});</code></pre>
+<p>Note that the template uses <a href="/tutorials/vue/refs">Vue refs</a> rather than referencing the element by id. Here&#39;s a live example of the above code.</p>
+<script src="https://d3js.org/d3.v6.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<div class = "app">
+<bargraph></bargraph>
+</div>
+<script type = "text/javascript">
+let info = [{Country: "United States", Value: "12394"},
+            {Country: "Russia",Value: "6148"},
+            {Country: "Germany (FRG)",Value: "1653"},
+            {Country: "France",Value: "2162"},
+            {Country: "United Kingdom",Value: "1214"},
+            {Country: "China",Value: "1131"},
+            {Country: "Spain",Value: "814"},
+            {Country: "Netherlands",Value: "1167"},
+            {Country: "Italy",Value: "660"},
+            {Country: "Israel",Value: "1263"}];
+Vue.component('bargraph', {
+    mounted() {
+        this.retrieveGraph();
+    },
+    methods: {
+        retrieveGraph: function() {
+            let margin = ({top: 30, right: 30, bottom: 70, left: 60});
+            let width = 460 - margin.left - margin.right;
+            let height = 400 - margin.top - margin.bottom;
+            var svg = d3.select(this.$refs.example)
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+            // Add X axis
+            var x = d3.scaleBand()
+            .range([ 0, width ])
+            .domain(info.map(function(d) { return d.Country; }))
+            .padding(0.2);
+            svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-45)")
+                .style("text-anchor", "end");
+            // Add Y axis
+            var y = d3.scaleLinear()
+            .domain([0, 13000])
+            .range([ height, 0]);
+            svg.append("g")
+            .call(d3.axisLeft(y));
+            // Bars
+            svg.selectAll("mybar")
+            .data(info)
+            .enter()
+            .append("rect")
+                .attr("x", function(d) { return x(d.Country); })
+                .attr("y", function(d) { return y(d.Value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.Value); })
+                .attr("fill", "#69b3a2");
+        }
+    },
+    template: `<div ref = "example"></div>`
+});
+var vm = new Vue({
+  el: '.app'
+});
+</script>
+
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
+
+  <br><br>
+
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vueschool.png">
+    </a>
+  </div>
+ </div>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
+  
+
+    <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
+  
+
+    <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+
+    <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3-components">Components in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3">What's New in Vue 3</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
