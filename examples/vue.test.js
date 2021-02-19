@@ -2600,6 +2600,38 @@ describe('Vue', function() {
       // acquit:ignore:end
     });
   });
+  it('vue-websocket', async function() {
+    // acquit:ignore:start
+    this.timeout(10000);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    const fn = function() {
+    // acquit:ignore:end
+      const app = new Vue({
+        data: () => ({ time: null }),
+        template: `
+          <div>
+            <h2>{{time}}</h2>
+          </div>
+        `,
+        mounted: function(){
+          let connection = new WebSocket('ws://localhost:3000/');
+          connection.onmessage = (event) => {
+            // Vue data binding means you don't need any extra work to
+            // update your UI. Just set the `time` and Vue will automatically
+            // update the `<h2>`.
+            this.time = event.data;
+          }
+        }
+      });
+      app.$mount("#content");
+    // acquit:ignore:start
+    };
+    const html = createVueHTMLScaffolding(fn.toString());
+    await page.setContent(html);
+    page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+    // acquit:ignore:end
+  });
 });
 
 function createVueHTMLScaffolding(code) {

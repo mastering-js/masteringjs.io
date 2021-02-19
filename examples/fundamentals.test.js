@@ -4312,6 +4312,40 @@ describe('Fundamentals', function() {
     // acquit:ignore:end
   });
 
+  describe('string interpolation', function() {
+    it('custom class', function() {
+      class User {
+        constructor(name) {
+          this.name = name;
+        }
+
+        toString() {
+          return this.name;
+        }
+      }
+
+      const user = new User('Bill');
+
+      const str = `Hello ${user}!`; // "Hello Bill!"
+      // acquit:ignore:start
+      assert.equal(str, "Hello Bill!");
+      // acquit:ignore:end
+    });
+
+    it('symbol', function() {
+      const sym = Symbol('test symbol');
+
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      // Throws "TypeError: Cannot convert a Symbol value to a string"
+      const str = `Hello ${sym}!`;
+      // acquit:ignore:start
+      }, /Cannot convert a Symbol value to a string/);
+      // acquit:ignore:end
+    });
+  });
+
   describe('trim', function() {
     it('basic example', function() {
       let str = ' hello world ';
