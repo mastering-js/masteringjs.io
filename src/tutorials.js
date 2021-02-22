@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Check if a Variable is Undefined',
+    raw: './tutorials/fundamentals/undefined-check.md',
+    url: '/tutorials/fundamentals/undefined-check',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-02-22')
+  },
+  {
     title: 'How to Use D3.js in Your Vue Projects',
     raw: './tutorials/vue/vue-d3.md',
     url: '/tutorials/vue/vue-d3',

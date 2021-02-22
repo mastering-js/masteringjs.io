@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Check if a Variable is Undefined - Mastering JS</title>
+
+    <meta property="og:title" content="How to Check if a Variable is Undefined" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>How to Check if a Variable is Undefined</h1>
+  <div class="date">
+    Feb 22, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>In JavaScript, checking if a variable is undefined can be a bit tricky since
+a <a href="/tutorials/fundamentals/null">null</a> variable can pass a check for undefined if not written properly.
+As a result, this allows for <code>undefined</code> values to slip through and vice versa.
+This is because <code>null</code> and <code>undefined</code> both mean nothing so checking if they
+are equal would return true. However, if you were to check if they were
+strictyl equal, it would return false as they are different ways of saying nothing.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">null</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass even though it is undefined'</span>)
+}
+<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will not print as x is not an object but undefined'</span>);
+}
+<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Will print'</span>);
+}
+</code></pre>
+<p>A variable becomes <code>null</code> when it is assigned something that returns <code>null</code> and is not
+a boolean.
+An example would be using the <code>match()</code> function to check if a string matches
+a regular expression and returns the match.
+In the absence of a match, it would return <code>null</code> since it is not a boolean function.
+This can be seen below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> paragraph = <span class="hljs-string">'the quick brown fox jumps over the lazy dog. it barked.'</span>;
+<span class="hljs-keyword">const</span> regex = <span class="hljs-regexp">/[A-Z]/g</span>;
+<span class="hljs-keyword">const</span> found = paragraph.match(regex);
+<span class="hljs-built_in">console</span>.log(found); <span class="hljs-comment">// returns null as there are no capital letters</span>
+</code></pre>
+<p>A variable becomes <code>undefined</code> when it has never been given a value.</p>
+<p>You should not check with <code>undefined</code> in the if statements as it is possible to overwrite
+that value and it can lead to problems later down the road if you are not careful. It is also possible
+that if the variable is never declared you can get a <code>ReferenceError</code> and impede your project.</p>
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">if</span> (x == <span class="hljs-literal">undefined</span>){
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'would pass as it is undefined but will throw a reference error'</span>);
+  }
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will throw a reference error so do not use this'</span>);
+  }
+  <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'undefined'</span>) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Will pass and not throw a reference error'</span>);
+  }
+</code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/trim-string">JavaScript Trim String</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

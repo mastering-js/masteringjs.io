@@ -86,7 +86,8 @@ MyClass.myFunction(); <span class="hljs-comment">// 42</span>
 <span class="hljs-comment">// `myFunction()` is a function on `MyClass`, **not**</span>
 <span class="hljs-comment">// instances of `MyClass`</span>
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
-obj.myFunction; <span class="hljs-comment">// undefined</span></code></pre>
+obj.myFunction; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p>In JavaScript, a class is an object like any other. So statics let you define
 functions on the class within the class definition. Equivalently, you can
 just assign a function to <code>MyClass</code>:</p>
@@ -95,7 +96,8 @@ MyClass.myFunction = <span class="hljs-function"><span class="hljs-keyword">func
   <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
 };
 
-MyClass.myFunction(); <span class="hljs-comment">// 42</span></code></pre>
+MyClass.myFunction(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <h2 id="with-this">With <code>this</code></h2>
 <p>Within static functions, <code>this</code> refers to the class.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
@@ -104,7 +106,8 @@ MyClass.myFunction(); <span class="hljs-comment">// 42</span></code></pre>
   }
 }
 
-MyClass.myFunction() === MyClass; <span class="hljs-comment">// true</span></code></pre>
+MyClass.myFunction() === MyClass; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="static-properties">Static Properties</h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_fields">Static properties, also known as class fields</a>, are currently a <a href="https://github.com/tc39/proposals#stage-3">Stage 3 TC39 proposal</a>, which means they are technically not part of the JavaScript language yet. However, they are supported in more recent versions
 of Google Chrome.</p>
@@ -130,6 +133,9 @@ MyChildClass.val === MyClass.val; <span class="hljs-comment">// true</span></cod
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a Variable is Undefined</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -146,9 +152,6 @@ MyChildClass.val === MyClass.val; <span class="hljs-comment">// true</span></cod
   
 
     <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
   
     </ul>
   

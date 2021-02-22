@@ -4418,6 +4418,41 @@ describe('Fundamentals', function() {
       arr.findIndex(n => Number.isNaN(n)); // 4
       
     });
+    it('bad-undefined-check', function() {
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+        if (x == undefined){
+          console.log('would pass as it is undefined but will throw a reference error');
+        }
+        if (x === undefined) {
+          console.log('will throw a reference error so do not use this');
+        }
+      // acquit:ignore:start
+      }, /ReferenceError: x is not defined/);
+      // acquit:ignore:end
+        if(typeof x === 'undefined') {
+          console.log('Will pass and not throw a reference error');
+        }
+    });
+    it('good-undefined-check', function() {
+      var x;
+      if (x == null) {
+        console.log('will pass even though it is undefined')
+      }
+      if (x == null && typeof x == 'object') {
+        console.log('will not print as x is not an object but undefined');
+      }
+      if (x == undefined && typeof x == 'undefined') {
+        console.log('Will print');
+      }
+    });
+    it('become-null', function() {
+      const paragraph = 'the quick brown fox jumps over the lazy dog. it barked.';
+      const regex = /[A-Z]/g;
+      const found = paragraph.match(regex);
+      console.log(found); // returns null as there are no capital letters
+    });
 });
 
 if (!Array.prototype.flat) {
