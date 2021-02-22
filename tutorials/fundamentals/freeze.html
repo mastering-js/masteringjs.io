@@ -84,7 +84,8 @@ obj.otherProperty = <span class="hljs-string">'test'</span>;
 
 <span class="hljs-comment">// You **cannot** overwrite `obj` by assigning to it. This code</span>
 <span class="hljs-comment">// throws an error "assignment to constant variable"</span>
-obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">41</span> };</code></pre>
+obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">41</span> };
+</code></pre>
 <h2 id="freezing-an-object">Freezing an Object</h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"><code>Object.freeze()</code> function</a> &quot;freezes&quot; an object. JavaScript prevents you from adding, removing, or modifying the properties of a frozen object.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
@@ -92,14 +93,16 @@ obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">41</spa
 <span class="hljs-comment">// Since `obj` is frozen, modifying any of its existing</span>
 <span class="hljs-comment">// properties or adding a new property throws an error:</span>
 <span class="hljs-comment">// "Cannot assign to read only property 'answer' of object '#&lt;Object&gt;'"</span>
-obj.answer = <span class="hljs-number">43</span>;</code></pre>
+obj.answer = <span class="hljs-number">43</span>;
+</code></pre>
 <p>However, <code>Object.freeze()</code> is <strong>not</strong> recursive. You can still modify
 nested object properties.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">nested</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
 <span class="hljs-comment">// Does **not** throw an error. `obj` is a frozen object,</span>
 <span class="hljs-comment">// but `nested` is not.</span>
-obj.nested.answer = <span class="hljs-number">43</span>;</code></pre>
+obj.nested.answer = <span class="hljs-number">43</span>;
+</code></pre>
 <p>There are numerous utilities for recursively freezing objects, including <a href="https://www.npmjs.com/package/deep-freeze">deep-freeze</a>.</p>
 <h2 id="strict-mode">Strict Mode</h2>
 <p>Be very careful relying on <code>Object.freeze()</code>: <code>Object.freeze()</code> does <strong>not</strong> throw an error outside of <a href="/tutorials/fundamentals/strict">strict mode</a>. Even if you <code>freeze()</code> an object in a function that uses strict mode, modifying that object
@@ -125,6 +128,9 @@ run();</code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -141,9 +147,6 @@ run();</code></pre>
   
 
     <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
   
     </ul>
   

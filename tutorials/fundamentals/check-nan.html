@@ -78,16 +78,19 @@
 <span class="hljs-keyword">let</span> text = <span class="hljs-string">'hello world!'</span>;
 <span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// false</span>
 text = +text; <span class="hljs-comment">// shortcut to convert a string to a number</span>
-<span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// true</span></code></pre>
+<span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// true</span>
+</code></pre>
 <p><code>isNaN()</code> on the other hand would check if the value would be a <code>NaN</code> if it was converted to a number. We recommend not using <code>isNaN()</code> as it gives surprising behavior.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">isNaN</span>(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'test'</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-built_in">isNaN</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'2'</span>); <span class="hljs-comment">// false</span></code></pre>
+<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'2'</span>); <span class="hljs-comment">// false</span>
+</code></pre>
 <p>Another interesting thing about <code>NaNs</code> is that arrays have a hard time with them. For example, <code>arr.includes(NaN)</code> will return true if there is a <code>NaN</code> in the array whereas <code>arr.indexOf(NaN)</code> will return -1 with or without a <code>NaN</code> in the array. That&#39;s because <a href="/tutorials/fundamentals/equality#where-these-equality-comparisons-are-used"><code>includes()</code> uses a different equality algorithm than <code>indexOf()</code></a>.]</p>
 <p>If you want the <code>indexOf()</code> a <code>NaN</code> in an array then ironically enough you should use <code>findIndex()</code> as follows: <code>arr.findIndex(n =&gt; Number.isNaN(n))</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'1'</span>,<span class="hljs-string">'2'</span>,<span class="hljs-string">'3'</span>,<span class="hljs-string">'4'</span>,<span class="hljs-literal">NaN</span>,<span class="hljs-string">'5'</span>];
-arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span></code></pre>
+arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span>
+</code></pre>
 
   
   <hr>
@@ -95,6 +98,9 @@ arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&g
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -111,9 +117,6 @@ arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&g
   
 
     <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/compare-dates-without-time">Compare Two Dates, Ignoring Time, in JavaScript</a></li>
   
     </ul>
   

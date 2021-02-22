@@ -95,7 +95,8 @@ the promise as <a href="/tutorials/fundamentals/promise#promises-as-state-machin
 str; <span class="hljs-comment">// 'OK'</span>
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> fail.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// Oops</span></code></pre>
+err.message; <span class="hljs-comment">// Oops</span>
+</code></pre>
 <p>You can register an event listener for when a promise is fulfilled
 or rejected using the <a href="/tutorials/fundamentals/then"><code>then()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> success = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve</span>) </span>{
@@ -109,7 +110,8 @@ or rejected using the <a href="/tutorials/fundamentals/then"><code>then()</code>
 
   <span class="hljs-keyword">const</span> elapsed = <span class="hljs-built_in">Date</span>.now() - start;
   elapsed; <span class="hljs-comment">// Approximately 100</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="using-promises-for-timeouts">Using Promises for Timeouts</h2>
 <p>You don&#39;t need to create new promises very often. Usually, libraries like
 <a href="http://npmjs.com/package/axios">Axios</a> or <a href="https://www.npmjs.com/package/mongoose">Mongoose</a> create promises internally and return them, so you can use
@@ -127,7 +129,8 @@ should wrap a <code>setTimeout()</code> call in a <code>new Promise</code>:</p>
 <span class="hljs-keyword">const</span> start = <span class="hljs-built_in">Date</span>.now();
 <span class="hljs-keyword">await</span> test();
 <span class="hljs-keyword">const</span> elapsed = <span class="hljs-built_in">Date</span>.now() - start;
-elapsed; <span class="hljs-comment">// Approximately 100</span></code></pre>
+elapsed; <span class="hljs-comment">// Approximately 100</span>
+</code></pre>
 <h2 id="wrapping-node-style-callbacks">Wrapping Node-Style Callbacks</h2>
 <p>Some async Node.js APIs, like <a href="https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback"><code>fs.readFile()</code></a>, don&#39;t return promises.
 You also need to wrap <code>fs.readFile()</code> in a <code>new Promise</code> in order
@@ -148,7 +151,8 @@ If <code>error</code> is not <a href="/tutorials/fundamentals/falsy#nullish-valu
 });
 
 <span class="hljs-keyword">const</span> pkg = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-keyword">await</span> p);
-pkg.name; <span class="hljs-comment">// 'masteringjs.io'</span></code></pre>
+pkg.name; <span class="hljs-comment">// 'masteringjs.io'</span>
+</code></pre>
 <h2 id="async-executor-functions">Async Executor Functions</h2>
 <p>A common mistake is making the executor an <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">executor</span>(<span class="hljs-params">resolve, reject</span>) </span>{
@@ -156,7 +160,8 @@ pkg.name; <span class="hljs-comment">// 'masteringjs.io'</span></code></pre>
   resolve(<span class="hljs-string">'OK'</span>);
 });
 
-<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">await</span> p;</code></pre>
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">await</span> p;
+</code></pre>
 <p>The above code works fine, but it creates an unnecessary promise
 (remember that async functions always return a promise!) and
 looks clumsy. Since async functions always return promises,
@@ -192,6 +197,9 @@ async. There&#39;s no need.</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -208,9 +216,6 @@ async. There&#39;s no need.</p>
   
 
     <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
   
     </ul>
   

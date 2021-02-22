@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The Difference Between let and var in JavaScript',
+    raw: './tutorials/fundamentals/let-vs-var.md',
+    url: '/tutorials/fundamentals/let-vs-var',
+    description: 'Place Holder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-02-22')
+  },
+  {
     title: 'How to Use D3.js in Your Vue Projects',
     raw: './tutorials/vue/vue-d3.md',
     url: '/tutorials/vue/vue-d3',
