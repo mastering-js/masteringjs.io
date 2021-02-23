@@ -75,46 +75,54 @@
   <p>In JavaScript, checking if a variable is undefined can be a bit tricky since
 a <a href="/tutorials/fundamentals/null">null</a> variable can pass a check for undefined if not written properly.
 As a result, this allows for <code>undefined</code> values to slip through and vice versa.
-This is because <code>null</code> and <code>undefined</code> both mean nothing so checking if they
-are equal would return true. However, if you were to check if they were
-strictyl equal, it would return false as they are different ways of saying nothing.</p>
+This is because <code>null</code> and <code>undefined</code> both mean nothing, so checking if they
+are equal <code>==</code> would return true. However, if you were to check if they were
+strictly equal <code>===</code>, it would return false as they are different ways of saying nothing.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
-<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">null</span>) {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass even though it is undefined'</span>)
+<span class="hljs-keyword">var</span> y = <span class="hljs-literal">null</span>;
+
+<span class="hljs-keyword">if</span> ( x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will print'</span>);
 }
-<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>) {
+<span class="hljs-keyword">if</span> ( x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will not print'</span>);
+}
+<span class="hljs-keyword">if</span> ( x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span> ) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will not print as x is not an object but undefined'</span>);
 }
-<span class="hljs-keyword">if</span> (x == <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>) {
+<span class="hljs-keyword">if</span> ( x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span> ) {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Will print'</span>);
 }
 </code></pre>
-<p>A variable becomes <code>null</code> when it is assigned something that returns <code>null</code> and is not
-a boolean.
-An example would be using the <code>match()</code> function to check if a string matches
-a regular expression and returns the match.
-In the absence of a match, it would return <code>null</code> since it is not a boolean function.
-This can be seen below:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> paragraph = <span class="hljs-string">'the quick brown fox jumps over the lazy dog. it barked.'</span>;
-<span class="hljs-keyword">const</span> regex = <span class="hljs-regexp">/[A-Z]/g</span>;
-<span class="hljs-keyword">const</span> found = paragraph.match(regex);
-<span class="hljs-built_in">console</span>.log(found); <span class="hljs-comment">// returns null as there are no capital letters</span>
+<p>Objects are special because over the course of a program execution, properties
+can be assigned, removed, and added. As a result, they will not throw
+<code>ReferenceErrors</code> but instead return undefined.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> person = { <span class="hljs-attr">firstName</span>:<span class="hljs-string">"John"</span>, <span class="hljs-attr">lastName</span>:<span class="hljs-string">"Doe"</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">eyeColor</span>:<span class="hljs-string">"blue"</span> };
+
+<span class="hljs-keyword">if</span> ( person.does_not_exist === <span class="hljs-literal">undefined</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass and not throw a reference error'</span>);
+}
+<span class="hljs-keyword">if</span>( ({})._does_not_exist == <span class="hljs-literal">undefined</span> ){
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass and not throw a reference error'</span>);
+}
 </code></pre>
-<p>A variable becomes <code>undefined</code> when it has never been given a value.</p>
-<p>You should not check with <code>undefined</code> in the if statements as it is possible to overwrite
-that value and it can lead to problems later down the road if you are not careful. It is also possible
-that if the variable is never declared you can get a <code>ReferenceError</code> and impede your project.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">if</span> (x == <span class="hljs-literal">undefined</span>){
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'would pass as it is undefined but will throw a reference error'</span>);
-  }
-  <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will throw a reference error so do not use this'</span>);
-  }
-  <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'undefined'</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Will pass and not throw a reference error'</span>);
-  }
+<p>You should not check if the variable is <code>undefined</code> but instead check if the <code>typeof</code> the variable is &#39;undefined&#39;.
+If the variable does not exist you will get a <code>ReferenceError</code> but using <code>typeof</code> circumvents this problem.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> person = { <span class="hljs-attr">firstName</span>:<span class="hljs-string">"John"</span>, <span class="hljs-attr">lastName</span>:<span class="hljs-string">"Doe"</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">eyeColor</span>:<span class="hljs-string">"blue"</span>, <span class="hljs-attr">test</span>: <span class="hljs-literal">undefined</span> };
+
+<span class="hljs-keyword">if</span> ( x == <span class="hljs-literal">undefined</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will throw a reference error'</span>);
+}
+<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass and not throw a reference error'</span>);
+}
+<span class="hljs-keyword">if</span> ( person.test === <span class="hljs-literal">undefined</span> ) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'will pass and not throw a reference error'</span>);
+}
 </code></pre>
+<p><strong>Note:</strong> Although you can assign <code>undefined</code> anywhere but the
+<a href="/tutorials/fundamentals/global-variable">global scope</a>, you should avoid doing that.
+Doing so makes the code difficult to maintain and debug as it will lead to problems.</p>
 
   
   <hr>
