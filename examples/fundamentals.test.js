@@ -4419,50 +4419,30 @@ describe('Fundamentals', function() {
       
     });
     it('bad-undefined-check', function() {
-      var person = { firstName:"John", lastName:"Doe", age:50, eyeColor:"blue", test: undefined };
       // acquit:ignore:start
       assert.throws(() => {
       // acquit:ignore:end
-
-      if ( x == undefined ) {
-        console.log('will throw a reference error');
-      }
+       x === undefined // Throws a ReferenceError
+       typeof x == 'undefined' // true
       // acquit:ignore:start
       }, /ReferenceError: x is not defined/);
       // acquit:ignore:end
-      if ( typeof x == 'undefined' ) {
-        console.log('will pass and not throw a reference error');
-      }
-      if ( person.test === undefined ) {
-        console.log('will pass and not throw a reference error');
-      }
     });
     it('undefined-objects', function() {
-      var person = { firstName:"John", lastName:"Doe", age:50, eyeColor:"blue" };
+      var person = { firstName:"John", lastName:"Doe", age:50, eyeColor:"blue", test: undefined };
 
-      if ( person.does_not_exist === undefined ) {
-        console.log('will pass and not throw a reference error');
-      }
-      if( ({})._does_not_exist == undefined ){
-        console.log('will pass and not throw a reference error');
-      }
+      person.test === undefined // true
+      person.does_not_exist === undefined // true
+      ({})._does_not_exist == undefined //true
     });
     it('good-undefined-check', function() {
       var x;
       var y = null;
 
-      if ( x == null && y == undefined ) {
-        console.log('will print');
-      }
-      if ( x === null || y === undefined ) {
-        console.log('will not print');
-      }
-      if ( x == null && typeof x == 'object' ) {
-        console.log('will not print as x is not an object but undefined');
-      }
-      if ( x === undefined && typeof x == 'undefined' ) {
-        console.log('Will print');
-      }
+      x == null && y == undefined // true
+      x === null || y === undefined // false
+      x == null && typeof x == 'object' // false
+      x === undefined && typeof x == 'undefined' // true
     });
 });
 
