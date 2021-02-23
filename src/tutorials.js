@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'Handling POST Requests with Express',
     raw: './tutorials/express/post.md',
     url: '/tutorials/express/post',
-    description: 'Here\'s an example of how you can make a barchart in a Vue component with D3.js.',
+    description: 'Here\'s how you can handle POST requests in Express, including handling JSON request bodies and file uploads.',
     tags: ['express'],
     date: moment('2021-02-23')
   },
