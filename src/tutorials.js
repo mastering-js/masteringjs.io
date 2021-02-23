@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Handling POST Requests with Express',
+    raw: './tutorials/express/post.md',
+    url: '/tutorials/express/post',
+    description: 'Here\'s an example of how you can make a barchart in a Vue component with D3.js.',
+    tags: ['express'],
+    date: moment('2021-02-23')
+  },
+  {
     title: 'How to Use D3.js in Your Vue Projects',
     raw: './tutorials/vue/vue-d3.md',
     url: '/tutorials/vue/vue-d3',

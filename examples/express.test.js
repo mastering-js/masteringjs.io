@@ -1348,4 +1348,23 @@ describe('Express', function() {
       // acquit:ignore:end
     });
   });
+
+  describe('post requests', function() {
+    it('basic handler', async function() {
+      const express = require('express');
+
+      const app = express();
+
+      app.post('/', function requestHandler(req, res) {
+        res.end('Hello, World!');
+      });
+
+      const server = await app.listen(3000);
+      // acquit:ignore:start
+      const data = await axios.post('http://localhost:3000/', {}).then(res => res.data);
+      assert.equal(data, 'Hello, World!');
+      await server.close();
+      // acquit:ignore:end
+    });
+  });
 });
