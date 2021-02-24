@@ -4422,27 +4422,37 @@ describe('Fundamentals', function() {
       // acquit:ignore:start
       assert.throws(() => {
       // acquit:ignore:end
-       x === undefined // Throws a ReferenceError
-       typeof x == 'undefined' // true
+       x === undefined; // Throws a ReferenceError
+       typeof x == 'undefined'; // true
       // acquit:ignore:start
       }, /ReferenceError: x is not defined/);
       // acquit:ignore:end
     });
     it('undefined-objects', function() {
-      var person = { firstName:"John", lastName:"Doe", age:50, eyeColor:"blue", test: undefined };
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+        var person = { firstName:"John", lastName:"Doe", age:50, eyeColor:"blue", test: undefined };
 
-      person.test === undefined // true
-      person.does_not_exist === undefined // true
-      ({})._does_not_exist == undefined //true
+        person.test == undefined; // true
+
+        ({})._does_not_exist == undefined; // true
+
+        person._does_not_exist === undefined; // true
+
+        person.hasOwnProperty(_does_not_exist); // ReferenceError
+      // acquit:ignore:start
+      }, /ReferenceError: _does_not_exist is not defined/);
+      // acquit:ignore:end
     });
     it('good-undefined-check', function() {
       var x;
       var y = null;
 
-      x == null && y == undefined // true
-      x === null || y === undefined // false
-      x == null && typeof x == 'object' // false
-      x === undefined && typeof x == 'undefined' // true
+      x == null && y == undefined; // true
+      x === null || y === undefined; // false
+      x == null && typeof x == 'object'; // false
+      x === undefined && typeof x == 'undefined'; // true
     });
 });
 

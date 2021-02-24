@@ -79,10 +79,10 @@ equal to <code>undefined</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
 <span class="hljs-keyword">var</span> y = <span class="hljs-literal">null</span>;
 
-x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span> <span class="hljs-comment">// true</span>
-x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span> <span class="hljs-comment">// false</span>
-x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span> <span class="hljs-comment">// false</span>
-x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span> <span class="hljs-comment">// true</span>
+x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
+x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>; <span class="hljs-comment">// false</span>
+x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
 </code></pre>
 <p>You should not check if the variable is <code>undefined</code> but instead check if the <code>typeof</code> the variable is &#39;undefined&#39;.
 If the variable does not exist you will get a <code>ReferenceError</code> but using <code>typeof</code> circumvents this problem.
@@ -91,8 +91,8 @@ that is strictyl equal to <code>undefined</code>. If you want to check if <code>
 strictly equal to <code>undefined</code> regardless of whether is has been declared
 or not, you should use <code>typeof x === &#39;undefined&#39;</code>.</p>
 <pre><code class="language-javascript">
- x === <span class="hljs-literal">undefined</span> <span class="hljs-comment">// Throws a ReferenceError</span>
- <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span> <span class="hljs-comment">// true</span>
+ x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
+ <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
 </code></pre>
 <p><strong>Note:</strong> Although you can assign <code>undefined</code> anywhere but the
 <a href="/tutorials/fundamentals/global-variable">global scope</a>, you should avoid doing that.
@@ -102,12 +102,20 @@ Doing so makes the code difficult to maintain and debug as it will lead to probl
 can be assigned, removed, and added. As a result, they will not throw
 <code>ReferenceErrors</code> but instead return undefined. To check if an object has
 an undefined property, you can use strictly equals or
-<a href="/tutorials/fundamentals/hasownproperty">hasOwnProperty()</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> person = { <span class="hljs-attr">firstName</span>:<span class="hljs-string">"John"</span>, <span class="hljs-attr">lastName</span>:<span class="hljs-string">"Doe"</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">eyeColor</span>:<span class="hljs-string">"blue"</span>, <span class="hljs-attr">test</span>: <span class="hljs-literal">undefined</span> };
+<a href="/tutorials/fundamentals/hasownproperty">hasOwnProperty()</a>. It is safer
+to use strictly equals as if you use <code>hasOwnProperty()</code> and the object
+does not have the property you are checking for at the time, you will
+get a <code>ReferenceError</code>.</p>
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">var</span> person = { <span class="hljs-attr">firstName</span>:<span class="hljs-string">"John"</span>, <span class="hljs-attr">lastName</span>:<span class="hljs-string">"Doe"</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">eyeColor</span>:<span class="hljs-string">"blue"</span>, <span class="hljs-attr">test</span>: <span class="hljs-literal">undefined</span> };
 
-person.test === <span class="hljs-literal">undefined</span> <span class="hljs-comment">// true</span>
-person.does_not_exist === <span class="hljs-literal">undefined</span> <span class="hljs-comment">// true</span>
-({})._does_not_exist == <span class="hljs-literal">undefined</span> <span class="hljs-comment">//true</span>
+  person.test == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+
+  ({})._does_not_exist == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+
+  person._does_not_exist === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+
+  person.hasOwnProperty(_does_not_exist); <span class="hljs-comment">// ReferenceError</span>
 </code></pre>
 
   

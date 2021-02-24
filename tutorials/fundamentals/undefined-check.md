@@ -28,7 +28,10 @@ Doing so makes the code difficult to maintain and debug as it will lead to probl
 can be assigned, removed, and added. As a result, they will not throw
 `ReferenceErrors` but instead return undefined. To check if an object has
 an undefined property, you can use strictly equals or
-[hasOwnProperty()](/tutorials/fundamentals/hasownproperty).
+[hasOwnProperty()](/tutorials/fundamentals/hasownproperty). It is safer
+to use strictly equals as if you use `hasOwnProperty()` and the object
+does not have the property you are checking for at the time, you will
+get a `ReferenceError`.
 
 ```javascript
 [require:Fundamentals undefined-objects]
