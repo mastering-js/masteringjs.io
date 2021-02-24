@@ -21,6 +21,7 @@
     "express-static": "1.2.6",
     "form-data": "2.5.1",
     "formidable": "1.2.1",
+    "graphql": "15.x",
     "highlight.js": "9.12.0",
     "http-proxy": "1.18.x",
     "jsdom": "16.4.0",
@@ -44,15 +45,12 @@
     "vuex": "3.x",
     "web-vitals": "1.1.0",
     "webpack": "4.32.2",
-    "webpack-cli": "3.3.11"
+    "webpack-cli": "3.3.11",
+    "ws": "7.x"
   },
   "scripts": {
     "serve": "serve .",
     "server": "node ./server",
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
-  },
-  "dependencies": {
-    "http": "^0.0.1-security",
-    "ws": "^7.4.2"
   }
 }

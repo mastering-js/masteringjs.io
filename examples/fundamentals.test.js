@@ -4389,59 +4389,77 @@ describe('Fundamentals', function() {
       // acquit:ignore:end
     });
   });
-    it('NumberisNaNs', function() {
-      Number.isNaN(NaN); // true
-      Number.isNaN('test'); // false
-      // acquit:ignore:start
-      assert.ok(Number.isNaN(NaN));
-      assert.ok(!Number.isNaN('test'));
-      // acquit:ignore:end
-      let text = 'hello world!';
-      Number.isNaN(text); // false
-      // acquit:ignore:start
-      assert.ok(!Number.isNaN(text));
-      // acquit:ignore:end
-      text = +text; // shortcut to convert a string to a number
-      Number.isNaN(text); // true
-      // acquit:ignore:start
-      assert.ok(Number.isNaN(text));
-      // acquit:ignore:end
-    });
-    it('isNaNs', function() {
-      isNaN(NaN); // true
-      isNaN('test'); // true
-      isNaN(2); // false
-      isNaN('2'); // false
-    });
-    it('arrayNaNs', function() {
-      let arr = ['1','2','3','4',NaN,'5'];
-      arr.findIndex(n => Number.isNaN(n)); // 4
-      
-    });
-    it('let', function() {
-      let x = 1;
-          if (x === 1) {
-            let x = 2;
-            if (x === 2) {
-              let x = 3;
-              x; // 3
-            }
-            x; // 2
-          }
-      x; // 1
-    });
-    it('var', function() {
-      var x = 1;
-          if (x === 1) {
-            var x = 2;
-            if (x === 2) {
-              var x = 3;
-              x; // 3
-            }
-            x; // 3
-          }
+
+  it('NumberisNaNs', function() {
+    Number.isNaN(NaN); // true
+    Number.isNaN('test'); // false
+    // acquit:ignore:start
+    assert.ok(Number.isNaN(NaN));
+    assert.ok(!Number.isNaN('test'));
+    // acquit:ignore:end
+    let text = 'hello world!';
+    Number.isNaN(text); // false
+    // acquit:ignore:start
+    assert.ok(!Number.isNaN(text));
+    // acquit:ignore:end
+    text = +text; // shortcut to convert a string to a number
+    Number.isNaN(text); // true
+    // acquit:ignore:start
+    assert.ok(Number.isNaN(text));
+    // acquit:ignore:end
+  });
+  it('isNaNs', function() {
+    isNaN(NaN); // true
+    isNaN('test'); // true
+    isNaN(2); // false
+    isNaN('2'); // false
+  });
+  it('arrayNaNs', function() {
+    let arr = ['1','2','3','4',NaN,'5'];
+    arr.findIndex(n => Number.isNaN(n)); // 4
+    
+  });
+  it('let', function() {
+    let x = 1;
+    if (x === 1) {
+      let x = 2;
+      if (x === 2) {
+        let x = 3;
+        x; // 3
+      }
+      x; // 2
+    }
+    x; // 1
+  });
+  it('var', function() {
+    var x = 1;
+    if (x === 1) {
+      var x = 2;
+      if (x === 2) {
+        var x = 3;
+        x; // 3
+      }
       x; // 3
-    });
+    }
+    x; // 3
+  });
+
+  it('var hoisting', function() {
+    function test() {
+      console.log(x); // undefined
+      // acquit:ignore:start
+      assert.throws(() => {
+      // acquit:ignore:end
+      console.log(y); // "ReferenceError: Cannot access 'y' before initialization"
+      // acquit:ignore:start
+      }, /Cannot access 'y' before initialization/);
+      // acquit:ignore:end
+      var x = 3;
+      let y = 3;
+    }
+
+    test();
+  });
 });
 
 if (!Array.prototype.flat) {

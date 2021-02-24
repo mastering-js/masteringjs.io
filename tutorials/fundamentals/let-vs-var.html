@@ -7,14 +7,14 @@
     <meta property="og:title" content="The Difference Between let and var in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Place Holder Description" />
-    <meta name="description" content="Place Holder Description" />
+    <meta property="og:description" content="There are two ways to declare a mutable variable in JavaScript: let and var. Here's how they're different, and why you should use let." />
+    <meta name="description" content="There are two ways to declare a mutable variable in JavaScript: let and var. Here's how they're different, and why you should use let." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>The Difference Between let and var in JavaScript</h1>
   <div class="date">
-    Feb 22, 2021
+    Feb 24, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -78,34 +78,41 @@ block it is declared and not affect variables
 used in nested blocks, like <code>if</code> statements
 and <code>for</code> loops, or outside the block. Below is an example:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
-      <span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>;
-      <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
-        <span class="hljs-keyword">let</span> x = <span class="hljs-number">3</span>;
-        x; <span class="hljs-comment">// 3</span>
-      }
-      x; <span class="hljs-comment">// 2</span>
-    }
-x; <span class="hljs-comment">// 1</span>
-</code></pre>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+  <span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">3</span>;
+    x; <span class="hljs-comment">// 3</span>
+  }
+  x; <span class="hljs-comment">// 2</span>
+}
+x; <span class="hljs-comment">// 1</span></code></pre>
 <p>The other option is <code>var</code>. The <code>var</code> keyword&#39;s reach can be function-scoped or
 <a href="/tutorials/fundamentals/global-variable">globally-scoped</a>. <code>var</code> variables declared in
-functions will not bleed into other functions but will into nested
-blocks, like <code>if</code> statements and <code>for</code> loops. Globally-scoped <code>var</code> variables will also not
-bleed into functions which is shown below:</p>
+functions will not bleed into other functions, but will into nested
+blocks, like <code>if</code> statements and <code>for</code> loops.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
-      <span class="hljs-keyword">var</span> x = <span class="hljs-number">2</span>;
-      <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
-        <span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
-        x; <span class="hljs-comment">// 3</span>
-      }
-      x; <span class="hljs-comment">// 3</span>
-    }
-x; <span class="hljs-comment">// 3</span>
-</code></pre>
-<p>Note: We recommend not mixing <code>let</code> and <code>var</code> because you can get a
-<code>SyntaxError</code> due to <code>var</code> being hoisted if positioned improperly.</p>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+  <span class="hljs-keyword">var</span> x = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
+    <span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
+    x; <span class="hljs-comment">// 3</span>
+  }
+  x; <span class="hljs-comment">// 3</span>
+}
+x; <span class="hljs-comment">// 3</span></code></pre>
+<h2 id="hoisting">Hoisting</h2>
+<p>Another difference between <code>let</code> and <code>var</code> is that <code>var</code> declarations are &quot;hoisted&quot; up to the top of the function call,
+which means you can use a variable declared with <code>var</code> <em>before</em> the actual <code>var</code> statement. This is a common source
+of confusion, which is one of the reasons why we recommend using <code>let</code> instead of <code>var</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// undefined</span>
+  <span class="hljs-built_in">console</span>.log(y); <span class="hljs-comment">// "ReferenceError: Cannot access 'y' before initialization"</span>
+  <span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">let</span> y = <span class="hljs-number">3</span>;
+}
+
+test();</code></pre>
 
   
   <hr>
