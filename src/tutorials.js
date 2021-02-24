@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The Difference Between let and var in JavaScript',
+    raw: './tutorials/fundamentals/let-vs-var.md',
+    url: '/tutorials/fundamentals/let-vs-var',
+    description: 'There are two ways to declare a mutable variable in JavaScript: let and var. Here\'s how they\'re different, and why you should use let.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-24')
+  },
+  {
     title: 'Handling POST Requests with Express',
     raw: './tutorials/express/post.md',
     url: '/tutorials/express/post',
