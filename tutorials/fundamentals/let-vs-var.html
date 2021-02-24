@@ -72,55 +72,39 @@
 	  }
 	})();
 	</script>
-  <p>In JavaScript, the programmer has two options when declaring a mutable variable: <code>let</code> and <code>var</code>.
-The <code>let</code> keyword&#39;s reach is local-scoped in a program. a varible with the <code>let</code> keyword
-will only be used within the block it is declared and not affect variables
-used in nested blocks or outside the block. An example of this can be seen below:</p>
+  <p>In JavaScript, you can use <code>let</code> or <code>var</code> to declare mutable variables.
+A variable with the <code>let</code> keyword will only be used within the
+block it is declared and not affect variables
+used in nested blocks, like <code>if</code> statements
+and <code>for</code> loops, or outside the block. Below is an example:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>;
-    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
-      <span class="hljs-keyword">let</span> x = <span class="hljs-number">3</span>;
-      <span class="hljs-built_in">console</span>.log(x);
-      <span class="hljs-comment">// prints 3</span>
+    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">let</span> x = <span class="hljs-number">2</span>;
+      <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
+        <span class="hljs-keyword">let</span> x = <span class="hljs-number">3</span>;
+        x; <span class="hljs-comment">// 3</span>
+      }
+      x; <span class="hljs-comment">// 2</span>
     }
-    <span class="hljs-built_in">console</span>.log(x);
-    <span class="hljs-comment">// prints 2</span>
-  }
-
-<span class="hljs-built_in">console</span>.log(x);
-<span class="hljs-comment">// prints 1</span>
+x; <span class="hljs-comment">// 1</span>
 </code></pre>
 <p>The other option is <code>var</code>. The <code>var</code> keyword&#39;s reach can be function-scoped or
 <a href="/tutorials/fundamentals/global-variable">globally-scoped</a>. <code>var</code> variables declared in
 functions will not bleed into other functions but will into nested
-blocks. Globally-scoped <code>var</code> variables will also not
-bleed into functions which can be seen below:</p>
+blocks, like <code>if</code> statements and <code>for</code> loops. Globally-scoped <code>var</code> variables will also not
+bleed into functions which is shown below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
-    <span class="hljs-keyword">var</span> x = <span class="hljs-number">2</span>;
-    <span class="hljs-built_in">console</span>.log(x);
-    <span class="hljs-comment">// prints 2</span>
-  }
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am'</span>, x);
-  <span class="hljs-comment">// prints I am undefined</span>
-  <span class="hljs-comment">// as it does not have access to x yet</span>
-  <span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hi'</span>, x);
-  <span class="hljs-comment">// prints hi 3</span>
-  test2();
-}
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test2</span>(<span class="hljs-params"></span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello'</span>, x);
-  <span class="hljs-comment">// prints Hello 2 as it does not</span>
-  <span class="hljs-comment">// have access to x in test()</span>
-}
-test();
-<span class="hljs-built_in">console</span>.log(x);
-<span class="hljs-comment">// prints 2</span>
+    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">var</span> x = <span class="hljs-number">2</span>;
+      <span class="hljs-keyword">if</span> (x === <span class="hljs-number">2</span>) {
+        <span class="hljs-keyword">var</span> x = <span class="hljs-number">3</span>;
+        x; <span class="hljs-comment">// 3</span>
+      }
+      x; <span class="hljs-comment">// 3</span>
+    }
+x; <span class="hljs-comment">// 3</span>
 </code></pre>
-<p>Note: Be careful when combining <code>let</code> and <code>var</code> as you can get a
+<p>Note: We recommend not mixing <code>let</code> and <code>var</code> because you can get a
 <code>SyntaxError</code> due to <code>var</code> being hoisted if positioned improperly.</p>
 
   

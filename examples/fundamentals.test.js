@@ -4420,44 +4420,27 @@ describe('Fundamentals', function() {
     });
     it('let', function() {
       let x = 1;
-        if (x === 1) {
-          let x = 2;
-          if (x === 2) {
-            let x = 3;
-            console.log(x);
-            // prints 3
+          if (x === 1) {
+            let x = 2;
+            if (x === 2) {
+              let x = 3;
+              x; // 3
+            }
+            x; // 2
           }
-          console.log(x);
-          // prints 2
-        }
-
-      console.log(x);
-      // prints 1
+      x; // 1
     });
     it('var', function() {
       var x = 1;
-        if (x === 1) {
-          var x = 2;
-          console.log(x);
-          // prints 2
-        }
-      function test(){
-        console.log('I am', x);
-        // prints I am undefined
-        // as it does not have access to x yet
-        var x = 3;
-        console.log('hi', x);
-        // prints hi 3
-        test2();
-      }
-      function test2(){
-        console.log('Hello', x);
-        // prints Hello 2 as it does not
-        // have access to x in test()
-      }
-      test();
-      console.log(x);
-      // prints 2
+          if (x === 1) {
+            var x = 2;
+            if (x === 2) {
+              var x = 3;
+              x; // 3
+            }
+            x; // 3
+          }
+      x; // 3
     });
 });
 
