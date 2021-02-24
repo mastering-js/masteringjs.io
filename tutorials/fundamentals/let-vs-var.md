@@ -20,10 +20,12 @@ blocks, like `if` statements and `for` loops.
 Hoisting
 --------
 
-Another difference between `let` and `var` is that `var` declarations are "hoisted" up to the top of the function call,
-which means you can use a variable declared with `var` _before_ the actual `var` statement. This is a common source
-of confusion, which is one of the reasons why we recommend using `let` instead of `var`.
+Another difference between `let` and `var` is you can use a variable declared with `var` _before_ the actual `var` 
+statement. This is because JavaScript "hoists" all `var` declaration to the start of the function call.
+This is a common source of confusion, which is one of the reasons why we recommend using `let` instead of `var`.
 
 ```javascript
 [require:Fundamentals var hoisting$]
 ```
+
+`let` declarations are hoisted too, but you get a `ReferenceError` if you try to access a variable declared with `let` before the actual declaration statement runs. That is why the error message is "Cannot access 'y' before initialization", as opposed to "y is not defined", which is what JavaScript would throw if you didn't declare `y` at all.
