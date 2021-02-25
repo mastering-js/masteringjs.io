@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -100,8 +100,7 @@
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}
-</code></pre>
+}</code></pre>
 <h2 id="with-asyncawait">With Async/Await</h2>
 <p>Notice that the above example uses an async function for the
 <code>mounted</code> hook. Vue does <strong>not</strong> block rendering until the mounted
@@ -146,7 +145,6 @@ does <strong>not</strong> wait for async <code>created()</code> hooks to finish.
     &lt;h1&gt;The answer is {{answer == null ? 'N/A' : answer}}&lt;/h1&gt;
   `</span>
 });
-
 
 <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 data; <span class="hljs-comment">// Renders "answer is N/A"</span></code></pre>

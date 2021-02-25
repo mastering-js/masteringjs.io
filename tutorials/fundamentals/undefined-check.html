@@ -7,14 +7,14 @@
     <meta property="og:title" content="How to Check if a Variable is Undefined" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here's what you need to know." />
+    <meta name="description" content="There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>How to Check if a Variable is Undefined</h1>
   <div class="date">
-    Feb 22, 2021
+    Feb 25, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -76,47 +76,38 @@
 a <a href="/tutorials/fundamentals/null">null</a> variable can pass a check for <code>undefined</code> if not written properly.
 As a result, this allows for <code>undefined</code> values to slip through and vice versa. Make sure you use strict equality <code>===</code> to check if a value is
 equal to <code>undefined</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
-<span class="hljs-keyword">var</span> y = <span class="hljs-literal">null</span>;
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x;
+<span class="hljs-keyword">const</span> y = <span class="hljs-literal">null</span>;
 
 x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
 x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
 x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>; <span class="hljs-comment">// false</span>
-x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
-</code></pre>
-<p>You should not check if the variable is <code>undefined</code> but instead check if the <code>typeof</code> the variable is &#39;undefined&#39;.
-If the variable does not exist you will get a <code>ReferenceError</code> but using <code>typeof</code> circumvents this problem.
-When using <code>x === undefined</code>, it checks if <code>x</code> is a declared variable
-that is strictyl equal to <code>undefined</code>. If you want to check if <code>x</code> is
+x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>Another alternative is checking if <a href="/tutorials/fundamentals/typeof"><code>typeof x === &#39;undefined&#39;</code></a>. The
+biggest difference between these two approaches is that, if <code>v</code> has not been declared, <code>x === undefined</code> throws
+a <code>ReferenceError</code>, but <code>typeof</code> does not.</p>
+<p>When using <code>x === undefined</code>, JavaScript checks if <code>x</code> is a declared variable
+that is strictly equal to <code>undefined</code>. If you want to check if <code>x</code> is
 strictly equal to <code>undefined</code> regardless of whether is has been declared
 or not, you should use <code>typeof x === &#39;undefined&#39;</code>.</p>
-<pre><code class="language-javascript">
- x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
- <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
-</code></pre>
-<p><strong>Note:</strong> Although you can assign <code>undefined</code> anywhere but the
-<a href="/tutorials/fundamentals/global-variable">global scope</a>, you should avoid doing that.
-Doing so makes the code difficult to maintain and debug as it will lead to problems.</p>
+<pre><code class="language-javascript"> x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
+ <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
 <h1 id="checking-whether-object-properties-are-undefined">Checking Whether Object Properties are Undefined</h1>
-<p><a href="/tutorials/fundamentals/pojo">Objects</a> are special because over the course of a program execution, properties
-can be assigned, removed, and added. As a result, they will not throw
-<code>ReferenceErrors</code> but instead return undefined. To check if an object has
-an undefined property, you can use strictly equals or
-<a href="/tutorials/fundamentals/hasownproperty">hasOwnProperty()</a>. It is safer
-to use strictly equals as if you use <code>hasOwnProperty()</code> and the object
-does not have the property you are checking for at the time, you will
-get a <code>ReferenceError</code>.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">var</span> person = { <span class="hljs-attr">firstName</span>:<span class="hljs-string">"John"</span>, <span class="hljs-attr">lastName</span>:<span class="hljs-string">"Doe"</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">eyeColor</span>:<span class="hljs-string">"blue"</span>, <span class="hljs-attr">test</span>: <span class="hljs-literal">undefined</span> };
+<p>Checking whether an object property is <code>undefined</code> is subtle, because if you access
+a property that doesn&#39;t exist in the object, JavaScript will report the property&#39;s value as <code>undefined</code>
+rather than throw a <code>ReferenceError</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">question</span>: <span class="hljs-literal">undefined</span> };
 
-  person.test == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+obj.answer; <span class="hljs-comment">// 42</span>
+obj.question; <span class="hljs-comment">// undefined</span>
+obj.notInObject; <span class="hljs-comment">// undefined</span></code></pre>
+<p>In JavaScript <code>obj.propName === undefined</code> is <code>true</code> if either <code>obj</code> has a property &#39;propName&#39; and the property&#39;s
+value is trictly equal undefined, or if <code>obj</code> does not have a property &#39;propName&#39;. If you want to check whether
+<code>obj</code> has a property and that property is strictly equal to <code>undefined</code>, you should use the <code>in</code> operator.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">question</span>: <span class="hljs-literal">undefined</span> };
 
-  ({})._does_not_exist == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
-
-  person._does_not_exist === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
-
-  person.hasOwnProperty(_does_not_exist); <span class="hljs-comment">// ReferenceError</span>
-</code></pre>
+(<span class="hljs-string">'question'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.question === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// true</span>
+(<span class="hljs-string">'notInObject'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.notInObj === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// false</span></code></pre>
 
   
   <hr>
@@ -124,6 +115,9 @@ get a <code>ReferenceError</code>.</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -140,9 +134,6 @@ get a <code>ReferenceError</code>.</p>
   
 
     <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/foreach">How to Use forEach() in JavaScript</a></li>
   
     </ul>
   

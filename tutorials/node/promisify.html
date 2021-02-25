@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -79,8 +79,7 @@
 fs.readFile(<span class="hljs-string">'./package.json'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">err, buf</span>) </span>{
   <span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">JSON</span>.parse(buf.toString(<span class="hljs-string">'utf8'</span>));
   obj.name; <span class="hljs-comment">// 'masteringjs.io'</span>
-});
-</code></pre>
+});</code></pre>
 <p>You can use <code>util.promisify()</code> to convert the <code>fs.readFile()</code> function
 to a function that returns a callback:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
@@ -94,8 +93,7 @@ to a function that returns a callback:</p>
 <span class="hljs-keyword">const</span> buf = <span class="hljs-keyword">await</span> readFile(<span class="hljs-string">'./package.json'</span>);
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">JSON</span>.parse(buf.toString(<span class="hljs-string">'utf8'</span>));
-obj.name; <span class="hljs-comment">// 'masteringjs.io'</span>
-</code></pre>
+obj.name; <span class="hljs-comment">// 'masteringjs.io'</span></code></pre>
 <h2 id="assumptions">Assumptions</h2>
 <p>How does <code>util.promisify()</code> work under the hood? There&#39;s a <a href="https://www.npmjs.com/package/util.promisify">polyfill on npm</a>, you can read the <a href="https://github.com/ljharb/util.promisify/blob/master/implementation.js">full implementation here</a>.
 You can also find the <a href="https://github.com/nodejs/node/blob/master/lib/internal/util.js#L277-L322">Node.js implementation here</a>, although, for educational purposes, the polyfill is a bit easier to read.</p>
@@ -127,8 +125,7 @@ You can also find the <a href="https://github.com/nodejs/node/blob/master/lib/in
 <span class="hljs-keyword">const</span> buf = <span class="hljs-keyword">await</span> readFile(<span class="hljs-string">'./package.json'</span>);
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">JSON</span>.parse(buf.toString(<span class="hljs-string">'utf8'</span>));
-obj.name; <span class="hljs-comment">// 'masteringjs.io'</span>
-</code></pre>
+obj.name; <span class="hljs-comment">// 'masteringjs.io'</span></code></pre>
 <p>So what does this mean? First, <code>util.promisify()</code> adds 1 extra argument
 to the arguments you passed in, and then calls the original function with
 those new arguments. That means the underlying function needs to support
@@ -150,8 +147,7 @@ problem for transformed functions:</p>
 <span class="hljs-keyword">const</span> promisified = <span class="hljs-built_in">require</span>(<span class="hljs-string">'util'</span>).promisify(obj.myCallbackFn);
 
 <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">await</span> promisified();
-context; <span class="hljs-comment">// `undefined` instead of a `MyClass` instance!</span>
-</code></pre>
+context; <span class="hljs-comment">// `undefined` instead of a `MyClass` instance!</span></code></pre>
 <p>Remember that <em><code>this</code> contains whatever object the function was a property of when it was called.</em> So you can retain context by setting the promisified
 function as a property of the same object:</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
@@ -165,8 +161,7 @@ function as a property of the same object:</p>
 obj.promisified = <span class="hljs-built_in">require</span>(<span class="hljs-string">'util'</span>).promisify(obj.myCallbackFn);
 
 <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">await</span> obj.promisified();
-context === obj; <span class="hljs-comment">// true</span>
-</code></pre>
+context === obj; <span class="hljs-comment">// true</span></code></pre>
 
   
   <hr>

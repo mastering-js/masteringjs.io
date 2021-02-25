@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -93,8 +93,7 @@ gives you the fulfilled value of the promise.</p>
   val; <span class="hljs-comment">// 42</span>
 }
 
-test();
-</code></pre>
+test();</code></pre>
 <p>In the above example, the <a href="/tutorials/fundamentals/promise-resolve"><code>Promise.resolve()</code> function</a> means the promise is fulfilled immediately. In the below example,
 <code>await</code> pauses execution of <code>test()</code> for 100 ms:
 `</p>
@@ -103,8 +102,7 @@ test();
   <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
   <span class="hljs-keyword">const</span> elapsed = <span class="hljs-built_in">Date</span>.now() - start;
   elapsed; <span class="hljs-comment">// about 100</span>
-}
-</code></pre>
+}</code></pre>
 <p><code>await</code> is just a plain old JavaScript keyword. That means you can use it within
 <code>if</code> statements, <code>for</code> loops, and <code>try/catch</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asyncEvenNumbers</span>(<span class="hljs-params"></span>) </span>{
@@ -117,8 +115,7 @@ test();
   }
 
   nums; <span class="hljs-comment">// [2, 4, 6, 8, 10]</span>
-}
-</code></pre>
+}</code></pre>
 <h2 id="return-value">Return Value</h2>
 <p>Another special property of async functions is that they always return a promise.
 Even if you return a primitive value from an async function, JavaScript will
@@ -152,8 +149,7 @@ error that you can <code>try/catch</code>:</p>
   } <span class="hljs-keyword">catch</span> (err) {
     err.message; <span class="hljs-comment">// Oops</span>
   }
-}
-</code></pre>
+}</code></pre>
 <p>You can also use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch">the <code>Promise#catch()</code> function</a> to unwrap the promise&#39;s error:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> promise = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>));
@@ -161,8 +157,7 @@ error that you can <code>try/catch</code>:</p>
   <span class="hljs-comment">// Unwrap the promise's error</span>
   <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> promise.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
   err.message; <span class="hljs-comment">// 'Oops'</span>
-}
-</code></pre>
+}</code></pre>
 
   <hr>
 <div class="cta">
@@ -188,6 +183,9 @@ error that you can <code>try/catch</code>:</p>
     <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a Variable is Undefined</a></li>
   
 
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
 
@@ -201,9 +199,6 @@ error that you can <code>try/catch</code>:</p>
   
 
     <li><a href="/tutorials/fundamentals/trim-string">JavaScript Trim String</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
   
     </ul>
   

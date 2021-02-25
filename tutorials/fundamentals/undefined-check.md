@@ -7,10 +7,12 @@ equal to `undefined`.
 [require:Fundamentals good-undefined-check]
 ```
 
-You should not check if the variable is `undefined` but instead check if the `typeof` the variable is 'undefined'.
-If the variable does not exist you will get a `ReferenceError` but using `typeof` circumvents this problem.
-When using `x === undefined`, it checks if `x` is a declared variable
-that is strictyl equal to `undefined`. If you want to check if `x` is
+Another alternative is checking if [`typeof x === 'undefined'`](/tutorials/fundamentals/typeof). The
+biggest difference between these two approaches is that, if `v` has not been declared, `x === undefined` throws
+a `ReferenceError`, but `typeof` does not.
+
+When using `x === undefined`, JavaScript checks if `x` is a declared variable
+that is strictly equal to `undefined`. If you want to check if `x` is
 strictly equal to `undefined` regardless of whether is has been declared
 or not, you should use `typeof x === 'undefined'`.
 
@@ -18,20 +20,23 @@ or not, you should use `typeof x === 'undefined'`.
 [require:Fundamentals bad-undefined-check]
 ```
 
-**Note:** Although you can assign `undefined` anywhere but the
-[global scope](/tutorials/fundamentals/global-variable), you should avoid doing that.
-Doing so makes the code difficult to maintain and debug as it will lead to problems.
-
 # Checking Whether Object Properties are Undefined
 
-[Objects](/tutorials/fundamentals/pojo) are special because over the course of a program execution, properties
-can be assigned, removed, and added. As a result, they will not throw
-`ReferenceErrors` but instead return undefined. To check if an object has
-an undefined property, you can use strictly equals or
-[hasOwnProperty()](/tutorials/fundamentals/hasownproperty). It is safer
-to use strictly equals as if you use `hasOwnProperty()` and the object
-does not have the property you are checking for at the time, you will
-get a `ReferenceError`.
+Checking whether an object property is `undefined` is subtle, because if you access
+a property that doesn't exist in the object, JavaScript will report the property's value as `undefined`
+rather than throw a `ReferenceError`.
+
+```javascript
+const obj = { answer: 42, question: undefined };
+
+obj.answer; // 42
+obj.question; // undefined
+obj.notInObject; // undefined
+```
+
+In JavaScript `obj.propName === undefined` is `true` if either `obj` has a property 'propName' and the property's
+value is trictly equal undefined, or if `obj` does not have a property 'propName'. If you want to check whether
+`obj` has a property and that property is strictly equal to `undefined`, you should use the `in` operator.
 
 ```javascript
 [require:Fundamentals undefined-objects]

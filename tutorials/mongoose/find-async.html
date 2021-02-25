@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -86,11 +86,9 @@
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
 ]);
 <span class="hljs-comment">// The query to find all the Lieutenants</span>
-<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }); <span class="hljs-comment">// will return Worf and La Forge</span>
-</code></pre>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }); <span class="hljs-comment">// will return Worf and La Forge</span></code></pre>
 <p>If you omit the filter parameter in the <code>find()</code> call, it will <a href="/tutorials/mongoose/find-all">find all documents</a>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">await</span> Character.create([
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Character.create([
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
@@ -98,8 +96,7 @@
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
 ]);
 <span class="hljs-comment">// Parameter omitted</span>
-<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find(); <span class="hljs-comment">// returns the above array with an _id property and __v property</span>
-</code></pre>
+<span class="hljs-keyword">const</span> query = <span class="hljs-keyword">await</span> Character.find(); <span class="hljs-comment">// returns the above array with an _id property and __v property</span></code></pre>
 
   <hr>
 <div class="cta">

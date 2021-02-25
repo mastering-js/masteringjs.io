@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -92,8 +92,7 @@ you can also set the <code>url</code> by using the <a href="/tutorials/axios/cal
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/get'</span>,
   <span class="hljs-attr">method</span>: <span class="hljs-string">'get'</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="method"><code>method</code></h2>
 <p>Helper functions like <code>axios.get()</code> and <code>axios.post()</code> automatically set the <code>method</code> for you, but you can also
 set it in your request config:</p>
@@ -103,8 +102,7 @@ set it in your request config:</p>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'https://httpbin.org/post'</span>,
   <span class="hljs-attr">method</span>: <span class="hljs-string">'post'</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="data"><code>data</code></h2>
 <p>Axios serializes the <code>data</code> option into the HTTP request body. This option <strong>only</strong> works with POST, PUT,  DELETE, and
 PATCH requests. <a href="/tutorials/axios/get-with-data">Setting <code>data</code> is a no-op for GET requests</a>.</p>
@@ -117,8 +115,7 @@ PATCH requests. <a href="/tutorials/axios/get-with-data">Setting <code>data</cod
   <span class="hljs-attr">data</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }
 });
 
-res.data.json; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data.json; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <h2 id="params"><code>params</code></h2>
 <p>Axios serializes the <code>params</code> option into the request&#39;s query string.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -126,8 +123,7 @@ res.data.json; <span class="hljs-comment">// { answer: 42 }</span>
 <span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <h2 id="baseurl"><code>baseURL</code></h2>
 <p>This option is often used with <code>axios.create()</code> to ensure that the server URL you&#39;re sending requests to is defined
 in only one place, as opposed to having to copy/paste <code>https://api.myservice.com</code> repeatedly. For example:</p>
@@ -136,8 +132,7 @@ in only one place, as opposed to having to copy/paste <code>https://api.myservic
 });
 
 <span class="hljs-comment">// Sends request to 'https://httpbin.org/get' </span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);</code></pre>
 
   
   <hr>

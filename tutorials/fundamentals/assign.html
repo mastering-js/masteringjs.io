@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -82,8 +82,7 @@
 
 <span class="hljs-comment">// `Object.assign()` modifies `target` in place, and returns `target`</span>
 ret === target; <span class="hljs-comment">// true</span>
-target.hello; <span class="hljs-comment">// 'World'</span>
-</code></pre>
+target.hello; <span class="hljs-comment">// 'World'</span></code></pre>
 <p><code>Object.assign()</code> is commonly used to shallow copy objects, although the <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html">spread operator is generally faster than <code>Object.assign()</code> for shallow copying</a>. Shallow copying is most commonly used in <a href="https://redux.js.org/recipes/using-object-spread-operator">Redux reducers</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> };
 
@@ -95,16 +94,14 @@ shallowCopy === obj; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// Cloning the object means that changing `shallowCopy` doesn't affect `obj`</span>
 shallowCopy.rank = <span class="hljs-string">'Captain'</span>;
-obj.rank; <span class="hljs-comment">// undefined</span>
-</code></pre>
+obj.rank; <span class="hljs-comment">// undefined</span></code></pre>
 <h2 id="multiple-sources">Multiple Sources</h2>
 <p>You can pass <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Merging_objects_with_same_properties">multiple source objects to <code>Object.assign()</code></a>. If there&#39;s multiple sources with the same property, the last one in the parameter list wins out.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> o1 = { <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">1</span> };
 <span class="hljs-keyword">const</span> o2 = { <span class="hljs-attr">a</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> };
 <span class="hljs-keyword">const</span> o3 = { <span class="hljs-attr">a</span>: <span class="hljs-number">3</span> };
 
-<span class="hljs-built_in">Object</span>.assign(o1, o2, o3); <span class="hljs-comment">// { a: 3, b: 2, c: 1 }</span>
-</code></pre>
+<span class="hljs-built_in">Object</span>.assign(o1, o2, o3); <span class="hljs-comment">// { a: 3, b: 2, c: 1 }</span></code></pre>
 
   
   <hr>
@@ -113,6 +110,9 @@ obj.rank; <span class="hljs-comment">// undefined</span>
     <ul>
     
     <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a Variable is Undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
@@ -128,9 +128,6 @@ obj.rank; <span class="hljs-comment">// undefined</span>
   
 
     <li><a href="/tutorials/fundamentals/trim-string">JavaScript Trim String</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
   
     </ul>
   

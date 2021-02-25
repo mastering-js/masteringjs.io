@@ -7,9 +7,25 @@ module.exports = Object.freeze([
     title: 'How to Check if a Variable is Undefined',
     raw: './tutorials/fundamentals/undefined-check.md',
     url: '/tutorials/fundamentals/undefined-check',
-    description: 'Placeholder Description',
+    description: 'There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here\'s what you need to know.',
     tags: ['fundamentals'],
-    date: moment('2021-02-22')
+    date: moment('2021-02-25')
+  },
+  {
+    title: 'The Difference Between let and var in JavaScript',
+    raw: './tutorials/fundamentals/let-vs-var.md',
+    url: '/tutorials/fundamentals/let-vs-var',
+    description: 'There are two ways to declare a mutable variable in JavaScript: let and var. Here\'s how they\'re different, and why you should use let.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-24')
+  },
+  {
+    title: 'Handling POST Requests with Express',
+    raw: './tutorials/express/post.md',
+    url: '/tutorials/express/post',
+    description: 'Here\'s how you can handle POST requests in Express, including handling JSON request bodies and file uploads.',
+    tags: ['express'],
+    date: moment('2021-02-23')
   },
   {
     title: 'How to Use D3.js in Your Vue Projects',

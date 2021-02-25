@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -82,8 +82,7 @@ buffers are equal.</p>
 
 Buffer.compare(buf1, buf2); <span class="hljs-comment">// 0, means the 2 buffers are equal</span>
 
-Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span>
-</code></pre>
+Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span></code></pre>
 <p>That means, to check if <code>buf1</code> has the same bytes as <code>buf2</code>, you can do:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> isEqual = Buffer.compare(buf1, buf2) === <span class="hljs-number">0</span>;</code></pre>
 <h2 id="sorting">Sorting</h2>
@@ -104,8 +103,7 @@ Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf
 
 buffers.sort(Buffer.compare);
 
-buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span>
-</code></pre>
+buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
 
   
   <hr>
