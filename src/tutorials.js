@@ -4,7 +4,7 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Check if a Variable is Undefined',
+    title: 'How to Check if a JavaScript Variable is Undefined',
     raw: './tutorials/fundamentals/undefined-check.md',
     url: '/tutorials/fundamentals/undefined-check',
     description: 'There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here\'s what you need to know.',
