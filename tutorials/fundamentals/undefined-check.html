@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Check if a Variable is Undefined - Mastering JS</title>
+
+    <meta property="og:title" content="How to Check if a Variable is Undefined" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here's what you need to know." />
+    <meta name="description" content="There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>How to Check if a Variable is Undefined</h1>
+  <div class="date">
+    Feb 25, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>In JavaScript, checking if a variable is undefined can be a bit tricky since
+a <a href="/tutorials/fundamentals/null">null</a> variable can pass a check for <code>undefined</code> if not written properly.
+As a result, this allows for <code>undefined</code> values to slip through and vice versa. Make sure you use strict equality <code>===</code> to check if a value is
+equal to <code>undefined</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x;
+<span class="hljs-keyword">const</span> y = <span class="hljs-literal">null</span>;
+
+x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
+x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
+x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>; <span class="hljs-comment">// false</span>
+x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>Another alternative is checking if <a href="/tutorials/fundamentals/typeof"><code>typeof x === &#39;undefined&#39;</code></a>. The
+biggest difference between these two approaches is that, if <code>v</code> has not been declared, <code>x === undefined</code> throws
+a <code>ReferenceError</code>, but <code>typeof</code> does not.</p>
+<p>When using <code>x === undefined</code>, JavaScript checks if <code>x</code> is a declared variable
+that is strictly equal to <code>undefined</code>. If you want to check if <code>x</code> is
+strictly equal to <code>undefined</code> regardless of whether is has been declared
+or not, you should use <code>typeof x === &#39;undefined&#39;</code>.</p>
+<pre><code class="language-javascript"> x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
+ <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
+<h1 id="checking-whether-object-properties-are-undefined">Checking Whether Object Properties are Undefined</h1>
+<p>Checking whether an object property is <code>undefined</code> is subtle, because if you access
+a property that doesn&#39;t exist in the object, JavaScript will report the property&#39;s value as <code>undefined</code>
+rather than throw a <code>ReferenceError</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">question</span>: <span class="hljs-literal">undefined</span> };
+
+obj.answer; <span class="hljs-comment">// 42</span>
+obj.question; <span class="hljs-comment">// undefined</span>
+obj.notInObject; <span class="hljs-comment">// undefined</span></code></pre>
+<p>In JavaScript <code>obj.propName === undefined</code> is <code>true</code> if either <code>obj</code> has a property &#39;propName&#39; and the property&#39;s
+value is trictly equal undefined, or if <code>obj</code> does not have a property &#39;propName&#39;. If you want to check whether
+<code>obj</code> has a property and that property is strictly equal to <code>undefined</code>, you should use the <code>in</code> operator.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">question</span>: <span class="hljs-literal">undefined</span> };
+
+(<span class="hljs-string">'question'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.question === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// true</span>
+(<span class="hljs-string">'notInObject'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.notInObj === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// false</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in Javascript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/trim-string">JavaScript Trim String</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/filter-object">How to Filter an Object with JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

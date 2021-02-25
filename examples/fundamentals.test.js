@@ -4460,6 +4460,47 @@ describe('Fundamentals', function() {
 
     test();
   });
+  
+  it('isNaNs', function() {
+    isNaN(NaN); // true
+    isNaN('test'); // true
+    isNaN(2); // false
+    isNaN('2'); // false
+  });
+  it('arrayNaNs', function() {
+    let arr = ['1','2','3','4',NaN,'5'];
+    arr.findIndex(n => Number.isNaN(n)); // 4
+    
+  });
+  it('bad-undefined-check', function() {
+    // acquit:ignore:start
+    assert.throws(() => {
+    // acquit:ignore:end
+     x === undefined; // Throws a ReferenceError
+     typeof x == 'undefined'; // true
+    // acquit:ignore:start
+    }, /ReferenceError: x is not defined/);
+    // acquit:ignore:end
+  });
+  it('undefined-objects', function() {
+    const obj = { answer: 42, question: undefined };
+    
+    ('question' in obj && obj.question === undefined); // true
+    ('notInObject' in obj && obj.notInObj === undefined); // false
+    // acquit:ignore:start
+    assert.ok('question' in obj && obj.question === undefined);
+    assert.ok(!('notInObject' in obj && obj.notInObj === undefined));
+    // acquit:ignore:end
+  });
+  it('good-undefined-check', function() {
+    let x;
+    const y = null;
+
+    x == null && y == undefined; // true
+    x === null || y === undefined; // false
+    x == null && typeof x == 'object'; // false
+    x === undefined && typeof x == 'undefined'; // true
+  });
 });
 
 if (!Array.prototype.flat) {

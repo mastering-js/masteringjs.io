@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Check if a Variable is Undefined',
+    raw: './tutorials/fundamentals/undefined-check.md',
+    url: '/tutorials/fundamentals/undefined-check',
+    description: 'There are a few nuances with checking whether a variable or object property is undefined in JavaScript. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-02-25')
+  },
+  {
     title: 'The Difference Between let and var in JavaScript',
     raw: './tutorials/fundamentals/let-vs-var.md',
     url: '/tutorials/fundamentals/let-vs-var',
