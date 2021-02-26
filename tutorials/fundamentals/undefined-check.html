@@ -84,7 +84,7 @@ x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal"
 x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>; <span class="hljs-comment">// false</span>
 x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>Another alternative is checking if <a href="/tutorials/fundamentals/typeof"><code>typeof x === &#39;undefined&#39;</code></a>. The
-biggest difference between these two approaches is that, if <code>v</code> has not been declared, <code>x === undefined</code> throws
+biggest difference between these two approaches is that, if <code>x</code> has not been declared, <code>x === undefined</code> throws
 a <code>ReferenceError</code>, but <code>typeof</code> does not.</p>
 <p>When using <code>x === undefined</code>, JavaScript checks if <code>x</code> is a declared variable
 that is strictly equal to <code>undefined</code>. If you want to check if <code>x</code> is
@@ -92,6 +92,9 @@ strictly equal to <code>undefined</code> regardless of whether is has been decla
 or not, you should use <code>typeof x === &#39;undefined&#39;</code>.</p>
 <pre><code class="language-javascript"> x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
  <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
+<p>However, <code>typeof x</code> may still throw an error if you later declare <code>x</code> using <code>let</code> or <code>const</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// Throws "ReferenceError: Cannot access 'x' before initialization" because of `let`</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;</code></pre>
 <h1 id="checking-whether-object-properties-are-undefined">Checking Whether Object Properties are Undefined</h1>
 <p>Checking whether an object property is <code>undefined</code> is subtle, because if you access
 a property that doesn&#39;t exist in the object, JavaScript will report the property&#39;s value as <code>undefined</code>

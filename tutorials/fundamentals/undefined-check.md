@@ -8,7 +8,7 @@ equal to `undefined`.
 ```
 
 Another alternative is checking if [`typeof x === 'undefined'`](/tutorials/fundamentals/typeof). The
-biggest difference between these two approaches is that, if `v` has not been declared, `x === undefined` throws
+biggest difference between these two approaches is that, if `x` has not been declared, `x === undefined` throws
 a `ReferenceError`, but `typeof` does not.
 
 When using `x === undefined`, JavaScript checks if `x` is a declared variable
@@ -18,6 +18,13 @@ or not, you should use `typeof x === 'undefined'`.
 
 ```javascript
 [require:Fundamentals bad-undefined-check]
+```
+
+However, `typeof x` may still throw an error if you later declare `x` using `let` or `const`:
+
+```javascript
+typeof x; // Throws "ReferenceError: Cannot access 'x' before initialization" because of `let`
+let x = 42;
 ```
 
 # Checking Whether Object Properties are Undefined
