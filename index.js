@@ -1,5 +1,6 @@
 'use strict';
 
+const { Feed } = require('feed');
 const acquit = require('acquit');
 const fs = require('fs');
 const highlight = require('highlight.js');
@@ -39,6 +40,16 @@ async function run() {
 
   fs.writeFileSync('./index.html', home({ posts: tutorials }));
 
+  const f = new Feed({
+    title: 'Mastering JS',
+    description: 'Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.',
+    link: 'https://masteringjs.io',
+    image: 'https://masteringjs.io/assets/logo.svg',
+    author: {
+      name: 'Valeri Karpov'
+    }
+  });
+
   for (const tutorial of tutorials) {
     console.log(tutorial);
 
@@ -66,7 +77,15 @@ async function run() {
 
     const html = layout({ ...tutorial, ad });
     fs.writeFileSync('.' + tutorial.url + '.html', html);
+
+    f.addItem({
+      title: tutorial.title,
+      link: 'https://masteringjs.io' + tutorial.url,
+      date: tutorial.date.toDate()
+    });
   }
+
+  fs.writeFileSync('./feed.xml', f.rss2().replace(new RegExp('<content:encoded/>', 'g'), ''));
 
   const byTag = new Map();
   for (const tutorial of tutorials) {
