@@ -82,7 +82,7 @@ module.exports = Object.freeze([
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
     description: 'Here\'s how you can validate emails, and ensure emails are unique, using Mongoose.',
-    tags: ['axios'],
+    tags: ['mongoose'],
     date: moment('2021-02-04')
   },
   {
