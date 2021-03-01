@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Make a POST Request with Axios',
+    raw: './tutorials/axios/axios-post.md',
+    url: '/tutorials/axios/axios-post',
+    description: 'Placeholder Description',
+    tags: ['axios'],
+    date: moment('2021-03-01')
+  },
+  {
     title: 'How to Check if a JavaScript Variable is Undefined',
     raw: './tutorials/fundamentals/undefined-check.md',
     url: '/tutorials/fundamentals/undefined-check',
@@ -82,7 +90,7 @@ module.exports = Object.freeze([
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
     description: 'Here\'s how you can validate emails, and ensure emails are unique, using Mongoose.',
-    tags: ['axios'],
+    tags: ['mongoose'],
     date: moment('2021-02-04')
   },
   {

@@ -84,7 +84,8 @@
   <span class="hljs-keyword">return</span> response
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>You can do the following:</p>
 <pre><code class="language-javascipt"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>,{
   <span class="hljs-attr">headers</span>:{
@@ -95,11 +96,13 @@
   <span class="hljs-keyword">return</span> response;
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>Or for a simple POST request:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
 <p>When sending requests with data, the data can be of type:</p>
 <ul>
 <li>string</li>
@@ -121,7 +124,7 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+    <li><a href="/tutorials/axios/axios-post">How to Make a POST Request with Axios</a></li>
   
 
     <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>

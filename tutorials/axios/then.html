@@ -84,7 +84,8 @@ req <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Pro
 res.data.args; <span class="hljs-comment">// { hello: 'world' }</span>
 <span class="hljs-keyword">return</span> req.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
   res.data.args; <span class="hljs-comment">// { hello: 'world' }</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="handling-errors">Handling Errors</h2>
 <p>Axios fulfills the request promise when the server responds with an <a href="https://www.w3.org/Protocols/HTTP/HTRESP.html">HTTP success code</a>, or rejects
 the request promise when the server responds with an HTTP error.
@@ -95,7 +96,8 @@ If an error occurs, you can handle the error with <code>.then()</code> or <code>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-literal">null</span>, err =&gt; err);
 
 err.response.status; <span class="hljs-comment">// 404</span>
-err.response.statusText; <span class="hljs-comment">// 'NOT FOUND'</span></code></pre>
+err.response.statusText; <span class="hljs-comment">// 'NOT FOUND'</span>
+</code></pre>
 <h2 id="axios-requests-execute-immediately">Axios Requests Execute Immediately</h2>
 <p>You do <strong>not</strong> need to call <code>.then()</code> or <code>.catch()</code> to execute an
 Axios request. Axios executes the request immediately on its own.
@@ -119,7 +121,8 @@ axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
 
 <span class="hljs-comment">// The server got the request.</span>
 <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
-requests.length; <span class="hljs-comment">// 1</span></code></pre>
+requests.length; <span class="hljs-comment">// 1</span>
+</code></pre>
 
   
   <hr>
@@ -127,7 +130,7 @@ requests.length; <span class="hljs-comment">// 1</span></code></pre>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+    <li><a href="/tutorials/axios/axios-post">How to Make a POST Request with Axios</a></li>
   
 
     <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>

@@ -927,4 +927,49 @@ describe('axios', function() {
     assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
+  it('axios-post-object', async function() {
+    let res = await axios.post('https://httpbin.org/post', {
+      name: 'Masteringjs.io',
+      email: 'masteringjs@io'
+    });
+
+      // args: {},
+      // data: '{"name":"Masteringjs.io","email":"masteringjs@io"}',
+      // files: {},
+      // form: {},
+      // headers: {
+      //   Accept: 'application/json, text/plain, */*',
+      //   'Content-Length': '50',
+      //   'Content-Type': 'application/json;charset=utf-8',
+      //   Host: 'httpbin.org',
+      //   'User-Agent': 'axios/0.19.2',
+      //   'X-Amzn-Trace-Id': 'Root=1-603d0aea-2ddbd24b4beaa53328528006'
+      // },
+      // json: { email: 'masteringjs@io', name: 'Masteringjs.io' },
+      // origin: '138.207.148.170',
+      // url: 'https://httpbin.org/post'
+
+    res.data; // ↑
+  });
+  it('axios-post-string', async function() {
+    let res = await axios.post('https://httpbin.org/post', 'hello=world');
+
+    // args: {},
+    // data: '',
+    // files: {},
+    // form: { hello: 'world' },
+    // headers: {
+    //   Accept: 'application/json, text/plain, */*',
+    //   'Content-Length': '11',
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    //   Host: 'httpbin.org',
+    //   'User-Agent': 'axios/0.19.2',
+    //   'X-Amzn-Trace-Id': 'Root=1-603d0fd0-5d9158e42b9d31b42b96fece'
+    // },
+    // json: null,
+    // origin: '138.207.148.170',
+    // url: 'https://httpbin.org/post'
+
+    res.data // ↑
+  });
 });
