@@ -927,7 +927,35 @@ describe('axios', function() {
     assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
-  it('axios-create', async function() {
-    console.log('Hello');
+  it('axios-create-post', async function() {
+    const instance = axios.create({
+      url: '/post',
+      baseURL: 'https://httpbin.org',
+      method: 'POST',
+      timeout: 1000
+    });
+
+    let res = await instance.request({ data: {
+      name: 'Masteringjs.io',
+      email: 'Masteringjs@io'
+    }});
+
+    // args: {},
+    // data: '{"name":"Masteringjs.io","email":"Masteringjs@io"}',
+    // files: {},
+    // form: {},
+    // headers: {
+    //   Accept: 'application/json, text/plain, */*',
+    //   'Content-Length': '50',
+    //   'Content-Type': 'application/json;charset=utf-8',
+    //   Host: 'httpbin.org',
+    //   'User-Agent': 'axios/0.19.2',
+    //   'X-Amzn-Trace-Id': 'Root=1-603d17ca-169845d833524b1b6d52077a'
+    // },
+    // json: { email: 'Masteringjs@io', name: 'Masteringjs.io' },
+    // origin: '138.207.148.170',
+    // url: 'https://httpbin.org/post'
+
+    res.data // ↑
   });
 });
