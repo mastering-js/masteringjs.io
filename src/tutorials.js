@@ -4,9 +4,9 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Make a POST Request with Axios',
-    raw: './tutorials/axios/axios-post.md',
-    url: '/tutorials/axios/axios-post',
+    title: 'Using the Create Function in Axios',
+    raw: './tutorials/axios/axios-create.md',
+    url: '/tutorials/axios/axios-create',
     description: 'Placeholder Description',
     tags: ['axios'],
     date: moment('2021-03-01')
