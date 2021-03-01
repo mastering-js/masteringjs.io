@@ -927,4 +927,19 @@ describe('axios', function() {
     assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
+  it('axios-multi-form-data', async function() {
+    const FormData = require('form-data');
+    const fs = require('fs');
+
+    const formData = new FormData();
+    formData.append( 'id', 1 );
+    formData.append( 'string', 'Text we want to add to the submit' );
+    formData.append('yinyang.png', fs.createReadStream('./yinyang.png'));
+
+    const res = await axios.post('https://httpbin.org/post', formData, {
+      headers: formData.getHeaders()
+    });
+
+    res.data;
+  });
 });

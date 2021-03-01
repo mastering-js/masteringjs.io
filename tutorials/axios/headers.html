@@ -86,7 +86,8 @@ an object with a <code>headers</code> property as the 2nd argument.</p>
   }
 });
 
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
+</code></pre>
 <p>With PUT and POST requests, the 2nd argument is the request body, so you should
 pass an object with a <code>headers</code> property as the 3rd argument.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
@@ -95,7 +96,8 @@ pass an object with a <code>headers</code> property as the 3rd argument.</p>
   }
 });
 
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
+</code></pre>
 
   
   <hr>
@@ -103,6 +105,9 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
+  
+
     <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
   
 
@@ -119,9 +124,6 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
   
 
     <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
-  
-
-    <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
   
     </ul>
   

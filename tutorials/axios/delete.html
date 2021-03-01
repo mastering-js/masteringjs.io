@@ -75,13 +75,15 @@
   <p>Axios has a <code>axios.delete()</code> function that makes it easy to send an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE">HTTP DELETE request</a> to a given URL.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>);
 
-res.status; <span class="hljs-comment">// 200</span></code></pre>
+res.status; <span class="hljs-comment">// 200</span>
+</code></pre>
 <p>Unlike <a href="/tutorials/axios/post"><code>axios.post()</code></a> and <a href="/tutorials/axios/put"><code>axios.put()</code></a>, the 2nd param to <code>axios.delete()</code>
 is the <a href="/tutorials/axios/options"><code>axios.post()</code></a>, <strong>not</strong> the request body. To send a request body with a DELETE request,
 you should use the <a href="/tutorials/axios/options#data"><code>data</code> option</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>, { <span class="hljs-attr">data</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.json; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data.json; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 
   
   <hr>
@@ -89,6 +91,9 @@ res.data.json; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
+  
+
     <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
   
 
@@ -105,9 +110,6 @@ res.data.json; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
   
 
     <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
-  
-
-    <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
   
     </ul>
   

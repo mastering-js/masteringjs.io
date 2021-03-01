@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Axios Multipart Form Data',
+    raw: './tutorials/axios/axios-multi-form-data.md',
+    url: '/tutorials/axios/axios-multi-form-data',
+    description: 'Placeholder Description',
+    tags: ['axios'],
+    date: moment('2021-03-01')
+  },
+  {
     title: 'How to Check if a JavaScript Variable is Undefined',
     raw: './tutorials/fundamentals/undefined-check.md',
     url: '/tutorials/fundamentals/undefined-check',
