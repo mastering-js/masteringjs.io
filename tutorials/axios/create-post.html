@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Make an Instance with Axios to Make a POST Request - Mastering JS</title>
+    <title>How to use Axios' create() Method with POST Requests - Mastering JS</title>
 
-    <meta property="og:title" content="Make an Instance with Axios to Make a POST Request" />
+    <meta property="og:title" content="How to use Axios' create() Method with POST Requests" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="Placeholder Description" />
@@ -60,7 +60,7 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Make an Instance with Axios to Make a POST Request</h1>
+  <h1>How to use Axios' create() Method with POST Requests</h1>
   <div class="date">
     Mar 1, 2021
   </div>
@@ -73,9 +73,13 @@
 	})();
 	</script>
   <p><a href="https://github.com/axios/axios#creating-an-instance">Axios</a> has a neat tool, <code>create()</code>, that allows you to
-customize your HTTPS requests if you need to make multiple requests to the same domain. The
-<a href="/tutorials/axios/create">create()</a> function allows you to create an instance and customize
-its properties to fit your needs. You can create a custom instance for a POST request as
+customize your HTTP requests if you need to make multiple requests to the same domain. The
+<a href="/tutorials/axios/create"><code>create()</code></a> function allows you to create an instance and customize
+its properties to fit your needs. By specifying the url and the type of request in the instance, there is no need
+to use the specific axios function calls like <code>post()</code> for example, as that has
+already been specified. Instead, you use <code>request()</code> and specify the other
+configuration properties that <code>create()</code> was not responsible for like the information
+to be sent in the <code>data</code> property. You can create a custom instance for a POST request as
 demonstrated below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> instance = axios.create({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'/post'</span>,
@@ -89,29 +93,9 @@ demonstrated below:</p>
   <span class="hljs-attr">email</span>: <span class="hljs-string">'Masteringjs@io'</span>
 }});
 
-<span class="hljs-comment">// args: {},</span>
-<span class="hljs-comment">// data: '{"name":"Masteringjs.io","email":"Masteringjs@io"}',</span>
-<span class="hljs-comment">// files: {},</span>
-<span class="hljs-comment">// form: {},</span>
-<span class="hljs-comment">// headers: {</span>
-<span class="hljs-comment">//   Accept: 'application/json, text/plain, */*',</span>
-<span class="hljs-comment">//   'Content-Length': '50',</span>
-<span class="hljs-comment">//   'Content-Type': 'application/json;charset=utf-8',</span>
-<span class="hljs-comment">//   Host: 'httpbin.org',</span>
-<span class="hljs-comment">//   'User-Agent': 'axios/0.19.2',</span>
-<span class="hljs-comment">//   'X-Amzn-Trace-Id': 'Root=1-603d17ca-169845d833524b1b6d52077a'</span>
-<span class="hljs-comment">// },</span>
-<span class="hljs-comment">// json: { email: 'Masteringjs@io', name: 'Masteringjs.io' },</span>
-<span class="hljs-comment">// origin: '138.207.148.170',</span>
-<span class="hljs-comment">// url: 'https://httpbin.org/post'</span>
-
-res.data <span class="hljs-comment">// ↑</span>
+res.data.json <span class="hljs-comment">// ↓</span>
+<span class="hljs-comment">// json: { email: 'Masteringjs@io', name: 'Masteringjs.io' }</span>
 </code></pre>
-<p>By specifying the url and the type of request in the instance, there is no need
-to use the specific axios function calls like <code>post()</code> for example, as that has
-already been specified. Instead, you should use <code>request()</code> and specify the other
-configuration properties that <code>create()</code> was not responsible for like the information
-to be sent in the <code>data</code> property.</p>
 
   
   <hr>

@@ -940,22 +940,7 @@ describe('axios', function() {
       email: 'Masteringjs@io'
     }});
 
-    // args: {},
-    // data: '{"name":"Masteringjs.io","email":"Masteringjs@io"}',
-    // files: {},
-    // form: {},
-    // headers: {
-    //   Accept: 'application/json, text/plain, */*',
-    //   'Content-Length': '50',
-    //   'Content-Type': 'application/json;charset=utf-8',
-    //   Host: 'httpbin.org',
-    //   'User-Agent': 'axios/0.19.2',
-    //   'X-Amzn-Trace-Id': 'Root=1-603d17ca-169845d833524b1b6d52077a'
-    // },
-    // json: { email: 'Masteringjs@io', name: 'Masteringjs.io' },
-    // origin: '138.207.148.170',
-    // url: 'https://httpbin.org/post'
-
-    res.data // ↑
+    res.data.json // ↓
+    // json: { email: 'Masteringjs@io', name: 'Masteringjs.io' }
   });
 });
