@@ -927,4 +927,28 @@ describe('axios', function() {
     assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
+  it('axios-create-post', async function() {
+    const instance = axios.create({
+      url: '/post',
+      baseURL: 'https://httpbin.org',
+      method: 'POST',
+      timeout: 1000
+    });
+
+    let res = await instance.request({
+      data: {
+        name: 'Masteringjs.io',
+        email: 'Masteringjs@io'
+      }
+    });
+
+    res.data.json // ↓
+    // { email: 'Masteringjs@io', name: 'Masteringjs.io' }
+    // acquit:ignore:start
+    assert.deepEqual(res.data.json, {
+      name: 'Masteringjs.io',
+      email: 'Masteringjs@io'
+    });
+    // acquit:ignore:end
+  });
 });

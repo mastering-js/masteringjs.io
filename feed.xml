@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Fri, 26 Feb 2021 21:41:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 03 Mar 2021 17:23:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,12 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[How to use Axios' create() Method with POST Requests]]></title>
+            <link>https://masteringjs.io/tutorials/axios/create-post</link>
+            <guid>https://masteringjs.io/tutorials/axios/create-post</guid>
+            <pubDate>Mon, 01 Mar 2021 05:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Check if a JavaScript Variable is Undefined]]></title>
             <link>https://masteringjs.io/tutorials/fundamentals/undefined-check</link>
@@ -109,7 +115,7 @@
             <pubDate>Wed, 20 Jan 2021 05:00:00 GMT</pubDate>
         </item>
         <item>
-            <title><![CDATA[How to Check for `NaN` in Javascript]]></title>
+            <title><![CDATA[How to Check for `NaN` in JavaScript]]></title>
             <link>https://masteringjs.io/tutorials/fundamentals/check-nan</link>
             <guid>https://masteringjs.io/tutorials/fundamentals/check-nan</guid>
             <pubDate>Tue, 19 Jan 2021 05:00:00 GMT</pubDate>

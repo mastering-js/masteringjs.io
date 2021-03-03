@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to use Axios\' create() Method with POST Requests',
+    raw: './tutorials/axios/create-post.md',
+    url: '/tutorials/axios/create-post',
+    description: 'Here\'s how you can use Axios\' `create()` function to make an Axios instance that sends POST requests by default.',
+    tags: ['axios'],
+    date: moment('2021-03-01')
+  },
+  {
     title: 'How to Check if a JavaScript Variable is Undefined',
     raw: './tutorials/fundamentals/undefined-check.md',
     url: '/tutorials/fundamentals/undefined-check',

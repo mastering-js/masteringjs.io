@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Make PATCH Requests with Axios - Mastering JS</title>
+    <title>How to use Axios' create() Method with POST Requests - Mastering JS</title>
 
-    <meta property="og:title" content="How to Make PATCH Requests with Axios" />
+    <meta property="og:title" content="How to use Axios' create() Method with POST Requests" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Sending an HTTP PATCH request with Axios is easy. Here's what you need to know." />
-    <meta name="description" content="Sending an HTTP PATCH request with Axios is easy. Here's what you need to know." />
+    <meta property="og:description" content="Here's how you can use Axios' `create()` function to make an Axios instance that sends POST requests by default." />
+    <meta name="description" content="Here's how you can use Axios' `create()` function to make an Axios instance that sends POST requests by default." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>How to Make PATCH Requests with Axios</h1>
+  <h1>How to use Axios' create() Method with POST Requests</h1>
   <div class="date">
-    Jan 15, 2021
+    Mar 1, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,19 +72,30 @@
 	  }
 	})();
 	</script>
-  <p>The easiest way to make a PATCH request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the axios.patch() function. The first parameter is the url to which the request will be made, and the second parameter is the data you will be sending to change. You can make a PATCH request with axios as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'MasteringJS'</span> });
+  <p><a href="https://github.com/axios/axios#creating-an-instance">Axios</a> has a neat tool, <code>create()</code>, that allows you to
+customize your HTTP requests if you need to make multiple requests to the same domain. The
+<a href="/tutorials/axios/create"><code>create()</code></a> function allows you to create an instance with pre-populated <a href="/tutorials/axios/options">Axios options</a>.</p>
+<p>By specifying the url and the type of request in the instance, you don&#39;t need
+to use the specific axios function calls like <code>post()</code>. Instead, you use <code>request()</code> and specify the other
+configuration properties that <code>create()</code> was not responsible for, like the information
+to be sent in the <code>data</code> property. You can create a custom instance for a POST request as
+shown below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> instance = axios.create({
+  <span class="hljs-attr">url</span>: <span class="hljs-string">'/post'</span>,
+  <span class="hljs-attr">baseURL</span>: <span class="hljs-string">'https://httpbin.org'</span>,
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
+  <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>
+});
 
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span></code></pre>
-<p>If the second parameter is an object, axios will do a JSON.stringify on the object before sending the request. It also will specify the content-type to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">application/json</a>, allowing for smooth integration in most projects.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">id</span>: <span class="hljs-number">12345</span> });
+<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> instance.request({
+  <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Masteringjs.io'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'Masteringjs@io'</span>
+  }
+});
 
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span></code></pre>
-<p>If you pass a string as the second parameter, axios will set the content-type header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa">application/x-www-form-urlencoded</a>. This will turn the request body into a series of key-value pairs.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, <span class="hljs-string">'hello=world'</span>);
-
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span>
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+res.data.json <span class="hljs-comment">// ↓</span>
+<span class="hljs-comment">// { email: 'Masteringjs@io', name: 'Masteringjs.io' }</span></code></pre>
 
   
   <hr>
@@ -92,9 +103,6 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/create-post">How to use Axios' create() Method with POST Requests</a></li>
-  
-
     <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
   
 
@@ -102,6 +110,9 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
   
 
     <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
+  
+
+    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
   
 
     <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
