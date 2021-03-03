@@ -142,7 +142,7 @@ module.exports = Object.freeze([
     date: moment('2021-01-20')
   },
   {
-    title: 'How to Check for `NaN` in Javascript',
+    title: 'How to Check for `NaN` in JavaScript',
     raw: './tutorials/fundamentals/check-nans.md',
     url: '/tutorials/fundamentals/check-nan',
     description: 'Checking for `NaN` is tricky because `NaN === NaN` returns false in JavaScript. Here\'s how you can check whether a value is equal `NaN`.',
