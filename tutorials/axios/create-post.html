@@ -74,13 +74,12 @@
 	</script>
   <p><a href="https://github.com/axios/axios#creating-an-instance">Axios</a> has a neat tool, <code>create()</code>, that allows you to
 customize your HTTP requests if you need to make multiple requests to the same domain. The
-<a href="/tutorials/axios/create"><code>create()</code></a> function allows you to create an instance and customize
-its properties to fit your needs. By specifying the url and the type of request in the instance, there is no need
-to use the specific axios function calls like <code>post()</code> for example, as that has
-already been specified. Instead, you use <code>request()</code> and specify the other
-configuration properties that <code>create()</code> was not responsible for like the information
+<a href="/tutorials/axios/create"><code>create()</code></a> function allows you to create an instance with pre-populated <a href="/tutorials/axios/options">Axios options</a>.</p>
+<p>By specifying the url and the type of request in the instance, you don&#39;t need
+to use the specific axios function calls like <code>post()</code>. Instead, you use <code>request()</code> and specify the other
+configuration properties that <code>create()</code> was not responsible for, like the information
 to be sent in the <code>data</code> property. You can create a custom instance for a POST request as
-demonstrated below:</p>
+shown below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> instance = axios.create({
   <span class="hljs-attr">url</span>: <span class="hljs-string">'/post'</span>,
   <span class="hljs-attr">baseURL</span>: <span class="hljs-string">'https://httpbin.org'</span>,
@@ -88,14 +87,15 @@ demonstrated below:</p>
   <span class="hljs-attr">timeout</span>: <span class="hljs-number">1000</span>
 });
 
-<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> instance.request({ <span class="hljs-attr">data</span>: {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">'Masteringjs.io'</span>,
-  <span class="hljs-attr">email</span>: <span class="hljs-string">'Masteringjs@io'</span>
-}});
+<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> instance.request({
+  <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Masteringjs.io'</span>,
+    <span class="hljs-attr">email</span>: <span class="hljs-string">'Masteringjs@io'</span>
+  }
+});
 
 res.data.json <span class="hljs-comment">// ↓</span>
-<span class="hljs-comment">// json: { email: 'Masteringjs@io', name: 'Masteringjs.io' }</span>
-</code></pre>
+<span class="hljs-comment">// { email: 'Masteringjs@io', name: 'Masteringjs.io' }</span></code></pre>
 
   
   <hr>

@@ -935,12 +935,20 @@ describe('axios', function() {
       timeout: 1000
     });
 
-    let res = await instance.request({ data: {
-      name: 'Masteringjs.io',
-      email: 'Masteringjs@io'
-    }});
+    let res = await instance.request({
+      data: {
+        name: 'Masteringjs.io',
+        email: 'Masteringjs@io'
+      }
+    });
 
     res.data.json // ↓
-    // json: { email: 'Masteringjs@io', name: 'Masteringjs.io' }
+    // { email: 'Masteringjs@io', name: 'Masteringjs.io' }
+    // acquit:ignore:start
+    assert.deepEqual(res.data.json, {
+      name: 'Masteringjs.io',
+      email: 'Masteringjs@io'
+    });
+    // acquit:ignore:end
   });
 });
