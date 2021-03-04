@@ -927,6 +927,39 @@ describe('axios', function() {
     assert.equal(res.data.url, 'https://httpbin.org/get');
     // acquit:ignore:end
   });
+
+  it('axios-multi-form-data', async function() {
+    const FormData = require('form-data');
+    const fs = require('fs');
+
+    const formData = new FormData();
+    formData.append('id', 1);
+    formData.append('string', 'Text we want to add to the submit');
+    formData.append('yinyang.png', fs.createReadStream('./yinyang.png'));
+
+    const res = await axios.post('https://httpbin.org/post', formData, {
+      headers: formData.getHeaders()
+    });
+
+    res.data.files; // 'yinyang.png': an extremely long binary string
+
+    res.data.form; // form: { id: '1', string: 'Text we want to add to the submit' }
+
+    res.data.headers; // ↓
+    // Accept: 'application/json, text/plain, */*',
+    // 'Content-Length': '3352',
+    // 'Content-Type': 'multipart/form-data; boundary=--------------------------a string of numbers that is never the same',
+    // Host: 'httpbin.org',
+    // 'User-Agent': 'axios/0.19.2',
+    // 'X-Amzn-Trace-Id': 'Root=1-string of numbers and characters that are never the same-ditto'
+    // acquit:ignore:start
+    assert.deepEqual(res.data.form, {
+      id: '1',
+      string: 'Text we want to add to the submit'
+    });
+    // acquit:ignore:end
+  });
+
   it('axios-create-post', async function() {
     const instance = axios.create({
       url: '/post',
