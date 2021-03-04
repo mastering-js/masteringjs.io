@@ -1,9 +1,6 @@
-To send multipart form data with axios, there is some preparation
-that needs to be done before we can begin. First, because node does
-not have a `FormData` class, we need to install an npm package. The
-most popular one used is `form-data` which we will be using as well.
-Once you have installed the package, we can begin sending form data
-with axios.
+To send multipart form data with Axios, you need to use the `FormData` class.
+Browsers have a built-in `FormData` class, but Node.js doesn't, so you
+need to use the [`form-data`](https://www.npmjs.com/package/form-data) npm module.
 
 To create the form, you must append the data to the form that will be sent
 to the server using the `append()` method. It takes a key and a value as the

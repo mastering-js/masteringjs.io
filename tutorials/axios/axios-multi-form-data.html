@@ -72,12 +72,9 @@
 	  }
 	})();
 	</script>
-  <p>To send multipart form data with axios, there is some preparation
-that needs to be done before we can begin. First, because node does
-not have a <code>FormData</code> class, we need to install an npm package. The
-most popular one used is <code>form-data</code> which we will be using as well.
-Once you have installed the package, we can begin sending form data
-with axios.</p>
+  <p>To send multipart form data with Axios, you need to use the <code>FormData</code> class.
+Browsers have a built-in <code>FormData</code> class, but Node.js doesn&#39;t, so you
+need to use the <a href="https://www.npmjs.com/package/form-data"><code>form-data</code></a> npm module.</p>
 <p>To create the form, you must append the data to the form that will be sent
 to the server using the <code>append()</code> method. It takes a key and a value as the
 parameters.</p>
@@ -85,15 +82,25 @@ parameters.</p>
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
-formData.append( <span class="hljs-string">'id'</span>, <span class="hljs-number">1</span> );
-formData.append( <span class="hljs-string">'string'</span>, <span class="hljs-string">'Text we want to add to the submit'</span> );
+formData.append(<span class="hljs-string">'id'</span>, <span class="hljs-number">1</span>);
+formData.append(<span class="hljs-string">'string'</span>, <span class="hljs-string">'Text we want to add to the submit'</span>);
 formData.append(<span class="hljs-string">'yinyang.png'</span>, fs.createReadStream(<span class="hljs-string">'./yinyang.png'</span>));
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, formData, {
   <span class="hljs-attr">headers</span>: formData.getHeaders()
 });
 
-res.data;
+res.data.files; <span class="hljs-comment">// 'yinyang.png': an extremely long binary string</span>
+
+res.data.form; <span class="hljs-comment">// form: { id: '1', string: 'Text we want to add to the submit' }</span>
+
+res.data.headers; <span class="hljs-comment">// ↓</span>
+<span class="hljs-comment">// Accept: 'application/json, text/plain, */*',</span>
+<span class="hljs-comment">// 'Content-Length': '3352',</span>
+<span class="hljs-comment">// 'Content-Type': 'multipart/form-data; boundary=--------------------------a string of numbers that is never the same',</span>
+<span class="hljs-comment">// Host: 'httpbin.org',</span>
+<span class="hljs-comment">// 'User-Agent': 'axios/0.19.2',</span>
+<span class="hljs-comment">// 'X-Amzn-Trace-Id': 'Root=1-string of numbers and characters that are never the same-ditto'</span>
 </code></pre>
 <p><strong>Note:</strong> Axios does not automatically set the multipart form boundary in Node,
 as a result, you must use <code>getHeaders()</code>.</p>
