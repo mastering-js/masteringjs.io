@@ -73,8 +73,7 @@
 	})();
 	</script>
   <p>Mongoose provides numerous powerful features, like <a href="https://mongoosejs.com/docs/middleware.html">middleware</a> and <a href="https://mongoosejs.com/docs/validation.html">validation</a>. But sometimes you want to bypass Mongoose and use the <a href="https://www.npmjs.com/package/mongodb">MongoDB Node.js driver</a> directly. <a href="https://mongoosejs.com/docs/api/connection.html">Mongoose connections</a> have a <a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-db"><code>db</code> property</a> that let you access the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html">MongoDB driver&#39;s <code>db</code> handle</a>:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
@@ -84,16 +83,14 @@
 <span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
 <span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
 <span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> mongoose.connection.db.profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
-</code></pre>
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
 <p>The <code>db</code> property is usually enough, but there are some cases where you need the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html"><code>MongoClient</code> instance</a> instead of the <code>db</code> handle.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Get another db's profiling level using:</span>
 <span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
 <span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
 <span class="hljs-keyword">const</span> client = mongoose.connection.getClient();
 <span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> client.db(<span class="hljs-string">'otherdb'</span>).profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
-</code></pre>
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -116,6 +113,9 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+  
+
     <li><a href="/tutorials/mongoose/find-async">How to Use Mongoose find() with Async/Await</a></li>
   
 
@@ -132,9 +132,6 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
   
 
     <li><a href="/tutorials/mongoose/unique">Understanding `unique` in Mongoose</a></li>
-  
-
-    <li><a href="/tutorials/mongoose/find-like">`find()` with LIKE in Mongoose</a></li>
   
     </ul>
   

@@ -82,11 +82,9 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 <span class="hljs-comment">// "Request failed with status code 404"</span>
-err.message;
-</code></pre>
+err.message;</code></pre>
 <p>Thankfully, Axios makes it easy to transform errors so the error message makes sense for your application. <a href="https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index#//dash_ref/Category/Interceptors/1">Axios interceptors</a> allow you to transform all errors coming out of Axios.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Create an Axios instance to </span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Create an Axios instance to </span>
 <span class="hljs-keyword">const</span> client = axios.create();
 <span class="hljs-comment">// Interceptors take 2 parameters:</span>
 <span class="hljs-comment">// Axios calls the first function if the request succeeds</span>
@@ -100,8 +98,7 @@ client.interceptors.response.use(
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> client.get(<span class="hljs-string">'http://localhost:3000/test'</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 <span class="hljs-comment">// "Could not find page /test"</span>
-err.message;
-</code></pre>
+err.message;</code></pre>
 
   
   <hr>
@@ -112,7 +109,7 @@ err.message;
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
-    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+    <li><a href="/tutorials/axios/create-post">How to use Axios' create() Method with POST Requests</a></li>
   
 
     <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>

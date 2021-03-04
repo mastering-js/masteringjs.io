@@ -90,8 +90,7 @@ You can simply search by the JavaScript regular expression <code>/gmail/</code>:
 
 <span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> User.find({ <span class="hljs-attr">email</span>: <span class="hljs-regexp">/gmail/</span> });
 docs.length; <span class="hljs-comment">// 2</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.email).sort(); <span class="hljs-comment">// ['gmail@google.com', 'test@gmail.com']</span>
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.email).sort(); <span class="hljs-comment">// ['gmail@google.com', 'test@gmail.com']</span></code></pre>
 <p>Equivalently, you can use the <code>$regex</code> operator.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> User.find({ <span class="hljs-attr">email</span>: { <span class="hljs-attr">$regex</span>: <span class="hljs-string">'gmail'</span> } });</code></pre>
 <p>Note that Mongoose does <strong>not</strong> escape special characters in regexps
@@ -115,8 +114,7 @@ docs.length; <span class="hljs-comment">// 1</span>
 docs[<span class="hljs-number">0</span>].email; <span class="hljs-comment">// 'test+foo@gmail.com'</span>
 
 <span class="hljs-comment">// Throws: MongoError: Regular expression is invalid: nothing to repeat</span>
-<span class="hljs-keyword">await</span> User.find({ <span class="hljs-attr">email</span>: { <span class="hljs-attr">$regex</span>: <span class="hljs-string">'+foo'</span> } });
-</code></pre>
+<span class="hljs-keyword">await</span> User.find({ <span class="hljs-attr">email</span>: { <span class="hljs-attr">$regex</span>: <span class="hljs-string">'+foo'</span> } });</code></pre>
 
   <hr>
 <div class="cta">
@@ -139,6 +137,9 @@ docs[<span class="hljs-number">0</span>].email; <span class="hljs-comment">// 't
     <h2>More Mongoose Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/mongoose/mongoose-validate-unique-email">How to Validate Unique Emails with Mongoose</a></li>
+  
+
     <li><a href="/tutorials/mongoose/find-async">How to Use Mongoose find() with Async/Await</a></li>
   
 
@@ -155,9 +156,6 @@ docs[<span class="hljs-number">0</span>].email; <span class="hljs-comment">// 't
   
 
     <li><a href="/tutorials/mongoose/create">The `create()` Function in Mongoose</a></li>
-  
-
-    <li><a href="/tutorials/mongoose/unique">Understanding `unique` in Mongoose</a></li>
   
     </ul>
   

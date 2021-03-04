@@ -7,7 +7,15 @@ module.exports = Object.freeze([
     title: 'Axios Multipart Form Data',
     raw: './tutorials/axios/axios-multi-form-data.md',
     url: '/tutorials/axios/axios-multi-form-data',
-    description: 'Placeholder Description',
+    description: 'Looking to send a POST request with FormData with Axios for a file upload? Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2021-03-04')
+  },
+  {
+    title: 'How to use Axios\' create() Method with POST Requests',
+    raw: './tutorials/axios/create-post.md',
+    url: '/tutorials/axios/create-post',
+    description: 'Here\'s how you can use Axios\' `create()` function to make an Axios instance that sends POST requests by default.',
     tags: ['axios'],
     date: moment('2021-03-01')
   },
@@ -90,7 +98,7 @@ module.exports = Object.freeze([
     raw: './tutorials/mongoose/mongoose-validate-unique-email.md',
     url: '/tutorials/mongoose/mongoose-validate-unique-email',
     description: 'Here\'s how you can validate emails, and ensure emails are unique, using Mongoose.',
-    tags: ['axios'],
+    tags: ['mongoose'],
     date: moment('2021-02-04')
   },
   {
