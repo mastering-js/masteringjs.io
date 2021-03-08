@@ -1,5 +1,5 @@
 To create a dropdown in vanilla javascript, you must use the `<select>`
-tag in your html files. Vue makes this much easier to do with its
+tag in your template option. Vue makes this much easier to do with its
 list rendering functionality. To begin, you must use `v-model` with
 your select tag to to inform the data what value it should be storing
 from the options presented to the user. Once that is done, you may type
