@@ -72,16 +72,14 @@
 	  }
 	})();
 	</script>
-  <p>To create a dropdown in vanilla javascript, you must use the <code>&lt;select&gt;</code>
-tag in your template option. Vue makes this much easier to do with its
-list rendering functionality. To begin, you must use <code>v-model</code> with
-your select tag to to inform the data what value it should be storing
-from the options presented to the user. Once that is done, you may type
-the options and vue will handle the rest, as shown below:</p>
+  <p>In HTML, the <code>&lt;select&gt;</code> tag lets you create a dropdown that
+lets the user select one of several options. The easiest way
+to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
+<code>v-model</code>. Below is an example:</p>
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
 <select v-model="selected">
-<option disabled value="">Please Select</option>
+<option>Z</option>
 <option>A</option>
 <option>B</option>
 <option>C</option>
@@ -100,13 +98,13 @@ Vue.createApp({
 
 <pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
 &lt;div style = "outline-style: solid" id="example"&gt;
-&lt;select v-model="selected"&gt;
-&lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-&lt;option&gt;A&lt;/option&gt;
-&lt;option&gt;B&lt;/option&gt;
-&lt;option&gt;C&lt;/option&gt;
-&lt;/select&gt;
-&lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+  &lt;select v-model="selected"&gt;
+    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+    &lt;option&gt;A&lt;/option&gt;
+    &lt;option&gt;B&lt;/option&gt;
+    &lt;option&gt;C&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
 &lt;/div&gt;
 &lt;script&gt;
 Vue.createApp({
