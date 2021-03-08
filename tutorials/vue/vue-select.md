@@ -5,22 +5,23 @@ to tie Vue state to the value of a `<select>` tag is using
 
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option>A</option>
-<option>B</option>
-<option>C</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: ''
-        };
-    }
+  data() {
+    return {
+      selected: ''
+    };
+  }
 }).mount('#example');
+</script>
 </script>
 
 ```html
@@ -36,11 +37,11 @@ Vue.createApp({
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: ''
-        };
-    }
+  data() {
+    return {
+      selected: ''
+    };
+  }
 }).mount('#example');
 </script>
 ```
@@ -64,16 +65,16 @@ Below is an example:
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: '',
-            options: [
-                'A',
-                'B',
-                'C'
-            ]
-        };
-    }
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
 }).mount('#demo');
 </script>
 
@@ -88,16 +89,16 @@ Vue.createApp({
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: '',
-            options: [
-                'A',
-                'B',
-                'C'
-            ]
-        };
-    }
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
 }).mount('#demo');
 </script>
 ```

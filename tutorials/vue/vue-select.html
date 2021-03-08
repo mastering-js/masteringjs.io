@@ -78,22 +78,23 @@ to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
 <code>v-model</code>. Below is an example:</p>
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option>A</option>
-<option>B</option>
-<option>C</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: ''
-        };
-    }
+  data() {
+    return {
+      selected: ''
+    };
+  }
 }).mount('#example');
+</script>
 </script>
 
 <pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
@@ -108,11 +109,11 @@ Vue.createApp({
 &lt;/div&gt;
 &lt;script&gt;
 Vue.createApp({
-    data() {
-        return {
-            selected: ''
-        };
-    }
+  data() {
+    return {
+      selected: ''
+    };
+  }
 }).mount('#example');
 &lt;/script&gt;</code></pre>
 <p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
@@ -132,16 +133,16 @@ Below is an example:</p>
 </div>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: '',
-            options: [
-                'A',
-                'B',
-                'C'
-            ]
-        };
-    }
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
 }).mount('#demo');
 </script>
 
@@ -155,16 +156,16 @@ Vue.createApp({
 &lt;/div&gt;
 &lt;script&gt;
 Vue.createApp({
-    data() {
-        return {
-            selected: '',
-            options: [
-                'A',
-                'B',
-                'C'
-            ]
-        };
-    }
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
 }).mount('#demo');
 &lt;/script&gt;</code></pre>
 
