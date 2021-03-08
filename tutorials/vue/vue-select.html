@@ -125,11 +125,11 @@ value as the first element to avoid this problem.</p>
 <p>With <code>v-for</code>, you can display every value in an array.
 Below is an example:</p>
 <div style = "outline-style: solid" id="demo">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option v-for="option in options" :value="option">{{option}}</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option v-for="option in options" :value="option">{{option}}</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
@@ -148,11 +148,11 @@ Vue.createApp({
 
 <pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
 &lt;div style = "outline-style: solid" id="demo"&gt;
-&lt;select v-model="selected"&gt;
-&lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-&lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
-&lt;/select&gt;
-&lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+  &lt;select v-model="selected"&gt;
+    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+    &lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
 &lt;/div&gt;
 &lt;script&gt;
 Vue.createApp({

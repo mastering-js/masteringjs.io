@@ -57,11 +57,11 @@ With `v-for`, you can display every value in an array.
 Below is an example:
 
 <div style = "outline-style: solid" id="demo">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option v-for="option in options" :value="option">{{option}}</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option v-for="option in options" :value="option">{{option}}</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
@@ -81,11 +81,11 @@ Vue.createApp({
 ```html
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="demo">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option v-for="option in options" :value="option">{{option}}</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option v-for="option in options" :value="option">{{option}}</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
