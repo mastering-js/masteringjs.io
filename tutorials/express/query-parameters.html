@@ -93,7 +93,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/?a=1&amp;b=2'</span>)
 
-res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span></code></pre>
+res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span>
+</code></pre>
 <h2 id="objects-and-arrays-in-query-strings">Objects and Arrays in Query Strings</h2>
 <p>If a query parameter appears multiple times in the query string, Express
 will group the values into an array. For example, given the below query string:</p>
@@ -112,7 +113,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow'</span>;
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
 
-res.data; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span></code></pre>
+res.data; <span class="hljs-comment">// { color: ['black', 'yellow'] }</span>
+</code></pre>
 <p>If you use square brackets in a query string parameter, Express will parse
 that parameter as an object. For example, Express will parse the below
 query string into <code>{ shoe: { color: &#39;white&#39; } }</code></p>
@@ -136,7 +138,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?color=black&amp;color=yellow&amp;shoe[color]=white'</span>;
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/'</span> + querystring);
 
-res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span></code></pre>
+res.data; <span class="hljs-comment">// { color: ['black', 'yellow'], 'shoe[color]': 'white' }</span>
+</code></pre>
 
   <hr>
 <div class="cta">

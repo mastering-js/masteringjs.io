@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Server Side Rendering with Vue and Express - Mastering JS</title>
+    <title>How to Use Vue With Your HTML Tables - Mastering JS</title>
 
-    <meta property="og:title" content="Server Side Rendering with Vue and Express" />
+    <meta property="og:title" content="How to Use Vue With Your HTML Tables" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to render Vue components on the server side with Express" />
-    <meta name="description" content="Learn how to render Vue components on the server side with Express" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Server Side Rendering with Vue and Express</h1>
+  <h1>How to Use Vue With Your HTML Tables</h1>
   <div class="date">
-    May 5, 2019
+    Mar 8, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,28 +72,88 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://ssr.vuejs.org/guide/#installation">Vue has solid support for server-side rendering in Node.js</a>. This means that, given a Vue app,
-you can render the app in an Express endpoint using the <a href="https://www.npmjs.com/package/vue-server-renderer"><code>vue-server-renderer</code> library</a>.</p>
-<p>Below is an example of rendering a Vue app using <a href="https://www.npmjs.com/package/express">Express</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
-<span class="hljs-keyword">const</span> expressApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+  <p>Vue makes it very easy to use tables in your projects because of its list rendering functionality.
+With a few lines of html and a <code>v-for</code> loop, you can have a table that is easy to change should you need
+to make additions or subtractions later down the line. To begin, you must first create the structure of
+the table that you will be designing using the appropriate table tags and labels for your columns and
+rows. Once that is done, you can begin using vue in the <code>&lt;tbody&gt;</code> section of the <code>&lt;table&gt;</code> tag. For
+vue to print each row of the table, you must put the <code>v-for</code> in the <code>&lt;tr&gt;</code> tag of the table. From there,
+you add the data elements from the array you will be looping over in each <code>&lt;td&gt;</code> tag as shown below:</p>
+<script src="https://unpkg.com/vue@next"></script>
+<div id="example">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Country</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="name in info" :key="name.Country">
+            <td>{{name.Country}}</td>
+            <td>{{name.Value}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<script>
+Vue.createApp({
+    data(){
+        return {
+            info: [
+                {Country: "United States", Value: "12394"},
+                {Country: "Russia",Value: "6148"},
+                {Country: "Germany (FRG)",Value: "1653"},
+                {Country: "France",Value: "2162"},
+                {Country: "United Kingdom",Value: "1214"},
+                {Country: "China",Value: "1131"},
+                {Country: "Spain",Value: "814"},
+                {Country: "Netherlands",Value: "1167"},
+                {Country: "Italy",Value: "660"},
+                {Country: "Israel",Value: "1263"}
+            ]
+        }
+    }
+}).mount('#example');
+</script>
 
-expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-comment">// Initialize with data from the request.</span>
-    data: { <span class="hljs-attr">content</span>: req.query.content },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;{{content}}&lt;/div&gt;'</span>
-  });
-  renderToString(app).
-    <span class="hljs-comment">// Sends '&lt;div data-server-rendered="true"&gt;Hello, World&lt;/div&gt;'</span>
-    then(<span class="hljs-function"><span class="hljs-params">html</span> =&gt;</span> res.send(html)).
-    catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);
-</code></pre>
-<p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
-<p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div id="example"&gt;
+&lt;table class="table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Country&lt;/th&gt;
+            &lt;th scope="col"&gt;Value&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr v-for="name in info" :key="name.Country"&gt;
+            &lt;td&gt;{{name.Country}}&lt;/td&gt;
+            &lt;td&gt;{{name.Value}}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+    data(){
+        return {
+            info: [
+                {Country: "United States", Value: "12394"},
+                {Country: "Russia",Value: "6148"},
+                {Country: "Germany (FRG)",Value: "1653"},
+                {Country: "France",Value: "2162"},
+                {Country: "United Kingdom",Value: "1214"},
+                {Country: "China",Value: "1131"},
+                {Country: "Spain",Value: "814"},
+                {Country: "Netherlands",Value: "1167"},
+                {Country: "Italy",Value: "660"},
+                {Country: "Israel",Value: "1263"}
+            ]
+        }
+    }
+}).mount('#example');
+&lt;/script&gt;</code></pre>
 
   <hr>
 <div class="cta">
@@ -119,9 +179,6 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-table">How to Use Vue With Your HTML Tables</a></li>
-  
-
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
 
@@ -138,6 +195,9 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
   
 
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3-components">Components in Vue 3</a></li>
   
     </ul>
   
