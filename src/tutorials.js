@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use The Select Tag with Vue',
+    raw: './tutorials/vue/vue-select.md',
+    url: '/tutorials/vue/vue-select',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-03-08')
+  },
+  {
     title: 'Axios Multipart Form Data',
     raw: './tutorials/axios/axios-multi-form-data.md',
     url: '/tutorials/axios/axios-multi-form-data',

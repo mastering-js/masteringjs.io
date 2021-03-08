@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>An Overview of the vue.config.js File - Mastering JS</title>
+    <title>How to Use The Select Tag with Vue - Mastering JS</title>
 
-    <meta property="og:title" content="An Overview of the vue.config.js File" />
+    <meta property="og:title" content="How to Use The Select Tag with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="The `vue.config.js` file configures the Vue CLI. Here's what you need to know." />
-    <meta name="description" content="The `vue.config.js` file configures the Vue CLI. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>An Overview of the vue.config.js File</h1>
+  <h1>How to Use The Select Tag with Vue</h1>
   <div class="date">
-    Jan 10, 2020
+    Mar 8, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,42 +72,102 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://cli.vuejs.org/config/">The <code>vue.config.js</code> file</a> is a config file for
-the <a href="/tutorials/vue/cli">Vue CLI</a>. The <code>vue.config.js</code> file exports an object
-that contains various config options. For example, the below is a valid <code>vue.config.js</code>:</p>
-<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {};</code></pre>
-<h2 id="starting-a-dev-server">Starting a Dev Server</h2>
-<p>One of the most common uses for the Vue CLI is <a href="https://medium.com/js-dojo/how-to-setup-vue-dev-server-with-a-running-web-server-7532c53b3198">starting a local web server</a> for development work. The Vue CLI is one of the easiest ways to compile
-your vanilla JS into a website, without needing to write any HTML.</p>
-<p>First, run <code>npm install vue @vue/cli @vue/cli-service-global</code>. The <code>@vue/cli-service-global</code> plugin is required to run a server locally.
-Next, create an <code>index.js</code> file that contains some Vue code:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>;
+  <p>To create a dropdown in vanilla javascript, you must use the <code>&lt;select&gt;</code>
+tag in your html files. Vue makes this much easier to do with its
+list rendering functionality. To begin, you must use <code>v-model</code> with
+your select tag to to inform the data what value it should be storing
+from the options presented to the user. Once that is done, you may type
+the options and vue will handle the rest, as shown below:</p>
+<script src="https://unpkg.com/vue@next"></script>
+<div style = "outline-style: solid" id="example">
+<select v-model="selected">
+<option disabled value="">Please Select</option>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+</select>
+<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+</div>
+<script>
+Vue.createApp({
+    data() {
+        return {
+            selected: ''
+        };
+    }
+}).mount('#example');
+</script>
 
-<span class="hljs-keyword">new</span> Vue({
-  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
-  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1 v-on:click="++count"&gt;Clicked {{count}}&lt;/h1&gt;'</span>
-});</code></pre>
-<p>Note that this code does <strong>not</strong> explicitly mount the Vue instance to
-the DOM. The Vue CLI will take care of that.</p>
-<p>Next, open up <code>vue.config.js</code> and set the <a href="https://cli.vuejs.org/config/#devserver"><code>devServer.port</code> option</a> to tell the Vue CLI what port to run the web server on:</p>
-<pre><code class="language-javascript"><span class="hljs-meta">'use strict'</span>;
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div style = "outline-style: solid" id="example"&gt;
+&lt;select v-model="selected"&gt;
+&lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+&lt;option&gt;A&lt;/option&gt;
+&lt;option&gt;B&lt;/option&gt;
+&lt;option&gt;C&lt;/option&gt;
+&lt;/select&gt;
+&lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+    data() {
+        return {
+            selected: ''
+        };
+    }
+}).mount('#example');
+&lt;/script&gt;</code></pre>
+<p><strong>Note:</strong> You should use a disable option with your <code>&lt;select&gt;</code> tags, otherwise
+it will put the <code>&lt;select&gt;</code> element in an unselected state preventing the user
+from selecting the first option.
+iOS does not fire a change event in this case which is why it is recommended.</p>
+<h1 id="getting-v-for-involved">Getting <code>v-for</code> Involved</h1>
+<p>With <code>v-for</code>, you can have vue print all the options available to the user
+and all you need to provide is the information in the data object:</p>
+<div style = "outline-style: solid" id="demo">
+<select v-model="selected">
+<option disabled value="">Please Select</option>
+<option v-for="option in options" :value="option">{{option}}</option>
+</select>
+<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+</div>
+<script>
+Vue.createApp({
+    data() {
+        return {
+            selected: '',
+            options: [
+                'A',
+                'B',
+                'C'
+            ]
+        };
+    }
+}).mount('#demo');
+</script>
 
-<span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">devServer</span>: {
-    <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
-  }
-};</code></pre>
-<p>Now, run <code>./node_modules/.bin/vue serve</code> to start the web server and
-compile your <code>index.js</code> file. You should see output similar to the below:</p>
-<pre><code> DONE  Compiled successfully <span class="hljs-keyword">in</span> <span class="hljs-number">337</span>ms                                     <span class="hljs-number">5</span>:<span class="hljs-number">56</span>:<span class="hljs-number">59</span> PM
-
-
-  App running at:
-  - Local:   http:<span class="hljs-comment">//localhost:3000/ </span>
-  - Network: http:<span class="hljs-comment">//10.87.106.132:3000/</span>
-</code></pre>
-<p>Point your web browser to <code>http://localhost:3000</code>, and you should
-see an <code>&lt;h1&gt;</code> tag that says &quot;Clicked 0&quot;.</p>
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div style = "outline-style: solid" id="demo"&gt;
+&lt;select v-model="selected"&gt;
+&lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+&lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
+&lt;/select&gt;
+&lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+    data() {
+        return {
+            selected: '',
+            options: [
+                'A',
+                'B',
+                'C'
+            ]
+        };
+    }
+}).mount('#demo');
+&lt;/script&gt;</code></pre>
 
   <hr>
 <div class="cta">
@@ -133,9 +193,6 @@ see an <code>&lt;h1&gt;</code> tag that says &quot;Clicked 0&quot;.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-select">How to Use The Select Tag with Vue</a></li>
-  
-
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
 
@@ -152,6 +209,9 @@ see an <code>&lt;h1&gt;</code> tag that says &quot;Clicked 0&quot;.</p>
   
 
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-3-components">Components in Vue 3</a></li>
   
     </ul>
   
