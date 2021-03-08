@@ -6,7 +6,7 @@ to tie Vue state to the value of a `<select>` tag is using
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
 <select v-model="selected">
-
+<option>Z</option>
 <option>A</option>
 <option>B</option>
 <option>C</option>
