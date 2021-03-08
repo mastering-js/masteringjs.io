@@ -73,11 +73,8 @@
 	})();
 	</script>
   <p>Vue makes it very easy to use tables in your projects because of its list rendering functionality.
-With a few lines of html and a <code>v-for</code> loop, you can have a table that is easy to change should you need
-to make additions or subtractions later down the line. To begin, you must first create the structure of
-the table that you will be designing using the appropriate table tags and labels for your columns and
-rows. Once that is done, you can begin using vue in the <code>&lt;tbody&gt;</code> section of the <code>&lt;table&gt;</code> tag. For
-vue to print each row of the table, you must put the <code>v-for</code> in the <code>&lt;tr&gt;</code> tag of the table. From there,
+With a few lines of HTML and a <code>v-for</code> loop, you can create a table with one row for every element in an array.
+For vue to print each row of the table, you must put the <code>v-for</code> in the <code>&lt;tr&gt;</code> tag of the table. From there,
 you add the data elements from the array you will be looping over in each <code>&lt;td&gt;</code> tag as shown below:</p>
 <script src="https://unpkg.com/vue@next"></script>
 <div id="example">
