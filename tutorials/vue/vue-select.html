@@ -79,7 +79,7 @@ to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
 <select v-model="selected">
-<option>Z</option>
+<option disabled value="">Please Select</option>
 <option>A</option>
 <option>B</option>
 <option>C</option>
@@ -115,13 +115,14 @@ Vue.createApp({
     }
 }).mount('#example');
 &lt;/script&gt;</code></pre>
-<p><strong>Note:</strong> You should use a disable option with your <code>&lt;select&gt;</code> tags, otherwise
-it will put the <code>&lt;select&gt;</code> element in an unselected state preventing the user
-from selecting the first option.
-iOS does not fire a change event in this case which is why it is recommended.</p>
+<p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
+options, it will cause the <code>&lt;select&gt;</code> tag to be rendered in a &quot;unselected&quot; state. This will
+cause the user to not be able to select the first item as any browser running on iOS will not
+fire a change event in this case. Therefore, we recommend using a disabled option with an empty
+value as the first element to avoid this problem.</p>
 <h1 id="getting-v-for-involved">Getting <code>v-for</code> Involved</h1>
-<p>With <code>v-for</code>, you can have vue print all the options available to the user
-and all you need to provide is the information in the data object:</p>
+<p>With <code>v-for</code>, you can display every value in an array.
+Below is an example:</p>
 <div style = "outline-style: solid" id="demo">
 <select v-model="selected">
 <option disabled value="">Please Select</option>
