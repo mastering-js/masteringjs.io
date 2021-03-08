@@ -1,14 +1,12 @@
-To create a dropdown in vanilla javascript, you must use the `<select>`
-tag in your template option. Vue makes this much easier to do with its
-list rendering functionality. To begin, you must use `v-model` with
-your select tag to to inform the data what value it should be storing
-from the options presented to the user. Once that is done, you may type
-the options and vue will handle the rest, as shown below:
+In HTML, the `<select>` tag lets you create a dropdown that
+lets the user select one of several options. The easiest way
+to tie Vue state to the value of a `<select>` tag is using
+`v-model`. Below is an example:
 
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
 <select v-model="selected">
-<option disabled value="">Please Select</option>
+
 <option>A</option>
 <option>B</option>
 <option>C</option>
@@ -28,13 +26,13 @@ Vue.createApp({
 ```html
 <script src="https://unpkg.com/vue@next"></script>
 <div style = "outline-style: solid" id="example">
-<select v-model="selected">
-<option disabled value="">Please Select</option>
-<option>A</option>
-<option>B</option>
-<option>C</option>
-</select>
-<span style="padding-left:5%">Your Choice is: {{selected}}</span>
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
 </div>
 <script>
 Vue.createApp({
