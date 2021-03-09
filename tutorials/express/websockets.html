@@ -99,8 +99,7 @@ server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&
   wsServer.handleUpgrade(request, socket, head, socket =&gt; {
     wsServer.emit(<span class="hljs-string">'connection'</span>, socket, request);
   });
-});
-</code></pre>
+});</code></pre>
 <h2 id="testing">Testing</h2>
 <p>How do you actually connect to this server? <a href="https://www.npmjs.com/package/ws#sending-and-receiving-text-data">ws also has a websocket client implementation</a> as well as the server implementation.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>);

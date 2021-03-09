@@ -4,12 +4,12 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Use The Select Tag with Vue',
+    title: 'How to Use the Select Tag with Vue',
     raw: './tutorials/vue/vue-select.md',
-    url: '/tutorials/vue/vue-select',
-    description: 'Placeholder Description',
+    url: '/tutorials/vue/select',
+    description: 'Here\'s how you can use Vue with the `<select>` tag, including how to use two way data binding with `v-model`.',
     tags: ['vue'],
-    date: moment('2021-03-08')
+    date: moment('2021-03-09')
   },
   {
     title: 'Axios Multipart Form Data',

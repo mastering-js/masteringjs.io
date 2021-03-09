@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Mon, 08 Mar 2021 20:55:05 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Mar 2021 14:58:32 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,10 +13,10 @@
             <link>https://masteringjs.io</link>
         </image>
         <item>
-            <title><![CDATA[How to Use The Select Tag with Vue]]></title>
-            <link>https://masteringjs.io/tutorials/vue/vue-select</link>
-            <guid>https://masteringjs.io/tutorials/vue/vue-select</guid>
-            <pubDate>Mon, 08 Mar 2021 05:00:00 GMT</pubDate>
+            <title><![CDATA[How to Use the Select Tag with Vue]]></title>
+            <link>https://masteringjs.io/tutorials/vue/select</link>
+            <guid>https://masteringjs.io/tutorials/vue/select</guid>
+            <pubDate>Tue, 09 Mar 2021 05:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Axios Multipart Form Data]]></title>

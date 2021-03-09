@@ -106,8 +106,7 @@ store and print the current state.</p>
   <span class="hljs-attr">state</span>: { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }
 });
 
-store.state; <span class="hljs-comment">// { count: 0 }</span>
-</code></pre>
+store.state; <span class="hljs-comment">// { count: 0 }</span></code></pre>
 <p>The canonical way to modify a Vuex store&#39;s state is via a <em>mutation</em>. You should not modify the <code>state</code> property
 directly. Below is how you can define mutations that increment and decrement the <code>count</code> property:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vuex = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vuex'</span>);
@@ -126,8 +125,7 @@ store.commit(<span class="hljs-string">'increment'</span>);
 store.state; <span class="hljs-comment">// { count: 1 }</span>
 
 store.commit(<span class="hljs-string">'decrement'</span>);
-store.state; <span class="hljs-comment">// { count: 0 }</span>
-</code></pre>
+store.state; <span class="hljs-comment">// { count: 0 }</span></code></pre>
 <p>Although you can access a Vuex store&#39;s state directly with <code>store.state</code>, you typically wouldn&#39;t do that in
 a Vue app. That&#39;s because accessing <code>store.state</code> directly doesn&#39;t tie in to Vue&#39;s reactivity properly. Instead,
 you would define a <a href="/tutorials/vue/vuex-getters">Vuex getter</a>.</p>
@@ -147,8 +145,7 @@ you would define a <a href="/tutorials/vue/vuex-getters">Vuex getter</a>.</p>
 store.getters.count; <span class="hljs-comment">// 0</span>
 
 store.commit(<span class="hljs-string">'increment'</span>);
-store.getters.count; <span class="hljs-comment">// 1</span>
-</code></pre>
+store.getters.count; <span class="hljs-comment">// 1</span></code></pre>
 <h2 id="adding-the-store-to-your-app">Adding the Store to Your App</h2>
 <p>In order to wire up your Vue app to use Vuex, you need to do two things:</p>
 <ol>
@@ -156,8 +153,7 @@ store.getters.count; <span class="hljs-comment">// 1</span>
 <li>Create a <code>store</code> and pass it to the Vue constructor. For example, <code>new Vue({ store, computed, template })</code></li>
 </ol>
 <p>For example, below is how you can wire up a Vue instance to use the <code>count</code> store:</p>
-<pre><code class="language-javascript">
-  Vue.use(Vuex);
+<pre><code class="language-javascript">  Vue.use(Vuex);
 
   <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
     <span class="hljs-attr">state</span>: { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> },
@@ -188,8 +184,7 @@ store.getters.count; <span class="hljs-comment">// 1</span>
         &lt;/button&gt;
       &lt;/div&gt;
     `</span>
-  });
-</code></pre>
+  });</code></pre>
 
   <hr>
 <div class="cta">
@@ -215,7 +210,7 @@ store.getters.count; <span class="hljs-comment">// 1</span>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-select">How to Use The Select Tag with Vue</a></li>
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
