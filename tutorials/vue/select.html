@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vue Single-File Components - Mastering JS</title>
+    <title>How to Use the Select Tag with Vue - Mastering JS</title>
 
-    <meta property="og:title" content="Vue Single-File Components" />
+    <meta property="og:title" content="How to Use the Select Tag with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
-    <meta name="description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
+    <meta property="og:description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
+    <meta name="description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Vue Single-File Components</h1>
+  <h1>How to Use the Select Tag with Vue</h1>
   <div class="date">
-    Feb 10, 2021
+    Mar 9, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,60 +72,99 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/vue/components">JavaScript-based Vue components</a> are great for small to medium sized projects but if your project becomes more complex,
-problems begin to arise like:</p>
-<ul>
-<li>Every component name must be unique</li>
-<li>No CSS support in the components</li>
-<li>String <a href="/tutorials/vue/templates">templates</a> lack syntax highlighting as well as requiring slashes for multiline HTML</li>
-</ul>
-<p>However, Vue.js&#39;s single-file components solve all these problems! A single-file component has the extension <code>.vue</code>,
-which means you need a compiler like <a href="/webpack">Webpack</a> or Browserify. A <code>.vue</code> file can have many top-level language blocks
-as well as your own custom blocks, but the three core blocks are <code>&lt;template&gt;</code>, <code>&lt;script&gt;</code>, and <code>&lt;style&gt;</code>.
-When making a component, the three core blocks are optional. An important note about the structure of <code>.vue</code> files is that
-<code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> may only appear once while <code>&lt;style&gt;</code> and a custom block you implement may appear multiple times. You can specify in the <code>&lt;style&gt;</code> tag whether you want the css to be local to the component.
-If you choose local (scoped) the parent component&#39;s style will not leak into that component.
-Here is an example of a simple <code>.vue</code> file:</p>
-<pre><code class="language-javascript">&lt;template&gt;
-  &lt;div class="example"&gt;{{ msg }}&lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  data () {
+  <p>In HTML, the <code>&lt;select&gt;</code> tag lets you create a dropdown that
+lets the user select one of several options. The easiest way
+to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
+<a href="/tutorials/vue/v-model"><code>v-model</code></a>. Below is an example:</p>
+<script src="https://unpkg.com/vue@next"></script>
+<div style = "outline-style: solid" id="example">
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
+</div>
+<script>
+Vue.createApp({
+  data() {
     return {
-      msg: 'Hello world!'
-    }
+      selected: ''
+    };
   }
-}
-&lt;/script&gt;
-&lt;style scoped&gt;
-.example {
-  color: red;
-}
-&lt;/style&gt;
+}).mount('#example');
+</script>
+</script>
 
-&lt;custom&gt;
-Here is an example of a custom language block.
-&lt;/custom&gt;</code></pre>
-<p>Another step to take when setting up your project to work with single-file components is to configure webpack to understand
-what a <code>.vue</code> file is and what to do with it. You will need the <code>@vue/compiler-sfc</code> package as well as the <code>vue-loader</code> package.
-Below is an example of configuring webpack to handle <code>.vue</code> files:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { VueLoaderPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"vue-loader"</span>);
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div style = "outline-style: solid" id="example"&gt;
+  &lt;select v-model="selected"&gt;
+    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+    &lt;option&gt;A&lt;/option&gt;
+    &lt;option&gt;B&lt;/option&gt;
+    &lt;option&gt;C&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+  data() {
+    return {
+      selected: ''
+    };
+  }
+}).mount('#example');
+&lt;/script&gt;</code></pre>
+<p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
+options, it will cause the browser to render the <code>&lt;select&gt;</code> tag in a &quot;unselected&quot; state. Any browser running on iOS won&#39;t fire a change event for a <code>&lt;select&gt;</code> in an unselected tag, which means the user won&#39;t be able to select the first option. Therefore, we recommend using a <code>disabled</code> option with an empty value as the first element.</p>
+<h1 id="with-v-for">With <code>v-for</code></h1>
+<p>With <code>v-for</code>, you can create an option for every value in an array.
+Below is an example:</p>
+<div style = "outline-style: solid" id="demo">
+  <select v-model="selected">
+    <option disabled value="">Please Select</option>
+    <option v-for="option in options" :value="option">{{option}}</option>
+  </select>
+  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
+</div>
+<script>
+Vue.createApp({
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
+}).mount('#demo');
+</script>
 
-<span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">module</span>: {
-    <span class="hljs-attr">rules</span>: [
-      {
-        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.vue$/</span>,
-        <span class="hljs-attr">loader</span>: <span class="hljs-string">"vue-loader"</span>
-      }
-    ]
-  },
-  <span class="hljs-attr">plugins</span>: [
-    <span class="hljs-keyword">new</span> VueLoaderPlugin()
-  ]
-};</code></pre>
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div style = "outline-style: solid" id="demo"&gt;
+  &lt;select v-model="selected"&gt;
+    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
+    &lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+  data() {
+    return {
+      selected: '',
+      options: [
+        'A',
+        'B',
+        'C'
+      ]
+    };
+  }
+}).mount('#demo');
+&lt;/script&gt;</code></pre>
 
   <hr>
 <div class="cta">
@@ -154,9 +193,6 @@ Below is an example of configuring webpack to handle <code>.vue</code> files:</p
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
-    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
-  
-
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
 
@@ -167,6 +203,9 @@ Below is an example of configuring webpack to handle <code>.vue</code> files:</p
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
 
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>

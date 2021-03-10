@@ -117,8 +117,7 @@ assert.ok(res.includes(<span class="hljs-string">'Clicks: 2'</span>));
 <span class="hljs-comment">// You can also call methods in Node</span>
 app.$options.methods.increment.call(app);
 res = <span class="hljs-keyword">await</span> renderToString(app);
-assert.ok(res.includes(<span class="hljs-string">'Clicks: 3'</span>));
-</code></pre>
+assert.ok(res.includes(<span class="hljs-string">'Clicks: 3'</span>));</code></pre>
 <p>The benefit of using Node.js for unit tests is minimal setup and overhead.
 The only outside libraries you need are a testing framework like <a href="/tutorials/mocha/intro">Mocha</a>
 and <a href="http://npmjs.com/package/vue-server-renderer">vue-server-renderer</a>.
@@ -193,8 +192,7 @@ content = <span class="hljs-keyword">await</span> page.evaluate(<span class="hlj
 assert.equal(content, <span class="hljs-string">'Clicks: 1'</span>);
 
 <span class="hljs-comment">// Clean up</span>
-<span class="hljs-keyword">await</span> browser.close();
-</code></pre>
+<span class="hljs-keyword">await</span> browser.close();</code></pre>
 <p>Testing with <a href="/tutorials/fundamentals/puppeteer">Puppeteer</a> is great because you&#39;re testing in a real browser,
 which means this test is as realistic as you can get without pointing
 and clicking yourself. Also, if you disable headless mode, you can
@@ -236,7 +234,10 @@ makes your tests more realistic.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-table">How to Use Vue With Your HTML Tables</a></li>
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
@@ -252,9 +253,6 @@ makes your tests more realistic.</p>
   
 
     <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
-  
-
-    <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
   
     </ul>
   

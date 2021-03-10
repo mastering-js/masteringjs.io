@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vue Single-File Components - Mastering JS</title>
+    <title>How to Use Vue With HTML Tables - Mastering JS</title>
 
-    <meta property="og:title" content="Vue Single-File Components" />
+    <meta property="og:title" content="How to Use Vue With HTML Tables" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
-    <meta name="description" content="Vue single file components (.vue files) provide several advantages over writing vanilla JavaScript. Here's how you can get started with Vue single file components, including how to configure Webpack." />
+    <meta property="og:description" content="Here are some basic patterns for using Vue with the HTML `table` tag." />
+    <meta name="description" content="Here are some basic patterns for using Vue with the HTML `table` tag." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Vue Single-File Components</h1>
+  <h1>How to Use Vue With HTML Tables</h1>
   <div class="date">
-    Feb 10, 2021
+    Mar 10, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,60 +72,85 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/vue/components">JavaScript-based Vue components</a> are great for small to medium sized projects but if your project becomes more complex,
-problems begin to arise like:</p>
-<ul>
-<li>Every component name must be unique</li>
-<li>No CSS support in the components</li>
-<li>String <a href="/tutorials/vue/templates">templates</a> lack syntax highlighting as well as requiring slashes for multiline HTML</li>
-</ul>
-<p>However, Vue.js&#39;s single-file components solve all these problems! A single-file component has the extension <code>.vue</code>,
-which means you need a compiler like <a href="/webpack">Webpack</a> or Browserify. A <code>.vue</code> file can have many top-level language blocks
-as well as your own custom blocks, but the three core blocks are <code>&lt;template&gt;</code>, <code>&lt;script&gt;</code>, and <code>&lt;style&gt;</code>.
-When making a component, the three core blocks are optional. An important note about the structure of <code>.vue</code> files is that
-<code>&lt;template&gt;</code> and <code>&lt;script&gt;</code> may only appear once while <code>&lt;style&gt;</code> and a custom block you implement may appear multiple times. You can specify in the <code>&lt;style&gt;</code> tag whether you want the css to be local to the component.
-If you choose local (scoped) the parent component&#39;s style will not leak into that component.
-Here is an example of a simple <code>.vue</code> file:</p>
-<pre><code class="language-javascript">&lt;template&gt;
-  &lt;div class="example"&gt;{{ msg }}&lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  data () {
-    return {
-      msg: 'Hello world!'
+  <p>Vue makes it very easy to use tables in your projects because of its list rendering functionality.
+With a few lines of HTML and a <code>v-for</code> loop, you can create a table with one row for every element in an array.
+For vue to print each row of the table, you must put the <code>v-for</code> in the <code>&lt;tr&gt;</code> tag of the table. From there,
+you add the data elements from the array you will be looping over in each <code>&lt;td&gt;</code> tag as shown below:</p>
+<script src="https://unpkg.com/vue@next"></script>
+<div id="example">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Country</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="name in info" :key="name.Country">
+            <td>{{name.Country}}</td>
+            <td>{{name.Value}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<script>
+Vue.createApp({
+    data(){
+        return {
+            info: [
+                {Country: "United States", Value: "12394"},
+                {Country: "Russia",Value: "6148"},
+                {Country: "Germany (FRG)",Value: "1653"},
+                {Country: "France",Value: "2162"},
+                {Country: "United Kingdom",Value: "1214"},
+                {Country: "China",Value: "1131"},
+                {Country: "Spain",Value: "814"},
+                {Country: "Netherlands",Value: "1167"},
+                {Country: "Italy",Value: "660"},
+                {Country: "Israel",Value: "1263"}
+            ]
+        }
     }
-  }
-}
-&lt;/script&gt;
-&lt;style scoped&gt;
-.example {
-  color: red;
-}
-&lt;/style&gt;
+}).mount('#example');
+</script>
 
-&lt;custom&gt;
-Here is an example of a custom language block.
-&lt;/custom&gt;</code></pre>
-<p>Another step to take when setting up your project to work with single-file components is to configure webpack to understand
-what a <code>.vue</code> file is and what to do with it. You will need the <code>@vue/compiler-sfc</code> package as well as the <code>vue-loader</code> package.
-Below is an example of configuring webpack to handle <code>.vue</code> files:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { VueLoaderPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"vue-loader"</span>);
-
-<span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">module</span>: {
-    <span class="hljs-attr">rules</span>: [
-      {
-        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.vue$/</span>,
-        <span class="hljs-attr">loader</span>: <span class="hljs-string">"vue-loader"</span>
-      }
-    ]
-  },
-  <span class="hljs-attr">plugins</span>: [
-    <span class="hljs-keyword">new</span> VueLoaderPlugin()
-  ]
-};</code></pre>
+<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
+&lt;div id="example"&gt;
+&lt;table class="table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Country&lt;/th&gt;
+            &lt;th scope="col"&gt;Value&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr v-for="name in info" :key="name.Country"&gt;
+            &lt;td&gt;{{name.Country}}&lt;/td&gt;
+            &lt;td&gt;{{name.Value}}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;script&gt;
+Vue.createApp({
+    data(){
+        return {
+            info: [
+                {Country: "United States", Value: "12394"},
+                {Country: "Russia",Value: "6148"},
+                {Country: "Germany (FRG)",Value: "1653"},
+                {Country: "France",Value: "2162"},
+                {Country: "United Kingdom",Value: "1214"},
+                {Country: "China",Value: "1131"},
+                {Country: "Spain",Value: "814"},
+                {Country: "Netherlands",Value: "1167"},
+                {Country: "Italy",Value: "660"},
+                {Country: "Israel",Value: "1263"}
+            ]
+        }
+    }
+}).mount('#example');
+&lt;/script&gt;</code></pre>
 
   <hr>
 <div class="cta">
@@ -151,9 +176,6 @@ Below is an example of configuring webpack to handle <code>.vue</code> files:</p
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
-  
-
     <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
@@ -167,6 +189,9 @@ Below is an example of configuring webpack to handle <code>.vue</code> files:</p
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
 
     <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>

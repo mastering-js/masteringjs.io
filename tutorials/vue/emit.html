@@ -92,8 +92,7 @@
       &lt;div v-if="show"&gt;Notified&lt;/div&gt;
     &lt;/div&gt;
   `</span>
-});
-</code></pre>
+});</code></pre>
 <p>All <a href="https://vuejs.org/v2/api/#Instance-Properties">Vue instances</a> have a <code>$emit()</code> function, including both top-level apps and
 individual components.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -104,8 +103,7 @@ individual components.</p>
 app.$on(<span class="hljs-string">'test-event'</span>, () =&gt; { ++called; });
 
 app.$emit(<span class="hljs-string">'test-event'</span>);
-called; <span class="hljs-comment">// 1</span>
-</code></pre>
+called; <span class="hljs-comment">// 1</span></code></pre>
 <h2 id="why-emit">Why <code>$emit()</code>?</h2>
 <p>Generally, you use <a href="https://masteringjs.io/tutorials/vue/components#emit"><code>$emit()</code> to notify the parent component that something changed</a>. For example, suppose you have a component <code>input-name</code> that takes a <a href="/tutorials/vue/props">prop</a> called <code>name</code>. This component exposes an input form asking the user for their name, and an &#39;Update&#39; button that updates the name.</p>
 <img src="https://codebarbarian-images.s3.amazonaws.com/vue-input.png" class="inline-image" style="width: 300px">
@@ -145,8 +143,7 @@ called; <span class="hljs-comment">// 1</span>
     }
   }
 });
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 
   <hr>
 <div class="cta">
@@ -172,7 +169,10 @@ app.$mount(<span class="hljs-string">'#content'</span>);
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-table">How to Use Vue With Your HTML Tables</a></li>
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
@@ -188,9 +188,6 @@ app.$mount(<span class="hljs-string">'#content'</span>);
   
 
     <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
-  
-
-    <li><a href="/tutorials/vue/reactivity">Reactivity in Vue 3</a></li>
   
     </ul>
   
