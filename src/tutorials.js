@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Vue With HTML Tables',
+    raw: './tutorials/vue/vue-table.md',
+    url: '/tutorials/vue/table',
+    description: 'Here are some basic patterns for using Vue with the HTML `table` tag.',
+    tags: ['vue'],
+    date: moment('2021-03-10')
+  },
+  {
     title: 'How to Use the Select Tag with Vue',
     raw: './tutorials/vue/vue-select.md',
     url: '/tutorials/vue/select',

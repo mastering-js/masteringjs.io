@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Tue, 09 Mar 2021 17:32:14 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 10 Mar 2021 16:12:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,12 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[How to Use Vue With HTML Tables]]></title>
+            <link>https://masteringjs.io/tutorials/vue/table</link>
+            <guid>https://masteringjs.io/tutorials/vue/table</guid>
+            <pubDate>Wed, 10 Mar 2021 05:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Use the Select Tag with Vue]]></title>
             <link>https://masteringjs.io/tutorials/vue/select</link>
