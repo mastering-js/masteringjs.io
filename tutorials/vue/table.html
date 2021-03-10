@@ -74,83 +74,144 @@
 	</script>
   <p>Vue makes it very easy to use tables in your projects because of its list rendering functionality.
 With a few lines of HTML and a <code>v-for</code> loop, you can create a table with one row for every element in an array.
-For vue to print each row of the table, you must put the <code>v-for</code> in the <code>&lt;tr&gt;</code> tag of the table. From there,
-you add the data elements from the array you will be looping over in each <code>&lt;td&gt;</code> tag as shown below:</p>
+For vue to print each row of the table, you must put the <code>v-for</code> in the <code>tr</code> tag of the table. From there,
+you add the data elements from the array you will be looping over in each <code>td</code> tag as shown below:</p>
 <script src="https://unpkg.com/vue@next"></script>
 <div id="example">
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Country</th>
-            <th scope="col">Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr v-for="name in info" :key="name.Country">
-            <td>{{name.Country}}</td>
-            <td>{{name.Value}}</td>
-        </tr>
-    </tbody>
-</table>
 </div>
 <script>
-Vue.createApp({
-    data(){
-        return {
-            info: [
-                {Country: "United States", Value: "12394"},
-                {Country: "Russia",Value: "6148"},
-                {Country: "Germany (FRG)",Value: "1653"},
-                {Country: "France",Value: "2162"},
-                {Country: "United Kingdom",Value: "1214"},
-                {Country: "China",Value: "1131"},
-                {Country: "Spain",Value: "814"},
-                {Country: "Netherlands",Value: "1167"},
-                {Country: "Italy",Value: "660"},
-                {Country: "Israel",Value: "1263"}
-            ]
+  Vue.createApp({
+    template: `
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" v-for="column in columnNames">{{column}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in info" :key="row.Country">
+          <td v-for="column in columnNames">{{row[column]}}</td>
+        </tr>
+      </tbody>
+    </table>
+    `,
+    computed: {
+      columnNames: function() {
+        const names = new Set();
+        for (const row of this.info) {
+          for (const key of Object.keys(row)) {
+            names.add(key);
+          }
         }
+        return names;
+      }
+    },
+    data() {
+      return {
+        info: [
+          { Country: "United States", Value: "12394" },
+          { Country: "Russia", Value: "6148" },
+          { Country: "Germany (FRG)", Value: "1653" },
+          { Country: "France", Value: "2162" },
+          { Country: "United Kingdom", Value: "1214" },
+          { Country: "China", Value: "1131" },
+          { Country: "Spain", Value: "814" },
+          { Country: "Netherlands", Value: "1167" },
+          { Country: "Italy", Value: "660" },
+          { Country: "Israel", Value: "1263" }
+        ]
+      }
     }
-}).mount('#example');
+  }).mount('#example');
 </script>
 
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div id="example"&gt;
-&lt;table class="table"&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th scope="col"&gt;Country&lt;/th&gt;
-            &lt;th scope="col"&gt;Value&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr v-for="name in info" :key="name.Country"&gt;
-            &lt;td&gt;{{name.Country}}&lt;/td&gt;
-            &lt;td&gt;{{name.Value}}&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
+<pre><code class="language-html">&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;div id=<span class="hljs-string">"example"</span>&gt;
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;script&gt;
 Vue.createApp({
-    data(){
-        return {
-            info: [
-                {Country: "United States", Value: "12394"},
-                {Country: "Russia",Value: "6148"},
-                {Country: "Germany (FRG)",Value: "1653"},
-                {Country: "France",Value: "2162"},
-                {Country: "United Kingdom",Value: "1214"},
-                {Country: "China",Value: "1131"},
-                {Country: "Spain",Value: "814"},
-                {Country: "Netherlands",Value: "1167"},
-                {Country: "Italy",Value: "660"},
-                {Country: "Israel",Value: "1263"}
-            ]
-        }
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+  &lt;table class="table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col"&gt;Country&lt;/th&gt;
+        &lt;th scope="col"&gt;Value&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr v-for="name in info" :key="name.Country"&gt;
+        &lt;td&gt;{{name.Country}}&lt;/td&gt;
+        &lt;td&gt;{{name.Value}}&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  `</span>,
+  data() {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">info</span>: [
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"United States"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"12394"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Russia"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"6148"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Germany (FRG)"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1653"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"France"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"2162"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"United Kingdom"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1214"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"China"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1131"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Spain"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"814"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Netherlands"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1167"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Italy"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"660"</span> },
+        { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Israel"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1263"</span> }
+      ]
     }
-}).mount('#example');
-&lt;/script&gt;</code></pre>
+  }
+}).mount(<span class="hljs-string">'#example'</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<h2 id="variable-columns">Variable Columns</h2>
+<p>Suppose you don&#39;t know the column names ahead of time. You can use <code>Object.keys()</code> to <a href="/tutorials/fundamentals/iterate-object">iterate through the object keys</a> and create the columns using <code>v-for</code>.</p>
+<pre><code class="language-html">&lt;div id=<span class="hljs-string">"example"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script&gt;
+  Vue.createApp({
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;table class="table"&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th scope="col" v-for="column in columnNames"&gt;{{column}}&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr v-for="row in info" :key="row.Country"&gt;
+          &lt;td v-for="column in columnNames"&gt;{{row[column]}}&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    `</span>,
+    <span class="hljs-attr">computed</span>: {
+      <span class="hljs-attr">columnNames</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> names = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> row <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.info) {
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys(row)) {
+            names.add(key);
+          }
+        }
+        <span class="hljs-keyword">return</span> names;
+      }
+    },
+    data() {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">info</span>: [
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"United States"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"12394"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Russia"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"6148"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Germany (FRG)"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1653"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"France"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"2162"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"United Kingdom"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1214"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"China"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1131"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Spain"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"814"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Netherlands"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1167"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Italy"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"660"</span> },
+          { <span class="hljs-attr">Country</span>: <span class="hljs-string">"Israel"</span>, <span class="hljs-attr">Value</span>: <span class="hljs-string">"1263"</span> }
+        ]
+      }
+    }
+  }).mount(<span class="hljs-string">'#example'</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
 
   <hr>
 <div class="cta">
