@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Boostrap With Vue to Make a Dropdown',
+    raw: './tutorials/vue/vue-dropdown.md',
+    url: '/tutorials/vue/dropdown',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-03-15')
+  },
+  {
     title: 'How to Use Vue With HTML Tables',
     raw: './tutorials/vue/vue-table.md',
     url: '/tutorials/vue/table',

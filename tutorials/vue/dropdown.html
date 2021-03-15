@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Use Boostrap With Vue to Make a Dropdown - Mastering JS</title>
+
+    <meta property="og:title" content="How to Use Boostrap With Vue to Make a Dropdown" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>How to Use Boostrap With Vue to Make a Dropdown</h1>
+  <div class="date">
+    Mar 15, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>Using Bootstrap, Vue, and Popper.js, you can make a more modern dropdown as
+opposed to the <code>&lt;select&gt;</code> tag in HTML.</p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<div id="example">
+</div>
+<script>
+Vue.createApp({
+  template: `
+ <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
+    <li v-for="option in options" :key="option"><a class="dropdown-item">{{option}}</a></li>
+  </ul>
+</div>
+  `,
+  data() {
+    return {
+        options: [
+        'Action 1',
+        'Action 2',
+        'Action 3',
+        'Action 4'
+        ]
+    };
+  }
+}).mount('#example');
+</script>
+
+<p>Popper.js is already loaded in the cdn Bootstrap file so you should not
+have to import it although you could provided you put it before the
+Bootstrap import.
+Here is the code to make a simple dropdown with Bootstrap and Vue:</p>
+<pre><code class="language-html">&lt;link href=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"</span> rel=<span class="hljs-string">"stylesheet"</span> integrity=<span class="hljs-string">"sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"</span> crossorigin=<span class="hljs-string">"anonymous"</span>/&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;div id=<span class="hljs-string">"example"</span>&gt;
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script&gt;
+Vue.createApp({
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+ &lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"&gt;
+    Dropdown button
+  &lt;/button&gt;
+  &lt;ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" &gt;
+    &lt;li v-for="option in options" :key="option"&gt;&lt;a class="dropdown-item"&gt;{{option}}&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+  `</span>,
+  data() {
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">options</span>: [
+        <span class="hljs-string">'Action 1'</span>,
+        <span class="hljs-string">'Action 2'</span>,
+        <span class="hljs-string">'Action 3'</span>,
+        <span class="hljs-string">'Action 4'</span>
+        ]
+    };
+  }
+}).mount(<span class="hljs-string">'#example'</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
+
+  <br><br>
+
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vueschool.png">
+    </a>
+  </div>
+ </div>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
+  
+
+    <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
+  
+
+    <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

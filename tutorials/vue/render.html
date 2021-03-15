@@ -89,7 +89,8 @@ single parameter: the <code>createElement()</code> function.</p>
     <span class="hljs-comment">// edit data.</span>
     <span class="hljs-keyword">return</span> createElement(<span class="hljs-string">'h1'</span>, <span class="hljs-string">'Hello, '</span> + <span class="hljs-keyword">this</span>.user);
   }
-});</code></pre>
+});
+</code></pre>
 <h2 id="using-jsx">Using JSX</h2>
 <p>The <code>createElement()</code> function is similar to
 <a href="https://reactjs.org/docs/react-api.html#createelement">React&#39;s top-level <code>createElement()</code> function</a>.
@@ -113,7 +114,8 @@ transpiling JSX to <code>createElement()</code> calls.</p>
 <a href="https://vuejs.org/v2/guide/render-function.html#v-model"><code>v-model</code> with render functions</a>.
 What you can do is use the 2nd parameter to <code>createElement()</code>
 to <a href="https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth">define <code>on</code> handlers</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
   <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">createElement</span>) </span>{
     <span class="hljs-keyword">return</span> createElement(<span class="hljs-string">'div'</span>, <span class="hljs-literal">null</span>, [
@@ -128,7 +130,8 @@ to <a href="https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-D
       })
     ]);
   }
-});</code></pre>
+});
+</code></pre>
 <p>With the above example, you can click the &#39;Increment&#39; button to increase
 the <code>count</code> property.</p>
 
@@ -156,6 +159,9 @@ the <code>count</code> property.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
@@ -172,9 +178,6 @@ the <code>count</code> property.</p>
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
     </ul>
   

@@ -97,7 +97,8 @@ Vue.options.components[<span class="hljs-string">'hello'</span>] === helloCompon
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
 });
-app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);
+</code></pre>
 <h2 id="internal-state-with-components">Internal State With Components</h2>
 <p>One advantage Vue has over React is <a href="https://vuejs.org/v2/guide/forms.html">two way data binding on form elements</a>. Forms in Vue are trivial using <code>v-model</code>, but they require a bit more work with React.</p>
 <p>Suppose you wanted to extend the <code>hello</code> component with an input, so the user can enter their name. You should add a <a href="https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function"><code>data</code> function</a> to your component <code>definition</code> that returns the initial state of the component. Make sure you define an initial state for all the properties you want Vue to watch, even if it is <a href="/tutorials/fundamentals/null"><code>null</code></a>.</p>
@@ -119,7 +120,8 @@ app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
 });
-app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);
+</code></pre>
 <p>Here&#39;s how the component looks in action. You can also see a <a href="/examples/vue/component-with-data">live example here</a>.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/3075be615722442d89cc780630f92a8e" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
@@ -147,7 +149,8 @@ Vue.component(<span class="hljs-string">'hello'</span>, {
       &lt;hello v-bind:name="name"&gt;&lt;/hello&gt;
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <p><a href="/examples/vue/component-with-props">Here&#39;s a live example of the props-based <code>hello</code> component</a>.</p>
 <h2 id="emit"><code>$emit()</code></h2>
 <p>Props let you pass data into a component from a parent component. The <a href="https://vuejs.org/v2/guide/components-custom-events.html"><code>$emit()</code> function</a> lets you pass data from a component back to its parent, usually in response to an event.</p>
@@ -186,7 +189,8 @@ Vue.component(<span class="hljs-string">'hello'</span>, {
     }
   }
 });
-app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);
+</code></pre>
 <p><a href="/examples/vue/component-with-emit">Here&#39;s a live example</a>.</p>
 
   <hr>
@@ -213,6 +217,9 @@ app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
@@ -229,9 +236,6 @@ app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
     </ul>
   

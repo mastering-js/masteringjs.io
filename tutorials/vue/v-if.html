@@ -86,7 +86,8 @@
 <span class="hljs-comment">// expression evaluates to false.</span>
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;!----&gt;&lt;/div&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <h2 id="v-else-if-and-v-else"><code>v-else-if</code> and <code>v-else</code></h2>
 <p>Vue also has <a href="https://vuejs.org/v2/guide/conditional.html#v-else"><code>v-else-if</code> and <code>v-else</code> directives</a> that behave like <code>else if</code> and <code>else</code> in JavaScript.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -112,7 +113,8 @@ data;
 app._data.value = <span class="hljs-number">0</span>;
 data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Zero&lt;/div&gt;&lt;/div&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
 <p><a href="https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks">Vue components have lifecycle hooks</a>, like the <code>created</code> hook that gets called when the component gets created, and <code>mounted</code> when the component gets mounted.</p>
 <p>When Vue renders a component because the <code>v-if</code> expression became
@@ -165,6 +167,9 @@ the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every t
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
@@ -181,9 +186,6 @@ the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every t
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
     </ul>
   
