@@ -2632,6 +2632,39 @@ describe('Vue', function() {
     page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
     // acquit:ignore:end
   });
+  it('vue-file-upload', async function() {
+    this.timeout(10000);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    const fn = function() {
+    const app = new Vue({
+      data: () => ({Images: null}),
+      template: `
+        <div>
+          <input type = "file" @change="uploadFile" ref="file">
+          <button>Upload!</button>
+        </div>
+      `,
+      methods: {
+        uploadFile() {
+          this.Images = this.$refs.file.files[0];
+        },
+        submitFile() {
+          const FormData = require('form-data');
+          const formData = new FormData();
+          formData.append('file', this.Images);
+          axios.post('https://httpbin.org/post', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then((test) => {
+            console.log(test);
+          });
+        }
+      }
+    });
+    app.$mount("#content");
+  };
+  const html = createVueHTMLScaffolding(fn.toString());
+    await page.setContent(html);
+    page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+  });
 });
 
 function createVueHTMLScaffolding(code) {

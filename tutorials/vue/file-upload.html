@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Axios DELETE Requests - Mastering JS</title>
+    <title>How To Upload Files With Vue - Mastering JS</title>
 
-    <meta property="og:title" content="Axios DELETE Requests" />
+    <meta property="og:title" content="How To Upload Files With Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can send an HTTP DELETE request with Axios, including how to send a request body with a DELETE request." />
-    <meta name="description" content="Here's how you can send an HTTP DELETE request with Axios, including how to send a request body with a DELETE request." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,12 +57,12 @@
   <div class="breadcrumbs">
     <a href="/all">Tutorials</a>
     /
-    <a href="/axios">Axios</a>
+    <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Axios DELETE Requests</h1>
+  <h1>How To Upload Files With Vue</h1>
   <div class="date">
-    Sep 11, 2020
+    Mar 15, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,44 +72,51 @@
 	  }
 	})();
 	</script>
-  <p>Axios has a <code>axios.delete()</code> function that makes it easy to send an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE">HTTP DELETE request</a> to a given URL.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>);
+  <h1 id="hello-world">Hello World</h1>
 
-res.status; <span class="hljs-comment">// 200</span>
-</code></pre>
-<p>Unlike <a href="/tutorials/axios/post"><code>axios.post()</code></a> and <a href="/tutorials/axios/put"><code>axios.put()</code></a>, the 2nd param to <code>axios.delete()</code>
-is the <a href="/tutorials/axios/options"><code>axios.post()</code></a>, <strong>not</strong> the request body. To send a request body with a DELETE request,
-you should use the <a href="/tutorials/axios/options#data"><code>data</code> option</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.delete(<span class="hljs-string">'https://httpbin.org/delete'</span>, { <span class="hljs-attr">data</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
 
-res.data.json; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+  <br><br>
 
-  
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vueschool.png">
+    </a>
+  </div>
+ </div>
+
   <hr>
   
-    <h2>More Axios Tutorials</h2>
+    <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
-    <li><a href="/tutorials/axios/create-post">How to use Axios' create() Method with POST Requests</a></li>
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
-    <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
+    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
 
-    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
   
 
-    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
+    <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
+    <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
+    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
     </ul>
   

@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How To Upload Files With Vue',
+    raw: './tutorials/vue/vue-file-upload.md',
+    url: '/tutorials/vue/file-upload',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-03-15')
+  },
+  {
     title: 'How to Use Vue With HTML Tables',
     raw: './tutorials/vue/vue-table.md',
     url: '/tutorials/vue/table',
