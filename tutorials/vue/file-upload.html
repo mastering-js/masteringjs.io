@@ -72,7 +72,36 @@
 	  }
 	})();
 	</script>
-  <h1 id="hello-world">Hello World</h1>
+  <p>Using Vue 2 with Axios, you can upload files easily with a few clicks.
+Using the <code>&lt;input&gt;</code> tag and specifying the type to file, the browser will
+allow you to select the file to upload from your computer. You will need
+to create a form and so we recommend the form-data module to use for
+your submission. An example can be seen below:</p>
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">Images</span>: <span class="hljs-literal">null</span>}),
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;input type = "file" @change="uploadFile" ref="file"&gt;
+        &lt;button @click="submitFile"&gt;Upload!&lt;/button&gt;
+      &lt;/div&gt;
+    `</span>,
+    <span class="hljs-attr">methods</span>: {
+      uploadFile() {
+        <span class="hljs-keyword">this</span>.Images = <span class="hljs-keyword">this</span>.$refs.file.files[<span class="hljs-number">0</span>];
+      },
+      submitFile() {
+        <span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
+        formData.append(<span class="hljs-string">'file'</span>, <span class="hljs-keyword">this</span>.Images);
+        axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, formData, {<span class="hljs-attr">headers</span>: {
+          <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>}}).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+          res.data.files;
+        });
+      }
+    }
+  });
+  app.$mount(<span class="hljs-string">"#content"</span>);
+</code></pre>
 
   <hr>
 <div class="cta">

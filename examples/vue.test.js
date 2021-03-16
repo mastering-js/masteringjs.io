@@ -7,6 +7,8 @@ const axios = require('axios');
 const puppeteer = require('puppeteer');
 const { renderToString } = require('vue-server-renderer').createRenderer();
 const sinon = require('sinon');
+const FormData = require('form-data');
+const fs = require('fs');
 
 describe('Vue', function() {
   it('ssr', async function() {
@@ -2633,16 +2635,18 @@ describe('Vue', function() {
     // acquit:ignore:end
   });
   it('vue-file-upload', async function() {
+    // acquit:ignore:start
     this.timeout(10000);
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     const fn = function() {
+    // acquit:ignore:end
     const app = new Vue({
       data: () => ({Images: null}),
       template: `
         <div>
           <input type = "file" @change="uploadFile" ref="file">
-          <button>Upload!</button>
+          <button @click="submitFile">Upload!</button>
         </div>
       `,
       methods: {
@@ -2650,20 +2654,22 @@ describe('Vue', function() {
           this.Images = this.$refs.file.files[0];
         },
         submitFile() {
-          const FormData = require('form-data');
           const formData = new FormData();
           formData.append('file', this.Images);
-          axios.post('https://httpbin.org/post', formData, {headers: {'Content-Type': 'multipart/form-data'}}).then((test) => {
-            console.log(test);
+          axios.post('https://httpbin.org/post', formData, {headers: {
+            'Content-Type': 'multipart/form-data'}}).then((res) => {
+            res.data.files;
           });
         }
       }
     });
     app.$mount("#content");
+  // acquit:ignore:start
   };
   const html = createVueHTMLScaffolding(fn.toString());
-    await page.setContent(html);
-    page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+  await page.setContent(html);
+  page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+  // acquit:ignore:end
   });
 });
 
