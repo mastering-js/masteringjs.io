@@ -58,6 +58,6 @@ add this line to `.eslintignore`:
 ESLint considers paths in `.eslintignore` relative to the location of the `.eslintignore` file. Below is how you ignore all files in your project's `data`
 directory.
 
-```javascript
+```
 data/*
 ```
