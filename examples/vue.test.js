@@ -2658,7 +2658,8 @@ describe('Vue', function() {
           formData.append('file', this.Images);
           axios.post('https://httpbin.org/post', formData, {headers: {
             'Content-Type': 'multipart/form-data'}}).then((res) => {
-            res.data.files;
+            res.data.files; // the very long binary string that is the photo
+            res.status; // returns a number
           });
         }
       }

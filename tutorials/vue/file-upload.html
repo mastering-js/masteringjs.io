@@ -74,9 +74,39 @@
 	</script>
   <p>Using Vue 2 with Axios, you can upload files easily with a few clicks.
 Using the <code>&lt;input&gt;</code> tag and specifying the type to file, the browser will
-allow you to select the file to upload from your computer. You will need
-to create a form and so we recommend the form-data module to use for
-your submission. An example can be seen below:</p>
+allow you to select the file to upload from your computer. To prepare
+the file to be sent, we recommend using the <code>FormData</code> class
+to make the process nice and easy. An example can be seen below:</p>
+<div id = "content"></div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+   const app = new Vue({
+      data: () => ({Images: null, Result: null}),
+      template: `
+        <div style = "border-style:solid">
+          <input type = "file" @change="uploadFile" ref="file"/>
+          <button @click="submitFile">Upload!</button>
+          <div>Response Status is: {{Result}}</div>
+        </div>
+      `,
+      methods: {
+        uploadFile() {
+          this.Images = this.$refs.file.files[0];
+        },
+        submitFile() {
+          const formData = new FormData();
+          formData.append('file', this.Images);
+          axios.post('https://httpbin.org/post', formData,
+          {headers: {'Content-Type': 'multipart/form-data'}}).then((res) => {
+            this.Result = res.status;
+          });
+        }
+      }
+    });
+    app.$mount("#content");
+</script>
+
 <pre><code class="language-javascript">
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">Images</span>: <span class="hljs-literal">null</span>}),
@@ -95,7 +125,8 @@ your submission. An example can be seen below:</p>
         formData.append(<span class="hljs-string">'file'</span>, <span class="hljs-keyword">this</span>.Images);
         axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, formData, {<span class="hljs-attr">headers</span>: {
           <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>}}).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
-          res.data.files;
+          res.data.files; <span class="hljs-comment">// the very long binary string that is the photo</span>
+          res.status; <span class="hljs-comment">// returns a number</span>
         });
       }
     }
