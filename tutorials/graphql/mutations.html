@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -146,8 +146,7 @@ on the <code>Mutation</code> type:</p>
   <span class="hljs-attr">query</span>: <span class="hljs-string">'{ getCount { count, time } }'</span>
 });
 
-data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 1581442587371 } }</span>
-</code></pre>
+data.data; <span class="hljs-comment">// { getCount: { count: 1, time: 1581442587371 } }</span></code></pre>
 <p>Note that, to actually call a mutation, you need to start your
 GraphQL query with the string <code>&#39;mutation&#39;</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.post(handle.url, {
@@ -230,8 +229,7 @@ parameter to your mutation&#39;s resolver function:</p>
   <span class="hljs-attr">query</span>: <span class="hljs-string">'{ getCount { count, time } }'</span>
 });
 
-data.data; <span class="hljs-comment">// { getCount: { count: 5, time: 1581442587371 } }</span>
-</code></pre>
+data.data; <span class="hljs-comment">// { getCount: { count: 5, time: 1581442587371 } }</span></code></pre>
 
   
   <hr>

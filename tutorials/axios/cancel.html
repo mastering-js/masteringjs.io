@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -94,8 +94,7 @@ source.cancel(<span class="hljs-string">'test cancellation'</span>);
 <span class="hljs-comment">// Axios' `isCancel()` function to check whether the error is</span>
 <span class="hljs-comment">// due to a cancelled request.</span>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> req.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-axios.isCancel(err); <span class="hljs-comment">// true</span>
-</code></pre>
+axios.isCancel(err); <span class="hljs-comment">// true</span></code></pre>
 <p>Note that <code>axios.CancelToken.source()</code> returns a source object, not the token itself. Make sure you
 pass the token as the <code>cancelToken</code> option, <strong>not</strong> the source object. Otherwise you&#39;ll get a
 <a href="https://decker.medium.com/typeerror-config-canceltoken-throwifrequested-is-not-a-function-6b7b20b54fa2">&quot;config.cancelToken.throwIfRequested is not a function&quot; error</a>.</p>
@@ -133,8 +132,7 @@ source.cancel(<span class="hljs-string">'test cancellation'</span>);
 
 <span class="hljs-comment">// Got error, but still prints "Got request!"</span>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> req.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-axios.isCancel(err); <span class="hljs-comment">// true</span>
-</code></pre>
+axios.isCancel(err); <span class="hljs-comment">// true</span></code></pre>
 <p>So is cancellation useless? Not necessarily. Cancelling requests can be useful in the browser if
 you want to clean up any outstanding requests when, say, the user navigates to another page. Just
 remember: even if you cancel a request, there is a good chance the request will still end up going

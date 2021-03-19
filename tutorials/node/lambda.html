@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -112,8 +112,7 @@ AWS.config.update({
     Body: fs.createReadStream(<span class="hljs-string">'./test.zip'</span>),
     <span class="hljs-attr">Key</span>: <span class="hljs-string">'test.zip'</span>
   }, (err, data) =&gt; err == <span class="hljs-literal">null</span> ? resolve(data) : reject(err));
-});
-</code></pre>
+});</code></pre>
 <h2 id="2-create-a-lambda-function">2. Create a Lambda Function</h2>
 <p>Now that the file is on S3, you can create a Lambda function and
 <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html">invoke</a> it using the <code>AWS.Lambda()</code> helper:</p>
@@ -155,8 +154,7 @@ functionArn = fn.FunctionArn; <span class="hljs-comment">// The "id" of the lamb
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> promisify(lambda.invoke).call(lambda, {
   <span class="hljs-attr">FunctionName</span>: <span class="hljs-string">'nodetest'</span>
 });
-res.Payload; <span class="hljs-comment">// '{"statusCode":200,"body":"Hello, World"}'</span>
-</code></pre>
+res.Payload; <span class="hljs-comment">// '{"statusCode":200,"body":"Hello, World"}'</span></code></pre>
 <p>For convenience, the above code uses Node.js&#39; <code>util.promisify()</code> helper, since the AWS SDK doesn&#39;t currently support promises.
 <a href="/tutorials/node/promisify">Learn more about <code>util.promisify()</code> here</a>.</p>
 <h2 id="3-create-an-api-gateway-to-access-the-function-via-http">3. Create an API Gateway to Access the Function via HTTP</h2>
@@ -232,8 +230,7 @@ AWS.config.update({
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">`https://<span class="hljs-subst">${api.id}</span>.execute-api.us-east-1.amazonaws.com/prod/test`</span>);
-res.data; <span class="hljs-comment">// 'Hello, World'</span>
-</code></pre>
+res.data; <span class="hljs-comment">// 'Hello, World'</span></code></pre>
 
   
   <hr>

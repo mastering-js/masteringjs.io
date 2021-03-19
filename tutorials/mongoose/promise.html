@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -86,8 +86,7 @@ promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in"
 <span class="hljs-keyword">const</span> res = doc.save(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">err</span>) </span>{
   <span class="hljs-comment">/*...*/</span>
 });
-res; <span class="hljs-comment">// undefined</span>
-</code></pre>
+res; <span class="hljs-comment">// undefined</span></code></pre>
 <h2 id="the-mongoosepromise-property">The <code>mongoose.Promise</code> Property</h2>
 <p>The Mongoose singleton has a <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-Promise"><code>Promise</code> property</a> that you can use to set the promise library Mongoose uses. For example, you can make Mongoose use the popular <a href="https://www.npmjs.com/package/bluebird">Bluebird promise library</a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Bluebird = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);

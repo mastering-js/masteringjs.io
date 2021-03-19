@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -76,8 +76,7 @@
 For example, a server can push stock market price changes to the client rather than the client needing to ask for the changes via a HTTP request.
 With this being said, below you will find an example of a simple Vue application that shows the current time to the user and where
 the user can send a simple message to the websocket.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span> }),
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div&gt;
@@ -94,8 +93,7 @@ the user can send a simple message to the websocket.</p>
       }
     }
   });
-  app.$mount(<span class="hljs-string">"#content"</span>);
-</code></pre>
+  app.$mount(<span class="hljs-string">"#content"</span>);</code></pre>
 <p>Below is an example websocket server that you can use with the above Vue code.</p>
 <pre><code class="language-javascript"><span class="hljs-meta">"use strict"</span>;
 
@@ -150,6 +148,9 @@ server.listen(<span class="hljs-number">3000</span>, () =&gt; {
     <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
   
 
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
 
@@ -163,9 +164,6 @@ server.listen(<span class="hljs-number">3000</span>, () =&gt; {
   
 
     <li><a href="/tutorials/vue/chartjs">How to Use Chart.js with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-sfc">Vue Single-File Components</a></li>
   
     </ul>
   

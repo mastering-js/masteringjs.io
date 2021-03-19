@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -75,8 +75,7 @@
   <p>Given an array <code>arr</code> and a function <code>fn</code>, <a href="https://lodash.com/docs/4.17.15#map">Lodash&#39;s <code>map()</code> function</a> returns an array containing the return values of <code>fn()</code> on every element in the array.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
 
-_.map(arr, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span>
-</code></pre>
+_.map(arr, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span></code></pre>
 <h2 id="on-arrays-of-objects">On Arrays of Objects</h2>
 <p>Given an array of objects, you can pass a string as <code>fn</code> instead of a function
 to get array containing each object&#39;s value for the property <code>fn</code>.</p>
@@ -88,8 +87,7 @@ to get array containing each object&#39;s value for the property <code>fn</code>
 
 _.map(arr, <span class="hljs-string">'firstName'</span>); <span class="hljs-comment">// ['Will', 'Beverly', 'Wesley']</span>
 <span class="hljs-comment">// Equivalent:</span>
-_.map(arr, v =&gt; v.firstName); <span class="hljs-comment">// ['Will', 'Beverly', 'Wesley']</span>
-</code></pre>
+_.map(arr, v =&gt; v.firstName); <span class="hljs-comment">// ['Will', 'Beverly', 'Wesley']</span></code></pre>
 <h2 id="on-objects">On Objects</h2>
 <p>You can also call <code>_.map()</code> on an object. <code>_.map(obj, fn)</code> behaves like
 <code>_.map(Object.values(obj), fn)</code>.</p>
@@ -100,8 +98,7 @@ _.map(arr, v =&gt; v.firstName); <span class="hljs-comment">// ['Will', 'Beverly
   <span class="hljs-attr">four</span>: <span class="hljs-number">4</span>
 };
 
-_.map(obj, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span>
-</code></pre>
+_.map(obj, v =&gt; v * <span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 4, 6, 8]</span></code></pre>
 
   
   <hr>

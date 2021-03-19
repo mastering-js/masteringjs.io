@@ -9,7 +9,15 @@ module.exports = Object.freeze([
     url: '/tutorials/vue/file-upload',
     description: 'Placeholder Description',
     tags: ['vue'],
-    date: moment('2021-03-15')
+    date: moment('2021-03-19')
+  },
+  {
+    title: 'How to Use Boostrap With Vue to Make a Dropdown',
+    raw: './tutorials/vue/vue-dropdown.md',
+    url: '/tutorials/vue/dropdown',
+    description: 'Here\'s how you can use Vue with Bootstrap dropdowns, no outside modules required.',
+    tags: ['vue'],
+    date: moment('2021-03-18')
   },
   {
     title: 'How to Use Vue With HTML Tables',

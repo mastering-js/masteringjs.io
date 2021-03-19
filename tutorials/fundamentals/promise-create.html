@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -103,8 +103,7 @@ the promise as <a href="/tutorials/fundamentals/promise#promises-as-state-machin
 str; <span class="hljs-comment">// 'OK'</span>
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> fail.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// Oops</span>
-</code></pre>
+err.message; <span class="hljs-comment">// Oops</span></code></pre>
 <h2 id="using-static-helpers">Using Static Helpers</h2>
 <p>The <code>Promise.resolve()</code> function lets you create a new promise that
 is immediately fulfilled.</p>

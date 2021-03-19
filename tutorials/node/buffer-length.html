@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -77,8 +77,7 @@
 in the buffer.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
 
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span>
-</code></pre>
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
 <p>For buffers containing UTF8 encoded strings, the buffer&#39;s length is equivalent to the length of the string. For
 example, if you read a text file from the file system using <code>fs</code>, the resulting buffer&#39;s length is the same as
 the number of characters in the text file.</p>
@@ -88,8 +87,7 @@ fs.writeFileSync(<span class="hljs-string">'./test.txt'</span>, <span class="hlj
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./test.txt'</span>);
 
 Buffer.isBuffer(buf); <span class="hljs-comment">// true</span>
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span>
-</code></pre>
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
 <h2 id="allocated-vs-actual">Allocated vs Actual</h2>
 <p>Note that <code>Buffer#length</code> contains the number of <em>allocated</em> bytes for the buffer, <strong>not</strong> how many bytes are
 actually used. Often these two are equivalent, but they may be different.</p>
@@ -102,8 +100,7 @@ buf.length; <span class="hljs-comment">// 100, even though the buffer contains 1
 <span class="hljs-comment">// Write 'Hello, World' to the buffer starting at offset 0</span>
 buf.write(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-number">0</span>);
 
-buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span>
-</code></pre>
+buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span></code></pre>
 
   
   <hr>

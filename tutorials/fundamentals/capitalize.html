@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -84,15 +84,13 @@ capitalize the first character and combine it with the <a href="/tutorials/funda
 }
 
 capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span>
-</code></pre>
+capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span></code></pre>
 <h2 id="using-lodash">Using Lodash</h2>
 <p><a href="https://lodash.com/docs#capitalize">Lodash&#39;s <code>capitalize()</code> function</a> also capitalizes the first character in a string. It also converts the remaining characters to lowercase.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
 
 _.capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span>
-</code></pre>
+_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span></code></pre>
 <h2 id="using-css">Using CSS</h2>
 <p>Depending on your use case, you might not need JavaScript at all. <a href="https://css-tricks.com/almanac/properties/t/text-transform/#article-header-id-0">CSS <code>text-transform: capitalize</code></a> capitalizes the first letter of each word in the string.</p>
 <pre><code class="language-css">.capitalize {

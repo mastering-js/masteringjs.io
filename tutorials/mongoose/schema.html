@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Inconsolata:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
 
@@ -91,8 +91,7 @@ This object defines what paths a schema has. For example, the below <code>userSc
 });
 
 userSchema.path(<span class="hljs-string">'name'</span>); <span class="hljs-comment">// SchemaString { ... }</span>
-userSchema.path(<span class="hljs-string">'age'</span>); <span class="hljs-comment">// SchemaNumber { ... }</span>
-</code></pre>
+userSchema.path(<span class="hljs-string">'age'</span>); <span class="hljs-comment">// SchemaNumber { ... }</span></code></pre>
 <p>To create a model in Mongoose, you call the <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-model"><code>mongoose.model()</code> function</a> with a schema as the 2nd parameter. For example, <code>UserModel</code> in the below example will
 have <code>name</code> and <code>age</code> properties, and will strip out any properties that aren&#39;t
 defined in <code>userSchema</code>.</p>
@@ -112,13 +111,11 @@ doc.name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
 doc.age; <span class="hljs-comment">// 59</span>
 
 <span class="hljs-comment">// undefined, Mongoose strips out `rank` because it isn't in the schema</span>
-doc.rank;
-</code></pre>
+doc.rank;</code></pre>
 <p>Furthermore, Mongoose will cast documents to match the given schema types. This
 means you can safely pass untrusted data to Mongoose and trust that the data
 will match your schema.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> UserModel({
   <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>,
@@ -128,8 +125,7 @@ doc.age; <span class="hljs-comment">// 59</span>
 <span class="hljs-keyword">await</span> doc.save();
 
 <span class="hljs-comment">// Mongoose will convert '60' from a string to a number, even in an update</span>
-<span class="hljs-keyword">await</span> UserModel.updateOne({}, { <span class="hljs-attr">$set</span>: { <span class="hljs-attr">age</span>: <span class="hljs-string">'60'</span> } });
-</code></pre>
+<span class="hljs-keyword">await</span> UserModel.updateOne({}, { <span class="hljs-attr">$set</span>: { <span class="hljs-attr">age</span>: <span class="hljs-string">'60'</span> } });</code></pre>
 <h2 id="validation">Validation</h2>
 <p>In addition to casting values, Mongoose also lets you define validation
 in your schemas. For example, suppose you want to ensure your users have a
@@ -144,8 +140,7 @@ in your schemas. For example, suppose you want to ensure your users have a
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> UserModel({ <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> });
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> doc.save().catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// Path `name` is required.</span>
-</code></pre>
+err.message; <span class="hljs-comment">// Path `name` is required.</span></code></pre>
 <h2 id="options">Options</h2>
 <p>The schema constructor takes 2 parameters: <code>definition</code> and <code>options</code>.
 You can find a <a href="https://mongoosejs.com/docs/guide.html#options">complete list of schema options on the Mongoose docs</a>.</p>
@@ -158,8 +153,7 @@ You can find a <a href="https://mongoosejs.com/docs/guide.html#options">complete
 });
 
 schema.path(<span class="hljs-string">'nested'</span>); <span class="hljs-comment">// SchemaString { ... }</span>
-schema.path(<span class="hljs-string">'nested.type'</span>); <span class="hljs-comment">// undefined</span>
-</code></pre>
+schema.path(<span class="hljs-string">'nested.type'</span>); <span class="hljs-comment">// undefined</span></code></pre>
 <p>There are <a href="https://mongoosejs.com/docs/faq.html#type-key">several workarounds</a>
 for this use case. One is to set the <code>typeKey</code> option as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Make Mongoose look for `$type` instead of `type`</span>
@@ -174,8 +168,7 @@ for this use case. One is to set the <code>typeKey</code> option as shown below.
 }, options);
 
 schema.path(<span class="hljs-string">'nested.type'</span>); <span class="hljs-comment">// SchemaString { ... }</span>
-schema.path(<span class="hljs-string">'otherProperty'</span>); <span class="hljs-comment">// SchemaString { ... }</span>
-</code></pre>
+schema.path(<span class="hljs-string">'otherProperty'</span>); <span class="hljs-comment">// SchemaString { ... }</span></code></pre>
 
   <hr>
 <div class="cta">
