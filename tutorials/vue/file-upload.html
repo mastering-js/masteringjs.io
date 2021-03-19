@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use Boostrap With Vue to Make a Dropdown - Mastering JS</title>
+    <title>How To Upload Files With Vue - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use Boostrap With Vue to Make a Dropdown" />
+    <meta property="og:title" content="How To Upload Files With Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use Vue with Bootstrap dropdowns, no outside modules required." />
-    <meta name="description" content="Here's how you can use Vue with Bootstrap dropdowns, no outside modules required." />
+    <meta property="og:description" content="Here's how you can upload files using Vue and Axios." />
+    <meta name="description" content="Here's how you can upload files using Vue and Axios." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use Boostrap With Vue to Make a Dropdown</h1>
+  <h1>How To Upload Files With Vue</h1>
   <div class="date">
-    Mar 18, 2021
+    Mar 19, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,34 +72,65 @@
 	  }
 	})();
 	</script>
-  <p>Vue mostly works nicely with <a href="https://getbootstrap.com/docs/4.0/components/dropdowns/">Bootstrap&#39;s dropdowns</a> using similar syntax to the <a href="/tutorials/vue/select"><code>&lt;select&gt;</code> tag</a> in HTML.</p>
-<p>Below is an example of using a Bootstrap dropdown to choose between &#39;A&#39;, &#39;B&#39;, and &#39;C&#39;. Note that Bootstrap dropdowns do <strong>not</strong> work with <a href="/tutorials/vue/v-model">Vue&#39;s <code>v-model</code> directive</a>, you need to explicitly <a href="/tutorials/vue/click">register a <code>@click</code> event handler</a> as shown below.</p>
-<pre><code class="language-javascript">Vue.createApp({
-  <span class="hljs-attr">template</span>: <span class="hljs-string">`
-  &lt;div class="dropdown"&gt;
-    &lt;button
-      class="btn btn-primary dropdown-toggle"
-      type="button" id="dropdownMenuButton1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"&gt;
-      Dropdown button: {{value}}
-    &lt;/button&gt;
-    &lt;ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" role="menu"&gt;
-      &lt;li v-for="option in options" :key="option"&gt;
-        &lt;a class="dropdown-item" @click="value = option" href="javascript:void(0)"&gt;{{option}}&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-  `</span>,
-  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
-    <span class="hljs-attr">options</span>: [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>],
-    <span class="hljs-attr">value</span>: <span class="hljs-string">'B'</span>
-  })
-});</code></pre>
-<p>Below is a live example in an <code>iframe</code>:</p>
-<iframe src="/examples/vue/bootstrap-dropdown" style="height:200px"></iframe>
+  <p>Using Vue 2 with Axios, you can upload files easily with a few clicks.
+Using the <code>&lt;input&gt;</code> tag and specifying the type to file, the browser will
+allow you to select the file to upload from your computer.</p>
+<p><a href="/tutorials/axios/form-data">Axios can POST <code>FormData</code> instances</a>, which makes it easy to upload files.
+Once the user has selected a file, you can <a href="/tutorials/fundamentals/upload-file">upload the JavaScript blob</a> by
+adding it to a <code>FormData</code> instance. Below is an example.</p>
+<div id = "content"></div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+  const app = new Vue({
+    data: () => ({images: null, result: null}),
+    template: `
+      <div style="border-style:solid">
+        <input type="file" @change="uploadFile" ref="file"/>
+        <button @click="submitFile">Upload!</button>
+        <div>Response Status is: {{Result}}</div>
+      </div>
+    `,
+    methods: {
+      uploadFile() {
+        this.Images = this.$refs.file.files[0];
+      },
+      submitFile() {
+        const formData = new FormData();
+        formData.append('file', this.Images);
+        axios.post('https://httpbin.org/post', formData, {headers: {'Content-Type': 'multipart/form-data'}}).
+          then((res) => { this.result = res.status; });
+      }
+    }
+  });
+  app.$mount("#content");
+</script>
 
-<p>Note that the <code>role=&quot;menu&quot;</code> and <code>href=&quot;javascript:void(0)&quot;</code> properties are <a href="https://stackoverflow.com/questions/15720107/how-to-make-bootstrap-button-dropdown-menu-selectable-by-keyboard">important to enable keyboard shortcuts</a> on the dropdown, like being able to hit the &quot;up&quot; and &quot;down&quot; keys in order to select an option without using the mouse. Learn more about the <a href="/tutorials/fundamentals/void">void operator in JavaScript here</a>.</p>
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">images</span>: <span class="hljs-literal">null</span>}),
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div&gt;
+        &lt;input type="file" @change="uploadFile" ref="file"&gt;
+        &lt;button @click="submitFile"&gt;Upload!&lt;/button&gt;
+      &lt;/div&gt;
+    `</span>,
+    <span class="hljs-attr">methods</span>: {
+      uploadFile() {
+        <span class="hljs-keyword">this</span>.Images = <span class="hljs-keyword">this</span>.$refs.file.files[<span class="hljs-number">0</span>];
+      },
+      submitFile() {
+        <span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
+        formData.append(<span class="hljs-string">'file'</span>, <span class="hljs-keyword">this</span>.Images);
+        <span class="hljs-keyword">const</span> headers = { <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span> };
+        axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, formData, { headers }).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+          res.data.files; <span class="hljs-comment">// binary representation of the file</span>
+          res.status; <span class="hljs-comment">// HTTP status</span>
+        });
+      }
+    }
+  });
+  app.$mount(<span class="hljs-string">"#content"</span>);</code></pre>
 
   <hr>
 <div class="cta">
@@ -125,7 +156,7 @@
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>

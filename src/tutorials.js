@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How To Upload Files With Vue',
+    raw: './tutorials/vue/vue-file-upload.md',
+    url: '/tutorials/vue/file-upload',
+    description: 'Here\'s how you can upload files using Vue and Axios.',
+    tags: ['vue'],
+    date: moment('2021-03-19')
+  },
+  {
     title: 'How to Use Boostrap With Vue to Make a Dropdown',
     raw: './tutorials/vue/vue-dropdown.md',
     url: '/tutorials/vue/dropdown',

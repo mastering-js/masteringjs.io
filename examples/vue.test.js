@@ -7,6 +7,8 @@ const axios = require('axios');
 const puppeteer = require('puppeteer');
 const { renderToString } = require('vue-server-renderer').createRenderer();
 const sinon = require('sinon');
+const FormData = require('form-data');
+const fs = require('fs');
 
 describe('Vue', function() {
   it('ssr', async function() {
@@ -2631,6 +2633,44 @@ describe('Vue', function() {
     await page.setContent(html);
     page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
     // acquit:ignore:end
+  });
+  it('vue-file-upload', async function() {
+    // acquit:ignore:start
+    this.timeout(10000);
+    const browser = await puppeteer.launch({ headless: false });
+    const page = await browser.newPage();
+    const fn = function() {
+    // acquit:ignore:end
+    const app = new Vue({
+      data: () => ({images: null}),
+      template: `
+        <div>
+          <input type="file" @change="uploadFile" ref="file">
+          <button @click="submitFile">Upload!</button>
+        </div>
+      `,
+      methods: {
+        uploadFile() {
+          this.Images = this.$refs.file.files[0];
+        },
+        submitFile() {
+          const formData = new FormData();
+          formData.append('file', this.Images);
+          const headers = { 'Content-Type': 'multipart/form-data' };
+          axios.post('https://httpbin.org/post', formData, { headers }).then((res) => {
+            res.data.files; // binary representation of the file
+            res.status; // HTTP status
+          });
+        }
+      }
+    });
+    app.$mount("#content");
+    // acquit:ignore:start
+  };
+  const html = createVueHTMLScaffolding(fn.toString());
+  await page.setContent(html);
+  page.evaluate(() => document.querySelector('button').dispatchEvent(new Event('click')));
+  // acquit:ignore:end
   });
 });
 
