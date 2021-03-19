@@ -2642,10 +2642,10 @@ describe('Vue', function() {
     const fn = function() {
     // acquit:ignore:end
     const app = new Vue({
-      data: () => ({Images: null}),
+      data: () => ({images: null}),
       template: `
         <div>
-          <input type = "file" @change="uploadFile" ref="file">
+          <input type="file" @change="uploadFile" ref="file">
           <button @click="submitFile">Upload!</button>
         </div>
       `,
@@ -2656,16 +2656,16 @@ describe('Vue', function() {
         submitFile() {
           const formData = new FormData();
           formData.append('file', this.Images);
-          axios.post('https://httpbin.org/post', formData, {headers: {
-            'Content-Type': 'multipart/form-data'}}).then((res) => {
-            res.data.files; // the very long binary string that is the photo
-            res.status; // returns a number
+          const headers = { 'Content-Type': 'multipart/form-data' };
+          axios.post('https://httpbin.org/post', formData, { headers }).then((res) => {
+            res.data.files; // binary representation of the file
+            res.status; // HTTP status
           });
         }
       }
     });
     app.$mount("#content");
-  // acquit:ignore:start
+    // acquit:ignore:start
   };
   const html = createVueHTMLScaffolding(fn.toString());
   await page.setContent(html);
