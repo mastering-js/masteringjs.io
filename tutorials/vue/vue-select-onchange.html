@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Server Side Rendering with Vue and Express - Mastering JS</title>
+    <title>How to Use @change in Vue with select - Mastering JS</title>
 
-    <meta property="og:title" content="Server Side Rendering with Vue and Express" />
+    <meta property="og:title" content="How to Use @change in Vue with select" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to render Vue components on the server side with Express" />
-    <meta name="description" content="Learn how to render Vue components on the server side with Express" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Server Side Rendering with Vue and Express</h1>
+  <h1>How to Use @change in Vue with select</h1>
   <div class="date">
-    May 5, 2019
+    Mar 22, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,28 +72,67 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://ssr.vuejs.org/guide/#installation">Vue has solid support for server-side rendering in Node.js</a>. This means that, given a Vue app,
-you can render the app in an Express endpoint using the <a href="https://www.npmjs.com/package/vue-server-renderer"><code>vue-server-renderer</code> library</a>.</p>
-<p>Below is an example of rendering a Vue app using <a href="https://www.npmjs.com/package/express">Express</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
-<span class="hljs-keyword">const</span> expressApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+  <p>If you want to avoid having to use <code>v-model</code> with your <code>&lt;select&gt;</code> tags,
+you can use Vue&#39;s <code>v-on:change</code> directive, or just the shorthand <code>@change</code>. This functions
+similarly to the <code>v-model</code> directive. In every option tag, you must use the <code>value</code>
+property to store the value that the option contains. From there, <code>@change</code> can
+handle the rest as shown below:</p>
+<div id = "content"></div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+Vue.createApp({
+    data() {
+        return {
+            selected: ''
+        };
+    },
+    methods: {
+        switchSelect(event) {
+            this.selected = event.target.value;
+        }
+    },
+    template: `
+    <div>
+        <p>Your choice is: {{selected}}</p>
+        <select @change="switchSelect($event)">
+        <option value = "">Choose</option>
+        <option value = "A">A</option>
+        <option value = "B">B</option>
+        <option value = "C">C</option>
+        </select>
+    </div>
+    `
+}).mount('#content');
+</script>
 
-expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-comment">// Initialize with data from the request.</span>
-    data: { <span class="hljs-attr">content</span>: req.query.content },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;{{content}}&lt;/div&gt;'</span>
-  });
-  renderToString(app).
-    <span class="hljs-comment">// Sends '&lt;div data-server-rendered="true"&gt;Hello, World&lt;/div&gt;'</span>
-    then(<span class="hljs-function"><span class="hljs-params">html</span> =&gt;</span> res.send(html)).
-    catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);
-</code></pre>
-<p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
-<p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
+<p>Here is the code if you want to mess around with it to practice:</p>
+<pre><code class="language-html">&lt;div id = <span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script&gt;
+Vue.createApp({
+    data() {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">selected</span>: <span class="hljs-string">''</span>
+        };
+    },
+    <span class="hljs-attr">methods</span>: {
+        switchSelect(event) {
+            <span class="hljs-keyword">this</span>.selected = event.target.value;
+        }
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+        &lt;p&gt;Your choice is: {{selected}}&lt;/p&gt;
+        &lt;select @change="switchSelect($event)"&gt;
+        &lt;option value = ""&gt;Choose&lt;/option&gt;
+        &lt;option value = "A"&gt;A&lt;/option&gt;
+        &lt;option value = "B"&gt;B&lt;/option&gt;
+        &lt;option value = "C"&gt;C&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    `</span>
+}).mount(<span class="hljs-string">'#content'</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
 
   <hr>
 <div class="cta">
@@ -119,9 +158,6 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-select-onchange">How to Use @change in Vue with select</a></li>
-  
-
     <li><a href="/tutorials/vue/file-upload">How to Upload Files With Vue</a></li>
   
 
@@ -138,6 +174,9 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
   
 
     <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
+  
+
+    <li><a href="/tutorials/vue/books">Best Books to Learn Vue in 2021</a></li>
   
     </ul>
   

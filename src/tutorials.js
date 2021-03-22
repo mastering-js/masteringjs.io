@@ -4,7 +4,15 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How To Upload Files With Vue',
+    title: 'How to Use @change in Vue with select',
+    raw: './tutorials/vue/vue-select-onchange.md',
+    url: '/tutorials/vue/vue-select-onchange',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-03-22')
+  },
+  {
+    title: 'How to Upload Files With Vue',
     raw: './tutorials/vue/vue-file-upload.md',
     url: '/tutorials/vue/file-upload',
     description: 'Here\'s how you can upload files using Vue and Axios.',
