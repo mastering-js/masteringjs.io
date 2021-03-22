@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How To Upload Files With Vue - Mastering JS</title>
+    <title>Here's How to Use Provide/Inject in Vue.js - Mastering JS</title>
 
-    <meta property="og:title" content="How To Upload Files With Vue" />
+    <meta property="og:title" content="Here's How to Use Provide/Inject in Vue.js" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can upload files using Vue and Axios." />
-    <meta name="description" content="Here's how you can upload files using Vue and Axios." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How To Upload Files With Vue</h1>
+  <h1>Here's How to Use Provide/Inject in Vue.js</h1>
   <div class="date">
-    Mar 19, 2021
+    Mar 22, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,66 +72,55 @@
 	  }
 	})();
 	</script>
-  <p>Using Vue 2 with Axios, you can upload files easily with a few clicks.
-Using the <code>&lt;input&gt;</code> tag and specifying the type to file, the browser will
-allow you to select the file to upload from your computer.</p>
-<p><a href="/tutorials/axios/form-data">Axios can POST <code>FormData</code> instances</a>, which makes it easy to upload files.
-Once the user has selected a file, you can <a href="/tutorials/fundamentals/upload-file">upload the JavaScript blob</a> by
-adding it to a <code>FormData</code> instance. Below is an example.</p>
+  <p>Vue&#39;s provide/inject API is a neat way to send props directly
+to the component you want while avoiding prop drilling.
+What you do is you declare what variables you will send, i.e. provide,
+in the setup property and then in the component that needs them you use the inject property.
+Here is an example below:</p>
 <div id = "content"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
 <script>
-  const app = new Vue({
-    data: () => ({images: null, result: null}),
-    template: `
-      <div style="border-style:solid">
-        <input type="file" @change="uploadFile" ref="file"/>
-        <button @click="submitFile">Upload!</button>
-        <div>Response Status is: {{Result}}</div>
-      </div>
-    `,
-    methods: {
-      uploadFile() {
-        this.Images = this.$refs.file.files[0];
-      },
-      submitFile() {
-        const formData = new FormData();
-        formData.append('file', this.Images);
-        axios.post('https://httpbin.org/post', formData, {headers: {'Content-Type': 'multipart/form-data'}}).
-          then((res) => { this.result = res.status; });
-      }
-    }
-  });
-  app.$mount("#content");
+const app = Vue.createApp({
+  setup: function() {
+      const state = Vue.reactive({message: 'Hi grandma!'});
+      Vue.provide('state', state);
+      return state;
+  },
+  template: `<div><child /></div>`
+});
+app.component('child', {
+    template: `<grandchild />`
+});
+app.component('grandchild', {
+    inject: ['state'],
+    template: `<h1>{{state.message}}</h1>`
+});
+app.mount('#content');
 </script>
 
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">images</span>: <span class="hljs-literal">null</span>}),
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
-      &lt;div&gt;
-        &lt;input type="file" @change="uploadFile" ref="file"&gt;
-        &lt;button @click="submitFile"&gt;Upload!&lt;/button&gt;
-      &lt;/div&gt;
-    `</span>,
-    <span class="hljs-attr">methods</span>: {
-      uploadFile() {
-        <span class="hljs-keyword">this</span>.Images = <span class="hljs-keyword">this</span>.$refs.file.files[<span class="hljs-number">0</span>];
-      },
-      submitFile() {
-        <span class="hljs-keyword">const</span> formData = <span class="hljs-keyword">new</span> FormData();
-        formData.append(<span class="hljs-string">'file'</span>, <span class="hljs-keyword">this</span>.Images);
-        <span class="hljs-keyword">const</span> headers = { <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span> };
-        axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, formData, { headers }).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
-          res.data.files; <span class="hljs-comment">// binary representation of the file</span>
-          res.status; <span class="hljs-comment">// HTTP status</span>
-        });
-      }
-    }
-  });
-  app.$mount(<span class="hljs-string">"#content"</span>);
-</code></pre>
+<pre><code class="language-html">&lt;div id = <span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script&gt;
+<span class="hljs-keyword">const</span> app = Vue.createApp({
+  <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">const</span> state = Vue.reactive({<span class="hljs-attr">message</span>: <span class="hljs-string">'Hi grandma!'</span>});
+      Vue.provide(<span class="hljs-string">'state'</span>, state);
+      <span class="hljs-keyword">return</span> state;
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;&lt;child /&gt;&lt;/div&gt;`</span>
+});
+app.component(<span class="hljs-string">'child'</span>, {
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;grandchild /&gt;`</span>
+});
+app.component(<span class="hljs-string">'grandchild'</span>, {
+    <span class="hljs-attr">inject</span>: [<span class="hljs-string">'state'</span>],
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;h1&gt;{{state.message}}&lt;/h1&gt;`</span>
+});
+app.mount(<span class="hljs-string">'#content'</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<p>As you can see, we avoided having to put the state property
+in the child component and were able to send it directly to
+the grandchild component.</p>
 
   <hr>
 <div class="cta">
@@ -157,7 +146,7 @@ adding it to a <code>FormData</code> instance. Below is an example.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/vue-inject">Here's How to Use Provide/Inject in Vue.js</a></li>
+    <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
   
 
     <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>

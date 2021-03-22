@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Here\'s How to Use Provide/Inject in Vue.js',
+    raw: './tutorials/vue/vue-inject.md',
+    url: '/tutorials/vue/vue-inject',
+    description: 'Placeholder Description',
+    tags:['vue'],
+    date: moment('2021-03-22')
+  },
+  {
     title: 'How To Upload Files With Vue',
     raw: './tutorials/vue/vue-file-upload.md',
     url: '/tutorials/vue/file-upload',
