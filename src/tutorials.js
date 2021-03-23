@@ -4,7 +4,7 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'Here\'s How to Use Provide/Inject in Vue.js',
+    title: 'Using Provide and Inject in Vue.js',
     raw: './tutorials/vue/vue-inject.md',
     url: '/tutorials/vue/inject',
     description: 'Placeholder Description',

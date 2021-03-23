@@ -1,7 +1,7 @@
 Vue's provide/inject API is a neat way to send props directly
 to the component you want while avoiding [prop drilling](https://kentcdodds.com/blog/prop-drilling).
-What you do is you declare what variables you will send, i.e. provide,
-then in the component that needs them you use the inject property.
+To use provide and inject, you declare what variables you will send (provide) in one component,
+then each component underneath it can define what variables it will receive (inject).
 Below is a live example with code:
 
 <div id = "content"></div>
@@ -9,43 +9,36 @@ Below is a live example with code:
 <script>
 const app = Vue.createApp({
   provide() {
-      return {
-          state: 'Hi grandma'
-      }
+    return { state: 'Hi grandma' };
   },
-  template: `<div><child /></div>`
+  template: "<div><child /></div>",
 });
-app.component('child', {
-    template: `<grandchild />`
+app.component("child", {
+  template: "<grandchild />",
 });
-app.component('grandchild', {
-    inject: ['state'],
-    template: `<h2>{{state}}</h2>`
+// Displays "Hi grandma", despite the fact that `state` isn't a prop. 
+app.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state}}</h2>",
 });
 app.mount('#content');
 </script>
 
-```html
-<div id="content"></div>
-<script src="https://unpkg.com/vue@next"></script>
-<script>
-  const app = Vue.createApp({
-    provide() {
-      return {
-          state: 'Hi grandma'
-      }
-  },,
-    template: `<div><child /></div>`,
-  });
-  app.component("child", {
-    template: `<grandchild />`,
-  });
-  app.component("grandchild", {
-    inject: ["state"],
-    template: `<h2>{{state}}</h2>`,
-  });
-  app.mount("#content");
-</script>
+```javascript
+const app = Vue.createApp({
+  provide() {
+    return { state: 'Hi grandma' };
+  },
+  template: "<div><child /></div>",
+});
+app.component("child", {
+  template: "<grandchild />",
+});
+// Displays "Hi grandma", despite the fact that `state` isn't a prop. 
+app.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state}}</h2>",
+});
 ```
 
 # Reactivity
@@ -61,21 +54,25 @@ Below is a live example with code:
 <script>
 const example = Vue.createApp({
   setup: function() {
-      const state = Vue.reactive({message: 'Row'});
-      Vue.provide('state', state);
-      return state;
+    const state = Vue.reactive({ message: "Row" });
+    Vue.provide("state", state);
+    return state;
   },
-  template: `<div>
-  <child />
-  <button v-on:click="message += ' row'">Add</button>
-  </div>`
+  template: `
+  <div>
+    <child />
+    <button v-on:click="message += ' row'">Add</button>
+  </div>
+  `
 });
-example.component('child', {
-    template: `<grandchild />`
+example.component("child", {
+  template: "<grandchild />"
 });
-example.component('grandchild', {
-    inject: ['state'],
-    template: `<h2>{{state.message}} your boat</h2>`
+// Will add an extra "row" to "Row your boat" on every button
+// click, even though `state` isn't a prop.
+example.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state.message}} your boat</h2>"
 });
 example.mount('#example');
 </script>
@@ -85,24 +82,25 @@ example.mount('#example');
 <script src="https://unpkg.com/vue@next"></script>
 <script>
   const example = Vue.createApp({
-    setup: function () {
+    setup: function() {
       const state = Vue.reactive({ message: "Row" });
       Vue.provide("state", state);
       return state;
     },
-    template: `<div>
-  <child />
-  <button v-on:click="message += ' row'">Add</button>
-  </div>`,
+    template: `
+    <div>
+      <child />
+      <button v-on:click="message += ' row'">Add</button>
+    </div>
+    `
   });
   example.component("child", {
-    template: `<grandchild />`,
+    template: "<grandchild />"
   });
   example.component("grandchild", {
     inject: ["state"],
-    template: `<h2>{{state.message}} your boat</h2>`,
+    template: "<h2>{{state.message}} your boat</h2>"
   });
-  example.mount("#example");
 </script>
 ```
 

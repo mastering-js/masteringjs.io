@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Here's How to Use Provide/Inject in Vue.js - Mastering JS</title>
+    <title>Using Provide and Inject in Vue.js - Mastering JS</title>
 
-    <meta property="og:title" content="Here's How to Use Provide/Inject in Vue.js" />
+    <meta property="og:title" content="Using Provide and Inject in Vue.js" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="Placeholder Description" />
@@ -60,7 +60,7 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Here's How to Use Provide/Inject in Vue.js</h1>
+  <h1>Using Provide and Inject in Vue.js</h1>
   <div class="date">
     Mar 22, 2021
   </div>
@@ -74,50 +74,43 @@
 	</script>
   <p>Vue&#39;s provide/inject API is a neat way to send props directly
 to the component you want while avoiding <a href="https://kentcdodds.com/blog/prop-drilling">prop drilling</a>.
-What you do is you declare what variables you will send, i.e. provide,
-then in the component that needs them you use the inject property.
+To use provide and inject, you declare what variables you will send (provide) in one component,
+then each component underneath it can define what variables it will receive (inject).
 Below is a live example with code:</p>
 <div id = "content"></div>
 <script src="https://unpkg.com/vue@next"></script>
 <script>
 const app = Vue.createApp({
   provide() {
-      return {
-          state: 'Hi grandma'
-      }
+    return { state: 'Hi grandma' };
   },
-  template: `<div><child /></div>`
+  template: "<div><child /></div>",
 });
-app.component('child', {
-    template: `<grandchild />`
+app.component("child", {
+  template: "<grandchild />",
 });
-app.component('grandchild', {
-    inject: ['state'],
-    template: `<h2>{{state}}</h2>`
+// Displays "Hi grandma", despite the fact that `state` isn't a prop. 
+app.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state}}</h2>",
 });
 app.mount('#content');
 </script>
 
-<pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = Vue.createApp({
-    provide() {
-      <span class="hljs-keyword">return</span> {
-          <span class="hljs-attr">state</span>: <span class="hljs-string">'Hi grandma'</span>
-      }
-  },,
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;&lt;child /&gt;&lt;/div&gt;`</span>,
-  });
-  app.component(<span class="hljs-string">"child"</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;grandchild /&gt;`</span>,
-  });
-  app.component(<span class="hljs-string">"grandchild"</span>, {
-    <span class="hljs-attr">inject</span>: [<span class="hljs-string">"state"</span>],
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;h2&gt;{{state}}&lt;/h2&gt;`</span>,
-  });
-  app.mount(<span class="hljs-string">"#content"</span>);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({
+  provide() {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">state</span>: <span class="hljs-string">'Hi grandma'</span> };
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;div&gt;&lt;child /&gt;&lt;/div&gt;"</span>,
+});
+app.component(<span class="hljs-string">"child"</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;grandchild /&gt;"</span>,
+});
+<span class="hljs-comment">// Displays "Hi grandma", despite the fact that `state` isn't a prop. </span>
+app.component(<span class="hljs-string">"grandchild"</span>, {
+  <span class="hljs-attr">inject</span>: [<span class="hljs-string">"state"</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;h2&gt;{{state}}&lt;/h2&gt;"</span>,
+});</code></pre>
 <h1 id="reactivity">Reactivity</h1>
 <p>To make your injected property reactive, wrap it
 around the <code>reactive</code> property. In the <code>setup</code> function,
@@ -129,21 +122,25 @@ Below is a live example with code:</p>
 <script>
 const example = Vue.createApp({
   setup: function() {
-      const state = Vue.reactive({message: 'Row'});
-      Vue.provide('state', state);
-      return state;
+    const state = Vue.reactive({ message: "Row" });
+    Vue.provide("state", state);
+    return state;
   },
-  template: `<div>
-  <child />
-  <button v-on:click="message += ' row'">Add</button>
-  </div>`
+  template: `
+  <div>
+    <child />
+    <button v-on:click="message += ' row'">Add</button>
+  </div>
+  `
 });
-example.component('child', {
-    template: `<grandchild />`
+example.component("child", {
+  template: "<grandchild />"
 });
-example.component('grandchild', {
-    inject: ['state'],
-    template: `<h2>{{state.message}} your boat</h2>`
+// Will add an extra "row" to "Row your boat" on every button
+// click, even though `state` isn't a prop.
+example.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state.message}} your boat</h2>"
 });
 example.mount('#example');
 </script>
@@ -152,24 +149,25 @@ example.mount('#example');
 &lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script&gt;
   <span class="hljs-keyword">const</span> example = Vue.createApp({
-    <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">const</span> state = Vue.reactive({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Row"</span> });
       Vue.provide(<span class="hljs-string">"state"</span>, state);
       <span class="hljs-keyword">return</span> state;
     },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;
-  &lt;child /&gt;
-  &lt;button v-on:click="message += ' row'"&gt;Add&lt;/button&gt;
-  &lt;/div&gt;`</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;child /&gt;
+      &lt;button v-on:click="message += ' row'"&gt;Add&lt;/button&gt;
+    &lt;/div&gt;
+    `</span>
   });
   example.component(<span class="hljs-string">"child"</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;grandchild /&gt;`</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;grandchild /&gt;"</span>
   });
   example.component(<span class="hljs-string">"grandchild"</span>, {
     <span class="hljs-attr">inject</span>: [<span class="hljs-string">"state"</span>],
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;h2&gt;{{state.message}} your boat&lt;/h2&gt;`</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;h2&gt;{{state.message}} your boat&lt;/h2&gt;"</span>
   });
-  example.mount(<span class="hljs-string">"#example"</span>);
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
 <p>With <code>inject</code>, you don&#39;t have to explicitly pass a <code>state</code> prop
 to the child component.</p>

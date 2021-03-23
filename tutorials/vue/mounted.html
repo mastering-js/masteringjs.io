@@ -100,8 +100,7 @@
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}
-</code></pre>
+}</code></pre>
 <h2 id="with-asyncawait">With Async/Await</h2>
 <p>Notice that the above example uses an async function for the
 <code>mounted</code> hook. Vue does <strong>not</strong> block rendering until the mounted
@@ -147,7 +146,6 @@ does <strong>not</strong> wait for async <code>created()</code> hooks to finish.
   `</span>
 });
 
-
 <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 data; <span class="hljs-comment">// Renders "answer is N/A"</span></code></pre>
 <p>On the other hand, it is easy to manually run the <code>mounted()</code> hook
@@ -190,7 +188,7 @@ sacrificing any convenience.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/inject">Here's How to Use Provide/Inject in Vue.js</a></li>
+    <li><a href="/tutorials/vue/inject">Using Provide and Inject in Vue.js</a></li>
   
 
     <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
