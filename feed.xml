@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Mon, 22 Mar 2021 15:53:57 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 23 Mar 2021 15:27:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,8 +14,8 @@
         </image>
         <item>
             <title><![CDATA[Here's How to Use Provide/Inject in Vue.js]]></title>
-            <link>https://masteringjs.io/tutorials/vue/vue-inject</link>
-            <guid>https://masteringjs.io/tutorials/vue/vue-inject</guid>
+            <link>https://masteringjs.io/tutorials/vue/inject</link>
+            <guid>https://masteringjs.io/tutorials/vue/inject</guid>
             <pubDate>Mon, 22 Mar 2021 04:00:00 GMT</pubDate>
         </item>
         <item>
