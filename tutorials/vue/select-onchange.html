@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use the Select Tag with Vue - Mastering JS</title>
+    <title>How to Use @change in Vue with select - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use the Select Tag with Vue" />
+    <meta property="og:title" content="How to Use @change in Vue with select" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
-    <meta name="description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use the Select Tag with Vue</h1>
+  <h1>How to Use @change in Vue with select</h1>
   <div class="date">
-    Mar 9, 2021
+    Mar 22, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,99 +72,67 @@
 	  }
 	})();
 	</script>
-  <p>In HTML, the <code>&lt;select&gt;</code> tag lets you create a dropdown that
-lets the user select one of several options. The easiest way
-to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
-<a href="/tutorials/vue/v-model"><code>v-model</code></a>. Below is an example:</p>
+  <p>If you want to avoid having to use <code>v-model</code> with your <code>&lt;select&gt;</code> tags,
+you can use Vue&#39;s <code>v-on:change</code> directive, or just the shorthand <code>@change</code>.
+In every option tag, you must use the <code>value</code> property to store the value
+that the option contains. From there, <code>@change</code> can
+handle the rest. Below is a live example:</p>
+<div id = "content"></div>
 <script src="https://unpkg.com/vue@next"></script>
-<div style = "outline-style: solid" id="example">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
 <script>
 Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
-  }
-}).mount('#example');
-</script>
-</script>
-
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="example"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option&gt;A&lt;/option&gt;
-    &lt;option&gt;B&lt;/option&gt;
-    &lt;option&gt;C&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
-&lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
-  }
-}).mount('#example');
-&lt;/script&gt;</code></pre>
-<p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
-options, it will cause the browser to render the <code>&lt;select&gt;</code> tag in a &quot;unselected&quot; state. Any browser running on iOS won&#39;t fire a change event for a <code>&lt;select&gt;</code> in an unselected tag, which means the user won&#39;t be able to select the first option. Therefore, we recommend using a <code>disabled</code> option with an empty value as the first element.</p>
-<h1 id="with-v-for">With <code>v-for</code></h1>
-<p>With <code>v-for</code>, you can create an option for every value in an array.
-Below is an example:</p>
-<div style = "outline-style: solid" id="demo">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option v-for="option in options" :value="option">{{option}}</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
-<script>
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
-  }
-}).mount('#demo');
+    data() {
+        return {
+            selected: ''
+        };
+    },
+    methods: {
+        switchSelect(event) {
+            this.selected = event.target.value;
+        }
+    },
+    template: `
+    <div>
+        <p>Your choice is: {{selected}}</p>
+        <select @change="switchSelect($event)">
+          <option value = "">Choose</option>
+          <option value = "A">A</option>
+          <option value = "B">B</option>
+          <option value = "C">C</option>
+        </select>
+    </div>
+    `
+}).mount('#content');
 </script>
 
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="demo"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
+<p>Here is the code if you want to mess around with it to practice:</p>
+<pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
-  }
-}).mount('#demo');
-&lt;/script&gt;</code></pre>
+  Vue.createApp({
+    data() {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">selected</span>: <span class="hljs-string">""</span>,
+      };
+    },
+    <span class="hljs-attr">methods</span>: {
+      switchSelect(event) {
+        <span class="hljs-keyword">this</span>.selected = event.target.value;
+      },
+    },
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+        &lt;p&gt;Your choice is: {{selected}}&lt;/p&gt;
+        &lt;select @change="switchSelect($event)"&gt;
+        &lt;option value = ""&gt;Choose&lt;/option&gt;
+        &lt;option value = "A"&gt;A&lt;/option&gt;
+        &lt;option value = "B"&gt;B&lt;/option&gt;
+        &lt;option value = "C"&gt;C&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    `</span>,
+  }).mount(<span class="hljs-string">"#content"</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
 
   <hr>
 <div class="cta">
@@ -190,9 +158,6 @@ Vue.createApp({
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select</a></li>
-  
-
     <li><a href="/tutorials/vue/file-upload">How to Upload Files With Vue</a></li>
   
 
@@ -200,6 +165,9 @@ Vue.createApp({
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>

@@ -6,7 +6,7 @@ module.exports = Object.freeze([
   {
     title: 'How to Use @change in Vue with select',
     raw: './tutorials/vue/vue-select-onchange.md',
-    url: '/tutorials/vue/vue-select-onchange',
+    url: '/tutorials/vue/select-onchange',
     description: 'Placeholder Description',
     tags: ['vue'],
     date: moment('2021-03-22')
