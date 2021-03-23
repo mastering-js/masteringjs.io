@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'Using Provide and Inject in Vue.js',
     raw: './tutorials/vue/vue-inject.md',
     url: '/tutorials/vue/inject',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use Vue\'s `provide` and `inject` to avoid prop drilling.',
     tags:['vue'],
     date: moment('2021-03-22')
   },
