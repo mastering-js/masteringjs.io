@@ -145,30 +145,26 @@ example.component("grandchild", {
 example.mount('#example');
 </script>
 
-<pre><code class="language-html">&lt;div id=<span class="hljs-string">"example"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> example = Vue.createApp({
-    <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">const</span> state = Vue.reactive({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Row"</span> });
-      Vue.provide(<span class="hljs-string">"state"</span>, state);
-      <span class="hljs-keyword">return</span> state;
-    },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
-    &lt;div&gt;
-      &lt;child /&gt;
-      &lt;button v-on:click="message += ' row'"&gt;Add&lt;/button&gt;
-    &lt;/div&gt;
-    `</span>
-  });
-  example.component(<span class="hljs-string">"child"</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;grandchild /&gt;"</span>
-  });
-  example.component(<span class="hljs-string">"grandchild"</span>, {
-    <span class="hljs-attr">inject</span>: [<span class="hljs-string">"state"</span>],
-    <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;h2&gt;{{state.message}} your boat&lt;/h2&gt;"</span>
-  });
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> example = Vue.createApp({
+  <span class="hljs-attr">setup</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> state = Vue.reactive({ <span class="hljs-attr">message</span>: <span class="hljs-string">"Row"</span> });
+    Vue.provide(<span class="hljs-string">"state"</span>, state);
+    <span class="hljs-keyword">return</span> state;
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+  &lt;div&gt;
+    &lt;child /&gt;
+    &lt;button v-on:click="message += ' row'"&gt;Add&lt;/button&gt;
+  &lt;/div&gt;
+  `</span>
+});
+example.component(<span class="hljs-string">"child"</span>, {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;grandchild /&gt;"</span>
+});
+example.component(<span class="hljs-string">"grandchild"</span>, {
+  <span class="hljs-attr">inject</span>: [<span class="hljs-string">"state"</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">"&lt;h2&gt;{{state.message}} your boat&lt;/h2&gt;"</span>
+});</code></pre>
 <p>With <code>inject</code>, you don&#39;t have to explicitly pass a <code>state</code> prop
 to the child component.</p>
 

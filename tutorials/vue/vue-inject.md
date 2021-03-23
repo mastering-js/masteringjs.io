@@ -77,31 +77,27 @@ example.component("grandchild", {
 example.mount('#example');
 </script>
 
-```html
-<div id="example"></div>
-<script src="https://unpkg.com/vue@next"></script>
-<script>
-  const example = Vue.createApp({
-    setup: function() {
-      const state = Vue.reactive({ message: "Row" });
-      Vue.provide("state", state);
-      return state;
-    },
-    template: `
-    <div>
-      <child />
-      <button v-on:click="message += ' row'">Add</button>
-    </div>
-    `
-  });
-  example.component("child", {
-    template: "<grandchild />"
-  });
-  example.component("grandchild", {
-    inject: ["state"],
-    template: "<h2>{{state.message}} your boat</h2>"
-  });
-</script>
+```javascript
+const example = Vue.createApp({
+  setup: function() {
+    const state = Vue.reactive({ message: "Row" });
+    Vue.provide("state", state);
+    return state;
+  },
+  template: `
+  <div>
+    <child />
+    <button v-on:click="message += ' row'">Add</button>
+  </div>
+  `
+});
+example.component("child", {
+  template: "<grandchild />"
+});
+example.component("grandchild", {
+  inject: ["state"],
+  template: "<h2>{{state.message}} your boat</h2>"
+});
 ```
 
 With `inject`, you don't have to explicitly pass a `state` prop
