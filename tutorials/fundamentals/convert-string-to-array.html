@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Server Side Rendering with Vue and Express - Mastering JS</title>
+    <title>Convert a String to an Array in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Server Side Rendering with Vue and Express" />
+    <meta property="og:title" content="Convert a String to an Array in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to render Vue components on the server side with Express" />
-    <meta name="description" content="Learn how to render Vue components on the server side with Express" />
+    <meta property="og:description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
+    <meta name="description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Server Side Rendering with Vue and Express</h1>
+  <h1>Convert a String to an Array in JavaScript</h1>
   <div class="date">
-    May 5, 2019
+    Mar 31, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,27 +72,20 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://ssr.vuejs.org/guide/#installation">Vue has solid support for server-side rendering in Node.js</a>. This means that, given a Vue app,
-you can render the app in an Express endpoint using the <a href="https://www.npmjs.com/package/vue-server-renderer"><code>vue-server-renderer</code> library</a>.</p>
-<p>Below is an example of rendering a Vue app using <a href="https://www.npmjs.com/package/express">Express</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
-<span class="hljs-keyword">const</span> expressApp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
-
-expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-comment">// Initialize with data from the request.</span>
-    data: { <span class="hljs-attr">content</span>: req.query.content },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;div&gt;{{content}}&lt;/div&gt;'</span>
-  });
-  renderToString(app).
-    <span class="hljs-comment">// Sends '&lt;div data-server-rendered="true"&gt;Hello, World&lt;/div&gt;'</span>
-    then(<span class="hljs-function"><span class="hljs-params">html</span> =&gt;</span> res.send(html)).
-    catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
-});
-
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);</code></pre>
-<p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
-<p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
+  <p>JavaScript strings have a built-in <a href="https://www.w3schools.com/jsref/jsref_split.asp"><code>split()</code> method</a> that split a string by instances of a given separator. For example, here&#39;s how you can split
+a string by dashes:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'kebab-case-string'</span>;
+str.split(<span class="hljs-string">'-'</span>); <span class="hljs-comment">// ['kebab-case-string']</span></code></pre>
+<p>Or you can split a string by commas:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'0,1,2'</span>;
+str.split(<span class="hljs-string">','</span>); <span class="hljs-comment">// ['0', '1', '2']</span></code></pre>
+<h2 id="converting-to-a-character-array">Converting to a Character Array</h2>
+<p>There are <a href="https://jscurious.com/various-ways-to-convert-string-to-array-in-javascript/">numerous ways to convert a string to an array of characters</a>. With an empty string as the separator, the <code>split()</code> function will return an array of characters:</p>
+<pre><code class="language-javascript"><span class="hljs-string">'Hello'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o']</span></code></pre>
+<p>However, this approach has a problem because of how <code>split()</code> handles <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> characters. For example, <a href="https://unicode.org/emoji/charts/full-emoji-list.html">emojis</a> end up with incorrect results:</p>
+<pre><code class="language-javascript"><span class="hljs-string">'Hello😀'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o', '�', '�']</span></code></pre>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"><code>Array.from()</code> function</a> handles UTF-16 characters. You should use <code>Array.from()</code> if you&#39;re looking to split a string into an array of characters and expect UTF-16 characters.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Array</span>.from(<span class="hljs-string">'Hello😀'</span>); <span class="hljs-comment">// [ 'H', 'e', 'l', 'l', 'o', '😀' ]</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -118,9 +111,6 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/vue/inject">Using Provide and Inject in Vue.js</a></li>
   
 
@@ -137,6 +127,9 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
+  
+
+    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
   
     </ul>
   

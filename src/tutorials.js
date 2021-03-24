@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Convert a String to an Array in JavaScript',
+    raw: './tutorials/fundamentals/convert-string-to-array.md',
+    url: '/tutorials/fundamentals/convert-string-to-array',
+    description: 'Here\'s how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters.',
+    tags:['vue'],
+    date: moment('2021-03-31')
+  },
+  {
     title: 'Using Provide and Inject in Vue.js',
     raw: './tutorials/vue/vue-inject.md',
     url: '/tutorials/vue/inject',
