@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Compare Objects in JavaScript',
+    raw: './tutorials/fundamentals/compare-objects.md',
+    url: '/tutorials/fundamentals/compare-objects',
+    description: 'There are several ways to compare objects in JavaScript. Here\'s 3 different ways to compare objects in JavaScript and the tradeoffs between them.',
+    tags:['fundamentals'],
+    date: moment('2021-03-23')
+  },
+  {
     title: 'Using Provide and Inject in Vue.js',
     raw: './tutorials/vue/vue-inject.md',
     url: '/tutorials/vue/inject',

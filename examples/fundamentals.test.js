@@ -4501,6 +4501,40 @@ describe('Fundamentals', function() {
     x == null && typeof x == 'object'; // false
     x === undefined && typeof x == 'undefined'; // true
   });
+
+  describe('compare objects', function() {
+    it('shallow equal', function() {
+      const o1 = { question: null, answer: 42 };
+      const o2 = { question: null, answer: 42 };
+
+      objectsEqual(o1, o2); // true
+      objectsEqual(o1, { answer: 43 }); // false
+      // acquit:ignore:start
+      assert.ok(objectsEqual(o1, o2));
+      assert.ok(!objectsEqual(o1, { answer: 43 }));
+      // acquit:ignore:end
+
+      function objectsEqual(o1, o2) {
+        const entries1 = Object.entries(o1);
+        const entries2 = Object.entries(o2);
+        if (entries1.length !== entries2.length) {
+          return false;
+        }
+        for (let i = 0; i < entries1.length; ++i) {
+          // Keys
+          if (entries1[i][0] !== entries2[i][0]) {
+            return false;
+          }
+          // Values
+          if (entries1[i][1] !== entries2[i][1]) {
+            return false;
+          }
+        }
+        
+        return true;
+      }
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
