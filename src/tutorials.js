@@ -4,6 +4,15 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use @change in Vue with select Tags',
+    raw: './tutorials/vue/vue-select-onchange.md',
+    url: '/tutorials/vue/select-onchange',
+    description: 'Need to run a function when the user changes the value of a `select` tag in Vue? Here\'s what you need to know.',
+    tags: ['vue'],
+    date: moment('2021-03-25')
+  },
+  {
+    title: 'How to Upload Files With Vue',
     title: 'How to Compare Objects in JavaScript',
     raw: './tutorials/fundamentals/compare-objects.md',
     url: '/tutorials/fundamentals/compare-objects',

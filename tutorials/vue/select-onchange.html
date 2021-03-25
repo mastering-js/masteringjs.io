@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use Boostrap With Vue to Make a Dropdown - Mastering JS</title>
+    <title>How to Use @change in Vue with select Tags - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use Boostrap With Vue to Make a Dropdown" />
+    <meta property="og:title" content="How to Use @change in Vue with select Tags" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use Vue with Bootstrap dropdowns, no outside modules required." />
-    <meta name="description" content="Here's how you can use Vue with Bootstrap dropdowns, no outside modules required." />
+    <meta property="og:description" content="Need to run a function when the user changes the value of a `select` tag in Vue? Here's what you need to know." />
+    <meta name="description" content="Need to run a function when the user changes the value of a `select` tag in Vue? Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use Boostrap With Vue to Make a Dropdown</h1>
+  <h1>How to Use @change in Vue with select Tags</h1>
   <div class="date">
-    Mar 18, 2021
+    Mar 25, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,34 +72,56 @@
 	  }
 	})();
 	</script>
-  <p>Vue mostly works nicely with <a href="https://getbootstrap.com/docs/4.0/components/dropdowns/">Bootstrap&#39;s dropdowns</a> using similar syntax to the <a href="/tutorials/vue/select"><code>&lt;select&gt;</code> tag</a> in HTML.</p>
-<p>Below is an example of using a Bootstrap dropdown to choose between &#39;A&#39;, &#39;B&#39;, and &#39;C&#39;. Note that Bootstrap dropdowns do <strong>not</strong> work with <a href="/tutorials/vue/v-model">Vue&#39;s <code>v-model</code> directive</a>, you need to explicitly <a href="/tutorials/vue/click">register a <code>@click</code> event handler</a> as shown below.</p>
-<pre><code class="language-javascript">Vue.createApp({
-  <span class="hljs-attr">template</span>: <span class="hljs-string">`
-  &lt;div class="dropdown"&gt;
-    &lt;button
-      class="btn btn-primary dropdown-toggle"
-      type="button" id="dropdownMenuButton1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"&gt;
-      Dropdown button: {{value}}
-    &lt;/button&gt;
-    &lt;ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" role="menu"&gt;
-      &lt;li v-for="option in options" :key="option"&gt;
-        &lt;a class="dropdown-item" @click="value = option" href="javascript:void(0)"&gt;{{option}}&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-  `</span>,
-  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
-    <span class="hljs-attr">options</span>: [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>],
-    <span class="hljs-attr">value</span>: <span class="hljs-string">'B'</span>
-  })
-});</code></pre>
-<p>Below is a live example in an <code>iframe</code>:</p>
-<iframe src="/examples/vue/bootstrap-dropdown" style="height:200px"></iframe>
+  <p>If you want to avoid having to use <code>v-model</code> with your <code>&lt;select&gt;</code> tags,
+you can use Vue&#39;s <code>v-on:change</code> directive, or just the shorthand <code>@change</code>.</p>
+<p>In every <code>option</code> tag, you must set the <code>value</code> property to define the value of each option.
+Vue event handlers have a special <code>$event</code> property that describes the event, and <code>$event.target.value</code>
+contains the value of the newly selected option.
+From there, <code>@change</code> can handle the rest. Below is a live example:</p>
+<div id = "content"></div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+Vue.createApp({
+  data: () => ({ selected: '' }),
+  methods: {
+    switchSelect(event) {
+      this.selected = event.target.value;
+   }
+  },
+  template: `
+    <div>
+        <p>Your choice is: {{selected}}</p>
+        <select @change="switchSelect($event)">
+          <option value = "">Choose</option>
+          <option value = "A">A</option>
+          <option value = "B">B</option>
+          <option value = "C">C</option>
+        </select>
+    </div>
+  `
+}).mount('#content');
+</script>
 
-<p>Note that the <code>role=&quot;menu&quot;</code> and <code>href=&quot;javascript:void(0)&quot;</code> properties are <a href="https://stackoverflow.com/questions/15720107/how-to-make-bootstrap-button-dropdown-menu-selectable-by-keyboard">important to enable keyboard shortcuts</a> on the dropdown, like being able to hit the &quot;up&quot; and &quot;down&quot; keys in order to select an option without using the mouse. Learn more about the <a href="/tutorials/fundamentals/void">void operator in JavaScript here</a>.</p>
+<p>Below is the code:</p>
+<pre><code class="language-javascript">Vue.createApp({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">selected</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-attr">methods</span>: {
+    switchSelect(event) {
+      <span class="hljs-keyword">this</span>.selected = event.target.value;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div&gt;
+      &lt;p&gt;Your choice is: {{selected}}&lt;/p&gt;
+      &lt;select @change="switchSelect($event)"&gt;
+        &lt;option value=""&gt;Choose&lt;/option&gt;
+        &lt;option value="A"&gt;A&lt;/option&gt;
+        &lt;option value="B"&gt;B&lt;/option&gt;
+        &lt;option value="C"&gt;C&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+  `</span>
+});</code></pre>
 
   <hr>
 <div class="cta">
@@ -125,13 +147,13 @@
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
-  
-
     <li><a href="/tutorials/vue/inject">Using Provide and Inject in Vue.js</a></li>
   
 
     <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
