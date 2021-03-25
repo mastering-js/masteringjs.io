@@ -9,10 +9,27 @@ module.exports = Object.freeze([
     url: '/tutorials/vue/select-onchange',
     description: 'Placeholder Description',
     tags: ['vue'],
-    date: moment('2021-03-22')
+    date: moment('2021-03-25')
   },
   {
     title: 'How to Upload Files With Vue',
+    title: 'How to Compare Objects in JavaScript',
+    raw: './tutorials/fundamentals/compare-objects.md',
+    url: '/tutorials/fundamentals/compare-objects',
+    description: 'There are several ways to compare objects in JavaScript. Here\'s 3 different ways to compare objects in JavaScript and the tradeoffs between them.',
+    tags:['fundamentals'],
+    date: moment('2021-03-23')
+  },
+  {
+    title: 'Using Provide and Inject in Vue.js',
+    raw: './tutorials/vue/vue-inject.md',
+    url: '/tutorials/vue/inject',
+    description: 'Here\'s how you can use Vue\'s `provide` and `inject` to avoid prop drilling.',
+    tags:['vue'],
+    date: moment('2021-03-22')
+  },
+  {
+    title: 'How To Upload Files With Vue',
     raw: './tutorials/vue/vue-file-upload.md',
     url: '/tutorials/vue/file-upload',
     description: 'Here\'s how you can upload files using Vue and Axios.',

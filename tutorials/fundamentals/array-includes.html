@@ -77,8 +77,7 @@
 
 arr.includes(<span class="hljs-string">'b'</span>); <span class="hljs-comment">// true</span>
 arr.includes(<span class="hljs-string">'z'</span>); <span class="hljs-comment">// false</span>
-arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span></code></pre>
 <h2 id="equality-comparison">Equality Comparison</h2>
 <p>The <code>includes()</code> method uses the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality">&quot;SameValueZero&quot; algorithm</a> for determining if two values are equal. For almost all
 cases, &quot;SameValueZero&quot; is equivalent to <a href="/tutorials/fundamentals/equals">strict equality using <code>===</code></a>. In particular,
@@ -86,8 +85,7 @@ cases, &quot;SameValueZero&quot; is equivalent to <a href="/tutorials/fundamenta
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'1'</span>, <span class="hljs-string">'2'</span>, <span class="hljs-string">'3'</span>];
 
 arr.includes(<span class="hljs-string">'1'</span>); <span class="hljs-comment">// true</span>
-arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>The <code>includes()</code> only treats two objects as equal if they are the same reference:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> };
 <span class="hljs-keyword">const</span> obj2 = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> };
@@ -95,8 +93,7 @@ arr.includes(<span class="hljs-number">1</span>); <span class="hljs-comment">// 
 <span class="hljs-keyword">const</span> arr = [obj1];
 
 arr.includes(obj1); <span class="hljs-comment">// true</span>
-arr.includes(obj2); <span class="hljs-comment">// false</span>
-</code></pre>
+arr.includes(obj2); <span class="hljs-comment">// false</span></code></pre>
 <p>The only difference is how SameValueZero handles <a href="/tutorials/fundamentals/nan"><code>NaN</code></a>. In JavaScript, <code>NaN !== NaN</code>. However, <code>includes()</code> can correctly find <code>NaN</code> and <code>Number.NaN</code> in an
 array.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-literal">NaN</span>];
@@ -104,8 +101,7 @@ array.</p>
 arr.includes(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
 arr.includes(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">// true</span>
 
-arr[<span class="hljs-number">0</span>] === <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+arr[<span class="hljs-number">0</span>] === <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="environment-support">Environment Support</h2>
 <p>The <code>includes()</code> method was introduced in <a href="https://2ality.com/2016/02/array-prototype-includes.html">ES2016</a>, which makes
 it a relatively new feature. In particular, no version Internet Explorer supports <code>includes()</code>. If you expect your
@@ -118,6 +114,9 @@ better browser support and is <a href="https://developer.mozilla.org/en-US/docs/
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
 
@@ -134,9 +133,6 @@ better browser support and is <a href="https://developer.mozilla.org/en-US/docs/
   
 
     <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/trim-string">JavaScript Trim String</a></li>
   
     </ul>
   

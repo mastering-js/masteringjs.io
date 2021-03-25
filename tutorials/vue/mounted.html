@@ -100,8 +100,7 @@
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}
-</code></pre>
+}</code></pre>
 <h2 id="with-asyncawait">With Async/Await</h2>
 <p>Notice that the above example uses an async function for the
 <code>mounted</code> hook. Vue does <strong>not</strong> block rendering until the mounted
@@ -146,7 +145,6 @@ does <strong>not</strong> wait for async <code>created()</code> hooks to finish.
     &lt;h1&gt;The answer is {{answer == null ? 'N/A' : answer}}&lt;/h1&gt;
   `</span>
 });
-
 
 <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 data; <span class="hljs-comment">// Renders "answer is N/A"</span></code></pre>
@@ -193,7 +191,10 @@ sacrificing any convenience.</p>
     <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select</a></li>
   
 
-    <li><a href="/tutorials/vue/file-upload">How to Upload Files With Vue</a></li>
+    <li><a href="/tutorials/vue/inject">Using Provide and Inject in Vue.js</a></li>
+  
+
+    <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
   
 
     <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
@@ -206,9 +207,6 @@ sacrificing any convenience.</p>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-websocket">How to Use Websockets With Your Vue Projects</a></li>
   
     </ul>
   
