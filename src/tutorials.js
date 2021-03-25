@@ -4,10 +4,10 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Use @change in Vue with select',
+    title: 'How to Use @change in Vue with select Tags',
     raw: './tutorials/vue/vue-select-onchange.md',
     url: '/tutorials/vue/select-onchange',
-    description: 'Placeholder Description',
+    description: 'Need to run a function when the user changes the value of a `select` tag in Vue? Here\'s what you need to know.',
     tags: ['vue'],
     date: moment('2021-03-25')
   },

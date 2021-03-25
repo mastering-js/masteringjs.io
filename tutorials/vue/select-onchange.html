@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use @change in Vue with select - Mastering JS</title>
+    <title>How to Use @change in Vue with select Tags - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use @change in Vue with select" />
+    <meta property="og:title" content="How to Use @change in Vue with select Tags" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Need to run a function when the user changes the value of a `select` tag in Vue? Here's what you need to know." />
+    <meta name="description" content="Need to run a function when the user changes the value of a `select` tag in Vue? Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,7 +60,7 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use @change in Vue with select</h1>
+  <h1>How to Use @change in Vue with select Tags</h1>
   <div class="date">
     Mar 25, 2021
   </div>
@@ -73,25 +73,22 @@
 	})();
 	</script>
   <p>If you want to avoid having to use <code>v-model</code> with your <code>&lt;select&gt;</code> tags,
-you can use Vue&#39;s <code>v-on:change</code> directive, or just the shorthand <code>@change</code>.
-In every option tag, you must use the <code>value</code> property to store the value
-that the option contains. From there, <code>@change</code> can
-handle the rest. Below is a live example:</p>
+you can use Vue&#39;s <code>v-on:change</code> directive, or just the shorthand <code>@change</code>.</p>
+<p>In every <code>option</code> tag, you must set the <code>value</code> property to define the value of each option.
+Vue event handlers have a special <code>$event</code> property that describes the event, and <code>$event.target.value</code>
+contains the value of the newly selected option.
+From there, <code>@change</code> can handle the rest. Below is a live example:</p>
 <div id = "content"></div>
 <script src="https://unpkg.com/vue@next"></script>
 <script>
 Vue.createApp({
-    data() {
-        return {
-            selected: ''
-        };
-    },
-    methods: {
-        switchSelect(event) {
-            this.selected = event.target.value;
-        }
-    },
-    template: `
+  data: () => ({ selected: '' }),
+  methods: {
+    switchSelect(event) {
+      this.selected = event.target.value;
+   }
+  },
+  template: `
     <div>
         <p>Your choice is: {{selected}}</p>
         <select @change="switchSelect($event)">
@@ -101,38 +98,30 @@ Vue.createApp({
           <option value = "C">C</option>
         </select>
     </div>
-    `
+  `
 }).mount('#content');
 </script>
 
-<p>Here is the code if you want to mess around with it to practice:</p>
-<pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;script src=<span class="hljs-string">"https://unpkg.com/vue@next"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-&lt;script&gt;
-  Vue.createApp({
-    data() {
-      <span class="hljs-keyword">return</span> {
-        <span class="hljs-attr">selected</span>: <span class="hljs-string">""</span>,
-      };
-    },
-    <span class="hljs-attr">methods</span>: {
-      switchSelect(event) {
-        <span class="hljs-keyword">this</span>.selected = event.target.value;
-      },
-    },
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+<p>Below is the code:</p>
+<pre><code class="language-javascript">Vue.createApp({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">selected</span>: <span class="hljs-string">''</span> }),
+  <span class="hljs-attr">methods</span>: {
+    switchSelect(event) {
+      <span class="hljs-keyword">this</span>.selected = event.target.value;
+    }
+  },
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
     &lt;div&gt;
-        &lt;p&gt;Your choice is: {{selected}}&lt;/p&gt;
-        &lt;select @change="switchSelect($event)"&gt;
-        &lt;option value = ""&gt;Choose&lt;/option&gt;
-        &lt;option value = "A"&gt;A&lt;/option&gt;
-        &lt;option value = "B"&gt;B&lt;/option&gt;
-        &lt;option value = "C"&gt;C&lt;/option&gt;
-        &lt;/select&gt;
+      &lt;p&gt;Your choice is: {{selected}}&lt;/p&gt;
+      &lt;select @change="switchSelect($event)"&gt;
+        &lt;option value=""&gt;Choose&lt;/option&gt;
+        &lt;option value="A"&gt;A&lt;/option&gt;
+        &lt;option value="B"&gt;B&lt;/option&gt;
+        &lt;option value="C"&gt;C&lt;/option&gt;
+      &lt;/select&gt;
     &lt;/div&gt;
-    `</span>,
-  }).mount(<span class="hljs-string">"#content"</span>);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+  `</span>
+});</code></pre>
 
   <hr>
 <div class="cta">
