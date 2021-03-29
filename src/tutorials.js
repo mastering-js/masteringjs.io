@@ -12,7 +12,6 @@ module.exports = Object.freeze([
     date: moment('2021-03-25')
   },
   {
-    title: 'How to Upload Files With Vue',
     title: 'How to Compare Objects in JavaScript',
     raw: './tutorials/fundamentals/compare-objects.md',
     url: '/tutorials/fundamentals/compare-objects',
