@@ -126,7 +126,8 @@ to use a polyfill like the <a href="https://www.npmjs.com/package/form-data">for
 <span class="hljs-keyword">const</span> form = <span class="hljs-keyword">new</span> FormData();
 form.append(<span class="hljs-string">'key'</span>, <span class="hljs-string">'value'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, form);
-<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
+<span class="hljs-built_in">console</span>.log(res.data);
+</code></pre>
 <p>Since <code>FormData</code> is a browser API, you don&#39;t need to bundle it when
 compiling the above code. So you can use the below Webpack config:</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
@@ -150,6 +151,9 @@ compiling the above code. So you can use the below Webpack config:</p>
     <h2>More Webpack Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/webpack/url-loader">How to Use Webpack's url-loader</a></li>
+  
+
     <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
   
 
@@ -166,9 +170,6 @@ compiling the above code. So you can use the below Webpack config:</p>
   
 
     <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
-  
-
-    <li><a href="/tutorials/webpack/node">Running Webpack from Node.js</a></li>
   
     </ul>
   

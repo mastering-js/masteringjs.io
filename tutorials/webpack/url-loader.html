@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Using Webpack to Compile TypeScript - Mastering JS</title>
+    <title>How to Use Webpack's url-loader - Mastering JS</title>
 
-    <meta property="og:title" content="Using Webpack to Compile TypeScript" />
+    <meta property="og:title" content="How to Use Webpack's url-loader" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Webpack can bundle and compile TypeScript using ts-loader. Here's what you need to know." />
-    <meta name="description" content="Webpack can bundle and compile TypeScript using ts-loader. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/webpack">Webpack</a>
     /
   </div>
-  <h1>Using Webpack to Compile TypeScript</h1>
+  <h1>How to Use Webpack's url-loader</h1>
   <div class="date">
-    May 6, 2020
+    Mar 29, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,48 +72,46 @@
 	  }
 	})();
 	</script>
-  <p>Here&#39;s <a href="https://webpack.js.org/guides/typescript/">the official guide for using Webpack to compile TypeScript</a>. This tutorial provides an abridged version
-explaining how to use Webpack to compile <code>.ts</code> files.</p>
-<h2 id="webpack-config">Webpack Config</h2>
-<p>Everything in Webpack starts with the <a href="/tutorials/webpack/config">Webpack config</a>. The key part of <code>webpack.config.js</code> for transpilers is the <code>module.rules</code>
-option. This is where you tell Webpack to use a special loader to
-compile a file before bundling. For TypeScript, you need the
-<a href="https://www.npmjs.com/package/ts-loader">ts-loader npm module</a>, in
-addition to the <a href="https://www.npmjs.com/package/typescript">typescript npm module</a>.</p>
-<pre><code>npm install typescript ts-loader</code></pre>
-<p>The <a href="https://webpack.js.org/configuration/module/"><code>module.rules</code> option</a> is an array of rules. The below <code>webpack.config.js</code> tells Webpack to use the <code>ts-loader</code> module to compile any files that end in &#39;.ts&#39;.</p>
+  <p>Webpack&#39;s <code>url-loader</code> is a nice choice to compress large files
+for storage. In the options property, you can specify the max <code>limit</code>
+of a file, in bytes, to be compressed before having to try a different
+method for compressing. What&#39;s even cooler is that you can also specify
+what that different method is should the file go over the limit, using
+the <code>fallback</code> property. It defaults to <code>file-loader</code> in the case you
+don&#39;t specify it. the fallback loader will recieve all configuration
+options specified for <code>url-loader</code>.</p>
+<h1 id="mimetype-encoding-and-generator">mimetype, encoding, and generator</h1>
+<p><code>mimetype</code> defaults to <code>text/plain;charset=US-ASCII</code> if you omit the option.
+Setting it to true generates the mimetype from a npm module that webpack
+uses. Setting <code>mimetype</code> to false removes the mediatype from the Data URL.
+<code>encoding</code> specifies what the name implies, the encoding of the file. The
+default is <code>base64</code> but it also supports
+<code>utf8, utf16le, latin1, hex, ascii, binary, and ucs2</code>. If you set <code>encoding</code>
+to false, it does not encode the file while true encodes in <code>base64</code>.
+<code>generator</code> is a function that defaults to the following structure,
+<code>(mimetype,encoding,content,resourcePath) =&gt; mimetype; encoding, base64_content</code>.
+Use this option if you want to use your own encoding implementation.</p>
+<h1 id="example">Example</h1>
+<p>Here is an example that compresses a <code>.png</code> file.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">entry</span>: <span class="hljs-string">'./index.ts'</span>,
   <span class="hljs-attr">module</span>: {
-    <span class="hljs-comment">// Use `ts-loader` on any file that ends in '.ts'</span>
-    rules: [
+    <span class="hljs-attr">rules</span>: [
       {
-        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.ts$/</span>,
-        <span class="hljs-attr">use</span>: <span class="hljs-string">'ts-loader'</span>,
-        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(png|jpg|gif)$/i</span>,
+        <span class="hljs-attr">use</span>: [
+          {
+            <span class="hljs-attr">loader</span>: <span class="hljs-string">'url-loader'</span>,
+            <span class="hljs-attr">options</span>: {
+              <span class="hljs-attr">limit</span>: <span class="hljs-number">8192</span>,
+              <span class="hljs-attr">mimetype</span>: <span class="hljs-string">'image/png'</span>,
+              <span class="hljs-attr">encoding</span>: <span class="hljs-literal">true</span>,
+            },
+          },
+        ],
       },
     ],
   },
-  <span class="hljs-comment">// Bundle '.ts' files as well as '.js' files.</span>
-  resolve: {
-    <span class="hljs-attr">extensions</span>: [<span class="hljs-string">'.ts'</span>, <span class="hljs-string">'.js'</span>],
-  },
-  <span class="hljs-attr">output</span>: {
-    <span class="hljs-attr">filename</span>: <span class="hljs-string">'main.js'</span>,
-    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${process.cwd()}</span>/dist`</span>,
-  }
 };</code></pre>
-<h2 id="compiling-a-typescript-file">Compiling a TypeScript File</h2>
-<p>Below is the <code>index.ts</code> file:</p>
-<pre><code><span class="hljs-keyword">const</span> str: string = <span class="hljs-string">'Hello, World'</span>;
-
-<span class="hljs-built_in">console</span>.log(str);</code></pre>
-<p>You also need to add a <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"><code>tsconfig.json</code> file</a>, otherwise TypeScript will error out. For the purposes of this tutorial, the below <code>tsconfig.json</code> is enough:</p>
-<pre><code>{<span class="hljs-string">"files"</span>:[<span class="hljs-string">"./index.ts"</span>]}</code></pre>
-<p>Run <code>node ./dist/main.js</code> and you should see Node print out &quot;Hello, World&quot;.</p>
-<pre><code>$ node ./dist/main.js 
-Hello, World
-$</code></pre>
 
   
   <hr>
@@ -121,10 +119,10 @@ $</code></pre>
     <h2>More Webpack Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/webpack/url-loader">How to Use Webpack's url-loader</a></li>
+    <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
   
 
-    <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
+    <li><a href="/tutorials/webpack/typescript">Using Webpack to Compile TypeScript</a></li>
   
 
     <li><a href="/tutorials/webpack/externals">Webpack Externals</a></li>

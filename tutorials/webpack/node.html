@@ -86,7 +86,8 @@
   }
 };</code></pre>
 <p>Normally, you would run <code>webpack</code> from the command line. But you can also <code>require(&#39;webpack&#39;)</code> and run this config script from Node.js:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config.js'</span>);
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config.js'</span>);
 <span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
 <span class="hljs-keyword">const</span> compiler = webpack(config);
@@ -99,7 +100,8 @@
     }
     resolve(res);
   });
-});</code></pre>
+});
+</code></pre>
 <p>You can also <a href="/tutorials/webpack/programmatic-watch">run <code>webpack --watch</code> from Node.js</a>.</p>
 
   
@@ -108,6 +110,9 @@
     <h2>More Webpack Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/webpack/url-loader">How to Use Webpack's url-loader</a></li>
+  
+
     <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
   
 
@@ -124,9 +129,6 @@
   
 
     <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
-  
-
-    <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
   
     </ul>
   
