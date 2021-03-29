@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Webpack\'s Module Aliasing',
+    raw: './tutorials/webpack/alias.md',
+    url: '/tutorials/webpack/alias',
+    description: 'Placeholder Description',
+    tags: ['webpack'],
+    date: moment('2021-03-29')
+  },
+  {
     title: 'How to Use @change in Vue with select Tags',
     raw: './tutorials/vue/vue-select-onchange.md',
     url: '/tutorials/vue/select-onchange',
