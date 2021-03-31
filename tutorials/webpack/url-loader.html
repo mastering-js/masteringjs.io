@@ -74,23 +74,10 @@
 	</script>
   <p>Webpack&#39;s <code>url-loader</code> is a nice choice to compress large files
 for storage. In the options property, you can specify the max <code>limit</code>
-of a file, in bytes, to be compressed before having to try a different
-method for compressing. What&#39;s even cooler is that you can also specify
-what that different method is should the file go over the limit, using
-the <code>fallback</code> property. It defaults to <code>file-loader</code> in the case you
-don&#39;t specify it. the fallback loader will recieve all configuration
-options specified for <code>url-loader</code>.</p>
-<h1 id="mimetype-encoding-and-generator">mimetype, encoding, and generator</h1>
-<p><code>mimetype</code> defaults to <code>text/plain;charset=US-ASCII</code> if you omit the option.
-Setting it to true generates the mimetype from a npm module that webpack
-uses. Setting <code>mimetype</code> to false removes the mediatype from the Data URL.
-<code>encoding</code> specifies what the name implies, the encoding of the file. The
-default is <code>base64</code> but it also supports
-<code>utf8, utf16le, latin1, hex, ascii, binary, and ucs2</code>. If you set <code>encoding</code>
-to false, it does not encode the file while true encodes in <code>base64</code>.
-<code>generator</code> is a function that defaults to the following structure,
-<code>(mimetype,encoding,content,resourcePath) =&gt; mimetype; encoding, base64_content</code>.
-Use this option if you want to use your own encoding implementation.</p>
+file size, in bytes, that Webpack will compress. What&#39;s even cooler is
+that you can also specify what that different method is should the file
+go over the limit, using the <code>fallback</code> property. The <code>fallback</code> property
+defaults to <code>file-loader</code> in the case you don&#39;t specify it.</p>
 <h1 id="example">Example</h1>
 <p>Here is an example that compresses a <code>.png</code> file.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
@@ -100,10 +87,10 @@ Use this option if you want to use your own encoding implementation.</p>
         <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(png|jpg|gif)$/i</span>,
         <span class="hljs-attr">use</span>: [
           {
-            <span class="hljs-attr">loader</span>: <span class="hljs-string">'url-loader'</span>,
+            <span class="hljs-attr">loader</span>: <span class="hljs-string">"url-loader"</span>,
             <span class="hljs-attr">options</span>: {
               <span class="hljs-attr">limit</span>: <span class="hljs-number">8192</span>,
-              <span class="hljs-attr">mimetype</span>: <span class="hljs-string">'image/png'</span>,
+              <span class="hljs-attr">mimetype</span>: <span class="hljs-string">"image/png"</span>,
               <span class="hljs-attr">encoding</span>: <span class="hljs-literal">true</span>,
             },
           },
