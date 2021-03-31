@@ -74,49 +74,49 @@
 	</script>
   <p>Aliasing is webpack&#39;s handy way to shave time and keystrokes
 off importing frequently used modules. You will need the
-<code>path</code> npm module as it is how you will tell webpack where
-to look for those specific files. Using the resolve object
-as the parent object and the alias property as the child object,
-you define the grandchildren property names to which you will use
-for your frequently imported modules. Here is an example below:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<code>path</code> module, included with node.js, as it is how you will tell webpack where
+to look for those specific files. Using the <code>resolve.alias</code> property,
+you can define aliases for frequently imported modules. Here is an example below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">resolve</span>: {
-        <span class="hljs-attr">alias</span>: {
-            <span class="hljs-attr">Library</span>: path.resolve(__dirname, <span class="hljs-string">'root/library/'</span>),
-            <span class="hljs-attr">Single</span>: path.resolve(__dirname, <span class="hljs-string">'root/test.js'</span>)
-        }
-    }
-}</code></pre>
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-attr">Library</span>: path.resolve(__dirname, <span class="hljs-string">"root/library/"</span>),
+      <span class="hljs-attr">Single</span>: path.resolve(__dirname, <span class="hljs-string">"root/test.js"</span>),
+    },
+  },
+};</code></pre>
 <p>So now when you want to import a file from the library module, you use
 <code>import {file} from &#39;Library/fileLocation</code> or if you include the file
 with the alias, <code>import {test} from &#39;Single&#39;</code>.</p>
-<h1 id="using-alias-as-a-boolean">Using alias as a boolean</h1>
-<p>if for whatever reason you needed webpack to ignore something,
-you could give it the path to the module and set the value as <code>false</code>.</p>
+<h1 id="using-alias-as-a-boolean">Using Alias as a Boolean</h1>
+<p>If you are already loading a library via CDN for your application
+and also have it as a dependency, this will create conflicts in your
+application. As a result, you can list the path in the <code>resolve.alias</code>
+property to the conflicting module and set it to false to resolve the conflict.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">resolve</span>: {
-        <span class="hljs-attr">alias</span>: {
-            <span class="hljs-string">'path/to/ignored/module'</span>: <span class="hljs-literal">false</span>
-        }
-    }
-}</code></pre>
-<h1 id="using--for-exact-matches">Using $ for exact matches</h1>
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-string">"path/to/ignored/module"</span>: <span class="hljs-literal">false</span>,
+    },
+  },
+};</code></pre>
+<h1 id="using--for-exact-matches">Using $ For Exact Matches</h1>
 <p>You can add a trailing <code>$</code> to the alias definition and by doing so
 ensure that if the path is not an exact match, force an error.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
 
 <span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">resolve</span>: {
-        <span class="hljs-attr">alias</span>: {
-            <span class="hljs-attr">Single$</span>: path.resolve(__dirname, <span class="hljs-string">'root/test.js'</span>)
-        }
-    }
-}</code></pre>
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-attr">Single$</span>: path.resolve(__dirname, <span class="hljs-string">"root/test.js"</span>),
+    },
+  },
+};</code></pre>
 <p>So now when you attempt to import test.js:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Test <span class="hljs-keyword">from</span> <span class="hljs-string">'Single'</span>; <span class="hljs-comment">// success</span>
-<span class="hljs-keyword">import</span> Test2 <span class="hljs-keyword">from</span> <span class="hljs-string">'Single/test.js'</span> <span class="hljs-comment">// error, root/test.js is invalid</span></code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Test <span class="hljs-keyword">from</span> <span class="hljs-string">"Single"</span>; <span class="hljs-comment">// success</span>
+<span class="hljs-keyword">import</span> Test2 <span class="hljs-keyword">from</span> <span class="hljs-string">"Single/test.js"</span>; <span class="hljs-comment">// error, root/test.js is invalid</span></code></pre>
 
   
   <hr>
