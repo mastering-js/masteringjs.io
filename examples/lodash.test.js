@@ -700,6 +700,19 @@ describe('lodash', function() {
       assert.ok(!_.isEqual(obj1, obj2));
       // acquit:ignore:end
     });
+
+    it('avoids infinite recursion', function() {
+      const obj1 = {};
+      const obj2 = {};
+
+      obj1.circular = obj1;
+      obj2.circular = obj1;
+
+      _.isEqual(obj1, obj2); // true
+      // acquit:ignore:start
+      assert.ok(_.isEqual(obj1, obj2));
+      // acquit:ignore:end
+    });
   });
 
   it('deepClone', function() {

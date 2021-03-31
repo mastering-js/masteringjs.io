@@ -8,8 +8,24 @@ module.exports = Object.freeze([
     raw: './tutorials/fundamentals/convert-string-to-array.md',
     url: '/tutorials/fundamentals/convert-string-to-array',
     description: 'Here\'s how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters.',
-    tags:['vue'],
+    tags: ['fundamentals'],
     date: moment('2021-03-31')
+  },
+  {
+    title: 'How to Use @change in Vue with select Tags',
+    raw: './tutorials/vue/vue-select-onchange.md',
+    url: '/tutorials/vue/select-onchange',
+    description: 'Need to run a function when the user changes the value of a `select` tag in Vue? Here\'s what you need to know.',
+    tags: ['vue'],
+    date: moment('2021-03-25')
+  },
+  {
+    title: 'How to Compare Objects in JavaScript',
+    raw: './tutorials/fundamentals/compare-objects.md',
+    url: '/tutorials/fundamentals/compare-objects',
+    description: 'There are several ways to compare objects in JavaScript. Here\'s 3 different ways to compare objects in JavaScript and the tradeoffs between them.',
+    tags: ['fundamentals'],
+    date: moment('2021-03-23')
   },
   {
     title: 'Using Provide and Inject in Vue.js',
