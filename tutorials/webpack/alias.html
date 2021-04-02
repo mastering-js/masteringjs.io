@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Running Webpack from Node.js - Mastering JS</title>
+    <title>How to Use Webpack's Module Aliasing - Mastering JS</title>
 
-    <meta property="og:title" content="Running Webpack from Node.js" />
+    <meta property="og:title" content="How to Use Webpack's Module Aliasing" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to run Webpack from your Node.js scripts, no CLI required" />
-    <meta name="description" content="Learn how to run Webpack from your Node.js scripts, no CLI required" />
+    <meta property="og:description" content="Here's how you can use Webpack aliases to make your `import` statements more readable." />
+    <meta name="description" content="Here's how you can use Webpack aliases to make your `import` statements more readable." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/webpack">Webpack</a>
     /
   </div>
-  <h1>Running Webpack from Node.js</h1>
+  <h1>How to Use Webpack's Module Aliasing</h1>
   <div class="date">
-    Jun 4, 2019
+    Apr 2, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,35 +72,51 @@
 	  }
 	})();
 	</script>
-  <p>Most developers use Webpack via the <a href="https://www.npmjs.com/package/webpack-cli">Webpack CLI</a>, but Webpack also has an <a href="https://webpack.js.org/api/node/">excellent Node.js API</a>. That means you can run Webpack from your Node.js scripts, like an <a href="http://expressjs.com/">Express</a> server, without a task runner.</p>
-<p>For example, suppose you have the below <a href="/tutorials/webpack/config"><code>webpack.config.js</code> file</a>. It takes a file <code>app.js</code>, and compiles it into <code>./bin/app.min.js</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">mode</span>: <span class="hljs-string">'development'</span>,
-  <span class="hljs-attr">entry</span>: {
-    <span class="hljs-attr">app</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/app.js`</span>
+  <p>Aliasing is webpack&#39;s handy way to shave time and keystrokes
+off importing frequently used modules. You will need the
+<code>path</code> module, included with node.js, as it is how you will tell webpack where
+to look for those specific files. Using the <code>resolve.alias</code> property,
+you can define aliases for frequently imported modules. Here is an example below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-attr">Library</span>: path.resolve(__dirname, <span class="hljs-string">"root/library/"</span>),
+      <span class="hljs-attr">Single</span>: path.resolve(__dirname, <span class="hljs-string">"root/test.js"</span>),
+    },
   },
-  <span class="hljs-attr">target</span>: <span class="hljs-string">'web'</span>,
-  <span class="hljs-attr">output</span>: {
-    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/bin`</span>,
-    <span class="hljs-attr">filename</span>: <span class="hljs-string">'[name].min.js'</span>
-  }
 };</code></pre>
-<p>Normally, you would run <code>webpack</code> from the command line. But you can also <code>require(&#39;webpack&#39;)</code> and run this config script from Node.js:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config.js'</span>);
-<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<p>So now when you want to import a file from the library module, you use
+<code>import {file} from &#39;Library/fileLocation</code> or if you include the file
+with the alias, <code>import {test} from &#39;Single&#39;</code>.</p>
+<h1 id="using-alias-as-a-boolean">Using Alias as a Boolean</h1>
+<p>If you are already loading a library via CDN for your application
+and also have it as a dependency, this will create conflicts in your
+application. As a result, you can list the path in the <code>resolve.alias</code>
+property to the conflicting module and set it to false to resolve the conflict.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-string">"path/to/ignored/module"</span>: <span class="hljs-literal">false</span>,
+    },
+  },
+};</code></pre>
+<h1 id="using--for-exact-matches">Using $ For Exact Matches</h1>
+<p>You can add a trailing <code>$</code> to the alias definition and by doing so
+ensure that if the path is not an exact match, force an error.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
 
-<span class="hljs-keyword">const</span> compiler = webpack(config);
-
-<span class="hljs-comment">// `compiler.run()` doesn't support promises yet, only callbacks</span>
-<span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-  compiler.run(<span class="hljs-function">(<span class="hljs-params">err, res</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-      <span class="hljs-keyword">return</span> reject(err);
-    }
-    resolve(res);
-  });
-});</code></pre>
-<p>You can also <a href="/tutorials/webpack/programmatic-watch">run <code>webpack --watch</code> from Node.js</a>.</p>
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">resolve</span>: {
+    <span class="hljs-attr">alias</span>: {
+      <span class="hljs-attr">Single$</span>: path.resolve(__dirname, <span class="hljs-string">"root/test.js"</span>),
+    },
+  },
+};</code></pre>
+<p>So now when you attempt to import test.js:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> Test <span class="hljs-keyword">from</span> <span class="hljs-string">"Single"</span>; <span class="hljs-comment">// success</span>
+<span class="hljs-keyword">import</span> Test2 <span class="hljs-keyword">from</span> <span class="hljs-string">"Single/test.js"</span>; <span class="hljs-comment">// error, root/test.js is invalid</span></code></pre>
 
   
   <hr>
@@ -108,9 +124,6 @@
     <h2>More Webpack Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/webpack/alias">How to Use Webpack's Module Aliasing</a></li>
-  
-
     <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
   
 
@@ -127,6 +140,9 @@
   
 
     <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
+  
+
+    <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
   
     </ul>
   

@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Webpack\'s Module Aliasing',
+    raw: './tutorials/webpack/alias.md',
+    url: '/tutorials/webpack/alias',
+    description: 'Here\'s how you can use Webpack aliases to make your `import` statements more readable.',
+    tags: ['webpack'],
+    date: moment('2021-04-02')
+  },
+  {
     title: 'Convert a String to an Array in JavaScript',
     raw: './tutorials/fundamentals/convert-string-to-array.md',
     url: '/tutorials/fundamentals/convert-string-to-array',
