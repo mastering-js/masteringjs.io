@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Locally Scope the CSS in Your Vue Files',
+    raw: './tutorials/vue/style-scoped.md',
+    url: '/tutorials/vue/style-scoped',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-04-05')
+  },
+  {
     title: 'Convert a String to an Array in JavaScript',
     raw: './tutorials/fundamentals/convert-string-to-array.md',
     url: '/tutorials/fundamentals/convert-string-to-array',
