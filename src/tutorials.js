@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Webpack\'s url-loader',
+    raw: './tutorials/webpack/url-loader.md',
+    url: '/tutorials/webpack/url-loader',
+    description: '`url-loader` lets you `import` arbitrary files, like images. Here\'s what you need to know.',
+    tags: ['webpack'],
+    date: moment('2021-03-29')
+  },
+  {
     title: 'How to Use Webpack\'s Module Aliasing',
     raw: './tutorials/webpack/alias.md',
     url: '/tutorials/webpack/alias',
