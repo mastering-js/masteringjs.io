@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'How to Use Webpack\'s url-loader',
     raw: './tutorials/webpack/url-loader.md',
     url: '/tutorials/webpack/url-loader',
-    description: 'Placeholder Description',
+    description: '`url-loader` lets you `import` arbitrary files, like images. Here\'s what you need to know.',
     tags: ['webpack'],
     date: moment('2021-03-29')
   },
