@@ -12,6 +12,22 @@ module.exports = Object.freeze([
     date: moment('2021-03-29')
   },
   {
+    title: 'How to Use Webpack\'s Module Aliasing',
+    raw: './tutorials/webpack/alias.md',
+    url: '/tutorials/webpack/alias',
+    description: 'Here\'s how you can use Webpack aliases to make your `import` statements more readable.',
+    tags: ['webpack'],
+    date: moment('2021-04-02')
+  },
+  {
+    title: 'Convert a String to an Array in JavaScript',
+    raw: './tutorials/fundamentals/convert-string-to-array.md',
+    url: '/tutorials/fundamentals/convert-string-to-array',
+    description: 'Here\'s how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters.',
+    tags: ['fundamentals'],
+    date: moment('2021-03-31')
+  },
+  {
     title: 'How to Use @change in Vue with select Tags',
     raw: './tutorials/vue/vue-select-onchange.md',
     url: '/tutorials/vue/select-onchange',
@@ -24,7 +40,7 @@ module.exports = Object.freeze([
     raw: './tutorials/fundamentals/compare-objects.md',
     url: '/tutorials/fundamentals/compare-objects',
     description: 'There are several ways to compare objects in JavaScript. Here\'s 3 different ways to compare objects in JavaScript and the tradeoffs between them.',
-    tags:['fundamentals'],
+    tags: ['fundamentals'],
     date: moment('2021-03-23')
   },
   {

@@ -72,12 +72,10 @@
 	  }
 	})();
 	</script>
-  <p>Webpack&#39;s <code>url-loader</code> is a nice choice to compress large files
-for storage. In the options property, you can specify the max <code>limit</code>
-file size, in bytes, that Webpack will compress. What&#39;s even cooler is
-that you can also specify what that different method is should the file
-go over the limit, using the <code>fallback</code> property. The <code>fallback</code> property
-defaults to <code>file-loader</code> in the case you don&#39;t specify it.</p>
+  <p>Webpack&#39;s <code>url-loader</code> lets you <code>import</code> arbitrary files, like images. If you
+<code>import</code> a <code>.png</code> file, <code>url-loader</code> will ensure that import resolves to a
+<a href="https://en.wikipedia.org/wiki/Base64">Base64 string</a> representing the
+contents of the file.</p>
 <h1 id="example">Example</h1>
 <p>Here is an example to display a <code>.png</code> file using
 the <code>url-loader</code> option.
@@ -149,7 +147,7 @@ root
     ],
   },
 };</code></pre>
-<p>These are the javascript file contents</p>
+<p>Below are the javascript file contents:</p>
 <h3 id="componentjs">component.js</h3>
 <pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (text = <span class="hljs-string">"Hello, Webpack!"</span>) =&gt; {
   <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"h1"</span>);
@@ -179,7 +177,9 @@ setup properly, run:
 and bundle. This will create the <code>deploy</code>
 folder with the <code>index.html</code> and <code>main.bundle.js</code>
 file.</p>
-<p>This is what the app.js will look like after being bundled:</p>
+<p>This is what the app.js will look like after Webpack bundles it. Notice the
+<code>const yinyang = &quot;...&quot;</code> code that contains the base64 representation of
+<code>yinyang.png</code>.</p>
 <h3 id="mainbundlejs">main.bundle.js</h3>
 <pre><code class="language-javascript"><span class="hljs-comment">/******/</span> (<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-comment">// webpackBootstrap</span>
@@ -215,6 +215,9 @@ file.</p>
     <h2>More Webpack Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/webpack/alias">How to Use Webpack's Module Aliasing</a></li>
+  
+
     <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
   
 
@@ -231,9 +234,6 @@ file.</p>
   
 
     <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
-  
-
-    <li><a href="/tutorials/webpack/watch">An Introduction to Webpack Watch</a></li>
   
     </ul>
   

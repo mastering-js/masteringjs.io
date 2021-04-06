@@ -1,9 +1,7 @@
-Webpack's `url-loader` is a nice choice to compress large files
-for storage. In the options property, you can specify the max `limit`
-file size, in bytes, that Webpack will compress. What's even cooler is
-that you can also specify what that different method is should the file
-go over the limit, using the `fallback` property. The `fallback` property
-defaults to `file-loader` in the case you don't specify it.
+Webpack's `url-loader` lets you `import` arbitrary files, like images. If you
+`import` a `.png` file, `url-loader` will ensure that import resolves to a
+[Base64 string](https://en.wikipedia.org/wiki/Base64) representing the
+contents of the file.
 
 # Example
 
@@ -82,7 +80,7 @@ module.exports = {
 };
 ```
 
-These are the javascript file contents
+Below are the javascript file contents:
 
 ### component.js
 
@@ -126,7 +124,9 @@ and bundle. This will create the `deploy`
 folder with the `index.html` and `main.bundle.js`
 file.
 
-This is what the app.js will look like after being bundled:
+This is what the app.js will look like after Webpack bundles it. Notice the
+`const yinyang = "..."` code that contains the base64 representation of
+`yinyang.png`.
 
 ### main.bundle.js
 

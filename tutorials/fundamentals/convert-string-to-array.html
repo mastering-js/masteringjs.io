@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Convert a String to an Array in JavaScript - Mastering JS</title>
+
+    <meta property="og:title" content="Convert a String to an Array in JavaScript" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
+    <meta name="description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Convert a String to an Array in JavaScript</h1>
+  <div class="date">
+    Mar 31, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>JavaScript strings have a built-in <a href="https://www.w3schools.com/jsref/jsref_split.asp"><code>split()</code> method</a> that split a string by instances of a given separator. For example, here&#39;s how you can split
+a string by dashes:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'kebab-case-string'</span>;
+str.split(<span class="hljs-string">'-'</span>); <span class="hljs-comment">// ['kebab-case-string']</span></code></pre>
+<p>Or you can split a string by commas:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'0,1,2'</span>;
+str.split(<span class="hljs-string">','</span>); <span class="hljs-comment">// ['0', '1', '2']</span></code></pre>
+<h2 id="converting-to-a-character-array">Converting to a Character Array</h2>
+<p>There are <a href="https://jscurious.com/various-ways-to-convert-string-to-array-in-javascript/">numerous ways to convert a string to an array of characters</a>. With an empty string as the separator, the <code>split()</code> function will return an array of characters:</p>
+<pre><code class="language-javascript"><span class="hljs-string">'Hello'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o']</span></code></pre>
+<p>However, this approach has a problem because of how <code>split()</code> handles <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> characters. For example, <a href="https://unicode.org/emoji/charts/full-emoji-list.html">emojis</a> end up with incorrect results:</p>
+<pre><code class="language-javascript"><span class="hljs-string">'Hello😀'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o', '�', '�']</span></code></pre>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"><code>Array.from()</code> function</a> handles UTF-16 characters. You should use <code>Array.from()</code> if you&#39;re looking to split a string into an array of characters and expect UTF-16 characters.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Array</span>.from(<span class="hljs-string">'Hello😀'</span>); <span class="hljs-comment">// [ 'H', 'e', 'l', 'l', 'o', '😀' ]</span></code></pre>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/enum">JavaScript Enums</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
