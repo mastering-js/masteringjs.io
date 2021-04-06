@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Read Files with Vue',
+    raw: './tutorials/vue/file.md',
+    url: '/tutorials/vue/file',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-04-06')
+  },
+  {
     title: 'How to Use Webpack\'s Module Aliasing',
     raw: './tutorials/webpack/alias.md',
     url: '/tutorials/webpack/alias',

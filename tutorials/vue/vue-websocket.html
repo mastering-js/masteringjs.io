@@ -76,7 +76,8 @@
 For example, a server can push stock market price changes to the client rather than the client needing to ask for the changes via a HTTP request.
 With this being said, below you will find an example of a simple Vue application that shows the current time to the user and where
 the user can send a simple message to the websocket.</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">time</span>: <span class="hljs-literal">null</span> }),
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div&gt;
@@ -93,7 +94,8 @@ the user can send a simple message to the websocket.</p>
       }
     }
   });
-  app.$mount(<span class="hljs-string">"#content"</span>);</code></pre>
+  app.$mount(<span class="hljs-string">"#content"</span>);
+</code></pre>
 <p>Below is an example websocket server that you can use with the above Vue code.</p>
 <pre><code class="language-javascript"><span class="hljs-meta">"use strict"</span>;
 
@@ -145,6 +147,9 @@ server.listen(<span class="hljs-number">3000</span>, () =&gt; {
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
+  
+
     <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
   
 
@@ -161,9 +166,6 @@ server.listen(<span class="hljs-number">3000</span>, () =&gt; {
   
 
     <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
     </ul>
   
