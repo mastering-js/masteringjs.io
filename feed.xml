@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Tue, 06 Apr 2021 22:34:42 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 09 Apr 2021 22:19:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,10 +13,16 @@
             <link>https://masteringjs.io</link>
         </image>
         <item>
+            <title><![CDATA[How to Locally Scope the CSS in Your Vue Files]]></title>
+            <link>https://masteringjs.io/tutorials/vue/style-scoped</link>
+            <guid>https://masteringjs.io/tutorials/vue/style-scoped</guid>
+            <pubDate>Fri, 09 Apr 2021 06:00:00 GMT</pubDate>
+        </item>
+        <item>
             <title><![CDATA[How to Use Webpack's url-loader]]></title>
             <link>https://masteringjs.io/tutorials/webpack/url-loader</link>
             <guid>https://masteringjs.io/tutorials/webpack/url-loader</guid>
-            <pubDate>Mon, 29 Mar 2021 06:00:00 GMT</pubDate>
+            <pubDate>Mon, 05 Apr 2021 06:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How to Use Webpack's Module Aliasing]]></title>

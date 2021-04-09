@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use the Select Tag with Vue - Mastering JS</title>
+    <title>How to Locally Scope the CSS in Your Vue Files - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use the Select Tag with Vue" />
+    <meta property="og:title" content="How to Locally Scope the CSS in Your Vue Files" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
-    <meta name="description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
+    <meta property="og:description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
+    <meta name="description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use the Select Tag with Vue</h1>
+  <h1>How to Locally Scope the CSS in Your Vue Files</h1>
   <div class="date">
-    Mar 9, 2021
+    Apr 9, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,99 +72,82 @@
 	  }
 	})();
 	</script>
-  <p>In HTML, the <code>&lt;select&gt;</code> tag lets you create a dropdown that
-lets the user select one of several options. The easiest way
-to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
-<a href="/tutorials/vue/v-model"><code>v-model</code></a>. Below is an example:</p>
-<script src="https://unpkg.com/vue@next"></script>
-<div style = "outline-style: solid" id="example">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
-<script>
-Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
-  }
-}).mount('#example');
-</script>
-</script>
+  <p>Vue 3 has a handy way to locally scope the CSS in your components.
+Using <code>&lt;style scoped&gt;</code>, you don&#39;t need to have a single large CSS
+file or multiple CSS files to make your site look pretty. By simply
+putting the CSS in the <code>&lt;style scoped&gt;</code> tag, the CSS will apply to
+that component.</p>
+<h2 id="appvue">App.vue</h2>
+<pre><code class="language-html">&lt;template&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Vue logo"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/logo.png"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">"Welcome to Your Vue.js App"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="example"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option&gt;A&lt;/option&gt;
-    &lt;option&gt;B&lt;/option&gt;
-    &lt;option&gt;C&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
-&lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
-  }
-}).mount('#example');
-&lt;/script&gt;</code></pre>
-<p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
-options, it will cause the browser to render the <code>&lt;select&gt;</code> tag in a &quot;unselected&quot; state. Any browser running on iOS won&#39;t fire a change event for a <code>&lt;select&gt;</code> in an unselected tag, which means the user won&#39;t be able to select the first option. Therefore, we recommend using a <code>disabled</code> option with an empty value as the first element.</p>
-<h1 id="with-v-for">With <code>v-for</code></h1>
-<p>With <code>v-for</code>, you can create an option for every value in an array.
-Below is an example:</p>
-<div style = "outline-style: solid" id="demo">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option v-for="option in options" :value="option">{{option}}</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
-<script>
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
-  }
-}).mount('#demo');
-</script>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> HelloWorld <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/HelloWorld.vue"</span>;
 
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="demo"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
-&lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"App"</span>,
+    <span class="hljs-attr">components</span>: {
+      HelloWorld,
+    },
+  };
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-selector-id">#app</span> {
+    <span class="hljs-attribute">font-family</span>: Avenir, Helvetica, Arial, sans-serif;
+    <span class="hljs-attribute">-webkit-font-smoothing</span>: antialiased;
+    <span class="hljs-attribute">-moz-osx-font-smoothing</span>: grayscale;
+    <span class="hljs-attribute">text-align</span>: center;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#2c3e50</span>;
+    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">60px</span>;
   }
-}).mount('#demo');
-&lt;/script&gt;</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre>
+<h2 id="helloworldvue">HelloWorld.vue</h2>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;div class="hello"&gt;
+    &lt;h1&gt;{{ msg }}&lt;/h1&gt;
+    &lt;p class="text"&gt;This text is in a component with a {{ html }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    name: "HelloWorld",
+    data() {
+      return {
+        html: `&lt;style scoped&gt;`,
+      };
+    },
+    props: {
+      msg: String,
+    },
+  };
+&lt;/script&gt;
+
+&lt;!-- Add "scoped" attribute to limit CSS to this component only --&gt;
+&lt;style scoped&gt;
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  .text {
+    color: pink;
+  }
+&lt;/style&gt;</code></pre>
+<h2 id="result">Result</h2>
+<img src = "../../assets/vue-style-scoped.png"/>
 
   <hr>
 <div class="cta">
@@ -190,9 +173,6 @@ Vue.createApp({
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/style-scoped">How to Locally Scope the CSS in Your Vue Files</a></li>
-  
-
     <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
   
 
@@ -206,6 +186,9 @@ Vue.createApp({
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
 
     <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>

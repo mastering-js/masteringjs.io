@@ -4,12 +4,20 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Locally Scope the CSS in Your Vue Files',
+    raw: './tutorials/vue/style-scoped.md',
+    url: '/tutorials/vue/style-scoped',
+    description: 'Here\'s how you can use `style scoped` in Vue to define CSS rules that apply to only one component.',
+    tags: ['vue'],
+    date: moment('2021-04-09')
+  },
+  {
     title: 'How to Use Webpack\'s url-loader',
     raw: './tutorials/webpack/url-loader.md',
     url: '/tutorials/webpack/url-loader',
     description: '`url-loader` lets you `import` arbitrary files, like images. Here\'s what you need to know.',
     tags: ['webpack'],
-    date: moment('2021-03-29')
+    date: moment('2021-04-05')
   },
   {
     title: 'How to Use Webpack\'s Module Aliasing',
