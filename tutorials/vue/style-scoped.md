@@ -1,8 +1,8 @@
 Vue 3 has a handy way to locally scope the CSS in your components.
 Using `<style scoped>`, you don't need to have a single large CSS
 file or multiple CSS files to make your site look pretty. By simply
-putting the CSS in the `<style scoped>` tag, the CSS will only be
-reflected in that component.
+putting the CSS in the `<style scoped>` tag, the CSS will apply to
+that component.
 
 ## App.vue
 
@@ -84,6 +84,3 @@ reflected in that component.
 ## Result
 
 <img src = "../../assets/vue-style-scoped.png"/>
-
-Make sure to include class names for your CSS as without it, performance
-will be slower.

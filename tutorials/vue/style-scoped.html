@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Locally Scope the CSS in Your Vue Files" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
+    <meta name="description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>How to Locally Scope the CSS in Your Vue Files</h1>
   <div class="date">
-    Apr 5, 2021
+    Apr 9, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -75,8 +75,8 @@
   <p>Vue 3 has a handy way to locally scope the CSS in your components.
 Using <code>&lt;style scoped&gt;</code>, you don&#39;t need to have a single large CSS
 file or multiple CSS files to make your site look pretty. By simply
-putting the CSS in the <code>&lt;style scoped&gt;</code> tag, the CSS will only be
-reflected in that component.</p>
+putting the CSS in the <code>&lt;style scoped&gt;</code> tag, the CSS will apply to
+that component.</p>
 <h2 id="appvue">App.vue</h2>
 <pre><code class="language-html">&lt;template&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Vue logo"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/logo.png"</span> /&gt;</span>
@@ -148,9 +148,6 @@ reflected in that component.</p>
 &lt;/style&gt;</code></pre>
 <h2 id="result">Result</h2>
 <img src = "../../assets/vue-style-scoped.png"/>
-
-<p>Make sure to include class names for your CSS as without it, performance
-will be slower.</p>
 
   <hr>
 <div class="cta">

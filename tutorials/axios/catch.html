@@ -79,8 +79,7 @@ an error in Axios.</p>
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 
 err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>; <span class="hljs-comment">// true</span>
-err.message; <span class="hljs-comment">// 'Request failed with status code 404'</span>
-</code></pre>
+err.message; <span class="hljs-comment">// 'Request failed with status code 404'</span></code></pre>
 <p>Axios&#39; <code>catch()</code> behaves exactly the same as the <a href="/tutorials/fundamentals/catch">promise <code>catch()</code> function</a>. So you can use promise chaining, and add a <code>catch()</code> at the
 end to handle any errors that occur in the promise chain.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/200'</span>).
@@ -88,8 +87,7 @@ end to handle any errors that occur in the promise chain.</p>
   then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.doesNotExist.throwAnError).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 
-err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+err <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>You can also use <code>catch()</code> to transform the error, just make sure you
 rethrow the error afterwards.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> error;
@@ -104,8 +102,7 @@ rethrow the error afterwards.</p>
   error = err;
 }
 
-error.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not found"</span>
-</code></pre>
+error.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not found"</span></code></pre>
 <p>You can also make Axios <a href="/tutorials/axios/interceptors#error-handling">transform errors automatically using interceptors</a>.</p>
 
   
