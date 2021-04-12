@@ -1,5 +1,3 @@
-// loads Jobs
-
 Vue.createApp({
     data () {
         return {
@@ -9,7 +7,7 @@ Vue.createApp({
     template: `
     <div>Hello There</div>
     <a href = "/jobs/signup">Sign up Today!</a>
-    <a href = "/jobs/signin"> Or sign in if you already have an account</a>
+    <a href = "/jobs"> Or go back and look at jobs</a>
     `,
     created() {
         //fetch request goes here

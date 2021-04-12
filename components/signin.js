@@ -11,10 +11,10 @@ module.exports = () =>
 </head>
 
 <body>
-<h1>Find A Job!</h1>
+<h1>Sign in!</h1>
 <div id = "content"></div>
 </body>
 <script src="https://unpkg.com/vue@next"></script>
-<script src = "../src/client/vuejobs.js"></script>
+<script src = "../src/client/vuesignin.js"></script>
 </html>
 `
