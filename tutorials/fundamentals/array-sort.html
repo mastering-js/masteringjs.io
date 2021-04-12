@@ -88,12 +88,14 @@
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">100</span>];
 
 arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);
-arr; <span class="hljs-comment">// [3, 20, 100]</span></code></pre>
+arr; <span class="hljs-comment">// [3, 20, 100]</span>
+</code></pre>
 <p>To sort an array of numbers in reverse order, you should use <code>(a, b) =&gt; b - a</code> instead.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">20</span>, <span class="hljs-number">3</span>, <span class="hljs-number">100</span>];
 
 arr.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b - a);
-arr; <span class="hljs-comment">// [100, 20, 3]</span></code></pre>
+arr; <span class="hljs-comment">// [100, 20, 3]</span>
+</code></pre>
 <p>If you&#39;re familiar with Java, you can think of <code>compareFunction()</code> as JavaScript&#39;s equivalent to <a href="https://www.javatpoint.com/Comparable-interface-in-collection-framework"><code>compareTo()</code></a>.</p>
 <h2 id="sorting-an-array-of-objects-by-property">Sorting an Array of Objects by Property</h2>
 <p>Suppose you instead wanted to sort an array of objects. For example, suppose you had an array of Star Trek: The Next Generation characters:</p>
@@ -117,7 +119,8 @@ characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</spa
 });
 
 <span class="hljs-comment">// La Forge, Picard, Riker</span>
-characters;</code></pre>
+characters;
+</code></pre>
 <p>Here&#39;s how you would sort the <code>characters</code> array by age:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
@@ -128,7 +131,8 @@ characters;</code></pre>
 characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.age - b.age);
 
 <span class="hljs-comment">// Riker, La Forge, Picard</span>
-characters;</code></pre>
+characters;
+</code></pre>
 <p>How about sorting by <code>rank</code>? Sorting by rank requires a custom ordering, because the JavaScript runtime doesn&#39;t know that &#39;Captain&#39; is a higher rank than &#39;Lieutenant&#39;. Here&#39;s how you would sort based on a custom ordering using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><code>indexOf()</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Picard'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span> },
@@ -147,7 +151,8 @@ characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</spa
 });
 
 <span class="hljs-comment">// Picard, Riker, La Forge</span>
-characters;</code></pre>
+characters;
+</code></pre>
 
   
   <hr>
@@ -155,6 +160,9 @@ characters;</code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -171,9 +179,6 @@ characters;</code></pre>
   
 
     <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   

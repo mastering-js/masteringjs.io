@@ -4535,6 +4535,34 @@ describe('Fundamentals', function() {
       }
     });
   });
+  it('spread-assignment', function() {
+    let array1 = ['hot','cross','buns'];
+    let array2 = ['a','penny'];
+    let array3 = [...array1,...array1,'one',...array2,'two',...array2,...array1];
+    array3; 
+    /*[
+      'hot', 'cross', 'buns',
+      'hot', 'cross', 'buns',
+      'one', 'a',     'penny',
+      'two', 'a',     'penny',
+      'hot', 'cross', 'buns'
+      ]*/
+  });
+  it('spread-method', function() {
+    function foo(arg1,arg2,arg3,arg4) {
+      return arg1 + arg2 + arg3 + arg4 + 'Snickers'+ 'bar.'
+      // this is a delicious Snickers bar.
+    }
+    let args = ['this ','is ','a ','delicious ', 'piece ', 'of ', 'broccoli ']
+    foo(...args);
+  });
+  it('spread-carefully', function() {
+    let arr1 = [[1],[2],[3]];
+    let arr2 = [...arr1];
+    arr2.shift().shift();
+    arr2; // [[2], [3]]
+    arr1; // [[], [2], [3]]
+  });
 });
 
 if (!Array.prototype.flat) {

@@ -80,13 +80,15 @@
 math.std([<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// 0</span>
 
 <span class="hljs-comment">// Or a list of arguments (also called a "spread")</span>
-math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span></code></pre>
+math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span>
+</code></pre>
 <p>Math.js also has support for bias correction. Math.js&#39; <code>std()</code> function uses <a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel&#39;s correction</a> by default, but takes a 2nd argument <code>normalization</code> for configuring this. By default, given an array of length <code>n</code>, the <code>std()</code> function divides the variance by <code>n - 1</code>. You can pass <code>&#39;uncorrected&#39;</code> to make <code>std()</code> divide by <code>n</code>, or <code>&#39;biased&#39;</code> to make <code>std()</code> divide by <code>n + 1</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
 
 <span class="hljs-comment">// Must pass an array if you're using options</span>
 math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
-math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span></code></pre>
+math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span>
+</code></pre>
 
   
   <hr>
@@ -94,6 +96,9 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -110,9 +115,6 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
   
 
     <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   

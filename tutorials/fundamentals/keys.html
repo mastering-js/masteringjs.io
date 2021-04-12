@@ -78,7 +78,8 @@
   <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>,
   <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span>
 };
-<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age', 'rank']</span></code></pre>
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age', 'rank']</span>
+</code></pre>
 <h2 id="key-order">Key Order</h2>
 <p>The property names are in the order the property was first set. If you <code>delete</code>
 a property and then later set it again, the property goes to the end of the array.</p>
@@ -92,7 +93,8 @@ obj.rank = <span class="hljs-string">'Captain'</span>;
 
 <span class="hljs-keyword">delete</span> obj.age;
 obj.age = <span class="hljs-number">59</span>;
-<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'rank', 'age']</span></code></pre>
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'rank', 'age']</span>
+</code></pre>
 <p>The <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-ordinary-object-internal-methods-and-internal-slots-ownpropertykeys">ECMAScript spec calls this &quot;property creation order&quot;</a>. The <code>Object.keys()</code> function is <a href="https://www.stefanjudis.com/today-i-learned/property-order-is-predictable-in-javascript-objects-since-es2015/#the-internal-code-ownpropertykeys-code-method">guranteed to return keys in property creation order in all ES2015-compliant environments</a>. There is one key exception: numeric keys.</p>
 <p>Any property name that is an integer between 0 and <code>2^32 - 1</code> inclusive will come before all non-integer keys, and these properties will be sorted in numeric order.</p>
 <pre><code class="language-javacript"><span class="hljs-keyword">const</span> obj = {
@@ -103,7 +105,8 @@ obj.age = <span class="hljs-number">59</span>;
   <span class="hljs-number">10</span>: <span class="hljs-string">'test'</span>
 };
 
-<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['1', '10', '100', 'name', 'rank']</span></code></pre>
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['1', '10', '100', 'name', 'rank']</span>
+</code></pre>
 <h2 id="es6-classes">ES6 Classes</h2>
 <p>The <code>Object.keys()</code> function only returns so-called <a href="https://masteringjs.io/tutorials/fundamentals/hasownproperty">&quot;own properties.&quot;</a>. That means <code>Object.keys()</code> will <strong>not</strong> return class methods or class properties.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Character</span> </span>{
@@ -130,7 +133,8 @@ obj.firstName(); <span class="hljs-comment">// 'Jean-Luc'</span>
 
 <span class="hljs-comment">// But if you overwrite a class property, it becomes an own property.</span>
 obj.firstName = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'test'</span>;
-<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age', 'rank', 'firstName']</span></code></pre>
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age', 'rank', 'firstName']</span>
+</code></pre>
 <h2 id="symbols">Symbols</h2>
 <p>The <code>Object.keys()</code> property does <strong>not</strong> include symbol properties. You need to
 use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols"><code>Object.getOwnPropertySymbols()</code></a> to get symbol properties.</p>
@@ -143,7 +147,8 @@ use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
 };
 
 <span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age']</span>
-<span class="hljs-built_in">Object</span>.getOwnPropertySymbols(obj); <span class="hljs-comment">// [ Symbol(rank) ]</span></code></pre>
+<span class="hljs-built_in">Object</span>.getOwnPropertySymbols(obj); <span class="hljs-comment">// [ Symbol(rank) ]</span>
+</code></pre>
 
   
   <hr>
@@ -151,6 +156,9 @@ use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -167,9 +175,6 @@ use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/G
   
 
     <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   
