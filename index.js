@@ -14,6 +14,7 @@ const tutorialTemplate = require('./components/tutorial');
 const jobs = require('./components/jobs');
 const signin = require('./components/signin');
 const signup = require('./components/signup');
+const createjob = require('./components/createjob');
 
 require('acquit-ignore')();
 
@@ -248,6 +249,13 @@ async function run() {
     title: 'Signup',
     content: signup(),
     description: 'Sign up'
+  });
+  pages.push({
+    path: './jobs/create.html',
+    template: layout,
+    title: 'Create Job',
+    content: createjob(),
+    description: 'Create Job'
   });
   for (const page of pages) {
     console.log(page.path)
