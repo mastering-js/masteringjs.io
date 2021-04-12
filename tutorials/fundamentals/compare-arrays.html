@@ -102,7 +102,8 @@ if all the elements of the arrays are primitives as opposed to objects.</p>
 }
 
 arrayEquals(a, b); <span class="hljs-comment">// false</span>
-arrayEquals(a, c); <span class="hljs-comment">// true</span></code></pre>
+arrayEquals(a, c); <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="deep-equality-with-pojos">Deep Equality With <a href="/tutorials/fundamentals/pojo">POJOs</a></h2>
 <p>The previous <code>arrayEquals()</code> function works great for primitive values,
 but falls short if you want to compare objects by value.</p>
@@ -118,7 +119,8 @@ by their <a href="https://thecodebarbarian.com/the-80-20-guide-to-json-stringify
 <span class="hljs-keyword">const</span> c = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }, { <span class="hljs-attr">password</span>: <span class="hljs-string">'taco'</span> }];
 
 <span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(b); <span class="hljs-comment">// true</span>
-<span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(c); <span class="hljs-comment">// false</span></code></pre>
+<span class="hljs-built_in">JSON</span>.stringify(a) === <span class="hljs-built_in">JSON</span>.stringify(c); <span class="hljs-comment">// false</span>
+</code></pre>
 <p>This approach is handy because it requires minimal code and no outside
 libraries. However, comparing <code>JSON.stringify()</code> output has an unfortunate
 edge case that may be a problem depending on your use case. Since <code>undefined</code>
@@ -160,7 +162,8 @@ takes all this into account.</p>
 <span class="hljs-keyword">const</span> a = [<span class="hljs-keyword">new</span> MyClass({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> })];
 <span class="hljs-keyword">const</span> b = [{ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> }];
 
-_.isEqual(a, b); <span class="hljs-comment">// false</span></code></pre>
+_.isEqual(a, b); <span class="hljs-comment">// false</span>
+</code></pre>
 <p>Lodash&#39;s <code>isEqual()</code> function is the way to go if you need all the bells and
 whistles of checking that objects have the same class. The <code>JSON.stringify()</code>
 approach works well for POJOs, just make sure you take into account <code>null</code>
@@ -172,6 +175,9 @@ and only use it with trusted data - <code>toJSON()</code> can be a security vuln
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -188,9 +194,6 @@ and only use it with trusted data - <code>toJSON()</code> can be a security vuln
   
 
     <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   

@@ -4535,6 +4535,28 @@ describe('Fundamentals', function() {
       }
     });
   });
+  it('named-parameters', function() {
+    function example({ arg1 = 1, arg2 = 2, arg3 = 3 } = {}) {
+      return { arg1, arg2, arg3 };
+    }
+
+    function problem({failure = true}) {
+      return failure;
+    }
+    // acquit:ignore:start
+    assert.throws(() => {
+    // acquit:ignore:end
+
+    problem(); //TypeError: Cannot read property 'failure' of undefined
+
+    // acquit:ignore:start
+    }, /TypeError: Cannot read property 'failure' of undefined/);
+    // acquit:ignore:end
+
+    example({ arg2: 4, arg1: 2 }); // returns 2, 4, and 3
+
+    example(); // returns 1, 2, and 3
+  });
 });
 
 if (!Array.prototype.flat) {

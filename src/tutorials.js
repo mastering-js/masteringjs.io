@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Named Parameters in JavaScript',
+    raw: './tutorials/fundamentals/parameters.md',
+    url: '/tutorials/fundamentals/parameters',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-04-12')
+  },
+  {
     title: 'How to Locally Scope the CSS in Your Vue Files',
     raw: './tutorials/vue/style-scoped.md',
     url: '/tutorials/vue/style-scoped',

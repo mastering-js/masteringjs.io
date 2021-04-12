@@ -80,7 +80,8 @@ If the async operation failed, JavaScript will <a href="https://developer.mozill
 
 p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="with-promise-chaining">With Promise Chaining</h2>
 <p>The major benefit of <code>.catch()</code> is that you can catch errors that
 occurred anywhere in a <a href="/tutorials/fundamentals/then#chaining">promise chain</a>.</p>
@@ -94,7 +95,8 @@ occurred anywhere in a <a href="/tutorials/fundamentals/then#chaining">promise c
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Will not print'</span>)).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     err.message; <span class="hljs-comment">// 'Batman!'</span>
-  });</code></pre>
+  });
+</code></pre>
 <p>This means you only need one <code>catch()</code> at the end of a promise chain
 to handle any errors that occur in the promise chain!</p>
 <h2 id="rethrow-errors">Rethrow Errors</h2>
@@ -105,7 +107,8 @@ to handle any errors that occur in the promise chain!</p>
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> { <span class="hljs-keyword">throw</span> err; }). <span class="hljs-comment">// Rethrow the error</span>
   <span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     err.message; <span class="hljs-comment">// 'Oops!'</span>
-  });</code></pre>
+  });
+</code></pre>
 <p>This also means you should be very careful about uncaught errors in your
 <code>.catch()</code> error handlers. If the function you pass to <code>.catch()</code> throws
 and you don&#39;t have another <code>.catch()</code> afterward, you&#39;ll get an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled promise rejection</a>.</p>
@@ -121,12 +124,14 @@ answer; <span class="hljs-comment">// 42</span>
   catch(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>).
   then(<span class="hljs-function"><span class="hljs-params">answer</span> =&gt;</span> {
     answer; <span class="hljs-comment">// 42</span>
-  });</code></pre>
+  });
+</code></pre>
 <p>In other words, you can handle <a href="http://thecodebarbarian.com/async-await-error-handling-in-javascript.html#golang-in-js">async errors in JavaScript using Golang-like syntax</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops!'</span>));
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// 'Oops!'</span></code></pre>
+err.message; <span class="hljs-comment">// 'Oops!'</span>
+</code></pre>
 <h2 id="versus-then">Versus <code>then()</code></h2>
 <p>The <code>catch()</code> function is just a thin layer of syntactic sugar on
 top of the <a href="/tutorials/fundamentals/then">Promise <code>then()</code> function</a>.
@@ -144,7 +149,8 @@ Recall that <code>then()</code> takes 2 parameters:</p>
 
 <span class="hljs-keyword">return</span> p.then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRejected</span>(<span class="hljs-params">err</span>) </span>{
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});</code></pre>
+});
+</code></pre>
 
   
   <hr>
@@ -152,6 +158,9 @@ Recall that <code>then()</code> takes 2 parameters:</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -168,9 +177,6 @@ Recall that <code>then()</code> takes 2 parameters:</p>
   
 
     <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   
