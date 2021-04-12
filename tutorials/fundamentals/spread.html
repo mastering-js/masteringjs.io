@@ -82,13 +82,13 @@ it less of a headache:</p>
 <span class="hljs-keyword">let</span> array2 = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'penny'</span>];
 <span class="hljs-keyword">let</span> array3 = [...array1,...array1,<span class="hljs-string">'one'</span>,...array2,<span class="hljs-string">'two'</span>,...array2,...array1];
 array3; 
-<span class="hljs-comment">/*[
+<span class="hljs-comment">/* [
   'hot', 'cross', 'buns',
   'hot', 'cross', 'buns',
   'one', 'a',     'penny',
   'two', 'a',     'penny',
   'hot', 'cross', 'buns'
-  ]*/</span>
+  ] */</span>
 </code></pre>
 <p><strong>Note:</strong> Avoid using <code>...</code> with multidimensional arrays.
 Modifying that kind of an array can lead to problems like
