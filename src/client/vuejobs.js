@@ -1,5 +1,7 @@
 // loads Jobs
-
+const jobPost = require('./vuecreatejob');
+const signin = require('./signin.js');
+const signup = require('./signup.js');
 Vue.createApp({
     data () {
         return {
