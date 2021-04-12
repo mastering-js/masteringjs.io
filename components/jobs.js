@@ -6,17 +6,15 @@ module.exports = () =>
 <head>
   <meta charset="utf-8">
   <meta name="description">
-
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
-  <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
-  <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
-  <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/github.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
 
 </head>
 
 <body>
 <h1>Find A Job!</h1>
+<div id = "content"></div>
 </body>
+<script src="https://unpkg.com/vue@next"></script>
+<script src = "../src/client/vuejobs.js"
 </html>
 `
