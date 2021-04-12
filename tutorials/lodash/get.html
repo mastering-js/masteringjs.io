@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -95,7 +96,8 @@ the below object:</p>
 you would get the below error.</p>
 <pre><code><span class="hljs-built_in">TypeError</span>: Cannot read property <span class="hljs-string">'geometry'</span> <span class="hljs-keyword">of</span> <span class="hljs-literal">undefined</span></code></pre>
 <p>The <code>_.get()</code> function lets you safely access the nested <code>location.geometry.type</code> property, without having to explicity check whether <code>landmark</code>, <code>landmark.location</code>, or <code>landmark.location.geometry</code> is undefined.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// 'Point'</span>
+<pre><code class="language-javascript">
+<span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// 'Point'</span>
 
 <span class="hljs-keyword">delete</span> landmark.location;
 <span class="hljs-comment">// `_.get()` doesn't error out, even though `landmark.location` is</span>
@@ -103,10 +105,12 @@ you would get the below error.</p>
 type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// undefined</span>
 
 <span class="hljs-comment">// Even if `landmark` is `null`, `_.get()` does not error out.</span>
-type = _.get(<span class="hljs-literal">null</span>, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// undefined</span></code></pre>
+type = _.get(<span class="hljs-literal">null</span>, <span class="hljs-string">'location.geometry.type'</span>); <span class="hljs-comment">// undefined</span>
+</code></pre>
 <h2 id="default-values">Default Values</h2>
 <p>The third argument to <code>_.get()</code> is the default value. If you pass a default value, <code>_.get()</code> will return the default value where it would normally return <code>undefined</code>.</p>
-<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">undefined</span>;
+<pre><code class="language-javascript">
+landmark.location.geometry.type = <span class="hljs-literal">undefined</span>;
 <span class="hljs-comment">// If the value of the property is `undefined`, `_.get()` will return</span>
 <span class="hljs-comment">// the default value.</span>
 <span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// 'default'</span>
@@ -114,20 +118,25 @@ type = _.get(<span class="hljs-literal">null</span>, <span class="hljs-string">'
 <span class="hljs-keyword">delete</span> landmark.location;
 <span class="hljs-comment">// If the property doesn't exist, `_.get()` will also return the default</span>
 <span class="hljs-comment">// value.</span>
-type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// 'default'</span></code></pre>
+type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// 'default'</span>
+</code></pre>
 <h2 id="null-vs-undefined"><code>null</code> vs <code>undefined</code></h2>
 <p>Be careful, the <code>_.get()</code> function can return <code>null</code>, even if you specify a default value.</p>
-<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">null</span>;
+<pre><code class="language-javascript">
+landmark.location.geometry.type = <span class="hljs-literal">null</span>;
 <span class="hljs-comment">// If the value of the property is `null`, `_.get()` will **not** use</span>
 <span class="hljs-comment">// the default value</span>
-<span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// null</span></code></pre>
+<span class="hljs-keyword">let</span> type = _.get(landmark, <span class="hljs-string">'location.geometry.type'</span>, <span class="hljs-string">'default'</span>); <span class="hljs-comment">// null</span>
+</code></pre>
 <p>If you want to make sure <code>_.get()</code> never resolves to a nullish value, you need
 to explicitly check the return value using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">conditional operator <code>?</code></a>.</p>
-<pre><code class="language-javascript">landmark.location.geometry.type = <span class="hljs-literal">null</span>;
+<pre><code class="language-javascript">
+landmark.location.geometry.type = <span class="hljs-literal">null</span>;
 
 <span class="hljs-keyword">const</span> checkDefault = <span class="hljs-function">(<span class="hljs-params">v, def</span>) =&gt;</span> v == <span class="hljs-literal">null</span> ? def : v;
 <span class="hljs-comment">// 'default'</span>
-<span class="hljs-keyword">let</span> type = checkDefault(_.get(landmark, <span class="hljs-string">'location.geometry.type'</span>), <span class="hljs-string">'default'</span>);</code></pre>
+<span class="hljs-keyword">let</span> type = checkDefault(_.get(landmark, <span class="hljs-string">'location.geometry.type'</span>), <span class="hljs-string">'default'</span>);
+</code></pre>
 
   
   <hr>

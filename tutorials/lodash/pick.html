@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -84,7 +85,8 @@ with just the keys <code>paths</code> from <code>obj</code>.</p>
 picked === obj; <span class="hljs-comment">// false</span>
 picked.name; <span class="hljs-comment">// 'Will Riker'</span>
 picked.rank; <span class="hljs-comment">// 'Commander'</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p>The <code>pick()</code> function also supports dotted paths and any other syntax that
 <a href="/tutorials/lodash/get">Lodash&#39;s <code>get()</code> function</a> supports. For example,
 if <code>name</code> is a nested object with 2 properties, <code>first</code> and <code>last</code>, you
@@ -103,7 +105,8 @@ picked === obj; <span class="hljs-comment">// false</span>
 picked.name.first; <span class="hljs-comment">// undefined</span>
 picked.name.last; <span class="hljs-comment">// 'Riker'</span>
 picked.rank; <span class="hljs-comment">// 'Commander'</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p><code>pick()</code> is permissive when it comes to missing properties. If you try
 to <code>pick()</code> a dotted property whose parent is undefined, Lodash will
 just ignore that path.</p>
@@ -119,7 +122,8 @@ just ignore that path.</p>
 picked === obj; <span class="hljs-comment">// false</span>
 picked.name; <span class="hljs-comment">// 'Will Riker'</span>
 picked.rank; <span class="hljs-comment">// undefined</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p>Several other frameworks have analogous <code>pick()</code> functions. For example,
 <a href="https://mongoosejs.com/docs/api/schema.html#schema_Schema-pick">Mongoose schemas have a <code>pick()</code> function</a> that creates a new schema a subset of the original schema&#39;s paths.</p>
 

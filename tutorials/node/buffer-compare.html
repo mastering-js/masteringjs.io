@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -82,7 +83,8 @@ buffers are equal.</p>
 
 Buffer.compare(buf1, buf2); <span class="hljs-comment">// 0, means the 2 buffers are equal</span>
 
-Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span></code></pre>
+Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span>
+</code></pre>
 <p>That means, to check if <code>buf1</code> has the same bytes as <code>buf2</code>, you can do:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> isEqual = Buffer.compare(buf1, buf2) === <span class="hljs-number">0</span>;</code></pre>
 <h2 id="sorting">Sorting</h2>
@@ -103,7 +105,8 @@ Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf
 
 buffers.sort(Buffer.compare);
 
-buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
+buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span>
+</code></pre>
 
   
   <hr>

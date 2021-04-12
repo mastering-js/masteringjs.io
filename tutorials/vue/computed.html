@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -87,7 +88,8 @@
       {{reviews.reduce((sum, v) =&gt; sum + v.score, 0) / reviews.length}} ({{reviews.length}} reviews)
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <p>Instead of computing the average in the template, you can instead
 create a computed property <code>average</code>, and use <code>average</code> in the 
 template expression instead.</p>
@@ -115,7 +117,8 @@ template expression instead.</p>
       {{average}} ({{reviews.length}} reviews)
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="when-to-use-computed-properties-versus-methods">When To Use Computed Properties Versus Methods</h2>
 <p>You can also use Vue methods to abstract out complex template logic as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -141,7 +144,8 @@ template expression instead.</p>
       {{average()}} ({{reviews.length}} reviews)
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <p>Both approaches work, but Vue <a href="https://vuejs.org/v2/guide/computed.html#Computed-Caching-vs-Methods">caches computed properties based on their &quot;reactive values&quot;</a>.
 In other words, Vue figures out what <code>data</code> fields your computed property relies on,
 and doesn&#39;t recompute the computed property unless one of those <code>data</code> fields

@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -75,7 +76,8 @@
   <p>Express apps have a <a href="https://expressjs.com/en/api.html#app.use"><code>use()</code> function</a>. This function adds a new <a href="/tutorials/express/middleware">middleware</a> to the app.</p>
 <p>For example, suppose you want to print the HTTP method (get, post, etc.) and the URL of every request. Here&#39;s how you
 can add a new middleware that prints the HTTP method and URL of every request:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
 app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
   <span class="hljs-comment">// For example, a GET request to `/test` will print "GET /test"</span>
@@ -93,7 +95,8 @@ app.get(<span class="hljs-string">'/test'</span>, (req, res, next) =&gt; {
 
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-comment">// Prints "get /test"</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>);</code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/test'</span>);
+</code></pre>
 <h2 id="the-middleware-stack">The Middleware Stack</h2>
 <p>In Express, everything is middleware. Internally, an Express app has a middleware <em>stack</em>, and calling <code>use()</code> adds
 a new <em>layer</em> to the stack. Functions that define route handlers, like <code>get()</code> and <code>post()</code> also add layers to the stack. 
@@ -115,7 +118,8 @@ app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'co
 <span class="hljs-comment">// is after the CORS middleware in the middleware list.</span>
 app.get(<span class="hljs-string">'/cors'</span>, (req, res) =&gt; {
   res.send(<span class="hljs-string">'ok'</span>);
-});</code></pre>
+});
+</code></pre>
 <p>Another common middleware function is <a href="http://expressjs.com/en/resources/middleware/body-parser.html">Express&#39; body parser</a>.
 This middleware is responsible for parsing the <a href="/tutorials/express/body">request body</a> and setting the <code>req.body</code> property.
 Make sure you call <code>app.use(express.json())</code> <strong>before</strong> using <code>req.body</code>, otherwise it will be undefined!</p>
@@ -133,7 +137,8 @@ app.use(express.json());
 <span class="hljs-comment">// `body` will contain the inbound request body.</span>
 app.post(<span class="hljs-string">'/body'</span>, (req, res) =&gt; {
   res.json({ <span class="hljs-attr">body</span>: req.body });
-});</code></pre>
+});
+</code></pre>
 <h2 id="the-path-parameter">The <code>path</code> Parameter</h2>
 <p>Although the <code>use()</code> function is typically called with only 1 parameter, you can also pass it a <code>path</code> that tells Express
 to only execute the given middleware when it receives a request for a URL that starts with the given <code>path</code>.</p>
@@ -156,7 +161,8 @@ app.get(<span class="hljs-string">'/cors'</span>, (req, res) =&gt; {
 <span class="hljs-comment">// with '/cors'</span>
 app.get(<span class="hljs-string">'/cors/test'</span>, (req, res) =&gt; {
   res.send(<span class="hljs-string">'ok'</span>);
-});</code></pre>
+});
+</code></pre>
 
   <hr>
 <div class="cta">

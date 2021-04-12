@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -86,7 +87,8 @@
 
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <p>You can use this approach but use a function to load the string. This splits HTML and JavaScript into separate files to get better syntax highlighting and separation of concerns.</p>
 <pre><code class="language-javascript">Vue.component(<span class="hljs-string">'app'</span>, {
   <span class="hljs-attr">template</span>: <span class="hljs-keyword">await</span> load(<span class="hljs-string">'app-template'</span>),
@@ -115,7 +117,8 @@ data;
       resolve(res);
     });
   });
-}</code></pre>
+}
+</code></pre>
 <h2 id="inline-templates">Inline Templates</h2>
 <p>Another approach that is similar to string templates is inline templates. Instead of defining an HTML template for every component, you define all your component HTML in one top-level template. This is similar to <a href="http://localhost:5000/tutorials/vue/slots">slots</a>.</p>
 <pre><code class="language-javascript">Vue.component(<span class="hljs-string">'app'</span>, {
@@ -129,7 +132,8 @@ data;
 
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <p>The advantage of this approach is you can define all your app&#39;s HTML in one template, but still break up business logic into separate components.</p>
 <h2 id="single-file-components">Single File Components</h2>
 <p><a href="https://vuejs.org/v2/guide/single-file-components.html">Single file components</a> give you the best of both worlds between putting your HTML template in a separate file and putting your HTML template as a string literal. Like string literals, everything about a component is in one place. Like separate HTML files, you can get decent syntax highlighting.</p>
@@ -166,7 +170,8 @@ Vue.component(<span class="hljs-string">'app'</span>, appComponent);
 
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 
   <hr>
 <div class="cta">

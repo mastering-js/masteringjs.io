@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -88,7 +89,8 @@ pAll <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Pr
 
 <span class="hljs-built_in">Array</span>.isArray(arr); <span class="hljs-comment">// true</span>
 arr[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 1</span>
-arr[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 2</span></code></pre>
+arr[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 2</span>
+</code></pre>
 <h2 id="parallel-execution-of-async-functions">Parallel Execution of Async Functions</h2>
 <p>When used with <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async functions</a>, <code>Promise.all()</code> lets you execute code in parallel. Pass an array of <code>async</code> function calls to <code>Promise.all()</code>, and
 JavaScript will execute the async functions in parallel.</p>
@@ -113,7 +115,8 @@ how you can use <code>Promise.all()</code> to execute them in parallel:</p>
 name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
 age; <span class="hljs-comment">// 59</span>
 
-end - start; <span class="hljs-comment">// Approximately 200</span></code></pre>
+end - start; <span class="hljs-comment">// Approximately 200</span>
+</code></pre>
 <h2 id="error-case">Error Case</h2>
 <p>If one of the promises rejects, the promise returned by <code>Promise.all()</code>
 rejects immediately with the same error.</p>
@@ -126,7 +129,8 @@ rejects immediately with the same error.</p>
   <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all([success, fail]);
 } <span class="hljs-keyword">catch</span> (err) {
   err.message; <span class="hljs-comment">// 'Oops'</span>
-}</code></pre>
+}
+</code></pre>
 <p>Note that, since promises are not cancellable, each individual promise
 continues execution, even if one of them errors out. If you pass an
 array of async functions and one of the async functions throws an
@@ -156,7 +160,8 @@ But the other functions will continue executing.</p>
   <span class="hljs-comment">// If you wait, `success()` will set `finished`</span>
   <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
   finished; <span class="hljs-comment">// true</span>
-}</code></pre>
+}
+</code></pre>
 <h2 id="getting-fancy-with-generators">Getting Fancy with <a href="https://thecodebarbarian.com/introducing-80-20-guide-to-es2015-generators">Generators</a></h2>
 <p>The <code>Promise.all()</code> function doesn&#39;t limit you to arrays, the first parameter
 can be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all#Syntax">any JavaScript iterable</a>. Arrays are iterables,
@@ -171,7 +176,8 @@ promises into a single promise.</p>
 
 <span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(generatorFn());
 
-arr; <span class="hljs-comment">// [1, 2, 3, 4, 5]</span></code></pre>
+arr; <span class="hljs-comment">// [1, 2, 3, 4, 5]</span>
+</code></pre>
 
   <hr>
 <div class="cta">

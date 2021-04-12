@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -84,7 +85,8 @@
   <span class="hljs-keyword">return</span> response
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>You can do the following:</p>
 <pre><code class="language-javascipt"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>,{
   <span class="hljs-attr">headers</span>:{
@@ -95,11 +97,13 @@
   <span class="hljs-keyword">return</span> response;
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>Or for a simple POST request:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
 <p>When sending requests with data, the data can be of type:</p>
 <ul>
 <li>string</li>

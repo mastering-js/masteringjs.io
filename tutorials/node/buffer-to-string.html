@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -78,14 +79,16 @@ to a string.</p>
 from a string using <code>Buffer.from()</code>, the <code>toString()</code> function gives you the original string back.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
 
-buf.toString(); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
+buf.toString(); <span class="hljs-comment">// 'Hello, World'</span>
+</code></pre>
 <h2 id="the-encoding-parameter">The <code>encoding</code> Parameter</h2>
 <p>The <code>toString()</code> method&#39;s first parameter is a string called <code>encoding</code>. It determines what format Node.js uses to express
 the raw data. The default value is <code>&#39;utf8&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
-buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// '{ "name": "masteringjs.io", ...}'</span></code></pre>
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// '{ "name": "masteringjs.io", ...}'</span>
+</code></pre>
 <p>Node.js supports <a href="https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings">numerous different encodings</a> for buffers. The most commonly used are:</p>
 <ul>
 <li>&#39;utf8&#39;</li>
@@ -97,7 +100,8 @@ as 2 hexadecimal characters.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
-buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '7b0a2020...'</span></code></pre>
+buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '7b0a2020...'</span>
+</code></pre>
 <p>Which encoding is correct depends on your use case and the data stored in the buffer. Typically <code>Buffer#toString()</code> is
 used for debugging and trying to figure out what the contents of the buffer mean. If that&#39;s your use case, try all
 3 different encodings and see if any of them look familiar.</p>
@@ -105,7 +109,8 @@ used for debugging and trying to figure out what the contents of the buffer mean
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
-buf.toString(<span class="hljs-string">'base64'</span>); <span class="hljs-comment">// 'ewogICJuYW1lI...'</span></code></pre>
+buf.toString(<span class="hljs-string">'base64'</span>); <span class="hljs-comment">// 'ewogICJuYW1lI...'</span>
+</code></pre>
 
   
   <hr>

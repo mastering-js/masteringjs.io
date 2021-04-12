@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -92,7 +93,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
 response.data; <span class="hljs-comment">// 'Hello, World'</span>
-response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'text/html; charset=utf-8'</span></code></pre>
+response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'text/html; charset=utf-8'</span>
+</code></pre>
 <h2 id="json-responses-using-resjson">JSON Responses Using <code>res.json()</code></h2>
 <p>The <code>res.send()</code> function is rarely used in practice, because Express responses
 have a couple of convenient helper functions. If you&#39;re building a RESTful API
@@ -110,7 +112,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
 response.data; <span class="hljs-comment">// { answer: 42 }</span>
-response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json; charset=utf-8'</span></code></pre>
+response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json; charset=utf-8'</span>
+</code></pre>
 <h2 id="rendering-template-languages">Rendering Template Languages</h2>
 <p>Express supports <a href="https://github.com/expressjs/express/wiki#template-engines">several different popular templating languages</a>. For example,
 you can use the <a href="https://www.npmjs.com/package/pug">Pug language</a> (formerly known as Jade).</p>
@@ -134,7 +137,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-response.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World&lt;/h1&gt;'</span></code></pre>
+response.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World&lt;/h1&gt;'</span>
+</code></pre>
 <h2 id="setting-the-response-status">Setting the Response Status</h2>
 <p>The <a href="http://expressjs.com/en/4x/api.html#res.status"><code>res.status()</code> function</a> lets you set the response status. Unlike <code>res.send()</code>, <code>res.json()</code>, and <code>res.render()</code>,
 <code>res.status()</code> does <strong>not</strong> actually send the response. That&#39;s why you will
@@ -152,7 +156,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-response.status; <span class="hljs-comment">// 201</span></code></pre>
+response.status; <span class="hljs-comment">// 201</span>
+</code></pre>
 <h2 id="response-headers">Response Headers</h2>
 <p>The <a href="http://expressjs.com/en/4x/api.html#res.set"><code>res.status()</code> function</a> lets you set <a href="https://developer.mozilla.org/en-US/docs/Glossary/Response_header">HTTP response headers</a>. The below example demonstrates manually seting the response content type for sending an <a href="https://css-tricks.com/snippets/htaccess/serve-svg-correct-content-type/">SVG image</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -172,7 +177,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// image/svg+xml; charset=utf-8</span></code></pre>
+response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// image/svg+xml; charset=utf-8</span>
+</code></pre>
 <h2 id="what-happens-if-you-dont-send-a-response">What Happens if You Don&#39;t Send a Response?</h2>
 <p>In Express, you&#39;re responsible for sending your response using <code>res.json()</code>, <code>res.send()</code>, <code>res.end()</code>, or <code>res.render()</code>. Otherwise the request will hang forever. Express will <strong>not</strong> throw any error if you don&#39;t send a response.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Express won't throw an error, but any request to this endpoint will hang</span>

@@ -38,6 +38,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -84,7 +85,8 @@ to track the number of items in a user&#39;s shopping cart. You could represent
     }
   },
   <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;numItems is {{numItems}}&lt;/div&gt;`</span>
-});</code></pre>
+});
+</code></pre>
 <p>You could also define a watcher that updates a <code>numItems</code> property every
 time <code>items</code> changes:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -98,7 +100,8 @@ time <code>items</code> changes:</p>
     }
   },
   <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;numItems is {{numItems}}&lt;/div&gt;`</span>
-});</code></pre>
+});
+</code></pre>
 <p>Which approach should you use? In general, you should use computed properties
 for updating values. You should only use watchers for &quot;side effects&quot; like
 <code>console.log()</code>, or HTTP requests. Here&#39;s why.</p>

@@ -11,6 +11,7 @@ const marked = require('marked');
 const requestInvite = require('./components/request-invite');
 const transform = require('acquit-require');
 const tutorialTemplate = require('./components/tutorial');
+const jobs = require('./components/jobs');
 
 require('acquit-ignore')();
 
@@ -225,7 +226,13 @@ async function run() {
     content: require('./components/ebooks/mastering-mongoose-thankyou')(),
     description: ''
   });
-
+  pages.push({
+    path: './jobs.html',
+    template: layout,
+    title: 'Jobs',
+    content: jobs(),
+    description: 'Find A Job'
+  });
   for (const page of pages) {
     console.log(page.path)
     fs.writeFileSync(page.path, page.template({ ...page }));
