@@ -8,7 +8,8 @@ Vue.createApp({
     template: `
     <div>Hello There</div>
     <a href = "/jobs/signup">Sign up Today!</a>
-    <a href = "/jobs/signin"> Or sign in if you already have an account</a>
+    <a href = "/jobs/signin"> Or sign in if you already have an account.</a>
+    <a href = "/jobs/create"> Or Post a job!</a>
     `,
     created() {
         //fetch request goes here
