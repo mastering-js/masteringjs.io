@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Read Files with Vue',
+    raw: './tutorials/vue/file.md',
+    url: '/tutorials/vue/file',
+    description: 'Here\'s how you can display the contents of an `input type="file"` using Vue.',
+    tags: ['vue'],
+    date: moment('2021-04-13')
+  },
+  {
     title: 'How to Locally Scope the CSS in Your Vue Files',
     raw: './tutorials/vue/style-scoped.md',
     url: '/tutorials/vue/style-scoped',
