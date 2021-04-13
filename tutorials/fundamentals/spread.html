@@ -72,23 +72,16 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript&#39;s <code>spread</code> operator, <code>...</code>, is a handy way to pass 
+  <p>JavaScript&#39;s <code>spread</code> operator, <code>...</code>, is a handy way to pass
 multiple values from an array, object, or anything you can iterate
 through to a function or variable assignment. It shines especially
-when you want to combine two or more arrays. Instead of having to
-use <code>push</code>, <code>splice</code>, <code>concat</code>, and the kitchen sink,  <code>...</code> makes
-it less of a headache:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array1 = [<span class="hljs-string">'hot'</span>,<span class="hljs-string">'cross'</span>,<span class="hljs-string">'buns'</span>];
-<span class="hljs-keyword">let</span> array2 = [<span class="hljs-string">'a'</span>,<span class="hljs-string">'penny'</span>];
-<span class="hljs-keyword">let</span> array3 = [...array1,...array1,<span class="hljs-string">'one'</span>,...array2,<span class="hljs-string">'two'</span>,...array2,...array1];
-array3; 
-<span class="hljs-comment">/* [
-  'hot', 'cross', 'buns',
-  'hot', 'cross', 'buns',
-  'one', 'a',     'penny',
-  'two', 'a',     'penny',
-  'hot', 'cross', 'buns'
-  ] */</span>
+when you want to combine two or more arrays. The <code>...</code> operator offers
+a more intuitive way to combine multiple arrays than using <code>push()</code>,
+<code>splice()</code>, or <code>concat()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> array1 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>];
+<span class="hljs-keyword">const</span> array2 = [<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>];
+<span class="hljs-keyword">const</span> array3 = [...array1, ...array2, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>];
+array3; <span class="hljs-comment">// ['a','b','c','d','e','f']</span>
 </code></pre>
 <p><strong>Note:</strong> Avoid using <code>...</code> with multidimensional arrays.
 Modifying that kind of an array can lead to problems like
@@ -100,21 +93,37 @@ arr2; <span class="hljs-comment">// [[2], [3]]</span>
 arr1; <span class="hljs-comment">// [[], [2], [3]]</span>
 </code></pre>
 <h1 id="spread-with-functions">Spread with Functions</h1>
-<p>Using <code>...</code>, it reduces the chances of headaches arising when passing
-arguments to a function. it passes the arguments of the iterable value
-to the function in order and if you have more than it is expecting, it does
-not create any problems.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">arg1,arg2,arg3,arg4</span>) </span>{
-  <span class="hljs-keyword">return</span> arg1 + arg2 + arg3 + arg4 + <span class="hljs-string">'Snickers'</span>+ <span class="hljs-string">'bar.'</span>
-  <span class="hljs-comment">// this is a delicious Snickers bar.</span>
+<p>The spread operator also lets you call a function with the contents
+of an array as parameters, similar to <code>apply()</code>. it passes the arguments
+of the iterable value to the function in order and if you have more than
+it is expecting, it does not create any problems.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params">arg1,arg2</span>) </span>{
+  <span class="hljs-keyword">return</span> arg1 + <span class="hljs-string">' '</span> + arg2;
 }
-<span class="hljs-keyword">let</span> args = [<span class="hljs-string">'this '</span>,<span class="hljs-string">'is '</span>,<span class="hljs-string">'a '</span>,<span class="hljs-string">'delicious '</span>, <span class="hljs-string">'piece '</span>, <span class="hljs-string">'of '</span>, <span class="hljs-string">'broccoli '</span>]
-foo(...args);
+<span class="hljs-keyword">const</span> args = [<span class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span>];
+test(...args); <span class="hljs-comment">// Hello World</span>
 </code></pre>
 <h1 id="spread-with-objects">Spread with Objects</h1>
 <p>The same use case with arrays applies to objects as well,
-so long as there is more than one property in the object.</p>
-<p><strong>Note:</strong> <code>...</code> will not replace <code>assign</code>.</p>
+so long as there is more than one property in the object.
+Another ability that the spread operator enables is <a href="/tutorials/fundamentals/shallow-copy">shallow
+cloning an object.</a>
+Essentially, with regards to nested objects, any changes made
+on the copy are reflected onto the original.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> };
+<span class="hljs-comment">// The `Object.assign()` function is a common way to shallow clone an object</span>
+<span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign({}, obj);
+
+++copy.answer; <span class="hljs-comment">// 43</span>
+obj.answer; <span class="hljs-comment">// 42, did not change because `copy` is a copy of `obj`</span>
+
+<span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: { <span class="hljs-attr">first</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Picard'</span> } };
+<span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign({}, obj);
+
+copy.name.first = <span class="hljs-string">'Johnny'</span>;
+obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** cloned</span>
+</code></pre>
+<p><strong>Note:</strong> <code>...</code> will not replace <code>assign()</code>.</p>
 
   
   <hr>

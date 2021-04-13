@@ -4536,25 +4536,17 @@ describe('Fundamentals', function() {
     });
   });
   it('spread-assignment', function() {
-    let array1 = ['hot','cross','buns'];
-    let array2 = ['a','penny'];
-    let array3 = [...array1,...array1,'one',...array2,'two',...array2,...array1];
-    array3; 
-    /* [
-      'hot', 'cross', 'buns',
-      'hot', 'cross', 'buns',
-      'one', 'a',     'penny',
-      'two', 'a',     'penny',
-      'hot', 'cross', 'buns'
-      ] */
+    const array1 = ['a', 'b'];
+    const array2 = ['c', 'd'];
+    const array3 = [...array1, ...array2, 'e', 'f'];
+    array3; // ['a','b','c','d','e','f']
   });
   it('spread-method', function() {
-    function foo(arg1,arg2,arg3,arg4) {
-      return arg1 + arg2 + arg3 + arg4 + 'Snickers'+ 'bar.'
-      // this is a delicious Snickers bar.
+    function test(arg1,arg2) {
+      return arg1 + ' ' + arg2;
     }
-    let args = ['this ','is ','a ','delicious ', 'piece ', 'of ', 'broccoli ']
-    foo(...args);
+    const args = ['Hello', 'World'];
+    test(...args); // Hello World
   });
   it('spread-carefully', function() {
     let arr1 = [[1],[2],[3]];
@@ -4562,6 +4554,9 @@ describe('Fundamentals', function() {
     arr2.shift().shift();
     arr2; // [[2], [3]]
     arr1; // [[], [2], [3]]
+  });
+  it('spread-object', function() {
+    console.log('hi');
   });
 });
 
