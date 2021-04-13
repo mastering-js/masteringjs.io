@@ -9,9 +9,15 @@ Vue.createApp({
             sticky: false
         }
     },
+    methods: {
+        postJob() {
+            console.log('submitted');
+        }
+    },
     template: `
+    <div>
     <div>Hello There</div>
-    <form>
+    <form action = "" @submit="postJob()">
     <div>
     <label style = "display:block;">Company Name</label>
     <input style = "display:block;" type="text" v-model="name"/>
@@ -28,12 +34,13 @@ Vue.createApp({
     </div>
     <div>
     <label style = "display:block;">Customize Your Post</label>
-    <input active type="checkbox" /> $30 to post
+    <input type="checkbox" checked/> $30 to post
     </div>
     <div>
     <input type="checkbox" v-model="sticky"/> $30 to sticky post on frontpage for a month.
     </div>
-    </div>
+    <input type="submit"/>
     </form>
+    </div>
     `,
 }).mount('#content');
