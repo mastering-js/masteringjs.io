@@ -12,12 +12,17 @@ Vue.createApp({
     methods: {
         postJob() {
             console.log('submitted');
+            console.log(this.name);
+            console.log(this.position);
+            console.log(this.tag);
+            console.log(this.sticky);
+            // window.location.reload();
         }
     },
     template: `
     <div>
     <div>Hello There</div>
-    <form action = "" @submit="postJob()">
+    <form action = "" @submit.prevent="postJob()">
     <div>
     <label style = "display:block;">Company Name</label>
     <input style = "display:block;" type="text" v-model="name"/>
