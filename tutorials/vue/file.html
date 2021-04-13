@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Read Files with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can display the contents of an `input type='file'` using Vue." />
+    <meta name="description" content="Here's how you can display the contents of an `input type='file'` using Vue." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>How to Read Files with Vue</h1>
   <div class="date">
-    Apr 6, 2021
+    Apr 13, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,41 +72,36 @@
 	  }
 	})();
 	</script>
-  <p>Using Vue&#39;s <code>ref</code> property, you can easily read files
+  <p>Using Vue&#39;s <a href="/tutorials/vue/refs"><code>ref</code> property</a>, you can easily read files
 from <code>&lt;input&gt;</code>. By specifying input type to <code>file</code> and
 giving the <code>&lt;input&gt;</code> tag a <code>ref</code> property, you can pull
 the file into your methods and manipulate it as you deem
-fit. Here is the code to display an image:</p>
-<pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">example</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">Image</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">preview</span>: <span class="hljs-literal">null</span> }),
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
-      &lt;div style="border-style:solid"&gt;
-        &lt;input type="file" ref="file" @change='readFile()'/&gt;
-        &lt;div v-if="Image"&gt;
+fit. Here is the code to preview the selected image:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">example</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">image</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">preview</span>: <span class="hljs-literal">null</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div style="border-style:solid"&gt;
+      &lt;input type="file" ref="file" @change="readFile()" /&gt;
+      &lt;div v-if="Image"&gt;
         &lt;img :src="preview" /&gt;
-        &lt;/div&gt;
       &lt;/div&gt;
-    `</span>,
-    <span class="hljs-attr">methods</span>: {
-      readFile() {
-        <span class="hljs-keyword">this</span>.example = <span class="hljs-keyword">this</span>.$refs.file.files[<span class="hljs-number">0</span>];
-        <span class="hljs-keyword">if</span> (
-          <span class="hljs-keyword">this</span>.example.name.includes(<span class="hljs-string">".png"</span>) ||
-          <span class="hljs-keyword">this</span>.example.name.includes(<span class="hljs-string">".jpg"</span>)
-        ) {
-          <span class="hljs-keyword">this</span>.Image = <span class="hljs-literal">true</span>;
-          <span class="hljs-keyword">this</span>.preview = URL.createObjectURL(<span class="hljs-keyword">this</span>.example);
-        } <span class="hljs-keyword">else</span> {
-          <span class="hljs-keyword">this</span>.Image = <span class="hljs-literal">false</span>;
-        }
-      },
-    },
-  });
-  app.$mount(<span class="hljs-string">"#content"</span>);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+    &lt;/div&gt;
+  `</span>,
+  <span class="hljs-attr">methods</span>: {
+    readFile() {
+      <span class="hljs-keyword">this</span>.example = <span class="hljs-keyword">this</span>.$refs.file.files[<span class="hljs-number">0</span>];
+      <span class="hljs-keyword">if</span> (
+        <span class="hljs-keyword">this</span>.example.name.includes(<span class="hljs-string">".png"</span>) ||
+        <span class="hljs-keyword">this</span>.example.name.includes(<span class="hljs-string">".jpg"</span>)
+      ) {
+        <span class="hljs-keyword">this</span>.image = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">this</span>.preview = URL.createObjectURL(<span class="hljs-keyword">this</span>.example);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.image = <span class="hljs-literal">false</span>;
+      }
+    }
+  }
+});</code></pre>
 <p>Here is a live demonstration:</p>
 <div id="content"></div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
@@ -137,44 +132,37 @@ fit. Here is the code to display an image:</p>
 </script>
 
 <h2 id="file-reader">File Reader</h2>
-<p>Using JavaScript&#39;s <code>FileReader</code> class, you can read the
-file on the user&#39;s machine and display it on the page,
-provided it is a <code>.txt</code> file. Any other type of file will
-print ascii characters.</p>
-<pre><code class="language-html">&lt;div id=<span class="hljs-string">"example"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
-&lt;script&gt;
-  <span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">file</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">content</span>: <span class="hljs-literal">null</span> }),
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
-      &lt;div style="border-style:solid"&gt;
-        &lt;input type="file" ref="doc" @change='readFile()'/&gt;
-        &lt;div&gt;{{content}}&lt;/div&gt;
-      &lt;/div&gt;
-    `</span>,
-    <span class="hljs-attr">methods</span>: {
-      readFile() {
-        <span class="hljs-keyword">this</span>.file = <span class="hljs-keyword">this</span>.$refs.doc.files[<span class="hljs-number">0</span>];
-        <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader();
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.file.name.includes(<span class="hljs-string">".txt"</span>)) {
-          reader.onload = <span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
-            <span class="hljs-keyword">this</span>.content = res.target.result;
-          };
-          reader.onerror = <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err);
-          reader.readAsText(<span class="hljs-keyword">this</span>.file);
-        } <span class="hljs-keyword">else</span> {
-          <span class="hljs-keyword">this</span>.content = <span class="hljs-string">"check the console for file output"</span>;
-          reader.onload = <span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(res.target.result);
-          };
-          reader.onerror = <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err);
-          reader.readAsText(<span class="hljs-keyword">this</span>.file);
-        }
-      },
-    },
-  });
-  example.$mount(<span class="hljs-string">"#example"</span>);
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<p>Using <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader">JavaScript&#39;s <code>FileReader</code> class</a>, you can read the
+file and display it on the page.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> Vue({
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">file</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">content</span>: <span class="hljs-literal">null</span> }),
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;div style="border-style:solid"&gt;
+      &lt;input type="file" ref="doc" @change="readFile()" /&gt;
+      &lt;div&gt;{{content}}&lt;/div&gt;
+    &lt;/div&gt;
+  `</span>,
+  <span class="hljs-attr">methods</span>: {
+    readFile() {
+      <span class="hljs-keyword">this</span>.file = <span class="hljs-keyword">this</span>.$refs.doc.files[<span class="hljs-number">0</span>];
+      <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader();
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.file.name.includes(<span class="hljs-string">".txt"</span>)) {
+        reader.onload = <span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+          <span class="hljs-keyword">this</span>.content = res.target.result;
+        };
+        reader.onerror = <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err);
+        reader.readAsText(<span class="hljs-keyword">this</span>.file);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.content = <span class="hljs-string">"check the console for file output"</span>;
+        reader.onload = <span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> {
+          <span class="hljs-built_in">console</span>.log(res.target.result);
+        };
+        reader.onerror = <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err);
+        reader.readAsText(<span class="hljs-keyword">this</span>.file);
+      }
+    }
+  }
+});</code></pre>
 <p>Here is a live demonstration that will display the contents
 of a <code>.txt</code> file and print to the console the output for other
 types of files:</p>
@@ -214,8 +202,6 @@ types of files:</p>
   example.$mount("#example");
 </script>
 
-<p>Click <a href="/tutorials/fundamentals/filereader">here</a> for more on Javascript&#39;s <code>FileReader</code> class.</p>
-
   <hr>
 <div class="cta">
   <i>
@@ -240,6 +226,9 @@ types of files:</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/style-scoped">How to Locally Scope the CSS in Your Vue Files</a></li>
+  
+
     <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
   
 
@@ -256,9 +245,6 @@ types of files:</p>
   
 
     <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
-  
-
-    <li><a href="/tutorials/vue/vue-d3">How to Use D3.js in Your Vue Projects</a></li>
   
     </ul>
   

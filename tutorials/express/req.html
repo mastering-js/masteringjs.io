@@ -86,8 +86,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
   res.json({ <span class="hljs-attr">ok</span>: <span class="hljs-number">1</span> });
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
 <h2 id="request-parameters">Request Parameters</h2>
 <p>Express parses <a href="https://en.wikipedia.org/wiki/Query_string">query string</a> parameters by default, and puts them into the <a href="https://expressjs.com/en/api.html#req.query"><code>req.query</code> property</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -108,8 +107,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000?'</span> + querystring);
 
 res.data.name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
-res.data.rank; <span class="hljs-comment">// 'Captain'</span>
-</code></pre>
+res.data.rank; <span class="hljs-comment">// 'Captain'</span></code></pre>
 <p>Express also supports <a href="https://expressjs.com/en/api.html#req.params">named route parameters</a> and puts them in the <code>req.params</code> object. Named route parameters are always strings, and
 Express automatically decodes them using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent"><code>decodeUriComponent()</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -128,8 +126,7 @@ app.get(<span class="hljs-string">'/:model/:id'</span>, <span class="hljs-functi
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/1'</span>);
 
 res.data.model; <span class="hljs-comment">// 'user'</span>
-res.data.id; <span class="hljs-comment">// '1'</span>
-</code></pre>
+res.data.id; <span class="hljs-comment">// '1'</span></code></pre>
 <p>Express does <strong>not</strong> parse the <a href="/tutorials/express/body">request body</a> for you by default. To opt in to
 parsing JSON request bodies, use the <a href="https://expressjs.com/en/api.html#express.json"><code>express.json()</code> middleware</a>. Express will then parse
 the HTTP request body and put the parsed body in <code>req.body</code>.</p>
@@ -153,8 +150,7 @@ app.put(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'http://localhost:3000'</span>, body);
 
 res.data.name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
-res.data.rank; <span class="hljs-comment">// 'Captain'</span>
-</code></pre>
+res.data.rank; <span class="hljs-comment">// 'Captain'</span></code></pre>
 <h2 id="headers">Headers</h2>
 <p>To get the value of an <a href="https://developer.mozilla.org/en-US/docs/Glossary/Request_header">HTTP request header</a>, you should use Express&#39; <a href="https://expressjs.com/en/api.html#req.get"><code>req.get()</code> function</a>. You may also use <a href="https://nodejs.org/api/http.html#http_message_headers">Node.js&#39; native <code>req.headers</code> property</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -180,8 +176,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
   }
 });
 
-res.data.authorization; <span class="hljs-comment">// 'test'</span>
-</code></pre>
+res.data.authorization; <span class="hljs-comment">// 'test'</span></code></pre>
 <p>Here&#39;s a <a href="/tutorials/axios/headers">tutorial on how to set request headers in Axios</a>
 if you&#39;re unfamiliar with Axios.</p>
 <h2 id="body-size-limit">Body Size Limit</h2>
@@ -206,8 +201,7 @@ app.put(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'http://localhost:3000'</span>, body).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 
-err.response.status; <span class="hljs-comment">// 413</span>
-</code></pre>
+err.response.status; <span class="hljs-comment">// 413</span></code></pre>
 
   <hr>
 <div class="cta">

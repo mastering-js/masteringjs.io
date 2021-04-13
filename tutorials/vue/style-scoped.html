@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Locally Scope the CSS in Your Vue Files - Mastering JS</title>
+
+    <meta property="og:title" content="How to Locally Scope the CSS in Your Vue Files" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
+    <meta name="description" content="Here's how you can use `style scoped` in Vue to define CSS rules that apply to only one component." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/vue">Vue</a>
+    /
+  </div>
+  <h1>How to Locally Scope the CSS in Your Vue Files</h1>
+  <div class="date">
+    Apr 9, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>Vue 3 has a handy way to locally scope the CSS in your components.
+Using <code>&lt;style scoped&gt;</code>, you don&#39;t need to have a single large CSS
+file or multiple CSS files to make your site look pretty. By simply
+putting the CSS in the <code>&lt;style scoped&gt;</code> tag, the CSS will apply to
+that component.</p>
+<h2 id="appvue">App.vue</h2>
+<pre><code class="language-html">&lt;template&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Vue logo"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/logo.png"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">"Welcome to Your Vue.js App"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> HelloWorld <span class="hljs-keyword">from</span> <span class="hljs-string">"./components/HelloWorld.vue"</span>;
+
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"App"</span>,
+    <span class="hljs-attr">components</span>: {
+      HelloWorld,
+    },
+  };
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-selector-id">#app</span> {
+    <span class="hljs-attribute">font-family</span>: Avenir, Helvetica, Arial, sans-serif;
+    <span class="hljs-attribute">-webkit-font-smoothing</span>: antialiased;
+    <span class="hljs-attribute">-moz-osx-font-smoothing</span>: grayscale;
+    <span class="hljs-attribute">text-align</span>: center;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#2c3e50</span>;
+    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">60px</span>;
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre>
+<h2 id="helloworldvue">HelloWorld.vue</h2>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;div class="hello"&gt;
+    &lt;h1&gt;{{ msg }}&lt;/h1&gt;
+    &lt;p class="text"&gt;This text is in a component with a {{ html }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    name: "HelloWorld",
+    data() {
+      return {
+        html: `&lt;style scoped&gt;`,
+      };
+    },
+    props: {
+      msg: String,
+    },
+  };
+&lt;/script&gt;
+
+&lt;!-- Add "scoped" attribute to limit CSS to this component only --&gt;
+&lt;style scoped&gt;
+  h3 {
+    margin: 40px 0 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  a {
+    color: #42b983;
+  }
+  .text {
+    color: pink;
+  }
+&lt;/style&gt;</code></pre>
+<h2 id="result">Result</h2>
+<img src = "../../assets/vue-style-scoped.png"/>
+
+  <hr>
+<div class="cta">
+  <i>
+    <a href="https://vueschool.io">Vue School</a> has some of our favorite Vue
+    video courses. Their Vue.js Master Class walks you through building a real
+    world application, and does a great job of teaching you how to integrate Vue
+    with Firebase.
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">Check it out!</a>
+  </i>
+
+  <br><br>
+
+  <div class="cta-img-wrap">
+    <a href="https://vueschool.io/courses/the-vuejs-master-class?friend=mongoose">
+      <img src="/assets/vueschool.png">
+    </a>
+  </div>
+ </div>
+
+  <hr>
+  
+    <h2>More Vue Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
+  
+
+    <li><a href="/tutorials/vue/inject">Using Provide and Inject in Vue.js</a></li>
+  
+
+    <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
+  
+
+    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

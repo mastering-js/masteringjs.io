@@ -98,8 +98,7 @@ components globally using <code>Vue.component()</code>, you register components 
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
 });
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>Below is how you would rewrite it for Vue 3:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Create an app using `createApp()` that uses the `hello` component</span>
 <span class="hljs-keyword">const</span> app = Vue.createApp({
@@ -169,8 +168,7 @@ component emits like how you explicitly define a list of <code>props</code>.</p>
     }
   }
 });
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>Below is how you would change the above example to work with Vue 3. Besides the usual <code>createApp()</code>
 and <code>app.component()</code> changes, this example also adds a list of events the component <code>emits</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({
@@ -271,6 +269,9 @@ this pattern can be very useful, like if you&#39;re migrating a legacy React app
     <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
   
 
+    <li><a href="/tutorials/vue/style-scoped">How to Locally Scope the CSS in Your Vue Files</a></li>
+  
+
     <li><a href="/tutorials/vue/select-onchange">How to Use @change in Vue with select Tags</a></li>
   
 
@@ -284,9 +285,6 @@ this pattern can be very useful, like if you&#39;re migrating a legacy React app
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
-  
-
-    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
     </ul>
   

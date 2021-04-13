@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to Use Webpack's url-loader - Mastering JS</title>
+
+    <meta property="og:title" content="How to Use Webpack's url-loader" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="`url-loader` lets you `import` arbitrary files, like images. Here's what you need to know." />
+    <meta name="description" content="`url-loader` lets you `import` arbitrary files, like images. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/webpack">Webpack</a>
+    /
+  </div>
+  <h1>How to Use Webpack's url-loader</h1>
+  <div class="date">
+    Apr 5, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>Webpack&#39;s <code>url-loader</code> lets you <code>import</code> arbitrary files, like images. If you
+<code>import</code> a <code>.png</code> file, <code>url-loader</code> will ensure that import resolves to a
+<a href="https://en.wikipedia.org/wiki/Base64">Base64 string</a> representing the
+contents of the file.</p>
+<h1 id="example">Example</h1>
+<p>Here is an example to display a <code>.png</code> file using
+the <code>url-loader</code> option.
+The project directory looks like the following:</p>
+<pre>
+root
+|__deploy
+|  |
+|  |__index.html
+|  |__main.bundle.js
+|
+|__node_modules
+|
+|__src
+|  |
+|  |__app.js
+|  |__component.js
+|  |__image.js
+|
+|__package-lock.json
+|__package.json
+|__webpack.config.js
+|__yinyang.png
+</pre>
+
+<p>The dependencies needed are:</p>
+<ul>
+<li>file-loader</li>
+<li>html-webpack-plugin</li>
+<li>url-loader</li>
+<li>webpack</li>
+<li>webpack-cli</li>
+</ul>
+<p>This is the webpack configuration file:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
+<span class="hljs-keyword">const</span> HtmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">"html-webpack-plugin"</span>);
+
+<span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-keyword">new</span> HtmlWebpackPlugin({
+      <span class="hljs-attr">title</span>: <span class="hljs-string">"Webpack Output"</span>,
+    }),
+  ],
+  <span class="hljs-attr">entry</span>: {
+    <span class="hljs-attr">main</span>: path.resolve(__dirname, <span class="hljs-string">"./src/app.js"</span>),
+  },
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">"[name].bundle.js"</span>,
+    <span class="hljs-attr">path</span>: path.resolve(__dirname, <span class="hljs-string">"deploy"</span>),
+  },
+  <span class="hljs-attr">optimization</span>: {
+    <span class="hljs-attr">minimize</span>: <span class="hljs-literal">false</span>,
+  },
+  <span class="hljs-attr">module</span>: {
+    <span class="hljs-attr">rules</span>: [
+      {
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(png|jpg|gif)$/i</span>,
+        <span class="hljs-attr">use</span>: [
+          {
+            <span class="hljs-attr">loader</span>: <span class="hljs-string">"url-loader"</span>,
+            <span class="hljs-attr">options</span>: {
+              <span class="hljs-attr">limit</span>: <span class="hljs-number">8192</span>,
+              <span class="hljs-attr">mimetype</span>: <span class="hljs-string">"image/png"</span>,
+              <span class="hljs-attr">encoding</span>: <span class="hljs-literal">true</span>,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};</code></pre>
+<p>Below are the javascript file contents:</p>
+<h3 id="componentjs">component.js</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (text = <span class="hljs-string">"Hello, Webpack!"</span>) =&gt; {
+  <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"h1"</span>);
+
+  element.innerHTML = text;
+
+  <span class="hljs-keyword">return</span> element;
+};</code></pre>
+<h3 id="imagejs">image.js</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> image <span class="hljs-keyword">from</span> <span class="hljs-string">"../image/yinyang.png"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> () =&gt; {
+  <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"img"</span>);
+  element.src = image;
+
+  <span class="hljs-keyword">return</span> element;
+};</code></pre>
+<h3 id="appjs">app.js</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> component <span class="hljs-keyword">from</span> <span class="hljs-string">"./component"</span>;
+<span class="hljs-keyword">import</span> image <span class="hljs-keyword">from</span> <span class="hljs-string">"./image"</span>;
+
+<span class="hljs-built_in">document</span>.body.appendChild(component());
+<span class="hljs-built_in">document</span>.body.appendChild(image());</code></pre>
+<p>Once you have everything installed and
+setup properly, run:
+<code>webpack --mode development</code> to compile
+and bundle. This will create the <code>deploy</code>
+folder with the <code>index.html</code> and <code>main.bundle.js</code>
+file.</p>
+<p>This is what the app.js will look like after Webpack bundles it. Notice the
+<code>const yinyang = &quot;...&quot;</code> code that contains the base64 representation of
+<code>yinyang.png</code>.</p>
+<h3 id="mainbundlejs">main.bundle.js</h3>
+<pre><code class="language-javascript"><span class="hljs-comment">/******/</span> (<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-comment">// webpackBootstrap</span>
+  <span class="hljs-comment">/******/</span> <span class="hljs-string">"use strict"</span>;
+  <span class="hljs-keyword">var</span> __webpack_exports__ = {}; <span class="hljs-comment">// CONCATENATED MODULE: ./src/component.js</span>
+
+  <span class="hljs-comment">/* harmony default export */</span> <span class="hljs-keyword">const</span> component = <span class="hljs-function">(<span class="hljs-params">text = <span class="hljs-string">"Hello, Webpack!"</span></span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"h1"</span>);
+
+    element.innerHTML = text;
+
+    <span class="hljs-keyword">return</span> element;
+  }; <span class="hljs-comment">// CONCATENATED MODULE: ./yinyang.png</span>
+  <span class="hljs-comment">/* harmony default export */</span> <span class="hljs-keyword">const</span> yinyang =
+    <span class="hljs-string">"data:image/png;base64,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"</span>; <span class="hljs-comment">// CONCATENATED MODULE: ./src/image.js</span>
+  <span class="hljs-comment">/* harmony default export */</span> <span class="hljs-keyword">const</span> src_image = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"img"</span>);
+    element.src = yinyang;
+
+    <span class="hljs-keyword">return</span> element;
+  }; <span class="hljs-comment">// CONCATENATED MODULE: ./src/app.js</span>
+  <span class="hljs-built_in">document</span>.body.appendChild(component());
+  <span class="hljs-built_in">document</span>.body.appendChild(src_image());
+  <span class="hljs-comment">/******/</span>
+})();</code></pre>
+<p>And this is what it should look like on your file browser:</p>
+<h3 id="output">Output</h3>
+<img src = "../../assets/capture.png"/>
+
+  
+  <hr>
+  
+    <h2>More Webpack Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/webpack/alias">How to Use Webpack's Module Aliasing</a></li>
+  
+
+    <li><a href="/tutorials/webpack/css-loader">Using Webpack CSS Loader</a></li>
+  
+
+    <li><a href="/tutorials/webpack/typescript">Using Webpack to Compile TypeScript</a></li>
+  
+
+    <li><a href="/tutorials/webpack/externals">Webpack Externals</a></li>
+  
+
+    <li><a href="/tutorials/webpack/bundle-analyzer">Analyze JavaScript Bundles with Webpack Bundle Analyzer</a></li>
+  
+
+    <li><a href="/tutorials/webpack/config">An Introduction to Webpack Configs</a></li>
+  
+
+    <li><a href="/tutorials/webpack/dev-server">An Introduction to Webpack Dev Server</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>

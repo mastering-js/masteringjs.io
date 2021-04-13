@@ -1,0 +1,30 @@
+<div id="content"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.x"></script>
+<script>
+  const app = Vue.createApp({
+    setup: function() {
+      const state = Vue.reactive({ message: 'Row' });
+      Vue.provide('state', state);
+
+      return state;
+    },
+    template: `
+    <div>
+      <level1 />
+      <button v-on:click="message += ' row'">Add</button>
+    </div>
+    `
+  });
+
+  app.component('level1', {
+    template: `<level2 />`
+  });
+
+  app.component('level2', {
+    inject: ['state'],
+    template: `<h1>{{state.message}} your boat</h1>`
+  });
+
+  app.mount('#content');
+</script>
