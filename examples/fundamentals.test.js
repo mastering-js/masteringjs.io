@@ -4553,9 +4553,9 @@ describe('Fundamentals', function() {
     }, /TypeError: Cannot read property 'failure' of undefined/);
     // acquit:ignore:end
 
-    example({ arg2: 4, arg1: 2 }); // returns 2, 4, and 3
+    example({ arg2: 4, arg1: 2 }); // { arg1: 2, arg2: 4, arg3: 3 }
 
-    example(); // returns 1, 2, and 3
+    example(); // { arg1: 1, arg2: 2, arg3: 3 }
   });
 });
 
