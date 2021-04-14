@@ -4535,6 +4535,29 @@ describe('Fundamentals', function() {
       }
     });
   });
+  it('spread-assignment', function() {
+    const array1 = ['a', 'b'];
+    const array2 = ['c', 'd'];
+    const array3 = [...array1, ...array2, 'e', 'f'];
+    array3; // ['a','b','c','d','e','f']
+  });
+  it('spread-method', function() {
+    function test(arg1,arg2) {
+      return arg1 + ' ' + arg2;
+    }
+    const args = ['Hello', 'World'];
+    test(...args); // Hello World
+  });
+  it('spread-carefully', function() {
+    let arr1 = [[1],[2],[3]];
+    let arr2 = [...arr1];
+    arr2.shift().shift();
+    arr2; // [[2], [3]]
+    arr1; // [[], [2], [3]]
+  });
+  it('spread-object', function() {
+    console.log('hi');
+  });
 });
 
 if (!Array.prototype.flat) {
