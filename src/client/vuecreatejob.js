@@ -39,7 +39,7 @@ Vue.createApp({
     </div>
     <div>
     <label style = "display:block;">Customize Your Post</label>
-    <input type="checkbox" checked/> $30 to post
+    <input type="checkbox" checked disabled/> $30 to post
     </div>
     <div>
     <input type="checkbox" v-model="sticky"/> $30 to sticky post on frontpage for a month.
