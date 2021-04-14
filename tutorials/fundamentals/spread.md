@@ -41,5 +41,3 @@ on the copy are reflected onto the original.
 [require:Fundamentals.*shallow copy.*shallow$]
 [require:Fundamentals.*shallow copy.*shallow limitation]
 ```
-
-**Note:** `...` will not replace `assign()`.
