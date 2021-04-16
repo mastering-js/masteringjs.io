@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JavaScript Trim String - Mastering JS</title>
+    <title>How to Use Named Parameters in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="JavaScript Trim String" />
+    <meta property="og:title" content="How to Use Named Parameters in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="JavaScript strings have a neat `trim()` method that removes leading and trailing whitespace. Here's what you need to know." />
-    <meta name="description" content="JavaScript strings have a neat `trim()` method that removes leading and trailing whitespace. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>JavaScript Trim String</h1>
+  <h1>How to Use Named Parameters in JavaScript</h1>
   <div class="date">
-    Jan 4, 2021
+    Apr 16, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,29 +72,24 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript strings have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim"><code>trim()</code> method</a> that you can use to can use to remove leading and trailing whitespace from a string.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
+  <p>JavaScript, by default, does not support named parameters.
+However, you can do something similar using object literals and destructuring.
+You can avoid errors when calling the function without any arguments by
+assigning the object to the empty object, <code>{}</code>, even if you have default
+values set up.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params">{ arg1 = <span class="hljs-number">1</span>, arg2 = <span class="hljs-number">2</span>, arg3 = <span class="hljs-number">3</span> } = {}</span>) </span>{
+  <span class="hljs-keyword">return</span> { arg1, arg2, arg3 };
+}
 
-str = <span class="hljs-string">'hello world '</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span></code></pre>
-<p>The <code>trim()</code> method removes <em>all</em> whitespace characters, not just spaces. That includes tabs and newlines.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'\thello world\n'</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span></code></pre>
-<h2 id="trimstart-and-trimend"><code>trimStart()</code> and <code>trimEnd()</code></h2>
-<p>As of ES2019, JavaScript strings also have <code>trimStart()</code> and <code>trimEnd()</code> methods. The <code>trimStart()</code> function removes
-all leading whitespace, and <code>trimEnd()</code> removes all trailing whitespace. In other words, <code>str.trimStart().trimEnd()</code>
-is equivalent to <code>str.trim()</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.trimStart(); <span class="hljs-comment">// 'hello world '</span>
-str.trimEnd(); <span class="hljs-comment">// ' hello world'</span></code></pre>
-<p>However, we do not recommend using <code>trimStart()</code> and <code>trimEnd()</code> without a polyfill. Since <code>trimStart()</code> and <code>trimEnd()</code>
-are new in ES2019, they are not supported in Node.js before v10.x, and they are not supported in any version of
-Internet Explorer. We recommend using <a href="/tutorials/fundamentals/string-replace">string <code>replace()</code> method</a> and
-regular expressions instead.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.replace(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// 'hello world '</span>
-str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// ' hello world'</span></code></pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">problem</span>(<span class="hljs-params">{failure = true}</span>) </span>{
+  <span class="hljs-keyword">return</span> failure;
+}
+
+problem(); <span class="hljs-comment">//TypeError: Cannot read property 'failure' of undefined</span>
+
+example({ <span class="hljs-attr">arg2</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">arg1</span>: <span class="hljs-number">2</span> }); <span class="hljs-comment">// { arg1: 2, arg2: 4, arg3: 3 }</span>
+
+example(); <span class="hljs-comment">// { arg1: 1, arg2: 2, arg3: 3 }</span></code></pre>
 
   
   <hr>
@@ -102,9 +97,6 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
 
@@ -121,6 +113,9 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
   
 
     <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
   
     </ul>
   

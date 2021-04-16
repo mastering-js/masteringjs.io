@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Named Parameters in JavaScript',
+    raw: './tutorials/fundamentals/parameters.md',
+    url: '/tutorials/fundamentals/parameters',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-04-16')
+  },
+  {
     title: 'How to Use JavaScript\'s Spread Operator',
     raw: './tutorials/fundamentals/spread.md',
     url: '/tutorials/fundamentals/spread',
