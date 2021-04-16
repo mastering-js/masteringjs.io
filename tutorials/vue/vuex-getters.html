@@ -88,13 +88,11 @@ the user&#39;s <code>fullName</code>.</p>
   }
 });
 
-store.getters.fullName; <span class="hljs-comment">// 'Bill Gates'</span>
-</code></pre>
+store.getters.fullName; <span class="hljs-comment">// 'Bill Gates'</span></code></pre>
 <h2 id="change-tracking">Change Tracking</h2>
 <p>Vuex getters react to changes in the store&#39;s state just like <a href="/tutorials/vue/computed">computed properties</a>. So
 if you update one of the state properties the getter relies on, the getter value updates too:</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
   <span class="hljs-attr">state</span>: {
     <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Bill'</span>,
     <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Gates'</span>
@@ -112,15 +110,13 @@ if you update one of the state properties the getter relies on, the getter value
 <span class="hljs-comment">// When you commit a change, the next time you access the getter you get</span>
 <span class="hljs-comment">// an updated value!</span>
 store.commit(<span class="hljs-string">'changeFirstName'</span>, <span class="hljs-string">'William'</span>);
-store.getters.fullName; <span class="hljs-comment">// 'William Gates'</span>
-</code></pre>
+store.getters.fullName; <span class="hljs-comment">// 'William Gates'</span></code></pre>
 <h2 id="mapgetters"><code>mapGetters()</code></h2>
 <p>What makes getters so interesting is that you can use them in your component&#39;s
 <a href="/tutorials/vue/computed">computed properties</a>, so your UI updates whenever the state changes.
 For example, below is a component that displays the computed <code>fullName</code> and updates automatically whenever
 the <code>fullName</code> changes:</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({
     <span class="hljs-attr">state</span>: {
       <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Bill'</span>,
       <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Gates'</span>
@@ -156,8 +152,7 @@ the <code>fullName</code> changes:</p>
         &lt;/button&gt;
       &lt;/div&gt;
     `</span>
-  });
-</code></pre>
+  });</code></pre>
 <p>This is easy to write by hand for one computed property, but can get unwieldy if you need many computed properties.
 That&#39;s why Vuex has a neat <code>mapGetters()</code> helper that takes a list of property names and returns a list of computed
 property functions.</p>
@@ -205,6 +200,9 @@ property functions.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
+  
+
     <li><a href="/tutorials/vue/style-scoped">How to Locally Scope the CSS in Your Vue Files</a></li>
   
 
@@ -221,9 +219,6 @@ property functions.</p>
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
-  
-
-    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
     </ul>
   
