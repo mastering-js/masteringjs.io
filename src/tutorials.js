@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'How to Use Named Parameters in JavaScript',
     raw: './tutorials/fundamentals/parameters.md',
     url: '/tutorials/fundamentals/parameters',
-    description: 'Placeholder Description',
+    description: 'JavaScript does not support named parameters, but you can get the same syntactic benefits using object destructuring. Here\'s how.',
     tags: ['fundamentals'],
     date: moment('2021-04-16')
   },
