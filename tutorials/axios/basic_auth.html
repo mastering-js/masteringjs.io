@@ -83,7 +83,8 @@
     <span class="hljs-attr">password</span>: <span class="hljs-string">'bar'</span>
   }
 });
-res.status; <span class="hljs-comment">// 200</span></code></pre>
+res.status; <span class="hljs-comment">// 200</span>
+</code></pre>
 <p>If login failed, HTTPBin will respond with an HTTP 401, which Axios bubbles up as a <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">promise rejection</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.
   get(<span class="hljs-string">'https://httpbin.org/basic-auth/foo/bar'</span>, {
@@ -94,7 +95,8 @@ res.status; <span class="hljs-comment">// 200</span></code></pre>
   }).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 err.message; <span class="hljs-comment">// "Request failed with status code 401"</span>
-err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></code></pre>
+err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span>
+</code></pre>
 
   
   <hr>
@@ -102,6 +104,9 @@ err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></co
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+  
+
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -118,9 +123,6 @@ err.response.status; <span class="hljs-comment">// 401 "Unauthorized"</span></co
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
     </ul>
   

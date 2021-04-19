@@ -84,7 +84,8 @@
   <span class="hljs-keyword">return</span> response
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>You can do the following:</p>
 <pre><code class="language-javascipt"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>,{
   <span class="hljs-attr">headers</span>:{
@@ -95,11 +96,13 @@
   <span class="hljs-keyword">return</span> response;
 }).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
+});
+</code></pre>
 <p>Or for a simple POST request:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
 <p>When sending requests with data, the data can be of type:</p>
 <ul>
 <li>string</li>
@@ -121,6 +124,9 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+  
+
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -137,9 +143,6 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/cancel">Axios Cancel Request</a></li>
   
     </ul>
   

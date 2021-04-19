@@ -88,7 +88,8 @@ axios.constructor === instance.constructor; <span class="hljs-comment">// true</
 
 <span class="hljs-comment">// For example, `instance.get()` lets you send a GET request, but</span>
 <span class="hljs-comment">// it will also have the 1000ms timeout.</span>
-<span class="hljs-keyword">await</span> instance.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);</code></pre>
+<span class="hljs-keyword">await</span> instance.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);
+</code></pre>
 <p>Another common use case is <a href="https://github.com/axios/axios#axioscreateconfig">setting the <code>baseURL</code> for all requests</a>. This is convenient so you
 don&#39;t have to type out the absolute URL every time.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).create({
@@ -96,7 +97,8 @@ don&#39;t have to type out the absolute URL every time.</p>
 });
 
 <span class="hljs-comment">// Sends request to 'https://httpbin.org/get' </span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);</code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);
+</code></pre>
 
   
   <hr>
@@ -104,6 +106,9 @@ don&#39;t have to type out the absolute URL every time.</p>
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+  
+
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -120,9 +125,6 @@ don&#39;t have to type out the absolute URL every time.</p>
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
     </ul>
   

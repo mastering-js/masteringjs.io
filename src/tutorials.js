@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use JSON with Axios',
+    raw: './tutorials/axios/axios-json.md',
+    url: '/tutorials/axios/json',
+    description: 'Placeholder Description',
+    tags: ['axios'],
+    date: moment('2021-04-19')
+  },
+  {
     title: 'How to Use Named Parameters in JavaScript',
     raw: './tutorials/fundamentals/parameters.md',
     url: '/tutorials/fundamentals/parameters',

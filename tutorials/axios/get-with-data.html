@@ -85,7 +85,8 @@ your parameters in the <a href="/tutorials/fundamentals/query-string">query stri
 <span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 
   
   <hr>
@@ -93,6 +94,9 @@ res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+  
+
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -109,9 +113,6 @@ res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
     </ul>
   
