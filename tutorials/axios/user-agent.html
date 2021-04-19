@@ -72,7 +72,23 @@
 	  }
 	})();
 	</script>
-  <h1 id="hello-world">Hello World</h1>
+  <p><a href="https://github.com/axios/axios">Axios</a> has a <code>User-Agent</code> property which allows you to to identify
+the type of device making the request to the server so it knows what data to send back.
+This feature is not standard and so you will need to see if the
+server you are making a request to has the functionality.
+The <code>User-Agent</code> property takes a
+<a href="https://deviceatlas.com/blog/list-of-user-agent-strings">string</a>
+to tell the server the device making the request. The string follows a
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agents">structure</a> to properly identify itself.
+Below is an example of making a request on a Windows 10 PC using an Edge browser:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
+  <span class="hljs-attr">headers</span>:
+  {<span class="hljs-string">'User-Agent'</span>: 
+  <span class="hljs-string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'</span>} } )
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+    res.data <span class="hljs-comment">// response data</span>
+});
+</code></pre>
 
   
   <hr>
