@@ -15,7 +15,7 @@ Vue.createApp({
         <div class="description">
           Hiring JavaScript developers? Reach <b>100,000+</b> JavaScript developers on one of the top JS tutorial sites.
           <span class="button">
-            <a href="/post-a-job">Post a Job</a>
+            <a href="/jobs/create">Post a Job</a>
           </span>
         </div>
       </div>

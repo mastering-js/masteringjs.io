@@ -1,0 +1,49 @@
+.job {
+  position: relative;
+}
+
+.job .company-logo {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.job .company-logo img {
+  height: 45px;
+  width: auto;
+  border: 0px;
+}
+
+.job .description {
+  display: inline-block;
+  width: 400px;
+}
+
+.job .location {
+  background-color: #ddd;
+  border-radius: 3px;
+  font-size: 0.75em;
+  display: inline-block;
+  padding: 0.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.job .apply-button {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  font-size: 1.5em;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  margin-top: 0.75em;
+  width: 180px;
+  background-color: #F0DB4F;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.job:hover .apply-button {
+  opacity: 100%;
+}
