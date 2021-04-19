@@ -80,8 +80,7 @@
 _.merge(destination, source);
 destination.name; <span class="hljs-comment">// 'Will Riker'</span>
 destination.rank; <span class="hljs-comment">// 'Commander'</span>
-destination.ship; <span class="hljs-comment">// 'USS Enterprise'</span>
-</code></pre>
+destination.ship; <span class="hljs-comment">// 'USS Enterprise'</span></code></pre>
 <p>Sounds a lot like <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html"><code>Object.assign()</code></a>, right? While <code>merge()</code> is very
 similar to <code>Object.assign()</code> and <code>_.assign()</code>, there are a couple
 minor differences.</p>
@@ -106,8 +105,7 @@ obj.name.first; <span class="hljs-comment">// 'Will'</span>
 shallowClone.name === obj.name; <span class="hljs-comment">// true</span>
 
 shallowClone.name.first = <span class="hljs-string">'Thomas'</span>;
-obj.name.first; <span class="hljs-comment">// 'Thomas'</span>
-</code></pre>
+obj.name.first; <span class="hljs-comment">// 'Thomas'</span></code></pre>
 <p>The second detail is how <code>merge()</code> handles <code>undefined</code>. If the <code>source</code>
 has a key whose value is strictly equal to <code>undefined</code>, <code>merge()</code> will
 not overwrite that key in the <code>destination</code>.</p>
@@ -131,8 +129,7 @@ destination = {
 <span class="hljs-comment">// But `_.assign()` and `Object.assign()` overwrite `destination.rank`.</span>
 _.assign(destination, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Thomas'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-literal">undefined</span> });
 destination.firstName; <span class="hljs-comment">// 'Thomas'</span>
-destination.rank; <span class="hljs-comment">// undefined</span>
-</code></pre>
+destination.rank; <span class="hljs-comment">// undefined</span></code></pre>
 <p>Another difference comes in when you consider how <code>merge()</code> handles <a href="/tutorials/fundamentals/class">classes</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ship</span> </span>{};
 Ship.prototype.shipName = <span class="hljs-string">'USS Enterprise'</span>;
@@ -145,8 +142,7 @@ merged.shipName; <span class="hljs-comment">// 'USS Enterprise'</span>
 
 <span class="hljs-comment">// `assign()` does **not** copy inherited properties.</span>
 <span class="hljs-keyword">const</span> assigned = <span class="hljs-built_in">Object</span>.assign({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> }, ship);
-assigned.shipName; <span class="hljs-comment">// undefined</span>
-</code></pre>
+assigned.shipName; <span class="hljs-comment">// undefined</span></code></pre>
 
   
   <hr>

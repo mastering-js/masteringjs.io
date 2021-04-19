@@ -91,8 +91,7 @@ app.get(<span class="hljs-string">'/user/:userId'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42'</span>);
 
-res.data; <span class="hljs-comment">// { userId: '42' }</span>
-</code></pre>
+res.data; <span class="hljs-comment">// { userId: '42' }</span></code></pre>
 <p>You can define multiple route parameters in a URL. In the below example,
 the Express route is <code>/users/:userId/books/:bookId</code>, so <code>req.params.userId</code>
 will contain the <a href="/tutorials/fundamentals/substring">substring</a> after <code>/users/</code> and before <code>/books/</code>, and <code>req.params.bookId</code> will contain everything after <code>/books/</code>.</p>
@@ -108,8 +107,7 @@ app.get(<span class="hljs-string">'/user/:userId/books/:bookId'</span>, (req, re
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42/books/101'</span>)
 
-res.data; <span class="hljs-comment">// { userId: '42', bookId: '101' }</span>
-</code></pre>
+res.data; <span class="hljs-comment">// { userId: '42', bookId: '101' }</span></code></pre>
 <h2 id="why-route-parameters">Why Route Parameters?</h2>
 <p>Route parameters have some convenient properties that reduce the amount of
 validation you need to do versus using <a href="/tutorials/express/query-parameters">query parameters</a> or <a href="/tutorials/express/body">request bodies</a>:</p>

@@ -93,8 +93,7 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
 res.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'text/html; charset=utf-8'</span>
-res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span>
-</code></pre>
+res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span></code></pre>
 <h2 id="from-a-file">From a File</h2>
 <p>If your HTML is in a file <code>test.html</code>, rather than a string, you can use <a href="/tutorials/express/sendfile">Express&#39; <code>sendFile()</code> function</a>. The only caveat is that you <strong>must</strong> specify the absolute path to <code>test.html</code>.</p>
 <pre><code class="language-javascript">app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {

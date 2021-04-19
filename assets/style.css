@@ -204,6 +204,10 @@ li {
   cursor: pointer;
 }
 
+.button a {
+  color: black;
+}
+
 input[type="text"], input[type="password"], input[type="number"] {
   background-color: white;
   border: 1px solid #ddd;

@@ -96,11 +96,9 @@ The <code>save()</code> method is asynchronous, so it returns a promise that you
 <span class="hljs-keyword">await</span> doc.save();
 
 <span class="hljs-keyword">const</span> person = <span class="hljs-keyword">await</span> Person.findOne();
-person.name; <span class="hljs-comment">// 'Will Riker'</span>
-</code></pre>
+person.name; <span class="hljs-comment">// 'Will Riker'</span></code></pre>
 <p>If you load an existing document from the database and modify it, <code>save()</code> updates the existing document instead.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> person = <span class="hljs-keyword">await</span> Person.findOne();
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> person = <span class="hljs-keyword">await</span> Person.findOne();
 person.name; <span class="hljs-comment">// 'Will Riker'</span>
 
 <span class="hljs-comment">// Mongoose _tracks changes_ on documents. Mongoose</span>
@@ -113,8 +111,7 @@ person.rank = <span class="hljs-string">'Captain'</span>;
 <span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Person.find();
 
 docs.length; <span class="hljs-comment">// 1</span>
-docs[<span class="hljs-number">0</span>].rank; <span class="hljs-comment">// 'Captain'</span>
-</code></pre>
+docs[<span class="hljs-number">0</span>].rank; <span class="hljs-comment">// 'Captain'</span></code></pre>
 <p>Mongoose&#39;s change tracking sends a minimal update to MongoDB based on
 the changes you made to the document. You can set <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-set">Mongoose&#39;s debug mode</a> to see the operations Mongoose sends to MongoDB.</p>
 <pre><code class="language-javascript">mongoose.set(<span class="hljs-string">'debug'</span>, <span class="hljs-literal">true</span>);
@@ -142,8 +139,7 @@ err; <span class="hljs-comment">// Cast to Number failed for value "Lollipop" at
 
 <span class="hljs-comment">// But then `save()` succeeds if you set `age` to a valid value.</span>
 doc.age = <span class="hljs-number">30</span>;
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 <h2 id="middleware">Middleware</h2>
 <p><a href="https://mongoosejs.com/docs/middleware.html">Mongoose middleware</a> lets you tell Mongoose to execute a function every time <code>save()</code> is called. For example, calling <code>pre(&#39;save&#39;)</code> tells Mongoose to execute a function <em>before</em> executing <code>save()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
@@ -156,8 +152,7 @@ schema.pre(<span class="hljs-string">'save'</span>, <span class="hljs-function">
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Person({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> });
 
 <span class="hljs-comment">// Prints "Save Will Riker"</span>
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 <p>Similarly, <code>post(&#39;save&#39;)</code> tells Mongoose to execute a function <em>after</em> calling <code>save()</code>. For example, you can combine <code>pre(&#39;save&#39;)</code> and <code>post(&#39;save&#39;)</code> to print out how long <code>save()</code> took.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
 schema.pre(<span class="hljs-string">'save'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -171,8 +166,7 @@ schema.post(<span class="hljs-string">'save'</span>, <span class="hljs-function"
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Person({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> });
 
 <span class="hljs-comment">// Prints something like "Saved in 12 ms"</span>
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 <p><code>save()</code> middleware is recursive, so calling <code>save()</code> on a parent document also triggers
 <code>save()</code> middleware for subdocuments.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> shipSchema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">registry</span>: <span class="hljs-built_in">String</span> });
@@ -200,8 +194,7 @@ shipSchema.pre(<span class="hljs-string">'save'</span>, <span class="hljs-functi
 
 doc.ship.registry = <span class="hljs-string">'NCC-1701-E'</span>;
 <span class="hljs-comment">// Prints "Save NCC-1701-E"</span>
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 
   <hr>
 <div class="cta">

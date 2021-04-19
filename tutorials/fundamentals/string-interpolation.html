@@ -112,8 +112,7 @@ str; <span class="hljs-comment">// "Hello World!"</span></code></pre>
 
 <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">'Bill'</span>);
 
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">`Hello <span class="hljs-subst">${user}</span>!`</span>; <span class="hljs-comment">// "Hello Bill!"</span>
-</code></pre>
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">`Hello <span class="hljs-subst">${user}</span>!`</span>; <span class="hljs-comment">// "Hello Bill!"</span></code></pre>
 <h2 id="error-cases">Error Cases</h2>
 <p>Template literals don&#39;t throw errors if a placeholder expression evaluates to <code>null</code> or <code>undefined</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-string">`Hello <span class="hljs-subst">${<span class="hljs-literal">null</span>}</span>!`</span>; <span class="hljs-comment">// "Hello null!"</span>
@@ -121,8 +120,7 @@ str; <span class="hljs-comment">// "Hello World!"</span></code></pre>
 <p>The only case where string interpolation can throw a runtime error is if your placeholder expression evaluates to an object whose <code>toString()</code> function throws an error. For example, <a href="https://thecodebarbarian.com/a-practical-guide-to-symbols-in-javascript.html">JavaScript symbols</a> throw an error when you try to convert them to strings:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> sym = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'test symbol'</span>);
 <span class="hljs-comment">// Throws "TypeError: Cannot convert a Symbol value to a string"</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">`Hello <span class="hljs-subst">${sym}</span>!`</span>;
-</code></pre>
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">`Hello <span class="hljs-subst">${sym}</span>!`</span>;</code></pre>
 
   
   <hr>
