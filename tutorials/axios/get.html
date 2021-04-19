@@ -80,7 +80,8 @@ to the URL <code>httpbin.org/get?answer=42</code>:</p>
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>);
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 <h2 id="the-options-parameter">The <code>options</code> Parameter</h2>
 <p>The 2nd parameter to <code>axios.get()</code> is the <a href="https://github.com/axios/axios#request-config">Axios options</a>.
 For example, you don&#39;t have to serialize the query string <code>?answer=42</code> yourself. Axios will serialize
@@ -90,7 +91,8 @@ For example, you don&#39;t have to serialize the query string <code>?answer=42</
 <span class="hljs-comment">// Equivalent to `axios.get('https://httpbin.org/get?answer=42')`</span>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 <p>The <code>options</code> parameter is also how you set any <a href="/tutorials/axios/headers">request headers</a>. For example,
 below is how you set the <code>Test-Header</code> header on a GET request.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -104,7 +106,8 @@ below is how you set the <code>Test-Header</code> header on a GET request.</p>
   }
 });
 
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span></code></pre>
+res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
+</code></pre>
 
   
   <hr>
@@ -112,6 +115,9 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
     <h2>More Axios Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/axios/user-agent">How to Use the User Agent Property in Axios</a></li>
+  
+
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -128,9 +134,6 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
-  
-
-    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
     </ul>
   
