@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use Axios in Node.js - Mastering JS</title>
+    <title>How to Use the User-Agent Header in Axios - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use Axios in Node.js" />
+    <meta property="og:title" content="How to Use the User-Agent Header in Axios" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Axios is an isomorphic HTTP client, which means it works the same way on both client and server. Here's how you can use Axios with Node.js." />
-    <meta name="description" content="Axios is an isomorphic HTTP client, which means it works the same way on both client and server. Here's how you can use Axios with Node.js." />
+    <meta property="og:description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
+    <meta name="description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>How to Use Axios in Node.js</h1>
+  <h1>How to Use the User-Agent Header in Axios</h1>
   <div class="date">
-    Jan 13, 2021
+    Apr 20, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,48 +72,20 @@
 	  }
 	})();
 	</script>
-  <p>When making http requests, users have the option of using fetch() from the vanilla javascript library to be used on the frontend, or from importing node-fetch. Another option available to those developers is the axios library. Instead of having to do:  </p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
-<span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`API/make/request`</span>, {
-  <span class="hljs-attr">method</span>: <span class="hljs-string">"GET"</span>,
-  <span class="hljs-attr">headers</span>:{
-    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'define what to accept'</span>,
-    <span class="hljs-attr">Authorization</span>: <span class="hljs-string">"authorization"</span>
-  },
-}).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> response
-}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(err);
+  <p><a href="https://github.com/axios/axios">Axios</a> lets you set the <code>User-Agent</code>
+header using the <code>headers</code> option which allows you to to identify
+the type of device making the request to the server.
+The <code>User-Agent</code> property takes a
+<a href="https://deviceatlas.com/blog/list-of-user-agent-strings">string</a>
+to tell the server the device making the request. The string follows a
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agents">structure</a> to properly identify itself.
+Below is an example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
+  <span class="hljs-attr">headers</span>:
+  { <span class="hljs-string">'User-Agent'</span>:<span class="hljs-string">'Axios 0.21.1'</span> }})
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+    res.data <span class="hljs-comment">// response data</span>
 });</code></pre>
-<p>You can do the following:</p>
-<pre><code class="language-javascipt"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>,{
-  <span class="hljs-attr">headers</span>:{
-    <span class="hljs-attr">Accept</span>: <span class="hljs-string">'accept'</span>,
-    <span class="hljs-attr">Authorization</span>: <span class="hljs-string">'authorize'</span>
-  },
-}).then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> response;
-}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(err);
-});</code></pre>
-<p>Or for a simple POST request:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
-
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
-<p>When sending requests with data, the data can be of type:</p>
-<ul>
-<li>string</li>
-<li>object</li>
-<li>ArrayBuffer</li>
-<li>ArrayBufferView</li>
-<li>URLSearchParams</li>
-<li>Form Data</li>
-<li>File</li>
-<li>Blob</li>
-<li>Stream</li>
-<li>Buffer</li>
-</ul>
-<p><strong>Note:</strong> Stream and Buffer is for Node only while Form Data, File, and Blob is for the browser only.</p>
 
   
   <hr>
@@ -121,9 +93,6 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/user-agent">How to Use the User-Agent Header in Axios</a></li>
-  
-
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
   
 
@@ -140,6 +109,9 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></p
   
 
     <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
+  
+
+    <li><a href="/tutorials/axios/axios-node">How to Use Axios in Node.js</a></li>
   
     </ul>
   
