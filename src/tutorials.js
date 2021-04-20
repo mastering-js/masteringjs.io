@@ -4,12 +4,12 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Use the User Agent Property in Axios',
+    title: 'How to Use the User-Agent Header in Axios',
     raw: './tutorials/axios/user-agent.md',
     url: '/tutorials/axios/user-agent',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can set the User-Agent header when making an HTTP request with Axios.',
     tags: ['axios'],
-    date: moment('2021-04-19')
+    date: moment('2021-04-20')
   },
   {
     title: 'How to Use Named Parameters in JavaScript',

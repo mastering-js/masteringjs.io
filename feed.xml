@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Tue, 20 Apr 2021 16:42:50 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 20 Apr 2021 19:06:51 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,10 +13,10 @@
             <link>https://masteringjs.io</link>
         </image>
         <item>
-            <title><![CDATA[How to Use the User Agent Property in Axios]]></title>
+            <title><![CDATA[How to Use the User-Agent Header in Axios]]></title>
             <link>https://masteringjs.io/tutorials/axios/user-agent</link>
             <guid>https://masteringjs.io/tutorials/axios/user-agent</guid>
-            <pubDate>Mon, 19 Apr 2021 04:00:00 GMT</pubDate>
+            <pubDate>Tue, 20 Apr 2021 04:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How to Use Named Parameters in JavaScript]]></title>
