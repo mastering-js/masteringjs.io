@@ -7,9 +7,17 @@ module.exports = Object.freeze([
     title: 'How to Use JSON with Axios',
     raw: './tutorials/axios/axios-json.md',
     url: '/tutorials/axios/json',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use Axios to make GET requests for JSON data, as well as PUT and POST JSON data to a server.',
     tags: ['axios'],
-    date: moment('2021-04-19')
+    date: moment('2021-04-21')
+  },
+  {
+    title: 'How to Use the User-Agent Header in Axios',
+    raw: './tutorials/axios/user-agent.md',
+    url: '/tutorials/axios/user-agent',
+    description: 'Here\'s how you can set the User-Agent header when making an HTTP request with Axios.',
+    tags: ['axios'],
+    date: moment('2021-04-20')
   },
   {
     title: 'How to Use Named Parameters in JavaScript',
