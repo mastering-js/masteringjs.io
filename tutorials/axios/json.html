@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use the User-Agent Header in Axios - Mastering JS</title>
+    <title>How to Use JSON with Axios - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use the User-Agent Header in Axios" />
+    <meta property="og:title" content="How to Use JSON with Axios" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
-    <meta name="description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
+    <meta property="og:description" content="Here's how you can use Axios to make GET requests for JSON data, as well as PUT and POST JSON data to a server." />
+    <meta name="description" content="Here's how you can use Axios to make GET requests for JSON data, as well as PUT and POST JSON data to a server." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>How to Use the User-Agent Header in Axios</h1>
+  <h1>How to Use JSON with Axios</h1>
   <div class="date">
-    Apr 20, 2021
+    Apr 21, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,17 +72,37 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://github.com/axios/axios">Axios</a> lets you set the <code>User-Agent</code>
-header using the <code>headers</code> option which allows you to to identify
-the type of device making the request to the server.
-The <code>User-Agent</code> property takes a
-<a href="https://deviceatlas.com/blog/list-of-user-agent-strings">string</a>
-to tell the server the device making the request. The string follows a
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agents">structure</a> to properly identify itself.
-Below is an example:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: { <span class="hljs-string">'User-Agent'</span>:<span class="hljs-string">'Axios 0.21.1'</span> }
-});</code></pre>
+  <p>By default, when making a request to a server using axios,
+the <code>Content-Type</code> is set to send <code>JSON</code> data. The server is
+not held to that same standard however and may send the data
+back in a different format. Axios has the <a href="/tutorials/axios/data"><code>transformResponse</code></a>
+to enable you to specify how you want it received on the response.
+Below is an example demonstrating how to make a simple <code>GET</code> request with
+Axios:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, { <span class="hljs-attr">params</span>: { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> } });
+
+res.constructor.name; <span class="hljs-comment">// 'Object', means `res` is a POJO</span>
+
+<span class="hljs-comment">// `res.data` contains the parsed response body</span>
+res.data; <span class="hljs-comment">// { args: { answer: 42 }, ... }</span>
+res.data <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
+<h1 id="how-to-postput-json">How to POST/PUT JSON</h1>
+<p>When making a <a href="/tutorials/axios/post-json"><code>POST</code></a> or <a href="/tutorials/axios/put"><code>PUT</code></a> request,
+Axios will automatically <code>parse</code> the data to JSON, provided you are sending an object,
+and make the necessary adjustments elsewhere in the request so it can be automatically
+parsed once received by the server.</p>
+<h2 id="post">POST</h2>
+<pre><code class="language-javascript"><span class="hljs-comment">// Axios automatically serializes `{ answer: 42 }` into JSON.</span>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
+
+res.data.data; <span class="hljs-comment">// '{"answer":42}'</span>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json;charset=utf-8',</span></code></pre>
+<h2 id="put">PUT</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'https://httpbin.org/put'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
+
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
 
   
   <hr>
@@ -90,7 +110,7 @@ Below is an example:</p>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+    <li><a href="/tutorials/axios/user-agent">How to Use the User-Agent Header in Axios</a></li>
   
 
     <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
