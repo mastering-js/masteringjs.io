@@ -78,14 +78,14 @@ return the entries in the form of a string, each separated by
 a comma as seen below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
 arr.toString(); <span class="hljs-comment">// prints Dog,Cat,Fish,Bread</span></code></pre>
-<h1 id="-operator">+ Operator</h1>
+<h2 id="-operator">+ Operator</h2>
 <p>You can also use the <code>+</code> operator to coerce the array to become
 a string though this is less common as it doesn&#39;t automatically
 insert a comma like <code>toString</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
 arr += <span class="hljs-string">',Monkey'</span>;
 arr; <span class="hljs-comment">// prints Dog,Cat,Fish,Bread,Monkey</span></code></pre>
-<h1 id="join">join()</h1>
+<h2 id="join">join()</h2>
 <p>Another alternative to <code>toString</code> is the <code>.join()</code> function.
 The strength of this function is that you can specify what you
 want the values to be separated by whereas <code>toString</code> used commas.

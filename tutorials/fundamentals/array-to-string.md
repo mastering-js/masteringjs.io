@@ -9,7 +9,7 @@ let arr = ['Dog','Cat','Fish','Bread'];
 arr.toString(); // prints Dog,Cat,Fish,Bread
 ```
 
-# + Operator
+## + Operator
 
 You can also use the `+` operator to coerce the array to become
 a string though this is less common as it doesn't automatically
@@ -21,7 +21,7 @@ arr += ',Monkey';
 arr; // prints Dog,Cat,Fish,Bread,Monkey
 ```
 
-# join()
+## join()
 
 Another alternative to `toString` is the `.join()` function.
 The strength of this function is that you can specify what you
