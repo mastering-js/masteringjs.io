@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Setting Request Headers with Axios - Mastering JS</title>
+    <title>How to Convert an Array to a String in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Setting Request Headers with Axios" />
+    <meta property="og:title" content="How to Convert an Array to a String in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
-    <meta name="description" content="Learn how to set HTTP request headers on GET and POST requests with the Axios HTTP client." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/axios">Axios</a>
     /
   </div>
-  <h1>Setting Request Headers with Axios</h1>
+  <h1>How to Convert an Array to a String in JavaScript</h1>
   <div class="date">
-    Apr 27, 2019
+    Apr 26, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,32 +72,28 @@
 	  }
 	})();
 	</script>
-  <p>To set <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP request headers</a> with
-an <a href="https://www.npmjs.com/package/axios">axios</a> GET request, you should pass
-an object with a <code>headers</code> property as the 2nd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
-
-<span class="hljs-comment">// httpbin.org gives you the headers in the response</span>
-<span class="hljs-comment">// body `res.data`.</span>
-<span class="hljs-comment">// See: https://httpbin.org/#/HTTP_Methods/get_get</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
-});
-
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
-</code></pre>
-<p>With PUT and POST requests, the 2nd argument is the request body, so you should
-pass an object with a <code>headers</code> property as the 3rd argument.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }, {
-  <span class="hljs-attr">headers</span>: {
-    <span class="hljs-string">'Test-Header'</span>: <span class="hljs-string">'test-value'</span>
-  }
-});
-
-res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="hljs-comment">// "test-value"</span>
-</code></pre>
+  <p>Javascript&#39;s handy way of converting arrays to strings is the
+<code>.toString()</code> method. Simply call it on the array and it will
+return the entries in the form of a string, each separated by
+a comma as seen below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
+arr.toString(); <span class="hljs-comment">// prints Dog,Cat,Fish,Bread</span></code></pre>
+<h1 id="-operator">+ Operator</h1>
+<p>You can also use the <code>+</code> operator to coerce the array to become
+a string though this is less common as it doesn&#39;t automatically
+insert a comma like <code>toString</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
+arr += <span class="hljs-string">',Monkey'</span>;
+arr; <span class="hljs-comment">// prints Dog,Cat,Fish,Bread,Monkey</span></code></pre>
+<h1 id="join">join()</h1>
+<p>Another alternative to <code>toString</code> is the <code>.join()</code> function.
+The strength of this function is that you can specify what you
+want the values to be separated by whereas <code>toString</code> used commas.
+Should you omit an argument to <code>join()</code>, it will default to commas.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>,<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>];
+arr.join(<span class="hljs-string">' and '</span>); <span class="hljs-comment">// prints Boots and Cats and Boots and Cats</span></code></pre>
+<p><strong>Note:</strong> Make sure to add a space before and after the value you choose, otherwise,
+there will be no spaces.</p>
 
   
   <hr>
@@ -105,9 +101,6 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
   
 
@@ -124,6 +117,9 @@ res.data.headers[<span class="hljs-string">'Test-Header'</span>]; <span class="h
   
 
     <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
+    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
     </ul>
   

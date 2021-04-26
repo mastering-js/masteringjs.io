@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Convert an Array to a String in JavaScript',
+    raw: './tutorials/fundamentals/array-to-string.md',
+    url: '/tutorials/fundamentals/array-to-string',
+    description: 'Placeholder Description',
+    tags: ['axios'],
+    date: moment('2021-04-26')
+  },
+  {
     title: 'How to Use JSON with Axios',
     raw: './tutorials/axios/axios-json.md',
     url: '/tutorials/axios/json',
