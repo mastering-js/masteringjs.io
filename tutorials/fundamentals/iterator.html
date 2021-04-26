@@ -117,7 +117,8 @@ For example, you can iterate over an iterable using a <code>for/of</code> loop.<
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> oneThruTen) {
   num; <span class="hljs-comment">// 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</span>
-}</code></pre>
+}
+</code></pre>
 <p>Note that you <strong>cannot</strong> iterate over an <em>iterator</em> using a <code>for/of</code> loop, only an <em>iterable</em>.</p>
 <h2 id="converting-an-iterable-to-an-array">Converting an Iterable to an Array</h2>
 <p>There are two ways to convert an iterable to an array. First, JavaScript has a built-in
@@ -129,7 +130,8 @@ For example, you can iterate over an iterable using a <code>for/of</code> loop.<
   }
 };
 
-<span class="hljs-built_in">Array</span>.from(oneThruTen); <span class="hljs-comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span></code></pre>
+<span class="hljs-built_in">Array</span>.from(oneThruTen); <span class="hljs-comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+</code></pre>
 <p>The <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html">spread operator</a> also works with iterables. You can use it to convert an iterable to an array as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> oneThruTen = {
   [<span class="hljs-built_in">Symbol</span>.iterator]: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -138,7 +140,8 @@ For example, you can iterate over an iterable using a <code>for/of</code> loop.<
   }
 };
 
-[...oneThruTen]; <span class="hljs-comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span></code></pre>
+[...oneThruTen]; <span class="hljs-comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+</code></pre>
 
   
   <hr>

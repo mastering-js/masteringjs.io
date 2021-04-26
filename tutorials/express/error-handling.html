@@ -100,7 +100,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-comment">// error handling middleware.</span>
 app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> {
   res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">message</span>: err.message });
-});      </code></pre>
+});      
+</code></pre>
 <p>Express automatically handles synchronous errors for you, like the <code>routeHandler()</code> function above. Express does <strong>not</strong> handle asynchronous errors though. If you
 have an asynchronous error, like one in an <a href="http://thecodebarbarian.com/async-functions-in-javascript.html">async function</a>, you need to call <code>next()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -118,7 +119,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-keyword">async</
 
 app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> {
   res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">message</span>: err.message });
-});      </code></pre>
+});      
+</code></pre>
 
   <hr>
 <div class="cta">
