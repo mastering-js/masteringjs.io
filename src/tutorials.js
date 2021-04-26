@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The Seven Standard Primitives in JavaScript',
+    raw: './tutorials/fundamentals/primitives.md',
+    url: '/tutorials/fundamentals/primitives',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-04-26')
+  },
+  {
     title: 'How to Use JSON with Axios',
     raw: './tutorials/axios/axios-json.md',
     url: '/tutorials/axios/json',

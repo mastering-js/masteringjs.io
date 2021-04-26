@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Convert a String to an Array in JavaScript - Mastering JS</title>
+    <title>The Seven Standard Primitives in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Convert a String to an Array in JavaScript" />
+    <meta property="og:title" content="The Seven Standard Primitives in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
-    <meta name="description" content="Here's how you can convert a string to an array in JavaScript: either splitting by a separator or converting a string to an array of characters." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Convert a String to an Array in JavaScript</h1>
+  <h1>The Seven Standard Primitives in JavaScript</h1>
   <div class="date">
-    Mar 31, 2021
+    Apr 26, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,20 +72,48 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript strings have a built-in <a href="https://www.w3schools.com/jsref/jsref_split.asp"><code>split()</code> method</a> that split a string by instances of a given separator. For example, here&#39;s how you can split
-a string by dashes:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'kebab-case-string'</span>;
-str.split(<span class="hljs-string">'-'</span>); <span class="hljs-comment">// ['kebab-case-string']</span></code></pre>
-<p>Or you can split a string by commas:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'0,1,2'</span>;
-str.split(<span class="hljs-string">','</span>); <span class="hljs-comment">// ['0', '1', '2']</span></code></pre>
-<h2 id="converting-to-a-character-array">Converting to a Character Array</h2>
-<p>There are <a href="https://jscurious.com/various-ways-to-convert-string-to-array-in-javascript/">numerous ways to convert a string to an array of characters</a>. With an empty string as the separator, the <code>split()</code> function will return an array of characters:</p>
-<pre><code class="language-javascript"><span class="hljs-string">'Hello'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o']</span></code></pre>
-<p>However, this approach has a problem because of how <code>split()</code> handles <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> characters. For example, <a href="https://unicode.org/emoji/charts/full-emoji-list.html">emojis</a> end up with incorrect results:</p>
-<pre><code class="language-javascript"><span class="hljs-string">'Hello😀'</span>.split(<span class="hljs-string">''</span>); <span class="hljs-comment">// ['H', 'e', 'l', 'l', 'o', '�', '�']</span></code></pre>
-<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from"><code>Array.from()</code> function</a> handles UTF-16 characters. You should use <code>Array.from()</code> if you&#39;re looking to split a string into an array of characters and expect UTF-16 characters.</p>
-<pre><code class="language-javascript"><span class="hljs-built_in">Array</span>.from(<span class="hljs-string">'Hello😀'</span>); <span class="hljs-comment">// [ 'H', 'e', 'l', 'l', 'o', '😀' ]</span></code></pre>
+  <p>Javascript has seven primitive data types:</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>bigint</li>
+<li>boolean</li>
+<li>undefined</li>
+<li>symbol</li>
+<li>null</li>
+</ul>
+<p>What makes these primitives is that they are not objects,
+they do not have any methods, and they are immutable,
+meaning that they cannot be altered in any way.
+If you wanted to mutate a primitive, you would need
+to do a reassignment of the variable.</p>
+<h2 id="string">String</h2>
+<p>It is important to note that strings can be either a primitive, string literal,
+or an object. Javascript automatically converts string primitives to objects to enable
+the user to use the handy array of functions available for use.
+If you wanted to convert a string object to a primitive, you would
+use the <code>valueOf()</code> method.</p>
+<h2 id="number">Number</h2>
+<p>In other programming languages, you can have numbers be defined as floats, integers,
+doubles and so on and so forth. Javascript simplified this feature by just making
+every number it comes across <code>Number</code>, with an exception.</p>
+<h2 id="bigint">BigInt</h2>
+<p>This is similar to <code>Number</code> however, it allows you to safely represent integer values
+larger than 2<sup>53</sup>.</p>
+<h2 id="boolean">Boolean</h2>
+<p>This data type is what contains the values <code>true</code> or <code>false</code>. This is great in that
+you can use other values to represent that same concept like 0 for false, and 1 for true.</p>
+<h2 id="undefined">Undefined</h2>
+<p>This value is automatically assigned to variables that have just been declared but not defined.
+If you were to put this in an if statement, the value would be false so this is another handy thing
+you could use like mentioned in the <code>Boolean</code> section.</p>
+<h2 id="symbol">Symbol</h2>
+<p>A <code>Symbol</code> is a value created by invoking the <code>Symbol</code> function which is guaranteed to create
+a unique value. Interesting to note that <code>Symbols</code> do not convert to string unless called using
+the <code>.toString()</code> method.</p>
+<h2 id="null">Null</h2>
+<p><code>null</code> is special as if you were to use the <code>typeof</code> operator on it, it would return <code>object</code>.
+It returns <code>object</code> because of a bug with Javascript that if fixed, breaks the code.</p>
 
   
   <hr>
@@ -93,13 +121,13 @@ str.split(<span class="hljs-string">','</span>); <span class="hljs-comment">// [
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
