@@ -81,42 +81,42 @@ Vue.createApp({
           <form action="" @submit.prevent="addTool()">
             <div v-for="tag in tags" :key="tag">{{tag}}</div>
             <div>
-              <label>Add Framework</label>
+              <label> Add Framework </label>
               <input type = "text" v-model="addtool"/>
               <button type = "submit">Submit</button>
             </div>
             <div>
-              <label>Remove Framework</label>
+              <label> Remove Framework </label>
               <input type="text" v-model="removetool"/>
-              <button @click="removeTool()">Remove most recent entry</button>
+              <button @click="removeTool()">Remove entry</button>
             </div>
           </form>
         <div>
-          <div><label>Company Image</label></div>
+          <div><label> Company Image </label></div>
           <input type="file" @change="assignImage" ref = "file"/>
         </div>
         <div>
-          <label>Apply URL</label>
+          <label> Apply URL </label>
           <input type="url" v-model="url"/>
         </div>
         <div>
-          <div><label>How To Apply</label></div>
+          <div><label> How To Apply </label></div>
           <textarea v-model="instructions">To Apply</textarea>
         </div>
         <div>
-          <label>Company Email</label>
+          <label> Company Email </label>
           <input type="email" v-model="email"/>
         </div>
         <div>
-          <div><label>Feedback</label></div>
+          <div><label> Feedback </label></div>
           <textarea v-model="feedback">Type here</textarea>
         </div>
         <div>
-          <label>Invoice Address</label>
+          <label> Invoice Address </label>
           <input type="text" v-model="invoiceAddress" />
         </div>
         <div>
-          <label>Invoice Notes</label>
+          <label> Invoice Notes </label>
           <input type="text" v-model="invoiceNotes" />
         </div>
         <button type="submit">Submit</button>
