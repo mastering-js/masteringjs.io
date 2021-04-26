@@ -78,18 +78,11 @@ return the entries in the form of a string, each separated by
 a comma as seen below:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
 arr.toString(); <span class="hljs-comment">// prints Dog,Cat,Fish,Bread</span></code></pre>
-<h2 id="-operator">+ Operator</h2>
-<p>You can also use the <code>+</code> operator to coerce the array to become
-a string though this is less common as it doesn&#39;t automatically
-insert a comma like <code>toString</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
-arr += <span class="hljs-string">',Monkey'</span>;
-arr; <span class="hljs-comment">// prints Dog,Cat,Fish,Bread,Monkey</span></code></pre>
 <h2 id="join">join()</h2>
 <p>Another alternative to <code>toString</code> is the <code>.join()</code> function.
-The strength of this function is that you can specify what you
-want the values to be separated by whereas <code>toString</code> used commas.
-Should you omit an argument to <code>join()</code>, it will default to commas.</p>
+The benefit of using <code>join()</code> is that you can specify a custom
+separator. <code>toString()</code> always uses <code>,</code> as the separator.
+If you call <code>join()</code> without arguments, it will default to commas.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>,<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>];
 arr.join(<span class="hljs-string">' and '</span>); <span class="hljs-comment">// prints Boots and Cats and Boots and Cats</span></code></pre>
 <p><strong>Note:</strong> Make sure to add a space before and after the value you choose, otherwise,
