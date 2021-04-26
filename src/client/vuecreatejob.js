@@ -17,7 +17,8 @@ Vue.createApp({
     invoiceAddress: null,
     invoiceNotes: null,
     tags: [],
-    tool: null,
+    addtool: '',
+    removetool: ''
   }),
   methods: {
     async postJob() {
@@ -42,11 +43,12 @@ Vue.createApp({
       console.log('Done');
     },
     addTool() {
-      this.tags.push(this.tool);
-      this.tool = null;
+      this.tags.push(this.addtool);
+      this.addtool = '';
     },
     removeTool() {
-      this.tags.pop();
+      this.tags = this.tags.filter(el => el != this.removetool);
+      console.log(this.tags);
     },
     assignImage() {
       this.logo = this.$refs.file.files[0];
@@ -57,19 +59,19 @@ Vue.createApp({
       <h1>Hire JavaScript Developers</h1>
       <form action="" @submit.prevent="postJob()">
         <div>
-          <label>Company Name</label>
+          <label> Company Name </label>
           <input type="text" v-model="company" />
         </div>
         <div>
-          <label>Position</label>
+          <label> Position </label>
           <input type="text" v-model="title" />
         </div>
         <div>
-          <label>Location</label>
+          <label> Location </label>
           <input type="text" v-model="location" />
         </div>
         <div>
-          <label>Sticky?</label>
+          <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
           <input type="checkbox" v-model="sticky" />
         </div>
         <div>
@@ -78,12 +80,16 @@ Vue.createApp({
         </div>
           <form action="" @submit.prevent="addTool()">
             <div v-for="tag in tags" :key="tag">{{tag}}</div>
+            <div>
               <label>Add Framework</label>
-              <input type = "text" v-model="tool"/>
-              <div>
+              <input type = "text" v-model="addtool"/>
               <button type = "submit">Submit</button>
+            </div>
+            <div>
+              <label>Remove Framework</label>
+              <input type="text" v-model="removetool"/>
               <button @click="removeTool()">Remove most recent entry</button>
-              </div>
+            </div>
           </form>
         <div>
           <div><label>Company Image</label></div>
