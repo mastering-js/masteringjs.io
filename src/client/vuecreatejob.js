@@ -1,8 +1,8 @@
 // loads Jobs
-
 const server = 'https://masteringjs-job-board.azurewebsites.net';
 
-Vue.createApp({
+
+const app = Vue.createApp({
   data: () => ({
     company: '',
     logo: null,
@@ -123,4 +123,5 @@ Vue.createApp({
       </form>
     </div>
   `,
-}).mount('#content');
+});
+app.mount('#content');
