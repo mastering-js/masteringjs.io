@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Capitalize the First Letter of a String in JavaScript - Mastering JS</title>
+    <title>How to Convert an Array to a String in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Capitalize the First Letter of a String in JavaScript" />
+    <meta property="og:title" content="How to Convert an Array to a String in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
-    <meta name="description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
+    <meta property="og:description" content="Here's two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`." />
+    <meta name="description" content="Here's two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Capitalize the First Letter of a String in JavaScript</h1>
+  <h1>How to Convert an Array to a String in JavaScript</h1>
   <div class="date">
-    Jul 24, 2019
+    Apr 27, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,32 +72,21 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript doesn&#39;t have a built-in function to convert the first letter of a
-string to uppercase. However, you can capitalize the first letter of a string
-with one line of vanilla JS. You can also use <a href="https://www.npmjs.com/package/lodash.capitalize">lodash</a> or CSS. In this tutorial,
-you&#39;ll learn to use all 3.</p>
-<h2 id="using-vanilla-js">Using Vanilla JS</h2>
-<p>JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase"><code>String#uppercase()</code> function</a> that converts an entire string to uppercase. That means you can
-capitalize the first character and combine it with the <a href="/tutorials/fundamentals/substring">substring containing everything but the first character</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">capitalize</span>(<span class="hljs-params">str</span>) </span>{
-  <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>).toUpperCase() + str.slice(<span class="hljs-number">1</span>);
-}
-
-capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span></code></pre>
-<h2 id="using-lodash">Using Lodash</h2>
-<p><a href="https://lodash.com/docs#capitalize">Lodash&#39;s <code>capitalize()</code> function</a> also capitalizes the first character in a string. It also converts the remaining characters to lowercase.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
-
-_.capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span></code></pre>
-<h2 id="using-css">Using CSS</h2>
-<p>Depending on your use case, you might not need JavaScript at all. <a href="https://css-tricks.com/almanac/properties/t/text-transform/#article-header-id-0">CSS <code>text-transform: capitalize</code></a> capitalizes the first letter of each word in the string.</p>
-<pre><code class="language-css">.capitalize {
-  text-transform: capitalize;
-}</code></pre>
-<p>So given the string <code>&#39;capitalize using CSS&#39;</code>, the browser will render the
-string as &#39;<span style="text-transform: capitalize">capitalize using CSS</span>&#39;.</p>
+  <p>Javascript&#39;s handy way of converting arrays to strings is the
+<code>.toString()</code> method. Simply call it on the array and it will
+return the entries in the form of a string, each separated by
+a comma as seen below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
+arr.toString(); <span class="hljs-comment">// prints Dog,Cat,Fish,Bread</span></code></pre>
+<h2 id="join">join()</h2>
+<p>Another alternative to <code>toString</code> is the <code>.join()</code> function.
+The benefit of using <code>join()</code> is that you can specify a custom
+separator. <code>toString()</code> always uses <code>,</code> as the separator.
+If you call <code>join()</code> without arguments, it will default to commas.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>,<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>];
+arr.join(<span class="hljs-string">' and '</span>); <span class="hljs-comment">// prints Boots and Cats and Boots and Cats</span></code></pre>
+<p><strong>Note:</strong> Make sure to add a space before and after the value you choose, otherwise,
+there will be no spaces.</p>
 
   
   <hr>
@@ -105,9 +94,6 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
@@ -124,6 +110,9 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
   
 
     <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
     </ul>
   
