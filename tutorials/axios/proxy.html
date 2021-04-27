@@ -114,8 +114,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
     <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
   }
 });
-<span class="hljs-built_in">console</span>.log(res.data);
-</code></pre>
+<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
 <p>Notice that Express reports <code>req.url</code> is an <code>httpbin.org</code> URL! That&#39;s what we mean when we say Axios sends the
 request to a different server than the request is intended for. The URL associated with the request, <code>req.url</code>,
 is different than the proxy server&#39;s URL, and the proxy server is responsible for forwarding the request to <code>req.url</code>.</p>
@@ -146,9 +145,6 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
   
 
@@ -165,6 +161,9 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
   
 
     <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
+    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
     </ul>
   

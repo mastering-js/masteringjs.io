@@ -75,19 +75,16 @@
   <p>The easiest way to make a PATCH request with <a href="https://www.npmjs.com/package/axios">Axios</a> is the axios.patch() function. The first parameter is the url to which the request will be made, and the second parameter is the data you will be sending to change. You can make a PATCH request with axios as follows:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'MasteringJS'</span> });
 
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span></code></pre>
 <p>If the second parameter is an object, axios will do a JSON.stringify on the object before sending the request. It also will specify the content-type to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">application/json</a>, allowing for smooth integration in most projects.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, { <span class="hljs-attr">id</span>: <span class="hljs-number">12345</span> });
 
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">//application/json;charset=utf-8</span></code></pre>
 <p>If you pass a string as the second parameter, axios will set the content-type header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa">application/x-www-form-urlencoded</a>. This will turn the request body into a series of key-value pairs.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.patch(<span class="hljs-string">'https://httpbin.org/patch'</span>, <span class="hljs-string">'hello=world'</span>);
 
 res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span>
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
-</code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
 
   
   <hr>
@@ -95,9 +92,6 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
     <h2>More Axios Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
     <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
   
 
@@ -114,6 +108,9 @@ res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
   
 
     <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+  
+
+    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
   
     </ul>
   

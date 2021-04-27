@@ -96,16 +96,14 @@ obj.hasOwnProperty; <span class="hljs-comment">// undefined</span>
 obj.constructor; <span class="hljs-comment">// undefined</span>
 
 obj.prop = <span class="hljs-number">42</span>;
-obj.prop; <span class="hljs-comment">// 42</span>
-</code></pre>
+obj.prop; <span class="hljs-comment">// 42</span></code></pre>
 <h2 id="pojos-vs-maps">POJOs vs Maps</h2>
 <p><a href="http://thecodebarbarian.com/the-80-20-guide-to-maps-in-javascript.html">JavaScript Maps</a> are an alternative to POJOs for storing data because they do not have any inherited keys from the <code>Object</code> class. However,
 objects are generally easier to work with than maps, because not all JavaScript
 functions, frameworks, and libraries support maps.
 For example, <a href="http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript">the <code>JSON.stringify()</code> function</a> doesn&#39;t serialize maps by default.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">'answer'</span>, <span class="hljs-number">42</span>]]);
-<span class="hljs-built_in">JSON</span>.stringify(map); <span class="hljs-comment">// '{}'</span>
-</code></pre>
+<span class="hljs-built_in">JSON</span>.stringify(map); <span class="hljs-comment">// '{}'</span></code></pre>
 <h2 id="checking-if-an-object-is-a-pojo">Checking if an Object is a POJO</h2>
 <p>Checking if an object is a POJO can be somewhat tricky and depends on whether
 you consider objects created using <code>Object.create(null)</code> to be POJOs. The safest
@@ -125,8 +123,7 @@ comparing the object&#39;s prototype.</p>
 isPOJO({}); <span class="hljs-comment">// true</span>
 isPOJO(<span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>)); <span class="hljs-comment">// true</span>
 isPOJO(<span class="hljs-literal">null</span>); <span class="hljs-comment">// false</span>
-isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>)); <span class="hljs-comment">// false</span>
-</code></pre>
+isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>)); <span class="hljs-comment">// false</span></code></pre>
 <p>For example, below is <a href="https://github.com/Automattic/mongoose/blob/43b63ae8d18e49db3ddb56b4c843637339495a76/lib/utils.js#L505-L514">Mongoose&#39;s internal <code>isPOJO()</code> function</a></p>
 <pre><code class="language-javascript">exports.isPOJO = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPOJO</span>(<span class="hljs-params">arg</span>) </span>{
   <span class="hljs-keyword">if</span> (arg == <span class="hljs-literal">null</span> || <span class="hljs-keyword">typeof</span> arg !== <span class="hljs-string">'object'</span>) {
@@ -150,6 +147,9 @@ obj.constructor.name; <span class="hljs-comment">// 'Object'</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
@@ -166,9 +166,6 @@ obj.constructor.name; <span class="hljs-comment">// 'Object'</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
     </ul>
   

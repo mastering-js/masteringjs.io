@@ -7,9 +7,9 @@ module.exports = Object.freeze([
     title: 'How to Convert an Array to a String in JavaScript',
     raw: './tutorials/fundamentals/array-to-string.md',
     url: '/tutorials/fundamentals/array-to-string',
-    description: 'Placeholder Description',
-    tags: ['axios'],
-    date: moment('2021-04-26')
+    description: 'Here\'s two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-27')
   },
   {
     title: 'How to Use JSON with Axios',
