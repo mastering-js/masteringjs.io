@@ -12,6 +12,7 @@ module.exports = () => `
   <div id="content"></div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3.x"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src = "../src/client/vuecreatejob.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
+
+
 // loads Jobs
 const server = 'https://masteringjs-job-board.azurewebsites.net';
-
 
 const app = Vue.createApp({
   data: () => ({
