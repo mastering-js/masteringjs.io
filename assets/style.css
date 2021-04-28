@@ -239,6 +239,19 @@ input[type="text"], input[type="password"], input[type="number"] {
   padding: 15px;
 }
 
+#jobs {
+  position: fixed;
+  display:block;
+  overflow: hidden;
+  top: 100px;
+  left: 1600px;
+}
+.company-logo {
+  position: relative;
+  width: 10%;
+  height: 10%;
+}
+
 /** Mobile */
 
 @media (max-width: 1000px) {

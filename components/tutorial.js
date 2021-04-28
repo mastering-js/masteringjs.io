@@ -14,6 +14,11 @@ module.exports = ({ tutorials, tutorial }) => `
     ${tutorial.date ? tutorial.date.format('ll') : ''}
   </div>
   <div id="default_masteringjsio"></div>
+  <script src="https://unpkg.com/vue@2.x"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <div id = "jobs" class = "jobs"></div>
+  <script src = "../../src/client/vuelistjobs.js"></script>
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {

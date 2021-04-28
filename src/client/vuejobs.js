@@ -1,12 +1,16 @@
+
 const server = 'https://masteringjs-job-board.azurewebsites.net';
 
+const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]});
+
 // loads Jobs
-Vue.createApp({
+const app = new Vue({
   data() {
     return {
       jobs: null
     }
   },
+  router,
   template: `
     <div>
       <h1>Find Your Dream JavaScript Developer Job</h1>
@@ -49,4 +53,5 @@ Vue.createApp({
 
     this.jobs = res.data.jobs;
   }
-}).mount('#content');
+});
+app.$mount('#content');

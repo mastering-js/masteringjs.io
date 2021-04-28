@@ -1,13 +1,14 @@
 
-
 // loads Jobs
 const server = 'https://masteringjs-job-board.azurewebsites.net';
 
-const app = Vue.createApp({
+const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]})
+
+const app = new Vue({
   data: () => ({
-    company: '',
+    company: null,
     logo: null,
-    title: '',
+    title: null,
     location: 'Anywhere',
     sticky: false,
     description: null,
@@ -19,10 +20,20 @@ const app = Vue.createApp({
     invoiceNotes: null,
     tags: [],
     addtool: '',
-    removetool: ''
+    removetool: '',
+    error: false
   }),
+  router,
   methods: {
     async postJob() {
+      if (!this.company || !this.logo || !this.title || !this.location || !this.description || 
+        !this.url || !this.instructions || !this.email || !this.feedback || !this.invoiceAddress || 
+        !this.invoiceNotes || !this.tags) {
+          return this.error = true;
+        }
+        else {
+          this.error = false;
+        }
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
@@ -58,6 +69,8 @@ const app = Vue.createApp({
   template: `
     <div>
       <h1>Hire JavaScript Developers</h1>
+      <h2> All fields are required </h2>
+      <h3 v-if="error">You are missing fields </h3>
       <form action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
@@ -125,4 +138,4 @@ const app = Vue.createApp({
     </div>
   `,
 });
-app.mount('#content');
+app.$mount('#content');
