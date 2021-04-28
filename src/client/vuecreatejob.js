@@ -71,7 +71,7 @@ const app = new Vue({
 
         'pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A'
         );
-        await axios.post(payment, {}).then(function(response) {
+        await axios.post(payment, {sticky:this.sticky}).then(function(response) {
           return response.data;
         }).then(function(session){
           return stripe.redirectToCheckout({sessionId:session});
