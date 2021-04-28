@@ -135,6 +135,7 @@ const app = new Vue({
         </div>
         <button type="submit">Submit</button>
       </form>
+      <button id="checkout-button">Here</button>
     </div>
   `,
 });
