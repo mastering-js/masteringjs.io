@@ -1,6 +1,7 @@
 
 // loads Jobs
 const server = 'https://masteringjs-job-board.azurewebsites.net';
+const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]})
 
@@ -64,6 +65,23 @@ const app = new Vue({
     },
     assignImage() {
       this.logo = this.$refs.file.files[0];
+    },
+    async checkout() {
+      var stripe = Stripe(
+
+        'pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A'
+        );
+        await axios.post(payment, {}).then(function(response) {
+          return response.data;
+        }).then(function(session){
+          return stripe.redirectToCheckout({sessionId:session});
+        }).then(function(result) {
+          if(result.error) {
+            alert(result.error.message);
+          }
+        }).catch(function(error) {
+          console.error('Error', error);
+        });
     }
   },
   template: `
@@ -135,7 +153,7 @@ const app = new Vue({
         </div>
         <button type="submit">Submit</button>
       </form>
-      <button id="checkout-button">Here</button>
+      <button id="checkout-button" @click = "checkout()">Here</button>
     </div>
   `,
 });
