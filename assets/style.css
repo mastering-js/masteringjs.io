@@ -241,15 +241,16 @@ input[type="text"], input[type="password"], input[type="number"] {
 
 #jobs {
   position: fixed;
-  display:block;
-  overflow: hidden;
   top: 100px;
-  left: 1600px;
+  right: 0px;
+  width: 20%;
+  margin-right: 10px;
 }
 .company-logo {
   position: relative;
-  width: 10%;
-  height: 10%;
+  width: 15%;
+  height: 15%;
+  float: right;
 }
 
 /** Mobile */
