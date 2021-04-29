@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The Seven Standard Primitives in JavaScript',
+    raw: './tutorials/fundamentals/primitives.md',
+    url: '/tutorials/fundamentals/primitives',
+    description: 'Here\'s what you need to know about primitive types in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-29')
+  },
+  {
     title: 'How to Convert an Array to a String in JavaScript',
     raw: './tutorials/fundamentals/array-to-string.md',
     url: '/tutorials/fundamentals/array-to-string',
