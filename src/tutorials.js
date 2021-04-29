@@ -7,9 +7,17 @@ module.exports = Object.freeze([
     title: 'The Seven Standard Primitives in JavaScript',
     raw: './tutorials/fundamentals/primitives.md',
     url: '/tutorials/fundamentals/primitives',
-    description: 'Placeholder Description',
+    description: 'Here\'s what you need to know about primitive types in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2021-04-26')
+    date: moment('2021-04-29')
+  },
+  {
+    title: 'How to Convert an Array to a String in JavaScript',
+    raw: './tutorials/fundamentals/array-to-string.md',
+    url: '/tutorials/fundamentals/array-to-string',
+    description: 'Here\'s two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-27')
   },
   {
     title: 'How to Use JSON with Axios',

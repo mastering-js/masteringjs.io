@@ -10,6 +10,8 @@ Javascript has seven primitive data types:
 
 In JavaScript, a primitive is any value that isn't an object.
 
+The [`typeof` operator](/tutorials/fundamentals/typeof) tells you what type a primitive value is.
+
 ## String
 
 It is important to note that strings can be either a primitive, string literal,
@@ -20,7 +22,7 @@ use the `valueOf()` method.
 
 ```javascript
 let message = "Hello World";
-typeof message; // string
+typeof message; // 'string'
 ```
 
 ## Number
@@ -31,7 +33,7 @@ every number it comes across `Number`, with an exception.
 
 ```javascript
 let password = 123456789;
-typeof password; // Number
+typeof password; // 'number'
 ```
 
 ## BigInt
@@ -42,7 +44,7 @@ number or by wrapping the number, or string for this case, in the `BigInt()` con
 
 ```javascript
 let launchCodes = 66777888889999912345n;
-typeof launchCodes; // bigint
+typeof launchCodes; // 'bigint'
 ```
 
 ## Boolean
@@ -52,8 +54,10 @@ you can use other values to represent that same concept like 0 for false, and 1 
 
 ```javascript
 isBool = true;
-typeof isBool; // boolean
-typeof new Boolean(isBool); // object
+typeof isBool; // 'boolean'
+
+// Instances of wrapper classes, like `Boolean`, are objects, **not** primitives.
+typeof new Boolean(isBool); // 'object'
 ```
 
 ## Undefined
@@ -64,27 +68,25 @@ you could use like mentioned in the `Boolean` section.
 
 ```javascript
 let x;
-if (x) return false; // will not execute
-typeof x; // undefined
+
+typeof x; // 'undefined'
 ```
 
 ## Symbol
 
-A [`Symbol`](/tutorials/fundamentals/symbol) is a value created by invoking the `Symbol` function
+A [Symbol](/tutorials/fundamentals/symbol) is a value created by invoking the `Symbol` function
 which is guaranteed to create a unique value. It takes one parameter, a string `description`, that
-will show up when you print the symbol. Interesting to note that `Symbols` do not convert to
-string unless called using the `.toString()` method.
+will show up when you print the symbol.
 
 ```javascript
 let x = Symbol("this is a symbol");
-typeof x; // symbol
+typeof x; // 'symbol'
 ```
 
 ## Null
 
-`null` is special as if you were to use the `typeof` operator on it, it would return `object`.
-It returns `object` because of a bug with Javascript that if fixed, breaks the code.
+[`null`](/tutorials/fundamentals/null) is special because the `typeof` operator reports its type as 'object'.
 
 ```javascript
-typeof null; // object
+typeof null; // 'object'
 ```

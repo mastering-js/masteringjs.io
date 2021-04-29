@@ -7,8 +7,8 @@
     <meta property="og:title" content="The Seven Standard Primitives in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's what you need to know about primitive types in JavaScript." />
+    <meta name="description" content="Here's what you need to know about primitive types in JavaScript." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -62,7 +62,7 @@
   </div>
   <h1>The Seven Standard Primitives in JavaScript</h1>
   <div class="date">
-    Apr 26, 2021
+    Apr 29, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -83,6 +83,7 @@
 <li>null</li>
 </ul>
 <p>In JavaScript, a primitive is any value that isn&#39;t an object.</p>
+<p>The <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> tells you what type a primitive value is.</p>
 <h2 id="string">String</h2>
 <p>It is important to note that strings can be either a primitive, string literal,
 or an object. Javascript automatically converts string primitives to objects to enable
@@ -90,43 +91,43 @@ the user to use the handy array of functions available for use.
 If you wanted to convert a string object to a primitive, you would
 use the <code>valueOf()</code> method.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> message = <span class="hljs-string">"Hello World"</span>;
-<span class="hljs-keyword">typeof</span> message; <span class="hljs-comment">// string</span></code></pre>
+<span class="hljs-keyword">typeof</span> message; <span class="hljs-comment">// 'string'</span></code></pre>
 <h2 id="number">Number</h2>
 <p>In other programming languages, you can have numbers be defined as floats, integers,
 doubles and so on and so forth. Javascript simplified this feature by just making
 every number it comes across <code>Number</code>, with an exception.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> password = <span class="hljs-number">123456789</span>;
-<span class="hljs-keyword">typeof</span> password; <span class="hljs-comment">// Number</span></code></pre>
+<span class="hljs-keyword">typeof</span> password; <span class="hljs-comment">// 'number'</span></code></pre>
 <h2 id="bigint">BigInt</h2>
 <p>This is similar to <code>Number</code> however, it allows you to safely represent integer values
 larger than 2<sup>53</sup>. You can create a <code>bigint</code> by appending n to the end of the
 number or by wrapping the number, or string for this case, in the <code>BigInt()</code> constructor.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> launchCodes = <span class="hljs-number">66777888889999912345</span>n;
-<span class="hljs-keyword">typeof</span> launchCodes; <span class="hljs-comment">// bigint</span></code></pre>
+<span class="hljs-keyword">typeof</span> launchCodes; <span class="hljs-comment">// 'bigint'</span></code></pre>
 <h2 id="boolean">Boolean</h2>
 <p>This data type is what contains the values <code>true</code> or <code>false</code>. This is great in that
 you can use other values to represent that same concept like 0 for false, and 1 for true.</p>
 <pre><code class="language-javascript">isBool = <span class="hljs-literal">true</span>;
-<span class="hljs-keyword">typeof</span> isBool; <span class="hljs-comment">// boolean</span>
-<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(isBool); <span class="hljs-comment">// object</span></code></pre>
+<span class="hljs-keyword">typeof</span> isBool; <span class="hljs-comment">// 'boolean'</span>
+
+<span class="hljs-comment">// Instances of wrapper classes, like `Boolean`, are objects, **not** primitives.</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Boolean</span>(isBool); <span class="hljs-comment">// 'object'</span></code></pre>
 <h2 id="undefined">Undefined</h2>
 <p>This value is automatically assigned to variables that have just been declared but not defined.
 If you were to put this in an if statement, the value would be false so this is another handy thing
 you could use like mentioned in the <code>Boolean</code> section.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x;
-<span class="hljs-keyword">if</span> (x) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// will not execute</span>
-<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// undefined</span></code></pre>
+
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'undefined'</span></code></pre>
 <h2 id="symbol">Symbol</h2>
-<p>A <a href="/tutorials/fundamentals/symbol"><code>Symbol</code></a> is a value created by invoking the <code>Symbol</code> function
+<p>A <a href="/tutorials/fundamentals/symbol">Symbol</a> is a value created by invoking the <code>Symbol</code> function
 which is guaranteed to create a unique value. It takes one parameter, a string <code>description</code>, that
-will show up when you print the symbol. Interesting to note that <code>Symbols</code> do not convert to
-string unless called using the <code>.toString()</code> method.</p>
+will show up when you print the symbol.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">"this is a symbol"</span>);
-<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// symbol</span></code></pre>
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'symbol'</span></code></pre>
 <h2 id="null">Null</h2>
-<p><code>null</code> is special as if you were to use the <code>typeof</code> operator on it, it would return <code>object</code>.
-It returns <code>object</code> because of a bug with Javascript that if fixed, breaks the code.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// object</span></code></pre>
+<p><a href="/tutorials/fundamentals/null"><code>null</code></a> is special because the <code>typeof</code> operator reports its type as &#39;object&#39;.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// 'object'</span></code></pre>
 
   
   <hr>
@@ -134,6 +135,9 @@ It returns <code>object</code> because of a bug with Javascript that if fixed, b
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
@@ -150,9 +154,6 @@ It returns <code>object</code> because of a bug with Javascript that if fixed, b
   
 
     <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
     </ul>
   

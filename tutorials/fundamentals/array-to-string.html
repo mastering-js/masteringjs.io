@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use the User-Agent Header in Axios - Mastering JS</title>
+    <title>How to Convert an Array to a String in JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use the User-Agent Header in Axios" />
+    <meta property="og:title" content="How to Convert an Array to a String in JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
-    <meta name="description" content="Here's how you can set the User-Agent header when making an HTTP request with Axios." />
+    <meta property="og:description" content="Here's two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`." />
+    <meta name="description" content="Here's two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,12 +57,12 @@
   <div class="breadcrumbs">
     <a href="/all">Tutorials</a>
     /
-    <a href="/axios">Axios</a>
+    <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Use the User-Agent Header in Axios</h1>
+  <h1>How to Convert an Array to a String in JavaScript</h1>
   <div class="date">
-    Apr 20, 2021
+    Apr 27, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,43 +72,47 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://github.com/axios/axios">Axios</a> lets you set the <code>User-Agent</code>
-header using the <code>headers</code> option which allows you to to identify
-the type of device making the request to the server.
-The <code>User-Agent</code> property takes a
-<a href="https://deviceatlas.com/blog/list-of-user-agent-strings">string</a>
-to tell the server the device making the request. The string follows a
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agents">structure</a> to properly identify itself.
-Below is an example:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>, {
-  <span class="hljs-attr">headers</span>: { <span class="hljs-string">'User-Agent'</span>:<span class="hljs-string">'Axios 0.21.1'</span> }
-});</code></pre>
+  <p>Javascript&#39;s handy way of converting arrays to strings is the
+<code>.toString()</code> method. Simply call it on the array and it will
+return the entries in the form of a string, each separated by
+a comma as seen below:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Dog'</span>,<span class="hljs-string">'Cat'</span>,<span class="hljs-string">'Fish'</span>,<span class="hljs-string">'Bread'</span>];
+arr.toString(); <span class="hljs-comment">// prints Dog,Cat,Fish,Bread</span></code></pre>
+<h2 id="join">join()</h2>
+<p>Another alternative to <code>toString</code> is the <code>.join()</code> function.
+The benefit of using <code>join()</code> is that you can specify a custom
+separator. <code>toString()</code> always uses <code>,</code> as the separator.
+If you call <code>join()</code> without arguments, it will default to commas.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>,<span class="hljs-string">'Boots'</span>,<span class="hljs-string">'Cats'</span>];
+arr.join(<span class="hljs-string">' and '</span>); <span class="hljs-comment">// prints Boots and Cats and Boots and Cats</span></code></pre>
+<p><strong>Note:</strong> Make sure to add a space before and after the value you choose, otherwise,
+there will be no spaces.</p>
 
   
   <hr>
   
-    <h2>More Axios Tutorials</h2>
+    <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/create-post">How to use Axios' create() Method with POST Requests</a></li>
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
 
-    <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
+    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+    <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/all">How to Use axios.all() to Make Concurrent HTTP Requests</a></li>
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
+    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
   
     </ul>
   

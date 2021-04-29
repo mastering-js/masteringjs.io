@@ -81,8 +81,7 @@ a more intuitive way to combine multiple arrays than using <code>push()</code>,
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> array1 = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>];
 <span class="hljs-keyword">const</span> array2 = [<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>];
 <span class="hljs-keyword">const</span> array3 = [...array1, ...array2, <span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>];
-array3; <span class="hljs-comment">// ['a','b','c','d','e','f']</span>
-</code></pre>
+array3; <span class="hljs-comment">// ['a','b','c','d','e','f']</span></code></pre>
 <p><strong>Note:</strong> Avoid using <code>...</code> with multidimensional arrays.
 Modifying that kind of an array can lead to problems like
 shown below:</p>
@@ -90,8 +89,7 @@ shown below:</p>
 <span class="hljs-keyword">let</span> arr2 = [...arr1];
 arr2.shift().shift();
 arr2; <span class="hljs-comment">// [[2], [3]]</span>
-arr1; <span class="hljs-comment">// [[], [2], [3]]</span>
-</code></pre>
+arr1; <span class="hljs-comment">// [[], [2], [3]]</span></code></pre>
 <h1 id="spread-with-functions">Spread with Functions</h1>
 <p>The spread operator also lets you call a function with the contents
 of an array as parameters, similar to <code>apply()</code>. it passes the arguments
@@ -101,8 +99,7 @@ it is expecting, it does not create any problems.</p>
   <span class="hljs-keyword">return</span> arg1 + <span class="hljs-string">' '</span> + arg2;
 }
 <span class="hljs-keyword">const</span> args = [<span class="hljs-string">'Hello'</span>, <span class="hljs-string">'World'</span>];
-test(...args); <span class="hljs-comment">// Hello World</span>
-</code></pre>
+test(...args); <span class="hljs-comment">// Hello World</span></code></pre>
 <h1 id="spread-with-objects">Spread with Objects</h1>
 <p>The same use case with arrays applies to objects as well,
 so long as there is more than one property in the object.
@@ -116,13 +113,11 @@ on the copy are reflected onto the original.</p>
 
 ++copy.answer; <span class="hljs-comment">// 43</span>
 obj.answer; <span class="hljs-comment">// 42, did not change because `copy` is a copy of `obj`</span>
-
 <span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: { <span class="hljs-attr">first</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Picard'</span> } };
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign({}, obj);
 
 copy.name.first = <span class="hljs-string">'Johnny'</span>;
-obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** cloned</span>
-</code></pre>
+obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** cloned</span></code></pre>
 
   
   <hr>
@@ -131,6 +126,9 @@ obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** clone
     <ul>
     
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
@@ -146,9 +144,6 @@ obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** clone
   
 
     <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
   
     </ul>
   
