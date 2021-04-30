@@ -21,7 +21,9 @@ const app = new Vue({
     addtool: '',
     removetool: '',
     error: false,
-    preview: false
+    preview: false,
+    displayImage: true,
+    previewImage: null
   }),
   methods: {
     async postJob() {
@@ -62,7 +64,14 @@ const app = new Vue({
       console.log(this.tags);
     },
     assignImage() {
-      this.logo = this.$refs.file.files[0];
+      if (this.$refs.file.files[0].name.includes(".png") || this.$refs.file.files[0].name.includes(".jpg")) {
+        this.logo = this.$refs.file.files[0];
+        this.previewImage = URL.createObjectURL(this.logo);
+        this.displayImage = true;
+      } else {
+        this.displayImage = false;
+      }
+      
     },
     async checkout() {
       var stripe = Stripe(
@@ -126,6 +135,7 @@ const app = new Vue({
           </form>
         <div>
           <div><label> Company Image </label></div>
+          <h3 v-if="!displayImage">That file type is not supported</h3>
           <input type="file" @change="assignImage" ref = "file"/>
         </div>
         <div>
@@ -158,9 +168,18 @@ const app = new Vue({
       <div v-else>
       <h1>{{title}}</h1>
       <h2>{{company}}</h2>
+      <img :src="previewImage" style="width:50%"/>
       <h3>{{location}}</h3>
+      <h3>{{Description}}</h3>
+      <h3>{{tags}}</h3>
+      <h3>Click here to apply: {{url}}</h3>
+      <h3>To apply: {{instructions}}</h3>
+      <h3>Email here if any questions: {{email}}</h3>
+      <h3>{{feedback}}</h3>
+      <h3>Invoice Address: {{invoiceAddress}}</h3>
+      <h3>Notes: {{invoiceNotes}}</h3>
       <button @click = "showPreview()">Fix Errors</button>
-      <button id="checkout-button" @click = "checkout()">Here</button>
+      <button id="checkout-button" @click = "checkout()">Checkout</button>
       </div>
     </div>
   `,
