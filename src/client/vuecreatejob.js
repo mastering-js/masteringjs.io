@@ -3,10 +3,6 @@
 const server = 'https://masteringjs-job-board.azurewebsites.net';
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
-const preview = {template: `<h1>Hello World {{$route.params.company}}</h1>`}
-const router = new VueRouter({routes: [{path: '/preview', name: 'preview', component: preview}]})
-
-
 const app = new Vue({
   data: () => ({
     company: null,
@@ -24,9 +20,9 @@ const app = new Vue({
     tags: [],
     addtool: '',
     removetool: '',
-    error: false
+    error: false,
+    preview: false
   }),
-  router,
   methods: {
     async postJob() {
       if (!this.company || !this.logo || !this.title || !this.location || !this.description || 
@@ -85,8 +81,8 @@ const app = new Vue({
           console.error('Error', error);
         });
     },
-    toPreview() {
-      router.push({name: 'preview', params: {company: this.company}});
+    showPreview() {
+      this.preview = !this.preview;
     }
   },
   template: `
@@ -94,7 +90,7 @@ const app = new Vue({
       <h1>Hire JavaScript Developers</h1>
       <h2> All fields are required </h2>
       <h3 v-if="error">You are missing fields </h3>
-      <form action="" @submit.prevent="postJob()">
+      <form v-if="!preview" action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
           <input type="text" v-model="company" />
@@ -157,11 +153,15 @@ const app = new Vue({
           <input type="text" v-model="invoiceNotes" />
         </div>
         <button type="submit">Submit</button>
+        <button @click="showPreview()">Preview</button>
       </form>
+      <div v-else>
+      <h1>{{title}}</h1>
+      <h2>{{company}}</h2>
+      <h3>{{location}}</h3>
+      <button @click = "showPreview()">Fix Errors</button>
       <button id="checkout-button" @click = "checkout()">Here</button>
-      <router-link v-bind:to="{name:'preview', params: {company: this.company}}"> Hello</router-link>
-      <router-view></router-view>
-      <button @click="toPreview()">Route</button>
+      </div>
     </div>
   `,
 });
