@@ -3,7 +3,9 @@
 const server = 'https://masteringjs-job-board.azurewebsites.net';
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
-const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]})
+const preview = {template: `<h1>Hello World {{$route.params.company}}</h1>`}
+const router = new VueRouter({routes: [{path: '/preview', name: 'preview', component: preview}]})
+
 
 const app = new Vue({
   data: () => ({
@@ -82,6 +84,9 @@ const app = new Vue({
         }).catch(function(error) {
           console.error('Error', error);
         });
+    },
+    toPreview() {
+      router.push({name: 'preview', params: {company: this.company}});
     }
   },
   template: `
@@ -154,6 +159,9 @@ const app = new Vue({
         <button type="submit">Submit</button>
       </form>
       <button id="checkout-button" @click = "checkout()">Here</button>
+      <router-link v-bind:to="{name:'preview', params: {company: this.company}}"> Hello</router-link>
+      <router-view></router-view>
+      <button @click="toPreview()">Route</button>
     </div>
   `,
 });
