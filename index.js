@@ -12,9 +12,9 @@ const requestInvite = require('./components/request-invite');
 const transform = require('acquit-require');
 const tutorialTemplate = require('./components/tutorial');
 const jobs = require('./components/jobs');
-const signin = require('./components/signin');
-const signup = require('./components/signup');
 const createjob = require('./components/createjob');
+const success = require('./components/success');
+const failure = require('./components/failure');
 
 require('acquit-ignore')();
 
@@ -237,25 +237,25 @@ async function run() {
     description: 'Find A Job'
   });
   pages.push({
-    path: './jobs/signin.html',
-    template: layout,
-    title: 'Signin',
-    content: signin(),
-    description: 'Sign in'
-  });
-  pages.push({
-    path: './jobs/signup.html',
-    template: layout,
-    title: 'Signup',
-    content: signup(),
-    description: 'Sign up'
-  });
-  pages.push({
     path: './jobs/create.html',
     template: layout,
     title: 'Create Job',
     content: createjob(),
     description: 'Create Job'
+  });
+  pages.push({
+    path: './jobs/success.html',
+    template: layout,
+    title: 'Thank you!',
+    content: success(),
+    description: 'Successfully posted a job'
+  });
+  pages.push({
+    path: './jobs/failure.html',
+    template: layout,
+    title: 'Oh No!',
+    content: failure(),
+    description: 'Something went wrong'
   });
   for (const page of pages) {
     console.log(page.path)
