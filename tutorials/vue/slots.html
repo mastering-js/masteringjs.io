@@ -95,8 +95,7 @@
       &lt;h1&gt;Hello, World!&lt;/h1&gt;
     &lt;/green&gt;
   `</span>
-});
-</code></pre>
+});</code></pre>
 <p>You can also define default inner HTML. If there&#39;s no inner HTML underneath <code>&lt;green&gt;&lt;/green&gt;</code>, Vue will use the inner HTML of <code>&lt;slot&gt;&lt;/slot&gt;</code> as shown below.</p>
 <pre><code class="language-javascript">Vue.component(<span class="hljs-string">'green'</span>, {
   <span class="hljs-comment">// The inner HTML of `&lt;slot&gt;&lt;/slot&gt;` is the default.</span>
@@ -112,8 +111,7 @@
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-comment">// No inner HTML</span>
   template: <span class="hljs-string">`&lt;green&gt;&lt;/green&gt;`</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="named-slots">Named Slots</h2>
 <p>Sometimes you need multiple slots. For example, suppose you&#39;re writing a <code>brand</code> component that has two slots, &#39;name&#39; and &#39;logo&#39;.</p>
 <pre><code class="language-javascript">Vue.component(<span class="hljs-string">'brand'</span>, {
@@ -145,8 +143,7 @@
       &lt;/template&gt;
     &lt;/brand&gt;
   `</span>
-});
-</code></pre>
+});</code></pre>
 <p>The output HTML looks like this:</p>
 <pre><code>&lt;div data-server-rendered=<span class="hljs-string">"true"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"brand"</span>&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"logo"</span>&gt;</span>
@@ -187,6 +184,9 @@
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
+  
+
     <li><a href="/tutorials/vue/style-scoped">How to Locally Scope the CSS in Your Vue Files</a></li>
   
 
@@ -203,9 +203,6 @@
   
 
     <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
-  
-
-    <li><a href="/tutorials/vue/select">How to Use the Select Tag with Vue</a></li>
   
     </ul>
   

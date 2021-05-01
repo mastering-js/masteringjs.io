@@ -99,8 +99,7 @@ is how you can make an HTTP request to <code>httpbin.org</code> using Node&#39;s
 });
 
 data = <span class="hljs-built_in">JSON</span>.parse(data);
-data.args; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <p>There are a few nuances with Node&#39;s HTTP library that you need to know:</p>
 <ol>
 <li>It does <strong>not</strong> support <code>https://</code> URLs. You will get a <code>Protocol &quot;https:&quot; not supported. Expected &quot;http:&quot;</code> error if you call <code>http.request()</code> with an HTTPS URL. You need to use <code>require(&#39;https&#39;).request()</code> instead.</li>
@@ -114,8 +113,7 @@ the above HTTP request using Axios.</p>
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get?answer=42'</span>);
 
-res.data.args; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data.args; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <p>Axios makes HTTP requests much cleaner than using Node.js&#39; built-in library. Plus,
 since Axios requests are promises, you can <a href="/tutorials/axios/catch">handle errors using <code>catch()</code></a>.</p>
 

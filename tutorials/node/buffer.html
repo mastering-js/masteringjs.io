@@ -83,8 +83,7 @@
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
 buf <span class="hljs-keyword">instanceof</span> Buffer; <span class="hljs-comment">// true</span>
 
-buf; <span class="hljs-comment">// '&lt;Buffer 7b 0a 20 20 22 6e 61 6d 65 22 ...&gt;'</span>
-</code></pre>
+buf; <span class="hljs-comment">// '&lt;Buffer 7b 0a 20 20 22 6e 61 6d 65 22 ...&gt;'</span></code></pre>
 <p>Buffers have a <a href="https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings"><code>toString()</code> function</a> that takes a single
 argument <code>encoding</code>. The <code>toString()</code> function lets you convert
 buffers into meaningful strings depending on encoding. For example,
@@ -93,8 +92,7 @@ convert the buffer into the text from the file using <code>.toString(&#39;utf8&#
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
-buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// '{ "name": "masteringjs.io", ...}'</span>
-</code></pre>
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// '{ "name": "masteringjs.io", ...}'</span></code></pre>
 <p>Another common encoding is <code>hex</code>, which encodes the buffer as a string
 of characters <code>[0-9A-F]</code>. Hex encoding is useful because it doesn&#39;t
 require escaping - you can put a hex encoded buffer into a URI without
@@ -103,8 +101,7 @@ because hex encoding only contains alphanumeric characters.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./package.json'</span>);
-buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '7b0a2020...'</span>
-</code></pre>
+buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment">// '7b0a2020...'</span></code></pre>
 <h2 id="creating-a-new-buffer">Creating a New Buffer</h2>
 <p>You can create buffers from strings using the <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_array"><code>Buffer.from()</code> function</a>. Like <code>toString()</code>, you can pass <a href="https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding">an <code>encoding</code> argument to <code>Buffer.from()</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
@@ -113,8 +110,7 @@ buf.toString(<span class="hljs-string">'hex'</span>); <span class="hljs-comment"
 buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span>
 
 buf = Buffer.from(<span class="hljs-string">'48656c6c6f2c20576f726c64'</span>, <span class="hljs-string">'hex'</span>);
-buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span>
-</code></pre>
+buf.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
 <p>The <code>Buffer.from()</code> function also accepts arrays and buffers. You can
 use <code>Buffer.from()</code> to clone a buffer:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf2 = Buffer.from(buf);
@@ -151,8 +147,7 @@ obj.buffer;
 
 <span class="hljs-comment">// To convert from JSON representation back to a buffer, use `Buffer.from()`</span>
 obj.buffer = Buffer.from(obj.buffer);
-obj.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span>
-</code></pre>
+obj.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// 'Hello, World'</span></code></pre>
 
   
   <hr>

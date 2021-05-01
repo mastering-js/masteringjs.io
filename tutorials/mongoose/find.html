@@ -88,8 +88,7 @@ structuring the <code>filter</code> object using <a href="https://docs.mongodb.c
 <h2 id="equality-checks">Equality Checks</h2>
 <p>Suppose you have a <code>Character</code> model that contains 5 characters from
 Star Trek: The Next Generation.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, mongoose.Schema({
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, mongoose.Schema({
   <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
   <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span>,
   <span class="hljs-attr">rank</span>: <span class="hljs-built_in">String</span>
@@ -101,48 +100,40 @@ Star Trek: The Next Generation.</p>
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Geordi La Forge'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Worf'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">24</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> }
-]);
-</code></pre>
+]);</code></pre>
 <p>Suppose you want to find all characters whose <code>rank</code> is &#39;Lieutenant&#39;. The way
 to do this is to pass <code>{ rank: &#39;Lieutenant&#39; }</code> as the <code>filter</code>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> });
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span> });
 
 <span class="hljs-comment">// MongoDB may return the docs in any order unless you explicitly sort</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'Worf']</span>
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'Worf']</span></code></pre>
 <p>You can also query by age. For example, the below query will find all characters
 whose <code>age</code> is 29.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> });
 
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'William Riker']</span>
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'William Riker']</span></code></pre>
 <p>The above examples don&#39;t use any query operators. If you set the value of <code>rank</code>
 to an object with a <a href="https://docs.mongodb.com/manual/reference/operator/query/eq/#op._S_eq"><code>$eq</code> property</a>, you get an equivalent query, but using a <em>query operator</em>. The <code>$eq</code> query operator
 is usually not useful. But this example demonstrates the query operator syntax,
 which you need for structuring non-trivial queries.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Equivalent to `{ rank: 'Lieutenant' }`. `$eq` is an example of</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Equivalent to `{ rank: 'Lieutenant' }`. `$eq` is an example of</span>
 <span class="hljs-comment">// a "query operator"</span>
 <span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: { <span class="hljs-attr">$eq</span>: <span class="hljs-string">'Lieutenant'</span> } });
 
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'Worf']</span>
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Geordi La Forge', 'Worf']</span></code></pre>
 <h2 id="comparisons">Comparisons</h2>
 <p>The <code>$eq</code> query operator checks exact equality. There are also
 <a href="https://docs.mongodb.com/manual/reference/operator/query/#comparison">comparison query operators</a> like <code>$gt</code> and <code>$lt</code>. For example, suppose you want to find all characters whose age
 is strictly less than 29. You can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/lt/#op._S_lt"><code>$lt</code> query operator</a> as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">age</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">29</span> } });
 
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Deanna Troi', 'Worf']</span>
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort(); <span class="hljs-comment">// ['Deanna Troi', 'Worf']</span></code></pre>
 <p>Suppose you wanted to find all characters whose age is at least 29. For that,
 you should use the <a href="https://docs.mongodb.com/manual/reference/operator/query/gte/#op._S_gte"><code>$gte</code> query operator</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">age</span>: { <span class="hljs-attr">$gte</span>: <span class="hljs-number">29</span> } });
 
 <span class="hljs-comment">// ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 <p>The comparison operators <code>$lt</code>, <a href="https://docs.mongodb.com/manual/reference/operator/query/gt/#op._S_gt"><code>$gt</code></a>, <a href="https://docs.mongodb.com/manual/reference/operator/query/lte/#op._S_lte"><code>$lte</code></a>, and <code>$gte</code> work with more than just numbers. You can also use them on strings,
 dates, and other types. MongoDB compares strings using <a href="https://www.w3.org/TR/xml-entity-names/bycodes.html">unicode order</a>.
 If that order doesn&#39;t work for you, you can configure it using
@@ -150,8 +141,7 @@ If that order doesn&#39;t work for you, you can configure it using
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">name</span>: { <span class="hljs-attr">$lte</span>: <span class="hljs-string">'Geordi La Forge'</span> } });
 
 <span class="hljs-comment">// ['Deanna Troi', 'Geordi La Forge']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 <h2 id="regular-expressions">Regular Expressions</h2>
 <p>Suppose you want to find characters whose <code>rank</code> contains &#39;Commander&#39;. In SQL,
 you would use the <a href="https://www.w3schools.com/sql/sql_like.asp"><code>LIKE</code> operator</a>.
@@ -159,14 +149,12 @@ In Mongoose, you can simply query by a regular expression as shown below.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: <span class="hljs-regexp">/Commander/</span> });
 
 <span class="hljs-comment">// ['Deanna Troi', 'William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 <p>Equivalently, you can use the <a href="https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_regex"><code>$regex</code> query operator</a>. This enables you to pass the regular expression as a string, which is convenient if you&#39;re getting the query from an HTTP request.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">rank</span>: { <span class="hljs-attr">$regex</span>: <span class="hljs-string">'Commander'</span> } });
 
 <span class="hljs-comment">// ['Deanna Troi', 'William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 <h2 id="composition-with-and-and-or">Composition with <code>$and</code> and <code>$or</code></h2>
 <p>If you set multiple <code>filter</code> properties, MongoDB finds documents that match
 all the filter properties. For example, the below query will find all characters
@@ -177,8 +165,7 @@ whose <code>age</code> is at least 29 <strong>and</strong> whose <code>rank</cod
 });
 
 <span class="hljs-comment">// ['William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name);
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name);</code></pre>
 <p>Suppose you want to find characters whose <code>age</code> is at least 29 <strong>or</strong> whose
 <code>rank</code> equals &#39;Commander&#39;. You would need the <a href="https://docs.mongodb.com/manual/reference/operator/query/or/#op._S_or"><code>$or</code> query operator</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> Character.find({
@@ -189,8 +176,7 @@ docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;<
 });
 
 <span class="hljs-comment">// ['Geordi La Forge', 'Jean-Luc Picard', 'William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 <p>There is also a <a href="https://docs.mongodb.com/manual/reference/operator/query/and/#op._S_and"><code>$and</code> query operator</a>. You will rarely need to use the <code>$and</code> query operator. The primary use case for <code>$and</code> is to compose multiple <code>$or</code> operators. For example, suppose you want
 to find characters whose that satisfy both of the below conditions:</p>
 <ol>
@@ -215,8 +201,7 @@ to find characters whose that satisfy both of the below conditions:</p>
 });
 
 <span class="hljs-comment">// ['William Riker']</span>
-docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();
-</code></pre>
+docs.map(<span class="hljs-function"><span class="hljs-params">doc</span> =&gt;</span> doc.name).sort();</code></pre>
 
   <hr>
 <div class="cta">

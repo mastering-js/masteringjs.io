@@ -94,8 +94,7 @@ app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span cl
 <span class="hljs-comment">// Make an example request to see that, yep, the CORS headers are set</span>
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span>
-</code></pre>
+res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span></code></pre>
 <p>You can also declare CORS middleware on a certain subset of your routes by
 passing a string parameter to <code>use()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -114,8 +113,7 @@ app.get(<span class="hljs-string">'/'</span>, (req, res) =&gt; res.send(<span cl
 res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// undefined</span>
 
 res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/api/test'</span>);
-res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span>
-</code></pre>
+res.headers[<span class="hljs-string">'access-control-allow-origin'</span>]; <span class="hljs-comment">// '*'</span></code></pre>
 
   <hr>
 <div class="cta">

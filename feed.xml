@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Fri, 30 Apr 2021 21:44:26 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 01 May 2021 19:34:10 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,48 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[The Seven Standard Primitives in JavaScript]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/primitives</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/primitives</guid>
+            <pubDate>Thu, 29 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Convert an Array to a String in JavaScript]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/array-to-string</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/array-to-string</guid>
+            <pubDate>Tue, 27 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Use JSON with Axios]]></title>
+            <link>https://masteringjs.io/tutorials/axios/json</link>
+            <guid>https://masteringjs.io/tutorials/axios/json</guid>
+            <pubDate>Wed, 21 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Use the User-Agent Header in Axios]]></title>
+            <link>https://masteringjs.io/tutorials/axios/user-agent</link>
+            <guid>https://masteringjs.io/tutorials/axios/user-agent</guid>
+            <pubDate>Tue, 20 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Use Named Parameters in JavaScript]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/parameters</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/parameters</guid>
+            <pubDate>Fri, 16 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Use JavaScript's Spread Operator]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/spread</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/spread</guid>
+            <pubDate>Wed, 14 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Read Files with Vue]]></title>
+            <link>https://masteringjs.io/tutorials/vue/file</link>
+            <guid>https://masteringjs.io/tutorials/vue/file</guid>
+            <pubDate>Tue, 13 Apr 2021 04:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Locally Scope the CSS in Your Vue Files]]></title>
             <link>https://masteringjs.io/tutorials/vue/style-scoped</link>

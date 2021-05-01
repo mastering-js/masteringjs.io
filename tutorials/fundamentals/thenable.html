@@ -95,8 +95,7 @@ thenable. For example, you can use thenables in a promise chain:</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> thenable).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     v; <span class="hljs-comment">// 42</span>
-  });
-</code></pre>
+  });</code></pre>
 <p>You can also use thenables with <code>await</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
 <span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
@@ -108,8 +107,7 @@ thenable. For example, you can use thenables in a promise chain:</p>
 };
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> thenable;
-v; <span class="hljs-comment">// 42</span>
-</code></pre>
+v; <span class="hljs-comment">// 42</span></code></pre>
 <h2 id="thenables-in-the-wild">Thenables in the Wild</h2>
 <p>Many libraries implement thenables to enable async/await support.
 For example, <a href="/tutorials/mongoose/query">Mongoose queries</a> are
@@ -132,8 +130,7 @@ Mongoose queries nor Superagent requests are actually promises.</p>
 p <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> p;
-v; <span class="hljs-comment">// 42</span>
-</code></pre>
+v; <span class="hljs-comment">// 42</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -156,6 +153,18 @@ v; <span class="hljs-comment">// 42</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -163,18 +172,6 @@ v; <span class="hljs-comment">// 42</span>
   
 
     <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   

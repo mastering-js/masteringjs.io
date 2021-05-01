@@ -90,8 +90,7 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, cb</span>) </span>{
   <span class="hljs-keyword">return</span> axios.get(url);
-}
-</code></pre>
+}</code></pre>
 <p>The function <code>get()</code> takes one parameter, a URL, and returns a <a href="/tutorials/fundamentals/promise">promise</a>. Let&#39;s test this function with Mocha, 3 different ways.</p>
 <h2 id="async-functions">Async Functions</h2>
 <p><a href="http://thecodebarbarian.com/using-async-await-with-mocha-express-and-mongoose#mocha">Mocha supports async functions out of the box</a>, no plugins or configuration needed. You can pass an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async function</a> to <code>it()</code>, and Mocha will handle any errors that occur.</p>

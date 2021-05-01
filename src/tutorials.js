@@ -4,6 +4,62 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'The Seven Standard Primitives in JavaScript',
+    raw: './tutorials/fundamentals/primitives.md',
+    url: '/tutorials/fundamentals/primitives',
+    description: 'Here\'s what you need to know about primitive types in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-29')
+  },
+  {
+    title: 'How to Convert an Array to a String in JavaScript',
+    raw: './tutorials/fundamentals/array-to-string.md',
+    url: '/tutorials/fundamentals/array-to-string',
+    description: 'Here\'s two ways to convert an array to a string in JavaScript: using `toString()`, and using `join()`.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-27')
+  },
+  {
+    title: 'How to Use JSON with Axios',
+    raw: './tutorials/axios/axios-json.md',
+    url: '/tutorials/axios/json',
+    description: 'Here\'s how you can use Axios to make GET requests for JSON data, as well as PUT and POST JSON data to a server.',
+    tags: ['axios'],
+    date: moment('2021-04-21')
+  },
+  {
+    title: 'How to Use the User-Agent Header in Axios',
+    raw: './tutorials/axios/user-agent.md',
+    url: '/tutorials/axios/user-agent',
+    description: 'Here\'s how you can set the User-Agent header when making an HTTP request with Axios.',
+    tags: ['axios'],
+    date: moment('2021-04-20')
+  },
+  {
+    title: 'How to Use Named Parameters in JavaScript',
+    raw: './tutorials/fundamentals/parameters.md',
+    url: '/tutorials/fundamentals/parameters',
+    description: 'JavaScript does not support named parameters, but you can get the same syntactic benefits using object destructuring. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-16')
+  },
+  {
+    title: 'How to Use JavaScript\'s Spread Operator',
+    raw: './tutorials/fundamentals/spread.md',
+    url: '/tutorials/fundamentals/spread',
+    description: 'Here\'s what you can do with the spread operator `...` in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-04-14')
+  },
+  {
+    title: 'How to Read Files with Vue',
+    raw: './tutorials/vue/file.md',
+    url: '/tutorials/vue/file',
+    description: 'Here\'s how you can display the contents of an `input type="file"` using Vue.',
+    tags: ['vue'],
+    date: moment('2021-04-13')
+  },
+  {
     title: 'How to Locally Scope the CSS in Your Vue Files',
     raw: './tutorials/vue/style-scoped.md',
     url: '/tutorials/vue/style-scoped',

@@ -94,8 +94,7 @@ app.get(<span class="hljs-keyword">async</span> <span class="hljs-function"><spa
 <span class="hljs-comment">// Will time out. If not for the `timeout` option, would hang forever.</span>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>, { <span class="hljs-attr">timeout</span>: <span class="hljs-number">300</span> }).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "timeout of 300ms exceeded"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "timeout of 300ms exceeded"</span></code></pre>
 <p>In order to make sure your Express app doesn&#39;t hang forever, you need to make sure your middleware functions call <code>next()</code> and your route handlers call <a href="http://expressjs.com/en/4x/api.html#res.send"><code>res.send()</code></a> or <a href="http://expressjs.com/en/4x/api.html#res.json"><code>res.json()</code></a>. The easiest way to do this is with the <a href="https://www.npmjs.com/package/@awaitjs/express"><code>@awaitjs/express</code> library</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 <span class="hljs-keyword">const</span> { addAsync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@awaitjs/express'</span>);
@@ -113,8 +112,7 @@ app.getAsync(<span class="hljs-keyword">async</span> <span class="hljs-function"
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "Request failed with status code 500"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "Request failed with status code 500"</span></code></pre>
 <p>If you don&#39;t want to use an outside library, you can handle errors yourself. With async/await, you can wrap your logic in a <code>try/catch</code> to make sure errors are caught. Just make sure your <code>catch</code> block doesn&#39;t throw an error.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
@@ -134,8 +132,7 @@ app.get(<span class="hljs-keyword">async</span> <span class="hljs-function"><spa
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "Request failed with status code 500"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "Request failed with status code 500"</span></code></pre>
 <p>If you&#39;re using promise chaining, you should use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch">the <code>Promise#catch()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
@@ -151,8 +148,7 @@ app.get(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span 
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "Request failed with status code 500"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "Request failed with status code 500"</span></code></pre>
 
   <hr>
 <div class="cta">

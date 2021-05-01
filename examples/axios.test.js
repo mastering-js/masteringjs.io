@@ -984,4 +984,9 @@ describe('axios', function() {
     });
     // acquit:ignore:end
   });
+  it('user-agent-test', async function() {
+    await axios.get('https://httpbin.org/get', {
+      headers: { 'User-Agent':'Axios 0.21.1' }
+    });
+  });
 });

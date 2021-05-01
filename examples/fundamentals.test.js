@@ -4535,6 +4535,53 @@ describe('Fundamentals', function() {
       }
     });
   });
+
+  it('named-parameters', function() {
+    function example({ arg1 = 1, arg2 = 2, arg3 = 3 } = {}) {
+      return { arg1, arg2, arg3 };
+    }
+
+    function problem({failure = true}) {
+      return failure;
+    }
+    // acquit:ignore:start
+    assert.throws(() => {
+    // acquit:ignore:end
+
+    problem(); //TypeError: Cannot read property 'failure' of undefined
+
+    // acquit:ignore:start
+    }, /TypeError: Cannot read property 'failure' of undefined/);
+    // acquit:ignore:end
+
+    example({ arg2: 4, arg1: 2 }); // { arg1: 2, arg2: 4, arg3: 3 }
+
+    example(); // { arg1: 1, arg2: 2, arg3: 3 }
+  });
+
+  it('spread-assignment', function() {
+    const array1 = ['a', 'b'];
+    const array2 = ['c', 'd'];
+    const array3 = [...array1, ...array2, 'e', 'f'];
+    array3; // ['a','b','c','d','e','f']
+  });
+  it('spread-method', function() {
+    function test(arg1,arg2) {
+      return arg1 + ' ' + arg2;
+    }
+    const args = ['Hello', 'World'];
+    test(...args); // Hello World
+  });
+  it('spread-carefully', function() {
+    let arr1 = [[1],[2],[3]];
+    let arr2 = [...arr1];
+    arr2.shift().shift();
+    arr2; // [[2], [3]]
+    arr1; // [[], [2], [3]]
+  });
+  it('spread-object', function() {
+    console.log('hi');
+  });
 });
 
 if (!Array.prototype.flat) {

@@ -133,20 +133,16 @@ app.use(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span 
 <p>In general, it is best practice to call <code>next()</code> unless you explicitly do not
 want the rest of the middleware stack to run. Calling <code>next()</code> if there&#39;s no
 more middleware is perfectly fine.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// It is OK to call `next()` even if there's no more middleware.</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// It is OK to call `next()` even if there's no more middleware.</span>
 app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
   res.send(<span class="hljs-string">'Hello, World'</span>);
   next();
-});
-</code></pre>
+});</code></pre>
 <p>If you call <code>next()</code> with a parameter, Express will treat that parameter as an
 error and trigger <a href="/tutorials/express/error-handling">error handling middleware</a>. The below middleware will cause Express to respond with an HTTP 500 and a stack trace.</p>
-<pre><code class="language-javascript">
-app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
+<pre><code class="language-javascript">app.use(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> {
   next(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Fail!'</span>));
-});
-</code></pre>
+});</code></pre>
 <p>If you open the above middleware in Chrome, you&#39;ll see something like this:</p>
 <img src="https://codebarbarian-images.s3.amazonaws.com/express2.jpg" class="inline-image" style="width: 200px" alt="An example of an HTTP response error">
 

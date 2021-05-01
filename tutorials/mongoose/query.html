@@ -87,8 +87,7 @@
 query <span class="hljs-keyword">instanceof</span> mongoose.Query; <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// Execute the query</span>
-<span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> query;
-</code></pre>
+<span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> query;</code></pre>
 <h2 id="chaining">Chaining</h2>
 <p>The first parameter to <code>Model.find()</code> is called the query <em>filter</em>. When you
 call <code>find()</code>, MongoDB will return all documents that match the query filter.
@@ -105,15 +104,13 @@ make sure you specify the property name to add to the filter using <a href="http
 <span class="hljs-comment">// than using chaining</span>
 docs = <span class="hljs-keyword">await</span> Character.find({
   <span class="hljs-attr">name</span>: { <span class="hljs-attr">$in</span>: [<span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-string">'Will Riker'</span>] }
-});
-</code></pre>
+});</code></pre>
 <p>Chainable operations let you add to the current query filter. You can get the
 query&#39;s current filter using the <a href="https://mongoosejs.com/docs/api/query.html#query_Query-getFilter"><code>Query#getFilter()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> query = Character.find().
   where(<span class="hljs-string">'name'</span>).in([<span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-string">'Will Riker'</span>]);
 <span class="hljs-comment">// `{ name: { $in: ['Jean-Luc Picard', 'Will Riker'] } }`</span>
-query.getFilter();
-</code></pre>
+query.getFilter();</code></pre>
 <p>Here&#39;s a list of several useful query helpers:</p>
 <ul>
 <li><code>lt(value)</code>, <code>gt(value)</code>: specify that a property must be less than (<code>lt()</code>) or greater than (<code>gt()</code>) a value. <code>value</code> can be a number, string, or date.</li>
@@ -130,8 +127,7 @@ your query. For example:</p>
   <span class="hljs-comment">// `name` must match the regular expression</span>
   where(<span class="hljs-string">'name'</span>).regex(<span class="hljs-regexp">/picard/i</span>).
   <span class="hljs-comment">// `age` must be between 29 and 59</span>
-  where(<span class="hljs-string">'age'</span>).gte(<span class="hljs-number">29</span>).lte(<span class="hljs-number">59</span>);
-</code></pre>
+  where(<span class="hljs-string">'age'</span>).gte(<span class="hljs-number">29</span>).lte(<span class="hljs-number">59</span>);</code></pre>
 <h2 id="executing">Executing</h2>
 <p><a href="https://mongoosejs.com/docs/queries.html#queries-are-not-promises">Mongoose queries are <strong>not</strong> promises</a>. The key difference is that Mongoose doesn&#39;t actually send your query to the server until you explicitly execute the query. There&#39;s 2 ways to execute a query:</p>
 <ul>
@@ -141,15 +137,13 @@ your query. For example:</p>
 promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
 promise <span class="hljs-keyword">instanceof</span> mongoose.Query; <span class="hljs-comment">// false</span>
 
-<span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> promise;
-</code></pre>
+<span class="hljs-keyword">const</span> docs = <span class="hljs-keyword">await</span> promise;</code></pre>
 <ul>
 <li><a href="https://mongoosejs.com/docs/api/query.html#query_Query-then"><code>Query#then()</code></a> and <a href="https://mongoosejs.com/docs/api/query.html#query_Query-catch"><code>Query#catch()</code></a>: provides a pseudo-promise API for queries, so you can <code>await</code> on a Mongoose query. You can also use promise chaining with Mongoose queries as shown below.</li>
 </ul>
 <pre><code class="language-javascript"><span class="hljs-keyword">return</span> Character.find().then(<span class="hljs-function"><span class="hljs-params">docs</span> =&gt;</span> {
   docs; <span class="hljs-comment">// List of docs</span>
-});
-</code></pre>
+});</code></pre>
 
   <hr>
 <div class="cta">

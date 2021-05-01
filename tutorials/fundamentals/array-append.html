@@ -84,8 +84,7 @@ arr.push(<span class="hljs-string">'d'</span>);
 arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd']</span>
 
 arr.push(<span class="hljs-string">'e'</span>, <span class="hljs-string">'f'</span>);
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span></code></pre>
 <h2 id="append-to-the-beginning">Append to the Beginning</h2>
 <p>The <code>push()</code> function adds a new element to the end of the array. To add elements
 to the beginning, you should use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift"><code>unshift()</code> method</a>.</p>
@@ -95,8 +94,7 @@ arr.unshift(<span class="hljs-string">'c'</span>);
 arr; <span class="hljs-comment">// ['c', 'd', 'e', 'f']</span>
 
 arr.unshift(<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>);
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span></code></pre>
 <h2 id="append-to-middle">Append to Middle</h2>
 <p>To append an element to somewhere other than the beginning or end of the array,
 use the <a href="/tutorials/fundamentals/array-splice"><code>splice()</code> method</a>.</p>
@@ -106,8 +104,7 @@ use the <a href="/tutorials/fundamentals/array-splice"><code>splice()</code> met
 <span class="hljs-keyword">let</span> deleteCount = <span class="hljs-number">0</span>;
 arr.splice(start, deleteCount, <span class="hljs-string">'c'</span>);
 
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span></code></pre>
 <h2 id="immutable-methods">Immutable Methods</h2>
 <p>Some frontend apps (often apps built with <a href="https://reactjs.org/docs/update.html#overview">React</a>) rely on immutability for faster comparisons of large objects.
 The <code>push()</code>, <code>unshift()</code>, and <code>splice()</code> methods modify the array in place, so
@@ -122,8 +119,7 @@ arr; <span class="hljs-comment">// ['c', 'd', 'e']</span>
 <span class="hljs-comment">// the array, just make sure you call `concat()` on an array</span>
 <span class="hljs-comment">// containing the elements you want to add to the beginning.</span>
 arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>].concat(arr);
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span></code></pre>
 <p>Another common pattern is using the <a href="https://thecodebarbarian.com/object-assign-vs-object-spread.html">spread operator</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'c'</span>];
 
@@ -138,8 +134,7 @@ arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span>
 arr = [<span class="hljs-string">'c'</span>];
 <span class="hljs-comment">// Append to the middle:</span>
 arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, ...arr, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>];
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span></code></pre>
 
   
   <hr>
@@ -147,6 +142,18 @@ arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
@@ -154,18 +161,6 @@ arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd', 'e']</span>
   
 
     <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/let-vs-var">The Difference Between let and var in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/string-interpolation">JavaScript String Interpolation</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/global-variable">Global Variables in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/check-nan">How to Check for `NaN` in JavaScript</a></li>
   
     </ul>
   
