@@ -1,7 +1,7 @@
 
 const server = "https://masteringjs-job-board.azurewebsites.net";
 
-const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]});
+const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}}</h1>'}}]});
 
 // loads Jobs
 const app = new Vue({
@@ -33,19 +33,19 @@ const app = new Vue({
           </div>
           <div class="description">
             <div>{{job.company}}</div>
-            <a class="title" v-bind:href="'/jobs/' + job._id">{{job.title}}</a>
+            <router-link :to="{name:'job-dropdown', params: {id:job._id}}" class="title">{{job.title}}</router-link>
             <div>
               <div class="location">
                 {{job.location}}
               </div>
             </div>
           </div>
-
           <div class="apply-button">
             Apply
           </div>
         </div>
       </div>
+      <router-view></router-view>
     </div>
   `,
   async mounted() {
