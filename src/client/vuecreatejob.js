@@ -1,6 +1,6 @@
 
 // loads Jobs
-const server = 'https://masteringjs-job-board.azurewebsites.net';
+const server = 'http://localhost:7071';
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const app = new Vue({
@@ -25,9 +25,27 @@ const app = new Vue({
     displayImage: true,
     previewImage: null
   }),
+  updated() {
+    console.log(new Date(), 'State Change:', this.$data);
+  },
+  mounted() {
+    window.$saveState = () => {
+      window.localStorage.setItem('__state', JSON.stringify(this.$data));
+    };
+    window.$loadState = () => {
+      const saved = JSON.parse(window.localStorage.getItem('__state'));
+      if (!saved) {
+        throw new Error('No saved data!');
+      }
+      Object.assign(this.$data, saved);
+    };
+    window.$clearState = () => {
+      window.localStorage.setItem('__state', '');
+    };
+  },
   methods: {
     async postJob() {
-      if (!this.company || !this.logo || !this.title || !this.location || !this.description || 
+      if (!this.company || !this.title || !this.location || !this.description || 
         !this.url || !this.instructions || !this.email || !this.feedback || !this.invoiceAddress || 
         !this.invoiceNotes || !this.tags) {
           return this.error = true;
@@ -51,7 +69,7 @@ const app = new Vue({
         feedback: this.feedback,
         invoiceAddress: this.invoiceAddress,
         invoiceNotes: this.invoiceNotes,
-        logo: formData
+        // logo: formData
       }, {headers});
       console.log('Done');
     },
