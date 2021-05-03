@@ -17,10 +17,7 @@ const app = new Vue({
     feedback: null,
     invoiceAddress: null,
     invoiceNotes: null,
-    tags: [],
-    addtool: '',
-    removetool: '',
-    error: false,
+    tags: 'like,this',
     displayImage: true,
     previewImage: null
   }),
@@ -44,12 +41,7 @@ const app = new Vue({
   },
   methods: {
     async postJob() {
-      if (this.tags.length == 0) {
-          return this.error = true;
-        }
-        else {
-          this.error = false;
-        }
+      this.tags = this.tags.split(",");
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
@@ -81,15 +73,6 @@ const app = new Vue({
       }).catch(function(error) {
         console.error('Error', error);
       });
-    },
-    addTool() {
-      if (this.addTool == '') return;
-      this.tags.push(this.addtool);
-      this.addtool = '';
-    },
-    removeTool() {
-      this.tags = this.tags.filter(el => el != this.removetool);
-      console.log(this.tags);
     },
     assignImage() {
       if (this.$refs.file.files[0].name.includes(".png") || this.$refs.file.files[0].name.includes(".jpg")) {
@@ -126,23 +109,10 @@ const app = new Vue({
           <div><label>Description</label></div>
           <textarea v-model="description" required>Enter Text Here</textarea>
         </div>
-          <form action="" @submit.prevent="addTool()">
-          <div v-if="error" style="border-style:solid;border-color: red;">
-          Frameworks:
-          </div>
-          <div v-else>Frameworks:</div>
-            <div v-for="tag in tags" :key="tag">{{tag}}</div>
-            <div>
-              <label> Add Framework </label>
-              <input type = "text" v-model="addtool"/>
-              <button type = "submit">Submit</button>
-            </div>
-            <div>
-              <label> Remove Framework </label>
-              <input type="text" v-model="removetool"/>
-              <button @click="removeTool()">Remove entry</button>
-            </div>
-          </form>
+         <div>
+        <div><label> Technical Skills(Comma separated values, no spaces) </label></div>
+        <input type="text" v-model="tags" required />
+         </div>
         <div>
           <div><label> Company Image </label></div>
           <h3 v-if="!displayImage">That file type is not supported</h3>
