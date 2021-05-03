@@ -1,5 +1,5 @@
 
-const config = require('./config.json');
+const server = "https://masteringjs-job-board.azurewebsites.net";
 
 const app = new Vue({
     data() {
@@ -34,7 +34,7 @@ const app = new Vue({
     </div>
     `,
     async mounted() {
-        const res = await axios.get(config.server + '/api/listjobs');
+        const res = await axios.get(server + '/api/listjobs');
         this.jobs = res.data.jobs.splice(0,3);
     }
 });

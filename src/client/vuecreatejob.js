@@ -1,6 +1,6 @@
 
 // loads Jobs
-// const config = require('./config.json');
+const server = "https://masteringjs-job-board.azurewebsites.net";
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const app = new Vue({
@@ -21,7 +21,6 @@ const app = new Vue({
     addtool: '',
     removetool: '',
     error: false,
-    preview: false,
     displayImage: true,
     previewImage: null
   }),
@@ -70,6 +69,18 @@ const app = new Vue({
         // logo: formData
       }, {headers});
       console.log('Done');
+      var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
+      await axios.post(payment, {sticky:this.sticky}).then(function(response) {
+        return response.data;
+      }).then(function(session){
+        return stripe.redirectToCheckout({sessionId:session});
+      }).then(function(result) {
+        if(result.error) {
+          alert(result.error.message);
+        }
+      }).catch(function(error) {
+        console.error('Error', error);
+      });
     },
     addTool() {
       if (this.addTool == '') return;
@@ -90,28 +101,11 @@ const app = new Vue({
       }
       
     },
-    async checkout() {
-      var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
-        await axios.post(payment, {sticky:this.sticky}).then(function(response) {
-          return response.data;
-        }).then(function(session){
-          return stripe.redirectToCheckout({sessionId:session});
-        }).then(function(result) {
-          if(result.error) {
-            alert(result.error.message);
-          }
-        }).catch(function(error) {
-          console.error('Error', error);
-        });
-    },
-    showPreview() {
-      this.preview = !this.preview;
-    }
   },
   template: `
     <div>
       <h1>Hire JavaScript Developers</h1>
-      <form v-if="!preview" action="" @submit.prevent="postJob()">
+      <form action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
           <input type="text" v-model="company" required />
@@ -178,25 +172,22 @@ const app = new Vue({
           <label> Invoice Notes </label>
           <input type="text" v-model="invoiceNotes" />
         </div>
-        <button type="submit">Submit</button>
-        <button @click="showPreview()">Preview</button>
+        <div>
+        <h1>{{title}}</h1>
+        <h2>{{company}}</h2>
+        <img :src="previewImage" style="width:50%"/>
+        <h3>{{location}}</h3>
+        <h3>{{description}}</h3>
+        <h3>{{tags}}</h3>
+        <h3>Click here to apply: {{url}}</h3>
+        <h3>To apply: {{instructions}}</h3>
+        <h3>Email here if any questions: {{email}}</h3>
+        <h3>{{feedback}}</h3>
+        <h3>Invoice Address: {{invoiceAddress}}</h3>
+        <h3>Notes: {{invoiceNotes}}</h3>
+        </div>
+        <button id="checkout-button" type="submit">Submit</button>
       </form>
-      <div v-else>
-      <h1>{{title}}</h1>
-      <h2>{{company}}</h2>
-      <img :src="previewImage" style="width:50%"/>
-      <h3>{{location}}</h3>
-      <h3>{{Description}}</h3>
-      <h3>{{tags}}</h3>
-      <h3>Click here to apply: {{url}}</h3>
-      <h3>To apply: {{instructions}}</h3>
-      <h3>Email here if any questions: {{email}}</h3>
-      <h3>{{feedback}}</h3>
-      <h3>Invoice Address: {{invoiceAddress}}</h3>
-      <h3>Notes: {{invoiceNotes}}</h3>
-      <button @click = "showPreview()">Fix Errors</button>
-      <button id="checkout-button" @click = "checkout()">Checkout</button>
-      </div>
     </div>
   `,
 });
