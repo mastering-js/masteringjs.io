@@ -9,28 +9,23 @@ const app = new Vue({
     },
     template: `
     <div id="jobs">
-    <h1>Looking For <br/>Work?</h1>
-    <hr />
-    <div v-for="job in jobs">
-    <div class="view">
-      <div v-if="job.logo" class="company-logo">
-        <img v-bind:src="job.logo" />
-      </div>
-      <div class="description">
-        <div>{{job.company}}</div>
-        <a class="title" v-bind:href="'/jobs/' + job._id">{{job.title}}</a>
-        <div>
-          <div class="location">
-            {{job.location}}
+      <div v-for="job in jobs" class="job-listing">
+        <a v-bind:href="'/jobs/' + job._id">
+          <div v-if="job.logo" class="company-logo">
+            <img v-bind:src="job.logo" />
           </div>
+          <div class="description">
+            <div class="company">{{job.company}}</div>
+            <div class="title">{{job.title}}</div>
+            <div class="location">{{job.location}}</div>
+          </div>
+        </a>
+      </div>
+      <div>
+        <div class="button jobs-view-more">
+          View more jobs!
         </div>
       </div>
-      <div class="apply-button">
-      <button>Apply</button>
-      </div>
-    </div>
-    <hr />
-    </div>
     </div>
     `,
     async mounted() {
@@ -38,4 +33,4 @@ const app = new Vue({
         this.jobs = res.data.jobs.splice(0,3);
     }
 });
-app.$mount('#jobs')
+app.$mount('#jobs');

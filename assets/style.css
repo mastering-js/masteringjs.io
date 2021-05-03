@@ -239,18 +239,55 @@ input[type="text"], input[type="password"], input[type="number"] {
   padding: 15px;
 }
 
+/* job board */
+
 #jobs {
   position: fixed;
   top: 100px;
   right: 0px;
-  width: 20%;
-  margin-right: 10px;
+  width: 190px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
-.company-logo {
-  position: relative;
-  width: 15%;
-  height: 15%;
-  float: right;
+
+#jobs img {
+  border: 0px;
+}
+
+#jobs .job-listing {
+  margin-bottom: 0.5em;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#jobs .job-listing:hover {
+  background-color: #ddd;
+}
+
+#jobs .company {
+  color: black;
+}
+
+#jobs .title {
+  margin-top: 0.25em;
+}
+
+#jobs .location {
+  color: black;
+  margin-top: 0.25em;
+  font-size: 0.75em;
+}
+
+#jobs .company-logo {
+  width: 25%;
+  height: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#jobs .jobs-view-more {
+  margin: 1em;
+  font-size: 0.95em;
 }
 
 /** Mobile */
@@ -336,6 +373,21 @@ input[type="text"], input[type="password"], input[type="number"] {
 
   .ad-right {
     display: none;
+  }
+
+  /* jobs mobile */
+  #jobs {
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+
+  #jobs .job-listing {
+    margin: 0px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1em;
   }
 }
 
