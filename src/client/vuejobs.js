@@ -1,13 +1,30 @@
 
 const server = "https://masteringjs-job-board.azurewebsites.net";
 
-const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}}</h1>'}}]});
+const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} {{$route.params.description}}</h1>'}}]});
 
 // loads Jobs
 const app = new Vue({
   data() {
     return {
-      jobs: null
+      jobs: null,
+      path: null
+    }
+  },
+  methods: {
+    toggleDescription(j) {
+      j.isActive = !j.isActive;
+      console.log('route path', this.$route.path);
+      if(j.isActive == false && this.path === this.$route.path) {
+        this.$router.push({path: '/'});
+      } else {
+        this.path = this.$route.path;
+      }
+    }
+  },
+  watch: {
+    $route() {
+      this.jobs.map(job => Object.assign(job,{isActive:false}));
     }
   },
   router,
@@ -25,7 +42,6 @@ const app = new Vue({
       </div>
 
       <h3>New JavaScript Jobs</h3>
-
       <div v-for="job in jobs">
         <div class="post job">
           <div v-if="job.logo" class="company-logo">
@@ -33,25 +49,27 @@ const app = new Vue({
           </div>
           <div class="description">
             <div>{{job.company}}</div>
-            <router-link :to="{name:'job-dropdown', params: {id:job._id}}" class="title">{{job.title}}</router-link>
+            <router-link :to="{name:'job-dropdown', params: {id:job._id, description: job.description}}" @click.native="toggleDescription(job)" class="title">{{job.title}}</router-link>
             <div>
               <div class="location">
                 {{job.location}}
               </div>
             </div>
           </div>
+          <div v-show="job.isActive">
+          <router-view></router-view>
+          </div>
           <div class="apply-button">
             Apply
           </div>
         </div>
       </div>
-      <router-view></router-view>
     </div>
   `,
   async mounted() {
     const res = await axios.get(server + '/api/listjobs');
 
-    this.jobs = res.data.jobs;
+    this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
   }
 });
 app.$mount('#content');
