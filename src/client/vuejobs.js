@@ -1,5 +1,5 @@
 
-const config = require('./config.json');
+// const config = require('./config.json');
 
 const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]});
 
@@ -49,7 +49,7 @@ const app = new Vue({
     </div>
   `,
   async mounted() {
-    const res = await axios.get(config.server + '/api/listjobs');
+    const res = await axios.get(server + '/api/listjobs');
 
     this.jobs = res.data.jobs;
   }

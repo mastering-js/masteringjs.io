@@ -1,6 +1,6 @@
 
 // loads Jobs
-const config = require('./config.json');
+// const config = require('./config.json');
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const app = new Vue({
@@ -54,7 +54,7 @@ const app = new Vue({
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
-      await axios.post(config.server + '/api/createjob', {
+      await axios.post(server + '/api/createjob', {
         company: this.company,
         title: this.title,
         location: this.location,
@@ -91,10 +91,7 @@ const app = new Vue({
       
     },
     async checkout() {
-      var stripe = Stripe(
-
-        'pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A'
-        );
+      var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
         await axios.post(payment, {sticky:this.sticky}).then(function(response) {
           return response.data;
         }).then(function(session){
