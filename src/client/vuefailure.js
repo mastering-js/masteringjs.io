@@ -1,4 +1,4 @@
-const server = 'https://masteringjs-job-board.azurewebsites.net';
+
 
 // loads Jobs
 const app = new Vue({

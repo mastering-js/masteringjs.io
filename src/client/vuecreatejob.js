@@ -1,6 +1,6 @@
 
 // loads Jobs
-const server = 'http://localhost:7071';
+const config = require('./config.json');
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const app = new Vue({
@@ -54,7 +54,7 @@ const app = new Vue({
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
-      await axios.post(server + '/api/createjob', {
+      await axios.post(config.server + '/api/createjob', {
         company: this.company,
         title: this.title,
         location: this.location,
