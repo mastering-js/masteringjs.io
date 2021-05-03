@@ -81,16 +81,21 @@
 <span class="hljs-keyword">let</span> indexEnd = <span class="hljs-number">4</span>;
 str.substring(indexStart, indexEnd); <span class="hljs-comment">// 'Twas'</span>
 
-str.substring(<span class="hljs-number">5</span>, <span class="hljs-number">14</span>); <span class="hljs-comment">// 'the night'</span></code></pre>
+str.substring(<span class="hljs-number">5</span>, <span class="hljs-number">14</span>); <span class="hljs-comment">// 'the night'</span>
+</code></pre>
 <p>If you don&#39;t specify <code>indexEnd</code>, the <code>substring()</code> function returns the rest of the string starting at <code>indexStart</code>.</p>
-<pre><code class="language-javascript">str.substring(<span class="hljs-number">5</span>); <span class="hljs-comment">// 'the night before Christmas'</span></code></pre>
+<pre><code class="language-javascript">
+str.substring(<span class="hljs-number">5</span>); <span class="hljs-comment">// 'the night before Christmas'</span>
+</code></pre>
 <p>The <code>substring()</code> function has some quirky behavior in edge cases:</p>
 <ul>
 <li>If <code>indexStart</code> or <code>indexEnd</code> is less than 0, it is treated as 0.</li>
 <li>If <code>indexEnd &lt; indexStart</code>, the two are swapped.</li>
 </ul>
 <p>For example, <code>substring(4, -1)</code> is equivalent to <code>substring(4, 0)</code>, which in turn is equivalent to <code>substring(0, 4)</code> as shown below.</p>
-<pre><code class="language-javascript">str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// 'Twas'</span></code></pre>
+<pre><code class="language-javascript">
+str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">-1</span>); <span class="hljs-comment">// 'Twas'</span>
+</code></pre>
 <h2 id="stringsubstr"><code>String#substr()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr"><code>substr()</code> function</a> is also common, but it is considered a &quot;legacy function&quot; in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr">Mozilla&#39;s docs</a>. You shouldn&#39;t use it when writing new code, but you may see it in existing JavaScript projects.</p>
 <p>The key difference between <code>substring()</code> and <code>substr()</code> is that <code>substr()</code> has a different 2nd parameter. The first parameter to <code>substr()</code> is <code>start</code>, and the 2nd is <code>length</code>. For example:</p>
@@ -102,7 +107,8 @@ str.substring(<span class="hljs-number">5</span>, <span class="hljs-number">14</
 str.substr(start, length); <span class="hljs-comment">// 'Twas'</span>
 
 str.substr(<span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 'the night'</span>
-<span class="hljs-string">'the night'</span>.length; <span class="hljs-comment">// 9</span></code></pre>
+<span class="hljs-string">'the night'</span>.length; <span class="hljs-comment">// 9</span>
+</code></pre>
 <p>Unlike <code>substring()</code>, you can call <code>substr()</code> with a negative <code>start</code>. That will make <code>substr()</code> start counting at the end of the string as opposed to the beginning. For example:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
 
@@ -110,7 +116,8 @@ str.substr(<span class="hljs-number">5</span>, <span class="hljs-number">9</span
 <span class="hljs-keyword">let</span> length = <span class="hljs-number">9</span>;
 str.substr(start, length); <span class="hljs-comment">// 'Christmas'</span>
 
-<span class="hljs-string">'Christmas'</span>.length; <span class="hljs-comment">// 9</span></code></pre>
+<span class="hljs-string">'Christmas'</span>.length; <span class="hljs-comment">// 9</span>
+</code></pre>
 <h2 id="stringslice"><code>String#slice()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice"><code>slice()</code> function</a> is less common than <code>substring()</code> and <code>substr()</code>. However, it has the best aspects of both <code>substring()</code> and <code>substr()</code>. Like <code>substring()</code>, the <code>slice()</code> function takes the start and end indices as parameters, and is not considered a legacy function. Like <code>substr()</code>, the <code>slice()</code> function supports negative indices. For example:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Twas the night before Christmas'</span>;
@@ -118,7 +125,8 @@ str.substr(start, length); <span class="hljs-comment">// 'Christmas'</span>
 str.slice(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// Twas</span>
 str.slice(<span class="hljs-number">5</span>, <span class="hljs-number">14</span>); <span class="hljs-comment">// the night</span>
 str.slice(<span class="hljs-number">-16</span>, <span class="hljs-number">-10</span>); <span class="hljs-comment">// before</span>
-str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Christmas</span></code></pre>
+str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Christmas</span>
+</code></pre>
 <p>The <code>slice()</code> function seems like the clear winner out of the 3:</p>
 <ul>
 <li>Not considered a &quot;legacy function&quot;</li>
@@ -132,6 +140,9 @@ str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Ch
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
@@ -148,9 +159,6 @@ str.slice(<span class="hljs-number">-9</span>); <span class="hljs-comment">// Ch
   
 
     <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
     </ul>
   

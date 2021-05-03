@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Make a JavaScript Function Sleep - Mastering JS</title>
+    <title>How to use typeof with Numbers - Mastering JS</title>
 
-    <meta property="og:title" content="Make a JavaScript Function Sleep" />
+    <meta property="og:title" content="How to use typeof with Numbers" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="JavaScript doesn't have a built-in `sleep()` function, but that doesn't mean you can't pause a function in JavaScript." />
-    <meta name="description" content="JavaScript doesn't have a built-in `sleep()` function, but that doesn't mean you can't pause a function in JavaScript." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Make a JavaScript Function Sleep</h1>
+  <h1>How to use typeof with Numbers</h1>
   <div class="date">
-    Oct 14, 2019
+    May 3, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,42 +72,21 @@
 	  }
 	})();
 	</script>
-  <p>Unlike many other languages, JavaScript doesn&#39;t have a built-in
-function to pause execution for a given period of time. There&#39;s
-a good reason for this: in languages like C, <code>sleep(2)</code> blocks
-the current thread for 2 seconds. Since JavaScript is 
-single-threaded, C-style <code>sleep(2)</code> would block the entire
-JavaScript runtime for 2 seconds, and that isn&#39;t very useful.</p>
-<p>However, you can pause an <a href="https://thecodebarbarian.com/async-functions-in-javascript.html">async function</a> call 
-without blocking the rest of the JavaScript runtime. You
-just need to <code>await</code> on a promise that resolves after a given
-period of time.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sleep</span>(<span class="hljs-params">ms</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, ms));
-}
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// Pause execution of this async function for 2 seconds</span>
-  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">2000</span>);
-
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Waited for 2 seconds'</span>);
-}</code></pre>
-<p>The <code>new Promise()</code> call uses <a href="/tutorials/fundamentals/promise#the-promise-constructor">JavaScript&#39;s promise constructor</a> to create a new promise that resolves after <code>ms</code> milliseconds. And when
-you <code>await</code> on a promise, you pause execution of that function
-until the promise resolves, without impacting other functions.</p>
-<p>For example, you can call two functions in parallel that call
-<code>sleep()</code>, and neither function will block the other.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> start = <span class="hljs-built_in">Date</span>.now();
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pauseMe</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">2000</span>);
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'MS since start:'</span>, <span class="hljs-built_in">Date</span>.now() - start);
-}
-
-<span class="hljs-comment">// Will print something like "MS since start: 2006"</span>
-pauseMe();
-<span class="hljs-comment">// Will print something like "MS since start: 2010"</span>
-pauseMe();</code></pre>
+  <p><code>typeof</code> is a useful operator that returns, in a string,
+the <code>typeof</code> the variable. When using this operator with
+numbers, it can return a few possibilities. If you are using
+it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>If you use it with an instance of the <code>Number</code> class, it will
+return as an <code>&#39;object&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>);
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span></code></pre>
+<p>Another primitive that is related to <code>number</code> is the <code>BigInt</code> primitive.
+<code>typeof</code> will treat these two primitives separately because they are two
+different primitives.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'bigint'</span></code></pre>
 
   
   <hr>
@@ -115,9 +94,6 @@ pauseMe();</code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
@@ -134,6 +110,9 @@ pauseMe();</code></pre>
   
 
     <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
     </ul>
   

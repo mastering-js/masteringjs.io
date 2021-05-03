@@ -75,7 +75,8 @@
   <p>When you create a new object in JavaScript using <code>{}</code>, it comes with some built-in
 properties, like a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString"><code>toString()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {};
-obj.toString(); <span class="hljs-comment">// '[object Object]'</span></code></pre>
+obj.toString(); <span class="hljs-comment">// '[object Object]'</span>
+</code></pre>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Mozilla docs document this function as <code>Object.prototype.toString()</code></a>. That&#39;s because <code>obj</code> is an instance of the <code>Object</code> class.</p>
 <p>When you access the <code>toString</code> property, JavaScript first looks to see if <code>obj</code> has a <code>toString</code> property. Since it doesn&#39;t, JavaScript goes up the inheritance chain to <code>Object.prototype</code>, and checks if <code>Object.prototype</code> has a <code>toString</code> property.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {};
@@ -83,7 +84,8 @@ obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Obj
 obj.toString === <span class="hljs-built_in">Object</span>.prototype.toString; <span class="hljs-comment">// true</span>
 
 obj.toString = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {};
-obj.toString === <span class="hljs-built_in">Object</span>.prototype.toString; <span class="hljs-comment">// false</span></code></pre>
+obj.toString === <span class="hljs-built_in">Object</span>.prototype.toString; <span class="hljs-comment">// false</span>
+</code></pre>
 <p>You can think of <code>Object.prototype</code> as a template object that all objects inherit methods and properties from.</p>
 <h2 id="adding-properties-to-a-prototype">Adding Properties to a Prototype</h2>
 <p>A prototype is a JavaScript object like any other. That means you can add new
@@ -92,7 +94,8 @@ properties to <code>Object.prototype</code>, and then every object will have acc
 <span class="hljs-built_in">Object</span>.prototype.getAnswer = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span> };
 
 <span class="hljs-keyword">const</span> obj = {};
-obj.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+obj.getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <p>Just because you can add methods to <code>Object.prototype</code> doesn&#39;t mean you should.
 Doing so may cause compatibility issues with future versions of JavaScript. For
 example, the <a href="https://developers.google.com/web/updates/2018/03/smooshgate">famous SmooshGate debacle</a> was caused because
@@ -109,7 +112,8 @@ that you will call with <code>new</code>.</p>
 MyClass.prototype.getAnswer = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; };
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
-obj.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+obj.getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <p>You can also overwrite the <code>MyClass</code> function&#39;s prototype entirely.</p>
 <pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyClass</span>(<span class="hljs-params"></span>) </span>{}
 
@@ -119,7 +123,8 @@ MyClass.prototype = {
 };
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass();
-obj.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+obj.getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <h2 id="inheriting-from-another-class">Inheriting from Another Class</h2>
 <p>The prototype object doesn&#39;t need to be a plain object. It can be an instance
 of another class. To create a class <code>MyChildClass</code> that inherits from <code>MyClass</code>, 
@@ -141,7 +146,8 @@ obj.getAnswer(); <span class="hljs-comment">// 42</span>
 <span class="hljs-comment">// from `MyClass`, which in turn inherits from `Object`.</span>
 obj <span class="hljs-keyword">instanceof</span> MyChildClass; <span class="hljs-comment">// true</span>
 obj <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// true</span>
-obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
+obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
+</code></pre>
 <p><code>MyChildClass</code> inherits from <code>MyChild</code>, which in turn inherits from <code>Object</code>.
 That&#39;s because <code>MyChildClass.prototype</code> is an instance of <code>MyClass</code>, and then
 <code>MyClass.prototype</code> is an instance of object. This is what JavaScript developers
@@ -154,7 +160,8 @@ call the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheri
 obj.constructor.prototype.getAnswer = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; };
 
 <span class="hljs-keyword">const</span> obj2 = <span class="hljs-keyword">new</span> MyClass();
-obj2.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+obj2.getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <p>That&#39;s because there&#39;s an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor"><code>Object.prototype.constructor</code> property</a> that points to the object&#39;s constructor. There&#39;s also a non-standard <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>__proto__</code> property</a> that behaves similarly to <code>constructor.prototype</code>.</p>
 <p>The <code>constructor</code> and <code>__proto__</code> properties are potential attack vectors for
 <a href="https://medium.com/intrinsic/javascript-prototype-poisoning-vulnerabilities-in-the-wild-7bc15347c96">prototype poisoning</a>. Several popular JavaScript libraries, including <a href="https://snyk.io/blog/snyk-research-team-discovers-severe-prototype-pollution-security-vulnerabilities-affecting-all-versions-of-lodash/">lodash</a> and <a href="https://thecodebarbarian.com/mongoose-prototype-pollution-vulnerability-disclosure.html">Mongoose</a>, have reported prototype poisoning vulnerabilities in the past.</p>
@@ -165,6 +172,9 @@ obj2.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
@@ -181,9 +191,6 @@ obj2.getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
     </ul>
   

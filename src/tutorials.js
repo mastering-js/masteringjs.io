@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to use typeof with Numbers',
+    raw: './tutorials/fundamentals/typeof-number.md',
+    url: '/tutorials/fundamentals/typeof-number',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-03')
+  },
+  {
     title: 'The Seven Standard Primitives in JavaScript',
     raw: './tutorials/fundamentals/primitives.md',
     url: '/tutorials/fundamentals/primitives',

@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Thu, 29 Apr 2021 17:08:58 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 03 May 2021 14:37:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,12 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[How to use typeof with Numbers]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/typeof-number</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/typeof-number</guid>
+            <pubDate>Mon, 03 May 2021 04:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[The Seven Standard Primitives in JavaScript]]></title>
             <link>https://masteringjs.io/tutorials/fundamentals/primitives</link>
