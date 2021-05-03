@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use axios.all() to Make Concurrent HTTP Requests - Mastering JS</title>
+    <title>How to Use typeof With and as Functions - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use axios.all() to Make Concurrent HTTP Requests" />
+    <meta property="og:title" content="How to Use typeof With and as Functions" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use `axios.all()` to make multiple HTTP requests in parallel." />
-    <meta name="description" content="Here's how you can use `axios.all()` to make multiple HTTP requests in parallel." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -57,12 +57,12 @@
   <div class="breadcrumbs">
     <a href="/all">Tutorials</a>
     /
-    <a href="/axios">Axios</a>
+    <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Use axios.all() to Make Concurrent HTTP Requests</h1>
+  <h1>How to Use typeof With and as Functions</h1>
   <div class="date">
-    Jan 20, 2021
+    May 3, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,43 +72,44 @@
 	  }
 	})();
 	</script>
-  <p><code>axios.all()</code> is <a href="/axios">Axios</a>&#39;s own way of making concurrent HTTP requests and getting back an equal number of responses that you can have either in an array using destructuring or a separate variable for each one. We recommend assigning the return value of <a href="/tutorials/axios/get"><code>axios.get()</code></a> to a variable before passing it into <code>axios.all()</code> to make your code more readable as <code>axios.all()</code> takes a spread of requests. Here&#39;s how you can use <code>axios.all()</code> to make 3 requests in parallel:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> axiosrequest1 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
-<span class="hljs-keyword">const</span> axiosrequest2 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
-<span class="hljs-keyword">const</span> axiosrequest3 = axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
-<span class="hljs-comment">// you could also use destructuring to have an array of responses</span>
-<span class="hljs-keyword">await</span> axios.all([axiosrequest1, axiosrequest2, axiosrequest3]).then(axios.spread(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res1, res2, res3</span>) </span>{
-  <span class="hljs-built_in">console</span>.log(res1);
-  <span class="hljs-built_in">console</span>.log(res2);
-  <span class="hljs-built_in">console</span>.log(res3);
-}));
-</code></pre>
+  <p><code>typeof</code> is a useful operator that returns, as a string,
+the <code>typeof</code> the variable it is used against. <code>typeof</code> can
+be used with function syntax, however, it is not a function
+and so you must be careful to not trigger a syntax error.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span>(<span class="hljs-number">42</span>); <span class="hljs-comment">// `number`</span>
+<span class="hljs-keyword">typeof</span>(<span class="hljs-keyword">typeof</span>) <span class="hljs-comment">// syntax error</span></code></pre>
+<p>You can use <code>typeof</code> on functions, and it will return as
+<code>function</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>);
+}
+<span class="hljs-keyword">typeof</span> test; <span class="hljs-comment">// function. Omit the parenthesis, otherwise it will return undefined.</span></code></pre>
 
   
   <hr>
   
-    <h2>More Axios Tutorials</h2>
+    <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/axios/json">How to Use JSON with Axios</a></li>
+    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/user-agent">How to Use the User-Agent Header in Axios</a></li>
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-multi-form-data">Axios Multipart Form Data</a></li>
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/create-post">How to use Axios' create() Method with POST Requests</a></li>
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
 
-    <li><a href="/tutorials/axios/data">Axios Response `data` Property</a></li>
+    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/call">Calling Axios as a Function</a></li>
+    <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
   
 
-    <li><a href="/tutorials/axios/axios-patch">How to Make PATCH Requests with Axios</a></li>
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
     </ul>
   

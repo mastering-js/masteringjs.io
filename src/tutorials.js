@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use typeof With and as Functions',
+    raw: './tutorials/fundamentals/typeof-function.md',
+    url: '/tutorials/fundamentals/typeof-function',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-03')
+  },
+  {
     title: 'The Seven Standard Primitives in JavaScript',
     raw: './tutorials/fundamentals/primitives.md',
     url: '/tutorials/fundamentals/primitives',
