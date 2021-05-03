@@ -73,20 +73,32 @@
 	})();
 	</script>
   <p><code>typeof</code> is a useful operator that returns, in a string,
-the <code>typeof</code> the variable. When using this operator with
+the <a href="/tutorials/fundamentals/primitives">primitive type</a>
+of the given variable. When using this operator with
 numbers, it can return a few possibilities. If you are using
 it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'number'</span></code></pre>
 <p>If you use it with an instance of the <code>Number</code> class, it will
-return as an <code>&#39;object&#39;</code>.</p>
+return <code>&#39;object&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>);
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span></code></pre>
 <p>Another primitive that is related to <code>number</code> is the <code>BigInt</code> primitive.
 <code>typeof</code> will treat these two primitives separately because they are two
 different primitives.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'bigint'</span></code></pre>
+<h2 id="nans">NaNs</h2>
+<p><a href="/tutorials/fundamentals/nan"><code>NaNs</code></a> are a bit tricky as even though it is
+an acronym for <code>Not a Number</code>, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>To check for a valid number, you must use a combination of <code>typeof</code> and
+<code>Number.isNan()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span> &amp;&amp; !<span class="hljs-built_in">Number</span>.isNaN(x)) {
+    x = <span class="hljs-number">12</span>;
+}
+x; <span class="hljs-comment">// 12</span></code></pre>
 
   
   <hr>
