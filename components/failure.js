@@ -14,7 +14,7 @@ module.exports = () => `
 <body>
   <div id="content"></div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src = "../src/client/vuefailure.js"></script>
+  <script src="../src/client/vuefailure.js"></script>
 </body>
 </html>
 `

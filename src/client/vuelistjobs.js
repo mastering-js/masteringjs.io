@@ -1,5 +1,5 @@
 
-const server = 'https://masteringjs-job-board.azurewebsites.net';
+const server = "https://masteringjs-job-board.azurewebsites.net";
 
 const app = new Vue({
     data() {

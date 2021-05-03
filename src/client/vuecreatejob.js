@@ -1,6 +1,6 @@
 
 // loads Jobs
-const server = 'http://localhost:7071';
+const server = "https://masteringjs-job-board.azurewebsites.net";
 const payment = 'http://localhost:7071/api/stripeCheckout';
 
 const app = new Vue({
@@ -21,7 +21,6 @@ const app = new Vue({
     addtool: '',
     removetool: '',
     error: false,
-    preview: false,
     displayImage: true,
     previewImage: null
   }),
@@ -45,9 +44,7 @@ const app = new Vue({
   },
   methods: {
     async postJob() {
-      if (!this.company || !this.title || !this.location || !this.description || 
-        !this.url || !this.instructions || !this.email || !this.feedback || !this.invoiceAddress || 
-        !this.invoiceNotes || !this.tags) {
+      if (this.tags.length == 0) {
           return this.error = true;
         }
         else {
@@ -72,8 +69,21 @@ const app = new Vue({
         // logo: formData
       }, {headers});
       console.log('Done');
+      var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
+      await axios.post(payment, {sticky:this.sticky}).then(function(response) {
+        return response.data;
+      }).then(function(session){
+        return stripe.redirectToCheckout({sessionId:session});
+      }).then(function(result) {
+        if(result.error) {
+          alert(result.error.message);
+        }
+      }).catch(function(error) {
+        console.error('Error', error);
+      });
     },
     addTool() {
+      if (this.addTool == '') return;
       this.tags.push(this.addtool);
       this.addtool = '';
     },
@@ -91,44 +101,22 @@ const app = new Vue({
       }
       
     },
-    async checkout() {
-      var stripe = Stripe(
-
-        'pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A'
-        );
-        await axios.post(payment, {sticky:this.sticky}).then(function(response) {
-          return response.data;
-        }).then(function(session){
-          return stripe.redirectToCheckout({sessionId:session});
-        }).then(function(result) {
-          if(result.error) {
-            alert(result.error.message);
-          }
-        }).catch(function(error) {
-          console.error('Error', error);
-        });
-    },
-    showPreview() {
-      this.preview = !this.preview;
-    }
   },
   template: `
     <div>
       <h1>Hire JavaScript Developers</h1>
-      <h2> All fields are required </h2>
-      <h3 v-if="error">You are missing fields </h3>
-      <form v-if="!preview" action="" @submit.prevent="postJob()">
+      <form action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
-          <input type="text" v-model="company" />
+          <input type="text" v-model="company" required />
         </div>
         <div>
           <label> Position </label>
-          <input type="text" v-model="title" />
+          <input type="text" v-model="title" required/>
         </div>
         <div>
           <label> Location </label>
-          <input type="text" v-model="location" />
+          <input type="text" v-model="location" required/>
         </div>
         <div>
           <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
@@ -136,9 +124,13 @@ const app = new Vue({
         </div>
         <div>
           <div><label>Description</label></div>
-          <textarea v-model="description">Enter Text Here</textarea>
+          <textarea v-model="description" required>Enter Text Here</textarea>
         </div>
           <form action="" @submit.prevent="addTool()">
+          <div v-if="error" style="border-style:solid;border-color: red;">
+          Frameworks:
+          </div>
+          <div v-else>Frameworks:</div>
             <div v-for="tag in tags" :key="tag">{{tag}}</div>
             <div>
               <label> Add Framework </label>
@@ -154,23 +146,23 @@ const app = new Vue({
         <div>
           <div><label> Company Image </label></div>
           <h3 v-if="!displayImage">That file type is not supported</h3>
-          <input type="file" @change="assignImage" ref = "file"/>
+          <input type="file" @change="assignImage" ref = "file" required/>
         </div>
         <div>
           <label> Apply URL </label>
-          <input type="url" v-model="url"/>
+          <input type="url" v-model="url" required/>
         </div>
         <div>
           <div><label> How To Apply </label></div>
-          <textarea v-model="instructions">To Apply</textarea>
+          <textarea v-model="instructions" required>To Apply</textarea>
         </div>
         <div>
           <label> Company Email </label>
-          <input type="email" v-model="email"/>
+          <input type="email" v-model="email" required/>
         </div>
         <div>
           <div><label> Feedback </label></div>
-          <textarea v-model="feedback">Type here</textarea>
+          <textarea v-model="feedback" required>Type here</textarea>
         </div>
         <div>
           <label> Invoice Address </label>
@@ -180,25 +172,22 @@ const app = new Vue({
           <label> Invoice Notes </label>
           <input type="text" v-model="invoiceNotes" />
         </div>
-        <button type="submit">Submit</button>
-        <button @click="showPreview()">Preview</button>
+        <div>
+        <h1>{{title}}</h1>
+        <h2>{{company}}</h2>
+        <img :src="previewImage" style="width:50%"/>
+        <h3>{{location}}</h3>
+        <h3>{{description}}</h3>
+        <h3>{{tags}}</h3>
+        <h3>Click here to apply: {{url}}</h3>
+        <h3>To apply: {{instructions}}</h3>
+        <h3>Email here if any questions: {{email}}</h3>
+        <h3>{{feedback}}</h3>
+        <h3>Invoice Address: {{invoiceAddress}}</h3>
+        <h3>Notes: {{invoiceNotes}}</h3>
+        </div>
+        <button id="checkout-button" type="submit">Submit</button>
       </form>
-      <div v-else>
-      <h1>{{title}}</h1>
-      <h2>{{company}}</h2>
-      <img :src="previewImage" style="width:50%"/>
-      <h3>{{location}}</h3>
-      <h3>{{Description}}</h3>
-      <h3>{{tags}}</h3>
-      <h3>Click here to apply: {{url}}</h3>
-      <h3>To apply: {{instructions}}</h3>
-      <h3>Email here if any questions: {{email}}</h3>
-      <h3>{{feedback}}</h3>
-      <h3>Invoice Address: {{invoiceAddress}}</h3>
-      <h3>Notes: {{invoiceNotes}}</h3>
-      <button @click = "showPreview()">Fix Errors</button>
-      <button id="checkout-button" @click = "checkout()">Checkout</button>
-      </div>
     </div>
   `,
 });

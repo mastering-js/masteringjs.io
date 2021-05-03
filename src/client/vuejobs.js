@@ -1,5 +1,5 @@
 
-const server = 'https://masteringjs-job-board.azurewebsites.net';
+const server = "https://masteringjs-job-board.azurewebsites.net";
 
 const router = new VueRouter({routes: [{path: '/test', component: {template: '<h1>Hello</h1>'}}]});
 
