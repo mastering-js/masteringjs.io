@@ -82,13 +82,15 @@ for which the function returned a <a href="/tutorials/fundamentals/truthy">truth
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>];
 
 _.filter(arr, isEven); <span class="hljs-comment">// [2, 4, 6, 8]</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">v</span>) </span>{ <span class="hljs-keyword">return</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>; }</code></pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">v</span>) </span>{ <span class="hljs-keyword">return</span> v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>; }
+</code></pre>
 <p>The function you pass to <code>filter()</code> is called the <em>predicate</em>. If
 the predicate returns a <a href="/tutorials/fundamentals/falsy">falsy</a> value
 (like <a href="/tutorials/fundamentals/null"><code>null</code></a>, <code>undefined</code>, <code>0</code>, or <code>&#39;&#39;</code>), Lodash filters that value out.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-literal">null</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-string">'hello'</span>];
 
-_.filter(arr, v =&gt; v); <span class="hljs-comment">// ['hello']</span></code></pre>
+_.filter(arr, v =&gt; v); <span class="hljs-comment">// ['hello']</span>
+</code></pre>
 <h2 id="on-arrays-of-objects">On Arrays of Objects</h2>
 <p>The <code>filter()</code> function has a couple convenient shorthands for
 dealing with arrays of objects. If you pass a string predicate
@@ -102,7 +104,8 @@ is truthy or falsy.</p>
   { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> }
 ];
 
-_.filter(arr, <span class="hljs-string">'hello'</span>); <span class="hljs-comment">// [{ hello: 'world' }]</span></code></pre>
+_.filter(arr, <span class="hljs-string">'hello'</span>); <span class="hljs-comment">// [{ hello: 'world' }]</span>
+</code></pre>
 <p>If your predicate is an object <code>obj</code>, Lodash will filter objects that
 <a href="https://lodash.com/docs/4.17.15#matches">match the given predicate</a>.
 In other words, Lodash will match objects that have the same value
@@ -120,7 +123,8 @@ _.filter(arr, { <span class="hljs-attr">rank</span>: <span class="hljs-string">'
 _.filter(arr, { <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Crusher'</span> }).map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v.firstName);
 
 <span class="hljs-comment">// ['Beverly']</span>
-_.filter(arr, { <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Crusher'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> }).map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v.firstName);</code></pre>
+_.filter(arr, { <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Crusher'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> }).map(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v.firstName);
+</code></pre>
 <h2 id="on-objects">On Objects</h2>
 <p>The <code>_.filter()</code> function can also accept an object as a parameter,
 rather than an array. Calling <code>_.filter(obj, fn)</code> behaves similarly
@@ -131,7 +135,8 @@ to <code>_.filter(Object.values(obj), fn)</code>.</p>
   <span class="hljs-attr">three</span>: <span class="hljs-number">3</span>,
   <span class="hljs-attr">four</span>: <span class="hljs-number">4</span>
 };
-_.filter(obj, v =&gt; v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>); <span class="hljs-comment">// [2, 4]</span></code></pre>
+_.filter(obj, v =&gt; v % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>); <span class="hljs-comment">// [2, 4]</span>
+</code></pre>
 
   
   <hr>

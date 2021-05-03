@@ -92,7 +92,8 @@ two ways to declare an arrow function:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// 'getAnswer()` is an arrow function that returns 42</span>
 <span class="hljs-keyword">const</span> getAnswer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">42</span>;
 
-getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <ol start="2">
 <li>With curly braces <code>{}</code>. With this syntax, the arrow function does not have an implicit <code>return</code>.</li>
 </ol>
@@ -101,7 +102,8 @@ getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
   <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
 };
 
-getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <p>Returning an object literal from an arrow function is tricky:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Syntax error! JavaScript assumes curly braces after `=&gt;` means</span>
 <span class="hljs-comment">// you're using the curly braces syntax</span>
@@ -121,7 +123,8 @@ getObj(); <span class="hljs-comment">// 42</span></code></pre>
   answer :
   <span class="hljs-number">0</span>;
 
-getAnswer(); <span class="hljs-comment">// 42</span></code></pre>
+getAnswer(); <span class="hljs-comment">// 42</span>
+</code></pre>
 <h2 id="parameters">Parameters</h2>
 <p>Like normal functions, arrow functions can take zero or more parameters.
 You must put the parameter names in parentheses <code>(param1, param2, param3) =&gt; {}</code> unless your arrow function takes exactly one parameter.</p>
@@ -137,7 +140,8 @@ noop = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</s
 
 <span class="hljs-comment">// If your arrow function takes more than 1 param, you must</span>
 <span class="hljs-comment">// put parentheses around the parameter names</span>
-<span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;</code></pre>
+<span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b;
+</code></pre>
 <h2 id="why-arrow-functions">Why Arrow Functions?</h2>
 <p>Arrow functions have two major advantages:</p>
 <ol>
@@ -147,7 +151,8 @@ noop = <span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</s
 <p>For example, suppose you try to call <code>setTimeout()</code> in a
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions">class method</a>. If you use a normal function as opposed to
 an arrow function, <code>this</code> will <strong>not</strong> be an instance of <code>MyClass</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<pre><code class="language-javascript">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
   <span class="hljs-keyword">constructor</span>(message) {
     <span class="hljs-keyword">this</span>.message = message;
   }
@@ -163,9 +168,11 @@ an arrow function, <code>this</code> will <strong>not</strong> be an instance of
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-string">'Hello, World'</span>);
 obj.message; <span class="hljs-comment">// 'Hello, World'</span>
-obj.print();</code></pre>
+obj.print();
+</code></pre>
 <p>With an arrow function, <code>this</code> will be an instance of <code>MyClass</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<pre><code class="language-javascript">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
   <span class="hljs-keyword">constructor</span>(message) {
     <span class="hljs-keyword">this</span>.message = message;
   }
@@ -180,7 +187,8 @@ obj.print();</code></pre>
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-string">'Hello, World'</span>);
 obj.message; <span class="hljs-comment">// 'Hello, World'</span>
-obj.print();</code></pre>
+obj.print();
+</code></pre>
 <h2 id="why-not-arrow-functions">Why Not Arrow Functions?</h2>
 <p>Arrow functions are excellent, and often it doesn&#39;t matter whether
 you use an arrow function or normal function. But when you use a

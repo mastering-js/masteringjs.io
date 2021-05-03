@@ -45,9 +45,7 @@ const app = new Vue({
   },
   methods: {
     async postJob() {
-      if (!this.company || !this.title || !this.location || !this.description || 
-        !this.url || !this.instructions || !this.email || !this.feedback || !this.invoiceAddress || 
-        !this.invoiceNotes || !this.tags) {
+      if (this.tags.length == 0) {
           return this.error = true;
         }
         else {
@@ -74,6 +72,7 @@ const app = new Vue({
       console.log('Done');
     },
     addTool() {
+      if (this.addTool == '') return;
       this.tags.push(this.addtool);
       this.addtool = '';
     },
@@ -115,20 +114,18 @@ const app = new Vue({
   template: `
     <div>
       <h1>Hire JavaScript Developers</h1>
-      <h2> All fields are required </h2>
-      <h3 v-if="error">You are missing fields </h3>
       <form v-if="!preview" action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
-          <input type="text" v-model="company" />
+          <input type="text" v-model="company" required />
         </div>
         <div>
           <label> Position </label>
-          <input type="text" v-model="title" />
+          <input type="text" v-model="title" required/>
         </div>
         <div>
           <label> Location </label>
-          <input type="text" v-model="location" />
+          <input type="text" v-model="location" required/>
         </div>
         <div>
           <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
@@ -136,9 +133,13 @@ const app = new Vue({
         </div>
         <div>
           <div><label>Description</label></div>
-          <textarea v-model="description">Enter Text Here</textarea>
+          <textarea v-model="description" required>Enter Text Here</textarea>
         </div>
           <form action="" @submit.prevent="addTool()">
+          <div v-if="error" style="border-style:solid;border-color: red;">
+          Frameworks:
+          </div>
+          <div v-else>Frameworks:</div>
             <div v-for="tag in tags" :key="tag">{{tag}}</div>
             <div>
               <label> Add Framework </label>
@@ -154,23 +155,23 @@ const app = new Vue({
         <div>
           <div><label> Company Image </label></div>
           <h3 v-if="!displayImage">That file type is not supported</h3>
-          <input type="file" @change="assignImage" ref = "file"/>
+          <input type="file" @change="assignImage" ref = "file" required/>
         </div>
         <div>
           <label> Apply URL </label>
-          <input type="url" v-model="url"/>
+          <input type="url" v-model="url" required/>
         </div>
         <div>
           <div><label> How To Apply </label></div>
-          <textarea v-model="instructions">To Apply</textarea>
+          <textarea v-model="instructions" required>To Apply</textarea>
         </div>
         <div>
           <label> Company Email </label>
-          <input type="email" v-model="email"/>
+          <input type="email" v-model="email" required/>
         </div>
         <div>
           <div><label> Feedback </label></div>
-          <textarea v-model="feedback">Type here</textarea>
+          <textarea v-model="feedback" required>Type here</textarea>
         </div>
         <div>
           <label> Invoice Address </label>

@@ -82,7 +82,8 @@
 In the example below, <code>res.data</code> is an object as it contains a series of key value pairs.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>)
 res.data; <span class="hljs-comment">// Returns the HTTP response body at the server we requested.</span>
-<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span></code></pre>
+<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// object</span>
+</code></pre>
 <p><code>res.data</code> returns the following:</p>
 <pre><code class="language-javascript">{
   <span class="hljs-attr">args</span>: {},
@@ -111,7 +112,8 @@ The options for <code>responseType</code> are:</p>
   <span class="hljs-attr">transformResponse</span>: [<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v]
 });
 res.data; <span class="hljs-comment">// same data obtained from previous request</span>
-<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// string</span></code></pre>
+<span class="hljs-keyword">typeof</span> res.data; <span class="hljs-comment">// string</span>
+</code></pre>
 <p><strong>Note:</strong> This is just an example and responses from different servers will vary.
 In this example, the unfiltered response, <strong>res</strong>, contains much more information about the request and response.
 This information could be helpful if the project your working on needs something from it or you are debugging, however, most of the time directly accessing the data is all that will be needed.</p>

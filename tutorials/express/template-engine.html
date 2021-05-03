@@ -89,7 +89,8 @@ below is some valid Pug code:</p>
 <p>Suppose the above code is in the <code>views/test.pug</code> file. Below is how you can use Express to render <code>test.pug</code> for
 you. Note the <code>app.set(&#39;view engine&#39;, &#39;pug&#39;)</code> call is how you tell Express to use Pug for templating. The string &#39;pug&#39;
 refers to the npm module you want to use as your template engine.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 
 <span class="hljs-keyword">const</span> app = express();
 <span class="hljs-comment">// Use `pug` to preprocess all calls to `res.render()`.</span>
@@ -106,7 +107,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span></code></pre>
+res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</span>
+</code></pre>
 <h2 id="using-vue-server-renderer">Using Vue Server Renderer</h2>
 <p>Not all templating languages work with Express by default. Thankfully, it is easy to <a href="http://expressjs.com/en/advanced/developing-template-engines.html">write your own template engine</a> to glue your favorite templating language with Express. For example, suppose you have the below Vue template:</p>
 <pre><code class="language-html">&lt;h1&gt;Hello, {{name}}&lt;<span class="hljs-regexp">/h1&gt;</span></code></pre>
@@ -115,7 +117,8 @@ res.data; <span class="hljs-comment">// '&lt;h1&gt;Hello, World!&lt;/h1&gt;'</sp
 takes two parameters: a string <code>name</code> that tells Vue the name of this template engine, and a <code>templateEngine</code> function
 that loads and compiles a given template. Below is how you can write a <code>templateEngine()</code> function that uses
 Vue server renderer:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> Vue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue'</span>);
 <span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 <span class="hljs-keyword">const</span> { renderToString } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-server-renderer'</span>).createRenderer();
 <span class="hljs-keyword">const</span> { promisify } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'util'</span>);
@@ -144,7 +147,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
-res.data; <span class="hljs-comment">// '&lt;h1 data-server-rendered="true"&gt;Hello, World&lt;/h1&gt;'</span></code></pre>
+res.data; <span class="hljs-comment">// '&lt;h1 data-server-rendered="true"&gt;Hello, World&lt;/h1&gt;'</span>
+</code></pre>
 
   <hr>
 <div class="cta">

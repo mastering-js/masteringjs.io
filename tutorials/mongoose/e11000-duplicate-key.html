@@ -100,7 +100,8 @@ doc._id; <span class="hljs-comment">// Something like "5cc5e9be172acd237a893610"
   <span class="hljs-comment">// MongoError: E11000 duplicate key error collection: test.characters</span>
   <span class="hljs-comment">// index: _id_ dup key: { : ObjectId('5cc5ea092dca872442916cf5') }</span>
   error.message;
-}</code></pre>
+}
+</code></pre>
 <p>This error is often caused by <code>null</code> or <code>undefined</code> field values. <code>null</code> and <code>undefined</code> count as distinct values, so if you declare a field <code>email</code> as unique, two documents cannot have <code>email = undefined</code>. The below example <a href="https://mongoosejs.com/docs/api.html#model_Model.create">creates</a> two documents without an <code>email</code> property, which causes a duplicate key error.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, <span class="hljs-keyword">new</span> Schema({
   <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>,
@@ -122,7 +123,8 @@ doc._id; <span class="hljs-comment">// Something like "5cc5e9be172acd237a893610"
   <span class="hljs-comment">// E11000 duplicate key error collection: test.users index: email_1</span>
   <span class="hljs-comment">// dup key: { : null }</span>
   error.message;
-}</code></pre>
+}
+</code></pre>
 <p>To make MongoDB E11000 error messages user-friendly, you should use the <a href="https://www.npmjs.com/package/mongoose-beautiful-unique-validation">mongoose-beautiful-unique-validation plugin</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span> });
 schema.plugin(<span class="hljs-built_in">require</span>(<span class="hljs-string">'mongoose-beautiful-unique-validation'</span>));
@@ -138,7 +140,8 @@ schema.plugin(<span class="hljs-built_in">require</span>(<span class="hljs-strin
 } <span class="hljs-keyword">catch</span> (error) {
   <span class="hljs-comment">// Path `_id` (5cc60c5603a95a15cfb9204d) is not unique.</span>
   error.errors[<span class="hljs-string">'_id'</span>].message;
-}</code></pre>
+}
+</code></pre>
 
   <hr>
 <div class="cta">

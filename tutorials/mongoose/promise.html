@@ -91,7 +91,8 @@ promise <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in"
 <span class="hljs-keyword">const</span> res = doc.save(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">callback</span>(<span class="hljs-params">err</span>) </span>{
   <span class="hljs-comment">/*...*/</span>
 });
-res; <span class="hljs-comment">// undefined</span></code></pre>
+res; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <h2 id="the-mongoosepromise-property">The <code>mongoose.Promise</code> Property</h2>
 <p>The Mongoose singleton has a <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-Promise"><code>Promise</code> property</a> that you can use to set the promise library Mongoose uses. For example, you can make Mongoose use the popular <a href="https://www.npmjs.com/package/bluebird">Bluebird promise library</a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Bluebird = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);

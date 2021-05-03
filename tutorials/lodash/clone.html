@@ -89,7 +89,8 @@ about cloning an array?</p>
 <span class="hljs-built_in">Object</span>.assign({}, arr); <span class="hljs-comment">// { '0': 1, '1': 2, '2': 3 }</span>
 
 <span class="hljs-comment">// But `_.clone()` is smart enough to clone an array</span>
-_.clone(arr); <span class="hljs-comment">// ['a', 'b', 'c']</span></code></pre>
+_.clone(arr); <span class="hljs-comment">// ['a', 'b', 'c']</span>
+</code></pre>
 <h2 id="cloning-an-instance-of-a-class">Cloning an Instance of a Class</h2>
 <p>Another benefit of <code>_.clone()</code> is that the cloned object
 will have the same <a href="http://thecodebarbarian.com/an-overview-of-es6-classes">ES6 class</a> as the original object. The <code>Object.assign()</code> function always returns a POJO.</p>
@@ -106,7 +107,8 @@ will have the same <a href="http://thecodebarbarian.com/an-overview-of-es6-class
 <span class="hljs-built_in">Object</span>.assign({}, obj) <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// `_.clone()` retains the original object's class.</span>
-_.clone(obj) <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// true</span></code></pre>
+_.clone(obj) <span class="hljs-keyword">instanceof</span> MyClass; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="takeaways">Takeaways</h2>
 <p>If you need to clone a POJO, you don&#39;t need Lodash. Just use
 <code>{...obj}</code> or <code>Object.assign({}, obj)</code>. But <code>_.clone()</code> is
