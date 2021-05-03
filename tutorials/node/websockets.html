@@ -65,14 +65,6 @@
     Jun 10, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -103,11 +95,13 @@ server.on(<span class="hljs-string">'connection'</span>, <span class="hljs-funct
   socket.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     sockets = sockets.filter(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s !== socket);
   });
-});</code></pre>
+});
+</code></pre>
 <h2 id="websocket-client-in-nodejs">WebSocket Client in Node.js</h2>
 <p>A WebSocket connection has two components, a client and a server. In the above example, you created a server. Clients initiate a request to open a WebSocket connection, and servers respond to inbound requests to open WebSocket connections.</p>
 <p>You can also create a WebSocket client in Node.js using <code>ws</code>. This is great for testing your WebSocket logic, although you can also use WebSockets for communication between backend services. Below is an example of a WebSocket client that talks to the above server.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> clients = [
+<pre><code class="language-javascript">
+<span class="hljs-keyword">let</span> clients = [
   <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:8080'</span>),
   <span class="hljs-keyword">new</span> WebSocket(<span class="hljs-string">'ws://localhost:8080'</span>)
 ];
@@ -120,7 +114,8 @@ clients.map(<span class="hljs-function"><span class="hljs-params">client</span> 
 <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> clients[<span class="hljs-number">0</span>].once(<span class="hljs-string">'open'</span>, resolve));
 
 <span class="hljs-comment">// Prints "Hello!" twice, once for each client.</span>
-clients[<span class="hljs-number">0</span>].send(<span class="hljs-string">'Hello!'</span>);</code></pre>
+clients[<span class="hljs-number">0</span>].send(<span class="hljs-string">'Hello!'</span>);
+</code></pre>
 <h2 id="websocket-client-in-the-browser">WebSocket Client in the Browser</h2>
 <p><a href="https://caniuse.com/#feat=websockets">Most modern browsers support WebSockets out of the box</a>. In other words, you can use the <code>WebSocket</code> class in the browser without without <code>ws</code> or transpilers, unless you want to support Internet Explorer 9 or Opera Mini. Below is a screenshot from <a href="https://caniuse.com/#feat=websockets">the <code>caniuse.com</code> section on WebSockets</a>.</p>
 <img src="https://i.imgur.com/hmA4oV1.png">

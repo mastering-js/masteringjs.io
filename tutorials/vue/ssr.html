@@ -65,14 +65,6 @@
     May 5, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -98,7 +90,8 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);
+</code></pre>
 <p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
 <p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
 

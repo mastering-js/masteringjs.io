@@ -65,14 +65,6 @@
     Dec 4, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -87,7 +79,8 @@
 <span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2020-05-01T12:00:00.000Z'</span>);
 
 d1.toDateString() === d2.toDateString(); <span class="hljs-comment">// true</span>
-d1.toDateString() === d3.toDateString(); <span class="hljs-comment">// false</span></code></pre>
+d1.toDateString() === d3.toDateString(); <span class="hljs-comment">// false</span>
+</code></pre>
 <p>The more nuanced question is which timezone you want to compare the dates in. The <code>toDateString()</code>
 function calculates the date in the server&#39;s local timezone. In order to compare dates in UTC time
 as opposed to server local time, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toUTCString"><code>toUTCString()</code> function</a> and <a href="/tutorials/fundamentals/substring#stringslice"><code>slice()</code></a> the result to just compare the date portion:</p>
@@ -99,7 +92,8 @@ as opposed to server local time, you can use the <a href="https://developer.mozi
 <span class="hljs-comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toDateString</span>
 <span class="hljs-keyword">const</span> format = <span class="hljs-string">'Www, dd Mmm yyyy'</span>;
 d1.toUTCString().slice(<span class="hljs-number">0</span>, format.length) === d2.toUTCString().slice(<span class="hljs-number">0</span>, format.length); <span class="hljs-comment">// true</span>
-d1.toUTCString().slice(<span class="hljs-number">0</span>, format.length) === d3.toUTCString().slice(<span class="hljs-number">0</span>, format.length); <span class="hljs-comment">// false</span></code></pre>
+d1.toUTCString().slice(<span class="hljs-number">0</span>, format.length) === d3.toUTCString().slice(<span class="hljs-number">0</span>, format.length); <span class="hljs-comment">// false</span>
+</code></pre>
 
   
   <hr>

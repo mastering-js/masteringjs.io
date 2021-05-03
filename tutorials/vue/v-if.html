@@ -65,14 +65,6 @@
     Jul 4, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -94,7 +86,8 @@
 <span class="hljs-comment">// expression evaluates to false.</span>
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;!----&gt;&lt;/div&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <h2 id="v-else-if-and-v-else"><code>v-else-if</code> and <code>v-else</code></h2>
 <p>Vue also has <a href="https://vuejs.org/v2/guide/conditional.html#v-else"><code>v-else-if</code> and <code>v-else</code> directives</a> that behave like <code>else if</code> and <code>else</code> in JavaScript.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -120,7 +113,8 @@ data;
 app._data.value = <span class="hljs-number">0</span>;
 data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Zero&lt;/div&gt;&lt;/div&gt;</span>
-data;</code></pre>
+data;
+</code></pre>
 <h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
 <p><a href="https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks">Vue components have lifecycle hooks</a>, like the <code>created</code> hook that gets called when the component gets created, and <code>mounted</code> when the component gets mounted.</p>
 <p>When Vue renders a component because the <code>v-if</code> expression became

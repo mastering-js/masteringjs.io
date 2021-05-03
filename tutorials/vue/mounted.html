@@ -65,14 +65,6 @@
     May 11, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -108,7 +100,8 @@
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}</code></pre>
+}
+</code></pre>
 <h2 id="with-asyncawait">With Async/Await</h2>
 <p>Notice that the above example uses an async function for the
 <code>mounted</code> hook. Vue does <strong>not</strong> block rendering until the mounted
@@ -153,6 +146,7 @@ does <strong>not</strong> wait for async <code>created()</code> hooks to finish.
     &lt;h1&gt;The answer is {{answer == null ? 'N/A' : answer}}&lt;/h1&gt;
   `</span>
 });
+
 
 <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 data; <span class="hljs-comment">// Renders "answer is N/A"</span></code></pre>

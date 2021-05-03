@@ -65,14 +65,6 @@
     Aug 9, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -99,7 +91,8 @@ the <code>link</code> field changes, so does the <code>href</code>.</p>
   `</span>
 });
 <span class="hljs-comment">// Now, the link will go to Twitter.</span>
-app.$data.link = <span class="hljs-string">'http://twitter.com'</span>;</code></pre>
+app.$data.link = <span class="hljs-string">'http://twitter.com'</span>;
+</code></pre>
 <p>You can use this syntax for some cool use cases, including <a href="https://vuejs.org/v2/guide/class-and-style.html#Object-Syntax-1">dynamic inline <code>style</code> attributes</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span> }),
@@ -109,7 +102,8 @@ app.$data.link = <span class="hljs-string">'http://twitter.com'</span>;</code></
   `</span>
 });
 <span class="hljs-comment">// Now, it will show "green text" in green font.</span>
-app.$data.color = <span class="hljs-string">'green'</span>;</code></pre>
+app.$data.color = <span class="hljs-string">'green'</span>;
+</code></pre>
 <h2 id="props">Props</h2>
 <p>You can also use <code>v-bind</code> to <a href="/tutorials/vue/components#component-props">pass props to child components</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// `props` is an array of prop names this component accepts. If you</span>
@@ -133,7 +127,8 @@ Vue.component(<span class="hljs-string">'hello'</span>, {
       &lt;hello v-bind:name="name"&gt;&lt;/hello&gt;
     &lt;/div&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="shorthand">Shorthand</h2>
 <p>The <code>v-bind</code> part of <code>v-bind:prop</code> is optional. You can also use <code>:prop</code>.
 Most large Vue codebases use <code>:prop</code> and avoid typing out <code>v-bind</code>.</p>
@@ -143,7 +138,8 @@ Most large Vue codebases use <code>:prop</code> and avoid typing out <code>v-bin
   template: <span class="hljs-string">`
     &lt;a :href="link"&gt;My Link&lt;/a&gt;
   `</span>
-});</code></pre>
+});
+</code></pre>
 
   <hr>
 <div class="cta">

@@ -65,14 +65,6 @@
     May 11, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -97,7 +89,8 @@ blogPostSchema.virtual(<span class="hljs-string">'html'</span>).get(<span class=
 <span class="hljs-keyword">const</span> BlogPost = mongoose.model(<span class="hljs-string">'BlogPost'</span>, blogPostSchema);
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> BlogPost({ <span class="hljs-attr">content</span>: <span class="hljs-string">'# Hello'</span> });
-doc.html; <span class="hljs-comment">// "&lt;h1 id="hello"&gt;Hello&lt;/h1&gt;"</span></code></pre>
+doc.html; <span class="hljs-comment">// "&lt;h1 id="hello"&gt;Hello&lt;/h1&gt;"</span>
+</code></pre>
 <p>Why would you use a virtual instead of a <a href="https://mongoosejs.com/docs/guide.html#methods">method</a>? Because you can configure Mongoose to include virtuals when <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">converting a Mongoose document to JSON</a>, including when using <a href="http://expressjs.com/en/4x/api.html#res.json">Express&#39; <code>res.json()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
@@ -114,7 +107,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-keyword">const</span> server = app.listen(<span class="hljs-number">3000</span>);
 
 <span class="hljs-comment">// "&lt;h1 id="hello"&gt;Hello&lt;/h1&gt;"</span>
-<span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.data.html);</code></pre>
+<span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.data.html);
+</code></pre>
 <p>The downside of virtuals is that, since they aren&#39;t stored in MongoDB, you can&#39;t use them in <a href="https://mongoosejs.com/docs/queries.html">queries</a>.</p>
 
   <hr>

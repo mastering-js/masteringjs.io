@@ -65,14 +65,6 @@
     Jun 19, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -97,7 +89,8 @@
 
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;greet name="World!"&gt;&lt;/greet&gt;`</span>
-});</code></pre>
+});
+</code></pre>
 <p>In the above example, the Vue app passes the <code>name</code> prop to <code>greet</code> as a <a href="https://vuejs.org/v2/guide/components-props.html#Passing-Static-or-Dynamic-Props">static prop</a>. In other words, &#39;World&#39; is a hard coded string. To pass a dynamic prop (a prop bound to a variable) you need to prefix <code>name</code> with <code>v-bind:</code> when creating the component:</p>
 <pre><code class="language-javascript">Vue.component(<span class="hljs-string">'greet'</span>, {
   <span class="hljs-attr">props</span>: [<span class="hljs-string">'name'</span>],
@@ -114,7 +107,8 @@
   <span class="hljs-comment">// Note the `v-bind:` prefix. If you forget it, `greet` will treat</span>
   <span class="hljs-comment">// 'value' as a raw string and render "Hello, value"</span>
   template: <span class="hljs-string">`&lt;greet v-bind:name="value"&gt;&lt;/greet&gt;`</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="prop-validation">Prop Validation</h2>
 <p><a href="https://vuejs.org/v2/guide/components-props.html#Prop-Validation">Vue has built-in prop validation</a>. That means you can check whether a prop is the right type or whether it is set. Keep in mind prop validation <strong>only works in development mode</strong>. It is excluded from the <a href="https://vuejs.org/v2/guide/installation.html#Development-vs-Production-Mode">minified production version</a>.</p>
 <p>Below is an example of using prop validation. Note that Vue only prints a warning, it does <strong>not</strong> throw an error if you pass a non-string <code>name</code> prop.</p>
@@ -138,7 +132,8 @@
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">value</span>: <span class="hljs-number">42</span> }),
   <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;greet v-bind:name="value"&gt;&lt;/greet&gt;`</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="change-tracking">Change Tracking</h2>
 <p>It is important to note that <a href="https://vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow">props are one-way only</a>. If you change the value of a prop in a child component, those changes will <strong>not</strong> bubble up to the parent component.</p>
 <p>For example, suppose you have an <code>input</code> in the <code>greet</code> component. If the user types in the <code>input</code> below, <code>value</code> will <strong>not</strong> change.</p>

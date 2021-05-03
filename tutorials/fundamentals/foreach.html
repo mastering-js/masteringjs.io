@@ -65,14 +65,6 @@
     Dec 16, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -87,7 +79,8 @@ that JavaScript will execute on every element in the array.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Prints "a", "b", "c"</span>
 [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>].forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(v);
-});</code></pre>
+});
+</code></pre>
 <p>JavaScript calls your <code>callback</code> with 3 parameters: <code>currentValue</code>, <code>index</code>, and
 <code>array</code>. The <code>index</code> parameter is how you get the <a href="/tutorials/fundamentals/foreach-index">current array index with <code>forEach()</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Prints "0: a, 1: b, 2: c"</span>
@@ -138,7 +131,8 @@ map.keys().forEach(<span class="hljs-function"><span class="hljs-params">val</sp
 
 <span class="hljs-comment">// Must use `Array.from()` to convert iterable to array</span>
 <span class="hljs-comment">// before using `forEach()`</span>
-<span class="hljs-built_in">Array</span>.from(map.keys()).forEach(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(val));</code></pre>
+<span class="hljs-built_in">Array</span>.from(map.keys()).forEach(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(val));
+</code></pre>
 <h3 id="3-cant-use-break-or-continue">3. Can&#39;t use <code>break</code> or <code>continue</code></h3>
 <p>The <code>forEach()</code> method is a plain old JavaScript function, which means you
 can&#39;t use looping constructs like <a href="/tutorials/fundamentals/foreach-break"><code>break</code></a> or <a href="/tutorials/fundamentals/foreach-continue"><code>continue</code></a>.</p>

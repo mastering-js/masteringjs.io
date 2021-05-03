@@ -65,14 +65,6 @@
     Jun 14, 2019
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -93,7 +85,8 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, cb</span>) </span>{
   <span class="hljs-keyword">return</span> axios.get(url);
-}</code></pre>
+}
+</code></pre>
 <p>The function <code>get()</code> takes one parameter, a URL, and returns a <a href="/tutorials/fundamentals/promise">promise</a>. Let&#39;s test this function with Mocha, 3 different ways.</p>
 <h2 id="async-functions">Async Functions</h2>
 <p><a href="http://thecodebarbarian.com/using-async-await-with-mocha-express-and-mongoose#mocha">Mocha supports async functions out of the box</a>, no plugins or configuration needed. You can pass an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async function</a> to <code>it()</code>, and Mocha will handle any errors that occur.</p>

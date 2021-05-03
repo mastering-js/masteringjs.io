@@ -65,14 +65,6 @@
     Aug 17, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -90,7 +82,8 @@ buffers are equal.</p>
 
 Buffer.compare(buf1, buf2); <span class="hljs-comment">// 0, means the 2 buffers are equal</span>
 
-Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span></code></pre>
+Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span>
+</code></pre>
 <p>That means, to check if <code>buf1</code> has the same bytes as <code>buf2</code>, you can do:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> isEqual = Buffer.compare(buf1, buf2) === <span class="hljs-number">0</span>;</code></pre>
 <h2 id="sorting">Sorting</h2>
@@ -111,7 +104,8 @@ Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf
 
 buffers.sort(Buffer.compare);
 
-buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
+buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span>
+</code></pre>
 
   
   <hr>

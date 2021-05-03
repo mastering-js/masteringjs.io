@@ -65,14 +65,6 @@
     Dec 9, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -106,7 +98,8 @@ components globally using <code>Vue.component()</code>, you register components 
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
 });
-app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);
+</code></pre>
 <p>Below is how you would rewrite it for Vue 3:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Create an app using `createApp()` that uses the `hello` component</span>
 <span class="hljs-keyword">const</span> app = Vue.createApp({
@@ -176,7 +169,8 @@ component emits like how you explicitly define a list of <code>props</code>.</p>
     }
   }
 });
-app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);
+</code></pre>
 <p>Below is how you would change the above example to work with Vue 3. Besides the usual <code>createApp()</code>
 and <code>app.component()</code> changes, this example also adds a list of events the component <code>emits</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({

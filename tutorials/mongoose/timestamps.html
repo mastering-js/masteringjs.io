@@ -65,14 +65,6 @@
     Jul 17, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -115,7 +107,8 @@ allow you to skip timestamps provided that <code>timestamps</code> were set in t
 <span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.findOneAndUpdate({<span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span>}, {<span class="hljs-attr">email</span>:<span class="hljs-string">'newtest@google.com'</span>}, 
-{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:<span class="hljs-literal">false</span>});</code></pre>
+{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:<span class="hljs-literal">false</span>});
+</code></pre>
 <p>If you want to prevent only one of those
 from updating, instead of setting timestamps to <code>false</code> as the value, create an object with key-value pairs. The
 key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value(s) being <code>true</code> or <code>false</code> depending on what you need.</p>
@@ -126,7 +119,8 @@ key(s) being <code>createdAt</code> and/or <code>updatedAt</code> and the value(
 <span class="hljs-keyword">const</span> User = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.findOneAndUpdate({<span class="hljs-attr">email</span>: <span class="hljs-string">'test@google.com'</span>}, {<span class="hljs-attr">email</span>:<span class="hljs-string">'newtest@google.com'</span>}, 
-{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:{<span class="hljs-attr">createdAt</span>:<span class="hljs-literal">false</span>, <span class="hljs-attr">updatedAt</span>:<span class="hljs-literal">true</span>}});</code></pre>
+{<span class="hljs-attr">new</span>:<span class="hljs-literal">true</span>, <span class="hljs-attr">upsert</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">timestamps</span>:{<span class="hljs-attr">createdAt</span>:<span class="hljs-literal">false</span>, <span class="hljs-attr">updatedAt</span>:<span class="hljs-literal">true</span>}});
+</code></pre>
 <h2 id="alternate-property-names">Alternate Property Names</h2>
 <p>By default, Mongoose uses <code>createdAt</code> and <code>updatedAt</code> as the property names for timestamps.
 But you can make Mongoose use any property name you like. For example, if you prefer <code>snake_case</code>

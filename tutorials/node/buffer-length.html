@@ -65,14 +65,6 @@
     Aug 19, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -85,7 +77,8 @@
 in the buffer.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> buf = Buffer.from(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-string">'utf8'</span>);
 
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span>
+</code></pre>
 <p>For buffers containing UTF8 encoded strings, the buffer&#39;s length is equivalent to the length of the string. For
 example, if you read a text file from the file system using <code>fs</code>, the resulting buffer&#39;s length is the same as
 the number of characters in the text file.</p>
@@ -95,7 +88,8 @@ fs.writeFileSync(<span class="hljs-string">'./test.txt'</span>, <span class="hlj
 <span class="hljs-keyword">const</span> buf = fs.readFileSync(<span class="hljs-string">'./test.txt'</span>);
 
 Buffer.isBuffer(buf); <span class="hljs-comment">// true</span>
-buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span></code></pre>
+buf.length; <span class="hljs-comment">// 12, same as 'Hello, World'.length</span>
+</code></pre>
 <h2 id="allocated-vs-actual">Allocated vs Actual</h2>
 <p>Note that <code>Buffer#length</code> contains the number of <em>allocated</em> bytes for the buffer, <strong>not</strong> how many bytes are
 actually used. Often these two are equivalent, but they may be different.</p>
@@ -108,7 +102,8 @@ buf.length; <span class="hljs-comment">// 100, even though the buffer contains 1
 <span class="hljs-comment">// Write 'Hello, World' to the buffer starting at offset 0</span>
 buf.write(<span class="hljs-string">'Hello, World'</span>, <span class="hljs-number">0</span>);
 
-buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span></code></pre>
+buf.length; <span class="hljs-comment">// still 100, because there's 100 bytes allocated.</span>
+</code></pre>
 
   
   <hr>

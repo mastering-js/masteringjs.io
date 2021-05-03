@@ -65,14 +65,6 @@
     Apr 10, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -92,7 +84,8 @@ with just the keys <code>paths</code> from <code>obj</code>.</p>
 picked === obj; <span class="hljs-comment">// false</span>
 picked.name; <span class="hljs-comment">// 'Will Riker'</span>
 picked.rank; <span class="hljs-comment">// 'Commander'</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p>The <code>pick()</code> function also supports dotted paths and any other syntax that
 <a href="/tutorials/lodash/get">Lodash&#39;s <code>get()</code> function</a> supports. For example,
 if <code>name</code> is a nested object with 2 properties, <code>first</code> and <code>last</code>, you
@@ -111,7 +104,8 @@ picked === obj; <span class="hljs-comment">// false</span>
 picked.name.first; <span class="hljs-comment">// undefined</span>
 picked.name.last; <span class="hljs-comment">// 'Riker'</span>
 picked.rank; <span class="hljs-comment">// 'Commander'</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p><code>pick()</code> is permissive when it comes to missing properties. If you try
 to <code>pick()</code> a dotted property whose parent is undefined, Lodash will
 just ignore that path.</p>
@@ -127,7 +121,8 @@ just ignore that path.</p>
 picked === obj; <span class="hljs-comment">// false</span>
 picked.name; <span class="hljs-comment">// 'Will Riker'</span>
 picked.rank; <span class="hljs-comment">// undefined</span>
-picked.age; <span class="hljs-comment">// undefined</span></code></pre>
+picked.age; <span class="hljs-comment">// undefined</span>
+</code></pre>
 <p>Several other frameworks have analogous <code>pick()</code> functions. For example,
 <a href="https://mongoosejs.com/docs/api/schema.html#schema_Schema-pick">Mongoose schemas have a <code>pick()</code> function</a> that creates a new schema a subset of the original schema&#39;s paths.</p>
 

@@ -65,14 +65,6 @@
     May 18, 2020
   </div>
   <div id="default_masteringjsio"></div>
-<<<<<<< HEAD
-=======
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <div id ="jobs" class ="jobs"></div>
-  <script src="../../src/client/vuelistjobs.js"></script>
->>>>>>> 1f8328d16b1d513091328364962d92354f9d2d7f
   <script>
 	(function(){
 	  if(typeof _bsa !== 'undefined' && _bsa) {
@@ -92,7 +84,8 @@ is called an aggregation <em>pipeline</em>.</p>
 <h3 id="the-match-stage">The <code>$match</code> Stage</h3>
 <p>The <code>$match</code> stage filters out documents that don&#39;t match the given
 <code>filter</code> parameter, similar to filters for <a href="/tutorials/mongoose/find">Mongoose&#39;s <code>find()</code> function</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Character.create([
+<pre><code class="language-javascript">
+<span class="hljs-keyword">await</span> Character.create([
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Captain'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'William Riker'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Deanna Troi'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">28</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant Commander'</span> },
@@ -113,7 +106,8 @@ docs[<span class="hljs-number">0</span>].age <span class="hljs-comment">// 59</s
 docs = <span class="hljs-keyword">await</span> Character.find(filter);
 docs.length; <span class="hljs-comment">// 1</span>
 docs[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
-docs[<span class="hljs-number">0</span>].age <span class="hljs-comment">// 59</span></code></pre>
+docs[<span class="hljs-number">0</span>].age <span class="hljs-comment">// 59</span>
+</code></pre>
 <h3 id="the-group-stage">The <code>$group</code> Stage</h3>
 <p>Aggregations can do much more than just filter documents. You can also use
 the aggregation framework to tranform documents. For example, the <code>$group</code>
@@ -135,7 +129,8 @@ docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) 
 docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
 docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
 docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span>
-docs[<span class="hljs-number">3</span>]; <span class="hljs-comment">// { _id: 59, count: 1 }</span></code></pre>
+docs[<span class="hljs-number">3</span>]; <span class="hljs-comment">// { _id: 59, count: 1 }</span>
+</code></pre>
 <h3 id="combining-multiple-stages">Combining Multiple Stages</h3>
 <p>The aggregation pipeline&#39;s strength is its composability. For example,
 you can combine the previous two examples to only group characters
@@ -154,7 +149,8 @@ docs.length; <span class="hljs-comment">// 3</span>
 docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
 docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
 docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
-docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span>
+</code></pre>
 <h2 id="mongoose-aggregate-class">Mongoose <code>Aggregate</code> Class</h2>
 <p>Mongoose&#39;s <code>aggregate()</code> function returns an instance of Mongoose&#39;s
 <a href="https://mongoosejs.com/docs/api/aggregate.html"><code>Aggregate</code> class</a>.
@@ -172,11 +168,13 @@ docs.length; <span class="hljs-comment">// 3</span>
 docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
 docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
 docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
-docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span>
+</code></pre>
 <p><a href="https://mongoosejs.com/docs/middleware.html">Mongoose middleware</a> also
 supports <code>pre(&#39;aggregate&#39;)</code> and <code>post(&#39;aggregate&#39;)</code> hooks. You can use
 aggregation middleware to transform the aggregation pipeline.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> characterSchema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> characterSchema = Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">age</span>: <span class="hljs-built_in">Number</span> });
 characterSchema.pre(<span class="hljs-string">'aggregate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// Add a `$match` to the beginning of the pipeline</span>
   <span class="hljs-keyword">this</span>.pipeline().unshift({ <span class="hljs-attr">$match</span>: { <span class="hljs-attr">age</span>: { <span class="hljs-attr">$lt</span>: <span class="hljs-number">30</span> } } });
@@ -191,7 +189,8 @@ docs.length; <span class="hljs-comment">// 3</span>
 docs.sort(<span class="hljs-function">(<span class="hljs-params">d1, d2</span>) =&gt;</span> d1._id - d2._id);
 docs[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { _id: 24, count: 1 }</span>
 docs[<span class="hljs-number">1</span>]; <span class="hljs-comment">// { _id: 28, count: 1 }</span>
-docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span></code></pre>
+docs[<span class="hljs-number">2</span>]; <span class="hljs-comment">// { _id: 29, count: 2 }</span>
+</code></pre>
 
   <hr>
 <div class="cta">

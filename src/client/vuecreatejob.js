@@ -1,7 +1,7 @@
 
 // loads Jobs
-const server = "https://masteringjs-job-board.azurewebsites.net";
-const payment = 'http://localhost:7071/api/stripeCheckout';
+const server = "http://localhost:7071";
+const payment = server+'/api/stripeCheckout';
 
 const app = new Vue({
   data: () => ({
@@ -53,7 +53,7 @@ const app = new Vue({
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
-      await axios.post(server + '/api/createjob', {
+      await axios.post(server + '/api/createJob', {
         company: this.company,
         title: this.title,
         location: this.location,
