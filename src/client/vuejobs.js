@@ -14,7 +14,6 @@ const app = new Vue({
   methods: {
     toggleDescription(j) {
       j.isActive = !j.isActive;
-      console.log('route path', this.$route.path);
       if(j.isActive == false && this.path === this.$route.path) {
         this.$router.push({path: '/'});
       } else {
@@ -70,6 +69,13 @@ const app = new Vue({
     const res = await axios.get(server + '/api/listjobs');
 
     this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
+    if (this.$route.path != '/') {
+      Array.from(this.jobs).forEach((job) => {
+        if(job._id === this.$route.params.id) {
+          job.isActive = true;
+        }
+      });
+    }
   }
 });
 app.$mount('#content');
