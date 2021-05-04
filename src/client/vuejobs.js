@@ -69,6 +69,7 @@ const app = new Vue({
     const res = await axios.get(server + '/api/listjobs');
 
     this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
+    // could probably put this bottom statement in the object.assign method
     if (this.$route.path != '/') {
       Array.from(this.jobs).forEach((job) => {
         if(job._id === this.$route.params.id) {
