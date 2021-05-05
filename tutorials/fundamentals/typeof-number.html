@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Capitalize the First Letter of a String in JavaScript - Mastering JS</title>
+    <title>How to use typeof with Numbers - Mastering JS</title>
 
-    <meta property="og:title" content="Capitalize the First Letter of a String in JavaScript" />
+    <meta property="og:title" content="How to use typeof with Numbers" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
-    <meta name="description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
+    <meta property="og:description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
+    <meta name="description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Capitalize the First Letter of a String in JavaScript</h1>
+  <h1>How to use typeof with Numbers</h1>
   <div class="date">
-    Jul 24, 2019
+    May 3, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,32 +72,31 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript doesn&#39;t have a built-in function to convert the first letter of a
-string to uppercase. However, you can capitalize the first letter of a string
-with one line of vanilla JS. You can also use <a href="https://www.npmjs.com/package/lodash.capitalize">lodash</a> or CSS. In this tutorial,
-you&#39;ll learn to use all 3.</p>
-<h2 id="using-vanilla-js">Using Vanilla JS</h2>
-<p>JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase"><code>String#uppercase()</code> function</a> that converts an entire string to uppercase. That means you can
-capitalize the first character and combine it with the <a href="/tutorials/fundamentals/substring">substring containing everything but the first character</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">capitalize</span>(<span class="hljs-params">str</span>) </span>{
-  <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>).toUpperCase() + str.slice(<span class="hljs-number">1</span>);
+  <p>The <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> returns a string that contains the <a href="/tutorials/fundamentals/primitives">primitive type</a> of the given variable.
+When using this operator with numbers, it can return a few possibilities.
+If you are using it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>If you use it with an instance of the <code>Number</code> class, it will
+return <code>&#39;object&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>);
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span></code></pre>
+<p>Another primitive that is related to <code>number</code> is the <code>BigInt</code> primitive.
+<code>typeof</code> will treat these two primitives separately because they are two
+different primitives.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'bigint'</span></code></pre>
+<h2 id="nans">NaNs</h2>
+<p><a href="/tutorials/fundamentals/nan"><code>NaNs</code></a> are a bit tricky as even though it is
+an acronym for <code>Not a Number</code>, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>To check for a valid number, you must use a combination of <code>typeof</code> and
+<code>Number.isNaN()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span> &amp;&amp; !<span class="hljs-built_in">Number</span>.isNaN(x)) {
+    x = <span class="hljs-number">12</span>;
 }
-
-capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span></code></pre>
-<h2 id="using-lodash">Using Lodash</h2>
-<p><a href="https://lodash.com/docs#capitalize">Lodash&#39;s <code>capitalize()</code> function</a> also capitalizes the first character in a string. It also converts the remaining characters to lowercase.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
-
-_.capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span></code></pre>
-<h2 id="using-css">Using CSS</h2>
-<p>Depending on your use case, you might not need JavaScript at all. <a href="https://css-tricks.com/almanac/properties/t/text-transform/#article-header-id-0">CSS <code>text-transform: capitalize</code></a> capitalizes the first letter of each word in the string.</p>
-<pre><code class="language-css">.capitalize {
-  text-transform: capitalize;
-}</code></pre>
-<p>So given the string <code>&#39;capitalize using CSS&#39;</code>, the browser will render the
-string as &#39;<span style="text-transform: capitalize">capitalize using CSS</span>&#39;.</p>
+x; <span class="hljs-comment">// 12</span></code></pre>
 
   
   <hr>
@@ -105,9 +104,6 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
@@ -124,6 +120,9 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
   
 
     <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/undefined-check">How to Check if a JavaScript Variable is Undefined</a></li>
   
     </ul>
   
