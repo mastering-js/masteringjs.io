@@ -1,8 +1,6 @@
-`typeof` is a useful operator that returns, in a string,
-the [primitive type](/tutorials/fundamentals/primitives)
-of the given variable. When using this operator with
-numbers, it can return a few possibilities. If you are using
-it with the number primitive, it will return `'number'`.
+The [`typeof` operator](/tutorials/fundamentals/typeof) returns a string that contains the [primitive type](/tutorials/fundamentals/primitives) of the given variable.
+When using this operator with numbers, it can return a few possibilities.
+If you are using it with the number primitive, it will return `'number'`.
 
 ```javascript
 let x = 42;
@@ -36,7 +34,7 @@ typeof NaN; // 'number'
 ```
 
 To check for a valid number, you must use a combination of `typeof` and
-`Number.isNan()`:
+`Number.isNaN()`:
 
 ```javascript
 var x = 42;

@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to use typeof with Numbers" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
+    <meta name="description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -72,11 +72,9 @@
 	  }
 	})();
 	</script>
-  <p><code>typeof</code> is a useful operator that returns, in a string,
-the <a href="/tutorials/fundamentals/primitives">primitive type</a>
-of the given variable. When using this operator with
-numbers, it can return a few possibilities. If you are using
-it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
+  <p>The <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> returns a string that contains the <a href="/tutorials/fundamentals/primitives">primitive type</a> of the given variable.
+When using this operator with numbers, it can return a few possibilities.
+If you are using it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'number'</span></code></pre>
 <p>If you use it with an instance of the <code>Number</code> class, it will
@@ -93,7 +91,7 @@ different primitives.</p>
 an acronym for <code>Not a Number</code>, it will return <code>&#39;number&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// 'number'</span></code></pre>
 <p>To check for a valid number, you must use a combination of <code>typeof</code> and
-<code>Number.isNan()</code>:</p>
+<code>Number.isNaN()</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span> &amp;&amp; !<span class="hljs-built_in">Number</span>.isNaN(x)) {
     x = <span class="hljs-number">12</span>;

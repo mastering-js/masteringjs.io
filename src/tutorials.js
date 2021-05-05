@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'How to use typeof with Numbers',
     raw: './tutorials/fundamentals/typeof-number.md',
     url: '/tutorials/fundamentals/typeof-number',
-    description: 'Placeholder Description',
+    description: 'JavaScript\'s typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!',
     tags: ['fundamentals'],
     date: moment('2021-05-03')
   },
