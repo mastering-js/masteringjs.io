@@ -10,12 +10,11 @@ module.exports = () => `
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script type="text/javascript" src="dist/purify.min.js"></script>
 </head>
 
 <body>
   <div id="content"></div>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></scri>
   <script src="../src/client/vuecreatejob.js"></script>
 </body>
 </html>

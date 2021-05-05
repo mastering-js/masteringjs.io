@@ -52,7 +52,7 @@ const app = new Vue({
         email: this.email,
         tags: this.tags,
         sticky: this.sticky,
-        description: DOMPurify.sanitize(marked(this.description)),
+        description: marked(this.description),
         url: this.url,
         instructions: this.instructions,
         feedback: this.feedback,
@@ -88,7 +88,6 @@ const app = new Vue({
   computed: {
     md() {
       if(this.description == null) return;
-     // console.log(xss(this.description));
       return marked(this.description);
     }
   },
