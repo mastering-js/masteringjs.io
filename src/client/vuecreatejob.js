@@ -45,24 +45,24 @@ const app = new Vue({
       const formData = new FormData();
       formData.append('logo', this.logo);
       const headers = {'Content-Type': 'multipart/form-data'};
-      await axios.post(server + '/api/createJob', {
+     let clientid = await axios.post(server + '/api/createJob', {
         company: this.company,
         title: this.title,
         location: this.location,
         email: this.email,
         tags: this.tags,
         sticky: this.sticky,
-        description: this.description,
+        description: DOMPurify.sanitize(marked(this.description)),
         url: this.url,
         instructions: this.instructions,
         feedback: this.feedback,
         invoiceAddress: this.invoiceAddress,
         invoiceNotes: this.invoiceNotes,
         // logo: formData
-      }, {headers});
+      }, {headers}).then((response) => {return response.data.job._id});
       console.log('Done');
       var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
-      await axios.post(payment, {sticky:this.sticky}).then(function(response) {
+      await axios.post(payment, {sticky:this.sticky, clientReferenceId: clientid}).then(function(response) {
         return response.data;
       }).then(function(session){
         return stripe.redirectToCheckout({sessionId:session});
@@ -84,6 +84,13 @@ const app = new Vue({
       }
       
     },
+  },
+  computed: {
+    md() {
+      if(this.description == null) return;
+     // console.log(xss(this.description));
+      return marked(this.description);
+    }
   },
   template: `
     <div>
@@ -147,7 +154,7 @@ const app = new Vue({
         <h2>{{company}}</h2>
         <img :src="previewImage" style="width:50%"/>
         <h3>{{location}}</h3>
-        <h3>{{description}}</h3>
+        <div v-html="md"></div>
         <h3>{{tags}}</h3>
         <h3>Click here to apply: {{url}}</h3>
         <h3>To apply: {{instructions}}</h3>

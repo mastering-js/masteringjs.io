@@ -1,7 +1,7 @@
 
 const server = "https://masteringjs-job-board.azurewebsites.net";
 
-const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} {{$route.params.description}}</h1>'}}]});
+const router = new VueRouter({mode: 'history', routes: [{path: '/jobs/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} {{$route.params.description}}</h1>'}}]});
 
 // loads Jobs
 const app = new Vue({
@@ -15,7 +15,7 @@ const app = new Vue({
     toggleDescription(j) {
       j.isActive = !j.isActive;
       if(j.isActive == false && this.path === this.$route.path) {
-        this.$router.push({path: '/'});
+        this.$router.push({path: '/jobs'});
       } else {
         this.path = this.$route.path;
       }
