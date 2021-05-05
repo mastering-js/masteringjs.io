@@ -1,21 +1,21 @@
 
 const server = "https://masteringjs-job-board.azurewebsites.net";
-
-const router = new VueRouter({mode: 'history', routes: [{path: '/jobs/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} {{$route.params.description}}</h1>'}}]});
+// adding mode history breaks the router
+const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} {{$route.params.description}}</h1>'}}]});
 
 // loads Jobs
 const app = new Vue({
   data() {
     return {
       jobs: null,
-      path: null
+      path: this.$route.path
     }
   },
   methods: {
     toggleDescription(j) {
       j.isActive = !j.isActive;
       if(j.isActive == false && this.path === this.$route.path) {
-        this.$router.push({path: '/jobs'});
+        this.$router.push({path: '/'});
       } else {
         this.path = this.$route.path;
       }
@@ -70,13 +70,17 @@ const app = new Vue({
 
     this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
     // could probably put this bottom statement in the object.assign method
+
     if (this.$route.path != '/') {
+      console.log('Hello there');
       Array.from(this.jobs).forEach((job) => {
         if(job._id === this.$route.params.id) {
+          console.log('hi');
           job.isActive = true;
         }
       });
     }
+
   }
 });
 app.$mount('#content');
