@@ -4,10 +4,18 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Use typeof With and as Functions',
+    title: 'How to Use typeof With Functions',
     raw: './tutorials/fundamentals/typeof-function.md',
     url: '/tutorials/fundamentals/typeof-function',
-    description: 'Placeholder Description',
+    description: 'JavaScript\'s typeof operator can be used with a function-like syntax. But it is technically not a function. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-05-06')
+  },
+  {
+    title: 'How to use typeof with Numbers',
+    raw: './tutorials/fundamentals/typeof-number.md',
+    url: '/tutorials/fundamentals/typeof-number',
+    description: 'JavaScript\'s typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!',
     tags: ['fundamentals'],
     date: moment('2021-05-03')
   },

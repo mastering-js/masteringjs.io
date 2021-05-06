@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use Named Parameters in JavaScript - Mastering JS</title>
+    <title>How to use typeof with Numbers - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use Named Parameters in JavaScript" />
+    <meta property="og:title" content="How to use typeof with Numbers" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="JavaScript does not support named parameters, but you can get the same syntactic benefits using object destructuring. Here's how." />
-    <meta name="description" content="JavaScript does not support named parameters, but you can get the same syntactic benefits using object destructuring. Here's how." />
+    <meta property="og:description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
+    <meta name="description" content="JavaScript's typeof operator lets you check if a value is a number. Just be careful about `Number()` instances, BigInts, and NaN!" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Use Named Parameters in JavaScript</h1>
+  <h1>How to use typeof with Numbers</h1>
   <div class="date">
-    Apr 16, 2021
+    May 3, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,24 +72,31 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript, by default, does not support named parameters.
-However, you can do something similar using object literals and destructuring.
-You can avoid errors when calling the function without any arguments by
-assigning the object to the empty object, <code>{}</code>, even if you have default
-values set up.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params">{ arg1 = <span class="hljs-number">1</span>, arg2 = <span class="hljs-number">2</span>, arg3 = <span class="hljs-number">3</span> } = {}</span>) </span>{
-  <span class="hljs-keyword">return</span> { arg1, arg2, arg3 };
+  <p>The <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> returns a string that contains the <a href="/tutorials/fundamentals/primitives">primitive type</a> of the given variable.
+When using this operator with numbers, it can return a few possibilities.
+If you are using it with the number primitive, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>If you use it with an instance of the <code>Number</code> class, it will
+return <code>&#39;object&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>);
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span></code></pre>
+<p>Another primitive that is related to <code>number</code> is the <code>BigInt</code> primitive.
+<code>typeof</code> will treat these two primitives separately because they are two
+different primitives.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'bigint'</span></code></pre>
+<h2 id="nans">NaNs</h2>
+<p><a href="/tutorials/fundamentals/nan"><code>NaNs</code></a> are a bit tricky as even though it is
+an acronym for <code>Not a Number</code>, it will return <code>&#39;number&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// 'number'</span></code></pre>
+<p>To check for a valid number, you must use a combination of <code>typeof</code> and
+<code>Number.isNaN()</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span> &amp;&amp; !<span class="hljs-built_in">Number</span>.isNaN(x)) {
+    x = <span class="hljs-number">12</span>;
 }
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">problem</span>(<span class="hljs-params">{failure = true}</span>) </span>{
-  <span class="hljs-keyword">return</span> failure;
-}
-
-problem(); <span class="hljs-comment">//TypeError: Cannot read property 'failure' of undefined</span>
-
-example({ <span class="hljs-attr">arg2</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">arg1</span>: <span class="hljs-number">2</span> }); <span class="hljs-comment">// { arg1: 2, arg2: 4, arg3: 3 }</span>
-
-example(); <span class="hljs-comment">// { arg1: 1, arg2: 2, arg3: 3 }</span></code></pre>
+x; <span class="hljs-comment">// 12</span></code></pre>
 
   
   <hr>
@@ -100,13 +107,13 @@ example(); <span class="hljs-comment">// { arg1: 1, arg2: 2, arg3: 3 }</span></c
     <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
 
     <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>

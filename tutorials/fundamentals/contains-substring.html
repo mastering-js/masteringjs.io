@@ -76,8 +76,7 @@
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
 
 str.includes(<span class="hljs-string">'Stark'</span>); <span class="hljs-comment">// true</span>
-str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>You can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#Browser_compatibility"><code>String#includes()</code> in all modern browsers <strong>except</strong> Internet Explorer</a>. You can also use <code>String#includes()</code> in Node.js <code>&gt;= 4.0.0</code>.</p>
 <img src="/assets/includes-browser-compat.png">
 
@@ -86,8 +85,7 @@ str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
 
 str.indexOf(<span class="hljs-string">'Stark'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
-str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 <p>In general, if you have any doubt about whether code will run in an environment that supports <code>includes()</code>, you should use <code>indexOf()</code>. The <code>includes()</code> function&#39;s syntax is only marginally more concise than <code>indexOf()</code>.</p>
 <h2 id="case-insensitive-search"><a href="/tutorials/fundamentals/compare-strings-ignore-case">Case Insensitive Search</a></h2>
 <p>Both <code>String#includes()</code> and <code>String#indexOf()</code> are case sensitive. Neither function supports regular expressions. To do case insensitive search, you can use regular expressions and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String#match()</code> function</a>, or you can convert both the string and substring to lower case using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase"><code>String#toLowerCase()</code> function</a>.</p>
@@ -103,8 +101,7 @@ str.toLowerCase().includes(<span class="hljs-string">'Stark'</span>.toLowerCase(
 str.toLowerCase().indexOf(<span class="hljs-string">'Stark'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
 
 str.toLowerCase().includes(<span class="hljs-string">'Snow'</span>.toLowerCase()); <span class="hljs-comment">// false</span>
-str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 
   
   <hr>
@@ -112,7 +109,10 @@ str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase())
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With and as Functions</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
 
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
@@ -128,9 +128,6 @@ str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase())
   
 
     <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/compare-objects">How to Compare Objects in JavaScript</a></li>
   
     </ul>
   
