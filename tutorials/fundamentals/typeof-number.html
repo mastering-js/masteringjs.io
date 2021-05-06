@@ -87,16 +87,28 @@ different primitives.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>n;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'bigint'</span></code></pre>
 <h2 id="nans">NaNs</h2>
-<p><a href="/tutorials/fundamentals/nan"><code>NaNs</code></a> are a bit tricky as even though it is
-an acronym for <code>Not a Number</code>, it will return <code>&#39;number&#39;</code>.</p>
+<p>Using <code>typeof</code> to check whether a value is a valid number as a caveat.
+<a href="/tutorials/fundamentals/nan"><code>NaN</code></a> is tricky because, even though it is
+an acronym for &quot;Not a Number&quot;, <code>typeof</code> returns <code>&#39;number&#39;</code> for <code>NaN</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// 'number'</span></code></pre>
 <p>To check for a valid number, you must use a combination of <code>typeof</code> and
 <code>Number.isNaN()</code>:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-number">42</span>;
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'number'</span> &amp;&amp; !<span class="hljs-built_in">Number</span>.isNaN(x)) {
-    x = <span class="hljs-number">12</span>;
+  x = <span class="hljs-number">12</span>;
 }
 x; <span class="hljs-comment">// 12</span></code></pre>
+<h2 id="numberissafeinteger"><code>Number.isSafeInteger()</code></h2>
+<p>JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger"><code>Number.isSafeInteger()</code> function</a> that neatly handles checking if a value is an integer, including checking that the value is not <code>NaN</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-number">42</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-number">0</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-number">-1</span>);
+
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-number">3.14</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-string">'42'</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-literal">null</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">Number</span>.isSafeInteger(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// false</span></code></pre>
+<p>If you want to check whether a value is a valid integer, <code>Number.isSafeInteger()</code> is the right choice. The only downside is that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger#browser_compatibility">Internet Explorer does <strong>not</strong> support <code>Number.isSafeInteger()</code></a>, so you may need a polyfill if you support legacy browsers.</p>
 
   
   <hr>
