@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Convert Decimal to Binary - Mastering JS</title>
+
+    <meta property="og:title" content="Convert Decimal to Binary" />
+    <meta property="og:site_name" content="Mastering JS" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
+    <meta name="description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
+    <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
+    <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
+    <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://masteringjs.io/assets/logo.png" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="/assets/github.css" />
+  
+    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="allwrapper">
+      
+<div class="nav">
+  <div class="branding">
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="Mastering JS Logo">
+    </div>
+    <div class="name">
+      <a href="/">Mastering JS</a>
+    </div>
+    <div class="links">
+      <a href="/all">Tutorials</a>
+      <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+      <a href="/ebooks/mastering-mongoose">eBooks</a>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<label class="hamburger-menu" for="burger-check">
+  &#x2630;
+</label>
+<input id="burger-check" class="burger-check" type="checkbox" style="display: none" />
+<div class="links-mobile">
+  <a href="/all">Tutorials</a>
+  <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
+  <a href="/ebooks/mastering-mongoose">eBooks</a>
+</div>
+
+      <div class="content">
+        
+  <div class="breadcrumbs">
+    <a href="/all">Tutorials</a>
+    /
+    <a href="/fundamentals">Fundamentals</a>
+    /
+  </div>
+  <h1>Convert Decimal to Binary</h1>
+  <div class="date">
+    May 7, 2021
+  </div>
+  <div id="default_masteringjsio"></div>
+  <script>
+	(function(){
+	  if(typeof _bsa !== 'undefined' && _bsa) {
+	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+	  }
+	})();
+	</script>
+  <p>A <a href="https://en.wikipedia.org/wiki/Binary_number">binary number</a> is a number expressed in base-2, as opposed to conventional decimal numbers in base-10.</p>
+<p>Converting decimal numbers to binary in JavaScript is easy.
+For example, <code>let x = 42</code> creates a new variable <code>x</code> that contains the base 10 number <code>42</code>.
+JavaScript numbers have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString"><code>toString()</code> method</a> that takes a <code>radix</code> parameter.
+Calling <code>x.toString(2)</code> tells JavaScript to convert <code>x</code> to a string containing the binary representation of <code>42</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;
+
+x.toString(<span class="hljs-number">2</span>); <span class="hljs-comment">// '101010'</span></code></pre>
+<p>The <code>toString()</code> method also handles non-integers and negative numbers. For example:</p>
+<pre><code class="language-javascript">x = <span class="hljs-number">3.14</span>;
+x.toString(<span class="hljs-number">2</span>); <span class="hljs-comment">// '11.001000111101011100001010001111010111000010100011111'</span>
+
+x = <span class="hljs-number">-7</span>;
+x.string(<span class="hljs-number">2</span>); <span class="hljs-comment">// '-111'</span></code></pre>
+<p>Below is a live calculator.</p>
+<input type="number" id="decimal" value="42" />
+-> <span id="result"></span>
+<script>
+  document.querySelector('#result').innerHTML = parseFloat(document.querySelector('#decimal').value).toString(2);
+  document.querySelector('#decimal').addEventListener('change', function() {
+    const value = parseFloat(document.querySelector('#decimal').value);
+    if (value == null || isNaN(value)) {
+      return;
+    } 
+    document.querySelector('#result').innerHTML = value.toString(2);
+  });
+</script>
+
+<h2 id="mental-math">Mental Math</h2>
+<p>How do you quickly convert <code>7</code> to <code>111</code> in your head?
+It takes some practice to make it easy, but here&#39;s <a href="https://www.tutorialspoint.com/how-to-convert-decimal-to-binary">the procedure</a> to convert a positive integer <code>v</code> to a binary string:</p>
+<ul>
+<li>Start with an empty string</li>
+<li>Take <code>v</code> <a href="/tutorials/fundamentals/modulus">modulo</a> 2 and add it to the end of the string</li>
+<li>Repeat with <code>Math.floor(v / 2)</code> until you get to 0 or 1</li>
+</ul>
+<p>Below is a JavaScript function that implements the above procedure:</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toBinary</span>(<span class="hljs-params">v, str</span>) </span>{
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Number</span>.isSafeInteger(v) || v &lt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'v must be a non-negative integer'</span>);
+  }
+  <span class="hljs-keyword">if</span> (v === <span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'1'</span>;
+  }
+  <span class="hljs-keyword">if</span> (v === <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'0'</span>;
+  }
+  <span class="hljs-keyword">return</span> toBinary(<span class="hljs-built_in">Math</span>.floor(v / <span class="hljs-number">2</span>)) + (v % <span class="hljs-number">2</span>);
+}</code></pre>
+<p>Here&#39;s what the procedure looks like with 42:</p>
+<ol>
+<li><code>42 % 2 === 0</code>, &#39;0&#39;</li>
+<li><code>21 % 2 === 1</code>, &#39;10&#39;</li>
+<li><code>10 % 2 === 0</code>, &#39;010&#39;</li>
+<li><code>5 % 2 === 1</code>, &#39;1010&#39;</li>
+<li><code>2 % 2 === 0</code>, &#39;01010&#39;</li>
+<li><code>1</code>, &#39;101010&#39;</li>
+</ol>
+
+  
+  <hr>
+  
+    <h2>More Fundamentals Tutorials</h2>
+    <ul>
+    
+    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
+  
+    </ul>
+  
+
+      </div>
+
+      
+
+<script type="text/javascript">
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://g0a3nbw0xa.execute-api.us-east-1.amazonaws.com/prod/track', true);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {};
+  xhr.send(JSON.stringify({
+    path: window.location.pathname,
+    hostname: window.location.hostname
+  }));
+</script>
+
+
+      
+    </div>
+
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+  </body>
+</html>
