@@ -8,7 +8,8 @@ const app = new Vue({
   data() {
     return {
       jobs: null,
-      path: this.$route.path
+      path: this.$route.path,
+      loading: true
     }
   },
   methods: {
@@ -30,7 +31,7 @@ const app = new Vue({
   template: `
     <div>
       <h1>Find Your Dream JavaScript Developer Job</h1>
-
+      <div v-if="!loading">
       <div class="post">
         <div class="description">
           Hiring JavaScript developers? Reach <b>100,000+</b> JavaScript developers on one of the top JS tutorial sites.
@@ -63,6 +64,8 @@ const app = new Vue({
           </div>
         </div>
       </div>
+      </div>
+      <div v-else>Loading...</div>
     </div>
   `,
   async mounted() {
@@ -80,7 +83,7 @@ const app = new Vue({
         }
       });
     }
-
+    this.loading = !this.loading;
   }
 });
 app.$mount('#content');

@@ -19,7 +19,8 @@ const app = new Vue({
     invoiceNotes: null,
     tags: 'like,this',
     displayImage: true,
-    previewImage: null
+    previewImage: null,
+    loading: false
   }),
   updated() {
     console.log(new Date(), 'State Change:', this.$data);
@@ -41,6 +42,7 @@ const app = new Vue({
   },
   methods: {
     async postJob() {
+      this.loading = true;
       this.tags = this.tags.split(",");
       const formData = new FormData();
       formData.append('logo', this.logo);
@@ -93,6 +95,7 @@ const app = new Vue({
   },
   template: `
     <div>
+    <div v-if="!loading">
       <h1>Hire JavaScript Developers</h1>
       <form action="" @submit.prevent="postJob()">
         <div>
@@ -164,6 +167,8 @@ const app = new Vue({
         </div>
         <button id="checkout-button" type="submit">Submit</button>
       </form>
+      </div>
+      <div v-else>Loading...</div>
     </div>
   `,
 });
