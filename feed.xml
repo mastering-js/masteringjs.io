@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Thu, 06 May 2021 17:57:50 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 06 May 2021 20:18:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,12 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[Convert Decimal to Binary]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/decimal-to-binary</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/decimal-to-binary</guid>
+            <pubDate>Fri, 07 May 2021 04:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Use typeof With Functions]]></title>
             <link>https://masteringjs.io/tutorials/fundamentals/typeof-function</link>

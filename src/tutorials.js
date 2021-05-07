@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Convert Decimal to Binary',
+    raw: './tutorials/fundamentals/decimal-to-binary.md',
+    url: '/tutorials/fundamentals/decimal-to-binary',
+    description: 'JavaScript\'s typeof operator can be used with a function-like syntax. But it is technically not a function. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-05-07')
+  },
+  {
     title: 'How to Use typeof With Functions',
     raw: './tutorials/fundamentals/typeof-function.md',
     url: '/tutorials/fundamentals/typeof-function',
