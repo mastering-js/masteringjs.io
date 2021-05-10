@@ -24,11 +24,9 @@ module.exports = ({ tutorials, tutorial }) => `
   ${tutorial.content}
   ${cta(tutorial)}
   <hr>
-  <div id="jobs" class="jobs"></div>
-  <script src="https://unpkg.com/vue@2.x"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="../../src/client/vuelistjobs.js"></script>
+  <div id="jobs" class="job-listing">
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   ${more(tutorials, tutorial)}
 `;
 
