@@ -25,9 +25,9 @@ const app = new Vue({
         this.path = this.$route.path;
       }
     },
-    async apply(id,link) {
+    async apply(id) {
       console.log('id', id);
-      await axios.get(server+'/api/link/'+id).then((res) => {return res.json()});
+      window.location.href = await axios.get(server+'/api/link/'+id).then((res) => {return res.data.job.url});
     }
   },
   watch: {
@@ -67,7 +67,7 @@ const app = new Vue({
           <div v-show="job.isActive">
           <router-view></router-view>
           </div>
-          <div class="apply-button" @click="apply(job._id, job.url)">
+          <div class="apply-button" @click="apply(job._id)">
             Apply
           </div>
         </div>
