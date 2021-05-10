@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Calculate Standard Deviation in JavaScript - Mastering JS</title>
+    <title>How to Use typeof With Functions - Mastering JS</title>
 
-    <meta property="og:title" content="Calculate Standard Deviation in JavaScript" />
+    <meta property="og:title" content="How to Use typeof With Functions" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Use Mathjs to calculate standard deviation in Node.js and the browser." />
-    <meta name="description" content="Use Mathjs to calculate standard deviation in Node.js and the browser." />
+    <meta property="og:description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
+    <meta name="description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
+  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -37,7 +38,6 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
-      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Calculate Standard Deviation in JavaScript</h1>
+  <h1>How to Use typeof With Functions</h1>
   <div class="date">
-    May 1, 2019
+    May 6, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,37 +72,25 @@
 	  }
 	})();
 	</script>
-  <p><a href="https://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is a measure of how far a set of numbers deviates from the average. Small standard deviation means the numbers are all relatively close to the mean. JavaScript doesn&#39;t have a built-in standard deviation function, but <a href="https://www.npmjs.com/package/mathjs">Math.js</a> is a well supported library with a full featured standard deviation function.</p>
-<p>Here&#39;s an example of using <a href="https://mathjs.org/docs/reference/functions/std.html">Math.js&#39; <code>std()</code> function</a> to calculate standard deviation.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
-
-<span class="hljs-comment">// Can pass an array to the `stddev()` function:</span>
-math.std([<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// 0</span>
-
-<span class="hljs-comment">// Or a list of arguments (also called a "spread")</span>
-math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span>
-</code></pre>
-<p>Math.js also has support for bias correction. Math.js&#39; <code>std()</code> function uses <a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel&#39;s correction</a> by default, but takes a 2nd argument <code>normalization</code> for configuring this. By default, given an array of length <code>n</code>, the <code>std()</code> function divides the variance by <code>n - 1</code>. You can pass <code>&#39;uncorrected&#39;</code> to make <code>std()</code> divide by <code>n</code>, or <code>&#39;biased&#39;</code> to make <code>std()</code> divide by <code>n + 1</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
-
-<span class="hljs-comment">// Must pass an array if you're using options</span>
-math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
-math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span>
-</code></pre>
+  <p><a href="/tutorials/fundamentals/typeof"><code>typeof</code></a> is a useful operator that returns the <a href="/tutorials/fundamentals/primitives">primitive type</a> of the given variable.
+<code>typeof</code> can be used with function-like syntax, however, it is <strong>not</strong> a function.
+Be careful, you will get a syntax error if you try to use <code>typeof</code> as a variable!</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span>(<span class="hljs-number">42</span>); <span class="hljs-comment">// `number`</span>
+<span class="hljs-keyword">typeof</span>(<span class="hljs-keyword">typeof</span>); <span class="hljs-comment">// syntax error</span></code></pre>
+<p>You can use <code>typeof</code> on functions, and it will return as
+<code>function</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>);
+}
+<span class="hljs-keyword">typeof</span> test; <span class="hljs-comment">// 'function'</span></code></pre>
 
   
   <hr>
-  <div id="jobs" class="job-listing">
-  </div>
-  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
@@ -119,10 +107,14 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
 
     <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
+
+    <li><a href="/tutorials/fundamentals/convert-string-to-array">Convert a String to an Array in JavaScript</a></li>
+  
     </ul>
   
 
       </div>
+
       
 
 <script type="text/javascript">
@@ -141,6 +133,7 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
 
       
     </div>
+
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>
