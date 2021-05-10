@@ -24,7 +24,9 @@ const app = new Vue({
         this.path = this.$route.path;
       }
     },
-    apply() {
+    async apply(id, link) {
+      await axios.post(server+'/api/link/'+id).then((res) => console.log(res));
+      window.location.href = link;
 
     }
   },
@@ -65,7 +67,7 @@ const app = new Vue({
           <div v-show="job.isActive">
           <router-view></router-view>
           </div>
-          <div class="apply-button" @click="apply()">
+          <div class="apply-button" @click="apply(job._id, job.url)">
             Apply
           </div>
         </div>
