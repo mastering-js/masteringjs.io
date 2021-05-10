@@ -4,9 +4,9 @@ async function getJobs() {
   var jobs = await fetch(server+'/api/listjobs').then((res) => {
     return res.json();
   }).then((data) => {return data.jobs.splice(0,3)}).catch((err) => console.log(err));
-  
+  var insert='';
   for(let i = 0; i < jobs.length; i++) {
-    document.getElementById('jobs').innerHTML += `
+    insert += `
         <a href="'/jobs/' + ${jobs[i]._id}">
           <div v-if="job.logo" class="company-logo">
             <img src="${jobs[i].logo}" />
@@ -19,12 +19,13 @@ async function getJobs() {
         </a>
     `;
   }
-  document.getElementById('jobs').innerHTML += `
+  insert += `
   <div>
   <div class="button jobs-view-more">
     View more jobs!
   </div>
 </div>
 `;
+document.getElementById('jobs').innerHTML = insert;
 }
 getJobs();
