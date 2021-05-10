@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Determine if an Object is an Object',
+    raw: './tutorials/fundamentals/typeof-object.md',
+    url: '/tutorials/fundamentals/typeof-object',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-10')
+  },
+  {
     title: 'Convert Decimal to Binary',
     raw: './tutorials/fundamentals/decimal-to-binary.md',
     url: '/tutorials/fundamentals/decimal-to-binary',

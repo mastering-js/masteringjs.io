@@ -90,7 +90,8 @@ thenable. For example, you can use thenables in a promise chain:</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> thenable).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     v; <span class="hljs-comment">// 42</span>
-  });</code></pre>
+  });
+</code></pre>
 <p>You can also use thenables with <code>await</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
 <span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
@@ -102,7 +103,8 @@ thenable. For example, you can use thenables in a promise chain:</p>
 };
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> thenable;
-v; <span class="hljs-comment">// 42</span></code></pre>
+v; <span class="hljs-comment">// 42</span>
+</code></pre>
 <h2 id="thenables-in-the-wild">Thenables in the Wild</h2>
 <p>Many libraries implement thenables to enable async/await support.
 For example, <a href="/tutorials/mongoose/query">Mongoose queries</a> are
@@ -125,7 +127,8 @@ Mongoose queries nor Superagent requests are actually promises.</p>
 p <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> p;
-v; <span class="hljs-comment">// 42</span></code></pre>
+v; <span class="hljs-comment">// 42</span>
+</code></pre>
 
   <hr>
 <div class="cta">
@@ -148,6 +151,9 @@ v; <span class="hljs-comment">// 42</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if an Object is an Object</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -164,9 +170,6 @@ v; <span class="hljs-comment">// 42</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   
