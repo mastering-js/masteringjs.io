@@ -1,5 +1,6 @@
 
-const server = "https://masteringjs-job-board.azurewebsites.net";
+//const server = "https://masteringjs-job-board.azurewebsites.net";
+const server = "http://localhost:7071"
 // adding mode history breaks the router
 const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} + {{$route.params.description}}</h1>'}}]});
 
@@ -24,10 +25,9 @@ const app = new Vue({
         this.path = this.$route.path;
       }
     },
-    async apply(id, link) {
-      await axios.post(server+'/api/link/'+id).then((res) => console.log(res));
-      window.location.href = link;
-
+    async apply(id,link) {
+      console.log('id', id);
+      await axios.get(server+'/api/link/'+id).then((res) => {return res.json()});
     }
   },
   watch: {

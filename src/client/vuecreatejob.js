@@ -1,5 +1,6 @@
 
 // loads Jobs
+// const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071";
 const payment = server+'/api/stripeCheckout';
 
