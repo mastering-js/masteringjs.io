@@ -4,9 +4,7 @@ async function getJobs() {
   var jobs = await fetch(server+'/api/listjobs').then((res) => {
     return res.json();
   }).then((data) => {return data.jobs.splice(0,3)}).catch((err) => console.log(err));
-  console.log(jobs);
-
-  // write a for loop here and append to a single string with the
+  
   for(let i = 0; i < jobs.length; i++) {
     document.getElementById('jobs').innerHTML += `
         <a href="'/jobs/' + ${jobs[i]._id}">
