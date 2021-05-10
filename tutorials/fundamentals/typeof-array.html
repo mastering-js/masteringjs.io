@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if an Array is an Array - Mastering JS</title>
+    <title>How to Determine if a Variable is an Array - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if an Array is an Array" />
+    <meta property="og:title" content="How to Determine if a Variable is an Array" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="Placeholder Description" />
@@ -60,7 +60,7 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if an Array is an Array</h1>
+  <h1>How to Determine if a Variable is an Array</h1>
   <div class="date">
     May 10, 2021
   </div>
@@ -72,19 +72,21 @@
 	  }
 	})();
 	</script>
-  <p>Arrays are a special case when using the <code>typeof</code> operator.
-To determine if an array is an array using <code>typeof</code>, you don&#39;t.
-Instead you should use <code>Array.isArray()</code>. The reason why is that
-if you were to use <code>typeof</code>, it would return <code>&#39;object&#39;</code>, not <code>&#39;array&#39;</code>.</p>
+  <p>You shouldn&#39;t use the <code>typeof</code> operator to check whether a value
+is an array, because <code>typeof</code> cannot distinguish between arrays and
+objects. Instead you should use <code>Array.isArray()</code> as if you were to
+use <code>typeof</code>, it would return <code>&#39;object&#39;</code>, not <code>&#39;array&#39;</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
 <span class="hljs-keyword">typeof</span> array; <span class="hljs-comment">// `object`</span></code></pre>
 <p><code>Array.isArray()</code> takes one parameter and will return true only
 if the given value is an array. Anything else will return false.
 You can also use <code>instanceof</code> to determine if a value is an array,
-however, <code>Array.isArray()</code> is more fullproof as <code>instanceof</code> will
+however, <code>Array.isArray()</code> is fullproof as <code>instanceof</code> will
 not return true on an iframe.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
 <span class="hljs-built_in">Array</span>.isArray(array); <span class="hljs-comment">// true</span></code></pre>
+<p><strong>Note:</strong> ES6 introduced the ability to subclass <code>Array</code>. The good news
+is that <code>Array.isArray()</code> will work on these types of arrays.</p>
 
   
   <hr>
