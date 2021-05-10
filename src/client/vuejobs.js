@@ -23,6 +23,9 @@ const app = new Vue({
       } else {
         this.path = this.$route.path;
       }
+    },
+    apply() {
+
     }
   },
   watch: {
@@ -62,7 +65,7 @@ const app = new Vue({
           <div v-show="job.isActive">
           <router-view></router-view>
           </div>
-          <div class="apply-button">
+          <div class="apply-button" @click="apply()">
             Apply
           </div>
         </div>
