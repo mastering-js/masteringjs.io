@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use typeof With Functions - Mastering JS</title>
+    <title>How to Determine if an Array is an Array - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use typeof With Functions" />
+    <meta property="og:title" content="How to Determine if an Array is an Array" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
-    <meta name="description" content="JavaScript's typeof operator can be used with a function-like syntax. But it is technically not a function. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Use typeof With Functions</h1>
+  <h1>How to Determine if an Array is an Array</h1>
   <div class="date">
-    May 6, 2021
+    May 10, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,17 +72,19 @@
 	  }
 	})();
 	</script>
-  <p><a href="/tutorials/fundamentals/typeof"><code>typeof</code></a> is a useful operator that returns the <a href="/tutorials/fundamentals/primitives">primitive type</a> of the given variable.
-<code>typeof</code> can be used with function-like syntax, however, it is <strong>not</strong> a function.
-Be careful, you will get a syntax error if you try to use <code>typeof</code> as a variable!</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">typeof</span>(<span class="hljs-number">42</span>); <span class="hljs-comment">// `number`</span>
-<span class="hljs-keyword">typeof</span>(<span class="hljs-keyword">typeof</span>); <span class="hljs-comment">// syntax error</span></code></pre>
-<p>You can use <code>typeof</code> on functions, and it will return as
-<code>function</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>);
-}
-<span class="hljs-keyword">typeof</span> test; <span class="hljs-comment">// 'function'</span></code></pre>
+  <p>Arrays are a special case when using the <code>typeof</code> operator.
+To determine if an array is an array using <code>typeof</code>, you don&#39;t.
+Instead you should use <code>Array.isArray()</code>. The reason why is that
+if you were to use <code>typeof</code>, it would return <code>&#39;object&#39;</code>, not <code>&#39;array&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
+<span class="hljs-keyword">typeof</span> array; <span class="hljs-comment">// `object`</span></code></pre>
+<p><code>Array.isArray()</code> takes one parameter and will return true only
+if the given value is an array. Anything else will return false.
+You can also use <code>instanceof</code> to determine if a value is an array,
+however, <code>Array.isArray()</code> is more fullproof as <code>instanceof</code> will
+not return true on an iframe.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
+<span class="hljs-built_in">Array</span>.isArray(array); <span class="hljs-comment">// true</span></code></pre>
 
   
   <hr>
@@ -90,10 +92,10 @@ Be careful, you will get a syntax error if you try to use <code>typeof</code> as
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if an Array is an Array</a></li>
+    <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>

@@ -107,7 +107,8 @@ most flexible way to interact with Puppeteer, because it lets you
 control Chrome using browser APIs like <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector"><code>document.querySelector()</code></a>.</p>
 <p>For example, the below script searches for &quot;JavaScript&quot; on Google,
 and gets the top 10 results.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> puppeteer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'puppeteer'</span>);
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> puppeteer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'puppeteer'</span>);
 
 <span class="hljs-comment">// Run in the background (headless mode)</span>
 <span class="hljs-keyword">const</span> browser = <span class="hljs-keyword">await</span> puppeteer.launch({ <span class="hljs-attr">headless</span>: <span class="hljs-literal">true</span> });
@@ -135,12 +136,14 @@ and gets the top 10 results.</p>
     map(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> el.innerHTML);
 });
 
-<span class="hljs-keyword">await</span> browser.close();</code></pre>
+<span class="hljs-keyword">await</span> browser.close();
+</code></pre>
 <h2 id="using-puppeteer-with-a-local-web-server">Using Puppeteer with a Local Web Server</h2>
 <p>Because Node.js uses an event loop, it is easy to start an Express
 server and connect Puppeteer to your Express server in the same
 script. This means it is easy to <a href="https://thecodebarbarian.com/testing-vue-apps-with-puppeteer-and-mocha">test Vue apps with Puppeteer</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 <span class="hljs-keyword">const</span> puppeteer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'puppeteer'</span>);
 
 <span class="hljs-comment">// Start an Express app that renders a Vue app with a counter</span>
@@ -195,7 +198,8 @@ count = <span class="hljs-keyword">await</span> page.evaluate(<span class="hljs-
 count; <span class="hljs-comment">// 'Count: 1'</span>
 
 <span class="hljs-keyword">await</span> browser.close();
-<span class="hljs-keyword">await</span> server.close();</code></pre>
+<span class="hljs-keyword">await</span> server.close();
+</code></pre>
 
   
   <hr>
@@ -203,6 +207,9 @@ count; <span class="hljs-comment">// 'Count: 1'</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if an Array is an Array</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -219,9 +226,6 @@ count; <span class="hljs-comment">// 'Count: 1'</span>
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   

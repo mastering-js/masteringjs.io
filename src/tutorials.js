@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Determine if an Array is an Array',
+    raw: './tutorials/fundamentals/typeof-array.md',
+    url: '/tutorials/fundamentals/typeof-array',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-10')
+  },
+  {
     title: 'Convert Decimal to Binary',
     raw: './tutorials/fundamentals/decimal-to-binary.md',
     url: '/tutorials/fundamentals/decimal-to-binary',
