@@ -7,7 +7,7 @@ async function getJobs() {
   var insert='';
   for(let i = 0; i < jobs.length; i++) {
     insert += `
-        <a href="/jobs/${jobs[i]._id}">
+        <a href="/jobs#/${jobs[i]._id}">
           <div v-if="job.logo" class="company-logo">
             <img src="${jobs[i].logo}" />
           </div>
