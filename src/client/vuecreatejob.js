@@ -92,6 +92,12 @@ const app = new Vue({
     md() {
       if(this.description == null) return;
       return marked(this.description);
+    },
+    logoWithPlaceholder() {
+      if (this.logo) {
+        return this.logo;
+      }
+      return '/assets/logo.svg';
     }
   },
   template: `
@@ -152,20 +158,21 @@ const app = new Vue({
           <label> Invoice Notes </label>
           <input type="text" v-model="invoiceNotes" />
         </div>
-        <div>
-        <h1>{{title}}</h1>
-        <h2>{{company}}</h2>
-        <img :src="previewImage" style="width:50%"/>
-        <h3>{{location}}</h3>
-        <div v-html="md"></div>
-        <h3>{{tags}}</h3>
-        <h3>Click here to apply: {{url}}</h3>
-        <h3>To apply: {{instructions}}</h3>
-        <h3>Email here if any questions: {{email}}</h3>
-        <h3>{{feedback}}</h3>
-        <h3>Invoice Address: {{invoiceAddress}}</h3>
-        <h3>Notes: {{invoiceNotes}}</h3>
+
+        <h2>Preview</h2>
+        <div id="jobs" class="job-listing" style="position: relative; top: 0px; right: 0px">
+          <a v-bind:href="'/jobs'">
+            <div class="company-logo">
+              <img v-bind:src="logoWithPlaceholder" />
+            </div>
+            <div class="description">
+              <div class="company">{{company}}</div>
+              <div class="title">{{title}}</div>
+              <div class="location">{{location}}</div>
+            </div>
+          </a>
         </div>
+
         <button id="checkout-button" type="submit">Submit</button>
       </form>
       </div>
