@@ -21,7 +21,8 @@ const app = new Vue({
     tags: 'like,this',
     displayImage: true,
     previewImage: null,
-    loading: false
+    loading: false,
+    isActive: false
   }),
   updated() {
     console.log(new Date(), 'State Change:', this.$data);
@@ -98,6 +99,18 @@ const app = new Vue({
         return this.logo;
       }
       return '/assets/logo.svg';
+    },
+    companyWithPlaceholder() {
+      if (this.company) {
+        return this.company;
+      }
+      return 'Placeholder, LLC';
+    },
+    titleWithPlaceholder() {
+      if (this.title) {
+        return this.title;
+      }
+      return 'Software Engineer 3.14';
     }
   },
   template: `
@@ -107,11 +120,11 @@ const app = new Vue({
       <form action="" @submit.prevent="postJob()">
         <div>
           <label> Company Name </label>
-          <input type="text" v-model="company" required />
+          <input type="text" v-model="company" required placeholder="Placeholder, LLC" />
         </div>
         <div>
-          <label> Position </label>
-          <input type="text" v-model="title" required/>
+          <label> Job Title </label>
+          <input type="text" v-model="title" required placeholder="Software Engineer 3.14" />
         </div>
         <div>
           <label> Location </label>
@@ -160,14 +173,37 @@ const app = new Vue({
         </div>
 
         <h2>Preview</h2>
+
+        <h4>Horizontal</h4>
+        <div class="post job">
+          <div class="company-logo">
+            <img v-bind:src="logoWithPlaceholder" />
+          </div>
+          <div class="description">
+            <div>{{companyWithPlaceholder}}</div>
+            <a class="title">{{titleWithPlaceholder}}</a>
+            <div>
+              <div class="location">
+                {{location}}
+              </div>
+            </div>
+          </div>
+          <div v-show="isActive">
+          </div>
+          <div class="apply-button">
+            Apply
+          </div>
+        </div>
+
+        <h4>Vertical</h4>
         <div id="jobs" class="job-listing" style="position: relative; top: 0px; right: 0px">
           <a v-bind:href="'/jobs'">
             <div class="company-logo">
               <img v-bind:src="logoWithPlaceholder" />
             </div>
             <div class="description">
-              <div class="company">{{company}}</div>
-              <div class="title">{{title}}</div>
+              <div class="company">{{companyWithPlaceholder}}</div>
+              <div class="title">{{titleWithPlaceholder}}</div>
               <div class="location">{{location}}</div>
             </div>
           </a>
