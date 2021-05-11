@@ -2,7 +2,7 @@
 //const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071"
 // adding mode history breaks the router
-const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<h1>Hello {{$route.params.id}} + {{$route.params.description}}</h1>'}}]});
+const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<div>Hello {{$route.params.id}} + {{$route.params.description}}</div>'}}]});
 
 // loads Jobs
 const app = new Vue({
@@ -14,9 +14,10 @@ const app = new Vue({
     }
   },
   methods: {
-    toggleDescription(j) {
+    async toggleDescription(j) {
       if(j.isActive == false) {
         // do post request here for job stats view
+        await axios.get(server+'/api/views/'+j._id);
       }
       j.isActive = !j.isActive;
       if(j.isActive == false && this.path === this.$route.path) {
@@ -26,7 +27,6 @@ const app = new Vue({
       }
     },
     async apply(id) {
-      console.log('id', id);
       window.location.href = await axios.get(server+'/api/link/'+id).then((res) => {return res.data.job.url});
     }
   },
@@ -80,12 +80,19 @@ const app = new Vue({
     const res = await axios.get(server + '/api/listjobs');
 
     this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
-    // could probably put this bottom statement in the object.assign method
-    console.log(res.data.jobs);
+    /*
+    Array.from(this.jobs).forEach((job) => {
+      if(typeof job.description !== 'undefined') {
+        console.log('Hello')
+        job.description = marked(job.description);
+      }
+    });
+    */
     if (this.$route.path != '/') {
       Array.from(this.jobs).forEach((job) => {
         if(job._id === this.$route.params.id) {
           // put post request here for jobstats increment
+          axios.get(server+'/api/views/'+job._id).then((res) => {return res});
           job.isActive = true;
         }
       });

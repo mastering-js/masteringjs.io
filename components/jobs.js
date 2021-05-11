@@ -11,6 +11,7 @@ module.exports = () =>
   <link rel="stylesheet" href="/assets/jobs.css" />\
   <script src="https://unpkg.com/vue@2.x"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
