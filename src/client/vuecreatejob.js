@@ -46,11 +46,9 @@ const app = new Vue({
     async postJob() {
       this.loading = true;
       this.tags = this.tags.split(",");
-      const formData = new FormData();
-      formData.append('logo', this.logo);
-      const headers = {'Content-Type': 'multipart/form-data'};
      let clientid = await axios.post(server + '/api/createJob', {
         company: this.company,
+        logo: this.logo,
         title: this.title,
         location: this.location,
         email: this.email,
@@ -62,8 +60,7 @@ const app = new Vue({
         feedback: this.feedback,
         invoiceAddress: this.invoiceAddress,
         invoiceNotes: this.invoiceNotes,
-        // logo: formData
-      }, {headers}).then((response) => {return response.data.job._id});
+      }).then((response) => {return response.data.job._id});
       console.log('Done');
       var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
       await axios.post(payment, {sticky:this.sticky, clientReferenceId: clientid}).then(function(response) {
@@ -77,16 +74,6 @@ const app = new Vue({
       }).catch(function(error) {
         console.error('Error', error);
       });
-    },
-    assignImage() {
-      if (this.$refs.file.files[0].name.includes(".png") || this.$refs.file.files[0].name.includes(".jpg")) {
-        this.logo = this.$refs.file.files[0];
-        this.previewImage = URL.createObjectURL(this.logo);
-        this.displayImage = true;
-      } else {
-        this.displayImage = false;
-      }
-      
     },
   },
   computed: {
@@ -145,7 +132,7 @@ const app = new Vue({
         <div>
           <div><label> Company Image </label></div>
           <h3 v-if="!displayImage">That file type is not supported</h3>
-          <input type="file" @change="assignImage" ref = "file" required/>
+          <input type="url" v-model="logo" required/>
         </div>
         <div>
           <label> Apply URL </label>
