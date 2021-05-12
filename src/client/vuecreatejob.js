@@ -98,104 +98,124 @@ const app = new Vue({
   },
   template: `
     <div>
-    <div v-if="!loading">
-      <h1>Hire JavaScript Developers</h1>
-      <form action="" @submit.prevent="postJob()">
-        <div>
-          <label> Company Name </label>
-          <input type="text" v-model="company" required placeholder="Placeholder, LLC" />
-        </div>
-        <div>
-          <label> Job Title </label>
-          <input type="text" v-model="title" required placeholder="Software Engineer 3.14" />
-        </div>
-        <div>
-          <label> Location </label>
-          <input type="text" v-model="location" required/>
-        </div>
-        <div>
-          <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
-          <input type="checkbox" v-model="sticky" />
-        </div>
-        <div>
-          <div><label>Description</label></div>
-          <textarea v-model="description" required>Enter Text Here</textarea>
-        </div>
-         <div>
-        <div><label> Technical Skills(Comma separated values, no spaces) </label></div>
-        <input type="text" v-model="tags" required />
-         </div>
-        <div>
-          <div><label> Company Image </label></div>
-          <h3 v-if="!displayImage">That file type is not supported</h3>
-          <input type="url" v-model="logo" required/>
-        </div>
-        <div>
-          <label> Apply URL </label>
-          <input type="url" v-model="url" required/>
-        </div>
-        <div>
-          <div><label> How To Apply </label></div>
-          <textarea v-model="instructions" required>To Apply</textarea>
-        </div>
-        <div>
-          <label> Company Email </label>
-          <input type="email" v-model="email" required/>
-        </div>
-        <div>
-          <div><label> Feedback </label></div>
-          <textarea v-model="feedback" required>Type here</textarea>
-        </div>
-        <div>
-          <label> Invoice Address </label>
-          <input type="text" v-model="invoiceAddress" />
-        </div>
-        <div>
-          <label> Invoice Notes </label>
-          <input type="text" v-model="invoiceNotes" />
-        </div>
-
-        <h2>Preview</h2>
-
-        <h4>Horizontal</h4>
-        <div class="post job">
-          <div class="company-logo">
-            <img v-bind:src="logoWithPlaceholder" />
-          </div>
-          <div class="description">
-            <div>{{companyWithPlaceholder}}</div>
-            <a class="title">{{titleWithPlaceholder}}</a>
+      <div class="create-job">
+        <h1>Hire JavaScript Developers</h1>
+        <form action="" @submit.prevent="postJob()">
+          <div class="job-details-panel">
+            <div class="job-details-panel-header">Let's Start</div>
             <div>
-              <div class="location">
-                {{location}}
+              <label> Company Name* </label>
+              <div>
+                <input type="text" v-model="company" required placeholder="Placeholder, LLC" />
+              </div>
+            </div>
+            <div>
+              <label> Job Title* </label>
+              <div>
+                <input type="text" v-model="title" required placeholder="Software Engineer 3.14" />
+              </div>
+            </div>
+            <div>
+              <label> Location* </label>
+              <input type="text" v-model="location" required />
+            </div>
+          </div>
+          <div class="job-details-panel">
+            <div class="job-details-panel-header">Customize</div>
+            <div>
+              <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
+              <div>
+                <input type="checkbox" v-model="sticky" />
               </div>
             </div>
           </div>
-          <div v-show="isActive">
-          </div>
-          <div class="apply-button">
-            Apply
-          </div>
-        </div>
-
-        <h4>Vertical</h4>
-        <div id="jobs" class="job-listing" style="position: relative; top: 0px; right: 0px">
-          <a v-bind:href="'/jobs'">
-            <div class="company-logo">
-              <img v-bind:src="logoWithPlaceholder" />
+          <div class="job-details-panel">
+            <div class="job-details-panel-header">Job Details</div>
+            <div>
+              <div><label>Description*</label></div>
+              <textarea v-model="description" required>Enter Text Here</textarea>
             </div>
-            <div class="description">
-              <div class="company">{{companyWithPlaceholder}}</div>
-              <div class="title">{{titleWithPlaceholder}}</div>
-              <div class="location">{{location}}</div>
+            <div>
+              <label> Technical Skills (Comma separated values, no spaces) </label>
+              <div>
+              <input type="text" v-model="tags" required />
+              </div>
             </div>
-          </a>
-        </div>
+            <div>
+              <label>Company Logo URL*</label>
+              <input type="url" v-model="logo" required/>
+            </div>
+            <div>
+              <label>Apply URL*</label>
+              <input type="url" v-model="url" required/>
+            </div>
+            <div>
+              <div><label> How To Apply </label></div>
+              <textarea v-model="instructions" required>To Apply</textarea>
+            </div>
+          </div>
+          <div class="job-details-panel">
+            <div class="job-details-panel-header">Company</div>
+            <div>
+              <label> Company Email* </label>
+              <input type="email" v-model="email" required/>
+            </div>
+            <div>
+              <div><label> Feedback </label></div>
+              <textarea v-model="feedback" required>Type here</textarea>
+            </div>
+            <div>
+              <label> Invoice Address </label>
+              <input type="text" v-model="invoiceAddress" />
+            </div>
+            <div>
+              <label> Invoice Notes </label>
+              <input type="text" v-model="invoiceNotes" />
+            </div>
+          </div>
+          <div class="job-details-panel">
+            <div class="job-details-panel-header">Preview</div>
+            <div class="post job">
+              <div class="company-logo">
+                <img v-bind:src="logoWithPlaceholder" />
+              </div>
+              <div class="description">
+                <div>{{companyWithPlaceholder}}</div>
+                <a class="title">{{titleWithPlaceholder}}</a>
+                <div>
+                  <div class="location">
+                    {{location}}
+                  </div>
+                </div>
+              </div>
+              <div v-show="isActive">
+              </div>
+              <div class="apply-button">
+                Apply
+              </div>
+            </div>
+          </div>
 
-        <button id="checkout-button" type="submit">Submit</button>
-      </form>
+          <h4>Vertical</h4>
+          <div id="jobs" class="job-listing" style="position: relative; top: 0px; right: 0px">
+            <a v-bind:href="'/jobs'">
+              <div class="company-logo">
+                <img v-bind:src="logoWithPlaceholder" />
+              </div>
+              <div class="description">
+                <div class="company">{{companyWithPlaceholder}}</div>
+                <div class="title">{{titleWithPlaceholder}}</div>
+                <div class="location">{{location}}</div>
+              </div>
+            </a>
+          </div>
+
+          <button id="checkout-button" type="submit">Submit</button>
+        </form>
       </div>
-      <div v-else>Loading...</div>
+      <div class="checkout">
+        <h2>Checkout</h2>
+      </div>
     </div>
   `,
 });

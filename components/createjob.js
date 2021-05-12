@@ -15,6 +15,7 @@ module.exports = () => `
 <body>
   <div id="content"></div>
   <link rel="stylesheet" href="/assets/jobs.css" />
+  <link rel="stylesheet" href="/assets/createjob.css" />
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="../src/client/vuecreatejob.js"></script>
 </body>

@@ -1,0 +1,69 @@
+body {
+  background-color: #f9f9f9;
+}
+
+.content {
+  width: 100%;
+  padding: 0px;
+}
+
+.create-job {
+  width: calc(65% - 28px);
+  padding: 14px;
+  float: left;
+}
+
+.checkout {
+  width: calc(35% - 28px);
+  padding: 14px;
+  float: left;
+}
+
+.create-job input {
+  padding: 7px;
+  background-color: #fbfbfb;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 14px;
+  width: calc(100% - 28px);
+}
+
+.create-job textarea {
+  padding: 7px;
+  background-color: #fbfbfb;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 14px;
+  width: calc(100% - 28px);
+  min-height: 150px;
+}
+
+.create-job label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.create-job .job-details-panel {
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  background-color: #fff;
+}
+
+.create-job .job-details-panel-header {
+  text-align: center;
+  display: inline-block;
+  left: calc(50% - 70px);
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: -14px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  width: 140px;
+  background-color: #fff;
+  border-radius: 6px;
+}
