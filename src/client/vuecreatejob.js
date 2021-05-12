@@ -60,7 +60,7 @@ const app = new Vue({
         instructions: this.instructions,
         feedback: this.feedback,
         invoiceAddress: this.invoiceAddress,
-        invoiceNotes: this.invoiceNotes,company: this.company,
+        invoiceNotes: this.invoiceNotes,
       }).then(function(response) {
         return stripe.redirectToCheckout({sessionId:response.data.id});
       }).then(function(result) {
@@ -144,7 +144,7 @@ const app = new Vue({
         </div>
         <div>
           <div><label> Feedback </label></div>
-          <textarea v-model="feedback" required>Type here</textarea>
+          <textarea v-model="feedback">Type here</textarea>
         </div>
         <div>
           <label> Invoice Address </label>
