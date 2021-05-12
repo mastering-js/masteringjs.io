@@ -9,34 +9,33 @@ const app = new Vue({
   data() {
     return {
       jobs: null,
-      loading: true,
-      description: null
+      loading: true
     }
   },
   methods: {
     async loadJobDetails(j) {
+      j.status = 'LOADING';
       const res = await axios.get(server + '/api/views/' + j._id);
-      this.description = res.data.job.description;
-      j.isActive = !j.isActive;
+      if (j.status !== 'LOADING') {
+        return;
+      }
+      j.description = res.data.job.description;
+      j.status = 'LOADED';
     },
     async toggleDescription(j, ev) {
       ev.preventDefault();
-      if (j.isActive == false) {
+
+      if (j.status === 'DEFAULT') {
         window.location.hash = '#' + j._id;
         this.loadJobDetails(j);
       } else {
-        j.isActive = !j.isActive;
-        this.description = null;
+        j.status = 'DEFAULT';
+        j.description = null;
         window.location.hash = '';
       }
     },
     async apply(id) {
       window.location.href = await axios.get(server+'/api/link/'+id).then((res) => {return res.data.job.url});
-    }
-  },
-  watch: {
-    $route() {
-      this.jobs.map(job => Object.assign(job,{isActive:false}));
     }
   },
   template: `
@@ -67,8 +66,8 @@ const app = new Vue({
               </div>
             </div>
           </div>
-          <div v-if="job.isActive">
-            <div v-html="description"></div>
+          <div v-if="job.status === 'LOADED'">
+            <div v-html="job.description"></div>
           </div>
           <div class="apply-button" @click="apply(job._id)">
             Apply
@@ -82,7 +81,10 @@ const app = new Vue({
   async mounted() {
     const res = await axios.get(server + '/api/listjobs');
 
-    this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
+    this.jobs = res.data.jobs.map(obj => Object.assign(obj, {
+      status: 'DEFAULT',
+      description: null
+    }));
     
     if (window.location.hash != null && window.location.hash.length > 1) {
       const jobId = window.location.hash.replace(/^#/, '');
