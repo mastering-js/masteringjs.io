@@ -3,6 +3,7 @@
 // const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071";
 const payment = server+'/api/stripeCheckout';
+var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
 
 const app = new Vue({
   data: () => ({
@@ -43,16 +44,16 @@ const app = new Vue({
     };
   },
   methods: {
-    async postJob() {
+    postJob() {
       this.loading = true;
-      this.tags = this.tags.split(",");
-     let clientid = await axios.post(server + '/api/createJob', {
+      const tags = this.tags.split(",");
+     let clientid = axios.post(server + '/api/createJob', {
         company: this.company,
         logo: this.logo,
         title: this.title,
         location: this.location,
         email: this.email,
-        tags: this.tags,
+        tags: tags,
         sticky: this.sticky,
         description: marked(this.description),
         url: this.url,
@@ -62,8 +63,7 @@ const app = new Vue({
         invoiceNotes: this.invoiceNotes,
       }).then((response) => {return response.data.job._id});
       console.log('Done');
-      var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
-      await axios.post(payment, {sticky:this.sticky, clientReferenceId: clientid}).then(function(response) {
+      axios.post(payment, {sticky:this.sticky, clientReferenceId: clientid}).then(function(response) {
         return response.data;
       }).then(function(session){
         return stripe.redirectToCheckout({sessionId:session});
