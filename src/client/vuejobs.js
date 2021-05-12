@@ -19,10 +19,11 @@ const app = new Vue({
       this.description = res.data.job.description;
       j.isActive = !j.isActive;
     },
-    async toggleDescription(j) {
+    async toggleDescription(j, ev) {
+      ev.preventDefault();
       if (j.isActive == false) {
-        this.loadJobDetails(j);
         window.location.hash = '#' + j._id;
+        this.loadJobDetails(j);
       } else {
         j.isActive = !j.isActive;
         this.description = null;
@@ -59,7 +60,7 @@ const app = new Vue({
           </div>
           <div class="description">
             <div>{{job.company}}</div>
-            <div @click="toggleDescription(job)" class="title">{{job.title}}</div>
+            <a v-bind:href="'#' + job._id" @click="toggleDescription(job, $event)" class="title">{{job.title}}</a>
             <div>
               <div class="location">
                 {{job.location}}
