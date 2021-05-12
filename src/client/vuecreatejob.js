@@ -37,11 +37,9 @@ const app = new Vue({
   },
   mounted() {
     window.$saveState = () => {
-      console.log('I am save state');
       window.localStorage.setItem('__state', JSON.stringify(this.$data));
     };
     window.$loadState = () => {
-      console.log('I am load state');
       const saved = JSON.parse(window.localStorage.getItem('__state'));
       if (!saved) {
         throw new Error('No saved data!');
