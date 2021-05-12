@@ -24,7 +24,7 @@ body {
   background-color: #fbfbfb;
   border-radius: 6px;
   margin-top: 7px;
-  margin-bottom: 14px;
+  margin-bottom: 7px;
   width: calc(100% - 28px);
 }
 
@@ -33,7 +33,7 @@ body {
   background-color: #fbfbfb;
   border-radius: 6px;
   margin-top: 7px;
-  margin-bottom: 14px;
+  margin-bottom: 7px;
   width: calc(100% - 28px);
   min-height: 150px;
 }
@@ -66,4 +66,8 @@ body {
   width: 140px;
   background-color: #fff;
   border-radius: 6px;
+}
+
+.create-job .job-details-panel .subs {
+  margin-bottom: 14px;
 }
