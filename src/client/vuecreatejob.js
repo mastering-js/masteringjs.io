@@ -128,20 +128,23 @@ const app = new Vue({
               <label> Company Name* </label>
               <div>
                 <input type="text" v-model="company" required placeholder="Placeholder, LLC" />
-                <small><small>No Need to put Inc. or similar names after the company name</small></small>
+                <small><small>Please put in the titles like Inc.</small></small>
               </div>
             </div>
             <div class="subs">
               <label> Job Title* </label>
               <div>
                 <input type="text" v-model="title" required placeholder="Software Engineer 3.14" />
-                <small><small>No Need to put Inc. or similar names after the company name</small></small>
+                <small><small>Please put in the job title only, not a sentence. Also if you are posting multiple
+                roles, you will need to make a separate post for each one.</small></small>
               </div>
             </div>
             <div class = "subs">
               <label> Location* </label>
               <input type="text" v-model="location" required />
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <br />
+              <small><small>If this is a remote job, leave the location as "Anywhere". Otherwise, only put in a location,
+              not a timezone.</small></small>
             </div>
           </div>
           <div class="job-details-panel">
@@ -150,7 +153,7 @@ const app = new Vue({
               <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
               <div>
                 <input type="checkbox" v-model="sticky" />
-                <small><small>No Need to put Inc. or similar names after the company name</small></small>
+                <small><small>Being the first job will increase your chances of finding a candidate</small></small>
               </div>
             </div>
           </div>
@@ -159,19 +162,20 @@ const app = new Vue({
             <div class="subs">
               <div><label>Description*</label></div>
               <textarea v-model="description" required>Enter Text Here</textarea>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>This does support markdown if you want to format the job description.</small></small>
             </div>
             <div class="subs">
               <label> Technical Skills (Comma separated values, no spaces) </label>
               <div>
               <input type="text" v-model="tags" required />
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>Input frameworks and other technical skills you would like the candidate to have.</small></small>
               </div>
             </div>
             <div class="subs">
               <label>Company Logo URL*</label>
               <input type="url" v-model="logo" required/>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>Make sure the image you are providing in the url won't be taken down, otherwise
+              your post will have no photo.</small></small>
             </div>
             <div v-if = "displayImage" class = "company-logo">
             <img v-bind:src="logoWithPlaceholder" />
@@ -179,12 +183,14 @@ const app = new Vue({
             <div class="subs">
               <label>Apply URL*</label>
               <input type="url" v-model="url" required/>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>If the link you are providing is to a form, you will receive more applicants due to the
+              simplicity and structure.</small></small>
             </div>
             <div class="subs">
               <div><label> How To Apply </label></div>
               <textarea v-model="instructions" required>To Apply</textarea>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>Detail here what the candidates should do when applying through the link you provided if it is not
+              straightforward.</small></small>
             </div>
           </div>
           <div class="job-details-panel">
@@ -192,22 +198,23 @@ const app = new Vue({
             <div class="subs">
               <label> Company Email* </label>
               <input type="email" v-model="email" required/>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small>Candidates will be able to see this email and can use it to ask questions or follow up after
+              the application</small></small>
             </div>
             <div class="subs">
               <div><label> Feedback </label></div>
               <textarea v-model="feedback">Type here</textarea>
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small></small></small>
             </div>
             <div class="subs">
               <label> Invoice Address </label>
               <input type="text" v-model="invoiceAddress" />
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small></small></small>
             </div>
             <div class="subs">
               <label> Invoice Notes </label>
               <input type="text" v-model="invoiceNotes" />
-              <small><small>No Need to put Inc. or similar names after the company name</small></small>
+              <small><small></small></small>
             </div>
           </div>
           <div class="job-details-panel">
