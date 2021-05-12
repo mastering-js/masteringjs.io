@@ -1,5 +1,6 @@
 
 // loads Jobs
+
 // const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071";
 const payment = server+'/api/stripeCheckout';
@@ -28,11 +29,19 @@ const app = new Vue({
   updated() {
     console.log(new Date(), 'State Change:', this.$data);
   },
+  created() {
+    window.addEventListener("keydown", this.shortcut);
+  },
+  destroyed() {
+    window.removeEventListener("keydown", this.shortcut)
+  },
   mounted() {
     window.$saveState = () => {
+      console.log('I am save state');
       window.localStorage.setItem('__state', JSON.stringify(this.$data));
     };
     window.$loadState = () => {
+      console.log('I am load state');
       const saved = JSON.parse(window.localStorage.getItem('__state'));
       if (!saved) {
         throw new Error('No saved data!');
@@ -71,6 +80,20 @@ const app = new Vue({
         console.error('Error', error);
       });
     },
+    shortcut(event) {
+      if(event.key === "s" && event.ctrlKey) {
+        event.preventDefault();
+        window.$saveState();
+      }
+      if(event.key === "o" && event.ctrlKey) {
+        event.preventDefault();
+        window.$loadState();
+      }
+      if(event.key === "e" && event.ctrlKey) {
+        event.preventDefault();
+        window.$clearState();
+      }
+    }
   },
   computed: {
     md() {
