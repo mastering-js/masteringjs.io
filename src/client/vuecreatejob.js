@@ -128,20 +128,20 @@ const app = new Vue({
               <label> Company Name* </label>
               <div>
                 <input type="text" v-model="company" required placeholder="Placeholder, LLC" />
-                <small>No Need to put Inc. or similar names after the company name</small>
+                <small><small>No Need to put Inc. or similar names after the company name</small></small>
               </div>
             </div>
             <div class="subs">
               <label> Job Title* </label>
               <div>
                 <input type="text" v-model="title" required placeholder="Software Engineer 3.14" />
-                <small>No Need to put Inc. or similar names after the company name</small>
+                <small><small>No Need to put Inc. or similar names after the company name</small></small>
               </div>
             </div>
             <div class = "subs">
               <label> Location* </label>
               <input type="text" v-model="location" required />
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
           </div>
           <div class="job-details-panel">
@@ -150,7 +150,7 @@ const app = new Vue({
               <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
               <div>
                 <input type="checkbox" v-model="sticky" />
-                <small>No Need to put Inc. or similar names after the company name</small>
+                <small><small>No Need to put Inc. or similar names after the company name</small></small>
               </div>
             </div>
           </div>
@@ -159,19 +159,19 @@ const app = new Vue({
             <div class="subs">
               <div><label>Description*</label></div>
               <textarea v-model="description" required>Enter Text Here</textarea>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div class="subs">
               <label> Technical Skills (Comma separated values, no spaces) </label>
               <div>
               <input type="text" v-model="tags" required />
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
               </div>
             </div>
             <div class="subs">
               <label>Company Logo URL*</label>
               <input type="url" v-model="logo" required/>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div v-if = "displayImage" class = "company-logo">
             <img v-bind:src="logoWithPlaceholder" />
@@ -179,12 +179,12 @@ const app = new Vue({
             <div class="subs">
               <label>Apply URL*</label>
               <input type="url" v-model="url" required/>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div class="subs">
               <div><label> How To Apply </label></div>
               <textarea v-model="instructions" required>To Apply</textarea>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
           </div>
           <div class="job-details-panel">
@@ -192,22 +192,22 @@ const app = new Vue({
             <div class="subs">
               <label> Company Email* </label>
               <input type="email" v-model="email" required/>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div class="subs">
               <div><label> Feedback </label></div>
               <textarea v-model="feedback">Type here</textarea>
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div class="subs">
               <label> Invoice Address </label>
               <input type="text" v-model="invoiceAddress" />
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
             <div class="subs">
               <label> Invoice Notes </label>
               <input type="text" v-model="invoiceNotes" />
-              <small>No Need to put Inc. or similar names after the company name</small>
+              <small><small>No Need to put Inc. or similar names after the company name</small></small>
             </div>
           </div>
           <div class="job-details-panel">
