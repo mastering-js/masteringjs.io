@@ -183,7 +183,7 @@ const app = new Vue({
             </div>
             <div>
               <div><label> Feedback </label></div>
-              <textarea v-model="feedback" required>Type here</textarea>
+              <textarea v-model="feedback">Type here</textarea>
             </div>
             <div>
               <label> Invoice Address </label>
