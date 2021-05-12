@@ -21,10 +21,8 @@ const app = new Vue({
     invoiceAddress: null,
     invoiceNotes: null,
     tags: 'like,this',
-    displayImage: true,
-    previewImage: null,
+    displayImage: false,
     loading: false,
-    isActive: false
   }),
   updated() {
     console.log(new Date(), 'State Change:', this.$data);
@@ -100,8 +98,10 @@ const app = new Vue({
     },
     logoWithPlaceholder() {
       if (this.logo) {
+        this.displayImage = true;
         return this.logo;
       }
+      this.displayImage = false;
       return '/assets/logo.svg';
     },
     companyWithPlaceholder() {
@@ -165,6 +165,9 @@ const app = new Vue({
             <div>
               <label>Company Logo URL*</label>
               <input type="url" v-model="logo" required/>
+            </div>
+            <div v-if = "displayImage" class = "company-logo">
+            <img v-bind:src="logoWithPlaceholder" />
             </div>
             <div>
               <label>Apply URL*</label>
@@ -230,7 +233,6 @@ const app = new Vue({
               </div>
             </a>
           </div>
-
           <button id="checkout-button" type="submit">Submit</button>
         </form>
       </div>
