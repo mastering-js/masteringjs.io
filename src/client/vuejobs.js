@@ -2,28 +2,31 @@
 //const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071"
 // adding mode history breaks the router
-const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<div>Hello {{$route.params.id}} + {{$route.params.description}}</div>'}}]});
+// const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<div>Hello {{$route.params.id}} + {{$route.params.description}}</div>'}}]});
 
 // loads Jobs
 const app = new Vue({
   data() {
     return {
       jobs: null,
-      path: this.$route.path,
-      loading: true
+      loading: true,
+      description: null
     }
   },
   methods: {
-    async toggleDescription(j) {
-      if(j.isActive == false) {
-        // do post request here for job stats view
-        await axios.get(server+'/api/views/'+j._id);
-      }
+    async loadJobDetails(j) {
+      const res = await axios.get(server + '/api/views/' + j._id);
+      this.description = res.data.job.description;
       j.isActive = !j.isActive;
-      if(j.isActive == false && this.path === this.$route.path) {
-        this.$router.push({path: '/'});
+    },
+    async toggleDescription(j) {
+      if (j.isActive == false) {
+        this.loadJobDetails(j);
+        window.location.hash = '#' + j._id;
       } else {
-        this.path = this.$route.path;
+        j.isActive = !j.isActive;
+        this.description = null;
+        window.location.hash = '';
       }
     },
     async apply(id) {
@@ -35,7 +38,6 @@ const app = new Vue({
       this.jobs.map(job => Object.assign(job,{isActive:false}));
     }
   },
-  router,
   template: `
     <div>
       <h1>Find Your Dream JavaScript Developer Job</h1>
@@ -50,22 +52,22 @@ const app = new Vue({
       </div>
 
       <h3>New JavaScript Jobs</h3>
-      <div v-for="job in jobs">
+      <div v-for="job in jobs" v-bind:id="'job-' + job._id">
         <div class="post job">
           <div v-if="job.logo" class="company-logo">
             <img v-bind:src="job.logo" />
           </div>
           <div class="description">
             <div>{{job.company}}</div>
-            <router-link :to="{name:'job-dropdown', params: {id:job._id, description: job.description}}" @click.native="toggleDescription(job)" class="title">{{job.title}}</router-link>
+            <div @click="toggleDescription(job)" class="title">{{job.title}}</div>
             <div>
               <div class="location">
                 {{job.location}}
               </div>
             </div>
           </div>
-          <div v-show="job.isActive">
-          <router-view></router-view>
+          <div v-if="job.isActive">
+            <div v-html="description"></div>
           </div>
           <div class="apply-button" @click="apply(job._id)">
             Apply
@@ -80,23 +82,15 @@ const app = new Vue({
     const res = await axios.get(server + '/api/listjobs');
 
     this.jobs = res.data.jobs.map(obj => Object.assign(obj, {isActive: false}));
-    /*
-    Array.from(this.jobs).forEach((job) => {
-      if(typeof job.description !== 'undefined') {
-        console.log('Hello')
-        job.description = marked(job.description);
+    
+    if (window.location.hash != null && window.location.hash.length > 1) {
+      const jobId = window.location.hash.replace(/^#/, '');
+      const j = res.data.jobs.find(job => job._id === jobId);
+      if (j != null) {
+        this.loadJobDetails(j);
       }
-    });
-    */
-    if (this.$route.path != '/') {
-      Array.from(this.jobs).forEach((job) => {
-        if(job._id === this.$route.params.id) {
-          // put post request here for jobstats increment
-          axios.get(server+'/api/views/'+job._id).then((res) => {return res});
-          job.isActive = true;
-        }
-      });
     }
+
     this.loading = !this.loading;
   }
 });
