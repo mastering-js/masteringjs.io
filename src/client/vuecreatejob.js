@@ -47,7 +47,7 @@ const app = new Vue({
     postJob() {
       this.loading = true;
       const tags = this.tags.split(",");
-     let clientid = axios.post(server + '/api/createJob', {
+      axios.post(server + '/api/createJob', {
         company: this.company,
         logo: this.logo,
         title: this.title,
@@ -60,13 +60,9 @@ const app = new Vue({
         instructions: this.instructions,
         feedback: this.feedback,
         invoiceAddress: this.invoiceAddress,
-        invoiceNotes: this.invoiceNotes,
-      }).then((response) => {return response.data.job._id});
-      console.log('Done');
-      axios.post(payment, {sticky:this.sticky, clientReferenceId: clientid}).then(function(response) {
-        return response.data;
-      }).then(function(session){
-        return stripe.redirectToCheckout({sessionId:session});
+        invoiceNotes: this.invoiceNotes,company: this.company,
+      }).then(function(response) {
+        return stripe.redirectToCheckout({sessionId:response.data.id});
       }).then(function(result) {
         if(result.error) {
           alert(result.error.message);
