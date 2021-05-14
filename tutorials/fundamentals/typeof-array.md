@@ -1,7 +1,5 @@
-You shouldn't use the `typeof` operator to check whether a value
-is an array, because `typeof` cannot distinguish between arrays and
-objects. Instead you should use `Array.isArray()` as if you were to
-use `typeof`, it would return `'object'`, not `'array'`.
+You shouldn't use the [`typeof` operator](/tutorials/fundamentals/typeof) to check whether a value is an [array](http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html), because `typeof` cannot distinguish between arrays and objects.
+Instead you should use `Array.isArray()`, because `typeof` would return `'object'`, not `'array'`.
 
 ```javascript
 let array = [1,2,3,4];
@@ -19,5 +17,5 @@ let array = [1,2,3,4];
 Array.isArray(array); // true
 ```
 
-**Note:** ES6 introduced the ability to subclass `Array`. The good news
-is that `Array.isArray()` will work on these types of arrays.
+**Note:** ES6 introduced the ability to [subclass `Array`](http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html#subclassing-the-array-class), like `class CustomArray extends Array {}`.
+The good news is that `Array.isArray()` will return `true` for any object that `extends Array`.

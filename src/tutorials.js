@@ -7,9 +7,9 @@ module.exports = Object.freeze([
     title: 'How to Determine if a Variable is an Array',
     raw: './tutorials/fundamentals/typeof-array.md',
     url: '/tutorials/fundamentals/typeof-array',
-    description: 'Placeholder Description',
+    description: 'The `typeof` operator is not a good choice for checking if a variable is an array. Here\'s why.',
     tags: ['fundamentals'],
-    date: moment('2021-05-10')
+    date: moment('2021-05-14')
   },
   {
     title: 'Convert Decimal to Binary',
