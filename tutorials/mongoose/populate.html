@@ -99,7 +99,8 @@ the referenced documents.</p>
 }));</code></pre>
 <p>Mongoose queries have a <a href="https://mongoosejs.com/docs/api/query.html#query_Query-populate"><code>populate()</code> function</a> that lets you load a movie and its corresponding
 <code>director</code> and <code>actors</code> in one line:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> people = <span class="hljs-keyword">await</span> Person.create([
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> people = <span class="hljs-keyword">await</span> Person.create([
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'James Cameron'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Arnold Schwarzenegger'</span> },
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Linda Hamilton'</span> }
@@ -119,11 +120,13 @@ movie.actors[<span class="hljs-number">0</span>].name; <span class="hljs-comment
 movie = <span class="hljs-keyword">await</span> Movie.findOne().populate(<span class="hljs-string">'director'</span>).populate(<span class="hljs-string">'actors'</span>);
 movie.director.name; <span class="hljs-comment">// 'James Cameron'</span>
 movie.actors[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// 'Arnold Schwarzenegger'</span>
-movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span></code></pre>
+movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span>
+</code></pre>
 <h2 id="populate-on-existing-documents">Populate On Existing Documents</h2>
 <p><a href="https://mongoosejs.com/docs/api/document.html#document_Document-populate">Mongoose documents also have a <code>populate()</code> function</a>. Given an existing <code>movie</code> document, you
 can <code>populate()</code> any number of paths. Just remember to call <a href="https://mongoosejs.com/docs/api/document.html#document_Document-execPopulate"><code>Document#execPopulate()</code></a> to actually execute the <code>populate()</code> call.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Load just the movie's director</span>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Load just the movie's director</span>
 <span class="hljs-keyword">let</span> movie = <span class="hljs-keyword">await</span> Movie.findOne();
 movie.director.name; <span class="hljs-comment">// undefined</span>
 movie.actors[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// undefined</span>
@@ -137,18 +140,22 @@ movie.actors[<span class="hljs-number">0</span>].name; <span class="hljs-comment
 <span class="hljs-keyword">await</span> movie.populate(<span class="hljs-string">'actors'</span>).execPopulate();
 movie.director.name; <span class="hljs-comment">// 'James Cameron'</span>
 movie.actors[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// 'Arnold Schwarzenegger'</span>
-movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span></code></pre>
+movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span>
+</code></pre>
 <h2 id="edge-cases">Edge Cases</h2>
 <p>If you&#39;re populating a single document and the referenced document doesn&#39;t exist,
 Mongoose will set the populated property to <a href="/tutorials/fundamentals/null"><code>null</code></a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Person.deleteOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'James Cameron'</span> });
+<pre><code class="language-javascript">
+<span class="hljs-keyword">await</span> Person.deleteOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'James Cameron'</span> });
 
 <span class="hljs-keyword">const</span> movie = <span class="hljs-keyword">await</span> Movie.findOne().populate(<span class="hljs-string">'director'</span>);
-movie.director; <span class="hljs-comment">// null</span></code></pre>
+movie.director; <span class="hljs-comment">// null</span>
+</code></pre>
 <p>If you&#39;re populating an array and one of the referenced documents doesn&#39;t exist,
 Mongoose will filter that value out of the array by default, returning a shorter
 array. You can override this with the <code>retainNullValues</code> option.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Person.deleteOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Arnold Schwarzenegger'</span> });
+<pre><code class="language-javascript">
+<span class="hljs-keyword">await</span> Person.deleteOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Arnold Schwarzenegger'</span> });
 
 <span class="hljs-keyword">let</span> movie = <span class="hljs-keyword">await</span> Movie.findOne().populate(<span class="hljs-string">'actors'</span>);
 movie.actors.length; <span class="hljs-comment">// 1</span>
@@ -162,7 +169,8 @@ movie = <span class="hljs-keyword">await</span> Movie.findOne().populate({
 });
 movie.actors.length; <span class="hljs-comment">// 2</span>
 movie.actors[<span class="hljs-number">0</span>]; <span class="hljs-comment">// null</span>
-movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span></code></pre>
+movie.actors[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// 'Linda Hamilton'</span>
+</code></pre>
 
   <hr>
 <div class="cta">

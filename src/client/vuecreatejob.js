@@ -23,6 +23,7 @@ const app = new Vue({
     tags: 'like,this',
     displayImage: false,
     loading: false,
+    price:60
   }),
   updated() {
     console.log(new Date(), 'State Change:', this.$data);
@@ -117,11 +118,20 @@ const app = new Vue({
       return 'Software Engineer 3.14';
     }
   },
+  watch: {
+    sticky: function() {
+      if(this.sticky) {
+        return this.price = 90;
+      } else {
+        this.price = 60;
+      }
+    }
+  },
   template: `
     <div>
       <div class="create-job">
         <h1>Hire JavaScript Developers</h1>
-        <form action="" @submit.prevent="postJob()">
+        <form action="" @submit.prevent="postJob()" id="jobpost">
           <div class="job-details-panel">
             <div class="job-details-panel-header">Let's Start</div>
             <div class="subs">
@@ -152,7 +162,7 @@ const app = new Vue({
           <div class="job-details-panel">
             <div class="job-details-panel-header">Customize</div>
             <div>
-              <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend.</label>
+              <label>Sticky your post for 30 days? Email masteringjs after 30 days to extend. ($30)</label>
               <div>
                 <input type="checkbox" v-model="sticky" />
                 <br />
@@ -262,11 +272,13 @@ const app = new Vue({
               </div>
             </a>
           </div>
-          <button id="checkout-button" type="submit">Submit</button>
         </form>
       </div>
       <div class="checkout">
+        <div class="cart">
         <h2>Checkout</h2>
+        <button id="checkout-button" class="button" type="submit" form="jobpost">Post Job - $\{{price}}</button>
+        </div>
       </div>
     </div>
   `,

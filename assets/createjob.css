@@ -19,6 +19,16 @@ body {
   float: left;
 }
 
+.cart {
+  position: fixed;
+  bottom: 50px;
+}
+
+#checkout-button {
+  width: 33%;
+  position: fixed;
+}
+
 .create-job input {
   padding: 7px;
   background-color: #fbfbfb;
