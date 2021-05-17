@@ -1,16 +1,24 @@
-To check if a variable is undefined, you should use
-the [`typeof` operator](/tutorials/fundamentals/typeof).
+To [check if a variable is undefined](/tutorials/fundamentals/undefined-check),
+you should use the [`typeof` operator](/tutorials/fundamentals/typeof).
 When used on an `undefined` variable, it will return
 `'undefined'`. If you use that in conjunction with the
 `===` operator, you can successfully check for those specific
-values.
+values. The downside to using this method is that if the variable
+has not been declared, it will not throw an error. An upside
+is that there is [no risk of overwriting undefined](/tutorials/fundamentals/void)
+if you use `typeof`.
 
 ```javascript
 var x;
 typeof x; // 'undefined'
-if (x === 'undefined') {
+if (x === undefined) {
     // will execute
+}
+if (typeof x === 'undefined') {
+    // will also execute
 }
 ```
 
-**Note:** Read more about checking for [`undefined`](/tutorials/fundamentals/undefined-check).
+The benefit of using `=== undefined` or `=== void 0` is that it will throw
+an error if the variable has not been declared. As a result, tracking down
+the cause of an issue becomes much easier.

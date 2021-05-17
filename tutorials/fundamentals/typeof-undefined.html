@@ -72,18 +72,26 @@
 	  }
 	})();
 	</script>
-  <p>To check if a variable is undefined, you should use
-the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a>.
+  <p>To <a href="/tutorials/fundamentals/undefined-check">check if a variable is undefined</a>,
+you should use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a>.
 When used on an <code>undefined</code> variable, it will return
 <code>&#39;undefined&#39;</code>. If you use that in conjunction with the
 <code>===</code> operator, you can successfully check for those specific
-values.</p>
+values. The downside to using this method is that if the variable
+has not been declared, it will not throw an error. An upside
+is that there is <a href="/tutorials/fundamentals/void">no risk of overwriting undefined</a>
+if you use <code>typeof</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'undefined'</span>
-<span class="hljs-keyword">if</span> (x === <span class="hljs-string">'undefined'</span>) {
+<span class="hljs-keyword">if</span> (x === <span class="hljs-literal">undefined</span>) {
     <span class="hljs-comment">// will execute</span>
+}
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">'undefined'</span>) {
+    <span class="hljs-comment">// will also execute</span>
 }</code></pre>
-<p><strong>Note:</strong> Read more about checking for <a href="/tutorials/fundamentals/undefined-check"><code>undefined</code></a>.</p>
+<p>The benefit of using <code>=== undefined</code> or <code>=== void 0</code> is that it will throw
+an error if the variable has not been declared. As a result, tracking down
+the cause of an issue becomes much easier.</p>
 
   
   <hr>
