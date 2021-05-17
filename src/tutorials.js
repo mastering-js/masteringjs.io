@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Correctly Determine if an Object is null',
+    raw: './tutorials/fundamentals/typeof-null.md',
+    url: '/tutorials/fundamentals/typeof-null',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-17')
+  },
+  {
     title: 'How to Determine if a Variable is an Array',
     raw: './tutorials/fundamentals/typeof-array.md',
     url: '/tutorials/fundamentals/typeof-array',

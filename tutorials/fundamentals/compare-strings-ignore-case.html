@@ -79,7 +79,8 @@ if you want to treat uppercase and lowercase letters as equal, so <code>Bill@Mic
 <span class="hljs-keyword">const</span> str2 = <span class="hljs-string">'bill@microsoft.com'</span>;
 
 str1 === str2; <span class="hljs-comment">// false</span>
-str1.toLowerCase() === str2.toLowerCase(); <span class="hljs-comment">// true</span></code></pre>
+str1.toLowerCase() === str2.toLowerCase(); <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="using-localecompare">Using <code>localeCompare()</code></h2>
 <p>JavaScript&#39;s <a href="https://www.techonthenet.com/js/string_localecompare.php"><code>String#localeCompare()</code> method</a> gives you more fine-grained control over string comparison. For example, you can also compare two strings ignoring <a href="https://en.wikipedia.org/wiki/Diacritic">diacritics</a>. Below is how you can do case-insensitive string comparison using <code>localeCompare()</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'Bill@microsoft.com'</span>;
@@ -88,14 +89,16 @@ str1.toLowerCase() === str2.toLowerCase(); <span class="hljs-comment">// true</s
 str1 === str2; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// 0, means these two strings are equal according to `localeCompare()`</span>
-str1.localeCompare(str2, <span class="hljs-literal">undefined</span>, { <span class="hljs-attr">sensitivity</span>: <span class="hljs-string">'accent'</span> });</code></pre>
+str1.localeCompare(str2, <span class="hljs-literal">undefined</span>, { <span class="hljs-attr">sensitivity</span>: <span class="hljs-string">'accent'</span> });
+</code></pre>
 <p>The <code>localeCompare()</code> function is particularly useful if you want to sort an array of strings, ignoring case:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> strings = [<span class="hljs-string">'Alpha'</span>, <span class="hljs-string">'Zeta'</span>, <span class="hljs-string">'alpha'</span>, <span class="hljs-string">'zeta'</span>];
 
 strings.sort(<span class="hljs-function">(<span class="hljs-params">str1, str2</span>) =&gt;</span> str1.localeCompare(str2, <span class="hljs-literal">undefined</span>, { <span class="hljs-attr">sensitivity</span>: <span class="hljs-string">'accent'</span> }));
 
 <span class="hljs-comment">// Case insensitive sorting: ['Alpha', 'alpha', 'Zeta', 'zeta']</span>
-strings;</code></pre>
+strings;
+</code></pre>
 <h2 id="dont-use-regular-expressions">Don&#39;t Use Regular Expressions</h2>
 <p>You may be tempted to compare two strings using regular expressions and JavaScript regexp&#39;s <code>i</code> flag.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str1 = <span class="hljs-string">'Bill@microsoft.com'</span>;
@@ -115,6 +118,9 @@ strings;</code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Correctly Determine if an Object is null</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
   
 
@@ -131,9 +137,6 @@ strings;</code></pre>
   
 
     <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
     </ul>
   
