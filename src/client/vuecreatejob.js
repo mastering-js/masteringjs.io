@@ -1,17 +1,18 @@
-
 // loads Jobs
 
 // const server = "https://masteringjs-job-board.azurewebsites.net";
 const server = "http://localhost:7071";
-const payment = server+'/api/stripeCheckout';
-var stripe = Stripe('pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A');
+const payment = server + "/api/stripeCheckout";
+var stripe = Stripe(
+  "pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A"
+);
 
 const app = new Vue({
   data: () => ({
     company: null,
     logo: null,
     title: null,
-    location: 'Anywhere',
+    location: "Anywhere",
     sticky: false,
     description: null,
     url: null,
@@ -20,81 +21,85 @@ const app = new Vue({
     feedback: null,
     invoiceAddress: null,
     invoiceNotes: null,
-    tags: 'like,this',
+    tags: "like,this",
     displayImage: false,
     loading: false,
-    price:60
+    price: 60,
   }),
   updated() {
-    console.log(new Date(), 'State Change:', this.$data);
+    console.log(new Date(), "State Change:", this.$data);
   },
   created() {
     window.addEventListener("keydown", this.shortcut);
   },
   destroyed() {
-    window.removeEventListener("keydown", this.shortcut)
+    window.removeEventListener("keydown", this.shortcut);
   },
   mounted() {
     window.$saveState = () => {
-      window.localStorage.setItem('__state', JSON.stringify(this.$data));
+      window.localStorage.setItem("__state", JSON.stringify(this.$data));
     };
     window.$loadState = () => {
-      const saved = JSON.parse(window.localStorage.getItem('__state'));
+      const saved = JSON.parse(window.localStorage.getItem("__state"));
       if (!saved) {
-        throw new Error('No saved data!');
+        throw new Error("No saved data!");
       }
       Object.assign(this.$data, saved);
     };
     window.$clearState = () => {
-      window.localStorage.setItem('__state', '');
+      window.localStorage.setItem("__state", "");
     };
   },
   methods: {
     postJob() {
       this.loading = true;
       const tags = this.tags.split(",");
-      axios.post(server + '/api/createJob', {
-        company: this.company,
-        logo: this.logo,
-        title: this.title,
-        location: this.location,
-        email: this.email,
-        tags: tags,
-        sticky: this.sticky,
-        description: marked(this.description),
-        url: this.url,
-        instructions: this.instructions,
-        feedback: this.feedback,
-        invoiceAddress: this.invoiceAddress,
-        invoiceNotes: this.invoiceNotes,
-      }).then(function(response) {
-        return stripe.redirectToCheckout({sessionId:response.data.id});
-      }).then(function(result) {
-        if(result.error) {
-          alert(result.error.message);
-        }
-      }).catch(function(error) {
-        console.error('Error', error);
-      });
+      axios
+        .post(server + "/api/createJob", {
+          company: this.company,
+          logo: this.logo,
+          title: this.title,
+          location: this.location,
+          email: this.email,
+          tags: tags,
+          sticky: this.sticky,
+          description: marked(this.description),
+          url: this.url,
+          instructions: this.instructions,
+          feedback: this.feedback,
+          invoiceAddress: this.invoiceAddress,
+          invoiceNotes: this.invoiceNotes,
+        })
+        .then(function (response) {
+          return stripe.redirectToCheckout({ sessionId: response.data.id });
+        })
+        .then(function (result) {
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error", error);
+        });
     },
     shortcut(event) {
-      if(event.key === "s" && event.ctrlKey) {
+      if (event.key === "s" && event.ctrlKey) {
         event.preventDefault();
         window.$saveState();
       }
-      if(event.key === "o" && event.ctrlKey) {
+      if (event.key === "o" && event.ctrlKey) {
         event.preventDefault();
         window.$loadState();
       }
-      if(event.key === "e" && event.ctrlKey) {
+      if (event.key === "e" && event.ctrlKey) {
         event.preventDefault();
         window.$clearState();
       }
-    }
+    },
   },
   computed: {
     md() {
-      if(this.description == null) return;
+      if (this.description == null) return;
       return marked(this.description);
     },
     logoWithPlaceholder() {
@@ -103,29 +108,29 @@ const app = new Vue({
         return this.logo;
       }
       this.displayImage = false;
-      return '/assets/logo.svg';
+      return "/assets/logo.svg";
     },
     companyWithPlaceholder() {
       if (this.company) {
         return this.company;
       }
-      return 'Placeholder, LLC';
+      return "Placeholder, LLC";
     },
     titleWithPlaceholder() {
       if (this.title) {
         return this.title;
       }
-      return 'Software Engineer 3.14';
-    }
+      return "Software Engineer 3.14";
+    },
   },
   watch: {
-    sticky: function() {
-      if(this.sticky) {
-        return this.price = 90;
+    sticky: function () {
+      if (this.sticky) {
+        return (this.price = 90);
       } else {
         this.price = 60;
       }
-    }
+    },
   },
   template: `
     <div class="create-job-main">
@@ -253,26 +258,12 @@ const app = new Vue({
                   </div>
                 </div>
               </div>
-              <div v-show="isActive">
+              <div>
               </div>
               <div class="apply-button">
                 Apply
               </div>
             </div>
-          </div>
-
-          <h4>Vertical</h4>
-          <div id="jobs" class="job-listing" style="position: relative; top: 0px; right: 0px">
-            <a v-bind:href="'/jobs'">
-              <div class="company-logo">
-                <img v-bind:src="logoWithPlaceholder" />
-              </div>
-              <div class="description">
-                <div class="company">{{companyWithPlaceholder}}</div>
-                <div class="title">{{titleWithPlaceholder}}</div>
-                <div class="location">{{location}}</div>
-              </div>
-            </a>
           </div>
         </form>
       </div>
@@ -318,4 +309,4 @@ const app = new Vue({
     </div>
   `,
 });
-app.$mount('#content');
+app.$mount("#content");
