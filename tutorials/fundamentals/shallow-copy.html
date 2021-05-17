@@ -79,26 +79,30 @@
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign({}, obj);
 
 ++copy.answer; <span class="hljs-comment">// 43</span>
-obj.answer; <span class="hljs-comment">// 42, did not change because `copy` is a copy of `obj`</span></code></pre>
+obj.answer; <span class="hljs-comment">// 42, did not change because `copy` is a copy of `obj`</span>
+</code></pre>
 <p>Shallow cloning does <strong>not</strong> copy nested objects. So if <code>obj</code> contains an object <code>name</code>, <code>Object.assign()</code> will keep a reference to the original copy of <code>name</code> rather than creating a copy of <code>name</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: { <span class="hljs-attr">first</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Picard'</span> } };
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">Object</span>.assign({}, obj);
 
 copy.name.first = <span class="hljs-string">'Johnny'</span>;
-obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** cloned</span></code></pre>
+obj.name.first; <span class="hljs-comment">// 'Johnny', `name` was **not** cloned</span>
+</code></pre>
 <p>Generally, to deep clone an object, you need a library like Lodash. There is an alternative: serializing the object to JSON using <a href="http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html"><code>JSON.stringify()</code></a> and then parsing it back using <code>JSON.parse()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: { <span class="hljs-attr">first</span>: <span class="hljs-string">'Jean-Luc'</span>, <span class="hljs-attr">last</span>: <span class="hljs-string">'Picard'</span> } };
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
 
 copy.name.first = <span class="hljs-string">'Johnny'</span>;
-obj.name.first; <span class="hljs-comment">// 'Jean-Luc'</span></code></pre>
+obj.name.first; <span class="hljs-comment">// 'Jean-Luc'</span>
+</code></pre>
 <p>However, this approach only works well if your object only contains strings, numbers, booleans, objects, and arrays. For example, if your object has a property
 <code>date</code> that is a JavaScript date, the cloned object&#39;s <code>date</code> property will be a string, because that&#39;s how <code>JSON.stringify()</code> serializes dates.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>) };
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
 
 obj.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span>
-copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span></code></pre>
+copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span>
+</code></pre>
 
   
   <hr>
@@ -106,6 +110,9 @@ copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_i
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
   
 
@@ -122,9 +129,6 @@ copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_i
   
 
     <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
     </ul>
   

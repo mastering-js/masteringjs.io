@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Replace All Instances of a String in JavaScript - Mastering JS</title>
+    <title>How to Determine if a Variable is undefined - Mastering JS</title>
 
-    <meta property="og:title" content="Replace All Instances of a String in JavaScript" />
+    <meta property="og:title" content="How to Determine if a Variable is undefined" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Learn how to replace all instances of a given substring in a JavaScript string" />
-    <meta name="description" content="Learn how to replace all instances of a given substring in a JavaScript string" />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Replace All Instances of a String in JavaScript</h1>
+  <h1>How to Determine if a Variable is undefined</h1>
   <div class="date">
-    Jun 3, 2019
+    May 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,24 +72,18 @@
 	  }
 	})();
 	</script>
-  <p>By default, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String#replace()</code> function</a> in JavaScript only replaces the first instance of a substring. Make sure you <a href="http://2ality.com/2013/08/regexp-g.html">pass a RegExp with the <code>/g</code> flag set as shown below</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'A penny saved is a penny earned'</span>;
-
-<span class="hljs-comment">// "A dollar saved is a dollar earned"</span>
-str.replace(<span class="hljs-regexp">/penny/g</span>, <span class="hljs-string">'dollar'</span>);
-
-<span class="hljs-comment">// "A dollar saved is a penny earned" - only replaces the first</span>
-<span class="hljs-comment">// instance by default.</span>
-str.replace(<span class="hljs-string">'penny'</span>, <span class="hljs-string">'dollar'</span>);
-</code></pre>
-<p>Remember <a href="https://www.sitepoint.com/immutability-javascript/">JavaScript strings are immutable</a>. When you use <code>replace()</code>, you don&#39;t modify the original string.</p>
-<h2 id="replacement-patterns">Replacement Patterns</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter">The <code>String#replace()</code> function has several special character sequences called &quot;replacement patterns&quot;</a>. Replacement patterns are useful when you want to replace all substrings that match a regular expression with a string that contains the match.</p>
-<p>For example, suppose you wanted to add a <code>#</code> before all numbers in a string. You can use the <code>$&amp;</code> replacement pattern, which inserts the matched substring.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'My favorite team is 1, everyone else is 2'</span>;
-
-<span class="hljs-comment">// "My favorite team is #1, everyone else is #2"</span>
-str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'#$&amp;'</span>);</code></pre>
+  <p>To check if a variable is undefined, you should use
+the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a>.
+When used on an <code>undefined</code> variable, it will return
+<code>&#39;undefined&#39;</code>. If you use that in conjunction with the
+<code>===</code> operator, you can successfully check for those specific
+values.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'undefined'</span>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-string">'undefined'</span>) {
+    <span class="hljs-comment">// will execute</span>
+}</code></pre>
+<p><strong>Note:</strong> Read more about checking for <a href="/tutorials/fundamentals/undefined-check"><code>undefined</code></a>.</p>
 
   
   <hr>
@@ -97,9 +91,6 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
   
 
@@ -116,6 +107,9 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
   
 
     <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
   
     </ul>
   

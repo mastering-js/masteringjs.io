@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Determine if a Variable is undefined',
+    raw: './tutorials/fundamentals/typeof-undefined.md',
+    url: '/tutorials/fundamentals/typeof-undefined',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-07')
+  },
+  {
     title: 'How to Determine if a Variable is an Array',
     raw: './tutorials/fundamentals/typeof-array.md',
     url: '/tutorials/fundamentals/typeof-array',
