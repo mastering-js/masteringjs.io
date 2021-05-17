@@ -73,10 +73,11 @@
 	})();
 	</script>
   <p>You shouldn&#39;t use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a>
-when checking if a value is null because <code>typeof</code> cannot distinguish a
-<code>null</code> from an <code>object</code>. You must use the <code>===</code> operator as
-<code>==</code> will return <code>true</code> if checking against an <code>undefined</code> variable.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> x = <span class="hljs-literal">null</span>;
+when checking if a value is <a href="/tutorials/fundamentals/null"><code>null</code></a>
+because <code>typeof</code> cannot distinguish a <code>null</code> from an <code>object</code>.
+You must use the <code>===</code> operator as <code>==</code> will return <code>true</code>
+if checking against an <code>undefined</code> variable.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-literal">null</span>;
 <span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span>
 <span class="hljs-keyword">if</span> (x === <span class="hljs-literal">null</span>) {
     <span class="hljs-comment">// will execute</span>
@@ -86,7 +87,6 @@ when checking if a value is null because <code>typeof</code> cannot distinguish 
     <span class="hljs-comment">// will execute even though</span>
     <span class="hljs-comment">// that is not the intention</span>
 }</code></pre>
-<p><strong>Note:</strong> Read more about <a href="/tutorials/fundamentals/null"><code>nulls</code></a></p>
 
   
   <hr>
