@@ -128,9 +128,11 @@ const app = new Vue({
     }
   },
   template: `
-    <div>
-      <div class="create-job">
+    <div class="create-job-main">
+      <div class="header">
         <h1>Hire JavaScript Developers</h1>
+      </div>
+      <div class="create-job">
         <form action="" @submit.prevent="postJob()" id="jobpost">
           <div class="job-details-panel">
             <div class="job-details-panel-header">Let's Start</div>
@@ -275,9 +277,42 @@ const app = new Vue({
         </form>
       </div>
       <div class="checkout">
+        <div class="copy">
+          Mastering JS is <b>the go-to microtutorials site for pragmatic JavaScript developers</b>.
+
+          <div class="benefit">
+            <img class="icon" src="/assets/jobs/graph-up.png" />
+            <div>
+              Reach JavaScript developers on our tutorials: over <b>300k</b> page views per month
+            </div>
+          </div>
+          <div class="benefit">
+            <img class="icon" src="/assets/jobs/mailbox.png" />
+            <div>
+              Reach <b>1000</b> developers on our <a href="https://www.getrevue.co/profile/masteringjs">newsletter</a>
+            </div>
+          </div>
+          <div class="benefit">
+            <img class="icon" src="/assets/jobs/stats.svg" />
+            <div>
+              Get statistics on page views and applicants for your job ad
+            </div>
+          </div>
+
+          <div class="benefit">
+            <img src="/assets/jobs/semrush-1.png">
+            <div class="small">SEO data from <a href="https://semrush.com">Semrush</a></div>
+          </div>
+
+          <div class="benefit">
+            <img class="icon" src="/assets/jobs/lock.svg" />
+            <div>
+              Secure payment with Stripe
+            </div>
+          </div>
+        </div>
         <div class="cart">
-        <h2>Checkout</h2>
-        <button id="checkout-button" class="button" type="submit" form="jobpost">Post Job - $\{{price}}</button>
+          <button id="checkout-button" class="button" type="submit" form="jobpost">Post Job - $\{{price}}</button>
         </div>
       </div>
     </div>

@@ -14,9 +14,18 @@ body {
 }
 
 .checkout {
-  width: calc(35% - 28px);
-  padding: 14px;
+  width: calc(35% - 36px);
   float: left;
+
+  border: 1px solid #ddd;
+  padding: 0px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  background-color: #fff;
+  margin-top: 14px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .cart {
@@ -80,4 +89,34 @@ body {
 
 .create-job .job-details-panel .subs {
   margin-bottom: 14px;
+}
+
+.checkout .copy {
+  font-size: 1.25em;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.checkout .copy .small {
+  font-size: 0.75em;
+  color: #666;
+  width: 100%;
+  text-align: center;
+}
+
+.checkout .copy img.icon {
+  border: 0px;
+  width: 2em;
+  padding: 0px;
+}
+
+.checkout .copy .benefit {
+  padding: 14px;
+  border-top: 1px solid #ddd;
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+.create-job-main .header {
+  text-align: center;
 }
