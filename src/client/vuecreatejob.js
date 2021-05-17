@@ -281,13 +281,13 @@ const app = new Vue({
           Mastering JS is <b>the go-to microtutorials site for pragmatic JavaScript developers</b>.
 
           <div class="benefit">
-            <img class="icon" src="/assets/jobs/graph-up.png" />
+            <img class="icon" src="/assets/jobs/graph.svg" />
             <div>
               Reach JavaScript developers on our tutorials: over <b>300k</b> page views per month
             </div>
           </div>
           <div class="benefit">
-            <img class="icon" src="/assets/jobs/mailbox.png" />
+            <img class="icon" src="/assets/jobs/mailbox.svg" />
             <div>
               Reach <b>1000</b> developers on our <a href="https://www.getrevue.co/profile/masteringjs">newsletter</a>
             </div>
