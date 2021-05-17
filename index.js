@@ -241,7 +241,8 @@ async function run() {
     template: layout,
     title: 'Create Job',
     content: createjob(),
-    description: 'Create Job'
+    description: 'Create Job',
+    carbonAds: false
   });
   pages.push({
     path: './jobs/success.html',

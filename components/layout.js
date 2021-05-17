@@ -36,10 +36,18 @@ module.exports = params => `
       ${footer()}
       ${floatAd(params.ad)}
     </div>
-    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
+    ${carbonAdScript(params.carbonAds)}
   </body>
 </html>
 `;
+
+function carbonAdScript(carbonAds) {
+  if (carbonAds === false) {
+    return '';
+  }
+
+  return '<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>';
+}
 
 function floatAd(ad) {
   if (!ad) {
