@@ -86,8 +86,7 @@ properties. You can then iterate over each key in the object using <code>forEach
 <span class="hljs-comment">// Prints "name Jean-Luc Picard" followed by "rank Captain"</span>
 <span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(key, obj[key]);
-});
-</code></pre>
+});</code></pre>
 <h2 id="using-objectvalues">Using <code>Object.values()</code></h2>
 <p>The <code>Object.values()</code> function returns an array of the object&#39;s own enumerable
 property values. In other words, it returns an array over the object&#39;s values
@@ -100,8 +99,7 @@ that you can iterate through using <code>forEach()</code>.</p>
 <span class="hljs-comment">// Prints "Jean-Luc Picard" followed by "Captain"</span>
 <span class="hljs-built_in">Object</span>.values(obj).forEach(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(val);
-});
-</code></pre>
+});</code></pre>
 <h2 id="using-objectentries">Using <code>Object.entries()</code></h2>
 <p>The <code>Object.entries()</code> function returns an array of entries. An <em>entry</em> is
 an array of length 2, where <code>entry[0]</code> is the key and <code>entry[1]</code> is the
@@ -115,8 +113,7 @@ value. You can iterate through both keys and values simultaneously:</p>
 <span class="hljs-built_in">Object</span>.entries(obj).forEach(<span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> [key, value] = entry;
   <span class="hljs-built_in">console</span>.log(key, value);
-});
-</code></pre>
+});</code></pre>
 
   
   <hr>
@@ -127,6 +124,9 @@ value. You can iterate through both keys and values simultaneously:</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -143,9 +143,6 @@ value. You can iterate through both keys and values simultaneously:</p>
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   

@@ -82,8 +82,7 @@ Just about every npm module that handles HTTP requests or responses, like <a hre
 <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// 'string'</span>
 
 <span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{"answer":42}'</span>
-<span class="hljs-built_in">JSON</span>.stringify(arr); <span class="hljs-comment">// '["hello","world"]'</span>
-</code></pre>
+<span class="hljs-built_in">JSON</span>.stringify(arr); <span class="hljs-comment">// '["hello","world"]'</span></code></pre>
 <p>JSON can only represent values with the following types:</p>
 <ul>
 <li>Strings</li>
@@ -97,15 +96,13 @@ Just about every npm module that handles HTTP requests or responses, like <a hre
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> obj = { <span class="hljs-attr">undef</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">symbol</span>: <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'foo'</span>) };
 
 <span class="hljs-comment">// JSON.stringify() ignores `undefined` and symbols</span>
-<span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{}'</span>
-</code></pre>
+<span class="hljs-built_in">JSON</span>.stringify(obj); <span class="hljs-comment">// '{}'</span></code></pre>
 <p><code>JSON.stringify()</code> throws an error if it finds a BigInt value.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// TypeError: Do not know how to serialize a BigInt</span>
 <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">val</span>: <span class="hljs-number">42</span>n });</code></pre>
 <p>This list also excludes JavaScript objects, like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">JavaScript dates</a>. The <code>JSON.stringify()</code> function converts <a href="/tutorials/fundamentals/date_format">JavaScript dates to strings</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// '{"date":"2019-06-01T00:00:00.000Z"}'</span>
-<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>) });
-</code></pre>
+<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>) });</code></pre>
 <h2 id="replacer-function">Replacer Function</h2>
 <p>The 2nd argument to <code>JSON.stringify()</code> is a replacer function. JavaScript calls
 this function for every key/value pair in the object, and uses the return value.
@@ -120,8 +117,7 @@ function:</p>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
   }
   <span class="hljs-keyword">return</span> value;
-});
-</code></pre>
+});</code></pre>
 <h2 id="pretty-printing">Pretty Printing</h2>
 <p>The 3rd argument to <code>JSON.stringify()</code> is called <code>space</code>. This parameter should
 be either a string or a number, and it tells JavaScript to format the JSON in
@@ -134,8 +130,7 @@ put each key/value pair on its own line, and prefix each line with <code>space</
 <span class="hljs-comment">// }</span>
 <span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-string">'  '</span>);
 <span class="hljs-comment">// Equivalent, JavaScript treats `space=2` as equivalent to 2 spaces.</span>
-<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>);
-</code></pre>
+<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>);</code></pre>
 
   
   <hr>
@@ -146,6 +141,9 @@ put each key/value pair on its own line, and prefix each line with <code>space</
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -162,9 +160,6 @@ put each key/value pair on its own line, and prefix each line with <code>space</
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   

@@ -79,20 +79,17 @@ the first element of a collection that matches the given <code>predicate</code>.
 <span class="hljs-comment">// `find()` executes `predicate` for every element in the array until</span>
 <span class="hljs-comment">// `predicate` returns true.</span>
 <span class="hljs-keyword">const</span> predicate = <span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v &gt; <span class="hljs-number">3</span>;
-_.find(arr, predicate); <span class="hljs-comment">// 4</span>
-</code></pre>
+_.find(arr, predicate); <span class="hljs-comment">// 4</span></code></pre>
 <p><code>find()</code> is different from <a href="/tutorials/lodash/filter">Lodash&#39;s <code>filter()</code> function</a> because <code>filter()</code> returns <em>all</em> elements that match a condition, whereas <code>find()</code> returns the first element that matches a condition.</p>
 <p>If <code>find()</code> doesn&#39;t find an element, it returns <a href="/tutorials/fundamentals/void"><code>undefined</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
 
-_.find(arr, v =&gt; v &gt; <span class="hljs-number">5</span>); <span class="hljs-comment">// undefined</span>
-</code></pre>
+_.find(arr, v =&gt; v &gt; <span class="hljs-number">5</span>); <span class="hljs-comment">// undefined</span></code></pre>
 <p>The <code>find()</code> function operates on a collection, not an array, which means
 you can use it on objects too.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key1</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">key2</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">key3</span>: <span class="hljs-number">3</span> };
 
-_.find(obj, v =&gt; v &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span>
-</code></pre>
+_.find(obj, v =&gt; v &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span></code></pre>
 <h2 id="alternative-syntaxes">Alternative Syntaxes</h2>
 <p><code>find()</code> supports two alernative syntaxes. If you pass an object as the predicate,
 the <code>find()</code> function will create a predicate function using the <a href="https://lodash.com/docs/4.17.15#matches"><code>matches()</code> function</a> which performs a partial deep comparison. That means Lodash will find the first object in the collection that has the given properties.</p>
@@ -102,8 +99,7 @@ the <code>find()</code> function will create a predicate function using the <a h
   { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Geordi'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'La Forge'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Lieutenant'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }
 ];
 
-_.find(characters, { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }).lastName; <span class="hljs-comment">// 'Riker'</span>
-</code></pre>
+_.find(characters, { <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">29</span> }).lastName; <span class="hljs-comment">// 'Riker'</span></code></pre>
 <p>If you pass a string <code>str</code> as the predicate, the <code>find()</code> function will return the first object in the array that has a <a href="/tutorials/fundamentals/truthy">truthy</a> property <code>str</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> characters = [
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Doctor Pulaski'</span> },
@@ -113,8 +109,7 @@ _.find(characters, { <span class="hljs-attr">rank</span>: <span class="hljs-stri
 ];
 
 <span class="hljs-comment">// Find the first character with a truthy `active` property</span>
-_.find(characters, <span class="hljs-string">'active'</span>).name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
-</code></pre>
+_.find(characters, <span class="hljs-string">'active'</span>).name; <span class="hljs-comment">// 'Jean-Luc Picard'</span></code></pre>
 
   
   <hr>

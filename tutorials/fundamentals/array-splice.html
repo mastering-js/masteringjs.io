@@ -80,8 +80,7 @@
 <span class="hljs-comment">// Remove 1 element starting at index 2</span>
 arr.splice(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>);
 
-arr; <span class="hljs-comment">// ['a', 'b', 'd']</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'd']</span></code></pre>
 <p>The first 2 parameters to <code>splice()</code> are called <code>start</code> and <code>deleteCount</code>. The <code>start</code> parameter tells <code>splice()</code> where to start modifying the array. The <code>deleteCount</code> parameter tells <code>splice()</code> how many elements to delete.</p>
 <p>You may see JavaScript projects use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>filter()</code></a> instead of <code>splice()</code> to remove elements from an array. The key difference between these two approaches is that <code>filter()</code> creates a new array. This means <code>filter()</code> is the better choice for applications that rely on immutability, like <a href="https://www.npmjs.com/package/react">React</a> apps.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>];
@@ -93,8 +92,7 @@ arr; <span class="hljs-comment">// ['a', 'b', 'd']</span>
 <span class="hljs-comment">// in place. On the other hand, `splice()` modifies the array in place.</span>
 arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd']</span>
 arr2; <span class="hljs-comment">// ['a', 'b', 'd']</span>
-arr2 === arr; <span class="hljs-comment">// false</span>
-</code></pre>
+arr2 === arr; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="adding-elements-to-the-middle">Adding Elements to the Middle</h2>
 <p>The <code>splice()</code> function also lets you add elements to the middle of the array. JavaScript arrays have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push"><code>push()</code> function</a> that lets you add elements to the end of the array, and an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift"><code>unshift()</code> function</a> that lets you add elements to the beginning of the array. The <code>splice()</code> function is the only native array function that lets you add elements to the middle of an array.</p>
 <p>For example, suppose you have an array <code>[&#39;a&#39;, &#39;b&#39;, &#39;d&#39;]</code> and you want to add &#39;c&#39; after &#39;b&#39;. Every <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice#Parameters">parameter to <code>splice()</code></a> after the <code>deleteCount</code> parameter is treated as an element to add to the array at the <code>startIndex</code>. So to insert &#39;c&#39;, you call <code>splice()</code> with a <code>deleteCount</code> of 0 and &#39;c&#39; as the third parameter.</p>
@@ -104,8 +102,7 @@ arr2 === arr; <span class="hljs-comment">// false</span>
 <span class="hljs-keyword">let</span> deleteCount = <span class="hljs-number">0</span>;
 arr.splice(start, deleteCount, <span class="hljs-string">'c'</span>);
 
-arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span>
-</code></pre>
+arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span></code></pre>
 
   
   <hr>
@@ -116,6 +113,9 @@ arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -132,9 +132,6 @@ arr; <span class="hljs-comment">// ['a', 'b', 'c', 'd'];</span>
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   
