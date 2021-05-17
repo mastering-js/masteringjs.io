@@ -1,19 +1,19 @@
-Objects can be a bit frustrating when using the `typeof` operator
-as `null` and `[]` will return `'object'`. To handle these cases,
-you have a couple options. The first options is to hardcode an `if`
-statement as follows:
+Objects can be a bit frustrating when using the [`typeof` operator](/tutorials/fundamentals/typeof) because `typeof` returns 'object' for both `null` and `[]`.
+To handle these cases, you have a couple options.
+The first option is to hardcode an `if` statement as follows:
 
 ```javascript
-let test = {firstName: 'Masteringjs', lastName: 'io'};
-if (typeof test == 'object' && !Array.isArray(test) && test != null) {
-    // do some really cool stuff
+let test = { firstName: 'Masteringjs', lastName: 'io' };
+if (typeof test === 'object' && !Array.isArray(test) && test != null) {
+  // do some really cool stuff
 }
 ```
 
-If you consider objects created using `Object.create(null)` to be an object,
-an alternative is to write a function that gets a little more involved. You
-would want to use the `Object.getPrototypeOf()` function to compare the object's
-prototype as follows:
+Whether you use the `Array.isArray()` check depends on your use case.
+There are cases where you want to treat arrays as objects, and cases where you don't.
+
+This check will allow any object through, including objects that are instances of classes.
+If you need a more rigorous check as to check whether an object is a plain old JavaScript object (or [POJO](/tutorials/fundamentals/pojo) for short), you can use the below function.
 
 ```javascript
 function isPOJO(arg) {

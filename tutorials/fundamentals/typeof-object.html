@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if an Object is an Object - Mastering JS</title>
+    <title>How to Determine if a Value is an Object - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if an Object is an Object" />
+    <meta property="og:title" content="How to Determine if a Value is an Object" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can check if a given JavaScript variable is an object." />
+    <meta name="description" content="Here's how you can check if a given JavaScript variable is an object." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if an Object is an Object</h1>
+  <h1>How to Determine if a Value is an Object</h1>
   <div class="date">
-    May 10, 2021
+    May 17, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,18 +72,17 @@
 	  }
 	})();
 	</script>
-  <p>Objects can be a bit frustrating when using the <code>typeof</code> operator
-as <code>null</code> and <code>[]</code> will return <code>&#39;object&#39;</code>. To handle these cases,
-you have a couple options. The first options is to hardcode an <code>if</code>
-statement as follows:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> test = {<span class="hljs-attr">firstName</span>: <span class="hljs-string">'Masteringjs'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'io'</span>};
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> test == <span class="hljs-string">'object'</span> &amp;&amp; !<span class="hljs-built_in">Array</span>.isArray(test) &amp;&amp; test != <span class="hljs-literal">null</span>) {
-    <span class="hljs-comment">// do some really cool stuff</span>
+  <p>Objects can be a bit frustrating when using the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> because <code>typeof</code> returns &#39;object&#39; for both <code>null</code> and <code>[]</code>.
+To handle these cases, you have a couple options.
+The first option is to hardcode an <code>if</code> statement as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> test = { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Masteringjs'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'io'</span> };
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> test === <span class="hljs-string">'object'</span> &amp;&amp; !<span class="hljs-built_in">Array</span>.isArray(test) &amp;&amp; test != <span class="hljs-literal">null</span>) {
+  <span class="hljs-comment">// do some really cool stuff</span>
 }</code></pre>
-<p>If you consider objects created using <code>Object.create(null)</code> to be an object,
-an alternative is to write a function that gets a little more involved. You
-would want to use the <code>Object.getPrototypeOf()</code> function to compare the object&#39;s
-prototype as follows:</p>
+<p>Whether you use the <code>Array.isArray()</code> check depends on your use case.
+There are cases where you want to treat arrays as objects, and cases where you don&#39;t.</p>
+<p>This check will allow any object through, including objects that are instances of classes.
+If you need a more rigorous check as to check whether an object is a plain old JavaScript object (or <a href="/tutorials/fundamentals/pojo">POJO</a> for short), you can use the below function.</p>
 <pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPOJO</span>(<span class="hljs-params">arg</span>) </span>{
   <span class="hljs-keyword">if</span> (arg == <span class="hljs-literal">null</span> || <span class="hljs-keyword">typeof</span> arg !== <span class="hljs-string">'object'</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
@@ -106,6 +105,9 @@ isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number<
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
 
@@ -122,9 +124,6 @@ isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number<
   
 
     <li><a href="/tutorials/fundamentals/parameters">How to Use Named Parameters in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/spread">How to Use JavaScript's Spread Operator</a></li>
   
     </ul>
   

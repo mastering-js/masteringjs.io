@@ -4,12 +4,20 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Determine if an Object is an Object',
+    title: 'How to Determine if a Value is an Object',
     raw: './tutorials/fundamentals/typeof-object.md',
     url: '/tutorials/fundamentals/typeof-object',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can check if a given JavaScript variable is an object.',
     tags: ['fundamentals'],
-    date: moment('2021-05-10')
+    date: moment('2021-05-17')
+  },
+  {
+    title: 'How to Determine if a Variable is an Array',
+    raw: './tutorials/fundamentals/typeof-array.md',
+    url: '/tutorials/fundamentals/typeof-array',
+    description: 'The `typeof` operator is not a good choice for checking if a variable is an array. Here\'s why.',
+    tags: ['fundamentals'],
+    date: moment('2021-05-14')
   },
   {
     title: 'Convert Decimal to Binary',
