@@ -10,7 +10,7 @@ typeof x; // 'object'
 if (x === null) {
     // will execute
 }
-var y;
+const y;
 if (y == null) {
     // will execute even though
     // that is not the intention
