@@ -256,8 +256,7 @@ input[type="text"], input[type="password"], input[type="number"] {
 
 #jobs .job-listing {
   margin-bottom: 0.5em;
-  margin-left: 2px;
-  margin-right: 2px;
+  padding: 4px;
 }
 
 #jobs .job-listing:hover {

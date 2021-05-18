@@ -1,8 +1,5 @@
 
-//const server = "https://masteringjs-job-board.azurewebsites.net";
-const server = "http://localhost:7071"
-// adding mode history breaks the router
-// const router = new VueRouter({routes: [{path: '/:id', name:'job-dropdown', component: {template: '<div>Hello {{$route.params.id}} + {{$route.params.description}}</div>'}}]});
+const server = "https://masteringjs-job-board.azurewebsites.net";
 
 // loads Jobs
 const app = new Vue({
