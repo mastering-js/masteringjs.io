@@ -41,7 +41,6 @@ const app = new Vue({
   template: `
     <div>
       <h1>Find Your Dream JavaScript Developer Job</h1>
-      <div v-if="!loading">
       <div class="post">
         <div class="description">
           Hiring JavaScript developers? Reach <b>100,000+</b> JavaScript developers on one of the top JS tutorial sites.
@@ -50,7 +49,7 @@ const app = new Vue({
           </span>
         </div>
       </div>
-
+      <div v-if="!loading">
       <h3>New JavaScript Jobs</h3>
       <div v-for="job in jobs" v-bind:id="'job-' + job._id">
         <div class="post job">
