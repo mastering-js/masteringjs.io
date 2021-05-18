@@ -280,7 +280,6 @@ const app = new Vue({
             </a>
           </div>
           <div class="job-details-panel">
-            <div class="job-details-panel-header">Preview</div>
             <div class="post job">
               <div class="company-logo">
                 <img v-bind:src="logoWithPlaceholder" />

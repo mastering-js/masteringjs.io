@@ -124,6 +124,6 @@ body {
 .fixed-preview {
   position: fixed;
   background-color: white;
-  width: calc(55% - 28px);
-  bottom: 50px;
+  width: calc(55% - 26px);
+  bottom: 0px;
 }
