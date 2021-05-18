@@ -114,6 +114,10 @@ body {
   padding: 0px;
 }
 
+.company-logo img {
+  width: 4em;
+}
+
 .checkout .copy .benefit {
   padding: 14px;
   border-top: 1px solid #ddd;
