@@ -1,8 +1,8 @@
 const server = "https://masteringjs-job-board.azurewebsites.net";
 const payment = server + "/api/stripeCheckout";
-var stripe = Stripe(
-  "pk_test_51IoDkvEIfgvH77vtSY6fn5Qy0dUyZFAsbYszCTWgSpvtCCWunY3pQYF7FRpLRoTKJjQbc6KMGrk7UpVhBhkoRS3r001Mjrp8HW"
-);
+
+const stripeKey = window.location.hostname === 'localhost' ? "pk_test_51IoDkvEIfgvH77vtSY6fn5Qy0dUyZFAsbYszCTWgSpvtCCWunY3pQYF7FRpLRoTKJjQbc6KMGrk7UpVhBhkoRS3r001Mjrp8HW" : "pk_live_51IoDkvEIfgvH77vtfJZwToZlC20FilHNRViMce42TBCeFsptEIkUcjz09MMPbfn4pU9St2nM8P9aYlL4l7q8SLbf00ivnWmIpw";
+const stripe = Stripe(stripeKey);
 
 const app = new Vue({
   data: () => ({
