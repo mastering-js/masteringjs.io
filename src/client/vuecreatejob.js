@@ -67,7 +67,8 @@ const app = new Vue({
           invoiceAddress: this.invoiceAddress,
           invoiceNotes: this.invoiceNotes,
         })
-        .then(function (response) {
+        .then((response) => {
+          this.loading = false;
           return stripe.redirectToCheckout({ sessionId: response.data.id });
         })
         .then(function (result) {
@@ -301,33 +302,35 @@ const app = new Vue({
           </div>
         </div>
         <div class="cart">
-          <button id="checkout-button" class="button" type="submit" form="jobpost">Post Job - $\{{price}}</button>
+          <button id="checkout-button" class="button" type="submit" form="jobpost" v-bind:disabled="loading">
+            Post Job - $\{{price}}
+          </button>
         </div>
       </div>
 
       <div class="fixed-preview">
-            <div class="job-details-panel">
-              <div class="post job">
-                <div class="company-logo">
-                  <img v-bind:src="logoWithPlaceholder" />
-                </div>
-                <div class="description">
-                  <div>{{companyWithPlaceholder}}</div>
-                  <a class="title">{{titleWithPlaceholder}}</a>
-                  <div>
-                    <div class="location">
-                      {{location}}
-                    </div>
+        <div class="job-details-panel">
+          <div class="post job">
+            <div class="company-logo">
+              <img v-bind:src="logoWithPlaceholder" />
+            </div>
+            <div class="description">
+              <div>{{companyWithPlaceholder}}</div>
+                <a class="title">{{titleWithPlaceholder}}</a>
+                <div>
+                  <div class="location">
+                    {{location}}
                   </div>
                 </div>
-                <div>
-                </div>
-                <div class="apply-button">
-                  Apply
-                </div>
               </div>
+            <div>
+            </div>
+            <div class="apply-button">
+              Apply
             </div>
           </div>
+        </div>
+      </div>
     </div>
   `,
 });
