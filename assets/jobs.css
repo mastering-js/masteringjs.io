@@ -8,14 +8,14 @@
 }
 
 .job .company-logo img {
-  height: 45px;
-  width: auto;
+  width: 60px;
+  height: auto;
   border: 0px;
 }
 
 .job .description {
   display: inline-block;
-  width: 400px;
+  width: 600px;
 }
 
 .job .location {
