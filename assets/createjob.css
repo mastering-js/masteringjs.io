@@ -121,21 +121,9 @@ body {
   text-align: center;
 }
 
-.fixed-preview{
+.fixed-preview {
   position: fixed;
   background-color: white;
-}
-
-.fixed-preview-horizontal{
-  position:fixed;
-  bottom: -40px;
-  left: 500px;
-  width: 35%;
-}
-
-.fixed-preview-vertical{
-  position:fixed;
-  bottom: 16px;
-  left: 250px;
-  background-color: white;
+  width: calc(55% - 28px);
+  bottom: 50px;
 }
