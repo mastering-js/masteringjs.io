@@ -1,7 +1,7 @@
 const server = "https://masteringjs-job-board.azurewebsites.net";
 const payment = server + "/api/stripeCheckout";
 var stripe = Stripe(
-  "pk_test_51IkuAqIFSwo5WpGWudAKEeemrymI6EmICEAgkgvlq4Bo5jJ1uuMRlrBRw9kvHH7boANqjE7Y6Mb7lQmsXRQoZo3x00Ek1L6d8A"
+  "pk_test_51IoDkvEIfgvH77vtSY6fn5Qy0dUyZFAsbYszCTWgSpvtCCWunY3pQYF7FRpLRoTKJjQbc6KMGrk7UpVhBhkoRS3r001Mjrp8HW"
 );
 
 const app = new Vue({
