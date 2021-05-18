@@ -265,42 +265,7 @@ const app = new Vue({
               </div>
             </div>
           </div>
-          <div class="fixed-preview">
-          <div id="jobs" class="job-listing" style="position: relative; top: 0px; left: 1020px; float: left; background-color:white;">
-          <h4>Vertical</h4>
-            <a v-bind:href="'/jobs'">
-            <div class="company-logo">
-              <img v-bind:src="logoWithPlaceholder" />
-            </div>
-            <div class="description">
-              <div class="company">{{companyWithPlaceholder}}</div>
-              <div class="title">{{titleWithPlaceholder}}</div>
-              <div class="location">{{location}}</div>
-            </div>
-            </a>
-          </div>
-          <div class="job-details-panel">
-            <div class="post job">
-              <div class="company-logo">
-                <img v-bind:src="logoWithPlaceholder" />
-              </div>
-              <div class="description">
-              <div>{{companyWithPlaceholder}}</div>
-              <a class="title">{{titleWithPlaceholder}}</a>
-              <div>
-                <div class="location">
-                  {{location}}
-                </div>
-              </div>
-            </div>
-            <div>
-            </div>
-            <div class="apply-button">
-              Apply
-            </div>
-            </div>
-          </div>
-        </div>
+          
         </form>
       </div>
       <div class="checkout">
@@ -342,6 +307,30 @@ const app = new Vue({
           <button id="checkout-button" class="button" type="submit" form="jobpost">Post Job - $\{{price}}</button>
         </div>
       </div>
+
+      <div class="fixed-preview">
+            <div class="job-details-panel">
+              <div class="post job">
+                <div class="company-logo">
+                  <img v-bind:src="logoWithPlaceholder" />
+                </div>
+                <div class="description">
+                  <div>{{companyWithPlaceholder}}</div>
+                  <a class="title">{{titleWithPlaceholder}}</a>
+                  <div>
+                    <div class="location">
+                      {{location}}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                </div>
+                <div class="apply-button">
+                  Apply
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
   `,
 });

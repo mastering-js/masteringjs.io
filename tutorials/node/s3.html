@@ -100,11 +100,9 @@ AWS.config.update({
 });
 
 <span class="hljs-comment">// 'https://s3.us-west-2.amazonaws.com/&lt;bucket&gt;/package.json'</span>
-res.Location;
-</code></pre>
+res.Location;</code></pre>
 <p>By default, the file you upload will be private. In other words, opening up <code>https://s3.us-west-2.amazonaws.com/&lt;bucket&gt;/package.json</code> in your browser will give you an error. To make the file public, you need to <a href="https://forums.aws.amazon.com/thread.jspa?threadID=116231">set the <code>ACL</code> option to <code>&#39;public-read&#39;</code></a> as shown below.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
   s3.upload({
     <span class="hljs-attr">Bucket</span>: process.env.AWS_BUCKET,
     <span class="hljs-attr">Body</span>: fs.createReadStream(<span class="hljs-string">'./package.json'</span>),
@@ -114,8 +112,7 @@ res.Location;
 });
 
 <span class="hljs-comment">// 'https://s3.us-west-2.amazonaws.com/&lt;bucket&gt;/package.json'</span>
-res.Location;
-</code></pre>
+res.Location;</code></pre>
 
   
   <hr>

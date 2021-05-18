@@ -10,11 +10,12 @@ body {
 .create-job {
   width: calc(65% - 28px);
   padding: 14px;
+  padding-bottom: 160px;
   float: left;
 }
 
 .checkout {
-  width: calc(35% - 36px);
+  width: calc(35% - 24px);
   float: left;
 
   border: 1px solid #ddd;
@@ -30,12 +31,15 @@ body {
 
 .cart {
   position: fixed;
-  bottom: 50px;
+  bottom: 0px;
+  background-color: white;
+  padding: 10px;
+  width: calc(35% - 24px - 20px);
+  border-radius: 6px;
 }
 
 #checkout-button {
-  width: 33%;
-  position: fixed;
+  width: 100%;
 }
 
 .create-job input {
@@ -124,6 +128,7 @@ body {
 .fixed-preview {
   position: fixed;
   background-color: white;
-  width: calc(55% - 26px);
+  width: calc(65%);
   bottom: 0px;
+  border-right: 0px;
 }

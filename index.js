@@ -239,9 +239,9 @@ async function run() {
   pages.push({
     path: './jobs/create.html',
     template: layout,
-    title: 'Create Job',
+    title: 'Hire JavaScript Developers | Mastering JS',
     content: createjob(),
-    description: 'Create Job',
+    description: 'Hire the best JavaScript developers in the world on Mastering JS and reach millions of developers.',
     carbonAds: false
   });
   pages.push({

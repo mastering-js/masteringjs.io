@@ -87,8 +87,7 @@ res.constructor.name; <span class="hljs-comment">// 'Object', means `res` is a P
 
 <span class="hljs-comment">// `res.data` contains the parsed response body</span>
 res.data; <span class="hljs-comment">// { args: { answer: 42 }, ... }</span>
-res.data <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+res.data <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
 <h1 id="how-to-postput-json">How to POST/PUT JSON</h1>
 <p>When making a <a href="/tutorials/axios/post-json"><code>POST</code></a> or <a href="/tutorials/axios/put"><code>PUT</code></a> request,
 Axios will automatically <code>parse</code> the data to JSON, provided you are sending an object,
@@ -99,13 +98,11 @@ parsed once received by the server.</p>
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
 
 res.data.data; <span class="hljs-comment">// '{"answer":42}'</span>
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json;charset=utf-8',</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json;charset=utf-8',</span></code></pre>
 <h2 id="put">PUT</h2>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'https://httpbin.org/put'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
-</code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
 
   
   <hr>
