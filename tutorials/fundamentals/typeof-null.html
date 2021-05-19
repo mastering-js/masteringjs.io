@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if a Variable is an Array - Mastering JS</title>
+    <title>How to Determine if a Value is null - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if a Variable is an Array" />
+    <meta property="og:title" content="How to Determine if a Value is null" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="The `typeof` operator is not a good choice for checking if a variable is an array. Here's why." />
-    <meta name="description" content="The `typeof` operator is not a good choice for checking if a variable is an array. Here's why." />
+    <meta property="og:description" content="Here's how you can determine whether a given value is null in JavaScript." />
+    <meta name="description" content="Here's how you can determine whether a given value is null in JavaScript." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if a Variable is an Array</h1>
+  <h1>How to Determine if a Value is null</h1>
   <div class="date">
-    May 14, 2021
+    May 19, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,19 +72,18 @@
 	  }
 	})();
 	</script>
-  <p>You shouldn&#39;t use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> to check whether a value is an <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html">array</a>, because <code>typeof</code> cannot distinguish between arrays and objects.
-Instead you should use <code>Array.isArray()</code>, because <code>typeof</code> would return <code>&#39;object&#39;</code>, not <code>&#39;array&#39;</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
-<span class="hljs-keyword">typeof</span> array; <span class="hljs-comment">// `object`</span></code></pre>
-<p><code>Array.isArray()</code> takes one parameter and will return true only
-if the given value is an array. Anything else will return false.
-You can also use <code>instanceof</code> to determine if a value is an array,
-however, <code>Array.isArray()</code> is fullproof as <code>instanceof</code> will
-not return true on an iframe.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
-<span class="hljs-built_in">Array</span>.isArray(array); <span class="hljs-comment">// true</span></code></pre>
-<p><strong>Note:</strong> ES6 introduced the ability to <a href="http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html#subclassing-the-array-class">subclass <code>Array</code></a>, like <code>class CustomArray extends Array {}</code>.
-The good news is that <code>Array.isArray()</code> will return <code>true</code> for any object that <code>extends Array</code>.</p>
+  <p>You shouldn&#39;t use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> when checking if a value is <a href="/tutorials/fundamentals/null"><code>null</code></a> because <code>typeof</code> cannot distinguish a <code>null</code> from an <code>object</code>.
+You should use the <code>===</code> operator because <code>==</code> will return <code>true</code> if checking against an <code>undefined</code> variable.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-literal">null</span>) {
+  <span class="hljs-comment">// will execute</span>
+}
+<span class="hljs-keyword">const</span> y;
+<span class="hljs-keyword">if</span> (y == <span class="hljs-literal">null</span>) {
+  <span class="hljs-comment">// will execute even though</span>
+  <span class="hljs-comment">// that is not the intention</span>
+}</code></pre>
 
   
   <hr>
@@ -105,10 +104,10 @@ The good news is that <code>Array.isArray()</code> will return <code>true</code>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
   
 
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>

@@ -98,8 +98,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
     <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
   }
 });
-<span class="hljs-built_in">console</span>.log(res.data);
-</code></pre>
+<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
 <p>The http-proxy package doesn&#39;t require you to use Express. You can also use <a href="/node/http-server">Node&#39;s built-in <code>HTTPServer</code> class</a>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
 <span class="hljs-keyword">const</span> httpProxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http-proxy'</span>);
