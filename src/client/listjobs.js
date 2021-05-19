@@ -11,7 +11,7 @@ function getJobs() {
       for (var i = 0; i < jobs.length; i++) {
         insert += `
           <div class="job-listing">
-            <a href="/jobs#/${jobs[i]._id}">
+            <a href="/jobs#${jobs[i]._id}">
               <div v-if="job.logo" class="company-logo">
                 <img src="${jobs[i].logo}" />
               </div>
