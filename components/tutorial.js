@@ -24,7 +24,17 @@ module.exports = ({ tutorials, tutorial }) => `
   ${tutorial.content}
   ${cta(tutorial)}
   <hr>
-  <div id="jobs" class="job-listing">
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
   </div>
   <script src="../../src/client/listjobs.js"></script>
   ${more(tutorials, tutorial)}

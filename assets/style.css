@@ -289,6 +289,10 @@ input[type="text"], input[type="password"], input[type="number"] {
   font-size: 0.95em;
 }
 
+#jobs .jobs-view-more a {
+  color: black;
+}
+
 /** Mobile */
 
 @media (max-width: 1000px) {

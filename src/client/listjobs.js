@@ -7,8 +7,8 @@ function getJobs() {
     then(function(data) {
       var jobs = data.jobs.splice(0, 3);
 
-      var insert='';
-      for (let i = 0; i < jobs.length; i++) {
+      var insert = '';
+      for (var i = 0; i < jobs.length; i++) {
         insert += `
           <div class="job-listing">
             <a href="/jobs#/${jobs[i]._id}">
@@ -24,16 +24,9 @@ function getJobs() {
           </div>
         `;
       }
-      insert += `
-      <div>
-        <div class="button jobs-view-more">
-          View more jobs!
-        </div>
-      </div>
-      `;
-      document.getElementById('jobs').innerHTML = insert;
+      document.getElementById('jobs-container').innerHTML = insert;
     }).
-    catch((err) => console.log(err));
+    catch(function(err) { console.log(err) });
 }
 
 getJobs();
