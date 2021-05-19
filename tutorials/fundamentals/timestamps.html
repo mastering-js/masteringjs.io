@@ -80,15 +80,13 @@ are a common method for representing points in time because they only require 64
 <span class="hljs-built_in">Date</span>.now();
 
 <span class="hljs-comment">// 1556372741, _seconds_ since Jan 1, 1970. This is the Unix timestamp</span>
-<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Date</span>.now() / <span class="hljs-number">1000</span>);
-</code></pre>
+<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Date</span>.now() / <span class="hljs-number">1000</span>);</code></pre>
 <p>Given an existing date, you can use either the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime"><code>getTime()</code> function</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf"><code>valueOf()</code> function</a> to get the number of milliseconds since January 1, 1970. These two functions are equivalent.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> d = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 
 <span class="hljs-comment">// Both get you the number of milliseconds since the Unix epoch</span>
 d.getTime(); <span class="hljs-comment">// 1559347200000</span>
-d.valueOf(); <span class="hljs-comment">// 1559347200000</span>
-</code></pre>
+d.valueOf(); <span class="hljs-comment">// 1559347200000</span></code></pre>
 <p>The reason why <code>getTime()</code> and <code>valueOf()</code> are separate functions is that <a href="https://blog.klipse.tech/javascript/2016/09/21/valueOf-js.html">JavaScript uses <code>valueOf()</code> functions for implicit type conversions</a>.</p>
 
   
@@ -97,7 +95,10 @@ d.valueOf(); <span class="hljs-comment">// 1559347200000</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-null">How to Correctly Determine if an Object is null</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -113,9 +114,6 @@ d.valueOf(); <span class="hljs-comment">// 1559347200000</span>
   
 
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
   
     </ul>
   

@@ -82,8 +82,7 @@ str; <span class="hljs-comment">// 'Hello, World'</span>
 
 <span class="hljs-keyword">return</span> p.then(<span class="hljs-function"><span class="hljs-params">str</span> =&gt;</span> {
   str; <span class="hljs-comment">// 'Hello, World'</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="resolved-is-not-the-same-as-fulfilled">Resolved is <em>Not</em> the Same as Fulfilled</h2>
 <p>Explaining the difference between a promise that is <em>resolved</em> and
 a promise that is <em>fulfilled</em> is a common JavaScript interview question.
@@ -99,8 +98,7 @@ The <a href="https://promisesaplus.com/#the-promise-resolution-procedure">Promis
 
 <span class="hljs-keyword">const</span> str = <span class="hljs-keyword">await</span> p2;
 <span class="hljs-comment">// `p2` "assimilates" the value of `p`.</span>
-str; <span class="hljs-comment">// 'Hello, World'</span>
-</code></pre>
+str; <span class="hljs-comment">// 'Hello, World'</span></code></pre>
 <p>A promise that is resolved to another promise is still pending.
 In particular, a promise that is resolved can still become rejected!</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fail</span>(<span class="hljs-params"></span>) </span>{
@@ -113,8 +111,7 @@ In particular, a promise that is resolved can still become rejected!</p>
 <span class="hljs-keyword">const</span> p = <span class="hljs-built_in">Promise</span>.resolve(fail());
 
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> p.catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// 'Oops'</span>
-</code></pre>
+err.message; <span class="hljs-comment">// 'Oops'</span></code></pre>
 <p>Resolved is not a <a href="/tutorials/fundamentals/promise#promises-as-state-machines">promise state</a>. On the other hand, fulfilled is
 one of 3 states a promise can be in, and once a promise transitions
 to fulfilled, JavaScript executes any <code>onFulfilled</code> callbacks you passed to the <a href="/tutorials/fundamentals/then"><code>then()</code> function</a>.</p>
@@ -138,8 +135,7 @@ you &quot;assimilate&quot; the value of that promise.</p>
 
 <span class="hljs-keyword">const</span> str = <span class="hljs-keyword">await</span> p2;
 <span class="hljs-comment">// `p2` "assimilates" the value of `p`.</span>
-str; <span class="hljs-comment">// 'Hello, World'</span>
-</code></pre>
+str; <span class="hljs-comment">// 'Hello, World'</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -162,7 +158,10 @@ str; <span class="hljs-comment">// 'Hello, World'</span>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-null">How to Correctly Determine if an Object is null</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -178,9 +177,6 @@ str; <span class="hljs-comment">// 'Hello, World'</span>
   
 
     <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
   
     </ul>
   

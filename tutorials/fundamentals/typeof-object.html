@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if a Value is null - Mastering JS</title>
+    <title>How to Determine if a Value is an Object - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if a Value is null" />
+    <meta property="og:title" content="How to Determine if a Value is an Object" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can determine whether a given value is null in JavaScript." />
-    <meta name="description" content="Here's how you can determine whether a given value is null in JavaScript." />
+    <meta property="og:description" content="Here's how you can check if a given JavaScript variable is an object." />
+    <meta name="description" content="Here's how you can check if a given JavaScript variable is an object." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if a Value is null</h1>
+  <h1>How to Determine if a Value is an Object</h1>
   <div class="date">
-    May 19, 2021
+    May 17, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,18 +72,32 @@
 	  }
 	})();
 	</script>
-  <p>You shouldn&#39;t use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> when checking if a value is <a href="/tutorials/fundamentals/null"><code>null</code></a> because <code>typeof</code> cannot distinguish a <code>null</code> from an <code>object</code>.
-You should use the <code>===</code> operator because <code>==</code> will return <code>true</code> if checking against an <code>undefined</code> variable.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-literal">null</span>;
-<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span>
-<span class="hljs-keyword">if</span> (x === <span class="hljs-literal">null</span>) {
-  <span class="hljs-comment">// will execute</span>
-}
-<span class="hljs-keyword">const</span> y;
-<span class="hljs-keyword">if</span> (y == <span class="hljs-literal">null</span>) {
-  <span class="hljs-comment">// will execute even though</span>
-  <span class="hljs-comment">// that is not the intention</span>
+  <p>Objects can be a bit frustrating when using the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> because <code>typeof</code> returns &#39;object&#39; for both <code>null</code> and <code>[]</code>.
+To handle these cases, you have a couple options.
+The first option is to hardcode an <code>if</code> statement as follows:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> test = { <span class="hljs-attr">firstName</span>: <span class="hljs-string">'Masteringjs'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'io'</span> };
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> test === <span class="hljs-string">'object'</span> &amp;&amp; !<span class="hljs-built_in">Array</span>.isArray(test) &amp;&amp; test != <span class="hljs-literal">null</span>) {
+  <span class="hljs-comment">// do some really cool stuff</span>
 }</code></pre>
+<p>Whether you use the <code>Array.isArray()</code> check depends on your use case.
+There are cases where you want to treat arrays as objects, and cases where you don&#39;t.</p>
+<p>This check will allow any object through, including objects that are instances of classes.
+If you need a more rigorous check as to check whether an object is a plain old JavaScript object (or <a href="/tutorials/fundamentals/pojo">POJO</a> for short), you can use the below function.</p>
+<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPOJO</span>(<span class="hljs-params">arg</span>) </span>{
+  <span class="hljs-keyword">if</span> (arg == <span class="hljs-literal">null</span> || <span class="hljs-keyword">typeof</span> arg !== <span class="hljs-string">'object'</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-keyword">const</span> proto = <span class="hljs-built_in">Object</span>.getPrototypeOf(arg);
+  <span class="hljs-keyword">if</span> (proto == <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// `Object.create(null)`</span>
+  }
+  <span class="hljs-keyword">return</span> proto === <span class="hljs-built_in">Object</span>.prototype;
+}
+
+isPOJO({}); <span class="hljs-comment">// true</span>
+isPOJO(<span class="hljs-built_in">Object</span>.create(<span class="hljs-literal">null</span>)); <span class="hljs-comment">// true</span>
+isPOJO(<span class="hljs-literal">null</span>); <span class="hljs-comment">// false</span>
+isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number</span>(<span class="hljs-number">42</span>)); <span class="hljs-comment">// false</span></code></pre>
 
   
   <hr>
@@ -91,7 +105,7 @@ You should use the <code>===</code> operator because <code>==</code> will return
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
