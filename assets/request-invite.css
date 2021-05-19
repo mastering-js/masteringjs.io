@@ -6,6 +6,10 @@
   margin-top: 0.5em;
 }
 
+a.button-wrapper {
+  color: black;
+}
+
 .description {
   font-size: 1.25em;
   margin-bottom: 1em;
