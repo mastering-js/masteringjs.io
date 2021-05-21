@@ -39,9 +39,9 @@ const app = new Vue({
     <div>
       <h1>Find Your Dream JavaScript Developer Job</h1>
       <div class="post">
-        <div class="description">
+        <div class="description" >
           Hiring JavaScript developers? Reach <b>100,000+</b> JavaScript developers on one of the top JS tutorial sites.
-          <span class="button">
+          <span class="button" style="display:inline-block">
             <a href="/jobs/create">Post a Job</a>
           </span>
         </div>
