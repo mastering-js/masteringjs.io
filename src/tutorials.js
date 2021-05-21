@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Determine if a Variable is undefined',
+    raw: './tutorials/fundamentals/typeof-undefined.md',
+    url: '/tutorials/fundamentals/typeof-undefined',
+    description: 'Here\'s how you can check if a variable is undefined in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-05-21')
+  },
+  {
     title: 'How to Determine if a Value is null',
     raw: './tutorials/fundamentals/typeof-null.md',
     url: '/tutorials/fundamentals/typeof-null',
