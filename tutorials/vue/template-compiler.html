@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -92,8 +92,7 @@ Vue.component(<span class="hljs-string">'hello'</span>, {
 });
 
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello, World&lt;/h1&gt;</span>
-<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
-</code></pre>
+<span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);</code></pre>
 <h2 id="parsing-a-vue-file">Parsing a <code>.vue</code> File</h2>
 <p>Vue-template-compiler has a separate function called <a href="https://www.npmjs.com/package/vue-template-compiler#compilerparsecomponentfile-options"><code>parseComponent()</code></a> that helps you compile single file components (<code>.vue</code> files) into JavaScript.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> compiler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'vue-template-compiler'</span>);
@@ -118,8 +117,7 @@ Vue.component(<span class="hljs-string">'app'</span>, appComponent);
 
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;h1 data-server-rendered="true"&gt;Hello World&lt;/h1&gt;</span>
-data;
-</code></pre>
+data;</code></pre>
 
   <hr>
 <div class="cta">
@@ -141,6 +139,19 @@ data;
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -169,7 +180,6 @@ data;
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -188,7 +198,6 @@ data;
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

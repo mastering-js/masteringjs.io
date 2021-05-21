@@ -1,0 +1,138 @@
+body {
+  background-color: #f9f9f9;
+}
+
+.content {
+  width: 100%;
+  padding: 0px;
+}
+
+.create-job {
+  width: calc(65% - 28px);
+  padding: 14px;
+  padding-bottom: 160px;
+  float: left;
+}
+
+.checkout {
+  width: calc(35% - 24px);
+  float: left;
+
+  border: 1px solid #ddd;
+  padding: 0px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  background-color: #fff;
+  margin-top: 14px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.cart {
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  padding: 10px;
+  width: calc(35% - 24px - 20px);
+  border-radius: 6px;
+}
+
+#checkout-button {
+  width: 100%;
+}
+
+.create-job input {
+  padding: 7px;
+  background-color: #fbfbfb;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  width: calc(100% - 28px);
+}
+
+.create-job textarea {
+  padding: 7px;
+  background-color: #fbfbfb;
+  border-radius: 6px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  width: calc(100% - 28px);
+  min-height: 150px;
+}
+
+.create-job label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.create-job .job-details-panel {
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  position: relative;
+  background-color: #fff;
+}
+
+.create-job .job-details-panel-header {
+  text-align: center;
+  display: inline-block;
+  left: calc(50% - 70px);
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: -14px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  width: 140px;
+  background-color: #fff;
+  border-radius: 6px;
+}
+
+.create-job .job-details-panel .subs {
+  margin-bottom: 14px;
+}
+
+.checkout .copy {
+  font-size: 1.25em;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+.checkout .copy .small {
+  font-size: 0.75em;
+  color: #666;
+  width: 100%;
+  text-align: center;
+}
+
+.checkout .copy img.icon {
+  border: 0px;
+  width: 2em;
+  padding: 0px;
+}
+
+.company-logo img {
+  width: 4em;
+}
+
+.checkout .copy .benefit {
+  padding: 14px;
+  border-top: 1px solid #ddd;
+  margin-top: 1em;
+  padding-top: 1em;
+}
+
+.create-job-main .header {
+  text-align: center;
+}
+
+.fixed-preview {
+  position: fixed;
+  background-color: white;
+  width: calc(65%);
+  bottom: 0px;
+  border-right: 0px;
+}

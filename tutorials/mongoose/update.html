@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -82,8 +82,7 @@
 <p>What&#39;s the difference between these 4 ways? Let&#39;s take a look at what each of these functions do.</p>
 <h2 id="using-save">Using <code>save()</code></h2>
 <p>Below is an example of using <code>save()</code> to update Jon Snow&#39;s title.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span> });
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">title</span>: <span class="hljs-built_in">String</span> });
 <span class="hljs-keyword">const</span> CharacterModel = mongoose.model(<span class="hljs-string">'Character'</span>, schema);
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.create({
@@ -93,8 +92,7 @@
 
 <span class="hljs-comment">// Update the document by setting a property and calling `save()`</span>
 doc.title = <span class="hljs-string">'King in the North'</span>;
-<span class="hljs-keyword">await</span> doc.save();
-</code></pre>
+<span class="hljs-keyword">await</span> doc.save();</code></pre>
 <p>This simple example has a couple nuances. First, <code>save()</code> is a method on a document, which means you must have a document to save. You need to either <code>create()</code> or use <a href="http://thecodebarbarian.com/how-find-works-in-mongoose.html"><code>find()</code></a> to get a document.</p>
 <p>Second, Mongoose documents have change tracking. Under the hood, when you call <code>doc.save()</code>, Mongoose knows you set <code>title</code> and transforms your <code>save()</code> call into <code>updateOne({ $set: { title } })</code>. Try running <a href="https://mongoosejs.com/docs/api.html#mongoose_Mongoose-set">Mongoose with debug mode</a> to see what queries Mongoose executes.</p>
 <h2 id="using-modelupdateone-and-modelupdatemany">Using <code>Model.updateOne()</code> and <code>Model.updateMany()</code></h2>
@@ -106,8 +104,7 @@ doc.title = <span class="hljs-string">'King in the North'</span>;
 
 <span class="hljs-comment">// Load the document to see the updated value</span>
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> CharacterModel.findOne();
-doc.title; <span class="hljs-comment">// "King in the North"</span>
-</code></pre>
+doc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
 <p><code>updateMany()</code> is similar. The difference between these two functions is that <code>updateOne()</code> will update <strong>at most one</strong> document, whereas <code>updateMany()</code> will update every document that matches the filter.</p>
 <p>You should use <code>save()</code> rather than <code>updateOne()</code> and <code>updateMany()</code> where possible. However, <code>Model.updateOne()</code> and <code>Model.updateMany()</code> have a few advantages:</p>
 <ul>
@@ -125,8 +122,7 @@ doc.title; <span class="hljs-comment">// "King in the North"</span>
 <span class="hljs-keyword">await</span> doc.updateOne(update);
 
 <span class="hljs-keyword">const</span> updatedDoc = <span class="hljs-keyword">await</span> CharacterModel.findOne({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Jon Snow'</span> });
-updatedDoc.title; <span class="hljs-comment">// "King in the North"</span>
-</code></pre>
+updatedDoc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
 <p>Generally, <code>Document#updateOne()</code> is rarely useful. You&#39;re better off using <code>save()</code> and using <code>Model.updateOne()</code> for cases when <code>save()</code> is not flexible enough.</p>
 <h2 id="using-modelfindoneandupdate">Using <code>Model.findOneAndUpdate()</code></h2>
 <p>The <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> or its variation <a href="https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate"><code>Model.findByIdAndUpdate()</code></a> behave similarly to <code>updateOne()</code>: they atomically update the first document that matches the first parameter <code>filter</code>. Unlike <code>updateOne()</code>, it gives you back the updated document.</p>
@@ -138,8 +134,7 @@ updatedDoc.title; <span class="hljs-comment">// "King in the North"</span>
   { <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span> }
 );
 
-doc.title; <span class="hljs-comment">// "King in the North"</span>
-</code></pre>
+doc.title; <span class="hljs-comment">// "King in the North"</span></code></pre>
 <h2 id="summary">Summary</h2>
 <p>In general, you should use <code>save()</code> to update a document in Mongoose, unless you
 need an atomic update. Here&#39;s a summary of the key features of all 4 ways to update a document:</p>
@@ -163,6 +158,19 @@ need an atomic update. Here&#39;s a summary of the key features of all 4 ways to
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -191,7 +199,6 @@ need an atomic update. Here&#39;s a summary of the key features of all 4 ways to
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -210,7 +217,6 @@ need an atomic update. Here&#39;s a summary of the key features of all 4 ways to
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

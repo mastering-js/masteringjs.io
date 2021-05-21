@@ -11,6 +11,10 @@ const marked = require('marked');
 const requestInvite = require('./components/request-invite');
 const transform = require('acquit-require');
 const tutorialTemplate = require('./components/tutorial');
+const jobs = require('./components/jobs');
+const createjob = require('./components/createjob');
+const success = require('./components/success');
+const failure = require('./components/failure');
 
 require('acquit-ignore')();
 
@@ -225,7 +229,35 @@ async function run() {
     content: require('./components/ebooks/mastering-mongoose-thankyou')(),
     description: ''
   });
-
+  pages.push({
+    path: './jobs.html',
+    template: layout,
+    title: 'Jobs',
+    content: jobs(),
+    description: 'Find A Job'
+  });
+  pages.push({
+    path: './jobs/create.html',
+    template: layout,
+    title: 'Hire JavaScript Developers | Mastering JS',
+    content: createjob(),
+    description: 'Hire the best JavaScript developers in the world on Mastering JS and reach millions of developers.',
+    carbonAds: false
+  });
+  pages.push({
+    path: './jobs/success.html',
+    template: layout,
+    title: 'Thank you!',
+    content: success(),
+    description: 'Successfully posted a job'
+  });
+  pages.push({
+    path: './jobs/failure.html',
+    template: layout,
+    title: 'Oh No!',
+    content: failure(),
+    description: 'Something went wrong'
+  });
   for (const page of pages) {
     console.log(page.path)
     fs.writeFileSync(page.path, page.template({ ...page }));

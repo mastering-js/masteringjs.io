@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -95,8 +95,7 @@ axios.interceptors.request.use(<span class="hljs-function"><span class="hljs-par
 <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
 
 <span class="hljs-comment">// Prints "post https://httpbin.org/post"</span>
-<span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, {});
-</code></pre>
+<span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, {});</code></pre>
 <h2 id="print-every-response-to-the-console">Print Every Response to the Console</h2>
 <p>There are two types of interceptors: request interceptors and response
 interceptors.</p>
@@ -123,8 +122,7 @@ axios.interceptors.response.use(<span class="hljs-function"><span class="hljs-pa
 });
 
 <span class="hljs-comment">// Prints "post https://httpbin.org/post" followed by "{ answer: 42 }"</span>
-<span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
-</code></pre>
+<span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });</code></pre>
 <h2 id="automatically-set-the-authorization-header">Automatically Set the <a href="/tutorials/axios/authorization">Authorization Header</a></h2>
 <p>One of the most common use cases for interceptors is handling
 authorization. Typically, the way a client app proves to a server
@@ -140,8 +138,7 @@ header automatically on all requests as shown below.</p>
 
 <span class="hljs-comment">// Automatically sets the authorization header because</span>
 <span class="hljs-comment">// of the request interceptor</span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/get'</span>);</code></pre>
 <h2 id="error-handling"><a href="/tutorials/axios/error-handling">Error Handling</a></h2>
 <p>Response interceptors also let you handle errors. This is important
 because Axios&#39; default error message is &quot;Request failed with status code 404&quot;,
@@ -167,11 +164,23 @@ Axios will treat it as a successful request!</p>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'https://httpbin.org/status/404'</span>).
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-literal">null</span>, err =&gt; err);
 
-err.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not found"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not found"</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Axios Tutorials</h2>
     <ul>
@@ -200,7 +209,6 @@ err.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not f
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -219,7 +227,6 @@ err.message; <span class="hljs-comment">// "https://httpbin.org/status/404 not f
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

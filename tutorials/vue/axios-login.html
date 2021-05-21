@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -85,13 +85,11 @@ authenticates using <a href="https://swagger.io/docs/specification/authenticatio
     <span class="hljs-attr">password</span>: <span class="hljs-string">'bar'</span>
   }
 });
-res.status; <span class="hljs-comment">// 200</span>
-</code></pre>
+res.status; <span class="hljs-comment">// 200</span></code></pre>
 <h2 id="vue-login-form">Vue Login Form</h2>
 <p><a href="/tutorials/vue/form">Building a form in Vue</a> is easy: just use <a href="/tutorials/vue/v-model"><code>v-model</code></a>. When the user submits the login form, call the <code>login()</code> method
 that uses the above Axios logic.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
       <span class="hljs-attr">username</span>: <span class="hljs-string">''</span>,
       <span class="hljs-attr">password</span>: <span class="hljs-string">''</span>,
@@ -132,8 +130,7 @@ that uses the above Axios logic.</p>
         &lt;button type="submit"&gt;Submit&lt;/button&gt;
       &lt;/div&gt;
     `</span>
-  });
-</code></pre>
+  });</code></pre>
 
   <hr>
 <div class="cta">
@@ -155,6 +152,19 @@ that uses the above Axios logic.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -183,7 +193,6 @@ that uses the above Axios logic.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -202,7 +211,6 @@ that uses the above Axios logic.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

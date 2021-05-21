@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -82,8 +82,7 @@
 <span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 
 d1 === d3; <span class="hljs-comment">// false</span>
-d1 == d3; <span class="hljs-comment">// false</span>
-</code></pre>
+d1 == d3; <span class="hljs-comment">// false</span></code></pre>
 <p>To compare two dates, you can use either <code>toString()</code> or <a href="/tutorials/fundamentals/valueof"><code>valueOf()</code></a>.
 The <code>toString()</code> method converts the date into an ISO date string, and the
 <code>valueOf()</code> method converts the date into <a href="https://currentmillis.com/">milliseconds since the epoch</a>.</p>
@@ -99,8 +98,7 @@ d1.toString() === d2.toString(); <span class="hljs-comment">// false</span>
 d1.toString() === d3.toString(); <span class="hljs-comment">// true</span>
 
 d1.valueOf() === d2.valueOf(); <span class="hljs-comment">// false</span>
-d1.valueOf() === d3.valueOf(); <span class="hljs-comment">// true</span>
-</code></pre>
+d1.valueOf() === d3.valueOf(); <span class="hljs-comment">// true</span></code></pre>
 <h2 id="before-and-after">Before and After</h2>
 <p>Although neither <code>==</code> nor <code>===</code> can compare whether two dates are equal,
 surprisingly both <code>&lt;</code> and <code>&gt;</code> work fine for comparing dates:</p>
@@ -116,8 +114,7 @@ d2 &lt; d1; <span class="hljs-comment">// true</span></code></pre>
 <span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 
 d1 - d3; <span class="hljs-comment">// 0</span>
-d1 - d2; <span class="hljs-comment">// 1 year in milliseconds, 1000 * 60 * 60 * 24 * 365</span>
-</code></pre>
+d1 - d2; <span class="hljs-comment">// 1 year in milliseconds, 1000 * 60 * 60 * 24 * 365</span></code></pre>
 <p>In other words, you can compare two dates <code>a</code> and <code>b</code> by using <code>a - b</code>.
 If <code>b</code> is after <code>a</code>, then <code>a - b &lt; 0</code>.</p>
 <h2 id="sorting">Sorting</h2>
@@ -127,8 +124,7 @@ The below <code>sort()</code> call gives you the dates in reverse order.</p>
 <span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
 <span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 
-[d2, d1, d3].sort(); <span class="hljs-comment">// [d3, d2, d1]</span>
-</code></pre>
+[d2, d1, d3].sort(); <span class="hljs-comment">// [d3, d2, d1]</span></code></pre>
 <p>Why is that? Because <a href="/tutorials/fundamentals/array-sort">JavaScript&#39;s sort function</a>
 implicitly converts all values in the array into strings before sorting.
 So the above <code>sort()</code> is actually sorting based on the below string values:</p>
@@ -151,16 +147,34 @@ your comparison function:</p>
 <span class="hljs-keyword">const</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2018-06-01'</span>);
 <span class="hljs-keyword">const</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01'</span>);
 
-[d2, d1, d3].sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b); <span class="hljs-comment">// [d1, d2, d3]</span>
-</code></pre>
+[d2, d1, d3].sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b); <span class="hljs-comment">// [d1, d2, d3]</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -174,17 +188,10 @@ your comparison function:</p>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -203,7 +210,6 @@ your comparison function:</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

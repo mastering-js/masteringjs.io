@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -90,8 +90,7 @@ sort an array of objects by a property name as shown below.</p>
 sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Worf</span>
 sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// Deanna Troi</span>
 sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// William Riker</span>
-sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span>
-</code></pre>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span></code></pre>
 <p>The first parameter to <code>sortBy()</code> is the array to sort, and then 2nd parameter
 is called the <code>iteratees</code>. You can think of <code>iteratees</code> as a function that
 transforms each array element into something that is sortable. For example,
@@ -111,8 +110,7 @@ an <code>iteratees</code> function as the 2nd parameter.</p>
 sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Worf</span>
 sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// Deanna Troi</span>
 sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// William Riker</span>
-sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span>
-</code></pre>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span></code></pre>
 <p>There are numerous other ways to use <code>iteratees</code> to transform the array.
 For example, instead of sorting by the character&#39;s age, you can sort by the
 length of the character&#39;s name.</p>
@@ -131,11 +129,23 @@ length of the character&#39;s name.</p>
 sorted[<span class="hljs-number">0</span>].name; <span class="hljs-comment">// Jean-Luc Picard</span>
 sorted[<span class="hljs-number">1</span>].name; <span class="hljs-comment">// William Riker</span>
 sorted[<span class="hljs-number">2</span>].name; <span class="hljs-comment">// Deanna Troi</span>
-sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Worf</span>
-</code></pre>
+sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// Worf</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Lodash Tutorials</h2>
     <ul>
@@ -164,7 +174,6 @@ sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// W
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -183,7 +192,6 @@ sorted[<span class="hljs-number">3</span>].name; <span class="hljs-comment">// W
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -92,8 +92,7 @@ date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
   month: <span class="hljs-string">'long'</span>, <span class="hljs-comment">// "June"</span>
   day: <span class="hljs-string">'2-digit'</span>, <span class="hljs-comment">// "01"</span>
   year: <span class="hljs-string">'numeric'</span> <span class="hljs-comment">// "2019"</span>
-});
-</code></pre>
+});</code></pre>
 <p><strong>Note:</strong> Don&#39;t confuse <code>toLocaleString()</code> with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString"><code>toLocaleDateString()</code></a>. The <code>toLocaleDateString()</code> function is similar to <code>toLocaleString()</code>, except for it doesn&#39;t include the time portion of the date by default.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T08:00:00.000'</span>);
 
@@ -109,8 +108,7 @@ date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>
-}); <span class="hljs-comment">// "June 01, 2019, 8 AM"</span>
-</code></pre>
+}); <span class="hljs-comment">// "June 01, 2019, 8 AM"</span></code></pre>
 <h2 id="timezones">Timezones</h2>
 <p>The <code>toLocaleString()</code> function also lets you specify a timezone to format the date in. Which timezones are supported is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#Parameters">implementation-specific</a>, so you shouldn&#39;t rely on named timezones like &#39;America/Los_Angeles&#39; or &#39;America/New_York&#39; without testing your environment first. For example, Node.js <a href="https://github.com/nodejs/help/issues/1843">pulls timezone data from your OS</a>, so that means your Node process most likely has timezone data, but that is not strictly guaranteed.</p>
 <p>Below is an example of formatting a UTC date with a specific timezone, <code>&#39;America/Denver&#39;</code>.</p>
@@ -122,8 +120,7 @@ date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">timeZone</span>: <span class="hljs-string">'America/Denver'</span> <span class="hljs-comment">// 6 hours behind UTC</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="limitations">Limitations</h2>
 <p>The <code>toLocaleString()</code> function is good enough for simple human-readable formatting, but it doesn&#39;t have the same level of control that you have with <a href="https://www.npmjs.com/package/moment">moment</a>.</p>
 <p>For example, <code>toLocaleString()</code> doesn&#39;t have a way to output a date in <code>YYYYMMDD</code> format, such as &#39;20190601&#39; for June 1, 2019. You can output a date in <code>YYYY-MM-DD</code>, but you have to guess a compatible locale. There&#39;s no way to output <code>YYYY-MM-DD</code> using the <code>&#39;en-US&#39;</code> locale, but you can do it with the <code>&#39;fr-CA&#39;</code> locale.</p>
@@ -133,17 +130,35 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">month</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>
-});
-</code></pre>
+});</code></pre>
 <p>Unfortunately, figuring out the right locale requires trial and error. If you need more powerful formatting than just &#39;June 1, 2019&#39;, you&#39;re better off using moment.</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -157,17 +172,10 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -186,7 +194,6 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

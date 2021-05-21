@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -82,8 +82,7 @@ buffers are equal.</p>
 
 Buffer.compare(buf1, buf2); <span class="hljs-comment">// 0, means the 2 buffers are equal</span>
 
-Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span>
-</code></pre>
+Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf3</span></code></pre>
 <p>That means, to check if <code>buf1</code> has the same bytes as <code>buf2</code>, you can do:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> isEqual = Buffer.compare(buf1, buf2) === <span class="hljs-number">0</span>;</code></pre>
 <h2 id="sorting">Sorting</h2>
@@ -104,11 +103,23 @@ Buffer.compare(buf1, buf3); <span class="hljs-comment">// 1, means buf1 &lt; buf
 
 buffers.sort(Buffer.compare);
 
-buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span>
-</code></pre>
+buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&gt;</span> buf.toString(<span class="hljs-string">'utf8'</span>)); <span class="hljs-comment">// ['A', 'B', 'C']</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Node Tutorials</h2>
     <ul>
@@ -137,7 +148,6 @@ buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&g
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -156,7 +166,6 @@ buffers.map(<span class="hljs-function"><span class="hljs-params">buf</span> =&g
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

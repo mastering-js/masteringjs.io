@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -73,21 +73,17 @@
 	})();
 	</script>
   <p>Mongoose has two ways of connecting to a MongoDB database, <a href="https://mongoosejs.com/docs/connections.html">connect()</a> and <a href="https://mongoosejs.com/docs/connections.html#multiple_connections">createConnection()</a>. You can use these within an async function as follows:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});
-</code></pre>
+});</code></pre>
 <p>and for createConnection()</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.createConnection(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span>
-});
-</code></pre>
+});</code></pre>
 
   <hr>
 <div class="cta">
@@ -106,6 +102,19 @@
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -134,7 +143,6 @@
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -153,7 +161,6 @@
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

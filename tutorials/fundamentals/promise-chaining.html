@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -82,8 +82,7 @@ to tell JavaScript to execute async calls in order.</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>))).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - start); <span class="hljs-comment">// About 100ms passed</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="return-values">Return Values</h2>
 <p>The first parameter to the <code>then()</code> function is called <code>onFulfilled()</code>.
 That&#39;s because JavaScript calls that function when the promise is fulfilled.
@@ -104,8 +103,7 @@ returns will have the same fulfilled value as <code>q</code>.</p>
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v + <span class="hljs-number">1</span>).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(v); <span class="hljs-comment">// 5</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="error-handling">Error Handling</h2>
 <p>Promise chaining also consolidates error handling. All you need is one
 <a href="/tutorials/fundamentals/catch"><code>.catch()</code> function</a> call at the end
@@ -128,8 +126,7 @@ of your promise chain to handle any errors that occur in your promise chain.</p>
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v + <span class="hljs-number">1</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     err.message; <span class="hljs-comment">// 'Oops'</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="summary">Summary</h2>
 <p>The high level structure of a promise chain is a series of <code>.then()</code>
 calls, each with an <code>onFulfilled()</code> parameter, and a single <code>.catch()</code>
@@ -154,11 +151,30 @@ functions errors out.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -172,17 +188,10 @@ functions errors out.</p>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -201,7 +210,6 @@ functions errors out.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

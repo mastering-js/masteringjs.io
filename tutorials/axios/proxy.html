@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -114,8 +114,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
     <span class="hljs-attr">port</span>: <span class="hljs-number">3000</span>
   }
 });
-<span class="hljs-built_in">console</span>.log(res.data);
-</code></pre>
+<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
 <p>Notice that Express reports <code>req.url</code> is an <code>httpbin.org</code> URL! That&#39;s what we mean when we say Axios sends the
 request to a different server than the request is intended for. The URL associated with the request, <code>req.url</code>,
 is different than the proxy server&#39;s URL, and the proxy server is responsible for forwarding the request to <code>req.url</code>.</p>
@@ -142,6 +141,19 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Axios Tutorials</h2>
     <ul>
@@ -170,7 +182,6 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -189,7 +200,6 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

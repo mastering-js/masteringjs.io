@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -85,8 +85,7 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">url, cb</span>) </span>{
   <span class="hljs-keyword">return</span> axios.get(url);
-}
-</code></pre>
+}</code></pre>
 <p>The function <code>get()</code> takes one parameter, a URL, and returns a <a href="/tutorials/fundamentals/promise">promise</a>. Let&#39;s test this function with Mocha, 3 different ways.</p>
 <h2 id="async-functions">Async Functions</h2>
 <p><a href="http://thecodebarbarian.com/using-async-await-with-mocha-express-and-mongoose#mocha">Mocha supports async functions out of the box</a>, no plugins or configuration needed. You can pass an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async function</a> to <code>it()</code>, and Mocha will handle any errors that occur.</p>
@@ -127,6 +126,19 @@
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mocha Tutorials</h2>
     <ul>
@@ -140,7 +152,6 @@
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -159,7 +170,6 @@
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -99,8 +99,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-comment">// error handling middleware.</span>
 app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> {
   res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">message</span>: err.message });
-});      
-</code></pre>
+});      </code></pre>
 <p>Express automatically handles synchronous errors for you, like the <code>routeHandler()</code> function above. Express does <strong>not</strong> handle asynchronous errors though. If you
 have an asynchronous error, like one in an <a href="http://thecodebarbarian.com/async-functions-in-javascript.html">async function</a>, you need to call <code>next()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -118,8 +117,7 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-keyword">async</
 
 app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, next</span>) =&gt;</span> {
   res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">message</span>: err.message });
-});      
-</code></pre>
+});      </code></pre>
 
   <hr>
 <div class="cta">
@@ -156,6 +154,19 @@ app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, ne
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Express Tutorials</h2>
     <ul>
@@ -184,7 +195,6 @@ app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, ne
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -203,7 +213,6 @@ app.use(<span class="hljs-function">(<span class="hljs-params">err, req, res, ne
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

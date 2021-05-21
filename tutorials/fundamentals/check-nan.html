@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -78,27 +78,43 @@
 <span class="hljs-keyword">let</span> text = <span class="hljs-string">'hello world!'</span>;
 <span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// false</span>
 text = +text; <span class="hljs-comment">// shortcut to convert a string to a number</span>
-<span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// true</span>
-</code></pre>
+<span class="hljs-built_in">Number</span>.isNaN(text); <span class="hljs-comment">// true</span></code></pre>
 <p><code>isNaN()</code> on the other hand would check if the value would be a <code>NaN</code> if it was converted to a number. We recommend not using <code>isNaN()</code> as it gives surprising behavior.</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">isNaN</span>(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'test'</span>); <span class="hljs-comment">// true</span>
 <span class="hljs-built_in">isNaN</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// false</span>
-<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'2'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">'2'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>Another interesting thing about <code>NaNs</code> is that arrays have a hard time with them. For example, <code>arr.includes(NaN)</code> will return true if there is a <code>NaN</code> in the array whereas <code>arr.indexOf(NaN)</code> will return -1 with or without a <code>NaN</code> in the array. That&#39;s because <a href="/tutorials/fundamentals/equality#where-these-equality-comparisons-are-used"><code>includes()</code> uses a different equality algorithm than <code>indexOf()</code></a>.]</p>
 <p>If you want the <code>indexOf()</code> a <code>NaN</code> in an array then ironically enough you should use <code>findIndex()</code> as follows: <code>arr.findIndex(n =&gt; Number.isNaN(n))</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">'1'</span>,<span class="hljs-string">'2'</span>,<span class="hljs-string">'3'</span>,<span class="hljs-string">'4'</span>,<span class="hljs-literal">NaN</span>,<span class="hljs-string">'5'</span>];
-arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span>
-</code></pre>
+arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-built_in">Number</span>.isNaN(n)); <span class="hljs-comment">// 4</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -112,17 +128,10 @@ arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&g
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -141,7 +150,6 @@ arr.findIndex(<span class="hljs-function"><span class="hljs-params">n</span> =&g
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

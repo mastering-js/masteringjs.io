@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -88,8 +88,7 @@ axios.constructor === instance.constructor; <span class="hljs-comment">// true</
 
 <span class="hljs-comment">// For example, `instance.get()` lets you send a GET request, but</span>
 <span class="hljs-comment">// it will also have the 1000ms timeout.</span>
-<span class="hljs-keyword">await</span> instance.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);
-</code></pre>
+<span class="hljs-keyword">await</span> instance.get(<span class="hljs-string">'https://httpbin.org/get?hello=world'</span>);</code></pre>
 <p>Another common use case is <a href="https://github.com/axios/axios#axioscreateconfig">setting the <code>baseURL</code> for all requests</a>. This is convenient so you
 don&#39;t have to type out the absolute URL every time.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>).create({
@@ -97,11 +96,23 @@ don&#39;t have to type out the absolute URL every time.</p>
 });
 
 <span class="hljs-comment">// Sends request to 'https://httpbin.org/get' </span>
-<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'/get?hello=world'</span>);</code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Axios Tutorials</h2>
     <ul>
@@ -130,7 +141,6 @@ don&#39;t have to type out the absolute URL every time.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -149,7 +159,6 @@ don&#39;t have to type out the absolute URL every time.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

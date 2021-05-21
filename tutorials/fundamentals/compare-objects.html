@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -107,8 +107,7 @@ objectsEqual(o1, { <span class="hljs-attr">answer</span>: <span class="hljs-numb
   }
 
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}
-</code></pre>
+}</code></pre>
 <h2 id="deep-equality-using-jsonstringify">Deep Equality using <code>JSON.stringify()</code></h2>
 <p>The previous section shows how to compare objects by checking if the two objects&#39; keys and values are strictly equal. But what if one of the values is an object?</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> o1 = { <span class="hljs-attr">name</span>: { <span class="hljs-attr">first</span>: <span class="hljs-string">'Arthur'</span>, <span class="hljs-attr">lastName</span>: <span class="hljs-string">'Dent'</span> }, <span class="hljs-attr">planet</span>: <span class="hljs-string">'Earth'</span> };
@@ -146,16 +145,14 @@ to strings, and ignores keys whose value is <code>undefined</code>, which can le
   <span class="hljs-attr">num</span>: <span class="hljs-number">1</span>
 };
 
-_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span></code></pre>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> };
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Character</span> </span>{}
 <span class="hljs-keyword">const</span> obj2 = <span class="hljs-keyword">new</span> Character();
 <span class="hljs-built_in">Object</span>.assign(obj2, { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> });
 
-_.isEqual(obj1, obj2); <span class="hljs-comment">// false</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// false</span></code></pre>
 <p>The <code>isEqual()</code> function is also smart enough to avoid infinite recursion.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj1 = {};
 <span class="hljs-keyword">const</span> obj2 = {};
@@ -163,17 +160,35 @@ _.isEqual(obj1, obj2); <span class="hljs-comment">// false</span>
 obj1.circular = obj1;
 obj2.circular = obj1;
 
-_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span></code></pre>
 <p>If you&#39;re already using Lodash, <code>isEqual()</code> is the best approach to comparing if two objects are deep equal. The shallow strict comparison approach is good for cases where you aren&#39;t worried about nested objects, and <code>JSON.stringify()</code> can help provide a rough deep equality check in cases where you can&#39;t use Lodash. But, if you can use Lodash, <code>isEqual()</code> is the best approach for checking whether two objects are deeply equal.</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -187,17 +202,10 @@ _.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -216,7 +224,6 @@ _.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

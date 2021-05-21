@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -86,8 +86,7 @@
 <span class="hljs-comment">// expression evaluates to false.</span>
 <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;!----&gt;&lt;/div&gt;</span>
-data;
-</code></pre>
+data;</code></pre>
 <h2 id="v-else-if-and-v-else"><code>v-else-if</code> and <code>v-else</code></h2>
 <p>Vue also has <a href="https://vuejs.org/v2/guide/conditional.html#v-else"><code>v-else-if</code> and <code>v-else</code> directives</a> that behave like <code>else if</code> and <code>else</code> in JavaScript.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
@@ -113,8 +112,7 @@ data;
 app._data.value = <span class="hljs-number">0</span>;
 data = <span class="hljs-keyword">await</span> renderToString(app);
 <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;&lt;div&gt;Zero&lt;/div&gt;&lt;/div&gt;</span>
-data;
-</code></pre>
+data;</code></pre>
 <h2 id="lifecycle-hooks">Lifecycle Hooks</h2>
 <p><a href="https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks">Vue components have lifecycle hooks</a>, like the <code>created</code> hook that gets called when the component gets created, and <code>mounted</code> when the component gets mounted.</p>
 <p>When Vue renders a component because the <code>v-if</code> expression became
@@ -163,6 +161,19 @@ the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every t
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -191,7 +202,6 @@ the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every t
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -210,7 +220,6 @@ the below code will print both &#39;Created!&#39; and &#39;Mounted!&#39; every t
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

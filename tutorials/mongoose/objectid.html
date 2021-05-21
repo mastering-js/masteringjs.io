@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -81,8 +81,7 @@ other databases use a numeric id property by default, but in MongoDB and
 
 doc._id <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span>
 <span class="hljs-keyword">typeof</span> doc._id; <span class="hljs-comment">// 'object'</span>
-doc._id; <span class="hljs-comment">// '5d6ede6a0ba62570afcedd3a'</span>
-</code></pre>
+doc._id; <span class="hljs-comment">// '5d6ede6a0ba62570afcedd3a'</span></code></pre>
 <h2 id="casting">Casting</h2>
 <p>MongoDB ObjectIds are typically represented using a 24 hexadecimal character
 string, like <code>&#39;5d6ede6a0ba62570afcedd3a&#39;</code>. Mongoose casts 24 char strings
@@ -94,8 +93,7 @@ to ObjectIds for you based on your <a href="https://mongoosejs.com/docs/guide.ht
 
 <span class="hljs-comment">// `testId` is an ObjectId, Mongoose casts 24 hex char strings to</span>
 <span class="hljs-comment">// ObjectIds for you automatically based on your schema.</span>
-doc.testId <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span>
-</code></pre>
+doc.testId <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span></code></pre>
 <p>There are several other values that Mongoose can cast to ObjectIds. The key
 lesson is that <em>an ObjectId is 12 arbitrary bytes</em>. Any 12 byte buffer or
 12 character string is a valid ObjectId.</p>
@@ -112,8 +110,7 @@ doc.testId; <span class="hljs-comment">// '313263686172313263686172'</span>
 <span class="hljs-comment">// to ObjectIds.</span>
 doc = <span class="hljs-keyword">new</span> Model({ <span class="hljs-attr">testId</span>: Buffer.from(<span class="hljs-string">'12char12char'</span>) });
 doc.testId <span class="hljs-keyword">instanceof</span> mongoose.Types.ObjectId; <span class="hljs-comment">// true</span>
-doc.testId; <span class="hljs-comment">// '313263686172313263686172'</span>
-</code></pre>
+doc.testId; <span class="hljs-comment">// '313263686172313263686172'</span></code></pre>
 <h2 id="getting-the-timestamp-from-an-objectid">Getting the Timestamp from an ObjectId</h2>
 <p>ObjectIds encode the local time at which they were created. That means you can
 usually pull the time that a document was created from its <code>_id</code>.</p>
@@ -122,8 +119,7 @@ usually pull the time that a document was created from its <code>_id</code>.</p>
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> Model({ <span class="hljs-attr">testId</span>: <span class="hljs-string">'313263686172313263686172'</span> });
 doc.testId.getTimestamp(); <span class="hljs-comment">// '1996-02-27T01:50:32.000Z'</span>
-doc.testId.getTimestamp() <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+doc.testId.getTimestamp() <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span></code></pre>
 <h2 id="why-objectids">Why ObjectIds?</h2>
 <p>Suppose you&#39;re building your own database, and you want to set a numeric <code>id</code> property on each new document. The <code>id</code> property should be increasing, so the
 first document you insert gets <code>id = 0</code>, then <code>id = 1</code>, and so on.</p>
@@ -155,6 +151,19 @@ no inter-process communication.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -183,7 +192,6 @@ no inter-process communication.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -202,7 +210,6 @@ no inter-process communication.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

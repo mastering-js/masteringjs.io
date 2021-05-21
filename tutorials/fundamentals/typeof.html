@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -85,8 +85,7 @@ as a string.</p>
 
 <span class="hljs-comment">// As far as `typeof` is concerned, all objects are the same.</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{}
-<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">new</span> MyClass()); <span class="hljs-comment">// 'object'</span>
-</code></pre>
+<span class="hljs-keyword">typeof</span> (<span class="hljs-keyword">new</span> MyClass()); <span class="hljs-comment">// 'object'</span></code></pre>
 <p>Here&#39;s the general idea: the <code>typeof</code> operator returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">which of the 8 JavaScript data types</a> a given value is. There&#39;s one key exception to this
 rule: <a href="/tutorials/fundamentals/null"><code>null</code></a>.</p>
 <h2 id="with-null">With <code>null</code></h2>
@@ -116,11 +115,30 @@ error. Otherwise, <code>typeof</code> will always succeed.</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -134,17 +152,10 @@ error. Otherwise, <code>typeof</code> will always succeed.</p>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -163,7 +174,6 @@ error. Otherwise, <code>typeof</code> will always succeed.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

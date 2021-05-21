@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -74,8 +74,7 @@
 	</script>
   <p>If you have a Node.js server that serves content using <a href="http://npmjs.com/package/express-static">express-static</a> and you compile your content with <a href="https://www.npmjs.com/package/webpack">Webpack</a>, you don&#39;t have to run both <code>npm run dev</code> and <code>webpack --watch</code>. Your <code>npm run dev</code> script can run <code>webpack --watch</code> for you, no CLI required, using <a href="https://webpack.js.org/api/node/#compiler-instance">Webpack&#39;s Node API</a>.</p>
 <p>Here&#39;s an example of importing Webpack in a Node.js script and watching a file for changes. You can pass a <a href="/tutorials/webpack/config">webpack config</a> to the <code>webpack()</code> function as shown below.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
 <span class="hljs-comment">// Defining the webpack config inline, but you can replace this</span>
 <span class="hljs-comment">// with `require('./webpack.config.js')`</span>
@@ -93,8 +92,7 @@
 });
 
 fs.writeFileSync(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/app.js`</span>,
-  <span class="hljs-string">'module.exports = \'Hello, World\';'</span>);
-</code></pre>
+  <span class="hljs-string">'module.exports = \'Hello, World\';'</span>);</code></pre>
 <p>Because of Node.js&#39; event loop, you don&#39;t explicitly have to create new threads. Your Node process can be both an HTTP server and a Webpack compiler. Here&#39;s an example of a Node.js script:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 <span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
@@ -116,11 +114,23 @@ app.use(<span class="hljs-built_in">require</span>(<span class="hljs-string">'ex
 });
 
 fs.writeFileSync(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/example/app.js`</span>,
-  <span class="hljs-string">'module.exports = \'Hello, World\';'</span>);
-</code></pre>
+  <span class="hljs-string">'module.exports = \'Hello, World\';'</span>);</code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Webpack Tutorials</h2>
     <ul>
@@ -149,7 +159,6 @@ fs.writeFileSync(<span class="hljs-string">`<span class="hljs-subst">${__dirname
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -168,7 +177,6 @@ fs.writeFileSync(<span class="hljs-string">`<span class="hljs-subst">${__dirname
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -76,8 +76,7 @@
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
 
 str.includes(<span class="hljs-string">'Stark'</span>); <span class="hljs-comment">// true</span>
-str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>You can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#Browser_compatibility"><code>String#includes()</code> in all modern browsers <strong>except</strong> Internet Explorer</a>. You can also use <code>String#includes()</code> in Node.js <code>&gt;= 4.0.0</code>.</p>
 <img src="/assets/includes-browser-compat.png">
 
@@ -86,8 +85,7 @@ str.includes(<span class="hljs-string">'Snow'</span>); <span class="hljs-comment
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Arya Stark'</span>;
 
 str.indexOf(<span class="hljs-string">'Stark'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
-str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+str.indexOf(<span class="hljs-string">'Snow'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 <p>In general, if you have any doubt about whether code will run in an environment that supports <code>includes()</code>, you should use <code>indexOf()</code>. The <code>includes()</code> function&#39;s syntax is only marginally more concise than <code>indexOf()</code>.</p>
 <h2 id="case-insensitive-search"><a href="/tutorials/fundamentals/compare-strings-ignore-case">Case Insensitive Search</a></h2>
 <p>Both <code>String#includes()</code> and <code>String#indexOf()</code> are case sensitive. Neither function supports regular expressions. To do case insensitive search, you can use regular expressions and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String#match()</code> function</a>, or you can convert both the string and substring to lower case using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase"><code>String#toLowerCase()</code> function</a>.</p>
@@ -103,16 +101,34 @@ str.toLowerCase().includes(<span class="hljs-string">'Stark'</span>.toLowerCase(
 str.toLowerCase().indexOf(<span class="hljs-string">'Stark'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// true</span>
 
 str.toLowerCase().includes(<span class="hljs-string">'Snow'</span>.toLowerCase()); <span class="hljs-comment">// false</span>
-str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase()) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -126,17 +142,10 @@ str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase())
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -155,7 +164,6 @@ str.toLowerCase().indexOf(<span class="hljs-string">'Snow'</span>.toLowerCase())
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

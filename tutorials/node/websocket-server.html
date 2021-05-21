@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -96,8 +96,7 @@ server.on(<span class="hljs-string">'connection'</span>, <span class="hljs-funct
   socket.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     sockets = sockets.filter(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s !== socket);
   });
-});
-</code></pre>
+});</code></pre>
 <h2 id="using-ws-and-express">Using ws and Express</h2>
 <p>The above ws server has to have its own port: it can&#39;t listen on the same port
 as an Express server. However, you can <a href="/tutorials/express/websockets">handle websockets from Express</a> using ws by listening to the Express HTTP server&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism">&#39;upgrade&#39; event</a>
@@ -122,11 +121,23 @@ server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&
   wsServer.handleUpgrade(request, socket, head, socket =&gt; {
     wsServer.emit(<span class="hljs-string">'connection'</span>, socket, request);
   });
-});
-</code></pre>
+});</code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Node Tutorials</h2>
     <ul>
@@ -155,7 +166,6 @@ server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -174,7 +184,6 @@ server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -126,8 +126,7 @@ to use a polyfill like the <a href="https://www.npmjs.com/package/form-data">for
 <span class="hljs-keyword">const</span> form = <span class="hljs-keyword">new</span> FormData();
 form.append(<span class="hljs-string">'key'</span>, <span class="hljs-string">'value'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, form);
-<span class="hljs-built_in">console</span>.log(res.data);
-</code></pre>
+<span class="hljs-built_in">console</span>.log(res.data);</code></pre>
 <p>Since <code>FormData</code> is a browser API, you don&#39;t need to bundle it when
 compiling the above code. So you can use the below Webpack config:</p>
 <pre><code class="language-javascript"><span class="hljs-built_in">module</span>.exports = {
@@ -147,6 +146,19 @@ compiling the above code. So you can use the below Webpack config:</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Webpack Tutorials</h2>
     <ul>
@@ -175,7 +187,6 @@ compiling the above code. So you can use the below Webpack config:</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -194,7 +205,6 @@ compiling the above code. So you can use the below Webpack config:</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

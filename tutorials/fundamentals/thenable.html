@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -90,8 +90,7 @@ thenable. For example, you can use thenables in a promise chain:</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> thenable).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     v; <span class="hljs-comment">// 42</span>
-  });
-</code></pre>
+  });</code></pre>
 <p>You can also use thenables with <code>await</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// A thenable is an object with a `then()` function. The</span>
 <span class="hljs-comment">// below thenable behaves like a promise that fulfills with</span>
@@ -103,8 +102,7 @@ thenable. For example, you can use thenables in a promise chain:</p>
 };
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> thenable;
-v; <span class="hljs-comment">// 42</span>
-</code></pre>
+v; <span class="hljs-comment">// 42</span></code></pre>
 <h2 id="thenables-in-the-wild">Thenables in the Wild</h2>
 <p>Many libraries implement thenables to enable async/await support.
 For example, <a href="/tutorials/mongoose/query">Mongoose queries</a> are
@@ -127,8 +125,7 @@ Mongoose queries nor Superagent requests are actually promises.</p>
 p <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Promise</span>; <span class="hljs-comment">// true</span>
 
 <span class="hljs-keyword">const</span> v = <span class="hljs-keyword">await</span> p;
-v; <span class="hljs-comment">// 42</span>
-</code></pre>
+v; <span class="hljs-comment">// 42</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -147,11 +144,30 @@ v; <span class="hljs-comment">// 42</span>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -165,17 +181,10 @@ v; <span class="hljs-comment">// 42</span>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -194,7 +203,6 @@ v; <span class="hljs-comment">// 42</span>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

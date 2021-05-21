@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -90,8 +90,7 @@
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown hero'</span>);
 }
 
-sidekick; <span class="hljs-comment">// 'Robin'</span>
-</code></pre>
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
 <p>Make sure you don&#39;t forget the <code>break</code> statement at the end of a block!
 If you don&#39;t put a <code>break</code> statement at the end of a <code>case</code> block,
 JavaScript will &quot;fall through&quot; to the next <code>case</code>.</p>
@@ -116,8 +115,7 @@ JavaScript will &quot;fall through&quot; to the next <code>case</code>.</p>
 
 <span class="hljs-comment">// JavaScript executed both the 'Batman' and 'Aquaman' blocks,</span>
 <span class="hljs-comment">// so you get the wrong `sidekick`.</span>
-sidekick; <span class="hljs-comment">// 'Aqualad'</span>
-</code></pre>
+sidekick; <span class="hljs-comment">// 'Aqualad'</span></code></pre>
 <p>There are some benefits to this behavior. You can execute one block
 for multiple <code>case</code> statements. For example:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> sidekick = <span class="hljs-string">'Nightwing'</span>;
@@ -140,8 +138,7 @@ for multiple <code>case</code> statements. For example:</p>
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown sidekick'</span>);
 }
 
-hero; <span class="hljs-comment">// 'Batman'</span>
-</code></pre>
+hero; <span class="hljs-comment">// 'Batman'</span></code></pre>
 <h2 id="equality-check">Equality Check</h2>
 <p>The <code>switch</code> statement evaluates the given expression once, and compares
 it against each <code>case</code> expression using <a href="https://masteringjs.io/tutorials/fundamentals/equals#strict-equality-with-">strict equality</a>. The below <code>if</code> statement
@@ -159,8 +156,7 @@ is functionally equivalent to the first example:</p>
   <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Unknown hero'</span>);
 }
 
-sidekick; <span class="hljs-comment">// 'Robin'</span>
-</code></pre>
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
 <p>Because the <code>switch</code> statement uses strict equality, you&#39;re responsible
 for doing type conversions if you want to compare objects, like <a href="/tutorials/fundamentals/date_format">dates</a>
 or <a href="https://docs.mongodb.com/manual/reference/method/ObjectId/">MongoDB ObjectIds</a>.</p>
@@ -190,8 +186,7 @@ date === independenceDay; <span class="hljs-comment">// false</span>
     <span class="hljs-keyword">break</span>;
 }
 
-holiday; <span class="hljs-comment">// 'Independence Day'</span>
-</code></pre>
+holiday; <span class="hljs-comment">// 'Independence Day'</span></code></pre>
 <h2 id="alternatives">Alternatives</h2>
 <p>Unless you&#39;re using fallthrough <code>case</code> statements, you can use <code>if</code> as a
 replacement for <code>switch/case</code>. Another alternative is defining an object
@@ -212,8 +207,7 @@ that contains functions to execute based on <code>case</code>:</p>
   obj[hero]();
 }
 
-sidekick; <span class="hljs-comment">// 'Robin'</span>
-</code></pre>
+sidekick; <span class="hljs-comment">// 'Robin'</span></code></pre>
 <p>The advantage of using an object conditional is you can build up the object
 programatically. If your <code>switch</code> statement is getting a little too repetitive,
 you can instead build up an object conditional with a <code>for</code> loop.</p>
@@ -226,11 +220,30 @@ comfortable with the semantics of <code>switch</code>.</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -244,17 +257,10 @@ comfortable with the semantics of <code>switch</code>.</p>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -273,7 +279,6 @@ comfortable with the semantics of <code>switch</code>.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

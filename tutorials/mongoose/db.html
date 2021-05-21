@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -73,8 +73,7 @@
 	})();
 	</script>
   <p>Mongoose provides numerous powerful features, like <a href="https://mongoosejs.com/docs/middleware.html">middleware</a> and <a href="https://mongoosejs.com/docs/validation.html">validation</a>. But sometimes you want to bypass Mongoose and use the <a href="https://www.npmjs.com/package/mongodb">MongoDB Node.js driver</a> directly. <a href="https://mongoosejs.com/docs/api/connection.html">Mongoose connections</a> have a <a href="https://mongoosejs.com/docs/api/connection.html#connection_Connection-db"><code>db</code> property</a> that let you access the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html">MongoDB driver&#39;s <code>db</code> handle</a>:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
@@ -84,16 +83,14 @@
 <span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
 <span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
 <span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> mongoose.connection.db.profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
-</code></pre>
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
 <p>The <code>db</code> property is usually enough, but there are some cases where you need the <a href="http://mongodb.github.io/node-mongodb-native/3.6/api/MongoClient.html"><code>MongoClient</code> instance</a> instead of the <code>db</code> handle.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Get another db's profiling level using:</span>
 <span class="hljs-comment">// http://mongodb.github.io/node-mongodb-native/3.6/api/Db.html#profilingLevel</span>
 <span class="hljs-comment">// Mongoose doesn't support getting the profiling level.</span>
 <span class="hljs-keyword">const</span> client = mongoose.connection.getClient();
 <span class="hljs-keyword">const</span> profilingLevel = <span class="hljs-keyword">await</span> client.db(<span class="hljs-string">'otherdb'</span>).profilingLevel();
-profilingLevel; <span class="hljs-comment">// 'off'</span>
-</code></pre>
+profilingLevel; <span class="hljs-comment">// 'off'</span></code></pre>
 
   <hr>
 <div class="cta">
@@ -112,6 +109,19 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -140,7 +150,6 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -159,7 +168,6 @@ profilingLevel; <span class="hljs-comment">// 'off'</span>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

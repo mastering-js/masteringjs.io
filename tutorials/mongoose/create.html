@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -79,8 +79,7 @@
 
 <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> User.create({ <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> });
 doc <span class="hljs-keyword">instanceof</span> User; <span class="hljs-comment">// true</span>
-doc.email; <span class="hljs-comment">// 'bill@microsoft.com'</span>
-</code></pre>
+doc.email; <span class="hljs-comment">// 'bill@microsoft.com'</span></code></pre>
 <p>The <code>create()</code> function is a thin wrapper around the <a href="/tutorials/mongoose/save"><code>save()</code> function</a>.
 The above <code>create()</code> call is equivalent to:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">new</span> User({ <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> });
@@ -97,8 +96,7 @@ documents with a single function call by passing an array of objects:</p>
 ]);
 docs[<span class="hljs-number">0</span>] <span class="hljs-keyword">instanceof</span> User; <span class="hljs-comment">// true</span>
 docs[<span class="hljs-number">0</span>].email; <span class="hljs-comment">// 'sergey@google.com'</span>
-docs[<span class="hljs-number">1</span>].email; <span class="hljs-comment">// 'bill@microsoft.com'</span>
-</code></pre>
+docs[<span class="hljs-number">1</span>].email; <span class="hljs-comment">// 'bill@microsoft.com'</span></code></pre>
 <h2 id="with-sessions-and-transactions">With Sessions and Transactions</h2>
 <p>In addition to passing an array of objects, <code>create()</code> also supports passing in a single
 object, or a spread of objects. For example, below is another way you can create multiple documents.</p>
@@ -130,8 +128,7 @@ documents as an array, even if you&#39;re only creating one document.</p>
 
 <span class="hljs-keyword">const</span> [doc] = <span class="hljs-keyword">await</span> User.insertMany([{ <span class="hljs-attr">email</span>: <span class="hljs-string">'bill@microsoft.com'</span> }]);
 doc <span class="hljs-keyword">instanceof</span> User; <span class="hljs-comment">// true</span>
-doc.email; <span class="hljs-comment">// 'bill@microsoft.com'</span>
-</code></pre>
+doc.email; <span class="hljs-comment">// 'bill@microsoft.com'</span></code></pre>
 <p>The biggest difference is that <code>insertMany()</code> ends up as one atomic <code>insertMany()</code> command
 that Mongoose sends to the MongoDB server, but <code>create()</code> ends up as a bunch
 of separate <code>insertOne()</code> calls. While this means <code>insertMany()</code> is usually faster,
@@ -156,6 +153,19 @@ it also means <code>insertMany()</code> is more susceptible to <a href="https://
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -184,7 +194,6 @@ it also means <code>insertMany()</code> is more susceptible to <a href="https://
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -203,7 +212,6 @@ it also means <code>insertMany()</code> is more susceptible to <a href="https://
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

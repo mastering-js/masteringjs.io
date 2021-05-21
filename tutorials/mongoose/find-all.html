@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -81,8 +81,7 @@ that contains all your app&#39;s users. To get a list of all users in the collec
 
 <span class="hljs-comment">// Empty `filter` means "match all documents"</span>
 <span class="hljs-keyword">const</span> filter = {};
-<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);
-</code></pre>
+<span class="hljs-keyword">const</span> all = <span class="hljs-keyword">await</span> User.find(filter);</code></pre>
 <p>Equivalently, you can call <code>User.find()</code> with no arguments and get the same result.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">await</span> User.find();</code></pre>
 <h2 id="cursors">Cursors</h2>
@@ -98,8 +97,7 @@ users into memory at once just won&#39;t work. To loop through all users one at 
 
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> doc = <span class="hljs-keyword">await</span> cursor.next(); doc != <span class="hljs-literal">null</span>; doc = <span class="hljs-keyword">await</span> cursor.next()) {
   <span class="hljs-comment">// Use `doc`</span>
-}
-</code></pre>
+}</code></pre>
 <p>Alternatively, you can use <a href="http://thecodebarbarian.com/getting-started-with-async-iterators-in-node-js">async iterators</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> doc <span class="hljs-keyword">of</span> User.find()) {
   <span class="hljs-comment">// use `doc`</span>
@@ -122,6 +120,19 @@ users into memory at once just won&#39;t work. To loop through all users one at 
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -150,7 +161,6 @@ users into memory at once just won&#39;t work. To loop through all users one at 
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -169,7 +179,6 @@ users into memory at once just won&#39;t work. To loop through all users one at 
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

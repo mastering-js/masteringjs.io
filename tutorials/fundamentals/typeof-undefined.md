@@ -9,16 +9,22 @@ is that there is [no risk of overwriting undefined](/tutorials/fundamentals/void
 if you use `typeof`.
 
 ```javascript
-var x;
+let x;
 typeof x; // 'undefined'
 if (x === undefined) {
-    // will execute
+  // will execute
 }
 if (typeof x === 'undefined') {
-    // will also execute
+  // will also execute
 }
 ```
 
 The benefit of using `=== undefined` or `=== void 0` is that it will throw
-an error if the variable has not been declared. As a result, tracking down
-the cause of an issue becomes much easier.
+an error if the variable has not been declared. The `typeof` operator won't
+throw an error if you use it on an undeclared variable as shown below.
+
+```javascript
+let x;
+
+typeof x2; // 'undefined' even though `x2` has not been declared!
+```

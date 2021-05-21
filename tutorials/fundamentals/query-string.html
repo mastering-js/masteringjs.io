@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -79,8 +79,7 @@ then <code>window.location.search</code> will equal <code>&#39;?answer=42&#39;</
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?answer=42'</span>;
 <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
 
-params.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// '42'</span>
-</code></pre>
+params.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// '42'</span></code></pre>
 <p>Instances of <code>URLSearchParams</code> are similar to JavaScript maps. In order to
 get all keys in the search string, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/keys"><code>keys()</code> function</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/entries"><code>entries()</code> function</a>. Keep in
 mind these functions return JavaScript iterators, <strong>not</strong> arrays, so you need to
@@ -89,8 +88,7 @@ use <code>Array.from()</code> to convert them.</p>
 <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
 
 <span class="hljs-built_in">Array</span>.from(params.keys()); <span class="hljs-comment">// ['answer', 'question']</span>
-<span class="hljs-built_in">Array</span>.from(params.entries()); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span>
-</code></pre>
+<span class="hljs-built_in">Array</span>.from(params.entries()); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span></code></pre>
 <h2 id="without-urlsearchparams">Without <code>URLSearchParams</code></h2>
 <p>The <code>URLSearchParams</code> class enjoys reasonable browser support and works
 in Node.js. The big caveat is that <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#Browser_compatibility"><code>URLSearchParams</code> is <strong>not</strong> supported in Internet Explorer</a>.</p>
@@ -108,11 +106,30 @@ parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -126,17 +143,10 @@ parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -155,7 +165,6 @@ parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

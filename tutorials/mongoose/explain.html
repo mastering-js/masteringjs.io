@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -92,8 +92,7 @@
 <span class="hljs-comment">// Object describing how MongoDB planned to execute the query</span>
 explain.queryPlanner;
 <span class="hljs-comment">// Object containing stats about how MongoDB executed the query</span>
-explain.executionStats;
-</code></pre>
+explain.executionStats;</code></pre>
 <h2 id="reading-the-queryplanner-output">Reading the <code>queryPlanner</code> Output</h2>
 <p>The <code>queryPlanner</code> object contains more detailed information about how
 MongoDB decided to execute the query. For example, below is the <code>queryPlanner</code>
@@ -121,14 +120,12 @@ A collection scan means MongoDB searched through every document in the
 &#39;characters&#39; collection to see if <code>name</code> matched the given query.</p>
 <p>Query plans get more sophisticated when you introduce indexes. For example,
 suppose you add an index on <code>name</code> as shown below.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">await</span> Character.collection.createIndex({ <span class="hljs-attr">name</span>: <span class="hljs-number">1</span> });
+<pre><code class="language-javascript"><span class="hljs-keyword">await</span> Character.collection.createIndex({ <span class="hljs-attr">name</span>: <span class="hljs-number">1</span> });
 
 <span class="hljs-keyword">const</span> explain = <span class="hljs-keyword">await</span> Character.find({ <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> }).explain().
   then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res[<span class="hljs-number">0</span>]);
 <span class="hljs-comment">// Object describing how MongoDB planned to execute the query</span>
-explain.queryPlanner;
-</code></pre>
+explain.queryPlanner;</code></pre>
 <p>The <code>queryPlanner</code> output looks like this:</p>
 <pre><code>{
   <span class="hljs-attr">plannerVersion</span>: <span class="hljs-number">1</span>,
@@ -243,6 +240,19 @@ which was the final result of the query.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Mongoose Tutorials</h2>
     <ul>
@@ -271,7 +281,6 @@ which was the final result of the query.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -290,7 +299,6 @@ which was the final result of the query.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

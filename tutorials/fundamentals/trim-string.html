@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -77,36 +77,51 @@
 str.trim(); <span class="hljs-comment">// 'hello world'</span>
 
 str = <span class="hljs-string">'hello world '</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
-</code></pre>
+str.trim(); <span class="hljs-comment">// 'hello world'</span></code></pre>
 <p>The <code>trim()</code> method removes <em>all</em> whitespace characters, not just spaces. That includes tabs and newlines.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'\thello world\n'</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
-</code></pre>
+str.trim(); <span class="hljs-comment">// 'hello world'</span></code></pre>
 <h2 id="trimstart-and-trimend"><code>trimStart()</code> and <code>trimEnd()</code></h2>
 <p>As of ES2019, JavaScript strings also have <code>trimStart()</code> and <code>trimEnd()</code> methods. The <code>trimStart()</code> function removes
 all leading whitespace, and <code>trimEnd()</code> removes all trailing whitespace. In other words, <code>str.trimStart().trimEnd()</code>
 is equivalent to <code>str.trim()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
 str.trimStart(); <span class="hljs-comment">// 'hello world '</span>
-str.trimEnd(); <span class="hljs-comment">// ' hello world'</span>
-</code></pre>
+str.trimEnd(); <span class="hljs-comment">// ' hello world'</span></code></pre>
 <p>However, we do not recommend using <code>trimStart()</code> and <code>trimEnd()</code> without a polyfill. Since <code>trimStart()</code> and <code>trimEnd()</code>
 are new in ES2019, they are not supported in Node.js before v10.x, and they are not supported in any version of
 Internet Explorer. We recommend using <a href="/tutorials/fundamentals/string-replace">string <code>replace()</code> method</a> and
 regular expressions instead.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
 str.replace(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// 'hello world '</span>
-str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// ' hello world'</span>
-</code></pre>
+str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// ' hello world'</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -120,17 +135,10 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -149,7 +157,6 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

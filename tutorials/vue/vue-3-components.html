@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -98,8 +98,7 @@ components globally using <code>Vue.component()</code>, you register components 
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;hello&gt;&lt;/hello&gt;'</span>
 });
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>Below is how you would rewrite it for Vue 3:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Create an app using `createApp()` that uses the `hello` component</span>
 <span class="hljs-keyword">const</span> app = Vue.createApp({
@@ -169,8 +168,7 @@ component emits like how you explicitly define a list of <code>props</code>.</p>
     }
   }
 });
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>Below is how you would change the above example to work with Vue 3. Besides the usual <code>createApp()</code>
 and <code>app.component()</code> changes, this example also adds a list of events the component <code>emits</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = Vue.createApp({
@@ -264,6 +262,19 @@ this pattern can be very useful, like if you&#39;re migrating a legacy React app
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -292,7 +303,6 @@ this pattern can be very useful, like if you&#39;re migrating a legacy React app
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -311,7 +321,6 @@ this pattern can be very useful, like if you&#39;re migrating a legacy React app
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

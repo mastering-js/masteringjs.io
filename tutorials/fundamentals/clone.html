@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -149,8 +149,7 @@ classes like <code>Date</code>, this pattern fails to actually clone the object,
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
 
 obj.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span>
-copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span>
-</code></pre>
+copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span></code></pre>
 <h2 id="deep-clone-using-lodash">Deep Clone Using Lodash</h2>
 <p><a href="https://lodash.com/docs/4.17.15#cloneDeep">Lodash&#39;s <code>deepClone()</code> function</a> is a much more robust
 deep clone than <code>JSON.parse(JSON.stringify())</code>. It handles many common edge cases, like dates and
@@ -169,8 +168,7 @@ obj1.date.toString() === obj2.date.toString(); <span class="hljs-comment">// tru
 obj1.buffer === obj2.buffer; <span class="hljs-comment">// false</span>
 obj1.buffer.toString(<span class="hljs-string">'utf8'</span>) === obj2.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// true</span>
 
-obj1.a === obj2.a; <span class="hljs-comment">// false</span>
-</code></pre>
+obj1.a === obj2.a; <span class="hljs-comment">// false</span></code></pre>
 <p>If you&#39;re looking to copy an arbitrary object that may contain nested objects so you can safely
 modify any property without affecting the original object, <code>_.cloneDeep()</code> is the way to go.
 Recursively using the spread operator is tricky if you don&#39;t know the structure of the object,
@@ -179,11 +177,30 @@ have nested objects.</p>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -197,17 +214,10 @@ have nested objects.</p>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -226,7 +236,6 @@ have nested objects.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

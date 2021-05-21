@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -89,8 +89,7 @@ single parameter: the <code>createElement()</code> function.</p>
     <span class="hljs-comment">// edit data.</span>
     <span class="hljs-keyword">return</span> createElement(<span class="hljs-string">'h1'</span>, <span class="hljs-string">'Hello, '</span> + <span class="hljs-keyword">this</span>.user);
   }
-});
-</code></pre>
+});</code></pre>
 <h2 id="using-jsx">Using JSX</h2>
 <p>The <code>createElement()</code> function is similar to
 <a href="https://reactjs.org/docs/react-api.html#createelement">React&#39;s top-level <code>createElement()</code> function</a>.
@@ -114,8 +113,7 @@ transpiling JSX to <code>createElement()</code> calls.</p>
 <a href="https://vuejs.org/v2/guide/render-function.html#v-model"><code>v-model</code> with render functions</a>.
 What you can do is use the 2nd parameter to <code>createElement()</code>
 to <a href="https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth">define <code>on</code> handlers</a>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
   <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">createElement</span>) </span>{
     <span class="hljs-keyword">return</span> createElement(<span class="hljs-string">'div'</span>, <span class="hljs-literal">null</span>, [
@@ -130,8 +128,7 @@ to <a href="https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-D
       })
     ]);
   }
-});
-</code></pre>
+});</code></pre>
 <p>With the above example, you can click the &#39;Increment&#39; button to increase
 the <code>count</code> property.</p>
 
@@ -155,6 +152,19 @@ the <code>count</code> property.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -183,7 +193,6 @@ the <code>count</code> property.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -202,7 +211,6 @@ the <code>count</code> property.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

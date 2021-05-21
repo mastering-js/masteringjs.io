@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -80,23 +80,40 @@
 math.std([<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// 0</span>
 
 <span class="hljs-comment">// Or a list of arguments (also called a "spread")</span>
-math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span>
-</code></pre>
+math.std(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// 4</span></code></pre>
 <p>Math.js also has support for bias correction. Math.js&#39; <code>std()</code> function uses <a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel&#39;s correction</a> by default, but takes a 2nd argument <code>normalization</code> for configuring this. By default, given an array of length <code>n</code>, the <code>std()</code> function divides the variance by <code>n - 1</code>. You can pass <code>&#39;uncorrected&#39;</code> to make <code>std()</code> divide by <code>n</code>, or <code>&#39;biased&#39;</code> to make <code>std()</code> divide by <code>n + 1</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mathjs'</span>);
 
 <span class="hljs-comment">// Must pass an array if you're using options</span>
 math.std([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], <span class="hljs-string">'uncorrected'</span>); <span class="hljs-comment">// 1</span>
-math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span>
-</code></pre>
+math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>], <span class="hljs-string">'biased'</span>); <span class="hljs-comment">// 2</span></code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -110,17 +127,10 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -139,7 +149,6 @@ math.std([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -78,26 +78,22 @@
 obj.hasOwnProperty(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// true</span>
 
 <span class="hljs-string">'does not exist'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// false</span>
-obj.hasOwnProperty(<span class="hljs-string">'does not exist'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+obj.hasOwnProperty(<span class="hljs-string">'does not exist'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>Both also support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">ES6 symbols</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> symbol = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">'answer'</span>);
 <span class="hljs-keyword">const</span> obj = { [symbol]: <span class="hljs-number">42</span> };
 
 symbol <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
-obj.hasOwnProperty(symbol); <span class="hljs-comment">// true</span>
-</code></pre>
+obj.hasOwnProperty(symbol); <span class="hljs-comment">// true</span></code></pre>
 <p>So what&#39;s the difference between the two? The key difference is that <code>in</code> will return <code>true</code> for inherited properties, whereas <code>hasOwnProperty()</code> will return <code>false</code> for inherited properties.</p>
 <p>For example, the <code>Object</code> base class in JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto"><code>__proto__</code> property</a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor"><code>constructor</code> property</a>, and a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code>hasOwnProperty</code> function</a>. The <code>in</code> operator will return <code>true</code> for these properties, but <code>hasOwnProperty()</code> will return <code>false</code>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-string">'constructor'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
+<pre><code class="language-javascript"><span class="hljs-string">'constructor'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
 <span class="hljs-string">'__proto__'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
 <span class="hljs-string">'hasOwnProperty'</span> <span class="hljs-keyword">in</span> obj; <span class="hljs-comment">// true</span>
 
 obj.hasOwnProperty(<span class="hljs-string">'constructor'</span>); <span class="hljs-comment">// false</span>
 obj.hasOwnProperty(<span class="hljs-string">'__proto__'</span>); <span class="hljs-comment">// false</span>
-obj.hasOwnProperty(<span class="hljs-string">'hasOwnProperty'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+obj.hasOwnProperty(<span class="hljs-string">'hasOwnProperty'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>Because <code>hasOwnProperty()</code> ignores inherited properties, it is the better choice for plain old JavaScript objects (POJOs). However, <code>hasOwnProperty()</code> will return <code>false</code> for ES6 class getters and methods, like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">ES6 getters</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseClass</span> </span>{
   get baseProp() {
@@ -118,8 +114,7 @@ obj.hasOwnProperty(<span class="hljs-string">'hasOwnProperty'</span>); <span cla
 
 base.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="hljs-comment">// false</span>
 child.hasOwnProperty(<span class="hljs-string">'childProp'</span>); <span class="hljs-comment">// false</span>
-child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>Below is a summary of the tradeoffs between <code>in</code> and <code>hasOwnProperty()</code>.</p>
 <img src="/assets/hasownproperty.png">
 
@@ -127,11 +122,30 @@ child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -145,17 +159,10 @@ child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -174,7 +181,6 @@ child.hasOwnProperty(<span class="hljs-string">'baseProp'</span>); <span class="
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

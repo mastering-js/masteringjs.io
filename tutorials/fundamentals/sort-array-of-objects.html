@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -97,8 +97,7 @@ And if <code>compareFunction(a, b)</code> returns a value that is <code>&gt; 0</
 characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a.age - b.age);
 
 <span class="hljs-comment">// Riker, La Forge, Picard</span>
-characters;
-</code></pre>
+characters;</code></pre>
 <h2 id="sorting-by-lastname">Sorting by <code>lastName</code></h2>
 <p>Sorting by a string property like <code>lastName</code> is also easy, because
 JavaScript&#39;s <code>&lt;</code> and <code>&gt;</code> properties can handle strings. To sort
@@ -118,8 +117,7 @@ characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</spa
 });
 
 <span class="hljs-comment">// La Forge, Picard, Riker</span>
-characters;
-</code></pre>
+characters;</code></pre>
 <h2 id="sorting-by-rank">Sorting by <code>rank</code></h2>
 <p>Sorting by <code>rank</code> is a bit trickier because rank isn&#39;t necessarily
 in alphabetical order. JavaScript doesn&#39;t know that &#39;Captain&#39; is
@@ -143,16 +141,34 @@ characters.sort(<span class="hljs-function">(<span class="hljs-params">a, b</spa
 });
 
 <span class="hljs-comment">// Picard, Riker, La Forge</span>
-characters;
-</code></pre>
+characters;</code></pre>
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -166,17 +182,10 @@ characters;
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -195,7 +204,6 @@ characters;
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

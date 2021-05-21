@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -100,8 +100,7 @@
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}
-</code></pre>
+}</code></pre>
 <h2 id="with-asyncawait">With Async/Await</h2>
 <p>Notice that the above example uses an async function for the
 <code>mounted</code> hook. Vue does <strong>not</strong> block rendering until the mounted
@@ -147,7 +146,6 @@ does <strong>not</strong> wait for async <code>created()</code> hooks to finish.
   `</span>
 });
 
-
 <span class="hljs-keyword">let</span> data = <span class="hljs-keyword">await</span> renderToString(app);
 data; <span class="hljs-comment">// Renders "answer is N/A"</span></code></pre>
 <p>On the other hand, it is easy to manually run the <code>mounted()</code> hook
@@ -186,6 +184,19 @@ sacrificing any convenience.</p>
  </div>
 
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Vue Tutorials</h2>
     <ul>
@@ -214,7 +225,6 @@ sacrificing any convenience.</p>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -233,7 +243,6 @@ sacrificing any convenience.</p>
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

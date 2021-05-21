@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -84,15 +84,13 @@ capitalize the first character and combine it with the <a href="/tutorials/funda
 }
 
 capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span>
-</code></pre>
+capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span></code></pre>
 <h2 id="using-lodash">Using Lodash</h2>
 <p><a href="https://lodash.com/docs#capitalize">Lodash&#39;s <code>capitalize()</code> function</a> also capitalizes the first character in a string. It also converts the remaining characters to lowercase.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
 
 _.capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span>
-</code></pre>
+_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span></code></pre>
 <h2 id="using-css">Using CSS</h2>
 <p>Depending on your use case, you might not need JavaScript at all. <a href="https://css-tricks.com/almanac/properties/t/text-transform/#article-header-id-0">CSS <code>text-transform: capitalize</code></a> capitalizes the first letter of each word in the string.</p>
 <pre><code class="language-css">.capitalize {
@@ -103,11 +101,30 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -121,17 +138,10 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -150,7 +160,6 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>

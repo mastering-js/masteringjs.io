@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-  
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
@@ -38,6 +37,7 @@
       <a href="/all">Tutorials</a>
       <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
       <a href="/ebooks/mastering-mongoose">eBooks</a>
+      <a href="/jobs">Jobs</a>
     </div>
     <div style="clear: both"></div>
   </div>
@@ -80,8 +80,7 @@ str.replace(<span class="hljs-regexp">/penny/g</span>, <span class="hljs-string"
 
 <span class="hljs-comment">// "A dollar saved is a penny earned" - only replaces the first</span>
 <span class="hljs-comment">// instance by default.</span>
-str.replace(<span class="hljs-string">'penny'</span>, <span class="hljs-string">'dollar'</span>);
-</code></pre>
+str.replace(<span class="hljs-string">'penny'</span>, <span class="hljs-string">'dollar'</span>);</code></pre>
 <p>Remember <a href="https://www.sitepoint.com/immutability-javascript/">JavaScript strings are immutable</a>. When you use <code>replace()</code>, you don&#39;t modify the original string.</p>
 <h2 id="replacement-patterns">Replacement Patterns</h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter">The <code>String#replace()</code> function has several special character sequences called &quot;replacement patterns&quot;</a>. Replacement patterns are useful when you want to replace all substrings that match a regular expression with a string that contains the match.</p>
@@ -93,11 +92,30 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
 
   
   <hr>
+  <div id="jobs">
+    <div id="jobs-container">
+
+    </div>
+    <div>
+      <div class="button jobs-view-more">
+        <a href="/jobs">
+          View more jobs!
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="../../src/client/listjobs.js"></script>
   
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
@@ -111,17 +129,10 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
 
     <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
-
-    <li><a href="/tutorials/fundamentals/primitives">The Seven Standard Primitives in JavaScript</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/array-to-string">How to Convert an Array to a String in JavaScript</a></li>
-  
     </ul>
   
 
       </div>
-
       
 
 <script type="text/javascript">
@@ -140,7 +151,6 @@ str.replace(<span class="hljs-regexp">/\d+/g</span>, <span class="hljs-string">'
 
       
     </div>
-
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>
   </body>
 </html>
