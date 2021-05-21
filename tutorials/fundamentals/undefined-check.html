@@ -82,8 +82,7 @@ equal to <code>undefined</code>.</p>
 x == <span class="hljs-literal">null</span> &amp;&amp; y == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span>
 x === <span class="hljs-literal">null</span> || y === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span>
 x == <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'object'</span>; <span class="hljs-comment">// false</span>
-x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+x === <span class="hljs-literal">undefined</span> &amp;&amp; <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>Another alternative is checking if <a href="/tutorials/fundamentals/typeof"><code>typeof x === &#39;undefined&#39;</code></a>. The
 biggest difference between these two approaches is that, if <code>x</code> has not been declared, <code>x === undefined</code> throws
 a <code>ReferenceError</code>, but <code>typeof</code> does not.</p>
@@ -91,10 +90,8 @@ a <code>ReferenceError</code>, but <code>typeof</code> does not.</p>
 that is strictly equal to <code>undefined</code>. If you want to check if <code>x</code> is
 strictly equal to <code>undefined</code> regardless of whether is has been declared
 or not, you should use <code>typeof x === &#39;undefined&#39;</code>.</p>
-<pre><code class="language-javascript">
- x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
- <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span>
-</code></pre>
+<pre><code class="language-javascript"> x === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// Throws a ReferenceError</span>
+ <span class="hljs-keyword">typeof</span> x == <span class="hljs-string">'undefined'</span>; <span class="hljs-comment">// true</span></code></pre>
 <p>However, <code>typeof x</code> may still throw an error if you later declare <code>x</code> using <code>let</code> or <code>const</code>:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// Throws "ReferenceError: Cannot access 'x' before initialization" because of `let`</span>
 <span class="hljs-keyword">let</span> x = <span class="hljs-number">42</span>;</code></pre>
@@ -113,8 +110,7 @@ value is trictly equal undefined, or if <code>obj</code> does not have a propert
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">question</span>: <span class="hljs-literal">undefined</span> };
 
 (<span class="hljs-string">'question'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.question === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// true</span>
-(<span class="hljs-string">'notInObject'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.notInObj === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+(<span class="hljs-string">'notInObject'</span> <span class="hljs-keyword">in</span> obj &amp;&amp; obj.notInObj === <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// false</span></code></pre>
 
   
   <hr>
