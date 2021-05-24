@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -78,7 +79,8 @@ parameter to <code>axios.put()</code> is the URL, and the 2nd
 is the <a href="https://en.wikipedia.org/wiki/HTTP_message_body">HTTP request body</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'https://httpbin.org/put'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.json; <span class="hljs-comment">// { hello: 'world' }</span></code></pre>
+res.data.json; <span class="hljs-comment">// { hello: 'world' }</span>
+</code></pre>
 <p>By default, if the 2nd parameter to <code>axios.put()</code> is an object, Axios
 serializes the object to JSON using <a href="http://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript">the <code>JSON.stringify()</code> function</a>.
 If the 2nd parameter is an object, Axios also sets the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>content-type</code> header to <code>application/json</code></a>, so
@@ -86,7 +88,8 @@ most web frameworks, like <a href="/tutorials/express/json">Express</a>, will be
 to automatically convert the request body into a JavaScript object for you.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'https://httpbin.org/put'</span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/json;charset=utf-8</span></code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/json;charset=utf-8</span>
+</code></pre>
 <h2 id="form-encoded-request-bodies">Form-Encoded Request Bodies</h2>
 <p>If you pass a string as the <code>body</code> parameter to <code>axios.put()</code>, Axios will
 set the <code>content-type</code> header to <a href="https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa"><code>application/x-www-form-urlencoded</code></a>.
@@ -95,7 +98,8 @@ That means the request body should be a bunch of key/value pairs separated by
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.put(<span class="hljs-string">'https://httpbin.org/put'</span>, <span class="hljs-string">'hello=world'</span>);
 
 res.data.form; <span class="hljs-comment">// { hello: 'world' }</span>
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span></code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// application/x-www-form-urlencoded</span>
+</code></pre>
 
   
   <hr>

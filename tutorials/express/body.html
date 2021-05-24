@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -97,7 +98,8 @@ app.post(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://localhost:3000/'</span>, {
   <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>
 });
-res.data; <span class="hljs-comment">// `{ answer: 42 }`</span></code></pre>
+res.data; <span class="hljs-comment">// `{ answer: 42 }`</span>
+</code></pre>
 <h2 id="common-gotchas">Common Gotchas</h2>
 <p>If the JSON body is malformed, Express will error out with an HTTP 400. This
 error also triggers <a href="/tutorials/express/error-handling">error handling middleware</a>.</p>
@@ -127,7 +129,8 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
 <span class="hljs-comment">// Express will send an HTTP 400 by default if JSON middleware</span>
 <span class="hljs-comment">// failed to parse.</span>
 err.response.status; <span class="hljs-comment">// 400</span>
-err.message; <span class="hljs-comment">// 'Request failed with status code 400'</span></code></pre>
+err.message; <span class="hljs-comment">// 'Request failed with status code 400'</span>
+</code></pre>
 <p>It is important to note that, by default, the <code>json()</code> middleware ignores
 any request whose <code>Content-Type</code> header isn&#39;t something that Express
 recognizes as JSON. If <code>express.json()</code> is silently ignoring your request,
@@ -149,7 +152,8 @@ app.post(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.
   post(<span class="hljs-string">'http://localhost:3000/'</span>, <span class="hljs-string">'not json'</span>, { headers });
 
-res.data; <span class="hljs-comment">// Empty object `{}`</span></code></pre>
+res.data; <span class="hljs-comment">// Empty object `{}`</span>
+</code></pre>
 <h2 id="url-encoded-form-body-parser">URL-Encoded Form Body Parser</h2>
 <p>Express has an officially supported module <a href="https://www.npmjs.com/package/body-parser">body-parser</a> that includes a
 <a href="https://expressjs.com/en/resources/middleware/body-parser.html#bodyparserurlencodedoptions">parser for URL-encoded request bodies</a>, like the ones submitted by <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form">HTML forms</a>.</p>
@@ -170,7 +174,8 @@ app.post(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.
   post(<span class="hljs-string">'http://localhost:3000/'</span>, <span class="hljs-string">'answer=42'</span>, { headers });
 
-res.data; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
+res.data; <span class="hljs-comment">// { answer: 42 }</span>
+</code></pre>
 <h2 id="files">Files</h2>
 <p>Neither Express nor body-parser supports file uploads out of the box.
 However, you can use the <a href="https://www.npmjs.com/package/formidable">Formidable</a> module on npm to handle file uploads. You can learn how

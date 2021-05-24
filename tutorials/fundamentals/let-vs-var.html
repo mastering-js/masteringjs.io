@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -86,7 +87,8 @@ and <code>for</code> loops, or outside the block. Below is an example:</p>
   }
   x; <span class="hljs-comment">// 2</span>
 }
-x; <span class="hljs-comment">// 1</span></code></pre>
+x; <span class="hljs-comment">// 1</span>
+</code></pre>
 <p>The other option is <code>var</code>. The <code>var</code> keyword&#39;s reach can be function-scoped or
 <a href="/tutorials/fundamentals/global-variable">globally-scoped</a>. <code>var</code> variables declared in
 functions will not bleed into other functions, but will into nested
@@ -100,7 +102,8 @@ blocks, like <code>if</code> statements and <code>for</code> loops.</p>
   }
   x; <span class="hljs-comment">// 3</span>
 }
-x; <span class="hljs-comment">// 3</span></code></pre>
+x; <span class="hljs-comment">// 3</span>
+</code></pre>
 <h2 id="hoisting">Hoisting</h2>
 <p>Another difference between <code>let</code> and <code>var</code> is you can use a variable declared with <code>var</code> <em>before</em> the actual <code>var</code> 
 statement. This is because JavaScript &quot;hoists&quot; all <code>var</code> declaration to the start of the function call.
@@ -112,7 +115,8 @@ This is a common source of confusion, which is one of the reasons why we recomme
   <span class="hljs-keyword">let</span> y = <span class="hljs-number">3</span>;
 }
 
-test();</code></pre>
+test();
+</code></pre>
 <p><code>let</code> declarations are hoisted too, but you get a <code>ReferenceError</code> if you try to access a variable declared with <code>let</code> before the actual declaration statement runs. That is why the error message is &quot;Cannot access &#39;y&#39; before initialization&quot;, as opposed to &quot;y is not defined&quot;, which is what JavaScript would throw if you didn&#39;t declare <code>y</code> at all.</p>
 
   

@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -83,7 +84,8 @@ that JavaScript will call when the value is computed.</p>
 
 promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
   value; <span class="hljs-comment">// 42</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="the-then-functions-parameters">The <code>then()</code> Function&#39;s Parameters</h2>
 <p>The <code>then()</code> function takes 2 callback function parameters:</p>
 <ul>
@@ -109,7 +111,8 @@ immediately call <code>onFulfilled()</code>.</p>
 
 promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
   value; <span class="hljs-comment">// 42</span>
-});</code></pre>
+});
+</code></pre>
 <p>If the promise transitions to the rejected state, or if you call <code>then()</code> on
 a promise that is already rejected, JavaScript calls <code>onRejected()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately rejected with an error object</span>
@@ -117,7 +120,8 @@ a promise that is already rejected, JavaScript calls <code>onRejected()</code>.<
 
 promise.then(<span class="hljs-literal">null</span>, err =&gt; {
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});</code></pre>
+});
+</code></pre>
 <p>Both <code>onFulfilled()</code> and <code>onRejected()</code> are optional. If <code>onFulfilled()</code> is
 <a href="/tutorials/fundamentals/null"><code>null</code></a> like in the above example, JavaScript will do nothing if the promise is
 fulfilled. If you call <code>.then()</code> without an <code>onRejected()</code> function and the
@@ -131,7 +135,8 @@ syntactic sugar for <code>.then(null, onRejected)</code>.</p>
 <span class="hljs-comment">// Equivalent to `.then(null, onRejected)`</span>
 promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRejected</span>(<span class="hljs-params"></span>) </span>{
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});</code></pre>
+});
+</code></pre>
 <p>Although <code>.catch()</code> isn&#39;t complicated under the hood, the name <code>catch</code> is
 valuable because you can think of <code>.catch()</code> as the promise analog to the
 <a href="https://www.w3schools.com/js/js_errors.asp"><code>catch</code> part of <code>try/catch</code></a>.
@@ -148,7 +153,8 @@ the state of <code>q</code>.</p>
 <span class="hljs-comment">// Equivalent to `.then(null, onRejected)`</span>
 promise.catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRejected</span>(<span class="hljs-params"></span>) </span>{
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});</code></pre>
+});
+</code></pre>
 <p>Because of promise chaining, you don&#39;t need to catch errors in each individual
 <code>then()</code>. If you put <code>catch()</code> at the end of your promise chain, any errors
 in the promise chain will bypass the rest of the promise chain and go straight
@@ -159,7 +165,8 @@ to your <code>catch()</code> error handler.</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'This will not print'</span>)).
   catch(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandler</span>(<span class="hljs-params">err</span>) </span>{
     err.message; <span class="hljs-comment">// 'Oops!'</span>
-  });</code></pre>
+  });
+</code></pre>
 
   <hr>
 <div class="cta">

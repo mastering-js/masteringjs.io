@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -89,7 +90,8 @@ app.get(<span class="hljs-string">'/user/:userId'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/user/42'</span>);
 
-res.data; <span class="hljs-comment">// { userId: '42' }</span></code></pre>
+res.data; <span class="hljs-comment">// { userId: '42' }</span>
+</code></pre>
 <p>Route parameters are also known as URL parameters.</p>
 <h2 id="query-string-parameters">Query String Parameters</h2>
 <p><a href="/tutorials/express/query-parameters">Query string params</a> are another commonly used type of parameter in Express.
@@ -108,7 +110,8 @@ app.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/?a=1&amp;b=2'</span>)
 
-res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span></code></pre>
+res.data; <span class="hljs-comment">// { a: '1', b: '2' }</span>
+</code></pre>
 
   <hr>
 <div class="cta">

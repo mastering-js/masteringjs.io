@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -81,7 +82,8 @@
 <li>4 = invalid credentials</li>
 </ul>
 <p>These event names will emit when the state changes.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
+<pre><code class="language-javascript">
+<span class="hljs-comment">// Demonstrate the readyState and on event emitters</span>
 <span class="hljs-built_in">console</span>.log(mongoose.connection.readyState); <span class="hljs-comment">//logs 0</span>
 mongoose.connection.on(<span class="hljs-string">'connecting'</span>, () =&gt; { 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'connecting'</span>)
@@ -103,7 +105,8 @@ mongoose.connection.on(<span class="hljs-string">'disconnected'</span>, () =&gt;
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
-});</code></pre>
+});
+</code></pre>
 
   <hr>
 <div class="cta">

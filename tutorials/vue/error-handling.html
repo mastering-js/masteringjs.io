@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -74,7 +75,8 @@
 	</script>
   <p><a href="https://vuejs.org/v2/api/#errorCaptured">Vue instances have an <code>errorCaptured</code> hook</a> that Vue calls whenever an <a href="https://github.com/vuejs/vue/issues/6953#issuecomment-340335435">event handler or lifecycle hook throws an error</a>. For example,
 the below code will increment a counter because the child component <code>test</code> throws an error every time the button is clicked.</p>
-<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'test'</span>, {
+<pre><code class="language-javascript">
+  Vue.component(<span class="hljs-string">'test'</span>, {
     <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
   });
 
@@ -91,12 +93,14 @@ the below code will increment a counter because the child component <code>test</
       &lt;test&gt;&lt;/test&gt;
     &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <h2 id="errorcaptured-only-catches-errors-in-nested-components"><code>errorCaptured</code> Only Catches Errors in Nested Components</h2>
 <p>A common gotcha is that Vue does <strong>not</strong> call <code>errorCaptured</code> when the error occurs in the same component that the
 <code>errorCaptured</code> hook is registered on. For example, if you remove the &#39;test&#39; component from the above example and
 inline the <code>button</code> in the top-level Vue instance, Vue will <strong>not</strong> call <code>errorCaptured</code>.</p>
-<pre><code class="language-javascript">  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+<pre><code class="language-javascript">
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
     <span class="hljs-comment">// Vue won't call this hook, because the error occurs in this Vue</span>
     <span class="hljs-comment">// instance, not a child component.</span>
@@ -111,11 +115,13 @@ inline the <code>button</code> in the top-level Vue instance, Vue will <strong>n
       &lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;
     &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <h2 id="async-errors">Async Errors</h2>
 <p>On the bright side, Vue does call <code>errorCaptured()</code> when an async function throws an error. For example, if a child
 component asynchronously throws an error, Vue will still bubble up the error to the parent.</p>
-<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'test'</span>, {
+<pre><code class="language-javascript">
+  Vue.component(<span class="hljs-string">'test'</span>, {
     <span class="hljs-attr">methods</span>: {
       <span class="hljs-comment">// Vue bubbles up async errors to the parent's `errorCaptured()`, so</span>
       <span class="hljs-comment">// every time you click on the button, Vue will call the `errorCaptured()`</span>
@@ -141,10 +147,12 @@ component asynchronously throws an error, Vue will still bubble up the error to 
       &lt;test&gt;&lt;/test&gt;
     &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <h2 id="error-propagation">Error Propagation</h2>
 <p>You might have noticed the <code>return false</code> line in the previous examples. If your <code>errorCaptured()</code> function does not return <code>false</code>, Vue will bubble up the error to parent components&#39; <code>errorCaptured()</code>:</p>
-<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'level2'</span>, {
+<pre><code class="language-javascript">
+  Vue.component(<span class="hljs-string">'level2'</span>, {
     <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
   });
 
@@ -170,9 +178,11 @@ component asynchronously throws an error, Vue will still bubble up the error to 
       &lt;level1&gt;&lt;/level1&gt;
     &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 <p>On the other hand, if your <code>errorCaptured()</code> function returns <code>false</code>, Vue will stop propagation of that error:</p>
-<pre><code class="language-javascript">  Vue.component(<span class="hljs-string">'level2'</span>, {
+<pre><code class="language-javascript">
+  Vue.component(<span class="hljs-string">'level2'</span>, {
     <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;button v-on:click="notAMethod()"&gt;Throw&lt;/button&gt;'</span>
   });
 
@@ -199,7 +209,8 @@ component asynchronously throws an error, Vue will still bubble up the error to 
       &lt;level1&gt;&lt;/level1&gt;
     &lt;/div&gt;
     `</span>
-  });</code></pre>
+  });
+</code></pre>
 
   <hr>
 <div class="cta">

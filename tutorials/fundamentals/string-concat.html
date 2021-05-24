@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -78,12 +79,14 @@ the different ways and the tradeoffs between them.</p>
 <p>The same <code>+</code> operator you use for adding two numbers can be used to concatenate
 two strings.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">'Hello'</span> + <span class="hljs-string">' '</span> + <span class="hljs-string">'World'</span>;
-str; <span class="hljs-comment">// 'Hello World'</span></code></pre>
+str; <span class="hljs-comment">// 'Hello World'</span>
+</code></pre>
 <p>You can also use <code>+=</code>, where <code>a += b</code> is a shorthand for <code>a = a + b</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'Hello'</span>;
 str += <span class="hljs-string">' '</span>;
 str += <span class="hljs-string">'World'</span>;
-str; <span class="hljs-comment">// 'Hello World'</span></code></pre>
+str; <span class="hljs-comment">// 'Hello World'</span>
+</code></pre>
 <p>If the left hand side of the <code>+</code> operator is a string, JavaScript will coerce
 the right hand side to a string. That means it is safe to concatenate objects,
 numbers, <a href="/tutorials/fundamentals/null"><code>null</code></a>, and <code>undefined</code>.</p>
@@ -96,21 +99,26 @@ str += <span class="hljs-string">' '</span>;
 
 str += <span class="hljs-literal">null</span>;
 
-str; <span class="hljs-comment">// 'Values: 42 [object Object] null'</span></code></pre>
+str; <span class="hljs-comment">// 'Values: 42 [object Object] null'</span>
+</code></pre>
 <p>The <code>+</code> and <code>+=</code> operators are <a href="https://2ality.com/2011/10/string-concatenation.html">fast on modern JavaScript engines</a>, so no need to worry about something like <a href="https://www.geeksforgeeks.org/stringbuilder-class-in-java-with-examples/">Java&#39;s StringBuilder class</a>.</p>
 <h2 id="arrayjoin"><code>Array#join()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join"><code>Array#join()</code> function</a> creates a new string from concatenating all elements in an array. For example:</p>
-<pre><code class="language-javascript">[<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>].join(<span class="hljs-string">''</span>); <span class="hljs-comment">// 'Hello World'</span></code></pre>
+<pre><code class="language-javascript">[<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>].join(<span class="hljs-string">''</span>); <span class="hljs-comment">// 'Hello World'</span>
+</code></pre>
 <p>The first parameter to <code>join()</code> is called the <em>separator</em>. By default, the
 separator is a single comma <code>&#39;,&#39;</code>.</p>
-<pre><code class="language-javascript">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>].join(); <span class="hljs-comment">// 'a,b,c'</span></code></pre>
+<pre><code class="language-javascript">[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>].join(); <span class="hljs-comment">// 'a,b,c'</span>
+</code></pre>
 <p>You can pass in any separator you want. Separators make <code>Array#join()</code> the preferred
 choice for concatenating strings if you find yourself repeating the same character over and over again. For example, you can use <code>&#39; &#39;</code> as the separator to join an array of words:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// 'Twas the night before Christmas'</span>
-[<span class="hljs-string">'Twas'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'night'</span>, <span class="hljs-string">'before'</span>, <span class="hljs-string">'Christmas'</span>].join(<span class="hljs-string">' '</span>);</code></pre>
+[<span class="hljs-string">'Twas'</span>, <span class="hljs-string">'the'</span>, <span class="hljs-string">'night'</span>, <span class="hljs-string">'before'</span>, <span class="hljs-string">'Christmas'</span>].join(<span class="hljs-string">' '</span>);
+</code></pre>
 <p>Or you can use <code>&#39;/&#39;</code> to join together URL fragments:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// 'masteringjs.io/tutorials/fundamentals/string-concat'</span>
-[<span class="hljs-string">'masteringjs.io'</span>, <span class="hljs-string">'tutorials'</span>, <span class="hljs-string">'fundamentals'</span>, <span class="hljs-string">'string-concat'</span>].join(<span class="hljs-string">'/'</span>);</code></pre>
+[<span class="hljs-string">'masteringjs.io'</span>, <span class="hljs-string">'tutorials'</span>, <span class="hljs-string">'fundamentals'</span>, <span class="hljs-string">'string-concat'</span>].join(<span class="hljs-string">'/'</span>);
+</code></pre>
 <p>Separators make <code>Array#join()</code> a very flexible way to concatenate strings. If you
 want to join together a variable number of strings, you should generally use <code>join()</code>
 rather than a <code>for</code> loop with <code>+</code>.</p>
@@ -122,7 +130,8 @@ rather than a <code>for</code> loop with <code>+</code>.</p>
 <span class="hljs-comment">// 'Hello'. Strings are immutable, so `concat()` does not modify `str1`</span>
 str1;
 <span class="hljs-comment">// 'Hello World'</span>
-str2;</code></pre>
+str2;
+</code></pre>
 <p>The downside of using <code>concat()</code> is that you must be certain <code>str1</code> is a string.
 You can pass non-string parameters to <code>concat()</code>, but you will get a TypeError
 if <code>str == null</code>.</p>
@@ -130,12 +139,14 @@ if <code>str == null</code>.</p>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">'Values: '</span>;
 
 <span class="hljs-comment">// 'Values: 42 null'</span>
-str.concat(<span class="hljs-number">42</span>, <span class="hljs-string">' '</span>, <span class="hljs-literal">null</span>);</code></pre>
+str.concat(<span class="hljs-number">42</span>, <span class="hljs-string">' '</span>, <span class="hljs-literal">null</span>);
+</code></pre>
 <p>The <code>concat()</code> function is rarely used because it has more error cases than the
 <code>+</code> operator. For example, you would get unexpected behavior if you call <code>concat()</code>
 on a value that <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat">happens to be an array</a>. You should use <code>+</code> instead of <code>concat()</code> unless you have a very good reason.</p>
 <p>If you must use <code>concat()</code>, it is usually best to call it on an empty string:</p>
-<pre><code class="language-javascript"><span class="hljs-string">''</span>.concat(<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>);</code></pre>
+<pre><code class="language-javascript"><span class="hljs-string">''</span>.concat(<span class="hljs-string">'Hello'</span>, <span class="hljs-string">' '</span>, <span class="hljs-string">'World'</span>);
+</code></pre>
 
   
   <hr>

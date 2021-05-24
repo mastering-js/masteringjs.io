@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -73,7 +74,8 @@
 	})();
 	</script>
   <p><a href="https://lodash.com/docs/4.17.15#debounce">Lodash&#39;s <code>debounce()</code> function</a> lets you delay invoking a function until a certain number of milliseconds passes. One common use case for <code>debounce()</code> is HTTP API calls for autocompletes: suppose when the user is typing in an input, you only want to execute an HTTP request once. Below is a stubbed out example of how <code>debounce()</code> works.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> wait = <span class="hljs-number">100</span>;
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> wait = <span class="hljs-number">100</span>;
 el.addEventListener(<span class="hljs-string">'change'</span>, _.debounce(autocomplete, wait));
 
 el.value = <span class="hljs-string">'te'</span>;
@@ -90,7 +92,8 @@ el.trigger(<span class="hljs-string">'change'</span>); <span class="hljs-comment
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">autocomplete</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Called:'</span>, el.value);
-}</code></pre>
+}
+</code></pre>
 <p>In practice, the <code>autocomplete()</code> function would make an HTTP request. With
 <code>debounce()</code>, the <code>autocomplete()</code> function would <strong>not</strong> get called until the
 user stopped typing for 100ms.</p>
@@ -98,7 +101,8 @@ user stopped typing for 100ms.</p>
 <p>There&#39;s also a <code>maxWait</code> option that the function will wait before executing.
 For example, if <code>maxWait = 120</code>, the 2nd &#39;change&#39; event in the below example
 will execute after 60ms instead of 100ms.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> wait = <span class="hljs-number">100</span>;
+<pre><code class="language-javascript">
+<span class="hljs-keyword">const</span> wait = <span class="hljs-number">100</span>;
 el.addEventListener(<span class="hljs-string">'change'</span>, _.debounce(autocomplete, wait, {
   <span class="hljs-attr">maxWait</span>: <span class="hljs-number">120</span>
 }));
@@ -112,7 +116,8 @@ el.trigger(<span class="hljs-string">'change'</span>); <span class="hljs-comment
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">autocomplete</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Called:'</span>, el.value);
-}</code></pre>
+}
+</code></pre>
 
   
   <hr>
