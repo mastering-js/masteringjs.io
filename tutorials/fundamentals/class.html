@@ -88,7 +88,8 @@ obj.width; <span class="hljs-comment">// 5</span>
 <span class="hljs-comment">// The `instanceof` keyword is how you test whether an object was created</span>
 <span class="hljs-comment">// from a certain class.</span>
 obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// true</span>
-({}) <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// false</span></code></pre>
+({}) <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// false</span>
+</code></pre>
 <h2 id="methods">Methods</h2>
 <p>A <a href="https://brilliant.org/wiki/methods-oop/">method</a> is a function defined in your
 class that JavaScript adds to every instance of that class. For example, suppose
@@ -108,7 +109,8 @@ as shown below.</p>
 }
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
-obj.area(); <span class="hljs-comment">// 15</span></code></pre>
+obj.area(); <span class="hljs-comment">// 15</span>
+</code></pre>
 <p>In a method, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code> keyword</a> refers to the class instance the method is attached to. In the above example,
 <code>this</code> refers to <code>obj</code>.</p>
 <h2 id="statics">Statics</h2>
@@ -130,7 +132,8 @@ another variable, so you can call <a href="/tutorials/fundamentals/static">stati
 
 <span class="hljs-keyword">const</span> obj = Rectangle.createSquare(<span class="hljs-number">5</span>);
 obj.height; <span class="hljs-comment">// 5</span>
-obj.width; <span class="hljs-comment">// 5</span></code></pre>
+obj.width; <span class="hljs-comment">// 5</span>
+</code></pre>
 <h2 id="getterssetters">Getters/Setters</h2>
 <p>An alternative way to define the area of a <code>Rectangle</code> is using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getters</a>. Using a getter,
 you can make <code>area</code> a dynamically computed property of a <code>Rectangle</code>, rather
@@ -149,7 +152,8 @@ than a method.</p>
 }
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
-obj.area; <span class="hljs-comment">// 15</span></code></pre>
+obj.area; <span class="hljs-comment">// 15</span>
+</code></pre>
 <p>You can also define a custom setter, which gets called when you set a property.
 For example, suppose you want to be absolutely certain that <code>height</code> and <code>width</code>
 are numbers. You can define a custom setter that throws an exception whenever
@@ -181,7 +185,8 @@ someone tries the set <code>height</code> to a non-numeric value.</p>
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
 <span class="hljs-comment">// Throws 'AssertionError: Height must be a number'</span>
-obj.height = <span class="hljs-string">'Not a number'</span>;</code></pre>
+obj.height = <span class="hljs-string">'Not a number'</span>;
+</code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <p>When a <a href="https://thecodebarbarian.com/an-overview-of-es6-classes#inheritance">class <code>extends</code> another class</a>, that means the subclass has all the same statics, methods, getters, and setters as the parent class by default. But then the subclass can define additional
 statics, methods, getters, and setters. The subclass can also <a href="https://en.wikipedia.org/wiki/Method_overriding">override</a> the base class&#39;s statics, methods, getters, and setters.</p>
@@ -215,7 +220,8 @@ obj.area(); <span class="hljs-comment">// 25, from `Rectangle` base class</span>
 obj.inradius(); <span class="hljs-comment">// 2.5, from `Square` class</span>
 
 obj <span class="hljs-keyword">instanceof</span> Square; <span class="hljs-comment">// true</span>
-obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// true</span></code></pre>
+obj <span class="hljs-keyword">instanceof</span> Rectangle; <span class="hljs-comment">// true</span>
+</code></pre>
 <h2 id="inheritance-is-still-prototype-based">Inheritance is Still Prototype-Based</h2>
 <p>The <code>extends</code> keyword still uses <a href="/tutorials/fundamentals/prototype">prototype-based inheritance</a> under the hood. That means you can use
 prototype-based patterns in combination with ES6 classes.</p>
@@ -232,7 +238,8 @@ Rectangle.prototype.area = <span class="hljs-function"><span class="hljs-keyword
 
 <span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);
 
-obj.area(); <span class="hljs-comment">// 15</span></code></pre>
+obj.area(); <span class="hljs-comment">// 15</span>
+</code></pre>
 
   
   <hr>
@@ -253,6 +260,9 @@ obj.area(); <span class="hljs-comment">// 15</span></code></pre>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-date">How to Determine if a Variable is a Date</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
   
 
@@ -269,9 +279,6 @@ obj.area(); <span class="hljs-comment">// 15</span></code></pre>
   
 
     <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
     </ul>
   

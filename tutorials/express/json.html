@@ -86,7 +86,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 
 <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000'</span>);
 response.data; <span class="hljs-comment">// { answer: 42 }</span>
-response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json; charset=utf-8'</span></code></pre>
+response.headers[<span class="hljs-string">'content-type'</span>]; <span class="hljs-comment">// 'application/json; charset=utf-8'</span>
+</code></pre>
 <p>Express also sets the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>content-type</code> header</a> to <code>application/json</code>. Most HTTP clients, like <a href="https://www.npmjs.com/package/axios">Axios</a>, handle automatically transforming JSON
 strings into JavaScript objects using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a> when the content type is <code>application/json</code>.</p>
 <p><a href="https://thecodebarbarian.com/the-80-20-guide-to-json-stringify-in-javascript.html">The <code>res.json()</code> uses <code>JSON.stringify()</code> under the hood</a> to serialize objects into JSON. You can configure the arguments that Express passes
@@ -111,7 +112,8 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <span class="hljs-comment">//   "answer": 42,</span>
 <span class="hljs-comment">//   "hello": "world"</span>
 <span class="hljs-comment">// }</span>
-response.data;</code></pre>
+response.data;
+</code></pre>
 
   <hr>
 <div class="cta">
