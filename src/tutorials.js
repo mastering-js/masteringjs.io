@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'JavaScript Enumerability',
+    raw: './tutorials/fundamentals/enumerable.md',
+    url: '/tutorials/fundamentals/enumerable',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-05-24')
+  },
+  {
     title: 'How to Determine if a Variable is undefined',
     raw: './tutorials/fundamentals/typeof-undefined.md',
     url: '/tutorials/fundamentals/typeof-undefined',

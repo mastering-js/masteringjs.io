@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JavaScript Trim String - Mastering JS</title>
+    <title>JavaScript Enumerability - Mastering JS</title>
 
-    <meta property="og:title" content="JavaScript Trim String" />
+    <meta property="og:title" content="JavaScript Enumerability" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="JavaScript strings have a neat `trim()` method that removes leading and trailing whitespace. Here's what you need to know." />
-    <meta name="description" content="JavaScript strings have a neat `trim()` method that removes leading and trailing whitespace. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -60,9 +60,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>JavaScript Trim String</h1>
+  <h1>JavaScript Enumerability</h1>
   <div class="date">
-    Jan 4, 2021
+    May 24, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -72,33 +72,15 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript strings have a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim"><code>trim()</code> method</a> that you can use to can use to remove leading and trailing whitespace from a string.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
-
-str = <span class="hljs-string">'hello world '</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
-</code></pre>
-<p>The <code>trim()</code> method removes <em>all</em> whitespace characters, not just spaces. That includes tabs and newlines.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">'\thello world\n'</span>;
-str.trim(); <span class="hljs-comment">// 'hello world'</span>
-</code></pre>
-<h2 id="trimstart-and-trimend"><code>trimStart()</code> and <code>trimEnd()</code></h2>
-<p>As of ES2019, JavaScript strings also have <code>trimStart()</code> and <code>trimEnd()</code> methods. The <code>trimStart()</code> function removes
-all leading whitespace, and <code>trimEnd()</code> removes all trailing whitespace. In other words, <code>str.trimStart().trimEnd()</code>
-is equivalent to <code>str.trim()</code>.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.trimStart(); <span class="hljs-comment">// 'hello world '</span>
-str.trimEnd(); <span class="hljs-comment">// ' hello world'</span>
-</code></pre>
-<p>However, we do not recommend using <code>trimStart()</code> and <code>trimEnd()</code> without a polyfill. Since <code>trimStart()</code> and <code>trimEnd()</code>
-are new in ES2019, they are not supported in Node.js before v10.x, and they are not supported in any version of
-Internet Explorer. We recommend using <a href="/tutorials/fundamentals/string-replace">string <code>replace()</code> method</a> and
-regular expressions instead.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> str = <span class="hljs-string">' hello world '</span>;
-str.replace(<span class="hljs-regexp">/^\s+/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// 'hello world '</span>
-str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>); <span class="hljs-comment">// ' hello world'</span>
-</code></pre>
+  <p>Whenever you create an object, an internal flag is set to
+true to allow it&#39;s values to show up in <code>for..in</code> loops or the
+<code>Object.keys()</code> function. Every object has this flag, called <code>enumerable</code>.
+However, if you were to define an object via the <code>Object.defineProperty</code> function,
+the enumerable flag would default to false. You can check if a property
+if enumerable using the <code>propertyIsEnumerable()</code> function which returns
+a Boolean.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> object = {<span class="hljs-attr">name</span>: <span class="hljs-string">'first'</span>};
+object.propertyIsEnumerable(<span class="hljs-string">'name'</span>); <span class="hljs-comment">// returns true;</span></code></pre>
 
   
   <hr>
@@ -119,9 +101,6 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
   
 
@@ -138,6 +117,9 @@ str.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">'
   
 
     <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
     </ul>
   
