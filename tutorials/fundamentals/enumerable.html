@@ -72,15 +72,35 @@
 	  }
 	})();
 	</script>
-  <p>Whenever you create an object, an internal flag is set to
+  <p>Whenever you create an object property, an internal flag is set to
 true to allow it&#39;s values to show up in <code>for..in</code> loops or the
 <code>Object.keys()</code> function. Every object has this flag, called <code>enumerable</code>.
 However, if you were to define an object via the <code>Object.defineProperty</code> function,
-the enumerable flag would default to false. You can check if a property
+the enumerable flag would default to false.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> object = {};
+<span class="hljs-built_in">Object</span>.defineproperties(object, {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Test"</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">22</span>,
+  <span class="hljs-attr">weight</span>: <span class="hljs-number">180</span>,
+});
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> object) {
+  key; <span class="hljs-comment">// nothing will print</span>
+}
+<span class="hljs-keyword">const</span> keys = <span class="hljs-built_in">Object</span>.keys(object);
+keys; <span class="hljs-comment">// nothing will be present</span>
+
+<span class="hljs-keyword">const</span> printable = { <span class="hljs-attr">name</span>: <span class="hljs-string">"Testerson"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">32</span>, <span class="hljs-attr">weight</span>: <span class="hljs-number">120</span> };
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> printable) {
+  key; <span class="hljs-comment">// will print name, age, weight</span>
+}
+
+<span class="hljs-keyword">const</span> array = <span class="hljs-built_in">Object</span>.keys(printable);</code></pre>
+<p>You can check if a property
 if enumerable using the <code>propertyIsEnumerable()</code> function which returns
 a Boolean.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> object = {<span class="hljs-attr">name</span>: <span class="hljs-string">'first'</span>};
-object.propertyIsEnumerable(<span class="hljs-string">'name'</span>); <span class="hljs-comment">// returns true;</span></code></pre>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> object = { <span class="hljs-attr">name</span>: <span class="hljs-string">"first"</span> };
+object.propertyIsEnumerable(<span class="hljs-string">"name"</span>); <span class="hljs-comment">// returns true;</span></code></pre>
 
   
   <hr>
