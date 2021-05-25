@@ -72,26 +72,39 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript date&#39;s are considered objects. As a result,
-using <code>typeof</code> would result in it returing a string, <code>&#39;object&#39;</code>.
-The problem with this however, is that objects and nulls would pass
-any checks as well. To perform a more exact check, you should instead use
-the <code>Object.prototype.toString.call(variableToCheck)</code> method. It returns the internal class
-property of an object in a string of format <code>&#39;[object Type]&#39;</code>, so a date would be
-<code>&#39;[object Date]&#39;</code>.</p>
+  <p>JavaScript dates are considered objects. The
+<a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> returns
+<code>&#39;object&#39;</code> for dates, so you can&#39;t use <code>typeof</code> to distinguish whether
+a value is a date. You should use <a href="/tutorials/fundamentals/instanceof"><code>instanceof</code></a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">'[object Date]'</span>) {
-    <span class="hljs-comment">// will execute</span>
+<span class="hljs-keyword">if</span> (x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>) {
+  <span class="hljs-comment">// will execute</span>
 }</code></pre>
+<h2 id="objectprototypetostringcall">Object.prototype.toString.call()</h2>
+<p>A longer alternative is the <code>Object.prototype.toString.call(variableToCheck)</code> method.
+It returns the internal class property of an object in a string of format <code>&#39;[object Type]&#39;</code>,
+so a date would be <code>&#39;[object Date]&#39;</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">"[object Date]"</span>) {
+  <span class="hljs-comment">// will execute</span>
+}</code></pre>
+<h2 id="check-for-validity">Check for validity</h2>
 <p>Now that you know how to check if the variable is a date,
 you need to check if it is a <strong>valid</strong> date. Thankfully, there is
-the <a href="/tutorials/fundamentals/check-nan"><code>!isNan()</code></a> function.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'Bad String'</span>);
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">'[object Date]'</span>) {
-    <span class="hljs-comment">// will execute but should not</span>
+<a href="/tutorials/fundamentals/check-nan"><code>!isNan()</code></a>.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">"Bad String"</span>);
+<span class="hljs-keyword">if</span> (
+  <span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">"[object Date]"</span> ||
+  x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>
+) {
+  <span class="hljs-comment">// will execute but should not</span>
 }
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">'[object Date]'</span> &amp;&amp; !<span class="hljs-built_in">isNaN</span>(x)) {
-    <span class="hljs-comment">// will not execute</span>
+<span class="hljs-keyword">if</span> (
+  (<span class="hljs-built_in">Object</span>.prototype.toString.call(x) === <span class="hljs-string">"[object Date]"</span> ||
+    x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>) &amp;&amp;
+  !<span class="hljs-built_in">isNaN</span>(x)
+) {
+  <span class="hljs-comment">// will not execute</span>
 }</code></pre>
 
   
