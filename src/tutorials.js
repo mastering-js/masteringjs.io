@@ -9,7 +9,7 @@ module.exports = Object.freeze([
     url: '/tutorials/fundamentals/typeof-date',
     description: 'Here\'s how you can determine if a variable is a date in JavaScript',
     tags: ['fundamentals'],
-    date: moment('2021-05-24')
+    date: moment('2021-05-26')
   },
   {
     title: 'How to Determine if a Variable is undefined',
