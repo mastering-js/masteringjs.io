@@ -88,8 +88,7 @@ app.get(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(<span 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/from'</span>);
 <span class="hljs-comment">// Axios follows the redirect and sends a GET `/to` request, so the</span>
 <span class="hljs-comment">// response will contain the string "Hello, World!"</span>
-res.data;
-</code></pre>
+res.data;</code></pre>
 <p>The <code>res.redirect()</code> function also lets you specify an HTTP status other than 302. The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302">302 status is considered a temporary redirect</a>, which means search engines will still crawl the existing URL. If you want to indicate the URL has permanently changed, you should send a response with <a href="https://en.wikipedia.org/wiki/HTTP_301">HTTP status 301</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
 
@@ -104,8 +103,7 @@ app.get(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(<span 
 
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/from'</span>);
 <span class="hljs-comment">// "Hello, World!"</span>
-res.data;
-</code></pre>
+res.data;</code></pre>
 <h2 id="handling-post-requests">Handling POST Requests</h2>
 <p>There&#39;s some nuances about which status code you should use for POST requests.
 Strictly speaking, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301">HTTP 301 and 302 are not required to keep the same method and body content</a> when redirecting. If you&#39;re redirecting a POST request, you should use <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307">HTTP 307</a> as a replacement for HTTP 302, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/308">HTTP 308</a> as a replacement for HTTP 301.</p>
@@ -124,8 +122,7 @@ app.post(<span class="hljs-string">'/to'</span>, (req, res) =&gt; res.send(req.b
   <span class="hljs-attr">message</span>: <span class="hljs-string">'Hello, World!'</span>
 });
 <span class="hljs-comment">// "Hello, World!"</span>
-res.data;
-</code></pre>
+res.data;</code></pre>
 <p>Here&#39;s a brief summary of the tradeoffs between these common redirect statuses.</p>
 <img src="https://i.imgur.com/K8LeE7a.png" alt="Tradeoffs between HTTP 301 vs 302 vs 307 vs 308">
 

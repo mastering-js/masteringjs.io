@@ -75,8 +75,7 @@
   <p>The <code>mongoose.connect()</code> function is the easiest way to
 <a href="https://mongoosejs.com/docs/connections.html">connect to MongoDB using Mongoose</a>.
 Once you&#39;ve connected, you can then <a href="https://mongoosejs.com/docs/models.html">create a Mongoose model</a> and start interacting with MongoDB.</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// Connect to a MongoDB server running on 'localhost:27017' and use the</span>
 <span class="hljs-comment">// 'test' database.</span>
 <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://localhost:27017/test'</span>, {
   <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Boilerplate for Mongoose 5.x</span>
@@ -87,17 +86,14 @@ Once you&#39;ve connected, you can then <a href="https://mongoosejs.com/docs/mod
 <span class="hljs-keyword">const</span> userSchema = <span class="hljs-keyword">new</span> mongoose.Schema({ <span class="hljs-attr">name</span>: <span class="hljs-built_in">String</span> });
 <span class="hljs-keyword">const</span> UserModel = mongoose.model(<span class="hljs-string">'User'</span>, userSchema);
 
-<span class="hljs-keyword">await</span> UserModel.create({ <span class="hljs-attr">name</span>: <span class="hljs-string">'test'</span> });
-</code></pre>
+<span class="hljs-keyword">await</span> UserModel.create({ <span class="hljs-attr">name</span>: <span class="hljs-string">'test'</span> });</code></pre>
 <p>The <a href="https://mongoosejs.com/docs/api/mongoose.html#mongoose_Mongoose-connect"><code>mongoose.connect()</code> function returns a promise</a> that fulfills if Mongoose successfully connects to MongoDB, or rejects if Mongoose could not connect.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> options = { <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> };
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> options = { <span class="hljs-attr">useNewUrlParser</span>: <span class="hljs-literal">true</span> };
 <span class="hljs-comment">// Try to connect to `nota.domain`, which should fail</span>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> mongoose.connect(<span class="hljs-string">'mongodb://nota.domain:27017/test'</span>, options).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
 <span class="hljs-comment">// 'failed to connect to server [nota.domain:27017] on first connect'</span>
-err.message;
-</code></pre>
+err.message;</code></pre>
 <p>Many <a href="https://theholmesoffice.com/mongoose-connection-best-practice/">older tutorials recommend listening to connection events</a>. This isn&#39;t strictly necessary because <a href="https://thecodebarbarian.com/managing-connections-with-the-mongodb-node-driver.html#handling-single-server-outages">Mongoose handles automatically reconnecting on its own</a> if it loses connectivity to MongoDB after initial connection.</p>
 <p>The <a href="/tutorials/fundamentals/promise">promise</a> <code>mongoose.connect()</code> returns only rejects if there is an error when
 Mongoose is initially connecting to MongoDB. Once Mongoose successfully connects,
