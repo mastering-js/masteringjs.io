@@ -111,6 +111,10 @@
   background-size: cover;
 }
 
+img.partner {
+  width: 280px;
+}
+
 @media (max-width: 1000px) {
   .pill {
     width: 49%;
