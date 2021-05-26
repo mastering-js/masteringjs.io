@@ -91,8 +91,7 @@ The hooks that Vue exposes for every component are:</p>
 <p>To tell Vue to call a function on a given lifecycle hook, you simply
 add a method to your Vue instance or <a href="/tutorials/vue/components">Vue component</a>
 with the hook name as the property name:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// The below Vue instance has a `created` hook</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// The below Vue instance has a `created` hook</span>
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">created</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Called!'</span>);
@@ -103,8 +102,7 @@ with the hook name as the property name:</p>
 });
 
 <span class="hljs-comment">// Prints "Called!"</span>
-app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <h2 id="created">Created</h2>
 <p>The <code>created</code> hook runs just <em>after</em> Vue creates an instance of your
 Vue instance or component. In particular, <code>created</code> runs before <code>mounted</code>
@@ -124,22 +122,19 @@ for the async function to finish before rendering the component.</p>
   template: <span class="hljs-string">`
     &lt;h1&gt;The answer is {{answer == null ? 'N/A' : answer}}&lt;/h1&gt;
   `</span>
-});
-</code></pre>
+});</code></pre>
 <p>Similarly, the <code>beforeCreate</code> hook runs just <em>before</em> Vue creates
 the instance. One major difference between <code>beforeCreate</code> and <code>create</code>
 is that <code>beforeCreate</code> runs <strong>before</strong> the Vue instance&#39;s <code>data</code>
 function runs, so any reactive properties will be undefined in <code>beforeCreate</code>:</p>
-<pre><code class="language-javascript">
-<span class="hljs-comment">// This Vue instance has an beforeCreate hook</span>
+<pre><code class="language-javascript"><span class="hljs-comment">// This Vue instance has an beforeCreate hook</span>
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
   <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">data</span>: <span class="hljs-string">'test'</span> }),
   <span class="hljs-attr">beforeCreate</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.data; <span class="hljs-comment">// undefined</span>
   },
   <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;div&gt;&lt;/div&gt;`</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="mounted">Mounted</h2>
 <p>The <code>mounted</code> hook is the most commonly used hook. Vue runs <code>mounted</code>
 <em>after</em> Vue <a href="https://vuejs.org/v2/api/#mounted">&quot;mounts&quot; the component to the DOM</a>. There are two major differences between <code>mounted</code> and <code>created</code>:</p>
@@ -174,8 +169,7 @@ function runs, so any reactive properties will be undefined in <code>beforeCreat
     <span class="hljs-keyword">this</span>.user = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.error = error;
   }
-}
-</code></pre>
+}</code></pre>
 <p>Whether you use <code>created</code> or <code>mounted</code> to fetch data over HTTP is open to debate.
 The <code>created</code> hook runs first, which means you can parallelize fetching and
 rendering. But, on the other hand, Vue&#39;s server side rendering doesn&#39;t wait for async <code>created</code> hooks to finish running, so you need to handle it yourself.</p>
@@ -196,8 +190,7 @@ run <code>beforeMount</code> when doing server-side rendering. </p>
 <p>Vue runs the <a href="https://vuejs.org/v2/api/#updated"><code>updated</code> hook</a> whenever it needs to re-render part of the
 component after the component is mounted. Like <code>mounted</code>, Vue doesn&#39;t
 run <code>updated</code> hooks when using server-side rendering.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-built_in">window</span>.numUpdated = <span class="hljs-number">0</span>;
+<pre><code class="language-javascript">  <span class="hljs-built_in">window</span>.numUpdated = <span class="hljs-number">0</span>;
 
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
     <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }),
@@ -208,8 +201,7 @@ run <code>updated</code> hooks when using server-side rendering.</p>
     <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;h1 v-on:click="++count"&gt;Clicked {{count}}&lt;/h1&gt;'</span>
   });
 
-  app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+  app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>The <code>updated</code> and <code>beforeUpdate</code> hooks are typically useful only for
 profiling and debugging. For example, you can plug in a print statement
 to see when Vue needs to update, or track how long it took Vue to
@@ -221,8 +213,7 @@ is unmounted from the DOM. Vue calls <code>beforeDestroy</code> immediately befo
 instance is unmounted, and <code>destroyed</code> immediately after. For example,
 if you create a component for every element in an array <code>elements</code> using <code>v-for</code>,
 Vue will call <code>destroyed</code> every time you remove an element from <code>elements</code>.</p>
-<pre><code class="language-javascript">
-  <span class="hljs-built_in">window</span>.numDestroyed = <span class="hljs-number">0</span>;
+<pre><code class="language-javascript">  <span class="hljs-built_in">window</span>.numDestroyed = <span class="hljs-number">0</span>;
 
   Vue.component(<span class="hljs-string">'test'</span>, {
     <span class="hljs-attr">destroyed</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ++<span class="hljs-built_in">window</span>.numDestroyed,
@@ -248,8 +239,7 @@ Vue will call <code>destroyed</code> every time you remove an element from <code
     `</span>
   });
 
-  app.$mount(<span class="hljs-string">'#content'</span>);
-</code></pre>
+  app.$mount(<span class="hljs-string">'#content'</span>);</code></pre>
 <p>The <code>destroyed</code> hook is usually used for cleaning up global state, like <a href="http://thecodebarbarian.com/my-3-favorite-javascript-interview-questions.html#the-standard-junior-frontend-test">calling <code>clearInterval()</code> if you started an interval in <code>mounted</code></a>.</p>
 
   <hr>

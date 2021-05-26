@@ -80,8 +80,7 @@ then <code>window.location.search</code> will equal <code>&#39;?answer=42&#39;</
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> querystring = <span class="hljs-string">'?answer=42'</span>;
 <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
 
-params.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// '42'</span>
-</code></pre>
+params.get(<span class="hljs-string">'answer'</span>); <span class="hljs-comment">// '42'</span></code></pre>
 <p>Instances of <code>URLSearchParams</code> are similar to JavaScript maps. In order to
 get all keys in the search string, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/keys"><code>keys()</code> function</a> or the <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/entries"><code>entries()</code> function</a>. Keep in
 mind these functions return JavaScript iterators, <strong>not</strong> arrays, so you need to
@@ -90,8 +89,7 @@ use <code>Array.from()</code> to convert them.</p>
 <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> URLSearchParams(querystring);
 
 <span class="hljs-built_in">Array</span>.from(params.keys()); <span class="hljs-comment">// ['answer', 'question']</span>
-<span class="hljs-built_in">Array</span>.from(params.entries()); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span>
-</code></pre>
+<span class="hljs-built_in">Array</span>.from(params.entries()); <span class="hljs-comment">// [['answer', '42'], ['question', 'unknown']]</span></code></pre>
 <h2 id="without-urlsearchparams">Without <code>URLSearchParams</code></h2>
 <p>The <code>URLSearchParams</code> class enjoys reasonable browser support and works
 in Node.js. The big caveat is that <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams#Browser_compatibility"><code>URLSearchParams</code> is <strong>not</strong> supported in Internet Explorer</a>.</p>
@@ -126,6 +124,9 @@ parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/typeof-date">How to Determine if a Variable is a Date</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
   
 
@@ -142,9 +143,6 @@ parse(<span class="hljs-string">'?answer=42&amp;question=unknown'</span>); <span
   
 
     <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-number">How to use typeof with Numbers</a></li>
   
     </ul>
   
