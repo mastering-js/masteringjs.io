@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'JavaScript Enumerability',
+    raw: './tutorials/fundamentals/enumerable.md',
+    url: '/tutorials/fundamentals/enumerable',
+    description: 'JavaScript object properties have an `enumerable` property that controls whether that property shows up in `Object.keys()` and `for/in`. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-05-27')
+  },
+  {
     title: 'How to Determine if a Variable is a Date',
     raw: './tutorials/fundamentals/typeof-date.md',
     url: '/tutorials/fundamentals/typeof-date',

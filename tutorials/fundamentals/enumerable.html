@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if a Value is null - Mastering JS</title>
+    <title>JavaScript Enumerability - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if a Value is null" />
+    <meta property="og:title" content="JavaScript Enumerability" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can determine whether a given value is null in JavaScript." />
-    <meta name="description" content="Here's how you can determine whether a given value is null in JavaScript." />
+    <meta property="og:description" content="JavaScript object properties have an `enumerable` property that controls whether that property shows up in `Object.keys()` and `for/in`. Here's what you need to know." />
+    <meta name="description" content="JavaScript object properties have an `enumerable` property that controls whether that property shows up in `Object.keys()` and `for/in`. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if a Value is null</h1>
+  <h1>JavaScript Enumerability</h1>
   <div class="date">
-    May 19, 2021
+    May 27, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,18 +73,28 @@
 	  }
 	})();
 	</script>
-  <p>You shouldn&#39;t use the <a href="/tutorials/fundamentals/typeof"><code>typeof</code> operator</a> when checking if a value is <a href="/tutorials/fundamentals/null"><code>null</code></a> because <code>typeof</code> cannot distinguish a <code>null</code> from an <code>object</code>.
-You should use the <code>===</code> operator because <code>==</code> will return <code>true</code> if checking against an <code>undefined</code> variable.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-literal">null</span>;
-<span class="hljs-keyword">typeof</span> x; <span class="hljs-comment">// 'object'</span>
-<span class="hljs-keyword">if</span> (x === <span class="hljs-literal">null</span>) {
-  <span class="hljs-comment">// will execute</span>
-}
-<span class="hljs-keyword">const</span> y;
-<span class="hljs-keyword">if</span> (y == <span class="hljs-literal">null</span>) {
-  <span class="hljs-comment">// will execute even though</span>
-  <span class="hljs-comment">// that is not the intention</span>
-}</code></pre>
+  <p>JavaScript object properties have an <code>enumerable</code> property that controls whether that property shows up in <code>for/in</code> loops and the <code>Object.keys()</code> function.
+If you create a <a href="/tutorials/fundamentals/pojo">POJO</a> using <code>{}</code>, all the POJO&#39;s properties will be enumerable by default.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">59</span>
+};
+
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age']</span></code></pre>
+<p>However, you can also define a property on an object using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty()</code> function</a>.
+Set <code>enumerable</code> to <code>false</code> and that property won&#39;t show up in <code>Object.keys()</code>.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">Object</span>.defineProperty(obj, <span class="hljs-string">'hidden'</span>, {
+  <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">value</span>: <span class="hljs-number">42</span>
+});
+
+obj.hidden; <span class="hljs-comment">// 42</span>
+<span class="hljs-built_in">Object</span>.keys(obj); <span class="hljs-comment">// ['name', 'age'], no 'hidden'!</span></code></pre>
+<p>You can check if a property
+if enumerable using the <code>propertyIsEnumerable()</code> function which returns
+a Boolean.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">name</span>: <span class="hljs-string">'first'</span> };
+obj.propertyIsEnumerable(<span class="hljs-string">'name'</span>); <span class="hljs-comment">// true</span></code></pre>
 
   
   <hr>
@@ -105,13 +115,13 @@ You should use the <code>===</code> operator because <code>==</code> will return
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/typeof-date">How to Determine if a Variable is a Date</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
