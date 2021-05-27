@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -81,8 +82,7 @@ access tokens to a server.</p>
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-attr">authorization</span>: <span class="hljs-string">'my secret token'</span>
   }
-});
-</code></pre>
+});</code></pre>
 <p>HTTP headers are case-insensitive, so whether you use <code>&#39;authorization&#39;</code>
 or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Send a GET request with the authorization header set to</span>
@@ -91,8 +91,7 @@ or <code>&#39;Authorization&#39;</code> doesn&#39;t matter.</p>
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
   }
-});
-</code></pre>
+});</code></pre>
 <p>The actual format of the authorization header depends on what auth
 strategy the server uses. For example, here&#39;s how you can <a href="/tutorials/axios/basic_auth">use Basic Auth with Axios</a>.</p>
 <h2 id="with-post-requests">With <a href="/tutorials/axios/post">POST Requests</a></h2>
@@ -107,8 +106,7 @@ the headers as the 3rd parameter to <code>post()</code> and <code>put()</code>.<
   <span class="hljs-attr">headers</span>: {
     <span class="hljs-string">'Authorization'</span>: <span class="hljs-string">'my secret token'</span>
   }
-});
-</code></pre>
+});</code></pre>
 
   
   <hr>

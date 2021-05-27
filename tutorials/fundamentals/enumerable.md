@@ -1,29 +1,26 @@
-Whenever you create an object property, an internal flag is set to
-true to allow it's values to show up in `for..in` loops or the
-`Object.keys()` function. Every object has this flag, called `enumerable`.
-However, if you were to define an object via the `Object.defineProperty` function,
-the enumerable flag would default to false.
+JavaScript object properties have an `enumerable` property that controls whether that property shows up in `for/in` loops and the `Object.keys()` function.
+If you create a [POJO](/tutorials/fundamentals/pojo) using `{}`, all the POJO's properties will be enumerable by default.
 
 ```javascript
-const object = {};
-Object.defineproperties(object, {
-  name: "Test",
-  age: 22,
-  weight: 180,
+const obj = {
+  name: 'Jean-Luc Picard',
+  age: 59
+};
+
+Object.keys(obj); // ['name', 'age']
+```
+
+However, you can also define a property on an object using the [`Object.defineProperty()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
+Set `enumerable` to `false` and that property won't show up in `Object.keys()`.
+
+```javascript
+Object.defineProperty(obj, 'hidden', {
+  enumerable: false,
+  value: 42
 });
-for (const key in object) {
-  key; // nothing will print
-}
-const keys = Object.keys(object);
-keys; // nothing will be present
 
-const printable = { name: "Testerson", age: 32, weight: 120 };
-
-for (const key in printable) {
-  key; // will print name, age, weight
-}
-
-const array = Object.keys(printable);
+obj.hidden; // 42
+Object.keys(obj); // ['name', 'age'], no 'hidden'!
 ```
 
 You can check if a property
@@ -31,6 +28,6 @@ if enumerable using the `propertyIsEnumerable()` function which returns
 a Boolean.
 
 ```javascript
-const object = { name: "first" };
-object.propertyIsEnumerable("name"); // returns true;
+const obj = { name: 'first' };
+obj.propertyIsEnumerable('name'); // true
 ```

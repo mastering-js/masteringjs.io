@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -86,8 +87,7 @@ that the JavaScript runtime will call when the operation succeeds or fails.</p>
 <span class="hljs-comment">// will call when the HTTP request succeeds.</span>
 promise.then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
   res.data.query.answer; <span class="hljs-comment">// '42'</span>
-});
-</code></pre>
+});</code></pre>
 <h2 id="promises-as-state-machines">Promises as State Machines</h2>
 <p>You can think of a promise as a <a href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a> with 3 states:</p>
 <ol>
@@ -112,8 +112,7 @@ if the promise is fulfilled, or <code>onRejected()</code> if the promise is reje
 
 <span class="hljs-comment">// JavaScript will call `onFulfilled` if the promise is fulfilled,</span>
 <span class="hljs-comment">// and `onRejected` if the promise is rejected.</span>
-promise.then(onFulfilled, onRejected);
-</code></pre>
+promise.then(onFulfilled, onRejected);</code></pre>
 <h2 id="values-and-errors">Values and Errors</h2>
 <p>When a promise is fulfilled, JavaScript sets an associated value. The promise&#39;s 
 value is also a private property. The only way to access it is via the <code>.then()</code> function.</p>
@@ -122,8 +121,7 @@ value is also a private property. The only way to access it is via the <code>.th
 
 promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
   value; <span class="hljs-comment">// 42</span>
-});
-</code></pre>
+});</code></pre>
 <p>When a promise is rejected, JavaScript sets an associated error. The promise&#39;s
 associated error is also a private property.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Create a promise that is immediately rejected with an error object</span>
@@ -131,8 +129,7 @@ associated error is also a private property.</p>
 
 promise.then(<span class="hljs-literal">null</span>, err =&gt; {
   err.message; <span class="hljs-comment">// 'Oops!'</span>
-});
-</code></pre>
+});</code></pre>
 <p>You can learn more by <a href="https://thecodebarbarian.com/write-your-own-node-js-promise-library-from-scratch.html">writing your own promise library from scratch</a>.</p>
 <h2 id="the-promise-constructor">The Promise Constructor</h2>
 <p><code>Promise</code> is a built-in class in JavaScript. That means you can instantiate
@@ -149,8 +146,7 @@ you <code>resolve()</code> and <code>reject()</code>.</p>
 
 promise.then(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
   value; <span class="hljs-comment">// 42</span>
-});
-</code></pre>
+});</code></pre>
 
   <hr>
 <div class="cta">
@@ -189,6 +185,9 @@ promise.then(<span class="hljs-function"><span class="hljs-params">value</span> 
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
   
 
+    <li><a href="/tutorials/fundamentals/typeof-date">How to Determine if a Variable is a Date</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
   
 
@@ -202,9 +201,6 @@ promise.then(<span class="hljs-function"><span class="hljs-params">value</span> 
   
 
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
   
     </ul>
   

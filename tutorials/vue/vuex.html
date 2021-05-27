@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -88,8 +89,7 @@ Vue.use(Vuex);</code></pre>
 <li><p>Dispatch an action and re-render the app using vue-server-renderer.</p>
 </li>
 </ol>
-<pre><code class="language-javascript">
-<span class="hljs-comment">/**
+<pre><code class="language-javascript"><span class="hljs-comment">/**
  * Step 1: Create a Vuex store.
  * Vuex stores have 3 primary concepts:
  * - `state` is a POJO that contains all the application's data
@@ -125,8 +125,7 @@ store.state.count; <span class="hljs-comment">// 1</span>
 <span class="hljs-keyword">await</span> renderToString(app); <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;1&lt;/div&gt;</span>
 assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
   <span class="hljs-string">'&lt;div data-server-rendered="true"&gt;1&lt;/div&gt;'</span>);
-<span class="hljs-comment">// acquit:ignore:end</span>
-</code></pre>
+<span class="hljs-comment">// acquit:ignore:end</span></code></pre>
 <p>If you&#39;re coming from Redux, the concepts of <em>state</em> and <em>action</em> in Vuex are equivalent to states and actions in Redux. You can think of a <em>mutation</em> as being equivalent to a reducer.</p>
 <h2 id="async-actions">Async Actions</h2>
 <p>One key difference between actions and mutations is that actions can be asynchronous, whereas <a href="https://vuex.vuejs.org/guide/mutations.html#mutations-must-be-synchronous">mutations must be synchronous</a>. Making state changes in separate synchronous mutations enables better debugging and better devtools. Actions, however, can be async. For example, your <code>increment</code> action can be async as shown below.</p>
@@ -157,11 +156,9 @@ assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
 <span class="hljs-keyword">await</span> renderToString(app); <span class="hljs-comment">// &lt;div data-server-rendered="true"&gt;1&lt;/div&gt;</span>
 assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
   <span class="hljs-string">'&lt;div data-server-rendered="true"&gt;1&lt;/div&gt;'</span>);
-<span class="hljs-comment">// acquit:ignore:end</span>
-</code></pre>
+<span class="hljs-comment">// acquit:ignore:end</span></code></pre>
 <p>One important caveat is that Vuex doesn&#39;t handle errors in async actions for you. If an async action throws an error, you&#39;ll get an <a href="https://thecodebarbarian.com/unhandled-promise-rejections-in-node.js.html">unhandled promise rejection</a> unless you explicitly handle the error using <code>.catch()</code> or <a href="https://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js">async/await</a>.</p>
-<pre><code class="language-javascript">
-<span class="hljs-keyword">const</span> actions = {
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> actions = {
   <span class="hljs-attr">increment</span>: <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">100</span>));
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oops'</span>);
@@ -170,8 +167,7 @@ assert.equal(<span class="hljs-keyword">await</span> renderToString(app),
 <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Vuex.Store({ state, mutations, actions });
 <span class="hljs-comment">// </span>
 <span class="hljs-keyword">const</span> err = <span class="hljs-keyword">await</span> store.dispatch(<span class="hljs-string">'increment'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> err);
-err.message; <span class="hljs-comment">// "Oops"</span>
-</code></pre>
+err.message; <span class="hljs-comment">// "Oops"</span></code></pre>
 
   <hr>
 <div class="cta">

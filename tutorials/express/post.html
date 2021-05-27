@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -82,8 +83,7 @@ app.post(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span
   res.end(<span class="hljs-string">'Hello, World!'</span>);
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
 <p>The above code starts an Express server on port 3000 that handles POST requests to the <code>/</code> endpoint. You can then
 send requests to the server using an HTTP client like <a href="/axios">Axios</a></p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://localhost:3000/'</span>, {}).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.data);
@@ -113,8 +113,7 @@ app.post(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'http://localhost:3000/'</span>, {
   <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>
 });
-res.data; <span class="hljs-comment">// `{ answer: 42 }`</span>
-</code></pre>
+res.data; <span class="hljs-comment">// `{ answer: 42 }`</span></code></pre>
 <h2 id="url-encoded-request-bodies">URL Encoded Request Bodies</h2>
 <p>Express has an officially supported module <a href="https://www.npmjs.com/package/body-parser">body-parser</a> that includes a
 <a href="https://expressjs.com/en/resources/middleware/body-parser.html#bodyparserurlencodedoptions">parser for URL-encoded request bodies</a>, like the ones submitted by <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form">HTML forms</a>.</p>
@@ -135,8 +134,7 @@ app.post(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.
   post(<span class="hljs-string">'http://localhost:3000/'</span>, <span class="hljs-string">'answer=42'</span>, { headers });
 
-res.data; <span class="hljs-comment">// { answer: 42 }</span>
-</code></pre>
+res.data; <span class="hljs-comment">// { answer: 42 }</span></code></pre>
 <h2 id="file-uploads"><a href="/tutorials/express/file-upload">File Uploads</a></h2>
 <p><a href="https://www.w3schools.com/php/php_file_upload.asp">POST requests are often used for file uploads</a>. Express itself doesn&#39;t make it easy to upload files, but there are several npm modules that handle file uploads for you. <a href="https://www.npmjs.com/package/formidable">Formidable</a> is the most popular file uploading library for Express. Here&#39;s how you can use Formidable to upload files:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
@@ -160,8 +158,7 @@ app.post(<span class="hljs-string">'/upload'</span>, <span class="hljs-function"
   });
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);
-</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> app.listen(<span class="hljs-number">3000</span>);</code></pre>
 
   <hr>
 <div class="cta">

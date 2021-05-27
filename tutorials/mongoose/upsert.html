@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -84,8 +85,7 @@
 res.nModified;
 <span class="hljs-comment">// Contains an array of descriptions of the documents inserted,</span>
 <span class="hljs-comment">// including the `_id` of all inserted docs.</span>
-res.upserted;
-</code></pre>
+res.upserted;</code></pre>
 <p>To get the upserted document, you should use the <a href="https://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate"><code>Model.findOneAndUpdate()</code> function</a> instead of <code>Model.updateOne()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">await</span> Character.findOneAndUpdate(
   { <span class="hljs-attr">name</span>: <span class="hljs-string">'Jean-Luc Picard'</span> },
@@ -94,8 +94,7 @@ res.upserted;
 );
 
 doc.name; <span class="hljs-comment">// 'Jean-Luc Picard'</span>
-doc.age; <span class="hljs-comment">// 59</span>
-</code></pre>
+doc.age; <span class="hljs-comment">// 59</span></code></pre>
 <p>Mongoose will insert at most one document. Even if you use <a href="https://mongoosejs.com/docs/api.html#model_Model.updateMany"><code>Model.updateMany()</code></a> with <code>upsert</code>, Mongoose will insert at most one document. To upsert multiple documents in bulk, you should use <a href="https://mongoosejs.com/docs/api.html#model_Model.bulkWrite">the <code>Model.bulkWrite()</code> function</a>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> Character.bulkWrite([
   {
@@ -118,8 +117,7 @@ doc.age; <span class="hljs-comment">// 59</span>
 <span class="hljs-comment">// of an upsert</span>
 res.upsertedCount;
 <span class="hljs-comment">// Contains the number of existing documents that were updated.</span>
-res.modifiedCount;
-</code></pre>
+res.modifiedCount;</code></pre>
 
   <hr>
 <div class="cta">

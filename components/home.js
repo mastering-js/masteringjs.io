@@ -77,6 +77,12 @@ module.exports = ({ posts }) => `
           <a href="/mocha">Mocha</a>
         </div>
 
+        <h1>Our Partners</h1>
+
+        <a href="https://jooble.org/jobs-javascript-developer">
+          <img src="/assets/images/jooble.png" class="partner" />
+        </a>
+
         <h1>Latest Tutorials</h1>
         ${list({ posts }, 20)}
       </div>

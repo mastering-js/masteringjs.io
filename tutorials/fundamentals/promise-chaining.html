@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -82,8 +83,7 @@ to tell JavaScript to execute async calls in order.</p>
   then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> setTimeout(resolve, <span class="hljs-number">50</span>))).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - start); <span class="hljs-comment">// About 100ms passed</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="return-values">Return Values</h2>
 <p>The first parameter to the <code>then()</code> function is called <code>onFulfilled()</code>.
 That&#39;s because JavaScript calls that function when the promise is fulfilled.
@@ -104,8 +104,7 @@ returns will have the same fulfilled value as <code>q</code>.</p>
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v + <span class="hljs-number">1</span>).
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(v); <span class="hljs-comment">// 5</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="error-handling">Error Handling</h2>
 <p>Promise chaining also consolidates error handling. All you need is one
 <a href="/tutorials/fundamentals/catch"><code>.catch()</code> function</a> call at the end
@@ -128,8 +127,7 @@ of your promise chain to handle any errors that occur in your promise chain.</p>
   then(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> v + <span class="hljs-number">1</span>).
   catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     err.message; <span class="hljs-comment">// 'Oops'</span>
-  });
-</code></pre>
+  });</code></pre>
 <h2 id="summary">Summary</h2>
 <p>The high level structure of a promise chain is a series of <code>.then()</code>
 calls, each with an <code>onFulfilled()</code> parameter, and a single <code>.catch()</code>
@@ -174,6 +172,9 @@ functions errors out.</p>
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
   
 
+    <li><a href="/tutorials/fundamentals/typeof-date">How to Determine if a Variable is a Date</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/typeof-undefined">How to Determine if a Variable is undefined</a></li>
   
 
@@ -187,9 +188,6 @@ functions errors out.</p>
   
 
     <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-function">How to Use typeof With Functions</a></li>
   
     </ul>
   

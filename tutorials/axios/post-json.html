@@ -50,6 +50,7 @@
   <a href="/all">Tutorials</a>
   <a href="https://www.getrevue.co/profile/masteringjs">Newsletter</a>
   <a href="/ebooks/mastering-mongoose">eBooks</a>
+  <a href="/jobs">Jobs</a>
 </div>
 
       <div class="content">
@@ -79,8 +80,7 @@ so web frameworks like <a href="/express">Express</a> can automatically parse it
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.post(<span class="hljs-string">'https://httpbin.org/post'</span>, { <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
 
 res.data.data; <span class="hljs-comment">// '{"answer":42}'</span>
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json;charset=utf-8',</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json;charset=utf-8',</span></code></pre>
 <p>This means you normally don&#39;t have to worry about serializing POST bodies
 to JSON: Axios handles it for you.</p>
 <h2 id="with-pre-serialized-json">With Pre-Serialized JSON</h2>
@@ -92,8 +92,7 @@ treats that as a <a href="/tutorials/axios/post#form-encoded-request-bodies">for
 
 <span class="hljs-comment">// Axios automatically sets the `Content-Type` based on the</span>
 <span class="hljs-comment">// 2nd parameter to `axios.post()`.</span>
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/x-www-form-urlencoded',</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/x-www-form-urlencoded',</span></code></pre>
 <p>The solution is easy: make sure you set the <code>Content-Type</code> header if
 you pass a pre-serialized JSON string to <code>axios.post()</code>.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> json = <span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">answer</span>: <span class="hljs-number">42</span> });
@@ -105,8 +104,7 @@ you pass a pre-serialized JSON string to <code>axios.post()</code>.</p>
 });
 
 res.data.data; <span class="hljs-comment">// '{"answer":42}'</span>
-res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json',</span>
-</code></pre>
+res.data.headers[<span class="hljs-string">'Content-Type'</span>]; <span class="hljs-comment">// 'application/json',</span></code></pre>
 
   
   <hr>
