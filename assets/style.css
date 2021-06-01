@@ -248,6 +248,7 @@ input[type="text"], input[type="password"], input[type="number"] {
   width: 190px;
   text-align: center;
   border: 1px solid #ddd;
+  background-color: #fff;
 }
 
 #jobs img {
@@ -377,7 +378,9 @@ input[type="text"], input[type="password"], input[type="number"] {
   .ad-right {
     display: none;
   }
+}
 
+@media (max-width: 1185px) {
   /* jobs mobile */
   #jobs {
     position: relative;
@@ -442,4 +445,10 @@ input[type="text"], input[type="password"], input[type="number"] {
 #default_masteringjsio {
   height: 95px;
   padding-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  #default_masteringjsio {
+    display: none !important;
+  }
 }
