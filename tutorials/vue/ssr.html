@@ -91,7 +91,8 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> res.status(<span class="hljs-number">500</span>).send(err.stack));
 });
 
-<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);</code></pre>
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">await</span> expressApp.listen(<span class="hljs-number">3000</span>);
+</code></pre>
 <p>Note that the <code>renderToString()</code> function returns a promise. Make sure you <a href="https://thecodebarbarian.com/introducing-await-js-express-async-support-for-express-apps">handle errors</a>.</p>
 <p>Notice that the above <code>div</code> has a <code>data-server-rendered</code> attribute. The <code>data-server-rendered</code> attribute marks this div for <a href="https://ssr.vuejs.org/guide/hydration.html">client-side hydration</a>. In other words, you can then use the <a href="https://vuejs.org/v2/api/#vm-mount"><code>$mount()</code> function</a> to make your Vue client pick up your static HTML and start reacting to client-side events.</p>
 
@@ -132,6 +133,9 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/firebase-file-upload">Using Firebase with Vue for file uploads</a></li>
+  
+
     <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
   
 
@@ -148,9 +152,6 @@ expressApp.get(<span class="hljs-string">'*'</span>, (req, res) =&gt; {
   
 
     <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
-  
-
-    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
     </ul>
   

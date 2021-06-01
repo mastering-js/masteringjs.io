@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Using Firebase with Vue for file uploads',
+    raw: './tutorials/vue/firebase-file-upload.md',
+    url: '/tutorials/fundamentals/firebase-file-upload',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-06-01')
+  },
+  {
     title: 'JavaScript Enumerability',
     raw: './tutorials/fundamentals/enumerable.md',
     url: '/tutorials/fundamentals/enumerable',

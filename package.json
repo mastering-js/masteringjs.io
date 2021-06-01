@@ -56,6 +56,7 @@
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^1.13.2"
+    "@stripe/stripe-js": "^1.13.2",
+    "firebase": "^8.6.3"
   }
 }
