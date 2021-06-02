@@ -73,7 +73,71 @@
 	  }
 	})();
 	</script>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <p>Firebase&#39;s easy setup allows you to start uploading files, with vue,
+to a server in a matter of minutes. You can <code>npm install firebase</code> or
+download the cdn which firebase lists in the project settings. The <code>firebase-storage</code>
+cdn is not listed for some reason but you will need it to upload files. Once that&#39;s done,
+you can modify the code from <a href="/tutorials/vue/file-upload">this article</a> as follows:</p>
+<pre><code class="language-html">&lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script&gt;
+  <span class="hljs-keyword">const</span> firebaseConfig = {
+    <span class="hljs-attr">apiKey</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">authDomain</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">projectId</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">storageBucket</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">messagingSenderId</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">appId</span>: <span class="hljs-string">""</span>,
+    <span class="hljs-attr">measurementId</span>: <span class="hljs-string">""</span>,
+  };
+  <span class="hljs-comment">// Initialize Firebase</span>
+  firebase.initializeApp(firebaseConfig);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script&gt;
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">File</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">value</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">preview</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">isPic</span>: <span class="hljs-literal">false</span> }),
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div style="border-style:solid"&gt;
+        &lt;input type="file" @change="getFile()"/&gt;
+        &lt;button @click="submitFile"&gt;Upload!&lt;/button&gt;
+        &lt;div v-if="!isPic"&gt;
+        {{preview}}
+        &lt;/div&gt;
+        &lt;div v-else&gt;
+        &lt;img :src="preview" style="width:75%"/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `</span>,
+    <span class="hljs-attr">methods</span>: {
+      getFile() {
+        <span class="hljs-keyword">this</span>.File = event.target.files[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">this</span>.preview = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>.isPic = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span> (
+          <span class="hljs-keyword">this</span>.File.name.includes(<span class="hljs-string">".png"</span>) ||
+          <span class="hljs-keyword">this</span>.File.name.includes(<span class="hljs-string">".jpg"</span>)
+        ) {
+          <span class="hljs-keyword">this</span>.isPic = <span class="hljs-literal">true</span>;
+        }
+      },
+      submitFile() {
+        <span class="hljs-keyword">const</span> storage = firebase.storage().ref().child(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-keyword">this</span>.File.name}</span>`</span>);
+        <span class="hljs-keyword">const</span> storageRef = storage.put(<span class="hljs-keyword">this</span>.File);
+        <span class="hljs-keyword">this</span>.storage = storage;
+        setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+          storage.getDownloadURL().then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> (<span class="hljs-keyword">this</span>.preview = res));
+        }, <span class="hljs-number">3000</span>);
+      },
+    },
+  });
+  app.$mount(<span class="hljs-string">"#content"</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<p>Here is a live demo that will display the url when the file is uploaded
+and display a preview if it is an image:</p>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
 <script>
@@ -127,6 +191,15 @@
           }, 3000);
       }
     },
+    mounted() {
+      const listRef = firebase.storage.ref();
+      listRef.listAll().then((listResults) => {
+        const entries = listResults.items.map((item) => {
+          return item.delete();
+        });
+        Promise.all(entries);
+      });
+    }
   });
 app.$mount("#content");
 </script>
