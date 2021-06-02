@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Loading Vue via CDN - Mastering JS</title>
+    <title>How to Drag and Drop File Upload with Vue - Mastering JS</title>
 
-    <meta property="og:title" content="Loading Vue via CDN" />
+    <meta property="og:title" content="How to Drag and Drop File Upload with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="You don't have to use bundlers to compile Vue, you can easily load Vue from a CDN. Here's what you need to know." />
-    <meta name="description" content="You don't have to use bundlers to compile Vue, you can easily load Vue from a CDN. Here's what you need to know." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Loading Vue via CDN</h1>
+  <h1>How to Drag and Drop File Upload with Vue</h1>
   <div class="date">
-    Jul 10, 2020
+    Jun 2, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,54 +73,58 @@
 	  }
 	})();
 	</script>
-  <p>You can load Vue <a href="https://vuejs.org/v2/guide/installation.html#CDN">from a CDN using a <code>script</code> tag</a>.
-For example, here&#39;s how you can load the latest version of Vue 2.x:</p>
-<pre><code class="language-html">&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.x"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
-<p>Once you load Vue via CDN, <code>Vue</code> will be a global variable that you can use normally.
-For example, the below is a standalone HTML page that loads Vue and adds interactivity.</p>
+  <p>To be able to drag and drop file upload with vue, you
+must utilize the
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">html drag and drop api</a>.</p>
 <pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-
-&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.x"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script&gt;
-  <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">message</span>: <span class="hljs-string">'Row'</span> }),
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">File</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">result</span>: <span class="hljs-literal">null</span> }),
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
-    &lt;div&gt;
-      &lt;h1&gt;{{message}} your boat&lt;/h1&gt;
-      &lt;button v-on:click="message += ' row'"&gt;Add&lt;/button&gt;
-    &lt;/div&gt;
-    `</span>
-  }).$mount(<span class="hljs-string">'#content'</span>);
+      &lt;div style="border-style:solid" @dragover.prevent @drop.prevent&gt;
+        &lt;div @drop="uploadFile"&gt;
+          &lt;input type="file" @change="uploadFile"/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `</span>,
+    <span class="hljs-attr">methods</span>: {
+      uploadFile(e) {
+        <span class="hljs-keyword">this</span>.File = e.target.files[<span class="hljs-number">0</span>];
+      },
+    },
+  });
+  app.$mount(<span class="hljs-string">"#content"</span>);
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
-<p>Below is a live example.</p>
 <div id="content"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <script>
-  new Vue({
-    data: () => ({ message: 'Row' }),
+  const app = new Vue({
+    data: () => ({ File: []}),
     template: `
-    <div style="border: 1px solid #ddd; padding: 8px">
-      <h1>{{message}} your boat</h1>
-      <button v-on:click="message += ' row'">Add</button>
-    </div>
-    `
-  }).$mount('#content');
+      <div style="border-style:solid;" @dragover.prevent @drop.prevent>
+      <input type="file" multiple @change="uploadFile"/>
+        <div @drop="dragFile" style="background-color:green;">
+        Or drag the file here
+        <div v-if="File.length">
+        <li v-for="file in File" :key="file">
+        {{file[0]['name']}}
+        </li>
+        </div>
+        </div>
+      </div>
+    `,
+    methods: {
+      uploadFile(e) {
+        this.File = e.target.files;
+      },
+      dragFile(e) {
+        this.File.push(e.dataTransfer.files);
+      }
+  }
+  });
+  app.$mount("#content");
 </script>
-
-<p>If you include Vue in your JavaScript files using <code>const Vue = require(&#39;vue&#39;)</code> or <code>import Vue from &#39;vue&#39;</code>, you can still load Vue from a CDN if you define Vue as a <a href="/tutorials/webpack/externals">Webpack external</a>.</p>
-<h2 id="when-to-use-cdn-versus-bundling">When to Use CDN versus Bundling</h2>
-<p>There are several advantages to loading Vue via a CDN as opposed to bundling it yourself.
-For one, the browser can cache Vue separately from your application, which can lead to better
-performance if you update your app frequently but use the same version of Vue. For another,
-your build step will be faster.</p>
-<p>However, the Vue docs recommend using bundling rather than loading from a CDN for <a href="https://vuejs.org/v2/guide/installation.html#NPM">&quot;building large scale applications with Vue&quot;</a>. Here&#39;s a few reasons
-why you might choose to bundle Vue with <a href="/webpack">Webpack</a> rather than loading via CDN. The most
-important reason is <a href="/tutorials/vue/templates#single-file-components">single file components</a>: you
-need to include Vue in your build step to get SFC support.</p>
-<p>However, if you don&#39;t need SFC support, you can probably get away with using a CDN. Even if you
-need to <code>npm install vue</code> for <a href="/tutorials/vue/ssr">server side rendering</a> or <a href="/tutorials/vue/unit-testing">testing in Node</a>, you can use <a href="/tutorials/webpack/externals">Webpack externals</a> to
-exclude Vue from your final Webpack bundle in favor of loading via CDN.</p>
 
   <hr>
 <div class="cta">
@@ -159,9 +163,6 @@ exclude Vue from your final Webpack bundle in favor of loading via CDN.</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/drag-and-drop">How to Drag and Drop File Upload with Vue</a></li>
-  
-
     <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
   
 
@@ -178,6 +179,9 @@ exclude Vue from your final Webpack bundle in favor of loading via CDN.</p>
   
 
     <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
+  
+
+    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
     </ul>
   

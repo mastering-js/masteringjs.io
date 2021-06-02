@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Drag and Drop File Upload with Vue',
+    raw: './tutorials/vue/drag-and-drop.md',
+    url: '/tutorials/vue/drag-and-drop',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-06-02')
+  },
+  {
     title: 'JavaScript Enumerability',
     raw: './tutorials/fundamentals/enumerable.md',
     url: '/tutorials/fundamentals/enumerable',
