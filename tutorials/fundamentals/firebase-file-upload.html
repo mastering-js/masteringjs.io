@@ -76,7 +76,26 @@
   <p>Firebase&#39;s easy setup allows you to start uploading files, with vue,
 to a server in a matter of minutes. You can <code>npm install firebase</code> or
 download the cdn which firebase lists in the project settings. The <code>firebase-storage</code>
-cdn is not listed for some reason but you will need it to upload files. Once that&#39;s done,
+cdn is not listed for some reason but you will need it to upload files. If you want to
+disable authentication, you will need to change in the storage rules</p>
+<pre><code class="language-s">rules_version = <span class="hljs-string">'2'</span>;
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, <span class="hljs-attr">write</span>: <span class="hljs-keyword">if</span> request.auth != <span class="hljs-literal">null</span>;
+    }
+  }
+}</code></pre>
+<p>To</p>
+<pre><code class="language-s">rules_version = <span class="hljs-string">'2'</span>;
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, <span class="hljs-attr">write</span>: <span class="hljs-keyword">if</span> request.auth != <span class="hljs-literal">true</span>;
+    }
+  }
+}</code></pre>
+<p>Once that&#39;s done,
 you can modify the code from <a href="/tutorials/vue/file-upload">this article</a> as follows:</p>
 <pre><code class="language-html">&lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;
 <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
