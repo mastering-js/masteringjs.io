@@ -1,8 +1,7 @@
-Firebase's easy setup allows you to start uploading files, with vue,
-to a server in a matter of minutes. You can `npm install firebase` or
-download the cdn which firebase lists in the project settings. The `firebase-storage`
-cdn is not listed for some reason but you will need it to upload files. If you want to
-disable authentication, you will need to change in the storage rules
+Firebase is an easy backend to store uploaded files, and it works great with Vue.
+You can `npm install firebase firebase-storage` or use a CDN.
+You need the `firebase-storage` package to store files.
+If you want to disable authentication, you will need to change in the storage rules as shown below, from:
 
 ```s
 rules_version = '2';
@@ -15,7 +14,7 @@ service firebase.storage {
 }
 ```
 
-To
+To:
 
 ```s
 rules_version = '2';
@@ -80,7 +79,6 @@ you can modify the code from [this article](/tutorials/vue/file-upload) as follo
       submitFile() {
         const storage = firebase.storage().ref().child(`${this.File.name}`);
         const storageRef = storage.put(this.File);
-        this.storage = storage;
         setTimeout(() => {
           storage.getDownloadURL().then((res) => (this.preview = res));
         }, 3000);
@@ -147,15 +145,6 @@ and display a preview if it is an image:
               storage.getDownloadURL().then((res) => this.preview = res);
           }, 3000);
       }
-    },
-    mounted() {
-      const listRef = firebase.storage.ref();
-      listRef.listAll().then((listResults) => {
-        const entries = listResults.items.map((item) => {
-          return item.delete();
-        });
-        Promise.all(entries);
-      });
     }
   });
 app.$mount("#content");

@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Using Firebase with Vue for file uploads - Mastering JS</title>
+    <title>Using Firebase with Vue for File Uploads - Mastering JS</title>
 
-    <meta property="og:title" content="Using Firebase with Vue for file uploads" />
+    <meta property="og:title" content="Using Firebase with Vue for File Uploads" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can use Vue to upload files to Firebase." />
+    <meta name="description" content="Here's how you can use Vue to upload files to Firebase." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>Using Firebase with Vue for file uploads</h1>
+  <h1>Using Firebase with Vue for File Uploads</h1>
   <div class="date">
-    Jun 1, 2021
+    Jun 4, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,11 +73,10 @@
 	  }
 	})();
 	</script>
-  <p>Firebase&#39;s easy setup allows you to start uploading files, with vue,
-to a server in a matter of minutes. You can <code>npm install firebase</code> or
-download the cdn which firebase lists in the project settings. The <code>firebase-storage</code>
-cdn is not listed for some reason but you will need it to upload files. If you want to
-disable authentication, you will need to change in the storage rules</p>
+  <p>Firebase is an easy backend to store uploaded files, and it works great with Vue.
+You can <code>npm install firebase firebase-storage</code> or use a CDN.
+You need the <code>firebase-storage</code> package to store files.
+If you want to disable authentication, you will need to change in the storage rules as shown below, from:</p>
 <pre><code class="language-s">rules_version = <span class="hljs-string">'2'</span>;
 service firebase.storage {
   match /b/{bucket}/o {
@@ -86,7 +85,7 @@ service firebase.storage {
     }
   }
 }</code></pre>
-<p>To</p>
+<p>To:</p>
 <pre><code class="language-s">rules_version = <span class="hljs-string">'2'</span>;
 service firebase.storage {
   match /b/{bucket}/o {
@@ -145,7 +144,6 @@ you can modify the code from <a href="/tutorials/vue/file-upload">this article</
       submitFile() {
         <span class="hljs-keyword">const</span> storage = firebase.storage().ref().child(<span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-keyword">this</span>.File.name}</span>`</span>);
         <span class="hljs-keyword">const</span> storageRef = storage.put(<span class="hljs-keyword">this</span>.File);
-        <span class="hljs-keyword">this</span>.storage = storage;
         setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
           storage.getDownloadURL().then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> (<span class="hljs-keyword">this</span>.preview = res));
         }, <span class="hljs-number">3000</span>);
@@ -209,15 +207,6 @@ and display a preview if it is an image:</p>
               storage.getDownloadURL().then((res) => this.preview = res);
           }, 3000);
       }
-    },
-    mounted() {
-      const listRef = firebase.storage.ref();
-      listRef.listAll().then((listResults) => {
-        const entries = listResults.items.map((item) => {
-          return item.delete();
-        });
-        Promise.all(entries);
-      });
     }
   });
 app.$mount("#content");
