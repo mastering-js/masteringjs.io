@@ -1,25 +1,38 @@
-To be able to drag and drop file upload with vue, you
+To be able to drag and drop files with vue.js, you
 must utilize the
 [html drag and drop api](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
+To successfully use the drag and drop feature, you must call `preventDefault` on
+`dragEnter` and `dragOver` as their default behavior does not allow elements to be dropped. You can also
+prevent the default behavior for `drop` on the parent so you do not accidentally open the file
+in the browser if you miss the drop zone as shown below:
 
 ```html
 <div id="content"></div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <script>
   const app = new Vue({
-    data: () => ({ File: null, result: null }),
+    data: () => ({ File: []}),
     template: `
-      <div style="border-style:solid" @dragover.prevent @drop.prevent>
-        <div @drop="uploadFile">
-          <input type="file" @change="uploadFile"/>
+      <div style="border-style:solid;" @dragover.prevent @drop.prevent>
+      <input type="file" multiple @change="uploadFile"/>
+        <div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;">
+        Or drag the file here
+        <div v-if="File.length">
+        <ul v-for="file in File" :key="file">
+        <li>{{file.name}}</li>
+        </ul>
+        </div>
         </div>
       </div>
     `,
     methods: {
       uploadFile(e) {
-        this.File = e.target.files[0];
+        this.File = e.target.files;
       },
-    },
+      dragFile(e) {
+        this.File = e.dataTransfer.files;
+      }
+  }
   });
   app.$mount("#content");
 </script>
@@ -33,12 +46,12 @@ must utilize the
     template: `
       <div style="border-style:solid;" @dragover.prevent @drop.prevent>
       <input type="file" multiple @change="uploadFile"/>
-        <div @drop="dragFile" style="background-color:green;">
+        <div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;">
         Or drag the file here
         <div v-if="File.length">
-        <li v-for="file in File" :key="file">
-        {{file[0]['name']}}
-        </li>
+        <ul v-for="file in File" :key="file">
+        <li>{{file.name}}</li>
+        </ul>
         </div>
         </div>
       </div>
@@ -48,7 +61,7 @@ must utilize the
         this.File = e.target.files;
       },
       dragFile(e) {
-        this.File.push(e.dataTransfer.files);
+        this.File = e.dataTransfer.files;
       }
   }
   });

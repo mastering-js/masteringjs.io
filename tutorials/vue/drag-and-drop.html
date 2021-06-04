@@ -73,26 +73,39 @@
 	  }
 	})();
 	</script>
-  <p>To be able to drag and drop file upload with vue, you
+  <p>To be able to drag and drop files with vue.js, you
 must utilize the
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">html drag and drop api</a>.</p>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">html drag and drop api</a>.
+To successfully use the drag and drop feature, you must call <code>preventDefault</code> on
+<code>dragEnter</code> and <code>dragOver</code> as their default behavior does not allow elements to be dropped. You can also
+prevent the default behavior for <code>drop</code> on the parent so you do not accidentally open the file
+in the browser if you miss the drop zone as shown below:</p>
 <pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script&gt;
   <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
-    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">File</span>: <span class="hljs-literal">null</span>, <span class="hljs-attr">result</span>: <span class="hljs-literal">null</span> }),
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">File</span>: []}),
     <span class="hljs-attr">template</span>: <span class="hljs-string">`
-      &lt;div style="border-style:solid" @dragover.prevent @drop.prevent&gt;
-        &lt;div @drop="uploadFile"&gt;
-          &lt;input type="file" @change="uploadFile"/&gt;
+      &lt;div style="border-style:solid;" @dragover.prevent @drop.prevent&gt;
+      &lt;input type="file" multiple @change="uploadFile"/&gt;
+        &lt;div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;"&gt;
+        Or drag the file here
+        &lt;div v-if="File.length"&gt;
+        &lt;ul v-for="file in File" :key="file"&gt;
+        &lt;li&gt;{{file.name}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     `</span>,
     <span class="hljs-attr">methods</span>: {
       uploadFile(e) {
-        <span class="hljs-keyword">this</span>.File = e.target.files[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">this</span>.File = e.target.files;
       },
-    },
+      dragFile(e) {
+        <span class="hljs-keyword">this</span>.File = e.dataTransfer.files;
+      }
+  }
   });
   app.$mount(<span class="hljs-string">"#content"</span>);
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
@@ -104,12 +117,12 @@ must utilize the
     template: `
       <div style="border-style:solid;" @dragover.prevent @drop.prevent>
       <input type="file" multiple @change="uploadFile"/>
-        <div @drop="dragFile" style="background-color:green;">
+        <div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;">
         Or drag the file here
         <div v-if="File.length">
-        <li v-for="file in File" :key="file">
-        {{file[0]['name']}}
-        </li>
+        <ul v-for="file in File" :key="file">
+        <li>{{file.name}}</li>
+        </ul>
         </div>
         </div>
       </div>
@@ -119,7 +132,7 @@ must utilize the
         this.File = e.target.files;
       },
       dragFile(e) {
-        this.File.push(e.dataTransfer.files);
+        this.File = e.dataTransfer.files;
       }
   }
   });
