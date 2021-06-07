@@ -44,7 +44,7 @@ module.exports = Object.freeze([
     date: moment('2021-05-19')
   },
   {
-    title: 'How to Determine if a Value is an Object',
+    title: 'Using JavaScript\'s typeof Operator with Objects',
     raw: './tutorials/fundamentals/typeof-object.md',
     url: '/tutorials/fundamentals/typeof-object',
     description: 'Here\'s how you can check if a given JavaScript variable is an object.',
