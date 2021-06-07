@@ -7,9 +7,17 @@ module.exports = Object.freeze([
     title: 'How to Drag and Drop File Upload with Vue',
     raw: './tutorials/vue/drag-and-drop.md',
     url: '/tutorials/vue/drag-and-drop',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can drag and drop file uploads with Vue.',
     tags: ['vue'],
-    date: moment('2021-06-02')
+    date: moment('2021-06-07')
+  },
+  {
+    title: 'Using Firebase with Vue for File Uploads',
+    raw: './tutorials/vue/firebase-file-upload.md',
+    url: '/tutorials/fundamentals/firebase-file-upload',
+    description: 'Here\'s how you can use Vue to upload files to Firebase.',
+    tags: ['vue'],
+    date: moment('2021-06-04')
   },
   {
     title: 'JavaScript Enumerability',
@@ -44,7 +52,7 @@ module.exports = Object.freeze([
     date: moment('2021-05-19')
   },
   {
-    title: 'How to Determine if a Value is an Object',
+    title: 'Using JavaScript\'s typeof Operator with Objects',
     raw: './tutorials/fundamentals/typeof-object.md',
     url: '/tutorials/fundamentals/typeof-object',
     description: 'Here\'s how you can check if a given JavaScript variable is an object.',

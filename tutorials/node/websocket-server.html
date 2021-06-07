@@ -97,8 +97,7 @@ server.on(<span class="hljs-string">'connection'</span>, <span class="hljs-funct
   socket.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     sockets = sockets.filter(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s !== socket);
   });
-});
-</code></pre>
+});</code></pre>
 <h2 id="using-ws-and-express">Using ws and Express</h2>
 <p>The above ws server has to have its own port: it can&#39;t listen on the same port
 as an Express server. However, you can <a href="/tutorials/express/websockets">handle websockets from Express</a> using ws by listening to the Express HTTP server&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism">&#39;upgrade&#39; event</a>
@@ -123,8 +122,7 @@ server.on(<span class="hljs-string">'upgrade'</span>, (request, socket, head) =&
   wsServer.handleUpgrade(request, socket, head, socket =&gt; {
     wsServer.emit(<span class="hljs-string">'connection'</span>, socket, request);
   });
-});
-</code></pre>
+});</code></pre>
 
   
   <hr>

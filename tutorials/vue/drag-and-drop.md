@@ -1,9 +1,6 @@
-To be able to drag and drop files with vue.js, you
-must utilize the
-[html drag and drop api](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
-To successfully use the drag and drop feature, you must call `preventDefault` on
-`dragEnter` and `dragOver` as their default behavior does not allow elements to be dropped. You can also
-prevent the default behavior for `drop` on the parent so you do not accidentally open the file
+You can use the [HTML drag and drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) to be able to drag and drop files with [Vue](/vue).
+To successfully use the drag and drop feature, you must call `preventDefault` on `dragEnter` and `dragOver` because their default behavior does not allow elements to be dropped.
+You can also prevent the default behavior for `drop` on the parent so you do not accidentally open the file
 in the browser if you miss the drop zone as shown below:
 
 ```html

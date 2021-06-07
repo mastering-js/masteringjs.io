@@ -92,8 +92,7 @@ obj1 === obj2; <span class="hljs-comment">// false</span>
 
 <span class="hljs-comment">// Lodash's `isEqual()` checks if the two objects have the same keys</span>
 <span class="hljs-comment">// and values:</span>
-_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span></code></pre>
 <p>When comparing primitive values, the <code>isEqual()</code> function uses <a href="/tutorials/fundamentals/equality">SameValueZero semantics</a>, which means that <a href="/tutorials/fundamentals/nan"><code>NaN</code></a> is considered equal to itself, and <code>+0</code> is considered equal to <code>-0</code>.</p>
 <pre><code class="language-javascript">_.isEqual({ <span class="hljs-attr">x</span>: <span class="hljs-literal">NaN</span> }, { <span class="hljs-attr">x</span>: <span class="hljs-literal">NaN</span> }); <span class="hljs-comment">// true</span>
 _.isEqual({ <span class="hljs-attr">x</span>: +<span class="hljs-number">0</span> }, { <span class="hljs-attr">x</span>: <span class="hljs-number">-0</span> }); <span class="hljs-comment">// true</span></code></pre>
@@ -108,8 +107,7 @@ _.isEqual({ <span class="hljs-attr">x</span>: +<span class="hljs-number">0</span
   <span class="hljs-attr">num</span>: <span class="hljs-number">1</span>
 };
 
-_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// true</span></code></pre>
 <p>This makes <code>isEqual()</code> ideal for checking if two <a href="/tutorials/fundamentals/pojo">POJOs</a> have the same data.</p>
 <h2 id="with-classes">With <a href="/tutorials/fundamentals/class">Classes</a></h2>
 <p>The <code>isEqual()</code> function treats two objects as different if they are instances of different classes. For example,
@@ -121,8 +119,7 @@ is an instance of the <code>Character</code> class and <code>obj1</code> is not.
 <span class="hljs-keyword">const</span> obj2 = <span class="hljs-keyword">new</span> Character();
 <span class="hljs-built_in">Object</span>.assign(obj2, { <span class="hljs-attr">name</span>: <span class="hljs-string">'Will Riker'</span>, <span class="hljs-attr">rank</span>: <span class="hljs-string">'Commander'</span> });
 
-_.isEqual(obj1, obj2); <span class="hljs-comment">// false</span>
-</code></pre>
+_.isEqual(obj1, obj2); <span class="hljs-comment">// false</span></code></pre>
 <p>Depending on your use case, this may be an issue. However, in general, you should only use <code>isEqual()</code> for
 comparing POJOs as opposed to complex classes. In particular, if you want to compare <a href="https://mongoosejs.com/docs/documents.html">Mongoose documents</a>, you should convert the document to a POJO using <code>toObject()</code> first:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> Character = mongoose.model(<span class="hljs-string">'Character'</span>, Schema({

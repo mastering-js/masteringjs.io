@@ -7,8 +7,8 @@
     <meta property="og:title" content="How to Drag and Drop File Upload with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="Here's how you can drag and drop file uploads with Vue." />
+    <meta name="description" content="Here's how you can drag and drop file uploads with Vue." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -63,7 +63,7 @@
   </div>
   <h1>How to Drag and Drop File Upload with Vue</h1>
   <div class="date">
-    Jun 2, 2021
+    Jun 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,12 +73,9 @@
 	  }
 	})();
 	</script>
-  <p>To be able to drag and drop files with vue.js, you
-must utilize the
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">html drag and drop api</a>.
-To successfully use the drag and drop feature, you must call <code>preventDefault</code> on
-<code>dragEnter</code> and <code>dragOver</code> as their default behavior does not allow elements to be dropped. You can also
-prevent the default behavior for <code>drop</code> on the parent so you do not accidentally open the file
+  <p>You can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">HTML drag and drop API</a> to be able to drag and drop files with <a href="/vue">Vue</a>.
+To successfully use the drag and drop feature, you must call <code>preventDefault</code> on <code>dragEnter</code> and <code>dragOver</code> because their default behavior does not allow elements to be dropped.
+You can also prevent the default behavior for <code>drop</code> on the parent so you do not accidentally open the file
 in the browser if you miss the drop zone as shown below:</p>
 <pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 &lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
@@ -176,6 +173,9 @@ in the browser if you miss the drop zone as shown below:</p>
     <h2>More Vue Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/firebase-file-upload">Using Firebase with Vue for File Uploads</a></li>
+  
+
     <li><a href="/tutorials/vue/file">How to Read Files with Vue</a></li>
   
 
@@ -192,9 +192,6 @@ in the browser if you miss the drop zone as shown below:</p>
   
 
     <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
-  
-
-    <li><a href="/tutorials/vue/table">How to Use Vue With HTML Tables</a></li>
   
     </ul>
   

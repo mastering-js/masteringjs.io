@@ -78,14 +78,12 @@ anonymous function and immediately executes it.</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Prints "Hello, World!"</span>
 (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>);
-})();
-</code></pre>
+})();</code></pre>
 <p>You can also use arrow functions with the IIFE pattern:</p>
 <pre><code class="language-javascript"><span class="hljs-comment">// Prints "Hello, World!"</span>
 (<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>);
-})();
-</code></pre>
+})();</code></pre>
 <p>The parenthesis around <code>function() { ... }</code> are mandatory: without those
 parenthesis, you would get a syntax error. That&#39;s because the parenthesis
 tell the JavaScript language parser to treat the function definition as
@@ -125,8 +123,7 @@ async IIFE:</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> answer = <span class="hljs-keyword">await</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;
 }();
-answer; <span class="hljs-comment">// 42</span>
-</code></pre>
+answer; <span class="hljs-comment">// 42</span></code></pre>
 
   
   <hr>
@@ -159,7 +156,7 @@ answer; <span class="hljs-comment">// 42</span>
     <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-object">Using JavaScript's typeof Operator with Objects</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
