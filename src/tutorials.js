@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use forEach() to Iterate Over an Instance of a JavaScript Map',
+    raw: './tutorials/fundamentals/map-foreach.md',
+    url: '/tutorials/fundamentals/map-foreach',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-06-07')
+  },
+  {
     title: 'Using Firebase with Vue for File Uploads',
     raw: './tutorials/vue/firebase-file-upload.md',
     url: '/tutorials/fundamentals/firebase-file-upload',
