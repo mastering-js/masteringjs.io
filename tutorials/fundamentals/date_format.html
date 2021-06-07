@@ -93,7 +93,8 @@ date.toLocaleString(<span class="hljs-string">'en-US'</span>, {
   month: <span class="hljs-string">'long'</span>, <span class="hljs-comment">// "June"</span>
   day: <span class="hljs-string">'2-digit'</span>, <span class="hljs-comment">// "01"</span>
   year: <span class="hljs-string">'numeric'</span> <span class="hljs-comment">// "2019"</span>
-});</code></pre>
+});
+</code></pre>
 <p><strong>Note:</strong> Don&#39;t confuse <code>toLocaleString()</code> with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString"><code>toLocaleDateString()</code></a>. The <code>toLocaleDateString()</code> function is similar to <code>toLocaleString()</code>, except for it doesn&#39;t include the time portion of the date by default.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">'2019-06-01T08:00:00.000'</span>);
 
@@ -109,7 +110,8 @@ date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>
-}); <span class="hljs-comment">// "June 01, 2019, 8 AM"</span></code></pre>
+}); <span class="hljs-comment">// "June 01, 2019, 8 AM"</span>
+</code></pre>
 <h2 id="timezones">Timezones</h2>
 <p>The <code>toLocaleString()</code> function also lets you specify a timezone to format the date in. Which timezones are supported is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString#Parameters">implementation-specific</a>, so you shouldn&#39;t rely on named timezones like &#39;America/Los_Angeles&#39; or &#39;America/New_York&#39; without testing your environment first. For example, Node.js <a href="https://github.com/nodejs/help/issues/1843">pulls timezone data from your OS</a>, so that means your Node process most likely has timezone data, but that is not strictly guaranteed.</p>
 <p>Below is an example of formatting a UTC date with a specific timezone, <code>&#39;America/Denver&#39;</code>.</p>
@@ -121,7 +123,8 @@ date.toLocaleDateString(<span class="hljs-string">'en-US'</span>, {
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">hour</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">timeZone</span>: <span class="hljs-string">'America/Denver'</span> <span class="hljs-comment">// 6 hours behind UTC</span>
-});</code></pre>
+});
+</code></pre>
 <h2 id="limitations">Limitations</h2>
 <p>The <code>toLocaleString()</code> function is good enough for simple human-readable formatting, but it doesn&#39;t have the same level of control that you have with <a href="https://www.npmjs.com/package/moment">moment</a>.</p>
 <p>For example, <code>toLocaleString()</code> doesn&#39;t have a way to output a date in <code>YYYYMMDD</code> format, such as &#39;20190601&#39; for June 1, 2019. You can output a date in <code>YYYY-MM-DD</code>, but you have to guess a compatible locale. There&#39;s no way to output <code>YYYY-MM-DD</code> using the <code>&#39;en-US&#39;</code> locale, but you can do it with the <code>&#39;fr-CA&#39;</code> locale.</p>
@@ -131,7 +134,8 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
   <span class="hljs-attr">year</span>: <span class="hljs-string">'numeric'</span>,
   <span class="hljs-attr">month</span>: <span class="hljs-string">'2-digit'</span>,
   <span class="hljs-attr">day</span>: <span class="hljs-string">'2-digit'</span>
-});</code></pre>
+});
+</code></pre>
 <p>Unfortunately, figuring out the right locale requires trial and error. If you need more powerful formatting than just &#39;June 1, 2019&#39;, you&#39;re better off using moment.</p>
 
   
@@ -153,6 +157,9 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
+    <li><a href="/tutorials/fundamentals/concat-string-array">How to Concatenate Strings in an Array using JavaScript</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
   
 
@@ -169,9 +176,6 @@ date.toLocaleDateString(<span class="hljs-string">'fr-CA'</span>, {
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
     </ul>
   

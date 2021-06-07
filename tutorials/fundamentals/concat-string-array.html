@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Debugging "TypeError: X is not a function" in JavaScript - Mastering JS</title>
+    <title>How to Concatenate Strings in an Array using JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Debugging "TypeError: X is not a function" in JavaScript" />
+    <meta property="og:title" content="How to Concatenate Strings in an Array using JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="'TypeError: X is not a function' errors can be confusing. Here's what this error message means and how you can fix it." />
-    <meta name="description" content="'TypeError: X is not a function' errors can be confusing. Here's what this error message means and how you can fix it." />
+    <meta property="og:description" content="Placeholder Description" />
+    <meta name="description" content="Placeholder Description" />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Debugging "TypeError: X is not a function" in JavaScript</h1>
+  <h1>How to Concatenate Strings in an Array using JavaScript</h1>
   <div class="date">
-    Jul 27, 2020
+    Jun 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,40 +73,20 @@
 	  }
 	})();
 	</script>
-  <p>The <code>TypeError: X is not a function</code> error is a common cause of confusion for JavaScript beginners.
-JavaScript throws this error when you attempt to call a value that isn&#39;t a function. For example:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-number">42</span>;
+  <p>JavaScript&#39;s <code>join()</code> method is handy for turning elements in
+an array into a string. You can specify what you want the
+elements to be joined by, like  <code>-</code>, for example but it defaults to a space.
+The downside about being able to concatenate a JavaScript array is that
+because JavaScript allows for different types to be in the same
+array, you can concatenate values that you didn&#39;t want. Thankfully,
+you can use the <code>filter()</code> method to make sure you are concatentating
+the values you desire:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-string">'The'</span>, <span class="hljs-number">97</span>, <span class="hljs-string">'Dream'</span>, <span class="hljs-string">'Team'</span>];
+<span class="hljs-keyword">let</span> jumble = array.join();
+jumble; <span class="hljs-comment">// 'The 97 Dream Team'</span>
 
-x(); <span class="hljs-comment">// Throws 'TypeError: x is not a function'</span></code></pre>
-<p>Most modern JavaScript runtimes are good about formatting this error, so you know what <a href="/tutorials/fundamentals/expressions">expression</a> you tried to call that isn&#39;t a function. For example, another common cause of
-this error is calling a non-existant method on an object.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> moment = <span class="hljs-built_in">require</span>(<span class="hljs-string">'moment'</span>);
-
-<span class="hljs-keyword">const</span> date = moment(<span class="hljs-string">'2020-06-01'</span>);
-
-<span class="hljs-comment">// Typo! Throws 'TypeError: date.formt is not a function'</span>
-date.formt(<span class="hljs-string">'YYYY-MM-DD'</span>);</code></pre>
-<p>If JavaScript throws this error in code that you wrote, you should double check the code at the line number
-in the error&#39;s stack trace. Odds are, you either typo-ed, or you need to add a check to make sure the value
-that you&#39;re calling is a function.</p>
-<pre><code class="language-javascript"><span class="hljs-comment">// Ensure that `x` is a function to avoid TypeError.</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x !== <span class="hljs-string">'function'</span>) {
-  <span class="hljs-keyword">return</span>;
-}
-
-x();</code></pre>
-<h2 id="a-note-on-semicolons">A Note on Semicolons</h2>
-<p>If you don&#39;t use semicolons, you can get some surprising instances of this error. For example, the below
-code throws <code>TypeError: arr[0] is not a function</code>:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = []
-
-<span class="hljs-keyword">const</span> val = arr[<span class="hljs-number">0</span>]
-(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(val) })()</code></pre>
-<p>Because there isn&#39;t a semicolon at the end of <code>arr[0]</code>, JavaScript treats the above code as equivalent to:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = []
-
-<span class="hljs-keyword">const</span> val = arr[<span class="hljs-number">0</span>](<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(val) })()</code></pre>
-<p>If you write JavaScript without semicolons, be sure to use a <a href="/eslint">linter</a> to avoid mistakes like this!</p>
+<span class="hljs-keyword">let</span> text = array.filter(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">'string'</span>).join();
+text; <span class="hljs-comment">// The Dream Team</span></code></pre>
 
   
   <hr>
@@ -127,9 +107,6 @@ code throws <code>TypeError: arr[0] is not a function</code>:</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/concat-string-array">How to Concatenate Strings in an Array using JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
   
 
@@ -146,6 +123,9 @@ code throws <code>TypeError: arr[0] is not a function</code>:</p>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/decimal-to-binary">Convert Decimal to Binary</a></li>
   
     </ul>
   
