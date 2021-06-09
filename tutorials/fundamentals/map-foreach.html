@@ -79,7 +79,7 @@ JavaScript calls the <code>forEach()</code> callback with 3 parameters: the valu
 map.set(<span class="hljs-string">'greeting'</span>, <span class="hljs-string">'Hello'</span>);
 map.set(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John'</span>);
 
-treasure.forEach(<span class="hljs-function">(<span class="hljs-params">value, key, map</span>) =&gt;</span> {
+map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key, map</span>) =&gt;</span> {
   <span class="hljs-comment">// Prints "greeting Hello" followed by "name John"</span>
   <span class="hljs-built_in">console</span>.log(value, key);
 });</code></pre>
@@ -92,6 +92,9 @@ map.set(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John
 
 [...map.entries()]; <span class="hljs-comment">// [['greeting', 'Hello'], ['name', 'John']]</span>
 <span class="hljs-built_in">Array</span>.from(map.entries()); <span class="hljs-comment">// [['greeting', 'Hello'], ['name', 'John']]</span>
+
+<span class="hljs-comment">// Equivalent since `entries()` is the default iterator</span>
+[...map]; <span class="hljs-comment">// [['greeting', 'Hello'], ['name', 'John']]</span>
 
 <span class="hljs-comment">// First convert map into an array of entries, then you can use `filter()`</span>
 [...map.entries()].filter(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> value.length &gt; <span class="hljs-number">4</span>); <span class="hljs-comment">// [['greeting', 'Hello']]</span></code></pre>
