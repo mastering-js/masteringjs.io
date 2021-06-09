@@ -232,16 +232,16 @@ async function run() {
   pages.push({
     path: './jobs.html',
     template: layout,
-    title: 'Jobs',
+    title: 'The #1 JavaScript Job Board | Mastering JS',
     content: jobs(),
-    description: 'Find A Job'
+    description: 'Hire the best JavaScript developers in the world on Mastering JS and reach 100k pragmatic JS devs per month.'
   });
   pages.push({
     path: './jobs/create.html',
     template: layout,
     title: 'Hire JavaScript Developers | Mastering JS',
     content: createjob(),
-    description: 'Hire the best JavaScript developers in the world on Mastering JS and reach millions of developers.',
+    description: 'Hire the best JavaScript developers in the world on Mastering JS and reach 100k pragmatic JS devs per month.',
     carbonAds: false
   });
   pages.push({

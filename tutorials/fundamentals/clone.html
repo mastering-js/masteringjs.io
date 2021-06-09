@@ -150,8 +150,7 @@ classes like <code>Date</code>, this pattern fails to actually clone the object,
 <span class="hljs-keyword">const</span> copy = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(obj));
 
 obj.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// true</span>
-copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span>
-</code></pre>
+copy.date <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Date</span>; <span class="hljs-comment">// false, `date` is a string</span></code></pre>
 <h2 id="deep-clone-using-lodash">Deep Clone Using Lodash</h2>
 <p><a href="https://lodash.com/docs/4.17.15#cloneDeep">Lodash&#39;s <code>deepClone()</code> function</a> is a much more robust
 deep clone than <code>JSON.parse(JSON.stringify())</code>. It handles many common edge cases, like dates and
@@ -170,8 +169,7 @@ obj1.date.toString() === obj2.date.toString(); <span class="hljs-comment">// tru
 obj1.buffer === obj2.buffer; <span class="hljs-comment">// false</span>
 obj1.buffer.toString(<span class="hljs-string">'utf8'</span>) === obj2.buffer.toString(<span class="hljs-string">'utf8'</span>); <span class="hljs-comment">// true</span>
 
-obj1.a === obj2.a; <span class="hljs-comment">// false</span>
-</code></pre>
+obj1.a === obj2.a; <span class="hljs-comment">// false</span></code></pre>
 <p>If you&#39;re looking to copy an arbitrary object that may contain nested objects so you can safely
 modify any property without affecting the original object, <code>_.cloneDeep()</code> is the way to go.
 Recursively using the spread operator is tricky if you don&#39;t know the structure of the object,
@@ -197,7 +195,7 @@ have nested objects.</p>
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Over an Instance of a JavaScript Map</a></li>
+    <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Through a JavaScript Map</a></li>
   
 
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
@@ -212,7 +210,7 @@ have nested objects.</p>
     <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-object">Using JavaScript's typeof Operator with Objects</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>

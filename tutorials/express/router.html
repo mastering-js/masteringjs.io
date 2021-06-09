@@ -108,8 +108,7 @@ app.get(<span class="hljs-string">'/route1'</span>, (req, res) =&gt; res.send(<s
 
 <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
 <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> axios.get(<span class="hljs-string">'http://localhost:3000/route1'</span>);
-res.data; <span class="hljs-comment">// 'Hello, World!'</span>
-</code></pre>
+res.data; <span class="hljs-comment">// 'Hello, World!'</span></code></pre>
 <h2 id="other-http-request-methods">Other HTTP Request Methods</h2>
 <p>The <a href="https://expressjs.com/en/5x/api.html#app.get.method"><code>app.get()</code> function</a> defines a request handler specifically
 for an <a href="https://www.w3schools.com/tags/ref_httpmethods.asp">HTTP GET request</a>. However, there are <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">several HTTP request methods</a> in addition to <code>GET</code>:</p>

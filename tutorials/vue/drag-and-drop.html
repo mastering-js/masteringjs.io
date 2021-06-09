@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use the Select Tag with Vue - Mastering JS</title>
+    <title>How to Drag and Drop File Upload with Vue - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use the Select Tag with Vue" />
+    <meta property="og:title" content="How to Drag and Drop File Upload with Vue" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
-    <meta name="description" content="Here's how you can use Vue with the `select` tag, including how to use two way data binding with `v-model`." />
+    <meta property="og:description" content="Here's how you can drag and drop file uploads with Vue." />
+    <meta name="description" content="Here's how you can drag and drop file uploads with Vue." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/vue">Vue</a>
     /
   </div>
-  <h1>How to Use the Select Tag with Vue</h1>
+  <h1>How to Drag and Drop File Upload with Vue</h1>
   <div class="date">
-    Mar 9, 2021
+    Jun 7, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,99 +73,68 @@
 	  }
 	})();
 	</script>
-  <p>In HTML, the <code>&lt;select&gt;</code> tag lets you create a dropdown that
-lets the user select one of several options. The easiest way
-to tie Vue state to the value of a <code>&lt;select&gt;</code> tag is using
-<a href="/tutorials/vue/v-model"><code>v-model</code></a>. Below is an example:</p>
-<script src="https://unpkg.com/vue@next"></script>
-<div style = "outline-style: solid" id="example">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
-<script>
-Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
-  }
-}).mount('#example');
-</script>
-</script>
-
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="example"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option&gt;A&lt;/option&gt;
-    &lt;option&gt;B&lt;/option&gt;
-    &lt;option&gt;C&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
+  <p>You can use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">HTML drag and drop API</a> to be able to drag and drop files with <a href="/vue">Vue</a>.
+To successfully use the drag and drop feature, you must call <code>preventDefault</code> on <code>dragEnter</code> and <code>dragOver</code> because their default behavior does not allow elements to be dropped.
+You can also prevent the default behavior for <code>drop</code> on the parent so you do not accidentally open the file
+in the browser if you miss the drop zone as shown below:</p>
+<pre><code class="language-html">&lt;div id=<span class="hljs-string">"content"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;script src=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/vue@2.6.12"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
 &lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: ''
-    };
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Vue({
+    <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({ <span class="hljs-attr">File</span>: []}),
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;div style="border-style:solid;" @dragover.prevent @drop.prevent&gt;
+      &lt;input type="file" multiple @change="uploadFile"/&gt;
+        &lt;div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;"&gt;
+        Or drag the file here
+        &lt;div v-if="File.length"&gt;
+        &lt;ul v-for="file in File" :key="file"&gt;
+        &lt;li&gt;{{file.name}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    `</span>,
+    <span class="hljs-attr">methods</span>: {
+      uploadFile(e) {
+        <span class="hljs-keyword">this</span>.File = e.target.files;
+      },
+      dragFile(e) {
+        <span class="hljs-keyword">this</span>.File = e.dataTransfer.files;
+      }
   }
-}).mount('#example');
-&lt;/script&gt;</code></pre>
-<p><strong>Note:</strong> On iOS, if the initial value of your <code>v-model</code> does not match any of the
-options, it will cause the browser to render the <code>&lt;select&gt;</code> tag in a &quot;unselected&quot; state. Any browser running on iOS won&#39;t fire a change event for a <code>&lt;select&gt;</code> in an unselected tag, which means the user won&#39;t be able to select the first option. Therefore, we recommend using a <code>disabled</code> option with an empty value as the first element.</p>
-<h1 id="with-v-for">With <code>v-for</code></h1>
-<p>With <code>v-for</code>, you can create an option for every value in an array.
-Below is an example:</p>
-<div style = "outline-style: solid" id="demo">
-  <select v-model="selected">
-    <option disabled value="">Please Select</option>
-    <option v-for="option in options" :value="option">{{option}}</option>
-  </select>
-  <span style="padding-left:5%">Your Choice is: {{selected}}</span>
-</div>
+  });
+  app.$mount(<span class="hljs-string">"#content"</span>);
+<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre>
+<div id="content"></div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <script>
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
+  const app = new Vue({
+    data: () => ({ File: []}),
+    template: `
+      <div style="border-style:solid;" @dragover.prevent @drop.prevent>
+      <input type="file" multiple @change="uploadFile"/>
+        <div @drop="dragFile" style="background-color:green;margin-bottom:10px;padding:10px;">
+        Or drag the file here
+        <div v-if="File.length">
+        <ul v-for="file in File" :key="file">
+        <li>{{file.name}}</li>
+        </ul>
+        </div>
+        </div>
+      </div>
+    `,
+    methods: {
+      uploadFile(e) {
+        this.File = e.target.files;
+      },
+      dragFile(e) {
+        this.File = e.dataTransfer.files;
+      }
   }
-}).mount('#demo');
+  });
+  app.$mount("#content");
 </script>
-
-<pre><code class="language-html">&lt;script src="https://unpkg.com/vue@next"&gt;&lt;/script&gt;
-&lt;div style = "outline-style: solid" id="demo"&gt;
-  &lt;select v-model="selected"&gt;
-    &lt;option disabled value=""&gt;Please Select&lt;/option&gt;
-    &lt;option v-for="option in options" :value="option"&gt;{{option}}&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;span style="padding-left:5%"&gt;Your Choice is: {{selected}}&lt;/span&gt;
-&lt;/div&gt;
-&lt;script&gt;
-Vue.createApp({
-  data() {
-    return {
-      selected: '',
-      options: [
-        'A',
-        'B',
-        'C'
-      ]
-    };
-  }
-}).mount('#demo');
-&lt;/script&gt;</code></pre>
 
   <hr>
 <div class="cta">
@@ -204,9 +173,6 @@ Vue.createApp({
     <h2>More Vue Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/vue/drag-and-drop">How to Drag and Drop File Upload with Vue</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/firebase-file-upload">Using Firebase with Vue for File Uploads</a></li>
   
 
@@ -223,6 +189,9 @@ Vue.createApp({
   
 
     <li><a href="/tutorials/vue/file-upload">How To Upload Files With Vue</a></li>
+  
+
+    <li><a href="/tutorials/vue/dropdown">How to Use Boostrap With Vue to Make a Dropdown</a></li>
   
     </ul>
   

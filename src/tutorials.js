@@ -4,11 +4,19 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
-    title: 'How to Use forEach() to Iterate Over an Instance of a JavaScript Map',
+    title: 'How to Use forEach() to Iterate Through a JavaScript Map',
     raw: './tutorials/fundamentals/map-foreach.md',
     url: '/tutorials/fundamentals/map-foreach',
-    description: 'Placeholder Description',
+    description: 'JavaScript maps have a `forEach()` function, as well as several helpers that let you iterate over a map\'s keys and values using `forEach()`. Here\'s what you need to know.',
     tags: ['fundamentals'],
+    date: moment('2021-06-09')
+  },
+  {
+    title: 'How to Drag and Drop File Upload with Vue',
+    raw: './tutorials/vue/drag-and-drop.md',
+    url: '/tutorials/vue/drag-and-drop',
+    description: 'Here\'s how you can drag and drop file uploads with Vue.',
+    tags: ['vue'],
     date: moment('2021-06-07')
   },
   {
@@ -52,7 +60,7 @@ module.exports = Object.freeze([
     date: moment('2021-05-19')
   },
   {
-    title: 'How to Determine if a Value is an Object',
+    title: 'Using JavaScript\'s typeof Operator with Objects',
     raw: './tutorials/fundamentals/typeof-object.md',
     url: '/tutorials/fundamentals/typeof-object',
     description: 'Here\'s how you can check if a given JavaScript variable is an object.',

@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Use forEach() to Iterate Over an Instance of a JavaScript Map - Mastering JS</title>
+    <title>How to Use forEach() to Iterate Through a JavaScript Map - Mastering JS</title>
 
-    <meta property="og:title" content="How to Use forEach() to Iterate Over an Instance of a JavaScript Map" />
+    <meta property="og:title" content="How to Use forEach() to Iterate Through a JavaScript Map" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Placeholder Description" />
-    <meta name="description" content="Placeholder Description" />
+    <meta property="og:description" content="JavaScript maps have a `forEach()` function, as well as several helpers that let you iterate over a map's keys and values using `forEach()`. Here's what you need to know." />
+    <meta name="description" content="JavaScript maps have a `forEach()` function, as well as several helpers that let you iterate over a map's keys and values using `forEach()`. Here's what you need to know." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Use forEach() to Iterate Over an Instance of a JavaScript Map</h1>
+  <h1>How to Use forEach() to Iterate Through a JavaScript Map</h1>
   <div class="date">
-    Jun 7, 2021
+    Jun 9, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,48 +73,38 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript&#39;s <code>Map</code> object has a handy function, <code>forEach()</code>,
-which operates similarly to the <code>Array forEach()</code> function.
-It takes a arrow or callback function as the first parameter, and you
-can pass the <code>value</code>, <code>key</code>, and <code>map</code> as the parameters to the passed
-function:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> treasure = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-treasure.set(<span class="hljs-string">'0'</span>, <span class="hljs-string">'x'</span>);
-treasure.set(<span class="hljs-string">'1'</span>, <span class="hljs-string">'marks'</span>);
-treasure.set(<span class="hljs-string">'2'</span>, <span class="hljs-string">'the spot'</span>);
+  <p><a href="/tutorials/fundamentals/map">JavaScript&#39;s <code>Map</code> object</a> has a handy function, <code>forEach()</code>, which operates similarly to <a href="/tutorials/fundamentals/foreach">arrays&#39; <code>forEach()</code> function</a>.
+JavaScript calls the <code>forEach()</code> callback with 3 parameters: the value, the key, and the map itself.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+map.set(<span class="hljs-string">'greeting'</span>, <span class="hljs-string">'Hello'</span>);
+map.set(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John'</span>);
 
-treasure.forEach(<span class="hljs-function">(<span class="hljs-params">value,key,treasure</span>) =&gt;</span> {
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'value, key '</span>, value, key);
+treasure.forEach(<span class="hljs-function">(<span class="hljs-params">value, key, map</span>) =&gt;</span> {
+  <span class="hljs-comment">// Prints "greeting Hello" followed by "name John"</span>
+  <span class="hljs-built_in">console</span>.log(value, key);
 });</code></pre>
-<h2 id="mapentries">Map.entries()</h2>
-<p>If you don&#39;t want to use <code>Map.forEach()</code>, you can use <code>Map.entries()</code>.
-<code>Map.entries()</code> returns a new <code>Map</code> iterator object, and so to get to the
-key value pairs you must chain <code>.next().value</code> onto <code>Map.entries()</code>:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> treasure = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-treasure.set(<span class="hljs-string">'0'</span>, <span class="hljs-string">'x'</span>);
-treasure.set(<span class="hljs-string">'1'</span>, <span class="hljs-string">'marks'</span>);
-treasure.set(<span class="hljs-string">'2'</span>, <span class="hljs-string">'the spot'</span>);
+<h2 id="mapentries"><code>Map#entries()</code></h2>
+<p>JavaScript maps don&#39;t have chainable helpers like <a href="/tutorials/fundamentals/filter"><code>filter()</code></a> or <a href="/tutorials/fundamentals/map-filter"><code>map()</code></a> for arrays.
+If you want to use <code>filter()</code> with a map, you should use <a href="https://masteringjs.io/tutorials/fundamentals/map#iterating-over-a-map"><code>Map#entries()</code></a> to first convert the map to an iterator, and then use the the <a href="/tutorials/fundamentals/spread">spread operator</a> or the <code>Array.from()</code> function to convert the iterator to an array.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+map.set(<span class="hljs-string">'greeting'</span>, <span class="hljs-string">'Hello'</span>);
+map.set(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John'</span>);
 
-treasure.entries().next().value; <span class="hljs-comment">// will return ['0', 'x']</span></code></pre>
-<p>You must subsequently call <code>treasure.entries().next().value</code> to get the other values.</p>
-<h2 id="mapkeys">Map.keys()</h2>
-<p>If you only need the keys of the <code>Map</code>, you can use <code>Map.keys()</code>.
-You must follow the same structure as <code>Map.entries()</code>, and will get
-the corresponding key:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> treasure = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-treasure.set(<span class="hljs-string">'0'</span>, <span class="hljs-string">'x'</span>);
-treasure.set(<span class="hljs-string">'1'</span>, <span class="hljs-string">'marks'</span>);
-treasure.set(<span class="hljs-string">'2'</span>, <span class="hljs-string">'the spot'</span>);
+[...map.entries()]; <span class="hljs-comment">// [['greeting', 'Hello'], ['name', 'John']]</span>
+<span class="hljs-built_in">Array</span>.from(map.entries()); <span class="hljs-comment">// [['greeting', 'Hello'], ['name', 'John']]</span>
 
-treasure.keys().next().value; <span class="hljs-comment">// will return '0'</span></code></pre>
-<h2 id="mapvalues">Map.values()</h2>
-<p>You can conversly use <code>Map.values()</code> to get the values of the <code>Map</code>:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> treasure = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-treasure.set(<span class="hljs-string">'0'</span>, <span class="hljs-string">'x'</span>);
-treasure.set(<span class="hljs-string">'1'</span>, <span class="hljs-string">'marks'</span>);
-treasure.set(<span class="hljs-string">'2'</span>, <span class="hljs-string">'the spot'</span>);
+<span class="hljs-comment">// First convert map into an array of entries, then you can use `filter()`</span>
+[...map.entries()].filter(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> value.length &gt; <span class="hljs-number">4</span>); <span class="hljs-comment">// [['greeting', 'Hello']]</span></code></pre>
+<h2 id="mapkeys-and-mapvalues"><code>Map#keys()</code> and <code>Map#values()</code></h2>
+<p>If you only need the keys or the values of the <code>Map</code>, you can use <code>Map#keys()</code> or <code>Map#values()</code>.
+<code>Map#keys()</code> returns an iterator over the map&#39;s keys, and <code>Map#values()</code> returns an iterator over the map&#39;s values.
+Make sure you convert the iterator to an array using the spread operator or <code>Array.from()</code> if you want to use <code>filter()</code> or <code>map()</code>!</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+map.set(<span class="hljs-string">'greeting'</span>, <span class="hljs-string">'Hello'</span>);
+map.set(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John'</span>);
 
-treasure.keys().next().value; <span class="hljs-comment">// will return 'x'</span></code></pre>
+<span class="hljs-built_in">Array</span>.from(map.keys()); <span class="hljs-comment">// ['greeting', 'name']</span>
+<span class="hljs-built_in">Array</span>.from(map.values()); <span class="hljs-comment">// ['Hello', 'John']</span></code></pre>
 
   
   <hr>
@@ -147,7 +137,7 @@ treasure.keys().next().value; <span class="hljs-comment">// will return 'x'</spa
     <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-object">Using JavaScript's typeof Operator with Objects</a></li>
   
 
     <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>

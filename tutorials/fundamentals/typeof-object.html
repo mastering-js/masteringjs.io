@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>How to Determine if a Value is an Object - Mastering JS</title>
+    <title>Using JavaScript's typeof Operator with Objects - Mastering JS</title>
 
-    <meta property="og:title" content="How to Determine if a Value is an Object" />
+    <meta property="og:title" content="Using JavaScript's typeof Operator with Objects" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="Here's how you can check if a given JavaScript variable is an object." />
@@ -61,7 +61,7 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>How to Determine if a Value is an Object</h1>
+  <h1>Using JavaScript's typeof Operator with Objects</h1>
   <div class="date">
     May 17, 2021
   </div>
@@ -82,6 +82,14 @@ The first option is to hardcode an <code>if</code> statement as follows:</p>
 }</code></pre>
 <p>Whether you use the <code>Array.isArray()</code> check depends on your use case.
 There are cases where you want to treat arrays as objects, and cases where you don&#39;t.</p>
+<p>Another edge case is that <code>typeof</code> returns &#39;function&#39; for functions, but functions are technically objects.
+There is no <a href="/tutorials/fundamentals/primitives">JavaScript primitive</a> for functions, functions are objects that inherit from the global <code>Function</code> class.
+To check if a value is an object, including functions, you can use the <a href="/tutorials/fundamentals/instanceof"><code>instanceof</code> operator</a> as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {};
+
+<span class="hljs-keyword">typeof</span> fn; <span class="hljs-comment">// 'function'</span>
+fn <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>; <span class="hljs-comment">// true</span></code></pre>
+<h3 id="checking-for-pojos">Checking for POJOs</h3>
 <p>This check will allow any object through, including objects that are instances of classes.
 If you need a more rigorous check as to check whether an object is a plain old JavaScript object (or <a href="/tutorials/fundamentals/pojo">POJO</a> for short), you can use the below function.</p>
 <pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPOJO</span>(<span class="hljs-params">arg</span>) </span>{
@@ -119,7 +127,7 @@ isPOJO(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Number<
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Over an Instance of a JavaScript Map</a></li>
+    <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Through a JavaScript Map</a></li>
   
 
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
