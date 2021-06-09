@@ -6,7 +6,7 @@ const map = new Map();
 map.set('greeting', 'Hello');
 map.set('name', 'John');
 
-treasure.forEach((value, key, map) => {
+map.forEach((value, key, map) => {
   // Prints "greeting Hello" followed by "name John"
   console.log(value, key);
 });
@@ -24,6 +24,9 @@ map.set('name', 'John');
 
 [...map.entries()]; // [['greeting', 'Hello'], ['name', 'John']]
 Array.from(map.entries()); // [['greeting', 'Hello'], ['name', 'John']]
+
+// Equivalent since `entries()` is the default iterator
+[...map]; // [['greeting', 'Hello'], ['name', 'John']]
 
 // First convert map into an array of entries, then you can use `filter()`
 [...map.entries()].filter(([key, value]) => value.length > 4); // [['greeting', 'Hello']]
