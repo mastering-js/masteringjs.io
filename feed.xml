@@ -4,7 +4,7 @@
         <title>Mastering JS</title>
         <link>https://masteringjs.io</link>
         <description>Detailed, pragmatic full stack JavaScript tutorials focusing on the VENOM (MEVN) stack.</description>
-        <lastBuildDate>Mon, 07 Jun 2021 18:53:21 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 09 Jun 2021 15:48:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,6 +12,12 @@
             <url>https://masteringjs.io/assets/logo.svg</url>
             <link>https://masteringjs.io</link>
         </image>
+        <item>
+            <title><![CDATA[How to Use forEach() to Iterate Through a JavaScript Map]]></title>
+            <link>https://masteringjs.io/tutorials/fundamentals/map-foreach</link>
+            <guid>https://masteringjs.io/tutorials/fundamentals/map-foreach</guid>
+            <pubDate>Wed, 09 Jun 2021 04:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[How to Drag and Drop File Upload with Vue]]></title>
             <link>https://masteringjs.io/tutorials/vue/drag-and-drop</link>
