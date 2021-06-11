@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Capitalize the First Letter of a String in JavaScript - Mastering JS</title>
+    <title>How to Concatenate Strings in an Array using JavaScript - Mastering JS</title>
 
-    <meta property="og:title" content="Capitalize the First Letter of a String in JavaScript" />
+    <meta property="og:title" content="How to Concatenate Strings in an Array using JavaScript" />
     <meta property="og:site_name" content="Mastering JS" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
-    <meta name="description" content="How to convert the string 'dog' to 'Dog' in JavaScript." />
+    <meta property="og:description" content="Here's how you can concatenate an array of strings in JavaScript, including filtering out non-string values." />
+    <meta name="description" content="Here's how you can concatenate an array of strings in JavaScript, including filtering out non-string values." />
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
@@ -61,9 +61,9 @@
     <a href="/fundamentals">Fundamentals</a>
     /
   </div>
-  <h1>Capitalize the First Letter of a String in JavaScript</h1>
+  <h1>How to Concatenate Strings in an Array using JavaScript</h1>
   <div class="date">
-    Jul 24, 2019
+    Jun 11, 2021
   </div>
   <div id="default_masteringjsio"></div>
   <script>
@@ -73,32 +73,23 @@
 	  }
 	})();
 	</script>
-  <p>JavaScript doesn&#39;t have a built-in function to convert the first letter of a
-string to uppercase. However, you can capitalize the first letter of a string
-with one line of vanilla JS. You can also use <a href="https://www.npmjs.com/package/lodash.capitalize">lodash</a> or CSS. In this tutorial,
-you&#39;ll learn to use all 3.</p>
-<h2 id="using-vanilla-js">Using Vanilla JS</h2>
-<p>JavaScript has a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase"><code>String#uppercase()</code> function</a> that converts an entire string to uppercase. That means you can
-capitalize the first character and combine it with the <a href="/tutorials/fundamentals/substring">substring containing everything but the first character</a>.</p>
-<pre><code class="language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">capitalize</span>(<span class="hljs-params">str</span>) </span>{
-  <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>).toUpperCase() + str.slice(<span class="hljs-number">1</span>);
-}
+  <p>JavaScript&#39;s <code>join()</code> method is handy for turning elements in an array into a string.
+JavaScript arrays can contain values of different types.
+If you only want to concatenate strings, you can filter out non-string values using <a href="/tutorials/fundamentals/filter"><code>filter()</code></a> and <a href="/tutorials/fundamentals/typeof"><code>typeof</code></a> as shown below.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-string">'The'</span>, <span class="hljs-number">97</span>, <span class="hljs-string">'Dream'</span>, <span class="hljs-string">'Team'</span>];
+<span class="hljs-keyword">let</span> jumble = array.join();
+jumble; <span class="hljs-comment">// 'The 97 Dream Team'</span>
 
-capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'CAT'</span></code></pre>
-<h2 id="using-lodash">Using Lodash</h2>
-<p><a href="https://lodash.com/docs#capitalize">Lodash&#39;s <code>capitalize()</code> function</a> also capitalizes the first character in a string. It also converts the remaining characters to lowercase.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
-
-_.capitalize(<span class="hljs-string">'dog'</span>); <span class="hljs-comment">// 'Dog'</span>
-_.capitalize(<span class="hljs-string">'cAT'</span>); <span class="hljs-comment">// 'Cat'</span></code></pre>
-<h2 id="using-css">Using CSS</h2>
-<p>Depending on your use case, you might not need JavaScript at all. <a href="https://css-tricks.com/almanac/properties/t/text-transform/#article-header-id-0">CSS <code>text-transform: capitalize</code></a> capitalizes the first letter of each word in the string.</p>
-<pre><code class="language-css">.capitalize {
-  text-transform: capitalize;
-}</code></pre>
-<p>So given the string <code>&#39;capitalize using CSS&#39;</code>, the browser will render the
-string as &#39;<span style="text-transform: capitalize">capitalize using CSS</span>&#39;.</p>
+<span class="hljs-keyword">let</span> text = array.filter(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-keyword">typeof</span> v === <span class="hljs-string">'string'</span>).join();
+text; <span class="hljs-comment">// The Dream Team</span></code></pre>
+<h2 id="separators">Separators</h2>
+<p>You can specify what character to use to concatenate the elements in the array.
+Simply pass the string you want to use.
+If you do not provide the character, it will default to using a <code>,</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> array = [<span class="hljs-string">'user'</span>, <span class="hljs-string">'desktop'</span>, <span class="hljs-string">'learning'</span>, <span class="hljs-string">'tutorials'</span>];
+<span class="hljs-keyword">let</span> concatenate = array.join(<span class="hljs-string">'/'</span>);
+concatenate; <span class="hljs-comment">// user/desktop/learning/tutorials</span>
+array.join(); <span class="hljs-comment">// user,desktop,learning,tutorials</span></code></pre>
 
   
   <hr>
@@ -119,9 +110,6 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
     <h2>More Fundamentals Tutorials</h2>
     <ul>
     
-    <li><a href="/tutorials/fundamentals/concat-string-array">How to Concatenate Strings in an Array using JavaScript</a></li>
-  
-
     <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Through a JavaScript Map</a></li>
   
 
@@ -138,6 +126,9 @@ string as &#39;<span style="text-transform: capitalize">capitalize using CSS</sp
   
 
     <li><a href="/tutorials/fundamentals/typeof-object">Using JavaScript's typeof Operator with Objects</a></li>
+  
+
+    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
   
     </ul>
   

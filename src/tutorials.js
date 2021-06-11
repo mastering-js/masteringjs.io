@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Concatenate Strings in an Array using JavaScript',
+    raw: './tutorials/fundamentals/concat-string-array.md',
+    url: '/tutorials/fundamentals/concat-string-array',
+    description: 'Here\'s how you can concatenate an array of strings in JavaScript, including filtering out non-string values.',
+    tags: ['fundamentals'],
+    date: moment('2021-06-11')
+  },
+  {
     title: 'How to Use forEach() to Iterate Through a JavaScript Map',
     raw: './tutorials/fundamentals/map-foreach.md',
     url: '/tutorials/fundamentals/map-foreach',
