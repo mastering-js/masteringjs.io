@@ -81,8 +81,7 @@
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>];
 
 arr.includes(<span class="hljs-string">'B'</span>); <span class="hljs-comment">// true</span>
-arr.includes(<span class="hljs-string">'D'</span>); <span class="hljs-comment">// false</span>
-</code></pre>
+arr.includes(<span class="hljs-string">'D'</span>); <span class="hljs-comment">// false</span></code></pre>
 <p>The <code>Array#includes()</code> function checks for equality using the same 
 semantics as the <code>===</code> operator (no type coercion), with the exception
 of <code>NaN</code>. The <code>Array#includes()</code> function will find <code>NaN</code> in an array. The technical term for this equality check is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality"><code>sameValueZero</code></a>.</p>
@@ -96,8 +95,7 @@ arr.includes(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-c
 <span class="hljs-comment">// The `===` operator has some quirks with NaN. `Array#includes()`</span>
 <span class="hljs-comment">// smooths out those rough edges.</span>
 arr[<span class="hljs-number">0</span>] === <span class="hljs-literal">NaN</span>; <span class="hljs-comment">// false</span>
-arr[<span class="hljs-number">0</span>] === <span class="hljs-built_in">Number</span>.NaN; <span class="hljs-comment">// false</span>
-</code></pre>
+arr[<span class="hljs-number">0</span>] === <span class="hljs-built_in">Number</span>.NaN; <span class="hljs-comment">// false</span></code></pre>
 <h2 id="indexof"><code>indexOf()</code></h2>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf"><code>Array#indexOf()</code> function</a> is a common alternative to <code>includes()</code>. The <code>indexOf()</code> function returns the first index in the array at which it found <code>valueToFind</code>, or <code>-1</code> otherwise.</p>
 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> arr = [<span class="hljs-string">'A'</span>, <span class="hljs-string">'B'</span>, <span class="hljs-string">'C'</span>];
@@ -108,8 +106,7 @@ arr.indexOf(<span class="hljs-string">'D'</span>); <span class="hljs-comment">//
 
 <span class="hljs-comment">// To check whether an array contains a given value, you should use the</span>
 <span class="hljs-comment">// below check.</span>
-arr.indexOf(<span class="hljs-string">'D'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span>
-</code></pre>
+arr.indexOf(<span class="hljs-string">'D'</span>) !== <span class="hljs-number">-1</span>; <span class="hljs-comment">// false</span></code></pre>
 <p>To check whether <code>arr</code> contains <code>v</code>, you would use <code>arr.indexOf(v) !== -1</code>. In
 some codebases, you may see <code>~arr.indexOf(v)</code> instead, where <code>~</code> is the
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#(Bitwise_NOT)">JavaScript bitwise NOT operator</a>.</p>
@@ -123,8 +120,7 @@ readability to save 4 characters.</p>
 }
 <span class="hljs-keyword">if</span> (~arr.indexOf(<span class="hljs-string">'D'</span>)) {
   <span class="hljs-comment">// Does not run</span>
-}
-</code></pre>
+}</code></pre>
 <p>Unlike <code>Array#includes()</code>, <code>Array#indexOf()</code> uses the same semantics as the <code>===</code>
 operator to check for equality. In other words, <code>Array#indexOf()</code> cannot find
 <code>NaN</code> in an array.</p>
@@ -132,8 +128,7 @@ operator to check for equality. In other words, <code>Array#indexOf()</code> can
 <span class="hljs-keyword">const</span> arr = [<span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'foo'</span>)];
 
 arr.indexOf(<span class="hljs-literal">NaN</span>); <span class="hljs-comment">// -1</span>
-arr.indexOf(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">// -1</span>
-</code></pre>
+arr.indexOf(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-comment">// -1</span></code></pre>
 <p><code>Array#includes()</code> is generally the better choice, because you don&#39;t need to type out <code>!== -1</code> and because it has slightly better equality semantics. But since <code>Array#includes()</code> was introduced in ES2016, it is <a href="https://caniuse.com/#feat=array-includes">not supported in any version of Internet Explorer</a> or Node.js versions before 6.0.0. If you use <code>Array#includes()</code>, make sure you add a <a href="https://www.npmjs.com/package/array-includes">polyfill for older browsers</a>.</p>
 
   
@@ -158,6 +153,9 @@ arr.indexOf(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-co
     <li><a href="/tutorials/fundamentals/concat-string-array">How to Concatenate Strings in an Array using JavaScript</a></li>
   
 
+    <li><a href="/tutorials/fundamentals/map-foreach">How to Use forEach() to Iterate Through a JavaScript Map</a></li>
+  
+
     <li><a href="/tutorials/fundamentals/enumerable">JavaScript Enumerability</a></li>
   
 
@@ -170,10 +168,7 @@ arr.indexOf(<span class="hljs-built_in">Number</span>.NaN); <span class="hljs-co
     <li><a href="/tutorials/fundamentals/typeof-null">How to Determine if a Value is null</a></li>
   
 
-    <li><a href="/tutorials/fundamentals/typeof-object">How to Determine if a Value is an Object</a></li>
-  
-
-    <li><a href="/tutorials/fundamentals/typeof-array">How to Determine if a Variable is an Array</a></li>
+    <li><a href="/tutorials/fundamentals/typeof-object">Using JavaScript's typeof Operator with Objects</a></li>
   
     </ul>
   
