@@ -65,3 +65,5 @@ scratch
 
 config/local.js
 config/production.js
+
+tutorials/graphql/*.html
