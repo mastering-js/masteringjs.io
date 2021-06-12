@@ -66,4 +66,7 @@ scratch
 config/local.js
 config/production.js
 
-tutorials/graphql/*.html
+*.html
+tutorials/**/*.html
+feed.xml
+jobs/*.html
