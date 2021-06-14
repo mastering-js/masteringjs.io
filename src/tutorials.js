@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Vue with Axios to Make a PUT Request',
+    raw: './tutorials/vue/axios-put.md',
+    url: '/tutorials/vue/axios-put',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-06-14')
+  },
+  {
     title: 'How to Concatenate Strings in an Array using JavaScript',
     raw: './tutorials/fundamentals/concat-string-array.md',
     url: '/tutorials/fundamentals/concat-string-array',
