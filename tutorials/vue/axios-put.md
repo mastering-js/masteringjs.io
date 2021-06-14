@@ -1,5 +1,4 @@
-With a few lines of code, you can easily make an
-[`axios.put()`](/tutorials/axios/put) request with Vue:
+With a few lines of code, you can easily make an [`axios.put()`](/tutorials/axios/put) request with Vue:
 
 ```html
 <div id = "content"></div>
@@ -24,6 +23,8 @@ With a few lines of code, you can easily make an
   app.$mount("#content");
 </script>
 ```
+
+You should use `axios.put()` calls in either the methods property or the [mounted hook](/tutorials/vue/mounted).
 
 <div id = "content"></div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
