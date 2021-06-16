@@ -7,7 +7,7 @@ module.exports = Object.freeze([
     title: 'How to Use forEach in an Async/Await Function',
     raw: './tutorials/fundamentals/async-foreach.md',
     url: '/tutorials/fundamentals/async-foreach',
-    description: 'Placeholder Description',
+    description: 'You should not use async functions with `forEach()` in JavaScript. Here\'s why, and what you should use instead.',
     tags: ['fundamentals'],
     date: moment('2021-06-14')
   },

@@ -1,38 +1,34 @@
-You should **not** make the callback function parameter in `forEach()`
-an async function as it is impossible to handle errors. Another reason is
-that `forEach()` executes async callbacks in parallel, rather than in series.
-[Here's More Info Why.](https://thecodebarbarian.com/basic-functional-programming-with-async-await.html)
-If you wish to still pursue that path, here is a better alternative:
+You should **not** make the callback function parameter in `forEach()` an async function because there's no way to handle errors.
 
 ```javascript
-async function parallel() {
-    arr = [0,1,2,3,4,5];
-    await Promise.all(arr.map(async (item) => {
-        item; // 0,1,2,3,4,5
-    }));
-}
-
-parallel();
+// Unhandled promise rejection!
+[1, 2, 3].forEach(async() => {
+  await new Promise(resolve => setTimeout(resolve, 10));
+  throw new Error('Oops!');
+});
 ```
 
+Instead of using `arr.forEach(myAsyncFunction)`, you should use `Promise.all(arr.map(myAsyncFunction))`, which lets you catch errors.
+
 ```javascript
-async function series(arr) {
-    for(const item in arr) {
-        await item(); // 'a', 'b', 'c'
-    }
-}
+Promise.
+  all([1, 2, 3].map(async() => {
+    await new Promise(resolve => setTimeout(resolve, 10));
+    throw new Error('Oops!');
+  })).
+  catch(err => {
+    err.message; // Oops!
+  });
+```
 
-const a = async () => {
-    return 'a'
-}
+## Parallel vs Series
 
-const b = async () => {
-    return 'b'
-}
+Using `Promise.all(arr.map(myAsyncFunction))` executes `myAsyncFunction` on all elements of `arr` in _parallel_ rather than in _series_.
+To execute `myAsyncFunction` on all elements of `arr` in series, you should use a `for/of` loop.
+[We recommend using `for/of` rather than `forEach()` for iterating over arrays in general](/tutorials/fundamentals/array-iterate).
 
-const c = async () => {
-    return 'c'
+```javascript
+for (const el of arr) {
+  await myAsyncFunction(el);
 }
-arr = [a,b,c];
-series(arr);
 ```
