@@ -9,14 +9,14 @@ With a few lines of code, you can easily make an [`axios.put()`](/tutorials/axio
     data: () => ({result: null}),
     template: `
     <div>
-    <button @click="makeRequest">Make Request</button>
-    <div>Result is: {{result}}</div>
+      <button @click="makeRequest">Make Request</button>
+      <div>Result is: {{result}}</div>
     </div>
     `,
     methods: {
-      makeRequest() {
-        axios.put('https://httpbin.org/put', {hello:'world'}).
-          then((res) => { this.result = res.status; });
+      async makeRequest() {
+        const res = await axios.put('https://httpbin.org/put', {hello:'world'});
+        this.result = res.status;
       }
     }
   });
@@ -24,7 +24,7 @@ With a few lines of code, you can easily make an [`axios.put()`](/tutorials/axio
 </script>
 ```
 
-You should use `axios.put()` calls in either the methods property or the [mounted hook](/tutorials/vue/mounted).
+You should use `axios.put()` calls in Vue methods, or in a [watcher](/tutorials/vue/watch). Do **not** [make HTTP requests in computed properties](/tutorials/vue/watch-vs-computed)!
 
 <div id = "content"></div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
@@ -39,9 +39,9 @@ You should use `axios.put()` calls in either the methods property or the [mounte
     </div>
     `,
     methods: {
-      makeRequest() {
-        axios.put('https://httpbin.org/put', {hello:'world'}).
-          then((res) => { this.result = res.status; });
+      async makeRequest() {
+        const res = await axios.put('https://httpbin.org/put', {hello:'world'});
+        this.result = res.status;
       }
     }
   });
