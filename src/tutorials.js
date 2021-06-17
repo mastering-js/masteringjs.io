@@ -2,7 +2,9 @@
 
 const moment = require('moment');
 
-module.exports = Object.freeze([
+const axiosPath = require('./axiosPath');
+
+const tutorials = [
   {
     title: 'How to Use Vue with Axios to Make a PUT Request',
     raw: './tutorials/vue/axios-put.md',
@@ -2535,4 +2537,18 @@ module.exports = Object.freeze([
     tags: ['axios'],
     date: moment('2019-04-27')
   }
-]);
+].map(tutorial => {
+  const index = axiosPath.findIndex(_tutorial => _tutorial.url === tutorial.url);
+  if (index !== -1) {
+    if (index + 1 < axiosPath.length) {
+      tutorial.next = axiosPath[index + 1];
+    }
+    if (index - 1 >= 0) {
+      tutorial.prev = axiosPath[index - 1];
+    }
+  }
+
+  return tutorial;
+});
+
+module.exports = tutorials;
