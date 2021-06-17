@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'Add an Element to an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-to-array.md',
+    url: '/tutorials/fundamentals/add-to-array',
+    description: 'Here\'s how you can add an element to the beginning, middle, and end of an array, as well as how you can check for duplicates.',
+    tags: ['fundamentals'],
+    date: moment('2021-06-18')
+  },
+  {
     title: 'How to Use Vue with Axios to Make a PUT Request',
     raw: './tutorials/vue/axios-put.md',
     url: '/tutorials/vue/axios-put',
