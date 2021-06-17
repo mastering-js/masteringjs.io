@@ -4,6 +4,14 @@ const moment = require('moment');
 
 module.exports = Object.freeze([
   {
+    title: 'How to Use Vue with Axios to Make a PUT Request',
+    raw: './tutorials/vue/axios-put.md',
+    url: '/tutorials/vue/axios-put',
+    description: 'Here\'s how you can make an HTTP PUT request from Vue using Axios.',
+    tags: ['vue'],
+    date: moment('2021-06-17')
+  },
+  {
     title: 'How to Use forEach in an Async/Await Function',
     raw: './tutorials/fundamentals/async-foreach.md',
     url: '/tutorials/fundamentals/async-foreach',
