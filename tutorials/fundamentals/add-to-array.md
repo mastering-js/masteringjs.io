@@ -45,7 +45,12 @@ arr[4] = 'e';
 
 arr.length; // 5
 arr; // [ 'a', 'b', 'c', <1 empty item>, 'e' ]
+
+arr[3]; // undefined
 ```
+
+In the above example, `arr[3]` is a hole in the array.
+That means `arr[3] === undefined`, so be careful if you're setting out of bounds array indexes.
 
 Avoiding Duplicates
 -------------------
