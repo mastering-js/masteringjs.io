@@ -68,6 +68,9 @@ async function run() {
     if (tutorial.tags[0] === 'vue') {
       tutorial.cta = 'vueschool';
     }
+    if (tutorial.tags[0] === 'axios') {
+      tutorial.sidebar = require('./components/axiosSidebar')(tutorial);
+    }
     tutorial.content =
       marked(transform(fs.readFileSync(tutorial.raw, 'utf8'), tests));
     let ad = null;
