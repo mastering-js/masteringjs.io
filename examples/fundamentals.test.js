@@ -4251,6 +4251,18 @@ describe('Fundamentals', function() {
       assert.deepEqual(arr, ['a', 'b', 'c', 'd', 'e']);
       // acquit:ignore:end
     });
+
+    it('direct set', function() {
+      let arr = ['a', 'b'];
+
+      arr[2] = 'c';
+      
+      arr.length; // 3
+      arr; // ['a', 'b', 'c']
+      // acquit:ignore:start
+      assert.deepEqual(arr, ['a', 'b', 'c']);
+      // acquit:ignore:end
+    });
   });
 
   describe('NaN', function() {
