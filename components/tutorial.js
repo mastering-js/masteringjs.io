@@ -23,7 +23,7 @@ module.exports = ({ tutorials, tutorial }) => `
 	</script>
   ${tutorial.content}
   ${cta(tutorial)}
-  <hr>
+  <hr class="tutorial-separator">
   <div id="jobs">
     <div id="jobs-container">
 
@@ -38,9 +38,20 @@ module.exports = ({ tutorials, tutorial }) => `
   </div>
   <script src="../../src/client/listjobs.js"></script>
   ${more(tutorials, tutorial)}
+  ${tutorial.sidebar || ''}
 `;
 
 function more(tutorials, tutorial) {
+  if (tutorial.next || tutorial.prev) {
+    return `
+    <div class="tutorial-nav-buttons">
+      ${prevButton(tutorial.prev)}
+      ${nextButton(tutorial.next)}
+      <div style="clear:both"></div>
+    </div>
+    `;
+  }
+
   const otherTutorials = tutorials.
     filter(t => t.tags.includes(tutorial.tags[0]) && t !== tutorial);
   if (otherTutorials.length === 0) {
@@ -51,6 +62,30 @@ function more(tutorials, tutorial) {
     <ul>
     ${otherTutorials.slice(0, 7).map(_tutorial).join('\n')}
     </ul>
+  `;
+}
+
+function prevButton(prev) {
+  if (prev == null) {
+    return '';
+  }
+
+  return `
+  <div class="left">
+    <div class="button"><a href="${prev.url}">&lsaquo; ${prev.title}</a></div>
+  </div>
+  `;
+}
+
+function nextButton(next) {
+  if (next == null) {
+    return '';
+  }
+
+  return `
+  <div class="right">
+    <div class="button"><a href="${next.url}">${next.title} &rsaquo;</a></div>
+  </div>
   `;
 }
 
