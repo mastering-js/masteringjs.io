@@ -26,7 +26,7 @@ The output HTML looks like this:
 ```
 <div data-server-rendered="true" class="brand">
   <div class="logo">
-    <img src="http://masteringjs.io/assets/logo.png">
+    <img src="https://masteringjs.io/assets/logo.png">
   </div>
   <div class="name">
     <a href="/">
@@ -38,7 +38,7 @@ The output HTML looks like this:
 
 Here's the rendered HTML:
 
-<div data-server-rendered="true" class="branding"><div class="logo"><img src="http://masteringjs.io/assets/logo.png"></div> <div class="name"><a href="/">
+<div data-server-rendered="true" class="branding"><div class="logo"><img src="https://masteringjs.io/assets/logo.png"></div> <div class="name"><a href="/">
               Mastering JS
 </a></div></div>
 <div style="clear: both"></div>
