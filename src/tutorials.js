@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Deep Copy an Array in JavaScript',
+    raw: './tutorials/fundamentals/deep-copy.md',
+    url: '/tutorials/fundamentals/deep-copy',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-06-21')
+  },
+  {
     title: 'Add an Element to an Array in JavaScript',
     raw: './tutorials/fundamentals/add-to-array.md',
     url: '/tutorials/fundamentals/add-to-array',
