@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Trim Leading Zeros from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim0.md',
+    url: '/tutorials/fundamentals/trim0',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-06-21')
+  },
+  {
     title: 'Add an Element to an Array in JavaScript',
     raw: './tutorials/fundamentals/add-to-array.md',
     url: '/tutorials/fundamentals/add-to-array',
