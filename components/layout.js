@@ -25,7 +25,6 @@ module.exports = params => `
 
     <link rel="stylesheet" href="/assets/style.css" />
     <link rel="stylesheet" href="/assets/github.css" />
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="allwrapper">

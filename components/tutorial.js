@@ -14,13 +14,6 @@ module.exports = ({ tutorials, tutorial }) => `
     ${tutorial.date ? tutorial.date.format('ll') : ''}
   </div>
   <div id="default_masteringjsio"></div>
-  <script>
-	(function(){
-	  if(typeof _bsa !== 'undefined' && _bsa) {
-	    _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
-	  }
-	})();
-	</script>
   ${tutorial.content}
   ${cta(tutorial)}
   <hr class="tutorial-separator">
@@ -37,6 +30,14 @@ module.exports = ({ tutorials, tutorial }) => `
     </div>
   </div>
   <script src="../../src/client/listjobs.js"></script>
+  <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('default', 'CE7I62QE', 'placement:masteringjsio', { target: "#default_masteringjsio", align: "horizontal" });
+    }
+  })();
+	</script>
   ${more(tutorials, tutorial)}
   ${tutorial.sidebar || ''}
 `;
