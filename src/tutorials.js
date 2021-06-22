@@ -8,10 +8,10 @@ const tutorials = [
   {
     title: 'How to Trim Leading Zeros from a String in JavaScript',
     raw: './tutorials/fundamentals/trim0.md',
-    url: '/tutorials/fundamentals/trim0',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/trim-leading-zeros',
+    description: 'Here\'s how you can remove leading zeros from a string in JavaScript',
     tags: ['fundamentals'],
-    date: moment('2021-06-21')
+    date: moment('2021-06-22')
   },
   {
     title: 'Add an Element to an Array in JavaScript',
