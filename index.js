@@ -218,6 +218,10 @@ async function run() {
     }
   ].map(p => ({ ...defaultSalesPageProps, ...p })));
 
+  try {
+    fs.mkdirSync('./jobs');
+  } catch (err) {}
+
   pages.push({
     path: './request-invite.html',
     template: layout,

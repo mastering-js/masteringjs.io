@@ -7,11 +7,19 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'How to Deep Copy an Array in JavaScript',
-    raw: './tutorials/fundamentals/deep-copy.md',
-    url: '/tutorials/fundamentals/deep-copy',
-    description: 'Placeholder Description',
+    raw: './tutorials/fundamentals/deep-copy-array.md',
+    url: '/tutorials/fundamentals/deep-copy-array',
+    description: 'Deep copying an array in JavaScript is tricky. Here\'s what you need to know.',
     tags: ['fundamentals'],
-    date: moment('2021-06-21')
+    date: moment('2021-06-23')
+  },
+  {
+    title: 'How to Trim Leading Zeros from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim0.md',
+    url: '/tutorials/fundamentals/trim-leading-zeros',
+    description: 'Here\'s how you can remove leading zeros from a string in JavaScript',
+    tags: ['fundamentals'],
+    date: moment('2021-06-22')
   },
   {
     title: 'Add an Element to an Array in JavaScript',
