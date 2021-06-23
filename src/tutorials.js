@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Deep Copy an Array in JavaScript',
+    raw: './tutorials/fundamentals/deep-copy-array.md',
+    url: '/tutorials/fundamentals/deep-copy-array',
+    description: 'Deep copying an array in JavaScript is tricky. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-06-23')
+  },
+  {
     title: 'How to Trim Leading Zeros from a String in JavaScript',
     raw: './tutorials/fundamentals/trim0.md',
     url: '/tutorials/fundamentals/trim-leading-zeros',
