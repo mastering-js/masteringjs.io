@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Install Node.js on Ubuntu',
+    raw: './tutorials/node/install-on-ubuntu.md',
+    url: '/tutorials/node/install-on-ubuntu',
+    description: 'Installing Node.js on Ubuntu with apt-get can be tricky if you want to install a specific version. Here\'s a better way.',
+    tags: ['node'],
+    date: moment('2021-06-24')
+  },
+  {
     title: 'How to Deep Copy an Array in JavaScript',
     raw: './tutorials/fundamentals/deep-copy-array.md',
     url: '/tutorials/fundamentals/deep-copy-array',
