@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Concatenate a Number to a String in JavaScript',
+    raw: './tutorials/fundamentals/concat-num-to-string.md',
+    url: '/tutorials/fundamentals/concat-num-to-string',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-06-28')
+  },
+  {
     title: 'How to Install Node.js on Ubuntu',
     raw: './tutorials/node/install-on-ubuntu.md',
     url: '/tutorials/node/install-on-ubuntu',
