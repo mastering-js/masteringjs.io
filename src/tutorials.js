@@ -9,9 +9,9 @@ const tutorials = [
     title: 'How to Left Trim a String in JavaScript',
     raw: './tutorials/fundamentals/left-trim.md',
     url: '/tutorials/fundamentals/left-trim',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use `trimStart()` to remove leading whitespace from a JavaScript string, or `replace()` to remove any other leading characters.',
     tags: ['fundamentals'],
-    date: moment('2021-06-28')
+    date: moment('2021-06-29')
   },
   {
     title: 'How to Install Node.js on Ubuntu',
