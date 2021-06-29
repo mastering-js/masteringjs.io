@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Left Trim a String in JavaScript',
+    raw: './tutorials/fundamentals/left-trim.md',
+    url: '/tutorials/fundamentals/left-trim',
+    description: 'Here\'s how you can use `trimStart()` to remove leading whitespace from a JavaScript string, or `replace()` to remove any other leading characters.',
+    tags: ['fundamentals'],
+    date: moment('2021-06-29')
+  },
+  {
     title: 'How to Install Node.js on Ubuntu',
     raw: './tutorials/node/install-on-ubuntu.md',
     url: '/tutorials/node/install-on-ubuntu',
