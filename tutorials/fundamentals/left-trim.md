@@ -1,5 +1,5 @@
 If you want to remove leading whitespace from a JavaScript string, the [`trimStart()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart) is what you're looking for.
-Equivalently, you can call `trimLeft()`, which is an alias for `trimStart();
+Equivalently, you can call `trimLeft()`, which is an alias for `trimStart()`
 
 ```javascript
 let example = '        Hello World';
