@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Concatenate a Number to a String in JavaScript',
+    raw: './tutorials/fundamentals/concat-num-to-string.md',
+    url: '/tutorials/fundamentals/concat-num-to-string',
+    description: 'Here\'s how you can concatenate a number to a string in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-07-01')
+  },
+  {
     title: 'How to Left Trim a String in JavaScript',
     raw: './tutorials/fundamentals/left-trim.md',
     url: '/tutorials/fundamentals/left-trim',
