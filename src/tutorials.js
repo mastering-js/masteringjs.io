@@ -6,12 +6,12 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Send a DELETE Request with Axios',
-    raw: './tutorials/axios/delete-request.md',
-    url: '/tutorials/axios/delete-request',
-    description: 'Placeholder Description',
+    title: 'HTTP DELETE Requests with Body in Axios',
+    raw: './tutorials/axios/delete-with-body.md',
+    url: '/tutorials/axios/delete-with-body',
+    description: 'Here\'s how you can send an HTTP DELETE request with a request body in Axios.',
     tags: ['axios'],
-    date: moment('2021-07-06')
+    date: moment('2021-07-07')
   },
   {
     title: 'How to Concatenate a Number to a String in JavaScript',
