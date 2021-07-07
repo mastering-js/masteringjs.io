@@ -3,12 +3,21 @@ of the `+` operator, and the `new RegExp()` class:
 
 ```javascript
 let reg = /mastering/g;
-let exp = /js/y;
-let flags = reg.flags+exp.flags;
+let exp = /js/i;
+let pattern = concatRegexp(reg, exp);
+let string = 'masteringjs';
+string.search(pattern); // returns 0
+
+function concatRegexp(reg, exp) {
+
+let flags = reg.flags + exp.flags;
 flags = Array.from(new Set(flags.split(''))).toString();
-let regexp = new RegExp(reg.source + exp.source, flags);
+return new RegExp(reg.source + exp.source, flags);
+
+}
+
 ```
 
-The reason why you should be removing duplicates from the flags is that
-when you put in a flag that is already present, the computer does not recognize it
-as a flag and therfore will throw an error.
+You are responsible for removing duplicate flags.
+If you pass a duplicate flag to `new RegExp()`, JavaScript will throw
+a `SyntaxError: Invalid flags`.
