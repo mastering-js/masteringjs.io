@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Concatenate a Regular Expression',
+    raw: './tutorials/fundamentals/concat-regexp.md',
+    url: '/tutorials/fundamentals/concat-regexp',
+    description: 'Here\'s how you can concatenate two regular expressions in JavaScript',
+    tags: ['fundamentals'],
+    date: moment('2021-07-08')
+  },
+  {
     title: 'HTTP DELETE Requests with Body in Axios',
     raw: './tutorials/axios/delete-with-body.md',
     url: '/tutorials/axios/delete-with-body',
