@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use forEach() with Key Value Pairs',
+    raw: './tutorials/fundamentals/foreach-keyvalue.md',
+    url: '/tutorials/fundamentals/foreach-keyvalue',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-07-12')
+  },
+  {
     title: 'How to Concatenate a Regular Expression',
     raw: './tutorials/fundamentals/concat-regexp.md',
     url: '/tutorials/fundamentals/concat-regexp',
