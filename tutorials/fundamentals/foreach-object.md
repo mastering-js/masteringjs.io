@@ -1,4 +1,4 @@
-[JavaScript's `Array#forEach()` function](https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript) lets you iterate over
+[JavaScript's `Array#forEach()` function](/tutorials/fundamentals/foreach) lets you iterate over
 an [array](http://thecodebarbarian.com/the-80-20-guide-to-javascript-arrays.html),
 but not over an object. But you can [iterate over a JavaScript object](/tutorials/fundamentals/iterate-object) using `forEach()` if you transform the object into an array first, using [`Object.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys), [`Object.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values), or [`Object.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries).
 
