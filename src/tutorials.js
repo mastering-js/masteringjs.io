@@ -8,10 +8,10 @@ const tutorials = [
   {
     title: 'How to Use forEach() with Key Value Pairs',
     raw: './tutorials/fundamentals/foreach-keyvalue.md',
-    url: '/tutorials/fundamentals/foreach-keyvalue',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/foreach-key-value',
+    description: 'Here\'s how you can iterate through an array or object using `forEach()` and get both the key and the value.',
     tags: ['fundamentals'],
-    date: moment('2021-07-12')
+    date: moment('2021-07-14')
   },
   {
     title: 'How to Concatenate a Regular Expression',
