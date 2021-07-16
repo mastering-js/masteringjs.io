@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Return a Value From a forEach Loop',
+    raw: './tutorials/fundamentals/return-forEach.md',
+    url: '/tutorials/fundamentals/foreach-return',
+    description: 'The `return` keyword behaves differently with `forEach()` than with conventional loops. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-07-16')
+  },
+  {
     title: 'How to Use forEach() with Key Value Pairs',
     raw: './tutorials/fundamentals/foreach-keyvalue.md',
     url: '/tutorials/fundamentals/foreach-key-value',
