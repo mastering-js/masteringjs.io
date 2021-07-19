@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Vue Router\'s Push Function',
+    raw: './tutorials/vue/router-push.md',
+    url: '/tutorials/vue/router-push',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-07-19')
+  },
+  {
     title: 'How to Return a Value From a forEach Loop',
     raw: './tutorials/fundamentals/return-forEach.md',
     url: '/tutorials/fundamentals/foreach-return',
