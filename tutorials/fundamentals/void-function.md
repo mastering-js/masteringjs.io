@@ -19,13 +19,13 @@ test(); // throws a reference error
 // without void
 
 function run() {
-    console.log('Hello there');
+  console.log('Hello there');
 };
 
 run(); // Hello there
 
 (function () {
-    console.log('Ah, General Kenobi');
+  console.log('Ah, General Kenobi');
 })(); // Ah, General Kenobi
 ```
 
@@ -34,7 +34,7 @@ have the `href` return nothing and prevent an unwanted page refresh:
 
 ```html
 <a href="javascript:void(0)">
-    Nothing Special Link
+  Nothing Special Link
 </a>
 ```
 
