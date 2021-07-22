@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The void "Function" in JavaScript',
+    raw: './tutorials/fundamentals/void-function.md',
+    url: '/tutorials/fundamentals/void-function',
+    description: 'void is an operator, not a function. But you can still use void with function-like syntax. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2021-07-22')
+  },
+  {
     title: 'How to Return a Value From a forEach Loop',
     raw: './tutorials/fundamentals/return-forEach.md',
     url: '/tutorials/fundamentals/foreach-return',
