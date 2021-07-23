@@ -1,5 +1,6 @@
 With [Vue Router](https://router.vuejs.org/installation.html), you can use its
 `router.push()` function to programmatically navigate between routes on your site.
+You can either call `push()` with a string path, or with an object containing either the `path` or `name` of the route. 
 
 ```javascript
 const router = new VueRouter({
@@ -24,6 +25,7 @@ const app = new Vue({
   router,
   methods: {
     changeRoute(route) {
+      // `route` is either a string or object
       router.push(route);
     }
   },
@@ -41,8 +43,6 @@ const app = new Vue({
   `
 }).$mount('#example');
 ```
-
-You can also pass a location descriptor object like `{path: 'home'}` into the `router.push()` function to achieve the same result.
 
 ## Passing Parameters
 
@@ -70,5 +70,5 @@ it as a prop by adding a `props:true` object in the route.
 ```
 
 
-[Live Demonstration](/tutorials/vue/router/example2.html)
+Here's a [live demo](/tutorials/vue/router/example2.html).
 

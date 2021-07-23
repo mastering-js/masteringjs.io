@@ -9,9 +9,17 @@ const tutorials = [
     title: 'How to Use Vue Router\'s Push Function',
     raw: './tutorials/vue/router-push.md',
     url: '/tutorials/vue/router-push',
-    description: 'Placeholder Description',
+    description: 'The `push()` function is how you do programmatic navigation with vue-router. Here\'s what you need to know.',
     tags: ['vue'],
-    date: moment('2021-07-19')
+    date: moment('2021-07-23')
+  },
+  {
+    title: 'The void "Function" in JavaScript',
+    raw: './tutorials/fundamentals/void-function.md',
+    url: '/tutorials/fundamentals/void-function',
+    description: 'void is an operator, not a function. But you can still use void with function-like syntax. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2021-07-22')
   },
   {
     title: 'How to Return a Value From a forEach Loop',
