@@ -166,11 +166,17 @@ const app = new Vue({
           </div>
           <div class="job-details-panel">
             <div class="job-details-panel-header">Customize</div>
-            <div style = "display:flex">
-            <input type="checkbox" v-model="sticky" style="margin:0; padding:0; flex: .1;"/>
-            <label>
-             Sticky your post for 30 days? <br />Email masteringjs after 30 days to extend. ($30)
-            </label>
+            <div>
+              <input type="checkbox" checked="true" disabled="true" />
+              <label class="checkbox-label">
+                Post your job for 30 days ($60)
+              </label>
+            </div>
+            <div>
+              <input type="checkbox" v-model="sticky" />
+              <label class="checkbox-label">
+                Sticky your post so it stays on top for 30 days ($30)
+              </label>
             </div>
             <small><small>Being the first post increases your chances of finding a candidate</small></small>
           </div>
