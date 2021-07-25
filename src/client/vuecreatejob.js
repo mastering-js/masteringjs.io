@@ -1,4 +1,6 @@
-const server = "https://masteringjs-job-board.azurewebsites.net";
+var server = window.location.hostname === 'localhost' ?
+  'http://localhost:7071' :
+  'https://masteringjs-job-board.azurewebsites.net';
 const payment = server + "/api/stripeCheckout";
 
 const stripeKey = window.location.hostname === 'localhost' ? "pk_test_51IoDkvEIfgvH77vtSY6fn5Qy0dUyZFAsbYszCTWgSpvtCCWunY3pQYF7FRpLRoTKJjQbc6KMGrk7UpVhBhkoRS3r001Mjrp8HW" : "pk_live_51IoDkvEIfgvH77vtfJZwToZlC20FilHNRViMce42TBCeFsptEIkUcjz09MMPbfn4pU9St2nM8P9aYlL4l7q8SLbf00ivnWmIpw";
@@ -22,6 +24,7 @@ const app = new Vue({
     displayImage: false,
     loading: false,
     price: 60,
+    promoCode: null
   }),
   updated() {
     console.log(new Date(), "State Change:", this.$data);
@@ -46,6 +49,10 @@ const app = new Vue({
     window.$clearState = () => {
       window.localStorage.setItem("__state", "");
     };
+
+    window.__vue = this;
+
+    this.promoCode = new URLSearchParams(window.location.search).get('promoCode');
   },
   methods: {
     postJob() {
@@ -66,6 +73,7 @@ const app = new Vue({
           feedback: this.feedback,
           invoiceAddress: this.invoiceAddress,
           invoiceNotes: this.invoiceNotes,
+          promoCode: this.promoCode
         })
         .then((response) => {
           this.loading = false;
@@ -120,6 +128,12 @@ const app = new Vue({
       }
       return "Software Engineer 3.14";
     },
+    expiresAfter() {
+      if (this.promoCode === 'plus30') {
+        return '<strike>30</strike> <span style="color:#13dfc5">60</span>';
+      }
+      return '30';
+    }
   },
   watch: {
     sticky: function () {
@@ -169,7 +183,7 @@ const app = new Vue({
             <div>
               <input type="checkbox" checked="true" disabled="true" />
               <label class="checkbox-label">
-                Post your job for 30 days ($60)
+                Post your job for <span v-html="expiresAfter"></span> days ($60)
               </label>
             </div>
             <div>
