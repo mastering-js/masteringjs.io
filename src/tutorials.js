@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Create a Custom Scroll Event in Vue',
+    raw: './tutorials/vue/scroll.md',
+    url: '/tutorials/vue/scroll',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-07-26')
+  },
+  {
     title: 'How to Use Vue Router\'s Push Function',
     raw: './tutorials/vue/router-push.md',
     url: '/tutorials/vue/router-push',
