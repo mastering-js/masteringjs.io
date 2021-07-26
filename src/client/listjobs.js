@@ -1,5 +1,7 @@
 
-var server = "https://masteringjs-job-board.azurewebsites.net";
+var server = window.location.hostname === 'localhost' ?
+  'http://localhost:7071' :
+  'https://masteringjs-job-board.azurewebsites.net';
 
 function getJobs() {
   fetch(server + '/api/listjobs').
