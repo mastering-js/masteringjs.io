@@ -6,9 +6,8 @@ use a directive locally, components accept a `directives` option.
   <h1>Scroll and Watch</h1>
   <div
     v-scroll="handleScroll"
-    style="transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); opacity: 0;"
   >
-    <p>Surprise!</p>
+    <p>The value of the Y axis: {{ value }}!</p>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
@@ -26,19 +25,13 @@ Vue.directive('scroll', {
 // main app
 new Vue({
   el: '#app',
+  data: {
+    value: 0
+  },
   methods: {
     handleScroll: function (evt, el) {
-      if (window.scrollY > 50) {
-        el.setAttribute(
-          'style',
-          'opacity: 1; transform: translate3d(0, -10px, 0)'
-        )
-      }
-      return window.scrollY > 100
+      this.value = window.scrollY
     }
-  },
-  mounted: function() {
-      window.scrollTo(0,0)
   }
 })
 </script>
@@ -48,9 +41,8 @@ new Vue({
   <h1>Scroll and Watch</h1>
   <div
     v-scroll="handleScroll"
-    style="transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); opacity: 0;"
   >
-    <p>Surprise!</p>
+    <p>The value of the Y axis: {{ value }}!</p>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
@@ -64,20 +56,18 @@ Vue.directive('scroll', {
     }
     window.addEventListener('scroll', f)
   }
-});
+})
+// main app
 new Vue({
   el: '#app',
+  data: {
+    value: 0
+  },
   methods: {
     handleScroll: function (evt, el) {
-      if (window.scrollY > 50) {
-        el.setAttribute(
-          'style',
-          'opacity: 1; transform: translate3d(0, -10px, 0)'
-        )
-      }
-      return window.scrollY > 100
+      this.value = window.scrollY
     }
   }
-});
+})
 </script>
 ```
