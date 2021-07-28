@@ -9,9 +9,9 @@ const tutorials = [
     title: 'How to Send Headers With an Axios POST Request',
     raw: './tutorials/axios/post-headers.md',
     url: '/tutorials/axios/post-headers',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can set headers on an HTTP POST request with Axios.',
     tags: ['axios'],
-    date: moment('2021-07-26')
+    date: moment('2021-07-28')
   },
   {
     title: 'How to Use Vue Router\'s Push Function',
