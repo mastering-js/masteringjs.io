@@ -1,4 +1,6 @@
-const server = "https://masteringjs-job-board.azurewebsites.net";
+var server = window.location.hostname === 'localhost' ?
+  'http://localhost:7071' :
+  'https://masteringjs-job-board.azurewebsites.net';
 const payment = server + "/api/stripeCheckout";
 
 const stripeKey = window.location.hostname === 'localhost' ? "pk_test_51IoDkvEIfgvH77vtSY6fn5Qy0dUyZFAsbYszCTWgSpvtCCWunY3pQYF7FRpLRoTKJjQbc6KMGrk7UpVhBhkoRS3r001Mjrp8HW" : "pk_live_51IoDkvEIfgvH77vtfJZwToZlC20FilHNRViMce42TBCeFsptEIkUcjz09MMPbfn4pU9St2nM8P9aYlL4l7q8SLbf00ivnWmIpw";
@@ -22,6 +24,7 @@ const app = new Vue({
     displayImage: false,
     loading: false,
     price: 60,
+    promoCode: null
   }),
   updated() {
     console.log(new Date(), "State Change:", this.$data);
@@ -46,6 +49,10 @@ const app = new Vue({
     window.$clearState = () => {
       window.localStorage.setItem("__state", "");
     };
+
+    window.__vue = this;
+
+    this.promoCode = new URLSearchParams(window.location.search).get('promoCode');
   },
   methods: {
     postJob() {
@@ -66,6 +73,7 @@ const app = new Vue({
           feedback: this.feedback,
           invoiceAddress: this.invoiceAddress,
           invoiceNotes: this.invoiceNotes,
+          promoCode: this.promoCode
         })
         .then((response) => {
           this.loading = false;
@@ -120,6 +128,12 @@ const app = new Vue({
       }
       return "Software Engineer 3.14";
     },
+    expiresAfter() {
+      if (this.promoCode === 'plus30') {
+        return '<strike>30</strike> <span style="color:#13dfc5">60</span>';
+      }
+      return '30';
+    }
   },
   watch: {
     sticky: function () {
@@ -166,11 +180,17 @@ const app = new Vue({
           </div>
           <div class="job-details-panel">
             <div class="job-details-panel-header">Customize</div>
-            <div style = "display:flex">
-            <input type="checkbox" v-model="sticky" style="margin:0; padding:0; flex: .1;"/>
-            <label>
-             Sticky your post for 30 days? <br />Email masteringjs after 30 days to extend. ($30)
-            </label>
+            <div>
+              <input type="checkbox" checked="true" disabled="true" />
+              <label class="checkbox-label">
+                Post your job for <span v-html="expiresAfter"></span> days ($60)
+              </label>
+            </div>
+            <div>
+              <input type="checkbox" v-model="sticky" />
+              <label class="checkbox-label">
+                Sticky your post so it stays on top for 30 days ($30)
+              </label>
             </div>
             <small><small>Being the first post increases your chances of finding a candidate</small></small>
           </div>

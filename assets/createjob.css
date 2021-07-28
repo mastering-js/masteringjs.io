@@ -42,13 +42,17 @@ body {
   width: 100%;
 }
 
-.create-job input {
+.create-job input[type="text"] {
   padding: 7px;
   background-color: #fbfbfb;
   border-radius: 6px;
   margin-top: 7px;
   margin-bottom: 7px;
   width: calc(100% - 28px);
+}
+
+.create-job .checkbox-label {
+  margin-left: 0.25em;
 }
 
 .create-job textarea {
