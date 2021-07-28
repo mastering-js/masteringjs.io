@@ -1,14 +1,22 @@
-JavaScript's `forEach()` loop is incapable of returning a value after its execution
-because using a `return statement` would stop loop from fully executing.
-Therefore to return a value you have two options:
+You can't make [JavaScript's `forEach()` function](/tutorials/fundamentals/foreach) return a custom value.
+Using `return` in a `forEach()` is equivalent to a [`continue`](/tutorials/fundamentals/foreach-continue) in a conventional loop.
+
+```javascript
+// Prints "2, 4"
+[1, 2, 3, 4, 5].forEach(v => {
+  if (v % 2 !== 0) {
+    return;
+  }
+  console.log(v);
+});
+```
 
 ## Variable
 
-You can declare a variable before the execution of the `forEach()` loop and set the value
-inside of the loop;
+You can declare a variable before calling `forEach()` and set the value inside the loop;
 
 ```javascript
-let array = [1,2,3,4,5]
+let array = [1, 2, 3, 4, 5];
 let max = 0;
 array.forEach((element) => {
   if (element > max) {
@@ -16,18 +24,20 @@ array.forEach((element) => {
   }
 });
 max; // 5
-
 ```
 
-## Reduce()
+## Using `reduce()`
 
-Using JavaScript's `reduce()` function, you can modify the contents of the entire array to culmunate into a single value:
+[JavaScript's `reduce()` function](https://thecodebarbarian.com/javascript-reduce-in-5-examples.html) iterates over the array like `forEach()`, but `reduce()` returns the last value your callback returns.
 
 ```javascript
-let array = [1,2,3,4,5];
-// 6 + 1 + 2 + 3 + 4 + 5
-let single = array.reduce((accumulator, currentValue) => {
-  return accumulator + currentValue;
-}, 6);
-single; // 21
+let array = [1, 2, 3, 4, 5];
+let initialMax = 0;
+const max = array.reduce((element, max) => {
+  if (element > max) {
+    return element;
+  }
+  return max;
+}, initialMax);
+max; // 5
 ```
