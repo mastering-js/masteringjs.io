@@ -1,6 +1,10 @@
 To create a custom scroll event in Vue, you must create a Custom Directive.
 Directives must be registered before the Vue instance. If you wish to only
 use a directive locally, components accept a `directives` option.
+The interesting thing about the `addEventListener` and `removeEventListener`
+is that they both must use the same function. Also, they must have two arguments,
+so you can write a function that never executes and use that for the second argument
+as shown below:
 
 <div id="app">
   <h1>Scroll and Watch</h1>
