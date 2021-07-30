@@ -9,7 +9,7 @@ const tutorials = [
     title: 'How to Create a Custom Scroll Event in Vue',
     raw: './tutorials/vue/scroll.md',
     url: '/tutorials/vue/scroll',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can write a custom scroll directive in Vue.',
     tags: ['vue'],
     date: moment('2021-07-30')
   },
