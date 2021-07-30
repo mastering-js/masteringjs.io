@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Create a Custom Scroll Event in Vue',
+    raw: './tutorials/vue/scroll.md',
+    url: '/tutorials/vue/scroll',
+    description: 'Here\'s how you can write a custom scroll directive in Vue.',
+    tags: ['vue'],
+    date: moment('2021-07-30')
+  },
+  {
     title: 'How to Send Headers With an Axios POST Request',
     raw: './tutorials/axios/post-headers.md',
     url: '/tutorials/axios/post-headers',
