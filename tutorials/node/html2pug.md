@@ -14,4 +14,4 @@ async function test() {
 test();
 ```
 
-**Note:** You could use node's fs module but `fs-extra` already uses `fs` but it has the benefit of being neater.
+**Note:** You could use node's fs module but `fs-extra` already uses `fs` and it has the benefit of being neater.
