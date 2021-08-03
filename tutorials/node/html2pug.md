@@ -1,4 +1,4 @@
-To convert your HTML filles to Pug, you can use the [html2pug](https://www.npmjs.com/package/html2pug) and the [fs-extra](https://www.npmjs.com/package/fs-extra) npm packages.
+To convert your HTML files to Pug, you can use the [html2pug](https://www.npmjs.com/package/html2pug) and the [fs-extra](https://www.npmjs.com/package/fs-extra) npm packages.
 
 ```javascript
 const fs = require('fs-extra');
