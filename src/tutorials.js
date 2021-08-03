@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Convert Your HTML Files to Pug Files',
+    raw: './tutorials/node/html2pug.md',
+    url: '/tutorials/node/html2pug',
+    description: 'Placeholder Description',
+    tags: ['node'],
+    date: moment('2021-08-03')
+  },
+  {
     title: 'How to Create a Custom Scroll Event in Vue',
     raw: './tutorials/vue/scroll.md',
     url: '/tutorials/vue/scroll',
