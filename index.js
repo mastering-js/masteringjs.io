@@ -15,6 +15,7 @@ const jobs = require('./components/jobs');
 const createjob = require('./components/createjob');
 const success = require('./components/success');
 const failure = require('./components/failure');
+const jobStats = require('./components/job-stats');
 
 require('acquit-ignore')();
 
@@ -265,6 +266,13 @@ async function run() {
     content: failure(),
     description: 'Something went wrong'
   });
+  pages.push({
+    path: './jobs/detail.html',
+    template: layout,
+    title: 'Job Post Details',
+    content: jobStats(),
+    description: 'Here\'s How Your Post is Doing'
+  })
   for (const page of pages) {
     console.log(page.path)
     fs.writeFileSync(page.path, page.template({ ...page }));
