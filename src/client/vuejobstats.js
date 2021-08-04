@@ -1,3 +1,4 @@
+
 var server = window.location.hostname === 'localhost' ?
   'http://localhost:7071' :
   'https://masteringjs-job-board.azurewebsites.net';
@@ -6,56 +7,50 @@ var server = window.location.hostname === 'localhost' ?
 const app = new Vue({
   data() {
     return {
-      jobs: null,
-      loading: true
-    }
-  },
-  methods: {
-    async loadJobDetails(j) {
-      j.status = 'LOADING';
-      const res = await axios.get(server + '/api/views/' + j._id);
-      if (j.status !== 'LOADING') {
-        return;
-      }
-      j.description = res.data.job.description;
-      j.status = 'LOADED';
-    },
-    async toggleDescription(j, ev) {
-      ev.preventDefault();
-
-      if (j.status === 'DEFAULT') {
-        window.location.hash = '#' + j._id;
-        this.loadJobDetails(j);
-      } else {
-        j.status = 'DEFAULT';
-        j.description = null;
-        window.location.hash = '';
-      }
-    },
-    async apply(id) {
-      window.location.href = await axios.get(server+'/api/link/'+id).then((res) => {return res.data.job.url});
+      jobDetails: null,
+      loading: true,
+      error: false,
     }
   },
   template: `
-    <div>Hello World</div>
+  <div>
+  <div v-if="error">
+  Make sure you append the jobId as follows: masteringjs.io/jobs/detail#jobId
+  If the error still persists, contact Val@karpov.io
+  </div>
+  <div v-if="!loading">
+  <line-chart :jobDetails="jobDetails"></line-chart>
+  </div>
+  </div>
   `,
   async mounted() {
-    const res = await axios.get(server + '/api/listjobs');
-
-    this.jobs = res.data.jobs.map(obj => Object.assign(obj, {
-      status: 'DEFAULT',
-      description: null
-    }));
-    
     if (window.location.hash != null && window.location.hash.length > 1) {
       const jobId = window.location.hash.replace(/^#/, '');
-      const j = res.data.jobs.find(job => job._id === jobId);
-      if (j != null) {
-        this.loadJobDetails(j);
-      }
+      this.jobDetails = await axios.get(server+'/api/jobStats/'+jobId).then((res) => {return res.data.information});
+      return this.loading = false;
     }
-
-    this.loading = !this.loading;
+    return this.error = true;
   }
 });
+
+Vue.component('line-chart', {
+  props: ['jobDetails'],
+  extends: VueChartJs.Line,
+  mounted() {
+    this.renderChart({
+      labels: this.jobDetails.numClicks.map(element => element.day),
+      datasets: [{
+        label: 'Number of Clicks a Day',
+        backgroundColor: '#f87979',
+        fill: false,
+        data: this.jobDetails.numClicks.map(element => element.applyClicks)
+      }, {
+        label: 'Number of Views a Day',
+        fill: false,
+        backgroundColor: '#4dc9f6',
+        data: this.jobDetails.numViews.map(element => element.views)
+      }],
+    }, {responsive: true, maintainAspectRatio: true, scales: { xAxes: [{ ticks: { autoSkip: false } }] }, scaleShowValues: true})
+  }
+})
 app.$mount('#content');
