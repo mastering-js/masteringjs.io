@@ -55,14 +55,16 @@ property names, you can make Mongoose use `created_at` and `updated_at` instead:
 
 ```javascript
 const opts = {
-  createdAt: "created_at",
-  updatedAt: "updated_at",
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 };
 
 const userSchema = mongoose.Schema({ email: String }, opts);
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
-const doc = await User.create({ email: "test@google.com" });
+const doc = await User.create({ email: 'test@google.com' });
 doc.updated_at; // 2020-07-06T20:38:52.917Z
 ```
 
