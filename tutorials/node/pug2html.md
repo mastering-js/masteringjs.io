@@ -17,3 +17,21 @@ test();
 ```
 
 **Note:** `fs-extra` uses node's `fs` module but has the added benefit of being neater since it does not require callback functions.
+
+<div id='pug'></div>
+<button onclick='pug2html()'>Turn Pug into HTML!</button>
+<div id='html'></div>
+<script src='https://pugjs.org/js/pug.js'></script>
+<script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
+<link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
+<script src="../../codemirror-5.62.2/mode/pug/pug.js"></script>
+<script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
+<script src="../../codemirror-5.62.2/mode/xml/xml.js"></script>
+<script>
+    const p = require('pug'); // weird
+    const pug = CodeMirror(document.querySelector('#pug'), { mode: 'pug', lineNumbers: true });
+    const html = CodeMirror(document.querySelector('#html'), { mode: 'xml', lineNumbers: true, readOnly: true });
+    function pug2html() {
+        html.setValue(p.render(pug.getValue(), {pretty: '  '}));
+    }
+</script>
