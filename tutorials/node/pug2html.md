@@ -18,6 +18,8 @@ test();
 
 **Note:** `fs-extra` uses node's `fs` module but has the added benefit of being neater since it does not require callback functions.
 
+Here is a simple pug to html converter for your use:
+
 <div id='pug'></div>
 <button onclick='pug2html()'>Turn Pug into HTML!</button>
 <div id='html'></div>
