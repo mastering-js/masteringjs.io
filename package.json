@@ -35,7 +35,7 @@
     "mongoose": "^5.10.6",
     "mongoose-beautiful-unique-validation": "7.x",
     "nightmare": "3.x",
-    "pug": "2.x",
+    "pug": "^2.0.4",
     "puppeteer": "2.x",
     "serve": "11.x",
     "sinon": "7.x",
@@ -57,6 +57,9 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
-    "firebase": "^8.6.3"
+    "firebase": "^8.6.3",
+    "html2jade": "^0.8.6",
+    "html2pug": "^3.0.0",
+    "terser-webpack-plugin": "4.0"
   }
 }
