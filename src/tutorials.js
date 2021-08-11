@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Filter an Object by Key in JavaScript',
+    raw: './tutorials/fundamentals/filter-key.md',
+    url: '/tutorials/fundamentals/filter-key',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-08-11')
+  },
+  {
     title: 'How to Create a Custom Scroll Event in Vue',
     raw: './tutorials/vue/scroll.md',
     url: '/tutorials/vue/scroll',
