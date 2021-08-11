@@ -40,3 +40,12 @@ for (const [key,value] of IIdimension) {
     }
 }
 ```
+
+## Using One Variable
+
+If you were under the constraint of only using one variable, here is how you would do it:
+
+```javascript
+const obj = { name: 'Masteringjs', location: 'Florida', help: true}
+Object.fromEntries(Object.entries(obj).filter(([key,value]) => obj[key] == 'Masteringjs'));
+```
