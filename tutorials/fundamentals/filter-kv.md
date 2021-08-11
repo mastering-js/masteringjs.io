@@ -21,7 +21,7 @@ The row is the index of the array while the column is the iterator, so `[row(key
 const obj = { name: 'Masteringjs', location: 'Florida', help: true}
 const newObj = {}
 let IIdimension = Object.entries(obj);
-for( let row = 0; row < IIdimension.length; row++) {
+for(let row = 0; row < IIdimension.length; row++) {
     for (let col = 0; col < IIdimension[row].length; col++) {
         IIdimension[row][column];
     }
