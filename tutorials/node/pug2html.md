@@ -1,29 +1,19 @@
-Using a combination of [fs-extra](https://www.npmjs.com/package/fs-extra), [pug](https://pugjs.org/api/reference.html#pugrendersource-options-callback), and asynchronous programming,
-you can easily convert your pug files to html files. Pug's `render()` function already converts pug markup to html markup and as a result you can write it to a file.
+[The Pug npm module](https://www.npmjs.com/package/pug) has a `render()` function that converts Pug code into HTML as shown below.
 
 ```javascript
 const pug = require('pug');
-const fs = require('fs-extra');
 
+const output = pug.render('h1 Hello, World!');
 
-async function test() {
-    const fileContents = await fs.readFile('test.pug', 'utf-8')
-    const newFileContents = pug.render(fileContents, {pretty: '  '})
-    await fs.writeFile('test.pug', newFileContents)
-    await fs.rename('test.pug', 'test.pug'.substr(0, 'test.pug'.length - 4) + '.html')
-}
-
-test();
+output; // '<h1>Hello, World!</h1>
 ```
 
-**Note:** `fs-extra` uses node's `fs` module but has the added benefit of being neater since it does not require callback functions.
+Here is a simple Pug to HTML converter that works in your browser:
 
-Here is a simple pug to html converter for your use:
-
-<div id='pug'></div>
-<button onclick='pug2html()'>Turn Pug into HTML!</button>
-<div id='html'></div>
-<script src='https://pugjs.org/js/pug.js'></script>
+<div id="pug" style="border: 1px solid #ddd"></div>
+<div style="text-align: center; font-size: 4em; margin-top: 1em; margin-bottom: 1em;">&#8595;</div>
+<div id="html" style="border: 1px solid #ddd"></div>
+<script src="https://pugjs.org/js/pug.js"></script>
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
 <script src="../../codemirror-5.62.2/mode/pug/pug.js"></script>
@@ -31,9 +21,15 @@ Here is a simple pug to html converter for your use:
 <script src="../../codemirror-5.62.2/mode/xml/xml.js"></script>
 <script>
     const p = require('pug'); // weird
-    const pug = CodeMirror(document.querySelector('#pug'), { mode: 'pug', lineNumbers: true });
     const html = CodeMirror(document.querySelector('#html'), { mode: 'xml', lineNumbers: true, readOnly: true });
+    const pug = CodeMirror(document.querySelector('#pug'), {
+        mode: 'pug',
+        lineNumbers: true
+    });
+    pug.setValue('h1 Hello, World!');
+    html.setValue(p.render(pug.getValue(), {pretty: '  '}).trim());
     function pug2html() {
-        html.setValue(p.render(pug.getValue(), {pretty: '  '}));
+        html.setValue(p.render(pug.getValue(), {pretty: '  '}).trim());
     }
+    pug.on('change', pug2html);
 </script>
