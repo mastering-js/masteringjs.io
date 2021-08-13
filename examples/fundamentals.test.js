@@ -4302,25 +4302,51 @@ describe('Fundamentals', function() {
   });
 
   it('filter object', function() {
-    const numWins = {
-      'BUF': 11,
-      'MIA': 9,
-      'NE': 6,
-      'NYJ': 1
+    const obj = {
+      name: 'Luke Skywalker',
+      title: 'Jedi Knight',
+      age: 23
     };
 
-    // Convert `numWins` to a key/value array
-    // `[['BUF', 11], ['MIA', 9], ...]`
-    const asArray = Object.entries(numWins);
+    // Convert `obj` to a key/value array
+    // `[['name', 'Luke Skywalker'], ['title', 'Jedi Knight'], ...]`
+    const asArray = Object.entries(obj);
 
-    // Use `filter()` to filter the key/value array
-    const atLeast9Wins = asArray.filter(([key, value]) => value >= 9);
+    const filtered = asArray.filter(([key, value]) => typeof value === 'string');
 
     // Convert the key/value array back to an object:
-    // `{ 'BUF': 11, 'MIA': 9 }`
-    const atLeast9WinsObject = Object.fromEntries(atLeast9Wins);
+    // `{ name: 'Luke Skywalker', title: 'Jedi Knight' }`
+    const justStrings = Object.fromEntries(filtered);
+    
     // acquit:ignore:start
-    assert.deepEqual(atLeast9WinsObject, { BUF: 11, MIA: 9 });
+    assert.deepEqual(justStrings, {
+      name: 'Luke Skywalker',
+      title: 'Jedi Knight'
+    });
+    // acquit:ignore:end
+  });
+
+  it('filter and copy object', function() {
+    const obj = {
+      name: 'Luke Skywalker',
+      title: 'Jedi Knight',
+      age: 23
+    };
+
+    const newObj = {};
+    for (const [key, value] of Object.entries(obj)) {
+      if (typeof value === 'string') {
+        newObj[key] = value;
+      }
+    }
+
+    // `{ name: 'Luke Skywalker', title: 'Jedi Knight' }`
+    newObj;
+    // acquit:ignore:start
+    assert.deepEqual(newObj, {
+      name: 'Luke Skywalker',
+      title: 'Jedi Knight'
+    });
     // acquit:ignore:end
   });
 
