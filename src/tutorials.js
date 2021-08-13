@@ -6,12 +6,20 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Convert Your HTML Files to Pug Files',
+    title: 'Convert HTML to Pug',
     raw: './tutorials/node/html2pug.md',
-    url: '/tutorials/node/html2pug',
-    description: 'Placeholder Description',
+    url: '/tutorials/node/html-to-pug',
+    description: 'Convert HTML to Pug in your browser, with syntax highlighting!',
     tags: ['node'],
-    date: moment('2021-08-03')
+    date: moment('2021-08-13')
+  },
+  {
+    title: 'Convert Pug to HTML',
+    raw: './tutorials/node/pug2html.md',
+    url: '/tutorials/node/pug-to-html',
+    description: 'Convert Pug to HTML in your browser, with syntax highlighting!',
+    tags: ['node'],
+    date: moment('2021-08-12')
   },
   {
     title: 'How to Create a Custom Scroll Event in Vue',

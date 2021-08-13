@@ -58,8 +58,6 @@
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
     "firebase": "^8.6.3",
-    "html2jade": "^0.8.6",
-    "html2pug": "^3.0.0",
-    "terser-webpack-plugin": "4.0"
+    "html2jade": "^0.8.6"
   }
 }
