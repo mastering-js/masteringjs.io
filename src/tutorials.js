@@ -8,10 +8,18 @@ const tutorials = [
   {
     title: 'How to Filter an Object by Key and Value in JavaScript',
     raw: './tutorials/fundamentals/filter-kv.md',
-    url: '/tutorials/fundamentals/filter-kv',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/filter-key-value',
+    description: 'Here\'s how you can filter an object by key and value in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2021-08-11')
+    date: moment('2021-08-13')
+  },
+  {
+    title: 'Convert Pug to HTML',
+    raw: './tutorials/node/pug2html.md',
+    url: '/tutorials/node/pug-to-html',
+    description: 'Convert Pug to HTML in your browser, with syntax highlighting!',
+    tags: ['node'],
+    date: moment('2021-08-12')
   },
   {
     title: 'How to Create a Custom Scroll Event in Vue',
