@@ -10,9 +10,7 @@ if(obj.hasOwnProperty('name')) {
 
 ## Object.keys()
 
-Another approach to filter using keys is to use the `Object.keys()` method.
-`Object.keys()` will return an array of the keys and you can then iterate through
-and filter accordingly.
+`Object.keys()` returns an array of keys, and then you can iterate through and filter accordingly.
 
 ```javascript
 const obj = { name: 'Masteringjs', location: 'Florida', help: true };
@@ -25,12 +23,7 @@ for(let i = 0; i < arr.length; i++) {
 }
 ```
 
-## Using One Variable
-
-If you were under the constraint to use only one variable, the solution would be to
-convert the object to an array, use `array.filter()` and then convert back into an object.
-
 ```javascript
 const obj = { name: 'Masteringjs', location: 'Florida', help: true };
-Object.fromEntries(Object.entries(obj).filter(([key]) => key == 'name'));
+Object.keys(obj).filter(key => key.includes('name')).reduce((cur, key) => { cur[key] = obj[key]; return cur; }, {});
 ```
