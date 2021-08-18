@@ -17,11 +17,11 @@ test();
 **Note:** You could use node's fs module but `fs-extra` already uses `fs` and it has the benefit of being neater.
 
 <div id='html'></div>
-<button id='work' onclick="window.convert">Turn HTML into Pug!</button>
+<button id='work' onclick="window.convert">Turn HTML into Pug!</button> <input id='fragment' type='checkbox'/>Is this a fragment?
 <div id='pug'></div>
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
 <script src="../../codemirror-5.62.2/mode/pug/pug.js"></script>
 <script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
 <script src="../../codemirror-5.62.2/mode/xml/xml.js"></script>
-<script src="../main.js"></script>
+<script src="../htmltopug.js"></script>

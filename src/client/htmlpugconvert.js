@@ -3,10 +3,11 @@ const html = CodeMirror(document.querySelector('#html'), { mode: 'xml', lineNumb
 window.pug = pug;
 window.html = html;
 
-window.convert = function convert() {
-const html2jade = require('html2jade');
-html2jade.convertHtml(window.html.getValue(), {}, function(err, jade) {
-    window.pug.setValue(jade);
-})
+window.convert = async function convert() {
+    const request = await fetch('http://localhost:7071/api/htmltopug', {
+        method: 'POST',
+        body: JSON.stringify({ input: window.html.getValue(), fragment: document.getElementById('fragment').checked })
+    }).then((res) => { return res.json() });
+    window.pug.setValue(request.result);
 }
 document.getElementById('work').addEventListener('click', convert);
