@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Delay a Function in JavaScript',
+    raw: './tutorials/fundamentals/wait.md',
+    url: '/tutorials/fundamentals/wait',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-08-18')
+  },
+  {
     title: 'How to Filter an Object by Key and Value in JavaScript',
     raw: './tutorials/fundamentals/filter-kv.md',
     url: '/tutorials/fundamentals/filter-key-value',
