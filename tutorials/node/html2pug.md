@@ -2,7 +2,7 @@ To convert your HTML files to Pug, you can use the [html2pug](https://www.npmjs.
 
 ```javascript
 const fs = require('fs-extra');
-const html2pug = require('html-pug-converter');
+const html2pug = require('html2pug');
 
 async function test() {
     const fileContents = await fs.readFile('test.html', 'utf-8');
