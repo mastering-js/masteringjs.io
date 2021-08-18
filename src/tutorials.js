@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using then() or async/await in JavaScript',
+    raw: './tutorials/fundamentals/then-async.md',
+    url: '/tutorials/fundamentals/then-async',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-08-17')
+  },
+  {
     title: 'How to Filter an Object by Key and Value in JavaScript',
     raw: './tutorials/fundamentals/filter-kv.md',
     url: '/tutorials/fundamentals/filter-key-value',
