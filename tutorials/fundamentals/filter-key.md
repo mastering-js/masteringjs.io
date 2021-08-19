@@ -1,29 +1,13 @@
-To filter an object using the keys, you can use JavaScript's `Object.hasOwnProperty()` method.
+To filter an object by key in JavaScript, you must first turn the object into an array.
+You can use the `Object.keys()` function with the `reduce()` function, or the `Object.fromEntries()` function in combination with
+the `Object.entries()` function. Once converted to an array, use the `filter()` function.
 
 ```javascript
 const obj = { name: 'Masteringjs', location: 'Florida', help: true };
-let newObj = {}
-if(obj.hasOwnProperty('name')) {
-    newObj['name'] = obj['name'];
-}
-```
-
-## Object.keys()
-
-`Object.keys()` returns an array of keys, and then you can iterate through and filter accordingly.
-
-```javascript
-const obj = { name: 'Masteringjs', location: 'Florida', help: true };
-let newObj = {}
-let arr = Object.keys(obj);
-for(let i = 0; i < arr.length; i++) {
-    if (arr[i] == 'name') {
-        newObj[i] = obj[i];
-    }
-}
+Object.keys(obj).filter((key) => { return key == 'name'}).reduce((cur, key) => { return Object.assign(cur, { [key]: obj[key] })}, {});
 ```
 
 ```javascript
 const obj = { name: 'Masteringjs', location: 'Florida', help: true };
-Object.keys(obj).filter(key => key.includes('name')).reduce((cur, key) => { cur[key] = obj[key]; return cur; }, {});
+Object.fromEntries(Object.entries(obj).filter(([key]) => { return key == 'name' }));
 ```
