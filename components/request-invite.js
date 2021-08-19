@@ -19,11 +19,15 @@ module.exports = () => `
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="application/javascript">
+    var server = window.location.hostname === 'localhost' ?
+      'http://localhost:7071' :
+      'https://masteringjs-job-board.azurewebsites.net';
+
     document.querySelector('#github-username').addEventListener('submit', function(ev) {
       ev.preventDefault();
       var username = document.querySelector('#username').value;
       document.querySelector('#github-username button').disabled = true;
-      axios.post('https://meanit-aristotle.app.mongoosecloud.io/api/sendMongooseInvite', { username: username }).
+      axios.post(server + '/api/sendMongooseInvite', { username: username }).
         then(function(res) {
           document.querySelector('#result').innerHTML = 'Invitation sent. Check your GitHub email address.';
         }).

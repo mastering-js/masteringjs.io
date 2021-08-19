@@ -1,0 +1,3 @@
+module.exports = {
+  stripePublicKey: 'pk_live_51IoDkvEIfgvH77vtfJZwToZlC20FilHNRViMce42TBCeFsptEIkUcjz09MMPbfn4pU9St2nM8P9aYlL4l7q8SLbf00ivnWmIpw'
+};
