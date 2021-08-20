@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Filter an Object by Key in JavaScript',
+    raw: './tutorials/fundamentals/filter-key.md',
+    url: '/tutorials/fundamentals/filter-key',
+    description: 'Here\'s 2 ways you can create a new object using a subset of the original object\'s keys.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-19')
+  },
+  {
     title: 'How to Filter an Object by Key and Value in JavaScript',
     raw: './tutorials/fundamentals/filter-kv.md',
     url: '/tutorials/fundamentals/filter-key-value',
