@@ -13,7 +13,8 @@ Object.keys(obj).
 Another option is to convert the object into an array of entries using `Object.entries()`, filter the entries, and then convert the array of entries back into an object using `Object.fromEntries()`.
 
 ```javascript
-// { firstName: 'Jean-Luc', lastName: 'Picard' }
 const obj = { firstName: 'Jean-Luc', lastName: 'Picard', age: 59 };
+
+// { firstName: 'Jean-Luc', lastName: 'Picard' }
 Object.fromEntries(Object.entries(obj).filter(([key]) => key.includes('Name')));
 ```
