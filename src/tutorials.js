@@ -6,7 +6,7 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'When to Use JavaScript\s string substring function vs slice function',
+    title: 'When to Use JavaScript\'s string substring function vs slice function',
     raw: './tutorials/fundamentals/subvsslice.md',
     url: '/tutorials/fundamentals/subvsslice',
     description: 'Placeholder Description',
