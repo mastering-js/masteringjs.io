@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'When to Use JavaScript\s string substring function vs slice function',
+    raw: './tutorials/fundamentals/subvsslice.md',
+    url: '/tutorials/fundamentals/subvsslice',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-08-23')
+  },
+  {
     title: 'How to Filter an Object by Key in JavaScript',
     raw: './tutorials/fundamentals/filter-key.md',
     url: '/tutorials/fundamentals/filter-key',
