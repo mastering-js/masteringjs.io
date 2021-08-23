@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The Vue Button Click Event',
+    raw: './tutorials/vue/btnclick.md',
+    url: '/tutorials/vue/btnclick',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-08-23')
+  },
+  {
     title: 'How to Filter an Object by Key in JavaScript',
     raw: './tutorials/fundamentals/filter-key.md',
     url: '/tutorials/fundamentals/filter-key',
