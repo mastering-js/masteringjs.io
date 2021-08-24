@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript `substring()` vs `slice()`',
+    raw: './tutorials/fundamentals/subvsslice.md',
+    url: '/tutorials/fundamentals/substring-vs-slice',
+    description: 'Here\'s the difference between JavaScript\'s `substring()` and `slice()` functions, and why you would use one or the other.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-24')
+  },
+  {
     title: 'How to Filter an Object by Key in JavaScript',
     raw: './tutorials/fundamentals/filter-key.md',
     url: '/tutorials/fundamentals/filter-key',
