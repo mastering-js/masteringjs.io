@@ -1,34 +1,32 @@
-JavaScript's string `substring()` and `slice()` functions behave similarly but have a few key differences.
+JavaScript's string `substring()` and `slice()` functions both let you extract substrings from a string.
+But they have a couple of key differences that you need to be aware of.
 
 ## Negative Values
 
-With `slice()`, when you enter a negative number as an argument, the function interprets it as counting from the end of the string.
+With `slice()`, when you enter a negative number as an argument, the `slice()` interprets it as counting from the end of the string.
 With `substring()`, it will treat a negative value as zero.
 
 ```javascript
-const sentence = 'Masteringjs is a very helpful website'
-sentence.slice(-7) // website
-sentence.substring(-5, 11); // Masteringjs
+const sentence = 'Mastering JS is a very helpful website';
+sentence.slice(-7); // 'website'
+sentence.substring(-5, 12); // 'Mastering JS'
+
+sentence.slice(0, -26); // 'Mastering JS'
 ```
 
 ## Parameter Consistency
 
-A notable difference with `substring()` is that if the first argument is greater than the second argument,
-the function will swap their places. With `slice()`, it won't print anything.
+A big difference with `substring()` is that if the 1st argument is greater than the 2nd argument, `substring()` will swap them.
+`slice()` returns an empty string if the 1st argument is greater than the 2nd argument.
 
 ```javascript
-const sentence = 'Masteringjs is a very helpful website'
-sentence.substring(11, 0); // Masteringjs
-sentence.slice(11, 0) //
-sentence.slice(0, 11) // Masteringjs
+const sentence = 'Mastering JS is a very helpful website';
+sentence.substring(12, 0); // 'Mastering JS'
+sentence.slice(12, 0); // ''
+sentence.slice(0, 12); // 'Mastering JS'
 ```
 
-## NaNs
+## Recommendation
 
-The two functions come together here and agree that a `NaN` is to be treated as zero.
-
-```javascript
-const sentence = 'Masteringjs is a very helpful website'
-sentence.substring(NaN); // Masteringjs is a very helpful website
-sentence.slice(NaN) // Masteringjs is a very helpful website
-```
+We recommend using [`slice()` over `substring()`](/tutorials/fundamentals/substring) unless you need the argument swapping feature.
+The negative numbers feature is extremely useful, and it is easier to remember than the difference between `substring()` and `substr()`.
