@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Wait 1 Second in JavaScript',
+    raw: './tutorials/fundamentals/wait-1-second-then.md',
+    url: '/tutorials/fundamentals/wait-1-second-then',
+    description: 'It is easy to make your function wait for 1 second in JavaScript using promises and/or `await`. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-27')
+  },
+  {
     title: 'JavaScript `substring()` vs `slice()`',
     raw: './tutorials/fundamentals/subvsslice.md',
     url: '/tutorials/fundamentals/substring-vs-slice',
