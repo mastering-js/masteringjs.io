@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Create a Resize Event for Vue',
+    raw: './tutorials/vue/resize.md',
+    url: '/tutorials/vue/resize',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-08-30')
+  },
+  {
     title: 'How to Wait 1 Second in JavaScript',
     raw: './tutorials/fundamentals/wait-1-second-then.md',
     url: '/tutorials/fundamentals/wait-1-second-then',
