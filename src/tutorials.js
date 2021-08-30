@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use JavaScript\'s Object.values() Function',
+    raw: './tutorials/fundamentals/values.md',
+    url: '/tutorials/fundamentals/values',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-08-30')
+  },
+  {
     title: 'How to Wait 1 Second in JavaScript',
     raw: './tutorials/fundamentals/wait-1-second-then.md',
     url: '/tutorials/fundamentals/wait-1-second-then',
