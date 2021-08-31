@@ -8,10 +8,10 @@ const tutorials = [
   {
     title: 'How to Use JavaScript\'s Object.values() Function',
     raw: './tutorials/fundamentals/values.md',
-    url: '/tutorials/fundamentals/values',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/object-values',
+    description: 'Here\'s what you need to know about `Object.values()` in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2021-08-30')
+    date: moment('2021-08-31')
   },
   {
     title: 'How to Wait 1 Second in JavaScript',
