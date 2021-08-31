@@ -1,5 +1,15 @@
 Similar to the `Object.keys()` function, `Object.values()` returns an array containing all the object's values instead of keys.
-It will only return properties that are [enumerable](/tutorials/fundamentals/enumerable), however.
+
+```javascript
+const obj = {name: 'Masteringjs.io', location: 'Florida'};
+Object.values(obj); // ['Masteringjs.io', 'Florida']
+
+```
+
+
+## Enumerablity
+
+`Object.values()` will only return properties that are [enumerable](/tutorials/fundamentals/enumerable).
 
 ```javascript
 const obj = {
