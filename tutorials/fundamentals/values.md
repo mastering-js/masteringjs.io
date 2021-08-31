@@ -9,7 +9,7 @@ Object.values(obj); // ['Masteringjs.io', 'Florida']
 
 ## Enumerablity
 
-`Object.values()` will only return properties that are [enumerable](/tutorials/fundamentals/enumerable).
+`Object.values()` will only return the values of properties that are [enumerable](/tutorials/fundamentals/enumerable).
 
 ```javascript
 const obj = {
