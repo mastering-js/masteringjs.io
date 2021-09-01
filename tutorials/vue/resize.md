@@ -8,11 +8,9 @@ Here is a live demonstration with the HTML template:
 
 ```javascript
 const app = new Vue({
-    data: function() {
-        return {
-            width: 0,
-            height: 0
-        }
+    data: {
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight
     },
     mounted() {
         window.addEventListener('resize', this.getDimensions);
@@ -34,6 +32,7 @@ const app = new Vue({
   <p>The width and height are respectively {{width}}, {{height}}</p>
 </div>
 ```
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <div id="app2">
   <p>The width and height are respectively {{width}}, {{height}}</p>
@@ -41,11 +40,9 @@ const app = new Vue({
 <script>
 new Vue({
     el: '#app2',
-    data: function() {
-        return {
+    data: {
             width: document.documentElement.clientWidth,
             height: document.documentElement.clientHeight
-        }
     },
     mounted() {
         window.addEventListener('resize', this.getDimensions);
@@ -77,20 +74,20 @@ Vue.directive('resize', {
         window.addEventListener('resize', () => {
             const width = document.documentElement.clientWidth;
             const height = document.documentElement.clientHeight;
-            onResizeCallback({width, height})
-        });
+            onResizeCallback({ width, height });
+        })
     }
 });
 
 const app = new Vue({
     data: {
-        width: 0,
-        height: 0
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight
     },
     methods: {
-        getDimensions: function() {
-            this.width = document.documentElement.clientWidth;
-            this.height = document.documentElement.clientHeight;
+        setDimensions: function({ width, height }) {
+            this.width = width;
+            this.height = height;
         }
     }
 });
@@ -100,7 +97,7 @@ Here is a live demonstration with the HTML template:
 
 ```html
 <div id="app">
-  <div v-resize>
+  <div v-resize="setDimensions">
     <p>the width and height are respectively {{width}}, {{height}} </p>
   </div>
 </div>
@@ -108,7 +105,7 @@ Here is a live demonstration with the HTML template:
 
 
 <div id="app">
-<div v-resize="getDimensions">
+<div v-resize="setDimensions">
 <p>the width and height are respectively {{width}}, {{height}} </p>
 </div>
 </div>
@@ -116,21 +113,24 @@ Here is a live demonstration with the HTML template:
 Vue.directive('resize', {
     inserted: function(el, binding) {
         const onResizeCallback = binding.value;
-          window.addEventListener('resize', () => {onResizeCallback()});
+        window.addEventListener('resize', () => {
+            const width = document.documentElement.clientWidth;
+            const height = document.documentElement.clientHeight;
+            onResizeCallback({ width, height });
+        })
     }
 });
-new Vue({
+const app = new Vue({
     el: '#app',
     data: {
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight
     },
     methods: {
-        getDimensions: function() {
-            this.width = document.documentElement.clientWidth;
-            this.height = document.documentElement.clientHeight;
+        setDimensions: function({ width, height }) {
+            this.width = width;
+            this.height = height;
         }
     }
 });
 </script>
-
