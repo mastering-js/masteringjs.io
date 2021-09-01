@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Handle Window Resize Events in Vue',
+    raw: './tutorials/vue/resize.md',
+    url: '/tutorials/vue/resize-event',
+    description: 'Here\'s how you can handle the `resize` event in Vue.',
+    tags: ['vue'],
+    date: moment('2021-09-01')
+  },
+  {
     title: 'How to Use JavaScript\'s Object.values() Function',
     raw: './tutorials/fundamentals/values.md',
     url: '/tutorials/fundamentals/object-values',
