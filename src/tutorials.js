@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Capitalize Strings in JavaScript',
+    raw: './tutorials/fundamentals/uppercase.md',
+    url: '/tutorials/fundamentals/uppercase',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-09-08')
+  },
+  {
     title: 'How to Handle Window Resize Events in Vue',
     raw: './tutorials/vue/resize.md',
     url: '/tutorials/vue/resize-event',
