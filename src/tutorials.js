@@ -6,12 +6,44 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'The Vue Button Click Event',
+    title: 'The Vue Button `click` Event',
     raw: './tutorials/vue/btnclick.md',
-    url: '/tutorials/vue/btnclick',
-    description: 'Placeholder Description',
+    url: '/tutorials/vue/button-click',
+    description: 'Here\'s what you need to know about click events on buttons in Vue.',
     tags: ['vue'],
-    date: moment('2021-08-23')
+    date: moment('2021-09-09')
+  },
+  {
+    title: 'How to Handle Window Resize Events in Vue',
+    raw: './tutorials/vue/resize.md',
+    url: '/tutorials/vue/resize-event',
+    description: 'Here\'s how you can handle the `resize` event in Vue.',
+    tags: ['vue'],
+    date: moment('2021-09-01')
+  },
+  {
+    title: 'How to Use JavaScript\'s Object.values() Function',
+    raw: './tutorials/fundamentals/values.md',
+    url: '/tutorials/fundamentals/object-values',
+    description: 'Here\'s what you need to know about `Object.values()` in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-31')
+  },
+  {
+    title: 'How to Wait 1 Second in JavaScript',
+    raw: './tutorials/fundamentals/wait-1-second-then.md',
+    url: '/tutorials/fundamentals/wait-1-second-then',
+    description: 'It is easy to make your function wait for 1 second in JavaScript using promises and/or `await`. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-27')
+  },
+  {
+    title: 'JavaScript `substring()` vs `slice()`',
+    raw: './tutorials/fundamentals/subvsslice.md',
+    url: '/tutorials/fundamentals/substring-vs-slice',
+    description: 'Here\'s the difference between JavaScript\'s `substring()` and `slice()` functions, and why you would use one or the other.',
+    tags: ['fundamentals'],
+    date: moment('2021-08-24')
   },
   {
     title: 'How to Filter an Object by Key in JavaScript',

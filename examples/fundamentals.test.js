@@ -4620,6 +4620,26 @@ describe('Fundamentals', function() {
   it('spread-object', function() {
     console.log('hi');
   });
+  
+  describe('object-value', function() {
+    it('only own properties', function() {
+      class User {
+        get className() {
+          return 'User';
+        }
+
+        constructor(name) {
+          this.name = name;
+        }
+      }
+
+      const user = new User('Jean-Luc Picard');
+      Object.keys(user); // ['Jean-Luc Picard'], no 'User'!
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(user), ['name']);
+      // acquit:ignore:end
+    });
+  });
 });
 
 if (!Array.prototype.flat) {
