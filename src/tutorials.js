@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The Vue Button `click` Event',
+    raw: './tutorials/vue/btnclick.md',
+    url: '/tutorials/vue/button-click',
+    description: 'Here\'s what you need to know about click events on buttons in Vue.',
+    tags: ['vue'],
+    date: moment('2021-09-09')
+  },
+  {
     title: 'How to Handle Window Resize Events in Vue',
     raw: './tutorials/vue/resize.md',
     url: '/tutorials/vue/resize-event',
