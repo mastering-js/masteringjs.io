@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Map Over Keys and Values in JavaScript',
+    raw: './tutorials/fundamentals/kvmap.md',
+    url: '/tutorials/fundamentals/kvmap',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-09-13')
+  },
+  {
     title: 'The Vue Button `click` Event',
     raw: './tutorials/vue/btnclick.md',
     url: '/tutorials/vue/button-click',
