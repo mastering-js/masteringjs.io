@@ -4,9 +4,13 @@ window.pug = pug;
 window.html = html;
 
 window.convert = async function convert() {
-    const request = await fetch('http://localhost:7071/api/htmltopug', {
+    var server = window.location.hostname === 'localhost' ?
+        'http://localhost:7071' :
+        'https://masteringjs-job-board.azurewebsites.net';
+
+    const request = await fetch(server + '/api/htmltopug', {
         method: 'POST',
-        body: JSON.stringify({ input: window.html.getValue(), fragment: document.getElementById('fragment').checked })
+        body: JSON.stringify({ input: window.html.getValue(), fragment: true })
     }).then((res) => { return res.json() });
     window.pug.setValue(request.result);
 }
