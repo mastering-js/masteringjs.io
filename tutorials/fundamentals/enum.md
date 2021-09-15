@@ -40,9 +40,9 @@ You can [make JavaScript objects immutable using `Object.freeze()`](/tutorials/f
 function createEnum(values) {
   const enumObject = {};
   for (const val of values) {
-    enum[val] = val;
+    enumObject[val] = val;
   }
-  return Object.freeze(val);
+  return Object.freeze(enumObject);
 }
 
 // { Up: 'Up', Down: 'Down', Left: 'Left', Right: 'Right' }
