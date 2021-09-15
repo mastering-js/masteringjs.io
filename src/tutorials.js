@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert HTML to Pug',
+    raw: './tutorials/node/html2pug.md',
+    url: '/tutorials/node/html-to-pug',
+    description: 'Convert HTML to Pug in your browser, with syntax highlighting!',
+    tags: ['node'],
+    date: moment('2021-09-15')
+  },
+  {
     title: 'The Vue Button `click` Event',
     raw: './tutorials/vue/btnclick.md',
     url: '/tutorials/vue/button-click',
