@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Uppercase Strings in JavaScript',
+    raw: './tutorials/fundamentals/uppercase.md',
+    url: '/tutorials/fundamentals/uppercase',
+    description: 'Here\'s how you can convert a string to uppercase in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-17')
+  },
+  {
     title: 'Convert HTML to Pug',
     raw: './tutorials/node/html2pug.md',
     url: '/tutorials/node/html-to-pug',
