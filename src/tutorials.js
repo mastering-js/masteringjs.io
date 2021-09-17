@@ -6,12 +6,28 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Capitalize Strings in JavaScript',
+    title: 'How to Uppercase Strings in JavaScript',
     raw: './tutorials/fundamentals/uppercase.md',
     url: '/tutorials/fundamentals/uppercase',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can convert a string to uppercase in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2021-09-08')
+    date: moment('2021-09-17')
+  },
+  {
+    title: 'Convert HTML to Pug',
+    raw: './tutorials/node/html2pug.md',
+    url: '/tutorials/node/html-to-pug',
+    description: 'Convert HTML to Pug in your browser, with syntax highlighting!',
+    tags: ['node'],
+    date: moment('2021-09-15')
+  },
+  {
+    title: 'The Vue Button `click` Event',
+    raw: './tutorials/vue/btnclick.md',
+    url: '/tutorials/vue/button-click',
+    description: 'Here\'s what you need to know about click events on buttons in Vue.',
+    tags: ['vue'],
+    date: moment('2021-09-09')
   },
   {
     title: 'How to Handle Window Resize Events in Vue',
