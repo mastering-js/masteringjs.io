@@ -1,16 +1,8 @@
 'use strict';
 
+const config = require('../../config');
 const footer = require('../footer');
 const nav = require('../nav');
-
-const defaultButton = `
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="NRP4ZFCGJ5BLY">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-`;
 
 module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
 <!DOCTYPE html>
@@ -28,6 +20,9 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
     <meta name="twitter:description" content="The official Mongoose eBook for developers who need to become Mongoose experts fast."></meta>
     <meta name="twitter:image" content="https://mastering-mongoose.netlify.app/images/mastering-mongoose.jpg" />
     <meta property="og:image" content="https://mastering-mongoose.netlify.app/images/mastering-mongoose.jpg" />
+  
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
@@ -229,17 +224,15 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
         <div class="price">
           ${_displayPrice(promoPrice, defaultPrice)}
         </div>
-        <div class="paypal-button">
-          ${paypalButton || defaultButton}       
+        <div class="paypal-button buy" style="cursor: pointer" onclick="stripeCheckout()">
+          Buy Now
         </div>
         <div class="small">
           Have an issue? <a href="https://github.com/vkarpov15/masteringjs.io/issues">Report it on GitHub</a> and we'll respond within 24 hours.
         </div>
         <div class="small">
-          Not happy with your purchase? Report an issue on the
-          <a href="https://www.paypal.com/disputes/">PayPal Resolution Center</a> or
-          <a href="mailto:val@karpov.io">email val@karpov.io</a> with your PayPal transaction id
-          for a full refund.
+          Not happy with your purchase?
+          <a href="mailto:val@karpov.io">Email val@karpov.io</a> with your transaction id for a full refund.
         </div>
       </div>
       <div style="clear: both"></div>
@@ -248,6 +241,28 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
     ${footer()}
 
     <script type="text/javascript">
+      var stripeKey = '${config.stripePublicKey}';
+      var stripe = Stripe(stripeKey);
+      var server = window.location.hostname === 'localhost' ?
+        'http://localhost:7071' :
+        'https://masteringjs-job-board.azurewebsites.net';
+      var status = 'init';
+
+      function stripeCheckout() {
+        if (status !== 'init') {
+          return;
+        }
+        document.querySelector('.paypal-button').innerHTML = 'Checking Out...';
+        axios.post(server + '/api/createEbookCheckout', { itemNumber: '0002' }).then(function(response) {
+          document.querySelector('.paypal-button').innerHTML = 'Buy Now';
+          status = 'paid';
+          return stripe.redirectToCheckout({ sessionId: response.data.id });
+        }).catch(() => {
+          document.querySelector('.paypal-button').innerHTML = 'Buy Now';
+          status = 'init';
+        });
+      }
+
       window.addEventListener('scroll', function() {
         var diff = document.querySelector('#purchase').getBoundingClientRect().top - window.innerHeight;
 
