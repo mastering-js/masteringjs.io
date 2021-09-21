@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Reverse a String in JavaScript',
+    raw: './tutorials/fundamentals/reversestring.md',
+    url: '/tutorials/fundamentals/reverse-string',
+    description: 'Need to reverse a string in JavaScript? Here\'s 3 different ways to reverse strings.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-21')
+  },
+  {
     title: 'How to Uppercase Strings in JavaScript',
     raw: './tutorials/fundamentals/uppercase.md',
     url: '/tutorials/fundamentals/uppercase',
