@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Trim Characters from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim.md',
+    url: '/tutorials/fundamentals/trim',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-09-21')
+  },
+  {
     title: 'How to Reverse a String in JavaScript',
     raw: './tutorials/fundamentals/reversestring.md',
     url: '/tutorials/fundamentals/reverse-string',
