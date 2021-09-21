@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Compare Dates Without Time in JavaScript',
+    raw: './tutorials/fundamentals/compare-without-time.md',
+    url: '/tutorials/fundamentals/compare-without-time',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-09-21')
+  },
+  {
     title: 'How to Uppercase Strings in JavaScript',
     raw: './tutorials/fundamentals/uppercase.md',
     url: '/tutorials/fundamentals/uppercase',
