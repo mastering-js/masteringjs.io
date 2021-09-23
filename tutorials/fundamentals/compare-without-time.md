@@ -3,28 +3,28 @@ the `toDateString()` method. It returns the date portion of the `Date` object as
 you can compare the two strings:
 
 ```javascript
-const date1 = new Date().toDateString();
-const date2 = new Date(2000, 6, 25, 14, 39, 7).toDateString();
+const date1 = new Date('2000-06-25');
+const date2 = new Date('2000-06-25');
 
-date1 > date2 // true
+date1 === date2 // false
+date1.toDateString() === date2.toDateString() // true
 ```
 
 ## Handling Time Zones
+If you want to determine if two dates are on the same day in a specific timezone, you should use `toLocaleDateString()` for better timezone support. Make
+sure to specify the `locales` and `options` argument, as the default is implementation dependent.
 
-`toDateString()` does not take time zones into account. Using `toDateString()` without accounting for the coordinated universal time can create problems.
-Also, using `toUTCString()` without an inital check could produce misleading results.
-You should do an inital check to ensure that the two dates are on the same date in UTC before using `toUTCString()`.
+
 
 ```javascript
-const date1 = new Date(2017, 5, 14, 5, 0, 0);
+const date1 = new Date('14 Jun 2017 23:00:00 PDT');
 const date2 = new Date('14 Jun 2017 18:00:00 PDT');
 
-date1 > date2; // false
-// check that the two dates are on the same year, the same month, and on the same day
-// returns false
-date1.getUTCFullYear() === date2.getUTCFullYear() && // true
-date1.getUTCMonth() === date2.getUTCMonth() && // true
-date1.getUTCDate() === date2.getUTCDate(); // false
+// The default for this implementation converts to Eastern Standard Time
 
-date1.toUTCString() > date2.toUTCString(); // true
+date1.toLocaleDateString() === date2.toLocaleDateString(); // false; 6/15/2017  != 6/14/2017
+
+date1.toLocaleDateString("en-US", {timeZone: 'America/Los_Angeles'}) === date2.toLocaleDateString("en-US", {timeZone: 'America/Los_Angeles'}) ; // 6/14/2017 === 6/14/2017
+
+
 ```
