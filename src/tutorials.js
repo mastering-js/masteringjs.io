@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using Query String Parameters in Mongoose',
+    raw: './tutorials/mongoose/query-string.md',
+    url: '/tutorials/mongoose/query-string',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2021-09-27')
+  },
+  {
     title: 'How to Print An Enum\'s Properties in JavaScript',
     raw: './tutorials/fundamentals/enumtostring.md',
     url: '/tutorials/fundamentals/enum-to-string',
