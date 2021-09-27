@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Mongoose\'s findOneAndUpdate Function',
+    raw: './tutorials/mongoose/findoneandupdate.md',
+    url: '/tutorials/mongoose/findoneandupdate',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2021-09-27')
+  },
+  {
     title: 'How to Print An Enum\'s Properties in JavaScript',
     raw: './tutorials/fundamentals/enumtostring.md',
     url: '/tutorials/fundamentals/enum-to-string',
