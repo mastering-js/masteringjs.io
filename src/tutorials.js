@@ -6,12 +6,44 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Map Over Keys and Values in JavaScript',
-    raw: './tutorials/fundamentals/kvmap.md',
-    url: '/tutorials/fundamentals/kvmap',
-    description: 'Placeholder Description',
+    title: 'Using `map()` on JavaScript Enums',
+    raw: './tutorials/fundamentals/enum-map.md',
+    url: '/tutorials/fundamentals/enum-map',
+    description: 'JavaScript doesn\'t support enum as a built-in type, but here\'s how you can use `map()` with userland enum objects.',
     tags: ['fundamentals'],
-    date: moment('2021-09-13')
+    date: moment('2021-09-28')
+  },
+  {
+    title: 'How to Print An Enum\'s Properties in JavaScript',
+    raw: './tutorials/fundamentals/enumtostring.md',
+    url: '/tutorials/fundamentals/enum-to-string',
+    description: 'JavaScript doesn\'t support enums, but here\'s how you can print out an enum object\'s properties.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-22')
+  },
+  {
+    title: 'How to Reverse a String in JavaScript',
+    raw: './tutorials/fundamentals/reversestring.md',
+    url: '/tutorials/fundamentals/reverse-string',
+    description: 'Need to reverse a string in JavaScript? Here\'s 3 different ways to reverse strings.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-21')
+  },
+  {
+    title: 'How to Uppercase Strings in JavaScript',
+    raw: './tutorials/fundamentals/uppercase.md',
+    url: '/tutorials/fundamentals/uppercase',
+    description: 'Here\'s how you can convert a string to uppercase in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-17')
+  },
+  {
+    title: 'Convert HTML to Pug',
+    raw: './tutorials/node/html2pug.md',
+    url: '/tutorials/node/html-to-pug',
+    description: 'Convert HTML to Pug in your browser, with syntax highlighting!',
+    tags: ['node'],
+    date: moment('2021-09-15')
   },
   {
     title: 'The Vue Button `click` Event',
