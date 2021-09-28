@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using `map()` on JavaScript Enums',
+    raw: './tutorials/fundamentals/enum-map.md',
+    url: '/tutorials/fundamentals/enum-map',
+    description: 'JavaScript doesn\'t support enum as a built-in type, but here\'s how you can use `map()` with userland enum objects.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-28')
+  },
+  {
     title: 'How to Print An Enum\'s Properties in JavaScript',
     raw: './tutorials/fundamentals/enumtostring.md',
     url: '/tutorials/fundamentals/enum-to-string',
