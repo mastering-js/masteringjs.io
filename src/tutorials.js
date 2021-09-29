@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Compare Dates Without Time in JavaScript',
+    raw: './tutorials/fundamentals/compare-without-time.md',
+    url: '/tutorials/fundamentals/compare-without-time',
+    description: 'Here\'s how you can compare whether two JavaScript dates are on the same day, ignoring time.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-29')
+  },
+  {
     title: 'Using `map()` on JavaScript Enums',
     raw: './tutorials/fundamentals/enum-map.md',
     url: '/tutorials/fundamentals/enum-map',
