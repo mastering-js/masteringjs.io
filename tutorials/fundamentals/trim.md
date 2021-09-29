@@ -6,15 +6,9 @@ To trim leading and trailing characters from a string in JavaScript, you should 
 
 ```javascript
 let example = 'aaaaaaaaaaaaaaaaaaaaBBBaaaaaaaaaaaaaaaaaaaa';
-example.replace(/^a+/, 'f').replace(/a+$/, 'g'); // BBB
+example.replace(/^a+/, '').replace(/a+$/, ''); // BBB
 ```
 
-You could also do this using a single `replace()` function if you wanted the same character before and after the middle part.
-
-```javascript
-let example = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBBBaaaaaaaaaaaaaaaaaaaaaa';
-example.replace(/a+/,''); // BBB
-```
 
 ## Trim Multiple Characters
 
