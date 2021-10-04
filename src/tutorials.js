@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Sort Dates in JavaScript',
+    raw: './tutorials/fundamentals/date-sort.md',
+    url: '/tutorials/fundamentals/date-sort',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-10-04')
+  },
+  {
     title: 'How to Compare Dates Without Time in JavaScript',
     raw: './tutorials/fundamentals/compare-without-time.md',
     url: '/tutorials/fundamentals/compare-without-time',
