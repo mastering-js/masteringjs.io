@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use JavaScript\'s Promise.allSettled() Function',
+    raw: './tutorials/fundamentals/allsettled.md',
+    url: '/tutorials/fundamentals/allsettled',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-10-04')
+  },
+  {
     title: 'How to Compare Dates Without Time in JavaScript',
     raw: './tutorials/fundamentals/compare-without-time.md',
     url: '/tutorials/fundamentals/compare-without-time',
