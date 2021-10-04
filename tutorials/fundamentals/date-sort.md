@@ -1,5 +1,5 @@
-To sort an array of dates, you can subtract the timestamps as the result will be the difference in milliseconds. To do so,
-use the `getTime()` function which returns the time in milliseconds.
+To sort an array of dates, you can subtract the timestamps as the result will be the difference in milliseconds.
+To do so, use the `getTime()` function which returns the time in milliseconds.
 
 ```javascript
 const dates = [
@@ -25,8 +25,8 @@ Mon Oct 04 2021 11:10:10 GMT-0400 (Eastern Daylight Time)"
 ## Sort Without The Time
 
 You could also sort without using the timestamps. First you must convert the dates to a string by using the `toJSON()` function.
-Then you may call the `sort()` function and convert the entries to a date string using `toDateString()`. `toJSON()` converts the dates
-into a year-month-day-time format, making it so the sorting algorithm sorts how you intended versus how it would have otherwise.
+Then you may call the `sort()` function and convert the entries to a date string using `toDateString()`.
+`toJSON()` converts the dates into a year-month-day-time format, making it so the sorting algorithm sorts how you intended versus how it would have otherwise.
 
 ```javascript
 const dates = [
