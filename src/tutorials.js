@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Trim Characters from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim.md',
+    url: '/tutorials/fundamentals/trim',
+    description: 'Need to trim leading or trailing characters from a string in JavaScript? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-06')
+  },
+  {
     title: 'How to Compare Dates Without Time in JavaScript',
     raw: './tutorials/fundamentals/compare-without-time.md',
     url: '/tutorials/fundamentals/compare-without-time',
