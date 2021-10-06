@@ -1,8 +1,30 @@
-To trim leading and trailing characters from a string in JavaScript, you should use the `replace()` function.
-`trim()` is only useful for removing whitespace characters which is why you should use `replace()`.
+To trim leading and trailing whitespace from a string in JavaScript, you should use the [`String.prototype.trim()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim).
+The `trim()` method removes leading and trailing whitespace characters, including tabs and newlines.
+
+```javascript
+'\t  Hello, World\t   \n\n'.trim(); // 'Hello, World'
+```
+
+The `trim()` method is especially useful with template strings, because template strings end up with leading and trailing newlines if you put ` on a separate line.
+
+```javascript
+const code = `
+console.log('Hello, World!);
+`;
+
+code; // "\nconsole.log('Hello, World!);\n"
+code.trim(); // "console.log('Hello, World!)"
+```
+
+### Trim Arbitrary Characters
+
+To trim arbitrary characters, you should use the `replace()` function.
 `replace()` takes two arguments:
+
 - a regular expression denoting what to take out
 - a string denoting what to put in
+
+By using `^` (start of string) and `$` (end of string), you can create two `replace()` calls that replace leading and trailing instances of a character as shown below.
 
 ```javascript
 let example = 'aaaaaaaaaaaaaaaaaaaaBBBaaaaaaaaaaaaaaaaaaaa';
