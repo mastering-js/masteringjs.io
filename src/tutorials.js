@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using Query String Parameters in Mongoose',
+    raw: './tutorials/mongoose/query-string.md',
+    url: '/tutorials/mongoose/query-string',
+    description: 'Need to run a query in Mongoose using query string parameters? Here\'s what you need to know 👉',
+    tags: ['mongoose'],
+    date: moment('2021-10-08')
+  },
+  {
     title: 'How to Trim Characters from a String in JavaScript',
     raw: './tutorials/fundamentals/trim.md',
     url: '/tutorials/fundamentals/trim',
