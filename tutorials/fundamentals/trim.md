@@ -41,3 +41,18 @@ let example = '1234567890 Mastering JS 1234567890';
 example.replace(/^[0-9]+/, '').replace(/[0-9]+$/, ''); // Mastering JS
 example.replace(/[0-9]+/, ''); // Mastering JS
 ```
+
+## `trimStart()` and `trimEnd()`
+
+JavaScript strings also have [`trimStart()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart) and [`trimEnd()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd) methods.
+The `trimStart()` function removes all leading whitespace, and `trimEnd()` removes all trailing whitespace.
+In other words, `str.trimStart().trimEnd()` is equivalent to `str.trim()`.
+
+```javascript
+[require:Fundamentals trim trimStart and trimEnd$]
+```
+
+Keep in mind that `trimStart()` and `trimEnd()` are relatively new additions to JavaScript, introduced in ES2019.
+They are not supported in Node.js before v10.x, and they are not supported in any version of
+Internet Explorer.
+While they are safe to use in Node.js, you may want to add a polyfill for browser apps if you need to support IE.
