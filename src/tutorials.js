@@ -9,9 +9,41 @@ const tutorials = [
     title: 'How to Use Mongoose\'s findOneAndUpdate Function',
     raw: './tutorials/mongoose/findoneandupdate.md',
     url: '/tutorials/mongoose/findoneandupdate',
-    description: 'Placeholder Description',
+    description: 'Here\'s what you need to know about `findOneAndUpdate()` in Mongoose.',
     tags: ['mongoose'],
-    date: moment('2021-09-27')
+    date: moment('2021-10-17')
+  },
+  {
+    title: 'Using Query String Parameters in Mongoose',
+    raw: './tutorials/mongoose/query-string.md',
+    url: '/tutorials/mongoose/query-string',
+    description: 'Need to run a query in Mongoose using query string parameters? Here\'s what you need to know 👉',
+    tags: ['mongoose'],
+    date: moment('2021-10-08')
+  },
+  {
+    title: 'How to Trim Characters from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim.md',
+    url: '/tutorials/fundamentals/trim',
+    description: 'Need to trim leading or trailing characters from a string in JavaScript? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-06')
+  },
+  {
+    title: 'How to Compare Dates Without Time in JavaScript',
+    raw: './tutorials/fundamentals/compare-without-time.md',
+    url: '/tutorials/fundamentals/compare-without-time',
+    description: 'Here\'s how you can compare whether two JavaScript dates are on the same day, ignoring time.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-29')
+  },
+  {
+    title: 'Using `map()` on JavaScript Enums',
+    raw: './tutorials/fundamentals/enum-map.md',
+    url: '/tutorials/fundamentals/enum-map',
+    description: 'JavaScript doesn\'t support enum as a built-in type, but here\'s how you can use `map()` with userland enum objects.',
+    tags: ['fundamentals'],
+    date: moment('2021-09-28')
   },
   {
     title: 'How to Print An Enum\'s Properties in JavaScript',
