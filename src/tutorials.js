@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Mongoose\'s findOneAndUpdate Function',
+    raw: './tutorials/mongoose/findoneandupdate.md',
+    url: '/tutorials/mongoose/findoneandupdate',
+    description: 'Here\'s what you need to know about `findOneAndUpdate()` in Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2021-10-17')
+  },
+  {
     title: 'Using Query String Parameters in Mongoose',
     raw: './tutorials/mongoose/query-string.md',
     url: '/tutorials/mongoose/query-string',
