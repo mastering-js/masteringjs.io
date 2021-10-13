@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Defining Plugins with Webpack',
+    raw: './tutorials/webpack/plugin.md',
+    url: '/tutorials/webpack/plugin',
+    description: 'Placeholder Description',
+    tags: ['webpack'],
+    date: moment('2021-10-13')
+  },
+  {
     title: 'How to Use Mongoose\'s findOneAndUpdate Function',
     raw: './tutorials/mongoose/findoneandupdate.md',
     url: '/tutorials/mongoose/findoneandupdate',
