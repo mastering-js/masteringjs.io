@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Make Mongoose\'s findOneAndUpdate() Return the Updated Document',
+    raw: './tutorials/mongoose/findoneandupdate-return-updated.md',
+    url: '/tutorials/mongoose/findoneandupdate-return-updated',
+    description: 'By default, Mongoose\'s `findOneAndUpdate()` function returns the document as it was before the update was applied. Here\'s how you can change that 👉',
+    tags: ['mongoose'],
+    date: moment('2021-10-18')
+  },
+  {
     title: 'How to Use Mongoose\'s findOneAndUpdate Function',
     raw: './tutorials/mongoose/findoneandupdate.md',
     url: '/tutorials/mongoose/findoneandupdate',
