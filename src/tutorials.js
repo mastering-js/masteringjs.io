@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Vue Router\'s <router-view> Component',
+    raw: './tutorials/vue/router-view.md',
+    url: '/tutorials/vue/router-view',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2021-10-13')
+  },
+  {
     title: 'How to Use Mongoose\'s findOneAndUpdate Function',
     raw: './tutorials/mongoose/findoneandupdate.md',
     url: '/tutorials/mongoose/findoneandupdate',
