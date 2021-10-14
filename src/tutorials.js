@@ -6,12 +6,20 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Sort an Array by Date in JavaScript',
+    raw: './tutorials/fundamentals/sort-by-date.md',
+    url: '/tutorials/fundamentals/sort-by-date',
+    description: 'Need to sort an array of JavaScript dates, or an array of JavaScript objects by a date property? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-14')
+  },
+  {
     title: 'Make Mongoose\'s findOneAndUpdate() Return the Updated Document',
     raw: './tutorials/mongoose/findoneandupdate-return-updated.md',
     url: '/tutorials/mongoose/findoneandupdate-return-updated',
     description: 'By default, Mongoose\'s `findOneAndUpdate()` function returns the document as it was before the update was applied. Here\'s how you can change that 👉',
     tags: ['mongoose'],
-    date: moment('2021-10-18')
+    date: moment('2021-10-13')
   },
   {
     title: 'How to Use Mongoose\'s findOneAndUpdate Function',
@@ -19,7 +27,7 @@ const tutorials = [
     url: '/tutorials/mongoose/findoneandupdate',
     description: 'Here\'s what you need to know about `findOneAndUpdate()` in Mongoose.',
     tags: ['mongoose'],
-    date: moment('2021-10-17')
+    date: moment('2021-10-12')
   },
   {
     title: 'Using Query String Parameters in Mongoose',
