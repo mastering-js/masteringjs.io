@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The deleteMany() Function in Mongoose',
+    raw: './tutorials/mongoose/deleteMany.md',
+    url: '/tutorials/mongoose/deletemany',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2021-10-18')
+  },
+  {
     title: 'How to Sort an Array by Date in JavaScript',
     raw: './tutorials/fundamentals/sort-by-date.md',
     url: '/tutorials/fundamentals/sort-by-date',
