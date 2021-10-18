@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Mongoose\'s updateMany() function',
+    raw: './tutorials/mongoose/updateMany.md',
+    url: '/tutorials/mongoose/updatemany',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2021-10-18')
+  },
+  {
     title: 'How to Sort an Array by Date in JavaScript',
     raw: './tutorials/fundamentals/sort-by-date.md',
     url: '/tutorials/fundamentals/sort-by-date',
