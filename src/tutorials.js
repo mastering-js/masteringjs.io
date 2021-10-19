@@ -6,12 +6,52 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Use JavaScript\'s Promise.allSettled() Function',
-    raw: './tutorials/fundamentals/allsettled.md',
-    url: '/tutorials/fundamentals/allsettled',
-    description: 'Placeholder Description',
+    title: 'How to Use JavaScript\'s `Promise.allSettled()` Function',
+    raw: './tutorials/fundamentals/promise-allsettled.md',
+    url: '/tutorials/fundamentals/promise-allsettled',
+    description: 'JavaScript\'s `Promise.allSettled()` function is like `Promise.all()`, but with a few key differences. Here\'s what you need to know.',
     tags: ['fundamentals'],
-    date: moment('2021-10-04')
+    date: moment('2021-10-19')
+  },
+  {
+    title: 'How to Sort an Array by Date in JavaScript',
+    raw: './tutorials/fundamentals/sort-by-date.md',
+    url: '/tutorials/fundamentals/sort-by-date',
+    description: 'Need to sort an array of JavaScript dates, or an array of JavaScript objects by a date property? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-14')
+  },
+  {
+    title: 'Make Mongoose\'s findOneAndUpdate() Return the Updated Document',
+    raw: './tutorials/mongoose/findoneandupdate-return-updated.md',
+    url: '/tutorials/mongoose/findoneandupdate-return-updated',
+    description: 'By default, Mongoose\'s `findOneAndUpdate()` function returns the document as it was before the update was applied. Here\'s how you can change that 👉',
+    tags: ['mongoose'],
+    date: moment('2021-10-13')
+  },
+  {
+    title: 'How to Use Mongoose\'s findOneAndUpdate Function',
+    raw: './tutorials/mongoose/findoneandupdate.md',
+    url: '/tutorials/mongoose/findoneandupdate',
+    description: 'Here\'s what you need to know about `findOneAndUpdate()` in Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2021-10-12')
+  },
+  {
+    title: 'Using Query String Parameters in Mongoose',
+    raw: './tutorials/mongoose/query-string.md',
+    url: '/tutorials/mongoose/query-string',
+    description: 'Need to run a query in Mongoose using query string parameters? Here\'s what you need to know 👉',
+    tags: ['mongoose'],
+    date: moment('2021-10-08')
+  },
+  {
+    title: 'How to Trim Characters from a String in JavaScript',
+    raw: './tutorials/fundamentals/trim.md',
+    url: '/tutorials/fundamentals/trim',
+    description: 'Need to trim leading or trailing characters from a string in JavaScript? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-06')
   },
   {
     title: 'How to Compare Dates Without Time in JavaScript',

@@ -1,7 +1,5 @@
-[Mongoose's `findOneAndUpdate()` function](https://mongoosejs.com/docs/tutorials/findoneandupdate.html) finds the first document that matches a given `filter`, applies an `update`, and returns the document. Unlike `updateOne()`, `findOneAndUpdate()`
-returns the updated document. Unlike `save()`,
-`findOneAndUpdate()` is atomic: the document can't
-change between when MongoDB finds the document and when MongoDB applies the update.
+[Mongoose's `findOneAndUpdate()` function](https://mongoosejs.com/docs/tutorials/findoneandupdate.html) finds the first document that matches a given `filter`, applies an `update`, and returns the document. Unlike `updateOne()`, `findOneAndUpdate()` returns the updated document.
+Unlike `save()`, `findOneAndUpdate()` is atomic: the document can't change between when MongoDB finds the document and when MongoDB applies the update.
 
 Getting Started
 ---------------
