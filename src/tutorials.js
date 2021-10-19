@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use JavaScript\'s `Promise.allSettled()` Function',
+    raw: './tutorials/fundamentals/promise-allsettled.md',
+    url: '/tutorials/fundamentals/promise-allsettled',
+    description: 'JavaScript\'s `Promise.allSettled()` function is like `Promise.all()`, but with a few key differences. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-10-19')
+  },
+  {
     title: 'How to Sort an Array by Date in JavaScript',
     raw: './tutorials/fundamentals/sort-by-date.md',
     url: '/tutorials/fundamentals/sort-by-date',
