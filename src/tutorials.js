@@ -6,11 +6,35 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Use Vue Router\'s <router-view> Component',
+    title: 'How to Use Vue Router\'s router-view Component',
     raw: './tutorials/vue/router-view.md',
     url: '/tutorials/vue/router-view',
     description: 'Placeholder Description',
     tags: ['vue'],
+    date: moment('2021-10-20')
+  },
+  {
+    title: 'How to Use JavaScript\'s `Promise.allSettled()` Function',
+    raw: './tutorials/fundamentals/promise-allsettled.md',
+    url: '/tutorials/fundamentals/promise-allsettled',
+    description: 'JavaScript\'s `Promise.allSettled()` function is like `Promise.all()`, but with a few key differences. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-10-19')
+  },
+  {
+    title: 'How to Sort an Array by Date in JavaScript',
+    raw: './tutorials/fundamentals/sort-by-date.md',
+    url: '/tutorials/fundamentals/sort-by-date',
+    description: 'Need to sort an array of JavaScript dates, or an array of JavaScript objects by a date property? Here\'s how 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-10-14')
+  },
+  {
+    title: 'Make Mongoose\'s findOneAndUpdate() Return the Updated Document',
+    raw: './tutorials/mongoose/findoneandupdate-return-updated.md',
+    url: '/tutorials/mongoose/findoneandupdate-return-updated',
+    description: 'By default, Mongoose\'s `findOneAndUpdate()` function returns the document as it was before the update was applied. Here\'s how you can change that 👉',
+    tags: ['mongoose'],
     date: moment('2021-10-13')
   },
   {
@@ -19,7 +43,7 @@ const tutorials = [
     url: '/tutorials/mongoose/findoneandupdate',
     description: 'Here\'s what you need to know about `findOneAndUpdate()` in Mongoose.',
     tags: ['mongoose'],
-    date: moment('2021-10-17')
+    date: moment('2021-10-12')
   },
   {
     title: 'Using Query String Parameters in Mongoose',
