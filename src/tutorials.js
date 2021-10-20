@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Vue Router\'s router-view Component',
+    raw: './tutorials/vue/router-view.md',
+    url: '/tutorials/vue/router-view',
+    description: 'Here\'s what you need to know about router-view in Vue Router.',
+    tags: ['vue'],
+    date: moment('2021-10-20')
+  },
+  {
     title: 'How to Use JavaScript\'s `Promise.allSettled()` Function',
     raw: './tutorials/fundamentals/promise-allsettled.md',
     url: '/tutorials/fundamentals/promise-allsettled',
