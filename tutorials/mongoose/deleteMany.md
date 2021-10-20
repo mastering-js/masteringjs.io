@@ -1,9 +1,9 @@
-If you wish to delete several documents in mongoose, use the `deleteMany()` function.
-It takes up to three parameters:
-- **condition**, what a document should contain to be eligible for deletion.
+The `deleteMany()` function is how you can delete multiple documents from a collection using Mongoose.
+It takes up to two parameters:
+1. **condition**, what a document should contain to be eligible for deletion.
 You can omit this property to delete all documents in the model.
-- **options**, how to modify the deletion process.
-- **A callback function(err,res)**, use this if you are not using `async/await`.
+2. **options**, how to modify the deletion process.
+
 
 ```javascript
 const testSchema = new mongoose.Schema({
