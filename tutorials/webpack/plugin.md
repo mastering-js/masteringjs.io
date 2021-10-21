@@ -4,23 +4,15 @@ A common use case is using it to define environment variables when you cannot us
 ```javascript
 'use strict';
 
-require('dotenv').config();
-
-const fs = require('fs');
 const webpack = require('webpack');
 
 const compiler = webpack({
-  mode: 'development',
   entry: {
     app: `${__dirname}/src/main.js`
   },
-  target: 'web',
   output: {
     path: `${__dirname}/public`,
     filename: 'bundle.js'
-  },
-  optimization: {
-    minimize: false
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -33,20 +25,26 @@ const compiler = webpack({
 ```javascript
 // test.js
 
-const key = __Key;
+const key = __KEY;
 ```
 
 ## Switching Environments
 
 Another useful trick is using `DefinePlugin()` to switch between development and production server URLs.
+Simply flip the boolean whenever you want to switch.
 
 ```javascript
 new Webpack.DefinePlugin({
-  URL: webpack.DefinePlugin.runtimeValue('localhost:3000', {
-    missingDependencies: ['production.js']
-  }),
-  URL: webpack.DefinePlugin.runtimeValue('https://www.website.com', {
-    missingDependencies: ['test.js']
-  })
+  DEVELOPMENT: JSON.stringify(true);
+  DEVELOPMENT_URL: JSON.stringify('localhost:3000');
+  PRODUCTION_URL: JSON.stringigy('https://masteringjs.io');
 });
+```
+
+```javascript
+if (DEVELOPMENT) {
+  const url = DEVELOPMENT_URL
+} else {
+  const url = PRODUCTION_URL
+}
 ```
