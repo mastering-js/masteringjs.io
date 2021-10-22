@@ -1,5 +1,5 @@
 If you want to update several documents with one command in Mongoose, you should use the `updateMany()` function.
-It takes up to four parameters:
+It takes up to three parameters:
 
 1. **filter**, what documents it should find that match the filter.
 You can omit this parameter if you want to update all the documents in the model.
