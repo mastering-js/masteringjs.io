@@ -2,7 +2,7 @@ The `deleteMany()` function is how you can delete multiple documents from a coll
 It takes up to two parameters:
 1. **condition**, what a document should contain to be eligible for deletion.
 You can omit this property to delete all documents in the model.
-2. **options**, how to modify the deletion process.
+2. **options**, other configurable parameters, like `session` or `writeConcern`.
 
 
 ```javascript
