@@ -5,6 +5,7 @@ A common use case is using it to define environment variables when you cannot us
 'use strict';
 
 const webpack = require('webpack');
+require('dotenv').config();
 
 const compiler = webpack({
   entry: {
@@ -22,10 +23,39 @@ const compiler = webpack({
 });
 ```
 
-```javascript
-// test.js
+Before compile: 
 
+```javascript
 const key = __KEY;
+export default (text = "Hello, Webpack!") => {
+    const element = document.createElement("h1");
+  
+    element.innerHTML = text + key;
+  
+    return element;
+};
+```
+
+After compile: 
+
+```javascript
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+;// CONCATENATED MODULE: ./src/component.js
+const key = '123456788901234134fagafga134134adf';
+/* harmony default export */ const component = ((text = "Hello, Webpack!") => {
+    const element = document.createElement("h1");
+  
+    element.innerHTML = text + key;
+  
+    return element;
+  });
+;
+
+/******/ })()
+;
 ```
 
 
