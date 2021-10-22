@@ -28,6 +28,8 @@ const compiler = webpack({
 const key = __KEY;
 ```
 
+
+
 ## Switching Environments
 
 Another useful trick is using `DefinePlugin()` to switch between development and production server URLs.
@@ -35,16 +37,14 @@ Simply flip the boolean whenever you want to switch.
 
 ```javascript
 new Webpack.DefinePlugin({
-  DEVELOPMENT: JSON.stringify(true);
-  DEVELOPMENT_URL: JSON.stringify('localhost:3000');
-  PRODUCTION_URL: JSON.stringigy('https://masteringjs.io');
+  URL: webpack.DefinePlugin.runtimeValue(function(module, key, version) {
+    if(process.env.NODE_ENV === 'development') {
+      return 'localhost:3000';
+    }
+    if(process.env.NODE_ENV === 'production') {
+      return 'https://www.masteringjs.io';
+    }
+  }, true);
 });
 ```
 
-```javascript
-if (DEVELOPMENT) {
-  const url = DEVELOPMENT_URL
-} else {
-  const url = PRODUCTION_URL
-}
-```
