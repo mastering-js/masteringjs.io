@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Defining Plugins with Webpack',
+    raw: './tutorials/webpack/define-plugin.md',
+    url: '/tutorials/webpack/define-plugin',
+    description: 'All about Webpack\'s `definePlugin()` function: how it works, and when to use it.',
+    tags: ['webpack'],
+    date: moment('2021-10-29')
+  },
+  {
     title: 'How to Use Vue Router\'s router-view Component',
     raw: './tutorials/vue/router-view.md',
     url: '/tutorials/vue/router-view',
