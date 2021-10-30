@@ -27,10 +27,10 @@ const app = new Vue({
         <div class="col-4">
           <div class="stat">
             <div class="stat-header">
-              Views (last 30 days)
+              Clicks (last 30 days)
             </div>
             <div class="tooltip">
-              Views are the number of times someone viewed the description of your job posting.
+              Clicks are the number of times someone viewed the description of your job posting.
               This means they clicked through on a Mastering JS job board ad to your job posting.
             </div>
             <div class="stat-data">
@@ -41,10 +41,10 @@ const app = new Vue({
         <div class="col-4">
           <div class="stat">
             <div class="stat-header">
-              Clicks (last 30 days)
+              Applications (last 30 days)
             </div>
             <div class="tooltip">
-              Clicks are the number of times someone clicked "apply" on your job posting and was
+              Applications are the number of times someone clicked "apply" on your job posting and was
               redirected to the <a :href="job.url">link you provided to apply for the role</a>.
             </div>
             <div class="stat-data">
@@ -76,12 +76,12 @@ Vue.component('line-chart', {
     this.renderChart({
       labels: this.jobDetails.numClicks.map(element => element.day),
       datasets: [{
-        label: 'Clicks/Day',
+        label: 'Applications/Day',
         backgroundColor: '#f87979',
         fill: false,
         data: this.jobDetails.numClicks.map(element => element.applyClicks)
       }, {
-        label: 'Views/Day',
+        label: 'Clicks/Day',
         fill: false,
         backgroundColor: '#4dc9f6',
         data: this.jobDetails.numViews.map(element => element.views)

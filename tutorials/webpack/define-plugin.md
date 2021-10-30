@@ -17,7 +17,7 @@ const compiler = webpack({
   },
   plugins: [
     new webpack.DefinePlugin({
-      __KEY: `'${process.env.KEY}'`
+      __KEY: `'${process.env.KEY}'` // Note that the raw string is wrapped in quotes
     })
   ]
 });
@@ -58,23 +58,15 @@ const key = '123456788901234134fagafga134134adf';
 ;
 ```
 
-
-
 ## Switching Environments
 
 Another useful trick is using `DefinePlugin()` to switch between development and production server URLs.
-Simply flip the boolean whenever you want to switch.
+For example, suppose you wanted to switch what server your frontend makes requests to depending on NODE_ENV.
+Here's how you can do that using `DefinePlugin()`:
 
 ```javascript
 new Webpack.DefinePlugin({
-  URL: webpack.DefinePlugin.runtimeValue(function(module, key, version) {
-    if(process.env.NODE_ENV === 'development') {
-      return 'localhost:3000';
-    }
-    if(process.env.NODE_ENV === 'production') {
-      return 'https://www.masteringjs.io';
-    }
-  }, true);
+  URL: process.env.NODE_ENV === 'development' ? `'http://localhost:3000'` : `'https://api.myapp.com'`;
 });
 ```
 
