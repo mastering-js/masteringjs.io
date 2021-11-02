@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Compare an Array of Numbers in JavaScript',
+    raw: './tutorials/fundamentals/compare-array-numbers.md',
+    url: '/tutorials/fundamentals/compare-array-numbers',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-10-02')
+  },
+  {
     title: 'Defining Plugins with Webpack',
     raw: './tutorials/webpack/define-plugin.md',
     url: '/tutorials/webpack/define-plugin',
