@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove the Last Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/remove-last-char.md',
+    url: '/tutorials/fundamentals/remove-last-char',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-02')
+  },
+  {
     title: 'Defining Plugins with Webpack',
     raw: './tutorials/webpack/define-plugin.md',
     url: '/tutorials/webpack/define-plugin',
