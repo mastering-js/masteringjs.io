@@ -9,9 +9,33 @@ const tutorials = [
     title: 'How to Use Mongoose\'s updateMany() function',
     raw: './tutorials/mongoose/updateMany.md',
     url: '/tutorials/mongoose/updatemany',
-    description: 'Placeholder Description',
+    description: 'Mongoose models have an `updateMany()` function that allows updating all documents that match a filter. Here\'s what you need to know.',
     tags: ['mongoose'],
-    date: moment('2021-10-18')
+    date: moment('2021-11-02')
+  },
+  {
+    title: 'Defining Plugins with Webpack',
+    raw: './tutorials/webpack/define-plugin.md',
+    url: '/tutorials/webpack/define-plugin',
+    description: 'All about Webpack\'s `definePlugin()` function: how it works, and when to use it.',
+    tags: ['webpack'],
+    date: moment('2021-10-29')
+  },
+  {
+    title: 'How to Use Vue Router\'s router-view Component',
+    raw: './tutorials/vue/router-view.md',
+    url: '/tutorials/vue/router-view',
+    description: 'Here\'s what you need to know about router-view in Vue Router.',
+    tags: ['vue'],
+    date: moment('2021-10-20')
+  },
+  {
+    title: 'How to Use JavaScript\'s `Promise.allSettled()` Function',
+    raw: './tutorials/fundamentals/promise-allsettled.md',
+    url: '/tutorials/fundamentals/promise-allsettled',
+    description: 'JavaScript\'s `Promise.allSettled()` function is like `Promise.all()`, but with a few key differences. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2021-10-19')
   },
   {
     title: 'How to Sort an Array by Date in JavaScript',
