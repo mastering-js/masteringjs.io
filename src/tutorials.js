@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Mongoose\'s updateMany() function',
+    raw: './tutorials/mongoose/updateMany.md',
+    url: '/tutorials/mongoose/updatemany',
+    description: 'Mongoose models have an `updateMany()` function that allows updating all documents that match a filter. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2021-11-02')
+  },
+  {
     title: 'Defining Plugins with Webpack',
     raw: './tutorials/webpack/define-plugin.md',
     url: '/tutorials/webpack/define-plugin',
