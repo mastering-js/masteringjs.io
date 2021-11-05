@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The deleteMany() Function in Mongoose',
+    raw: './tutorials/mongoose/deleteMany.md',
+    url: '/tutorials/mongoose/deletemany',
+    description: 'Mongoose models have an `deleteMany()` function that allows deleting all documents that match a filter. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2021-11-05')
+  },
+  {
     title: 'How to Use Mongoose\'s updateMany() Function',
     raw: './tutorials/mongoose/updateMany.md',
     url: '/tutorials/mongoose/updatemany',
