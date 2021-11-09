@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Delete By Id in Mongoose',
+    raw: './tutorials/mongoose/deleteById.md',
+    url: '/tutorials/mongoose/deleteById',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2021-11-09')
+  },
+  {
     title: 'The deleteMany() Function in Mongoose',
     raw: './tutorials/mongoose/deleteMany.md',
     url: '/tutorials/mongoose/deletemany',
