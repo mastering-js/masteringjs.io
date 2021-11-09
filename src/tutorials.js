@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check if a Property is Undefined in JavaScript',
+    raw: './tutorials/fundamentals/property-undefined.md',
+    url: '/tutorials/fundamentals/property-undefined',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-09')
+  },
+  {
     title: 'The deleteMany() Function in Mongoose',
     raw: './tutorials/mongoose/deleteMany.md',
     url: '/tutorials/mongoose/deletemany',
