@@ -1,8 +1,8 @@
-Intuitively, if you wanted to check if an object property was `undefined` you might do:
+To check if an object property `key` was equal to `undefined` you might do:
 
 ```javascript
-for(const key of obj) {
-    if(obj[key] === undefined) {}
+if(obj[key] === undefined) {
+    // ...
 }
 ```
 
@@ -19,22 +19,21 @@ const obj = {name: 'Masteringjs.io', location: 'Florida', helpful: true};
 
 'building' in obj; // false
 obj.hasOwnProperty('building'); // false
+obj.building === undefined; // true
 ```
 
 Combine these two sections to check if an object has a property and that property is `undefined`:
 
 ```javascript
-const obj = {name: 'Masteringjs.io', location: 'Florida', helpful: true};
-for(const key of obj) {
-    if(obj[key] === undefined && key in obj) {}
+function hasUndefinedKey(obj, key) {
+    return key in obj && obj[key] === undefined;
 }
 ```
 
 or
 
 ```javascript
-const obj = {name: 'Masteringjs.io', location: 'Florida', helpful: true};
-for(const key of obj) {
-    if(obj[key] === undefined && obj.hasOwnProperty(key)) {}
+function hasUndefinedKey(obj, key) {
+    return obj.hasOwnProperty(key) && obj[key] === undefined;
 }
 ```

@@ -8,7 +8,7 @@ const tutorials = [
   {
     title: 'How to Check if a Property is Undefined in JavaScript',
     raw: './tutorials/fundamentals/property-undefined.md',
-    url: '/tutorials/fundamentals/property-undefined',
+    url: '/tutorials/fundamentals/check-if-property-is-undefined',
     description: 'Placeholder Description',
     tags: ['fundamentals'],
     date: moment('2021-11-09')
