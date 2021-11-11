@@ -8,7 +8,7 @@ const tutorials = [
   {
     title: 'How to Delete By Id in Mongoose',
     raw: './tutorials/mongoose/deleteById.md',
-    url: '/tutorials/mongoose/deleteById',
+    url: '/tutorials/mongoose/delete-by-id',
     description: 'Placeholder Description',
     tags: ['mongoose'],
     date: moment('2021-11-09')
