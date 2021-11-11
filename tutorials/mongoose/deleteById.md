@@ -29,16 +29,17 @@ const testSchema = new mongoose.Schema({
     name: String
 });
 
-testSchema.methods.deleteById = function(cb) {
-    return mongoose.model('Test').deleteOne({_id: this._id}, cb);
-}
+testSchema.statics.deleteById = function(_id) {
+    return this.deleteOne({_id: _id})
+};
 
 const Test = mongoose.model('Test', testSchema);
 
 async function run() {
     const entry = await Test.create({ name: 'Masteringjs' });
-    entry.deleteById((err, obj) => {
-        console.log(obj);
-    });
+    await Test.countDocuments(); // 1
+    await Test.deleteById(entry._id);
+    await Test.countDocuments(); // 0
+    
 }
 ```
