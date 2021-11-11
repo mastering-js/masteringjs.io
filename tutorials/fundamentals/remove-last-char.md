@@ -1,6 +1,6 @@
 To remove the last charcter from a string in JavaScript, you should use the `slice()` method.
 It takes two arguments, what index to start and what index to end.
-`slice()` has negative indexing, which means that you could do `slice(0, -1)` and it would be equivalent to `slice(0, str.length - 1)`.
+`slice()` has negative indexing, which means that `slice(0, -1)` is equivalent to `slice(0, str.length - 1)`.
 
 ```javascript
 let str = 'Masteringjs.ioF';
@@ -11,7 +11,8 @@ str.slice(0, -1); // Masteringjs.io
 
 `slice()` is generally easier, however other methods available are `substring()` and `replace()`.
 `substring()` does not have negative indexing, so be sure to use `str.length - 1` when removing the last character from the string.
-`replace()` takes either a string or a regular expression as its `pattern` argument but if it is a string, it only replaces the first instance.
+`replace()` takes either a string or a regular expression as its `pattern` argument.
+Using `/.$/` as the regular expression argument matches the last character of the string, so `.replace(/.$/, '')` replaces the last character of the string with an empty string.
 
 ```javascript
 let str = 'Masteringjs.ioF';
@@ -21,7 +22,9 @@ str.replace(/.$/, ''); // Masteringjs.io
 
 ## Be More Precise
 
-With `replace()`, you can specify if the last character should be removed depening on what it is with a regular expression.
+With `replace()`, you can specify if the last character should be removed depending on what it is with a regular expression.
+For example, suppose you want to remove the last character only if the last character is a number.
+You can use `.replace(/\d$/, '')` as shown below.
 
 ```javascript
 // For a number, use \d$.
