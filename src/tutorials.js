@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove the Last Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/remove-last-char.md',
+    url: '/tutorials/fundamentals/remove-last-character',
+    description: 'Need to remove the last character from a string in JavaScript? Here\'s 3 ways 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-11-12')
+  },
+  {
     title: 'The deleteMany() Function in Mongoose',
     raw: './tutorials/mongoose/deleteMany.md',
     url: '/tutorials/mongoose/deletemany',
