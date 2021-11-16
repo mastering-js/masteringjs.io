@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Reverse an Array in JavaScript',
+    raw: './tutorials/fundamentals/reverse-array.md',
+    url: '/tutorials/fundamentals/reverse-array',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-16')
+  },
+  {
     title: 'How to Remove the Last Character from a String in JavaScript',
     raw: './tutorials/fundamentals/remove-last-char.md',
     url: '/tutorials/fundamentals/remove-last-character',
