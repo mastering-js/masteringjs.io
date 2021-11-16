@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
+    raw: './tutorials/fundamentals/parse-url.md',
+    url: '/tutorials/fundamentals/parse-url',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-16')
+  },
+  {
     title: 'How to Remove the Last Character from a String in JavaScript',
     raw: './tutorials/fundamentals/remove-last-char.md',
     url: '/tutorials/fundamentals/remove-last-character',
