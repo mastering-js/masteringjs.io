@@ -8,10 +8,34 @@ const tutorials = [
   {
     title: 'How to Compare an Array of Numbers in JavaScript',
     raw: './tutorials/fundamentals/compare-array-numbers.md',
-    url: '/tutorials/fundamentals/compare-array-numbers',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/compare-array-of-numbers',
+    description: 'Here\'s how you can compare 2 arrays of numbers in vanilla JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2021-10-02')
+    date: moment('2021-11-16')
+  },
+  {
+    title: 'How to Remove the Last Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/remove-last-char.md',
+    url: '/tutorials/fundamentals/remove-last-character',
+    description: 'Need to remove the last character from a string in JavaScript? Here\'s 3 ways 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-11-12')
+  },
+  {
+    title: 'The deleteMany() Function in Mongoose',
+    raw: './tutorials/mongoose/deleteMany.md',
+    url: '/tutorials/mongoose/deletemany',
+    description: 'Mongoose models have an `deleteMany()` function that allows deleting all documents that match a filter. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2021-11-05')
+  },
+  {
+    title: 'How to Use Mongoose\'s updateMany() Function',
+    raw: './tutorials/mongoose/updateMany.md',
+    url: '/tutorials/mongoose/updatemany',
+    description: 'Mongoose models have an `updateMany()` function that allows updating all documents that match a filter. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2021-11-02')
   },
   {
     title: 'Defining Plugins with Webpack',
