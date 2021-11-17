@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Compare an Array of Numbers in JavaScript',
+    raw: './tutorials/fundamentals/compare-array-numbers.md',
+    url: '/tutorials/fundamentals/compare-array-of-numbers',
+    description: 'Here\'s how you can compare 2 arrays of numbers in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-11-16')
+  },
+  {
     title: 'How to Remove the Last Character from a String in JavaScript',
     raw: './tutorials/fundamentals/remove-last-char.md',
     url: '/tutorials/fundamentals/remove-last-character',
