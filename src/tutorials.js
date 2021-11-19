@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Delete By Id in Mongoose',
+    raw: './tutorials/mongoose/deleteById.md',
+    url: '/tutorials/mongoose/delete-by-id',
+    description: 'Mongoose doesn\'t have a `deleteById()` function, but here\'s how you can delete an object by its _id 👉',
+    tags: ['mongoose'],
+    date: moment('2021-11-19')
+  },
+  {
     title: 'How to Compare an Array of Numbers in JavaScript',
     raw: './tutorials/fundamentals/compare-array-numbers.md',
     url: '/tutorials/fundamentals/compare-array-of-numbers',
