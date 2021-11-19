@@ -9,9 +9,25 @@ const tutorials = [
     title: 'How to Delete By Id in Mongoose',
     raw: './tutorials/mongoose/deleteById.md',
     url: '/tutorials/mongoose/delete-by-id',
-    description: 'Placeholder Description',
+    description: 'Mongoose doesn\'t have a `deleteById()` function, but here\'s how you can delete an object by its _id 👉',
     tags: ['mongoose'],
-    date: moment('2021-11-09')
+    date: moment('2021-11-19')
+  },
+  {
+    title: 'How to Compare an Array of Numbers in JavaScript',
+    raw: './tutorials/fundamentals/compare-array-numbers.md',
+    url: '/tutorials/fundamentals/compare-array-of-numbers',
+    description: 'Here\'s how you can compare 2 arrays of numbers in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-11-16')
+  },
+  {
+    title: 'How to Remove the Last Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/remove-last-char.md',
+    url: '/tutorials/fundamentals/remove-last-character',
+    description: 'Need to remove the last character from a string in JavaScript? Here\'s 3 ways 👉',
+    tags: ['fundamentals'],
+    date: moment('2021-11-12')
   },
   {
     title: 'The deleteMany() Function in Mongoose',
