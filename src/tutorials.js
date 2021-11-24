@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Format a JavaScript Date to YYYY MM DD',
+    raw: './tutorials/fundamentals/YMD.md',
+    url: '/tutorials/fundamentals/year-month-day',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-24')
+  },
+  {
     title: 'How to Delete By Id in Mongoose',
     raw: './tutorials/mongoose/deleteById.md',
     url: '/tutorials/mongoose/delete-by-id',
