@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Print an Array in JavaScript',
+    raw: './tutorials/fundamentals/array-toString.md',
+    url: '/tutorials/fundamentals/array-tostring',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-11-24')
+  },
+  {
     title: 'How to Delete By Id in Mongoose',
     raw: './tutorials/mongoose/deleteById.md',
     url: '/tutorials/mongoose/delete-by-id',
