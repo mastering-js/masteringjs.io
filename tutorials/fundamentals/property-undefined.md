@@ -1,7 +1,7 @@
 To check if an object property `key` was equal to `undefined` you can do:
 
 ```javascript
-if(obj[key] === undefined) {
+if (obj[key] === undefined) {
   // ...
 }
 ```
@@ -33,6 +33,6 @@ or
 
 ```javascript
 function hasUndefinedKey(obj, key) {
-    return obj.hasOwnProperty(key) && obj[key] === undefined;
+  return obj.hasOwnProperty(key) && obj[key] === undefined;
 }
 ```
