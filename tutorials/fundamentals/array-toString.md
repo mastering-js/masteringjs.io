@@ -9,7 +9,7 @@ array.toString(); // "1,2,3,4,5"
 
 ## Printing an Array in Node
 
-When using node.js, you must import the `util` module and use the `inspect()` function.
+When using node.js, you can import the `util` module and use the `inspect()` function.
 This function will print the raw array as a string as shown below:
 
 ```javascript
@@ -21,6 +21,28 @@ typeof inspect(array); // string
 
 ```
 
+When dealing with an array of objects, it prints the result in an easier to read format over `toString()`.
+
+```javascript
+const {inspect} = require('util')
+
+let obj = {a:1, b:2,c:3};
+let array = [];
+
+for (let i = 0; i < 5; i++) {
+    array.push(obj);
+}
+
+inspect(array);
+/*
+[ { a: 1, b: 2, c: 3 },
+  { a: 1, b: 2, c: 3 },
+  { a: 1, b: 2, c: 3 },
+  { a: 1, b: 2, c: 3 },
+  { a: 1, b: 2, c: 3 } ]
+  */
+```
+
 ## Printing an Array Using JSON.stringify()
 
 An alternative to using the `toString()` method is the `JSON.stringify()` method.
@@ -30,4 +52,21 @@ The difference is that it will print the raw array as a string whereas `toString
 const array = [1,2,3,4,5];
 
 JSON.stringify(array); // "[1,2,3,4,5]"
+```
+
+With longer arrays, you can take advantage of the other parameters of `JSON.stringify()` to make the result readable.
+
+```javascript
+const array = [1,2,3,4,5];
+
+JSON.stringify(array, null, ' ');
+/*
+[
+    1,
+    2,
+    3,
+    4,
+    5
+]
+*/
 ```
