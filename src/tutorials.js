@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'What Does app.use(express.json()) Do in Express',
+    raw: './tutorials/express/express-json.md',
+    url: '/tutorials/express/express-json',
+    description: 'Placeholder Description',
+    tags: ['express'],
+    date: moment('2021-11-30')
+  },
+  {
     title: 'How to Check if a Property is Undefined in JavaScript',
     raw: './tutorials/fundamentals/property-undefined.md',
     url: '/tutorials/fundamentals/check-if-property-is-undefined',
