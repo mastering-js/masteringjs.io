@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Reverse an Array in JavaScript',
+    raw: './tutorials/fundamentals/reverse-array.md',
+    url: '/tutorials/fundamentals/reverse-array',
+    description: 'Here\'s how you can reverse an array in JavaScript, both in-place and without mutating the original array.',
+    tags: ['fundamentals'],
+    date: moment('2021-11-30')
+  },
+  {
     title: 'How to Check if a Property is Undefined in JavaScript',
     raw: './tutorials/fundamentals/property-undefined.md',
     url: '/tutorials/fundamentals/check-if-property-is-undefined',
