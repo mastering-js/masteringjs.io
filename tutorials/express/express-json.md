@@ -1,6 +1,6 @@
 The [`app.use()`](/tutorials/express/app-use) function adds a new middleware to the app.
-Essentially, whenever a request hits your backend, the `app.use()` functions will trigger.
-For example, if you wanted to print HTTP method and the URL of every request, you would do the following:
+Essentially, whenever a request hits your backend, Express will execute the functions you passed to `app.use()` in order.
+For example, if you wanted to print the HTTP method and the URL of every request, you would do the following:
 
 ```javascript
 const app = require('express')();
@@ -29,7 +29,7 @@ const res = await axios.get('http://localhost:3000/test');
 ## Using express.json()
 
 `express.json()` is a built in middleware function in Express starting from v4.16.0.
-It parses incoming requests with JSON payloads.
+It parses incoming JSON requests and puts the parsed data in `req.body`.
 
 ```javascript
 const express = require('express');
@@ -55,4 +55,21 @@ app.use(express.json({ limit: 10 }));
 app.use(express.json({ limit: '10' }));
 ```
 
+```javascript
+const app = require('express')();
+app.use(express.json({ limit: 1 }));
+
+
+app.post('/limit-break', (req, res, next) => {
+  console.log(req.body);
+  res.send('ok');
+});
+
+// Test the above app using Axios
+const server = await app.listen(3000);
+
+const axios = require('axios');
+// Throws `PayloadTooLargeError: request entity to large
+const res = await axios.post('http://localhost:3000/limit-break', {name: 'Masteringjs', location: 'Flordia', helpful: true});
+```
 
