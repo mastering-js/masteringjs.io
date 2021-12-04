@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
+    raw: './tutorials/fundamentals/parse-url.md',
+    url: '/tutorials/fundamentals/parse-url',
+    description: 'Here\'s how you can parse a URL into components in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-03')
+  },
+  {
     title: 'How to Reverse an Array in JavaScript',
     raw: './tutorials/fundamentals/reverse-array.md',
     url: '/tutorials/fundamentals/reverse-array',
