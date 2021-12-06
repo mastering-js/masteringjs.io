@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
+    raw: './tutorials/fundamentals/regex-no-start.md',
+    url: '/tutorials/fundamentals/regex-no-start',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-12-06')
+  },
+  {
     title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
     raw: './tutorials/fundamentals/parse-url.md',
     url: '/tutorials/fundamentals/parse-url',
