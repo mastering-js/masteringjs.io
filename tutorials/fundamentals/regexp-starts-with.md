@@ -1,14 +1,15 @@
-To check if a string starts with a regular expression, use the `startsWith()` function.
-Regular expressions begin and end with a `/` but can have different characters in between, like `^`.
+To check the beginning of a string using a regular expression in JavaScript, use the `test()` function.
+The `test()` function will search the string and check whether it contains a match for the regular expression.
+A regular expression is enclosed by `/` character on each end.
 
 ```javascript
-let reg = '/ab+c/';
-reg.startsWith('/'); // true
+/^A/.test('A beautiful day for a walk, no?'); // true
 ```
 
-You can also specify the position to start checking for the regular expression to catch a regular expression in the middle of a string.
+You can also turn a string into a regular expression by using the `new RegExp()` constructor.
 
 ```javascript
-let mid = '/Today is a /ab+c/ day';
-mid.startsWith('/', 12); // true
+const string = '^Hello';
+regex = new RegExp(string);
+regex.test('Hello World'); // true
 ```
