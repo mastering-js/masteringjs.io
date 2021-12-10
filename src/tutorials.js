@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Format a JavaScript Date to YYYY MM DD',
+    raw: './tutorials/fundamentals/YMD.md',
+    url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
+    description: 'Looking to format a JavaScript date to YYYY-MM-DD? Here\'s two easy ways using vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-10')
+  },
+  {
     title: 'Array toString() in JavaScript',
     raw: './tutorials/fundamentals/array-toString.md',
     url: '/tutorials/fundamentals/array-tostring',
