@@ -8,8 +8,40 @@ const tutorials = [
   {
     title: 'Format a JavaScript Date to YYYY MM DD',
     raw: './tutorials/fundamentals/YMD.md',
-    url: '/tutorials/fundamentals/year-month-day',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
+    description: 'Looking to format a JavaScript date to YYYY-MM-DD? Here\'s two easy ways using vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-10')
+  },
+  {
+    title: 'Array toString() in JavaScript',
+    raw: './tutorials/fundamentals/array-toString.md',
+    url: '/tutorials/fundamentals/array-tostring',
+    description: 'Looking to convert an array to a string in JavaScript? Here\'s two ways.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-08')
+  },
+  {
+    title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
+    raw: './tutorials/fundamentals/parse-url.md',
+    url: '/tutorials/fundamentals/parse-url',
+    description: 'Here\'s how you can parse a URL into components in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-03')
+  },
+  {
+    title: 'How to Reverse an Array in JavaScript',
+    raw: './tutorials/fundamentals/reverse-array.md',
+    url: '/tutorials/fundamentals/reverse-array',
+    description: 'Here\'s how you can reverse an array in JavaScript, both in-place and without mutating the original array.',
+    tags: ['fundamentals'],
+    date: moment('2021-11-30')
+  },
+  {
+    title: 'How to Check if a Property is Undefined in JavaScript',
+    raw: './tutorials/fundamentals/property-undefined.md',
+    url: '/tutorials/fundamentals/check-if-property-is-undefined',
+    description: 'Checking if a property is undefined in JavaScript is easy, but has some nuances. Here\'s what you need to know 👉',
     tags: ['fundamentals'],
     date: moment('2021-11-24')
   },
