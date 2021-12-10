@@ -1,4 +1,4 @@
-To format a date to YYYYMMDD in JavaScript, you can use the `toLocaleDateString()` function in combination with the `split()`, `reverse()`, and `join()` functions.
+To [format a date](/tutorials/fundamentals/date_format) to YYYYMMDD in JavaScript, you can use the `toLocaleDateString()` function in combination with the `split()`, `reverse()`, and `join()` functions.
 The trick is that, in the UK, dates are formatted in DD/MM/YYYY format, with two digit month and day.
 So format the date using the `en-GB` locale to get two digit month and day, and then split, reverse, and join back together.
 
