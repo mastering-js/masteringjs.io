@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using the Sinon stub() Function',
+    raw: './tutorials/sinon/stub.md',
+    url: '/tutorials/sinon/stub',
+    description: 'Placeholder Description',
+    tags: ['sinon'],
+    date: moment('2021-12-14')
+  },
+  {
     title: 'Format a JavaScript Date to YYYY MM DD',
     raw: './tutorials/fundamentals/YMD.md',
     url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
