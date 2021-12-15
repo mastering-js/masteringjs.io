@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check What Arguments a Sinon Stub Was Called With',
+    raw: './tutorials/sinon/check-arguments.md',
+    url: '/tutorials/sinon/check-arguments',
+    description: 'Placeholder Description',
+    tags: ['sinon'],
+    date: moment('2021-12-15')
+  },
+  {
     title: 'Format a JavaScript Date to YYYY MM DD',
     raw: './tutorials/fundamentals/YMD.md',
     url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
