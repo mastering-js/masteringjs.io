@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'What Does `app.use(express.json())` Do in Express?',
+    raw: './tutorials/express/express-json.md',
+    url: '/tutorials/express/express-json',
+    description: 'Confused by `app.use(express.json())` in Express? Here\'s what you need to know.',
+    tags: ['express'],
+    date: moment('2021-12-20')
+  },
+  {
     title: 'Format a JavaScript Date to YYYY MM DD',
     raw: './tutorials/fundamentals/YMD.md',
     url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
