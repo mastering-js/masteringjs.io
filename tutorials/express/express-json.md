@@ -1,4 +1,4 @@
-The [`app.use()`](/tutorials/express/app-use) function adds a new middleware to the app.
+The [`app.use()`](/tutorials/express/app-use) function adds a new [middleware](/tutorials/express/middleware) to the app.
 Essentially, whenever a request hits your backend, Express will execute the functions you passed to `app.use()` in order.
 For example, if you wanted to print the HTTP method and the URL of every request, you would do the following:
 
@@ -21,8 +21,7 @@ const server = await app.listen(3000);
 
 const axios = require('axios');
 // Prints "get /test"
-const res = await axios.get('http://localhost:3000/test');
-
+await axios.get('http://localhost:3000/test');
 ```
 
 
@@ -38,10 +37,16 @@ const app = express();
 app.use(express.json());
 
 app.post('/test', function(req,res) {
-    // without express.json(), this is undefined.
-    console.log(`${req.body}`);
+  // Without `express.json()`, `req.body` is undefined.
+  console.log(`${req.body}`);
 });
 
+// Test the above app using Axios
+const server = await app.listen(3000);
+
+const axios = require('axios');
+// Prints "{ answer: 42 }"
+await axios.post('http://localhost:3000/test', { answer: 42 });
 ```
 
 ## Using the limit option in express.json()
@@ -51,14 +56,11 @@ Whether you input a string or a number, it will be interpreted as the maximum si
 
 ```javascript
 app.use(express.json({ limit: 10 }));
-// or
-app.use(express.json({ limit: '10' }));
 ```
 
 ```javascript
 const app = require('express')();
 app.use(express.json({ limit: 1 }));
-
 
 app.post('/limit-break', (req, res, next) => {
   console.log(req.body);
@@ -69,7 +71,11 @@ app.post('/limit-break', (req, res, next) => {
 const server = await app.listen(3000);
 
 const axios = require('axios');
-// Throws `PayloadTooLargeError: request entity to large
-const res = await axios.post('http://localhost:3000/limit-break', {name: 'Masteringjs', location: 'Flordia', helpful: true});
+// Throws `PayloadTooLargeError: request entity too large`
+const res = await axios.post('http://localhost:3000/limit-break', {
+  name: 'Mastering JS',
+  location: 'Florida',
+  helpful: true
+});
 ```
 

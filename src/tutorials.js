@@ -6,11 +6,43 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'What Does app.use(express.json()) Do in Express',
+    title: 'What Does `app.use(express.json())` Do in Express?',
     raw: './tutorials/express/express-json.md',
     url: '/tutorials/express/express-json',
-    description: 'Placeholder Description',
+    description: 'Confused by `app.use(express.json())` in Express? Here\'s what you need to know.',
     tags: ['express'],
+    date: moment('2021-12-20')
+  },
+  {
+    title: 'Format a JavaScript Date to YYYY MM DD',
+    raw: './tutorials/fundamentals/YMD.md',
+    url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
+    description: 'Looking to format a JavaScript date to YYYY-MM-DD? Here\'s two easy ways using vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-10')
+  },
+  {
+    title: 'Array toString() in JavaScript',
+    raw: './tutorials/fundamentals/array-toString.md',
+    url: '/tutorials/fundamentals/array-tostring',
+    description: 'Looking to convert an array to a string in JavaScript? Here\'s two ways.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-08')
+  },
+  {
+    title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
+    raw: './tutorials/fundamentals/parse-url.md',
+    url: '/tutorials/fundamentals/parse-url',
+    description: 'Here\'s how you can parse a URL into components in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-03')
+  },
+  {
+    title: 'How to Reverse an Array in JavaScript',
+    raw: './tutorials/fundamentals/reverse-array.md',
+    url: '/tutorials/fundamentals/reverse-array',
+    description: 'Here\'s how you can reverse an array in JavaScript, both in-place and without mutating the original array.',
+    tags: ['fundamentals'],
     date: moment('2021-11-30')
   },
   {
