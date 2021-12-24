@@ -6,12 +6,36 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Check Whether a String Starts with a Regex in JavaScript',
+    title: 'Check Whether a String Starts with a Regexp in JavaScript',
     raw: './tutorials/fundamentals/regexp-starts-with.md',
     url: '/tutorials/fundamentals/regexp-starts-with',
     description: 'Placeholder Description',
     tags: ['fundamentals'],
     date: moment('2021-12-06')
+  },
+  {
+    title: 'What Does `app.use(express.json())` Do in Express?',
+    raw: './tutorials/express/express-json.md',
+    url: '/tutorials/express/express-json',
+    description: 'Confused by `app.use(express.json())` in Express? Here\'s what you need to know.',
+    tags: ['express'],
+    date: moment('2021-12-20')
+  },
+  {
+    title: 'Format a JavaScript Date to YYYY MM DD',
+    raw: './tutorials/fundamentals/YMD.md',
+    url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
+    description: 'Looking to format a JavaScript date to YYYY-MM-DD? Here\'s two easy ways using vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-10')
+  },
+  {
+    title: 'Array toString() in JavaScript',
+    raw: './tutorials/fundamentals/array-toString.md',
+    url: '/tutorials/fundamentals/array-tostring',
+    description: 'Looking to convert an array to a string in JavaScript? Here\'s two ways.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-08')
   },
   {
     title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
