@@ -9,9 +9,9 @@ const tutorials = [
     title: 'Check Whether a String Starts with a Regexp in JavaScript',
     raw: './tutorials/fundamentals/regexp-starts-with.md',
     url: '/tutorials/fundamentals/regexp-starts-with',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use the RegExp `test()` function to test whether a string starts with a regular expression.',
     tags: ['fundamentals'],
-    date: moment('2021-12-06')
+    date: moment('2021-12-24')
   },
   {
     title: 'What Does `app.use(express.json())` Do in Express?',
