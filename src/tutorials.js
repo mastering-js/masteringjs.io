@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check Whether a String Starts with a Regexp in JavaScript',
+    raw: './tutorials/fundamentals/regexp-starts-with.md',
+    url: '/tutorials/fundamentals/regexp-starts-with',
+    description: 'Here\'s how you can use the RegExp `test()` function to test whether a string starts with a regular expression.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-24')
+  },
+  {
     title: 'What Does `app.use(express.json())` Do in Express?',
     raw: './tutorials/express/express-json.md',
     url: '/tutorials/express/express-json',
