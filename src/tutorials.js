@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
+    raw: './tutorials/fundamentals/regex-no-start.md',
+    url: '/tutorials/fundamentals/regex-not-starting-with',
+    description: 'Here\'s how you can check whether a string does *not* start with a given regular expression in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-29')
+  },
+  {
     title: 'Check Whether a String Starts with a Regexp in JavaScript',
     raw: './tutorials/fundamentals/regexp-starts-with.md',
     url: '/tutorials/fundamentals/regexp-starts-with',
