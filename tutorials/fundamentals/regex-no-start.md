@@ -7,7 +7,9 @@ function doesNotStartWithA(str) {
 }
 ```
 
-Another approach is to use `[^A]` which means 'match any character other than A'.
+Another approach is to use `[^A]`.
+`[]` denotes a set of characters to match, and `^` at the start of the set negates the set.
+So `[^A]` matches any character other than `A`.
 
 ```javascript
 function doesNotStartWithA(str) {
