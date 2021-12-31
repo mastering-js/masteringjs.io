@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Clear an Array in JavaScript',
+    raw: './tutorials/fundamentals/clear-array.md',
+    url: '/tutorials/fundamentals/clear-array',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2021-12-31')
+  },
+  {
     title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
     raw: './tutorials/fundamentals/regex-no-start.md',
     url: '/tutorials/fundamentals/regex-not-starting-with',
