@@ -9,16 +9,16 @@ Number.isInteger(example); // true
 example = Infinity;
 Number.isInteger(example); // false
 ```
-The neat thing about `Number.isInteger()` is that you can pass mathmatical expressions which the function will evaluate and return the boolean result.
+
+Non-numeric values will return false, even if it representing a number.
 
 ```javascript
-let example = 4/2;
-Number.isInteger(example); // true
-example = 3/2;
-Number.isInteger(example); // false
+Number.isInteger(null); // false
+Number.isInteger('42'); // false
+Number.isInteger(new Number(5)); // false
 ```
 
-A quirk that `Number.isInteger()` has is that it will round after 15 decimal places.
+Remember that JavaScript can only represent up to [16 decimal places](https://stackoverflow.com/questions/54800022/why-max-digits-with-decimal-in-javascript-are-only-16), so `Number.isInteger()` may return surprising results in cases where JavaScript doesn't have sufficient numeric precision to represent the output.
 
 ```javascript
 let example = 5.0000000000000001;
