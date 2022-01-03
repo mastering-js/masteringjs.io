@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use the Sinon stub() Function',
+    raw: './tutorials/sinon/stub.md',
+    url: '/tutorials/sinon/stub',
+    description: 'Here\'s how you can use `sinon.stub()` to stub out functions and assert that they were called.',
+    tags: ['sinon'],
+    date: moment('2021-01-03')
+  },
+  {
     title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
     raw: './tutorials/fundamentals/regex-no-start.md',
     url: '/tutorials/fundamentals/regex-not-starting-with',
