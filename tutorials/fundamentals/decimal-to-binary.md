@@ -1,5 +1,81 @@
 A [binary number](https://en.wikipedia.org/wiki/Binary_number) is a number expressed in base-2, as opposed to conventional decimal numbers in base-10.
 
+Below is a live calculator.
+
+<style>
+  #decimal {
+    font-size: 1.5em;
+    padding: 0.25em;
+    border-radius: 4px;
+  }
+
+  #result {
+    display: inline-block;
+    font-size: 1.5em;
+    padding: 0.25em;
+    border-radius: 4px;
+    background-color: #ddd;
+    width: 310px;
+    overflow-wrap: anywhere;
+  }
+
+  #right-arrow {
+    font-size: 2em;
+    padding: 0.25em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  @media (max-width: 1000px) {
+    #decimal {
+      width: 100%;
+    }
+
+    #result {
+      width: 8em;
+    }
+  }
+</style>
+
+<table>
+  <thead>
+    <th>Decimal</th>
+    <th></th>
+    <th>Binary</th>
+  </thead>
+  <tr>
+    <td>
+      <input type="number" id="decimal" placeholder="42" />
+    </td>
+    <td id="right-arrow">
+      &#10140;
+    </td>
+    <td>
+      <div id="result"></div>
+    </td>
+  </tr>
+</table>
+<script>
+  document.querySelector('#result').innerHTML = parseFloat(42).toString(2);
+  document.querySelector('#decimal').addEventListener('change', function() {
+    const value = parseFloat(document.querySelector('#decimal').value);
+    if (value == null || isNaN(value)) {
+      return;
+    } 
+    document.querySelector('#result').innerHTML = value.toString(2);
+  });
+  document.querySelector('#decimal').addEventListener('keyup', function() {
+    const value = parseFloat(document.querySelector('#decimal').value);
+    if (value == null || isNaN(value)) {
+      return;
+    } 
+    document.querySelector('#result').innerHTML = value.toString(2);
+  });
+  document.querySelector('#decimal').focus();
+</script>
+
+## How the Calculator Works
+
 Converting decimal numbers to binary in JavaScript is easy.
 For example, `let x = 42` creates a new variable `x` that contains the base 10 number `42`.
 JavaScript numbers have a [`toString()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString) that takes a `radix` parameter.
@@ -20,21 +96,6 @@ x.toString(2); // '11.001000111101011100001010001111010111000010100011111'
 x = -7;
 x.string(2); // '-111'
 ```
-
-Below is a live calculator.
-
-<input type="number" id="decimal" value="42" />
--> <span id="result"></span>
-<script>
-  document.querySelector('#result').innerHTML = parseFloat(document.querySelector('#decimal').value).toString(2);
-  document.querySelector('#decimal').addEventListener('change', function() {
-    const value = parseFloat(document.querySelector('#decimal').value);
-    if (value == null || isNaN(value)) {
-      return;
-    } 
-    document.querySelector('#result').innerHTML = value.toString(2);
-  });
-</script>
 
 ## Mental Math
 
