@@ -8,10 +8,42 @@ const tutorials = [
   {
     title: 'Check What Arguments a Sinon Stub Was Called With',
     raw: './tutorials/sinon/check-arguments.md',
-    url: '/tutorials/sinon/check-arguments',
+    url: '/tutorials/sinon/stub-called-with',
     description: 'Placeholder Description',
     tags: ['sinon'],
-    date: moment('2021-12-15')
+    date: moment('2022-01-05')
+  },
+  {
+    title: 'How to Use the Sinon stub() Function',
+    raw: './tutorials/sinon/stub.md',
+    url: '/tutorials/sinon/stub',
+    description: 'Here\'s how you can use `sinon.stub()` to stub out functions and assert that they were called.',
+    tags: ['sinon'],
+    date: moment('2022-01-03')
+  },
+  {
+    title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
+    raw: './tutorials/fundamentals/regex-no-start.md',
+    url: '/tutorials/fundamentals/regex-not-starting-with',
+    description: 'Here\'s how you can check whether a string does *not* start with a given regular expression in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-29')
+  },
+  {
+    title: 'Check Whether a String Starts with a Regexp in JavaScript',
+    raw: './tutorials/fundamentals/regexp-starts-with.md',
+    url: '/tutorials/fundamentals/regexp-starts-with',
+    description: 'Here\'s how you can use the RegExp `test()` function to test whether a string starts with a regular expression.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-24')
+  },
+  {
+    title: 'What Does `app.use(express.json())` Do in Express?',
+    raw: './tutorials/express/express-json.md',
+    url: '/tutorials/express/express-json',
+    description: 'Confused by `app.use(express.json())` in Express? Here\'s what you need to know.',
+    tags: ['express'],
+    date: moment('2021-12-20')
   },
   {
     title: 'Format a JavaScript Date to YYYY MM DD',
@@ -711,10 +743,10 @@ const tutorials = [
     featured: true
   },
   {
-    title: 'Best Books to Learn Vue in 2021',
+    title: 'Best Books to Learn Vue in 2022',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',
-    description: 'Looking to learn Vue in 2021? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
+    description: 'Looking to learn Vue in 2022? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
     tags: ['vue'],
     date: moment('2021-02-12'),
     featured: true
