@@ -6,12 +6,20 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check What Arguments a Sinon Stub Was Called With',
+    raw: './tutorials/sinon/check-arguments.md',
+    url: '/tutorials/sinon/stub-called-with',
+    description: 'Placeholder Description',
+    tags: ['sinon'],
+    date: moment('2022-01-05')
+  },
+  {
     title: 'How to Use the Sinon stub() Function',
     raw: './tutorials/sinon/stub.md',
     url: '/tutorials/sinon/stub',
     description: 'Here\'s how you can use `sinon.stub()` to stub out functions and assert that they were called.',
     tags: ['sinon'],
-    date: moment('2021-01-03')
+    date: moment('2022-01-03')
   },
   {
     title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
