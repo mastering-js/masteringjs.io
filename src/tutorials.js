@@ -9,7 +9,7 @@ const tutorials = [
     title: 'Check What Arguments a Sinon Stub Was Called With',
     raw: './tutorials/sinon/check-arguments.md',
     url: '/tutorials/sinon/stub-called-with',
-    description: 'Placeholder Description',
+    description: 'Here\'s two ways to check whether a SinonJS stub was called with given arguments.',
     tags: ['sinon'],
     date: moment('2022-01-05')
   },
