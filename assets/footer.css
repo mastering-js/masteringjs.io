@@ -1,0 +1,169 @@
+.footer .container {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+Footer{
+	background: #168a93;
+	font-family: 'Poppins', sans-serif;
+	min-height: 600px;
+}
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+.span_3_of_3 {
+	width: 100%; 
+}
+
+.span_2_of_3 {
+	width: 66.13%; 
+}
+.span_1_of_3 {
+	width: 32.26%; 
+}
+.span_4_of_4 {
+	width: 100%; 
+}
+.span_3_of_4 {
+	width: 74.6%; 
+}
+.span_2_of_4 {
+	width: 49.2%; 
+}
+.span_1_of_4 {
+	width: 23.8%; 
+}
+.footer {
+	margin-top: 50px;
+	padding-top: 80px;
+	padding-bottom: 40px;
+}
+.footerLogo{
+	height: 230px;
+	margin-top: 40px;
+}
+.text-center{
+	text-align: center;
+}
+.socialIcon img{
+	height: 50px;
+	margin-right: 10px;
+}
+.socialIcon{
+	margin-top: 20px;
+}
+.locationAndMail{
+	margin-top: 20px;
+	color: #fff;
+}
+.locationAndMail .addressCtrl{
+	line-height: 2;
+}
+.locationAndMail img{
+	height: 20px;
+	margin-right: 10px;
+}
+.locationAndMail .plane{
+	background: #fff;
+
+}
+.copyRight .privacy{
+	margin: 0;
+	font-size: 12px;
+}
+.copyRight p{
+	margin: 0;
+	color: #fff;;
+}
+.copyRight{
+	margin-top: 30px;
+}
+.footerLink ul{
+	padding: 0;
+}
+.footerLink ul li{
+	list-style: none;
+	line-height: 1.8;
+	font-size: 18px;
+}
+.footer a{
+	text-decoration: none;
+	color: #fff;
+}
+.footerLink h4{
+	color: #f0db4f;
+	font-size: 18px;
+}
+.subscribe{
+	position: absolute;
+}
+.subscribeBtn{
+	padding: 7px 45px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #fff;
+	background: transparent;
+	cursor: pointer;
+	border: 2px solid #fff;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+}
+.subscribeText{
+	font-size: 20px;
+	font-weight: 700;
+	color: #f0db4f;
+}
+
+/* 
+Responsive Controll
+GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+	.footer{
+		height: 1380px;
+	}
+	.footerLogo{
+		margin-top: 0;
+	}
+	.col { 
+		margin: 1% 0 1% 0%;
+	}
+    .span_3_of_3 {
+		width: 100%; 
+	}
+	.span_2_of_3 {
+		width: 100%; 
+	}
+	.span_1_of_3 {
+		width: 100%;
+	}
+	.span_4_of_4 {
+		width: 100%; 
+	}
+	.span_3_of_4 {
+		width: 100%; 
+	}
+	.span_2_of_4 {
+		width: 100%; 
+	}
+	.span_1_of_4 {
+		width: 100%; 
+	}
+	.subscribeText{
+		font-size: 18px;
+	}
+	.subscribeBtn{
+		padding: 7px 15px;
+	}
+}

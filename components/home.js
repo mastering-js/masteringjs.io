@@ -88,6 +88,7 @@ module.exports = ({ posts }) => `
       </div>
     </div>
 
+    <link rel="stylesheet" href="/assets/footer.css" />
     ${footer()}
 
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQY&placement=masteringjsio" id="_carbonads_js"></script>

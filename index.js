@@ -128,6 +128,12 @@ async function run() {
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 
+  fs.writeFileSync('./about.html', layout({
+    title: 'About Us',
+    content: require('./components/about')({ title: 'About Us' }),
+    description: `Bite-sized JavaScript tutorials for busy developers`
+  }));
+
   let pages = [];
   const defaultSalesPageProps = { defaultPrice: '39.99', template: require('./components/ebooks/mongoose') };
   pages = pages.concat([
