@@ -233,9 +233,8 @@ async function run() {
   });
   pages.push({
     path: './jobs/create.html',
-    template: layout,
     title: 'Hire JavaScript Developers | Mastering JS',
-    content: createjob(),
+    template: createjob,
     description: 'Hire the best JavaScript developers in the world on Mastering JS and reach 100k pragmatic JS devs per month.',
     carbonAds: false
   });

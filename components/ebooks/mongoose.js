@@ -238,6 +238,7 @@ module.exports = ({ paypalButton, promoPrice, defaultPrice }) => `
       <div style="clear: both"></div>
     </div>
 
+    <link rel="stylesheet" href="/assets/footer.css" />
     ${footer()}
 
     <script type="text/javascript">

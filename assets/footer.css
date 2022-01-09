@@ -3,42 +3,43 @@
 	margin: 0 auto;
 	padding: 0 15px;
 }
+
 Footer{
 	background: #168a93;
 	font-family: 'Poppins', sans-serif;
 	min-height: 600px;
 }
-.section {
+.footer .group {
 	clear: both;
 	padding: 0px;
 	margin: 0px;
 }
-.col {
+.footer .col {
 	display: block;
 	float:left;
 	margin: 1% 0 1% 1.6%;
 }
-.col:first-child { margin-left: 0; }
-.span_3_of_3 {
+.footer .col:first-child { margin-left: 0; }
+.footer .span_3_of_3 {
 	width: 100%; 
 }
 
-.span_2_of_3 {
+.footer .span_2_of_3 {
 	width: 66.13%; 
 }
-.span_1_of_3 {
+.footer .span_1_of_3 {
 	width: 32.26%; 
 }
-.span_4_of_4 {
+.footer .span_4_of_4 {
 	width: 100%; 
 }
-.span_3_of_4 {
+.footer .span_3_of_4 {
 	width: 74.6%; 
 }
-.span_2_of_4 {
+.footer .span_2_of_4 {
 	width: 49.2%; 
 }
-.span_1_of_4 {
+.footer .span_1_of_4 {
 	width: 23.8%; 
 }
 .footer {
@@ -46,66 +47,67 @@ Footer{
 	padding-top: 80px;
 	padding-bottom: 40px;
 }
-.footerLogo{
+.footer .footerLogo{
 	height: 230px;
 	margin-top: 40px;
 }
-.text-center{
+.footer .text-center{
 	text-align: center;
 }
-.socialIcon img{
+.footer .socialIcon img{
 	height: 50px;
 	margin-right: 10px;
 }
-.socialIcon{
+.footer .socialIcon{
 	margin-top: 20px;
 }
-.locationAndMail{
+.footer .locationAndMail{
 	margin-top: 20px;
 	color: #fff;
 }
-.locationAndMail .addressCtrl{
+.footer .locationAndMail .addressCtrl{
 	line-height: 2;
 }
-.locationAndMail img{
+.footer .locationAndMail img{
 	height: 20px;
 	margin-right: 10px;
 }
-.locationAndMail .plane{
+.footer .locationAndMail .plane{
 	background: #fff;
-
 }
-.copyRight .privacy{
+.footer .copyRight .privacy{
 	margin: 0;
 	font-size: 12px;
 }
-.copyRight p{
+.footer .copyRight p{
 	margin: 0;
 	color: #fff;;
 }
-.copyRight{
+.footer .copyRight{
 	margin-top: 30px;
 }
-.footerLink ul{
+.footer .footerLink ul{
 	padding: 0;
 }
-.footerLink ul li{
+.footer .footerLink ul li{
 	list-style: none;
 	line-height: 1.8;
 	font-size: 18px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 .footer a{
 	text-decoration: none;
 	color: #fff;
 }
-.footerLink h4{
+.footer .footerLink h4{
 	color: #f0db4f;
 	font-size: 18px;
 }
-.subscribe{
+.footer .subscribe{
 	position: absolute;
 }
-.subscribeBtn{
+.footer .subscribeBtn{
 	padding: 7px 45px;
 	font-size: 20px;
 	font-weight: 600;
@@ -119,7 +121,7 @@ Footer{
 	-ms-border-radius: 10px;
 	-o-border-radius: 10px;
 }
-.subscribeText{
+.footer .subscribeText{
 	font-size: 20px;
 	font-weight: 700;
 	color: #f0db4f;
@@ -133,37 +135,37 @@ GO FULL WIDTH AT LESS THAN 480 PIXELS */
 	.footer{
 		height: 1380px;
 	}
-	.footerLogo{
+	.footer .footerLogo{
 		margin-top: 0;
 	}
-	.col { 
+	.footer .col { 
 		margin: 1% 0 1% 0%;
 	}
-    .span_3_of_3 {
+  .footer .span_3_of_3 {
 		width: 100%; 
 	}
-	.span_2_of_3 {
+	.footer .span_2_of_3 {
 		width: 100%; 
 	}
-	.span_1_of_3 {
+	.footer .span_1_of_3 {
 		width: 100%;
 	}
-	.span_4_of_4 {
+	.footer .span_4_of_4 {
 		width: 100%; 
 	}
-	.span_3_of_4 {
+	.footer .span_3_of_4 {
 		width: 100%; 
 	}
-	.span_2_of_4 {
+	.footer .span_2_of_4 {
 		width: 100%; 
 	}
-	.span_1_of_4 {
+	.footer .span_1_of_4 {
 		width: 100%; 
 	}
-	.subscribeText{
+	.footer .subscribeText{
 		font-size: 18px;
 	}
-	.subscribeBtn{
+	.footer .subscribeBtn{
 		padding: 7px 15px;
 	}
 }
