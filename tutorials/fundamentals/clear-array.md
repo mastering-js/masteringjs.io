@@ -26,11 +26,12 @@ array; // []
 ## array = []
 
 Reassinging the array to an empty array has some repercussions.
-This is an approach that should be avoided only because any references to the original array will also be affected.
+This is an approach that should be avoided only because any references to the original array will not be reflected and will continue to use the old array.
 
 ```javascript
 let array = [1,2,3,4,5];
 let anotherArray = array;
 array = [];
-anotherArray; // []
+anotherArray; // [1,2,3,4,5]
 ```
+
