@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vuejs logo',
+    raw: './tutorials/vue/logos.md',
+    url: '/tutorials/vue/logos',
+    description: 'Vuejs logo in different file formats available for Download',
+    tags: ['Vue'],
+    date: moment('2022-01-10')
+  },
+  {
     title: 'Check What Arguments a Sinon Stub Was Called With',
     raw: './tutorials/sinon/check-arguments.md',
     url: '/tutorials/sinon/stub-called-with',
