@@ -9,9 +9,81 @@ const tutorials = [
     title: 'Handle POST Form Data with Express JS',
     raw: './tutorials/express/post-form.md',
     url: '/tutorials/express/post-form',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can handle HTTP FormData with Express',
     tags: ['express'],
-    date: moment('2021-11-29')
+    date: moment('2022-01-10')
+  },
+  {
+    title: 'Check What Arguments a Sinon Stub Was Called With',
+    raw: './tutorials/sinon/check-arguments.md',
+    url: '/tutorials/sinon/stub-called-with',
+    description: 'Here\'s two ways to check whether a SinonJS stub was called with given arguments.',
+    tags: ['sinon'],
+    date: moment('2022-01-05')
+  },
+  {
+    title: 'How to Use the Sinon stub() Function',
+    raw: './tutorials/sinon/stub.md',
+    url: '/tutorials/sinon/stub',
+    description: 'Here\'s how you can use `sinon.stub()` to stub out functions and assert that they were called.',
+    tags: ['sinon'],
+    date: moment('2022-01-03')
+  },
+  {
+    title: 'How to Check Whether a String Does Not Start With a Regex in JavaScript',
+    raw: './tutorials/fundamentals/regex-no-start.md',
+    url: '/tutorials/fundamentals/regex-not-starting-with',
+    description: 'Here\'s how you can check whether a string does *not* start with a given regular expression in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-29')
+  },
+  {
+    title: 'Check Whether a String Starts with a Regexp in JavaScript',
+    raw: './tutorials/fundamentals/regexp-starts-with.md',
+    url: '/tutorials/fundamentals/regexp-starts-with',
+    description: 'Here\'s how you can use the RegExp `test()` function to test whether a string starts with a regular expression.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-24')
+  },
+  {
+    title: 'What Does `app.use(express.json())` Do in Express?',
+    raw: './tutorials/express/express-json.md',
+    url: '/tutorials/express/express-json',
+    description: 'Confused by `app.use(express.json())` in Express? Here\'s what you need to know.',
+    tags: ['express'],
+    date: moment('2021-12-20')
+  },
+  {
+    title: 'Format a JavaScript Date to YYYY MM DD',
+    raw: './tutorials/fundamentals/YMD.md',
+    url: '/tutorials/fundamentals/date-tostring-format-yyyy-mm-dd',
+    description: 'Looking to format a JavaScript date to YYYY-MM-DD? Here\'s two easy ways using vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-10')
+  },
+  {
+    title: 'Array toString() in JavaScript',
+    raw: './tutorials/fundamentals/array-toString.md',
+    url: '/tutorials/fundamentals/array-tostring',
+    description: 'Looking to convert an array to a string in JavaScript? Here\'s two ways.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-08')
+  },
+  {
+    title: 'How to Parse URL in JavaScript into Host, Path, Search, and Hash',
+    raw: './tutorials/fundamentals/parse-url.md',
+    url: '/tutorials/fundamentals/parse-url',
+    description: 'Here\'s how you can parse a URL into components in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2021-12-03')
+  },
+  {
+    title: 'How to Reverse an Array in JavaScript',
+    raw: './tutorials/fundamentals/reverse-array.md',
+    url: '/tutorials/fundamentals/reverse-array',
+    description: 'Here\'s how you can reverse an array in JavaScript, both in-place and without mutating the original array.',
+    tags: ['fundamentals'],
+    date: moment('2021-11-30')
   },
   {
     title: 'How to Check if a Property is Undefined in JavaScript',
@@ -679,10 +751,10 @@ const tutorials = [
     featured: true
   },
   {
-    title: 'Best Books to Learn Vue in 2021',
+    title: 'Best Books to Learn Vue in 2022',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',
-    description: 'Looking to learn Vue in 2021? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
+    description: 'Looking to learn Vue in 2022? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
     tags: ['vue'],
     date: moment('2021-02-12'),
     featured: true
