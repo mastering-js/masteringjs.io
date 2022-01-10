@@ -14,7 +14,7 @@ array; // []
 ## array.splice(0, array.length)
 
 A more verbose approach is to use the `splice()` method.
-This function will return a copy of the array, so if you wanted to do a reassignment this would be a good use case.
+This function will return a copy of the array before deleting the entries, so if you wanted to do a reassignment this would be a good use case.
 
 ```javascript
 let array = [1,2,3,4,5];
