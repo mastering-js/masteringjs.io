@@ -116,17 +116,19 @@ Vue.component('search', {
       }
     },
     methods: {
-      search: async function() {
-        const res = await fetch(`httpbin.org/get?keyword=${this.searchQuery}`).then((res) => {return res.json()});
-        if(Object.values(res.args).includes(this.searchQuery)) return true;
-        return false;
+       search: async function() {
+        const res = await fetch(`https://httpbin.org/get?keyword=${this.searchQuery}`).then((res) => {return res.json()});
+        this.result = Object.values(res.args).find((element) => element.toLowerCase() == this.searchQuery.toLowerCase());
       },
     },
     template: `
+    <div>
     <div class="search-container">
       <div class="search">
         <input v-model="searchQuery" v-on:keyup.enter="search" type="text" class="searchTerm" placeholder="What are you looking for?" />
       </div>
+    </div>
+     {{result}}
     </div>
     `
 });
