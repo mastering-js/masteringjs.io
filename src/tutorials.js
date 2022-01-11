@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Create a Functioning Search Bar in Vue',
+    raw: './tutorials/vue/search.md',
+    url: '/tutorials/vue/search',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-01-11')
+  },
+  {
     title: 'Handle POST Form Data with Express JS',
     raw: './tutorials/express/post-form.md',
     url: '/tutorials/express/post-form',
