@@ -10,7 +10,7 @@ example = Infinity;
 Number.isInteger(example); // false
 ```
 
-Non-numeric values will return false, even if it representing a number.
+Non-numeric values will return false, even if the value is an instance of the `Number` class.
 
 ```javascript
 Number.isInteger(null); // false
@@ -21,8 +21,9 @@ Number.isInteger(new Number(5)); // false
 Remember that JavaScript can only represent up to [16 decimal places](https://stackoverflow.com/questions/54800022/why-max-digits-with-decimal-in-javascript-are-only-16), so `Number.isInteger()` may return surprising results in cases where JavaScript doesn't have sufficient numeric precision to represent the output.
 
 ```javascript
-let example = 5.0000000000000001;
+let example = 5 + 1e-16;
 Number.isInteger(example); // true
-example = 5.0000000000000005;
+
+example = 5 + 5e-16;
 Number.isInteger(example); // false
 ```
