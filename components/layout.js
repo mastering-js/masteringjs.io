@@ -32,6 +32,7 @@ module.exports = params => `
       <div class="content">
         ${params.content}
       </div>
+      <link rel="stylesheet" href="/assets/footer.css" />
       ${footer()}
       ${floatAd(params.ad)}
     </div>

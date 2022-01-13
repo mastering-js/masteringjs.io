@@ -38,7 +38,7 @@
     "pug": "^2.0.4",
     "puppeteer": "2.x",
     "serve": "11.x",
-    "sinon": "7.x",
+    "sinon": "^7.5.0",
     "vue": "2.x",
     "vue-router": "3.x",
     "vue-server-renderer": "2.x",
