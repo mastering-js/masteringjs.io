@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check if a Variable is an Integer in JavaScript',
+    raw: './tutorials/fundamentals/check-integer.md',
+    url: '/tutorials/fundamentals/is-integer',
+    description: 'Here\'s how you can check if a value is an integer in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-01-13')
+  },
+  {
     title: 'Handle POST Form Data with Express JS',
     raw: './tutorials/express/post-form.md',
     url: '/tutorials/express/post-form',
