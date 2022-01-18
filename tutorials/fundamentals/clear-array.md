@@ -25,13 +25,12 @@ array; // []
 
 ## array = []
 
-Reassinging the array to an empty array has some repercussions.
-This is an approach that should be avoided only because any references to the original array will not be reflected and will continue to use the old array.
+If you want to avoid mutating the arrays in place for [immutability](https://reactjs.org/docs/update.html), you can overwrite the array with an empty array `[]`.
 
 ```javascript
-let array = [1,2,3,4,5];
-let anotherArray = array;
-array = [];
-anotherArray; // [1,2,3,4,5]
+let obj = { array: [1, 2, 3, 4, 5] };
+
+obj = { ...obj, array: [] };
+obj.array.length; // 0
 ```
 
