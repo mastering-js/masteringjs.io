@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Clear an Array in JavaScript',
+    raw: './tutorials/fundamentals/clear-array.md',
+    url: '/tutorials/fundamentals/clear-array',
+    description: 'Here\'s 3 ways to empty out an array in JavaScript, clearing out all the elements.',
+    tags: ['fundamentals'],
+    date: moment('2022-01-18')
+  },
+  {
     title: 'How to Check if a Variable is an Integer in JavaScript',
     raw: './tutorials/fundamentals/check-integer.md',
     url: '/tutorials/fundamentals/is-integer',
