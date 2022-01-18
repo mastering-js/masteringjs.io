@@ -128,6 +128,12 @@ async function run() {
     description: `Bite-sized JavaScript tutorials for busy developers`
   }));
 
+  fs.writeFileSync('./about.html', layout({
+    title: 'About Us',
+    content: require('./components/about')({ title: 'About Us' }),
+    description: `Bite-sized JavaScript tutorials for busy developers`
+  }));
+
   let pages = [];
   const defaultSalesPageProps = { defaultPrice: '39.99', template: require('./components/ebooks/mongoose') };
   pages = pages.concat([
@@ -227,9 +233,8 @@ async function run() {
   });
   pages.push({
     path: './jobs/create.html',
-    template: layout,
     title: 'Hire JavaScript Developers | Mastering JS',
-    content: createjob(),
+    template: createjob,
     description: 'Hire the best JavaScript developers in the world on Mastering JS and reach 100k pragmatic JS devs per month.',
     carbonAds: false
   });

@@ -1,3 +1,7 @@
+'use strict';
+
+const nav = require('./nav');
+
 module.exports = () => `
 <!DOCTYPE html>
 
@@ -20,9 +24,12 @@ module.exports = () => `
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="/assets/style.css" />
 </head>
 
 <body>
+  ${nav()}
   <div id="content"></div>
   <link rel="stylesheet" href="/assets/jobs.css" />
   <link rel="stylesheet" href="/assets/createjob.css" />
