@@ -1,4 +1,7 @@
-To create a functioning search bar component, do the following:
+To create a functioning search bar component, take advantage of the `keyup` event listener.
+You should use the `enter` key as it is the most intuitive, so `v-on:keyup.enter`.
+When the user presses the `enter` key, it will trigger the `search()` function, which in turn will make a request to `httpbin.org` for the data and then search for the desired result.
+
 
 <style>
 .search-container {
@@ -69,44 +72,6 @@ To create a functioning search bar component, do the following:
   app.$mount("#content");
 </script>
 
-```css
-.search-container {
-  position: relative;
-  display: flex;
-  height: 80px;
-  border-radius: var(--border-radius);
-  padding-left: 10px;
-  margin-bottom: 20px;
-  background-color: white;
-}
-
-.search {
-  display: inline-flex;
-  flex: 1 1 300px;
-  cursor: text;
-  position: relative;
-  border-radius: 24px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left:20px;
-  padding-right:20px;
-  margin-right: 10px;
-  width: 100%;
-}
-
-.searchTerm {
-  outline: none;
-  color: #9DBFAF;
-  width: 100%;
-  padding: .5rem .5rem .5rem 0;
-  flex: 1;
-  background-color: var(--text-background-grey)
-}
-
-.searchTerm:focus{
-  color: var(--medium-purple);
-}
-```
 
 ```javascript
 Vue.component('search', {
