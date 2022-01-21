@@ -6,7 +6,7 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'Vuejs logo',
+    title: 'Vue.js Logos',
     raw: './tutorials/vue/logos.md',
     url: '/tutorials/vue/logo',
     description: 'Download or link to the Vue.js logo in different styles and formats: svg, png, jpg.',
