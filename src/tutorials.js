@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vuejs logo',
+    raw: './tutorials/vue/logos.md',
+    url: '/tutorials/vue/logo',
+    description: 'Download or link to the Vue.js logo in different styles and formats: svg, png, jpg.',
+    tags: ['vue'],
+    date: moment('2022-01-21')
+  },
+  {
     title: 'How to Clear an Array in JavaScript',
     raw: './tutorials/fundamentals/clear-array.md',
     url: '/tutorials/fundamentals/clear-array',
