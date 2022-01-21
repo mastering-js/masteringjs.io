@@ -103,6 +103,7 @@ body {
   font-size: 1.25em;
   line-height: 1.5em;
   text-align: center;
+  overflow: hidden;
 }
 
 .checkout .copy .small {

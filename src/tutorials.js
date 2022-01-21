@@ -8,9 +8,33 @@ const tutorials = [
   {
     title: 'Vuejs logo',
     raw: './tutorials/vue/logos.md',
-    url: '/tutorials/vue/logos',
-    description: 'Vuejs logo in different file formats available for Download',
-    tags: ['Vue'],
+    url: '/tutorials/vue/logo',
+    description: 'Download or link to the Vue.js logo in different styles and formats: svg, png, jpg.',
+    tags: ['vue'],
+    date: moment('2022-01-21')
+  },
+  {
+    title: 'How to Clear an Array in JavaScript',
+    raw: './tutorials/fundamentals/clear-array.md',
+    url: '/tutorials/fundamentals/clear-array',
+    description: 'Here\'s 3 ways to empty out an array in JavaScript, clearing out all the elements.',
+    tags: ['fundamentals'],
+    date: moment('2022-01-18')
+  },
+  {
+    title: 'How to Check if a Variable is an Integer in JavaScript',
+    raw: './tutorials/fundamentals/check-integer.md',
+    url: '/tutorials/fundamentals/is-integer',
+    description: 'Here\'s how you can check if a value is an integer in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-01-13')
+  },
+  {
+    title: 'Handle POST Form Data with Express JS',
+    raw: './tutorials/express/post-form.md',
+    url: '/tutorials/express/post-form',
+    description: 'Here\'s how you can handle HTTP FormData with Express',
+    tags: ['express'],
     date: moment('2022-01-10')
   },
   {
