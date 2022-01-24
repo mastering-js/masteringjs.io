@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Spies in Sinon',
+    raw: './tutorials/sinon/spy.md',
+    url: '/tutorials/sinon/spy',
+    description: 'Here\'s How to Use 007 in Sinon.js',
+    tags: ['sinon'],
+    date: moment('2022-01-24')
+  },
+  {
     title: 'Vue.js Logos',
     raw: './tutorials/vue/logos.md',
     url: '/tutorials/vue/logo',
