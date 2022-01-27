@@ -7,8 +7,8 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'How to Stub a Function with Sinon',
-    raw: './tutorials/sinon/how-stub.md',
-    url: '/tutorials/sinon/how-stub',
+    raw: './tutorials/sinon/stub-function.md',
+    url: '/tutorials/sinon/stub-function',
     description: 'Placeholder Description',
     tags: ['sinon'],
     date: moment('2022-01-24')

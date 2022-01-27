@@ -10,5 +10,22 @@ const stub = sinon.stub(axios, 'get').callsFake(() => Promise.resolve({ status: 
 // Calls the fake `axios.get()`
 const test = await axios.get('https://httpbin.org/get');
 
-assert.deepEqual(test, { status:200 }); // passes
+assert.deepEqual(test.data, { status:200 }); // passes
+```
+
+```javascript
+const sinon = require('sinon');
+
+
+const obj = { 
+    method: function(data) {
+        console.log('data in method function', data)
+    }
+}
+
+const stub = sinon.stub(obj, 'method').yieldsTo('test', [1,2,3])
+obj.method({test: function(data) {
+    console.log('data in parameter test', data);
+}})
+
 ```
