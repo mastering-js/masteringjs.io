@@ -9,9 +9,9 @@ const tutorials = [
     title: 'How to Stub a Function with Sinon',
     raw: './tutorials/sinon/stub-function.md',
     url: '/tutorials/sinon/stub-function',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use Sinon to stub a function.',
     tags: ['sinon'],
-    date: moment('2022-01-24')
+    date: moment('2022-01-28')
   },
   {
     title: 'Vue.js Logos',
