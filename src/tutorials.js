@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Sleep in NodeJS',
+    raw: './tutorials/node/sleep.md',
+    url: '/tutorials/node/sleep',
+    description: 'Here\'s how you can delay operation executions in NodeJS.',
+    tags: ['node'],
+    date: moment('2022-02-01')
+  },
+  {
     title: 'How to Stub a Function with Sinon',
     raw: './tutorials/sinon/stub-function.md',
     url: '/tutorials/sinon/stub-function',
