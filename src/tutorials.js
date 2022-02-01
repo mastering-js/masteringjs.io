@@ -9,9 +9,17 @@ const tutorials = [
     title: 'Spies in Sinon',
     raw: './tutorials/sinon/spy.md',
     url: '/tutorials/sinon/spy',
-    description: 'Here\'s How to Use 007 in Sinon.js',
+    description: 'Here\'s how spies work in Sinon.js',
     tags: ['sinon'],
-    date: moment('2022-01-24')
+    date: moment('2022-02-01')
+  },
+  {
+    title: 'How to Stub a Function with Sinon',
+    raw: './tutorials/sinon/stub-function.md',
+    url: '/tutorials/sinon/stub-function',
+    description: 'Here\'s how you can use Sinon to stub a function.',
+    tags: ['sinon'],
+    date: moment('2022-01-28')
   },
   {
     title: 'Vue.js Logos',
