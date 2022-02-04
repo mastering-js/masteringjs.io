@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Use Mocks with Sinon',
+    raw: './tutorials/sinon/mock.md',
+    url: '/tutorials/sinon/mock',
+    description: 'Here\'s how mocks work in Sinon.js',
+    tags: ['sinon'],
+    date: moment('2022-02-04')
+  },
+  {
     title: 'Spies in Sinon',
     raw: './tutorials/sinon/spy.md',
     url: '/tutorials/sinon/spy',
