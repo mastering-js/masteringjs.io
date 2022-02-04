@@ -9,9 +9,17 @@ const tutorials = [
     title: 'How to Use Mocks with Sinon',
     raw: './tutorials/sinon/mock.md',
     url: '/tutorials/sinon/mock',
-    description: 'Placeholder Description',
+    description: 'Here\'s how mocks work in Sinon.js',
     tags: ['sinon'],
-    date: moment('2022-01-31')
+    date: moment('2022-02-04')
+  },
+  {
+    title: 'Spies in Sinon',
+    raw: './tutorials/sinon/spy.md',
+    url: '/tutorials/sinon/spy',
+    description: 'Here\'s how spies work in Sinon.js',
+    tags: ['sinon'],
+    date: moment('2022-02-01')
   },
   {
     title: 'How to Stub a Function with Sinon',

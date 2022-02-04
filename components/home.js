@@ -77,14 +77,23 @@ module.exports = ({ posts }) => `
           <a href="/mocha">Mocha</a>
         </div>
 
-        <h1>Our Partners</h1>
-
-        <a href="https://jooble.org/jobs-javascript-developer">
-          <img src="/assets/images/jooble.png" class="partner" />
-        </a>
-
         <h1>Latest Tutorials</h1>
         ${list({ posts }, 20)}
+
+        <h1>Our Sponsors</h1>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <a href="https://newcasinouk.com/banking/paypal" rel="sponsored">
+              <img src="https://codebarbarian-images.s3.amazonaws.com/paypal-casino.png" alt="PayPal casino" style="max-height: 100px"/>
+            </a>
+          </div>
+          <div class="col-lg-4">
+            <a href="https://nuovicasinoitalia.it/casino-stranieri/europa" rel="sponsored">
+              <img src="https://codebarbarian-images.s3.amazonaws.com/casino-online-europei.png" alt="casino online europei" style="max-height: 100px"/>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
