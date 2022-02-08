@@ -11,6 +11,22 @@ const tutorials = [
     url: '/tutorials/node/sleep',
     description: 'Here\'s how you can delay operation executions in NodeJS.',
     tags: ['node'],
+    date: moment('2022-02-08')
+  },
+  {
+    title: 'How to Use Mocks with Sinon',
+    raw: './tutorials/sinon/mock.md',
+    url: '/tutorials/sinon/mock',
+    description: 'Here\'s how mocks work in Sinon.js',
+    tags: ['sinon'],
+    date: moment('2022-02-04')
+  },
+  {
+    title: 'Spies in Sinon',
+    raw: './tutorials/sinon/spy.md',
+    url: '/tutorials/sinon/spy',
+    description: 'Here\'s how spies work in Sinon.js',
+    tags: ['sinon'],
     date: moment('2022-02-01')
   },
   {
