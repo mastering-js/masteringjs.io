@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert Binary to Decimal',
+    raw: './tutorials/tools/binary-to-decimal.md',
+    url: '/tutorials/tools/binary-to-decimal',
+    description: 'Placeholder Description',
+    tags: ['tools'],
+    date: moment('2022-02-08')
+  },
+  {
     title: 'How to Use Mocks with Sinon',
     raw: './tutorials/sinon/mock.md',
     url: '/tutorials/sinon/mock',
