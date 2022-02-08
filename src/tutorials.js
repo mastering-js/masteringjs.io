@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert JSON to YAML',
+    raw: './tutorials/tools/json-to-yaml.md',
+    url: '/tutorials/tools/json-to-yaml',
+    description: 'Placeholder Description',
+    tags: ['tools'],
+    date: moment('2022-02-08')
+  },
+  {
     title: 'How to Use Mocks with Sinon',
     raw: './tutorials/sinon/mock.md',
     url: '/tutorials/sinon/mock',
