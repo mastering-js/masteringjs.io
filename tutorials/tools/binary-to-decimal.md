@@ -77,13 +77,13 @@ Below is a live calculator.
 ## How the Calculator Works
 
 Converting binary numbers to decimal is easy.
-For example, `let x = 101010` creates a new variable `x` that contains the number `101010`.
+For example, `let x = '101010'` creates a new variable `x` that contains the number as a string `101010`.
 JavaScript has a [`parseInt()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt) that takes a `binary` and `radix` parameter, and returns a number.
 Calling `parseInt(binary, radix)` tells JavaScript to convert `binary` to a number containing the decimal representation of `101010`.
 If `binary` is not a string, it will be converted to one using the `toString()` function.
 
 ```javascript
-let x = 101010;
+let x = '101010';
 
 parseInt(x, 2) // 42
 ```
@@ -94,16 +94,8 @@ The `toString()` method also handles non-integers and negative numbers. For exam
 x = -101010
 parseInt(x, 2); // -42
 
-x = 101010.101010; // 42
-```
-
-## Binary Numeric Literals
-
-You can also use binary numeric numerals to auto convert it in your code.
-
-```javascript
-x = 0b101010;
-x; // 42
+x = 101010.101010;
+parseInt(x, 2); // 42
 ```
 
 ## No Technology Method
