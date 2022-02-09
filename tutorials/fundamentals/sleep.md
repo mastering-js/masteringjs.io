@@ -1,5 +1,4 @@
-Unlike many other languages, JavaScript doesn't have a built-in
-function to pause execution for a given period of time. There's
+Unlike many other languages, JavaScript doesn't have a built-in function to pause execution for a given period of time. There's
 a good reason for this: in languages like C, `sleep(2)` blocks
 the current thread for 2 seconds. Since JavaScript is 
 single-threaded, C-style `sleep(2)` would block the entire
