@@ -9,9 +9,9 @@ const tutorials = [
     title: 'Convert Binary to Decimal',
     raw: './tutorials/tools/binary-to-decimal.md',
     url: '/tutorials/tools/binary-to-decimal',
-    description: 'Placeholder Description',
+    description: 'Convert binary numbers to decimal numbers with this handy tool.',
     tags: ['tools'],
-    date: moment('2022-02-08')
+    date: moment('2022-02-11')
   },
   {
     title: 'Sleep in NodeJS',
