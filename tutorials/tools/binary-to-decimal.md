@@ -74,6 +74,8 @@ Below is a live calculator.
   document.querySelector('#binary').focus();
 </script>
 
+We also have a tool to convert [decimal to binary](/tutorials/fundamentals/decimal-to-binary).
+
 ## How the Calculator Works
 
 Converting binary numbers to decimal is easy.
