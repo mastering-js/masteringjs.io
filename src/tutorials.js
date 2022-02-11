@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert Binary to Decimal',
+    raw: './tutorials/tools/binary-to-decimal.md',
+    url: '/tutorials/tools/binary-to-decimal',
+    description: 'Convert binary numbers to decimal numbers with this handy tool.',
+    tags: ['tools'],
+    date: moment('2022-02-11')
+  },
+  {
     title: 'Sleep in NodeJS',
     raw: './tutorials/node/sleep.md',
     url: '/tutorials/node/sleep',
