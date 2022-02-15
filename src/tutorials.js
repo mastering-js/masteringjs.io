@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Shuffle an Array in JavasScript',
+    raw: './tutorials/fundamentals/shuffle.md',
+    url: '/tutorials/fundamentals/shuffle',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-02-15')
+  },
+  {
     title: 'Convert Binary to Decimal',
     raw: './tutorials/tools/binary-to-decimal.md',
     url: '/tutorials/tools/binary-to-decimal',
