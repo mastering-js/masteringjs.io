@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The nextTick function in VueJS',
+    raw: './tutorials/vue/nexttick.md',
+    url: '/tutorials/vue/nexttick',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-02-15')
+  },
+  {
     title: 'Convert Binary to Decimal',
     raw: './tutorials/tools/binary-to-decimal.md',
     url: '/tutorials/tools/binary-to-decimal',
