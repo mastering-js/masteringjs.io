@@ -9,8 +9,24 @@ const tutorials = [
     title: 'Convert JSON to YAML',
     raw: './tutorials/tools/json-to-yaml.md',
     url: '/tutorials/tools/json-to-yaml',
-    description: 'Placeholder Description',
+    description: 'Convert JSON to YAML using this friendly in-browser converter.',
     tags: ['tools'],
+    date: moment('2022-02-15')
+  },
+  {
+    title: 'Convert Binary to Decimal',
+    raw: './tutorials/tools/binary-to-decimal.md',
+    url: '/tutorials/tools/binary-to-decimal',
+    description: 'Convert binary numbers to decimal numbers with this handy tool.',
+    tags: ['tools'],
+    date: moment('2022-02-11')
+  },
+  {
+    title: 'Sleep in NodeJS',
+    raw: './tutorials/node/sleep.md',
+    url: '/tutorials/node/sleep',
+    description: 'Here\'s how you can delay operation executions in NodeJS.',
+    tags: ['node'],
     date: moment('2022-02-08')
   },
   {
