@@ -5,7 +5,7 @@ const compiler = webpack({
     entry: './src/client/jsonyamlconvert.js',
     output: {
       filename: 'jsontoyaml.js',
-      path: path.resolve(__dirname, 'tutorials'),
+      path: path.resolve(__dirname, 'assets/js'),
     },
     resolve: {
         modules: ['node_modules']

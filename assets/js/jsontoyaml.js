@@ -88,20 +88,8 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const yaml = CodeMirror(document.querySelector('#yaml'), { mode: 'yaml', lineNumbers: true, readOnly: true});
-const json = CodeMirror(document.querySelector('#json'), { mode: 'javascript', lineNumbers: true });
-const YAML = __webpack_require__(1);
-window.yaml = yaml;
-window.json = json;
+window.YAML = __webpack_require__(1);
 
-window.convert = async function convert() {
-    try {
-        window.yaml.setValue(YAML.dump(JSON.parse(window.json.getValue())));
-    } catch (e) {
-        window.yaml.setValue('Make sure you are entering valid JSON');
-    }
-}
-document.getElementById('work').addEventListener('click', convert);
 
 /***/ }),
 /* 1 */
