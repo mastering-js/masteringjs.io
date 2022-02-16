@@ -59,7 +59,7 @@ function more(tutorials, tutorial) {
     return '';
   }
   return `
-    <h2>More ${capitalize(tutorial.tags[0])} Tutorials</h2>
+    <h2>More ${capitalize(tutorial.tags[0])}${tutorial.tags[0] === 'tools' ? '' : ' Tutorials'}</h2>
     <ul>
     ${otherTutorials.slice(0, 7).map(_tutorial).join('\n')}
     </ul>
