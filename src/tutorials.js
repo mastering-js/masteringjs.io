@@ -11,7 +11,7 @@ const tutorials = [
     url: '/tutorials/vue/nexttick',
     description: 'Here\'s what you need to know about the `nextTick()` function in Vue, and why it is different from `setTimeout()`.',
     tags: ['vue'],
-    date: moment('2022-02-18')
+    date: moment('2022-02-23')
   },
   {
     title: 'Convert JSON to YAML',
