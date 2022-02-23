@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The nextTick function in Vue',
+    raw: './tutorials/vue/nexttick.md',
+    url: '/tutorials/vue/nexttick',
+    description: 'Here\'s what you need to know about the `nextTick()` function in Vue, and why it is different from `setTimeout()`.',
+    tags: ['vue'],
+    date: moment('2022-02-23')
+  },
+  {
     title: 'Convert JSON to YAML',
     raw: './tutorials/tools/json-to-yaml.md',
     url: '/tutorials/tools/json-to-yaml',
