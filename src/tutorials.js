@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Array Shift in JavaScript',
+    raw: './tutorials/fundamentals/shift.md',
+    url: '/tutorials/fundamentals/shift',
+    description: 'Let\'s learn about arrays and shift',
+    tags: ['fundamentals'],
+    date: moment('2022-02-23')
+  },
+  {
     title: 'Convert JSON to YAML',
     raw: './tutorials/tools/json-to-yaml.md',
     url: '/tutorials/tools/json-to-yaml',
