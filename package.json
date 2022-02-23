@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^1.13.2",
-    "firebase": "^8.6.3"
+    "firebase": "^8.6.3",
+    "js-yaml": "^4.1.0"
   }
 }
