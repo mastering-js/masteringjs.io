@@ -27,7 +27,6 @@ const tutorials = [
     url: '/tutorials/tools/json-to-yaml',
     description: 'Convert JSON to YAML using this friendly in-browser converter.',
     tags: ['tools'],
->>>>>>> master
     date: moment('2022-02-15')
   },
   {
