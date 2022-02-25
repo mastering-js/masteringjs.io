@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Shuffle an Array in JavasScript',
+    raw: './tutorials/fundamentals/shuffle.md',
+    url: '/tutorials/fundamentals/shuffle',
+    description: 'Here\'s how you can implement the Fisher-Yates Shuffle Algorithm in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-02-25')
+  },
+  {
     title: 'The nextTick function in Vue',
     raw: './tutorials/vue/nexttick.md',
     url: '/tutorials/vue/nexttick',
@@ -19,6 +27,7 @@ const tutorials = [
     url: '/tutorials/tools/json-to-yaml',
     description: 'Convert JSON to YAML using this friendly in-browser converter.',
     tags: ['tools'],
+>>>>>>> master
     date: moment('2022-02-15')
   },
   {
