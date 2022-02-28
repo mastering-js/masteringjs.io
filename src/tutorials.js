@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Add to the Front of an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-front.md',
+    url: '/tutorials/fundamentals/add-front',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-02-28')
+  },
+  {
     title: 'Shuffle an Array in JavasScript',
     raw: './tutorials/fundamentals/shuffle.md',
     url: '/tutorials/fundamentals/shuffle',
