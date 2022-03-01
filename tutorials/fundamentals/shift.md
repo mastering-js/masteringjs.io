@@ -7,7 +7,7 @@ array.shift(); // 1
 array; // 2,3,4,5
 ```
 
-If the array is empty, `shift()` will return undefined.
+If the array is empty, `shift()` will return `undefined` and not modify the array.
 
 ```javascript
 const array = [];
@@ -17,28 +17,20 @@ array.shift(); // undefined
 `shift()`, in combination with `push()`, can be used to make an array act like a queue as shown below.
 
 ```javascript
-const array = ['First', 'Second', 'Third', 'Fourth', 'Fifth'];
+const array = [];
 
 function next(array) {
-    if(array[0] === undefined) {
-        return 'no one in queue'
-    }
-    console.log(array[0]);
-    return array.shift();
+  return array.shift();
 }
 
-function getInLine(array) {
-    array.push('Next');
+function enqueue(array, val) {
+  array.push(val);
 }
 
-for(let i = 0; i < 5; i++) {
-    next(array);
-    next(array);
-    if(next(array) == 'no one in queue') {
-        console.log('no one in queue');
-        break;
-    }
-    getInLine(array);
-    console.log(array);
-}
+enqueue('First');
+enqueue('Second');
+
+next(); // 'First'
+array; // ['Second']
+next(); // 'Second'
 ```
