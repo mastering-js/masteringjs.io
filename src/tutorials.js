@@ -6,11 +6,27 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'Array Shift in JavaScript',
+    title: 'Array shift() in JavaScript',
     raw: './tutorials/fundamentals/shift.md',
     url: '/tutorials/fundamentals/shift',
-    description: 'Let\'s learn about arrays and shift',
+    description: 'Here\'s how the array method `shift()` works in JavaScript.',
     tags: ['fundamentals'],
+    date: moment('2022-03-01')
+  },
+  {
+    title: 'Shuffle an Array in JavasScript',
+    raw: './tutorials/fundamentals/shuffle.md',
+    url: '/tutorials/fundamentals/shuffle',
+    description: 'Here\'s how you can implement the Fisher-Yates Shuffle Algorithm in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-02-25')
+  },
+  {
+    title: 'The nextTick function in Vue',
+    raw: './tutorials/vue/nexttick.md',
+    url: '/tutorials/vue/nexttick',
+    description: 'Here\'s what you need to know about the `nextTick()` function in Vue, and why it is different from `setTimeout()`.',
+    tags: ['vue'],
     date: moment('2022-02-23')
   },
   {
