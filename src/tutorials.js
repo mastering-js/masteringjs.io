@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Array shift() in JavaScript',
+    raw: './tutorials/fundamentals/shift.md',
+    url: '/tutorials/fundamentals/shift',
+    description: 'Here\'s how the array method `shift()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-01')
+  },
+  {
     title: 'Shuffle an Array in JavasScript',
     raw: './tutorials/fundamentals/shuffle.md',
     url: '/tutorials/fundamentals/shuffle',
