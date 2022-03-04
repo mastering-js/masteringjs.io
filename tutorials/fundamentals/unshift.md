@@ -6,9 +6,10 @@ array.unshift(1, 2); // 5
 array; // 1, 2, 3, 4, 5
 ```
 
-## unshifting an array
+### Unshifting an Array
 
-If you want to unshift an array, simply doing `unshift([1,2])` is incorrect.
+If you want to unshift an array, `unshift([1, 2])` will add `[1, 2]` as the first element of the array.
+`unshift()` does **not** flatten arrays.
 
 ```javascript
 const array = [3, 4, 5];
@@ -16,7 +17,7 @@ array.unshift([1, 2]); // 4
 array; // [[1,2], 3, 4, 5]
 ```
 
-The correct way is to use the spread `...` operator.
+If you want to unshift the elements of an array, you should use the [spread operator](/tutorials/fundamentals/spread) as shown below.
 
 ```javascript
 const array = [3, 4, 5];

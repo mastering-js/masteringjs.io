@@ -9,7 +9,7 @@ const tutorials = [
     title: 'Array Unshift in JavaScript',
     raw: './tutorials/fundamentals/unshift.md',
     url: '/tutorials/fundamentals/unshift',
-    description: 'Let\'s unshift this shift',
+    description: 'Here\'s how the array method `unshift()` works in JavaScript.',
     tags: ['fundamentals'],
     date: moment('2022-03-04')
   },
