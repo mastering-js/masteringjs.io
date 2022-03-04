@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Array Unshift in JavaScript',
+    raw: './tutorials/fundamentals/unshift.md',
+    url: '/tutorials/fundamentals/unshift',
+    description: 'Here\'s how the array method `unshift()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-04')
+  },
+  {
     title: 'Array shift() in JavaScript',
     raw: './tutorials/fundamentals/shift.md',
     url: '/tutorials/fundamentals/shift',
