@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Get A Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/getChar.md',
+    url: '/tutorials/fundamentals/get-char',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-03-08')
+  },
+  {
     title: 'Array Unshift in JavaScript',
     raw: './tutorials/fundamentals/unshift.md',
     url: '/tutorials/fundamentals/unshift',
