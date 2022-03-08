@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'String replaceAll() in JavaScript',
+    raw: './tutorials/fundamentals/replaceAll.md',
+    url: '/tutorials/fundamentals/replaceall',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-03-08')
+  },
+  {
     title: 'Array Unshift in JavaScript',
     raw: './tutorials/fundamentals/unshift.md',
     url: '/tutorials/fundamentals/unshift',
