@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Array pop() in JavaScript',
+    raw: './tutorials/fundamentals/pop.md',
+    url: '/tutorials/fundamentals/pop',
+    description: 'Here\'s how the array method `pop()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-08')
+  },
+  {
     title: 'Array Unshift in JavaScript',
     raw: './tutorials/fundamentals/unshift.md',
     url: '/tutorials/fundamentals/unshift',
