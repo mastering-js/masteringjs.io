@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Add to the Front of an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-front.md',
+    url: '/tutorials/fundamentals/add-to-front',
+    description: 'Here\'s 3 ways you can add an element to the front of an array in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-10')
+  },
+  {
     title: 'Array pop() in JavaScript',
     raw: './tutorials/fundamentals/pop.md',
     url: '/tutorials/fundamentals/pop',
