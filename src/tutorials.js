@@ -8,10 +8,34 @@ const tutorials = [
   {
     title: 'Add to the Front of an Array in JavaScript',
     raw: './tutorials/fundamentals/add-front.md',
-    url: '/tutorials/fundamentals/add-front',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/add-to-front',
+    description: 'Here\'s 3 ways you can add an element to the front of an array in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2022-02-28')
+    date: moment('2022-03-10')
+  },
+  {
+    title: 'Array pop() in JavaScript',
+    raw: './tutorials/fundamentals/pop.md',
+    url: '/tutorials/fundamentals/pop',
+    description: 'Here\'s how the array method `pop()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-08')
+  },
+  {
+    title: 'Array Unshift in JavaScript',
+    raw: './tutorials/fundamentals/unshift.md',
+    url: '/tutorials/fundamentals/unshift',
+    description: 'Here\'s how the array method `unshift()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-04')
+  },
+  {
+    title: 'Array shift() in JavaScript',
+    raw: './tutorials/fundamentals/shift.md',
+    url: '/tutorials/fundamentals/shift',
+    description: 'Here\'s how the array method `shift()` works in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-01')
   },
   {
     title: 'Shuffle an Array in JavasScript',
