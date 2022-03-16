@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Get A Character from a String in JavaScript',
+    raw: './tutorials/fundamentals/getChar.md',
+    url: '/tutorials/fundamentals/get-character-from-string',
+    description: 'Here\'s two ways to get the i-th character from a string in JavaScript, and which one you should use.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-16')
+  },
+  {
     title: 'Add to the Front of an Array in JavaScript',
     raw: './tutorials/fundamentals/add-front.md',
     url: '/tutorials/fundamentals/add-to-front',
