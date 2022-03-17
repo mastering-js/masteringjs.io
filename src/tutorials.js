@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Set Chart Size with ChartJS',
+    raw: './tutorials/chartjs/size.md',
+    url: '/tutorials/chartjs/size',
+    description: 'Placeholder Description',
+    tags: ['chartjs'],
+    date: moment('2022-03-17')
+  },
+  {
     title: 'Get A Character from a String in JavaScript',
     raw: './tutorials/fundamentals/getChar.md',
     url: '/tutorials/fundamentals/get-character-from-string',
