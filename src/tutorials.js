@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Set Axis Label Color in ChartJS',
+    raw: './tutorials/chartjs/axis-color.md',
+    url: '/tutorials/chartjs/axis-color',
+    description: 'Placeholder Description',
+    tags: ['chartjs'],
+    date: moment('2022-03-18')
+  },
+  {
     title: 'Get A Character from a String in JavaScript',
     raw: './tutorials/fundamentals/getChar.md',
     url: '/tutorials/fundamentals/get-character-from-string',
