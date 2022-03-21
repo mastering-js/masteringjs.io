@@ -1,4 +1,4 @@
-With chartjs version 3.7.1, you can change the color of the axis.
+With chartjs version 3.7.1, you can change the color of the labels.
 In version 3, chartjs changed how to configure the x and y axis of the graph.
 Instead of a array, it is now an object.
 Do not use version 2 as there is a bug where the x-axis options point to the y-axis options and vice versa.
@@ -53,8 +53,8 @@ Do not use version 2 as there is a bug where the x-axis options point to the y-a
       options: {
         responsive: true,
         scales: {
-          y: { beginAtZero: true, grid: {borderColor: 'cyan'}},
-          x: { beginAtZero: true, grid: {borderColor: 'indigo'}}
+          y: { ticks: {color: 'green', beginAtZero: true}, grid: {borderColor: 'cyan'}},
+          x: { ticks: {color: 'red', beginAtZero: true}, grid: {borderColor: 'indigo'}}
         }
       }
   });
@@ -111,8 +111,8 @@ Do not use version 2 as there is a bug where the x-axis options point to the y-a
       options: {
         responsive: true,
         scales: {
-          y: { beginAtZero: true, grid: {borderColor: 'cyan'}},
-          x: { beginAtZero: true, grid: {borderColor: 'indigo'}}
+          y: { ticks: {color: 'green', beginAtZero: true}, grid: {borderColor: 'cyan'}},
+          x: { ticks: {color: 'red', beginAtZero: true}, grid: {borderColor: 'indigo'}}
         }
       }
   });

@@ -7,8 +7,8 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'Set Axis Label Color in ChartJS',
-    raw: './tutorials/chartjs/axis-color.md',
-    url: '/tutorials/chartjs/axis-color',
+    raw: './tutorials/chartjs/label-color.md',
+    url: '/tutorials/chartjs/label-color',
     description: 'Placeholder Description',
     tags: ['chartjs'],
     date: moment('2022-03-18')
