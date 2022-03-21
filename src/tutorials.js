@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Hide the Tooltip in ChartJS',
+    raw: './tutorials/chartjs/hide-tooltip.md',
+    url: '/tutorials/chartjs/hide-tooltip',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-03-21')
+  },
+  {
     title: 'Get A Character from a String in JavaScript',
     raw: './tutorials/fundamentals/getChar.md',
     url: '/tutorials/fundamentals/get-character-from-string',
