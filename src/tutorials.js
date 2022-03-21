@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Create a Chart with 2 Y Axes in ChartJS',
+    raw: './tutorials/chartjs/two-axes.md',
+    url: '/tutorials/chartjs/two-axes',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-03-21')
+  },
+  {
     title: 'Get A Character from a String in JavaScript',
     raw: './tutorials/fundamentals/getChar.md',
     url: '/tutorials/fundamentals/get-character-from-string',
