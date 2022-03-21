@@ -10,7 +10,7 @@ const tutorials = [
     raw: './tutorials/chartjs/hide-tooltip.md',
     url: '/tutorials/chartjs/hide-tooltip',
     description: 'Placeholder Description',
-    tags: ['fundamentals'],
+    tags: ['chartjs'],
     date: moment('2022-03-21')
   },
   {
