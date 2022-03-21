@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'String replaceAll() in JavaScript',
+    raw: './tutorials/fundamentals/replaceAll.md',
+    url: '/tutorials/fundamentals/replaceall',
+    description: 'Here\'s how you can use replaceAll() to replace all instances of a substring in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-21')
+  },
+  {
     title: 'Get A Character from a String in JavaScript',
     raw: './tutorials/fundamentals/getChar.md',
     url: '/tutorials/fundamentals/get-character-from-string',
