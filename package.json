@@ -53,6 +53,7 @@
   "scripts": {
     "serve": "serve .",
     "server": "node ./server",
+    "check": "node . && serve .",
     "test": "env NODE_TLS_REJECT_UNAUTHORIZED=0 mocha examples/*.test.js"
   },
   "dependencies": {
