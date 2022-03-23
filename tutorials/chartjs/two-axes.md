@@ -79,13 +79,13 @@ The example below uses the `yAxisID` property.
           A: {
               type: 'linear',
               position: 'left',
-              ticks: {color: 'orange', beginAtZero: true},
+              ticks: {color: 'orange', beginAtZero: true, callback: function(value, index, ticks) {return '$' + value}},
               grid: {borderColor: 'green'}
           },
           B: {
               type: 'linear',
               position: 'right',
-              ticks: {color: 'blue', beginAtZero: true},
+              ticks: {color: 'blue', beginAtZero: true, callback: function(value, index, ticks) {return value + 'k'}},
               grid: {borderColor: 'green'}
           },
           x: { ticks: {color: 'grey', beginAtZero: true}, grid: {borderColor: 'orange'}}
@@ -171,13 +171,13 @@ The example below uses the `yAxisID` property.
           A: {
               type: 'linear',
               position: 'left',
-              ticks: {color: 'orange', beginAtZero: true},
+              ticks: {color: 'orange', beginAtZero: true, callback: function(value, index, ticks) {return '$' + value}},
               grid: {borderColor: 'green'}
           },
           B: {
               type: 'linear',
               position: 'right',
-              ticks: {color: 'blue', beginAtZero: true},
+              ticks: {color: 'blue', beginAtZero: true, callback: function(value, index, ticks) {return value + 'k'}},
               grid: {borderColor: 'green'}
           },
           x: { ticks: {color: 'grey', beginAtZero: true}, grid: {borderColor: 'orange'}}
