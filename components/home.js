@@ -93,6 +93,11 @@ module.exports = ({ posts }) => `
               <img src="https://codebarbarian-images.s3.amazonaws.com/casino-online-europei.png" alt="casino online europei" style="max-height: 100px"/>
             </a>
           </div>
+          <div class="col-lg-4">
+            <a href="https://www.correctcasinos.com/fastest-payout-casinos/" rel="sponsored">
+              <img src="https://images.opencollective.com/correct-casinos/7cce33a/avatar/256.png" alt="Fast payout casinos" style="max-height: 100px"/>
+            </a>
+          </div>
         </div>
       </div>
     </div>
