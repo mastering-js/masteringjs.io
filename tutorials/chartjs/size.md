@@ -1,6 +1,7 @@
-To set the chart size in chartjs, you should use the `responsive` option.
-You must wrap the chart canvas tag in a div with the css property `position` set to `relative`.
+To set the chart size in chartJS, you should use the `responsive` option.
+You must wrap the chart `canvas` tag in a `div` with the css property `position` set to `relative`.
 By default, the option is enabled and set to true.
+Resize the window to see how it affects the chart with and without `responsive` set.
 
 <style>
   #chart-wrapper {
@@ -19,13 +20,6 @@ By default, the option is enabled and set to true.
       // Configuration options go here
       options: {
         responsive: true, // ← comment this out to see no change
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
       }
   });
 </script>
@@ -47,14 +41,7 @@ By default, the option is enabled and set to true.
       type: 'bar',
       // Configuration options go here
       options: {
-        // responsive: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
+        responsive: true, // ← comment this out to see no change
       }
   });
 </script>
@@ -76,13 +63,6 @@ By default, the option is enabled and set to true.
       // Configuration options go here
       options: {
         responsive: false,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
       }
   });
 </script>
@@ -105,13 +85,6 @@ By default, the option is enabled and set to true.
       // Configuration options go here
       options: {
         responsive: false,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
       }
   });
 </script>
