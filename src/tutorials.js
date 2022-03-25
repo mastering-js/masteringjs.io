@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Set Chart Size with ChartJS',
+    raw: './tutorials/chartjs/size.md',
+    url: '/tutorials/chartjs/size',
+    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you neeed to know.',
+    tags: ['chartjs'],
+    date: moment('2022-03-25')
+  },
+  {
     title: 'String replaceAll() in JavaScript',
     raw: './tutorials/fundamentals/replaceAll.md',
     url: '/tutorials/fundamentals/replaceall',
