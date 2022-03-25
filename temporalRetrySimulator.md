@@ -43,11 +43,16 @@
         border-radius: 5px;
     }
 
-    .result {
+    .result, .launch {
         padding-top:25px;
         margin:auto;
         width: 50%;
         text-align:center
+    }
+
+    .launch-button {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .new-item-container {
@@ -67,6 +72,11 @@
     
     .new-item-button {
         width: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .new-item-input {
+        width: 50px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
@@ -105,8 +115,13 @@
     <input type="range" class="slider" id="interval">
 </div>
 </div>
+<div class="launch">
+    <button class="launch-button" onclick="delayRetry()">
+        Run Sim
+    </button>
+</div>
 <div class="result">
-<h1>blah blah blah</h1>
+<h1 id="display-result"></h1>
 </div>
 <script>
     console.log('Hello Computer!')
@@ -116,16 +131,27 @@
         container.classList.add('new-item-container');
         const list = document.querySelector('.retry-container');
         list.insertBefore(container, document.querySelector('.add-button'));
-        const text = document.createElement('div');
-        text.innerHTML = 'New Item!';
+        const text = document.createElement('select');
         text.classList.add('new-item');
+        const succeed = document.createElement('option');
+        succeed.innerText = 'Succeeds after';
+        text.appendChild(succeed);
+        const failure = document.createElement('option');
+        failure.innerText = 'Fails after';
+        text.appendChild(succeed);
+        text.appendChild(failure);
         const button = document.createElement('button');
         button.innerText = 'Remove Item';
         button.classList.add('new-item-button');
         button.onclick = function removeRetry(event) {
             event.target.parentElement.remove();
         }
+        const input = document.createElement('input');
+        input.classList.add('new-item-input');
+        let itemNumber = Array.from(document.querySelectorAll('.new-item-input')).length+1;
+        input.id = `new-item-input-${itemNumber}`;
         container.appendChild(text);
+        container.appendChild(input);
         container.appendChild(button);
     }
     
@@ -184,6 +210,14 @@
         intervalInput.value = this.value;
     }
 
+    function addArray(array) {
+        let sum = 0;
+        for(let i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
     function delayRetry() {
         let maximumAttempts = Math.min(50, attempts.value || 50);
         let backupCoefficient = backOff.value || 2;
@@ -191,11 +225,20 @@
         let maximumInterval = interval.value || Number.POSITIVE_INFINITY;
         const labels = [];
         const values = [];
-        let interval = initialInterval;
+        let interim = initialInterval;
         for (let i = 0; i < maximumAttempts; ++i) {
         labels.push(i + 1);
-        values.push(interval);
-        interval = Math.min(interval * backupCoefficient, maximumInterval);
+        const userInput = document.querySelector(`#new-item-input-${i+1}`);
+        if(userInput == null) return;
+        values.push(interim + userInput.value);
+        interim = Math.min(interim * backupCoefficient, maximumInterval);
+        }
+        const result = addArray(values);
+        const conclusion = document.querySelector('#display-result');
+        if(start.value >= result) {
+            conclusion.innerText = `Request Succeeds after ${result}`;
+        } else {
+            conclusion.innerText = `Request fails after ${result}`;
         }
     }
 </script>
