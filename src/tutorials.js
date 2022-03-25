@@ -9,7 +9,7 @@ const tutorials = [
     title: 'Set Chart Size with ChartJS',
     raw: './tutorials/chartjs/size.md',
     url: '/tutorials/chartjs/size',
-    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you neeed to know.',
+    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you need to know.',
     tags: ['chartjs'],
     date: moment('2022-03-25')
   },
