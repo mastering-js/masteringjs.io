@@ -9,9 +9,17 @@ const tutorials = [
     title: 'Set Chart Size with ChartJS',
     raw: './tutorials/chartjs/size.md',
     url: '/tutorials/chartjs/size',
-    description: 'Placeholder Description',
+    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you neeed to know.',
     tags: ['chartjs'],
-    date: moment('2022-03-17')
+    date: moment('2022-03-25')
+  },
+  {
+    title: 'String replaceAll() in JavaScript',
+    raw: './tutorials/fundamentals/replaceAll.md',
+    url: '/tutorials/fundamentals/replaceall',
+    description: 'Here\'s how you can use replaceAll() to replace all instances of a substring in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-03-21')
   },
   {
     title: 'Get A Character from a String in JavaScript',
