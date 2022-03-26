@@ -8,184 +8,270 @@ Below are the supported options:
 - `maximumInterval`: The maximum amount of time Temporal will wait between retries
 - `nonRetryableErrorTypes`: Array of strings containing the errors to skip retrying
 
-Below is a tool that graphs the time between retries for a given RetryPolicy.
+Below is a tool that calculates whether an activity succeeds or fails for a given retry policy.
 
 <style>
-  #input {
-    display: inline-block;
-    width: 32%;
-    height: 400px;
+  table {
+    border: 0;
+    width: 100%;
+  }
+
+  .retry-container {
     vertical-align: top;
-    padding-top: 25px;
+    width: 50%;
+  }
+  .add-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .retry-policy-container {
+    vertical-align: top;
+    width: 50%;
   }
 
-  #input .CodeMirror {
-    border: 1px solid #ddd;
+  .label-container {
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 
-  #chart-wrapper {
-    display: inline-block; position: relative; height: 400px; width: 66%;
+  .label-container label {
+    float: left;
+    max-width: 49%;
   }
 
-  .error-marker {
-    color: black;
-    width: 10px !important;
-    background-color: #ff0000;
+  .label-container input {
+    float: right;
+    max-width: 49%;
   }
 
-  .error-marker .error-message {
-    display: none;
-    position: absolute;
-    background-color: #ddd;
-    border: 1px solid #999;
-    padding: 6px;
-    width: 140px;
-    left: 15px;
-    top: -1em;
+  .label-container::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 
-  .error-marker:hover .error-message {
-    display: block;
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 10px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 5px;
+  }
+
+  .slider::-webkit-slider-thumb {
+    height: 25px;
+    width: 25px;
+  }
+
+  .slider::-moz-range-thumb {
+    height: 25px;
+    width: 25px;
+  }
+  .result {
+    padding: 5px;
+    margin:auto;
+    width: 100%;
+    text-align:center;
+    border-radius: 4px;
+    margin-top: 25px;
+  }
+  .success {
+    background-color: #D4EDDC;
+  }
+  .fail {
+    background-color: #f8d7da;
   }
 </style>
-
-<div id="input"></div>
-<div id="chart-wrapper">
-  <canvas id="chart"></canvas>
+<table>
+  <tr>
+    <td class="retry-container">
+      <div class="retries-list">
+        <h1>Retries</h1>
+      </div>
+      <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
+    </td>
+    <td class="retry-policy-container">
+      <h1>Retry Policy (in ms)</h1>
+      <div class="label-container">
+        <label>StartToCloseTimeout</label>
+        <input class="label-container-item" id="startToCloseTimeout-input" type="number">
+      </div>
+      <input type="range" class="slider" id="startToCloseTimeout-slider" min="0" max="100000">
+      <div class="label-container">
+        <label>backoffCoefficient</label>
+        <input class="label-container-item" id="backoffCoefficient-input" type="number">
+      </div>
+      <input type="range" class="slider" id="backoffCoefficient-slider" min="1" max="10">
+      <div class="label-container">
+        <label>initialInterval</label>
+        <input class="label-container-item" id="initialInterval-input" type="number">
+      </div>
+      <input type="range" class="slider" id="initialInterval-slider" min="1" max="10000">
+      <div class="label-container">
+        <label>maximumAttempts</label>
+        <input class="label-container-item" id="maximumAttempts-input" type="number">
+      </div>
+      <input type="range" class="slider" id="maximumAttempts-slider" min="1" max="100">
+      <div class="label-container">
+        <label>maximumInterval</label>
+        <input class="label-container-item" id="maximumInterval-input" type="number">
+      </div>
+      <input type="range" class="slider" id="maximumInterval-slider" min="1" max="100000">
+    </td>
+  </tr>
+</table>
+<div class="result">
 </div>
-<script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
-<link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
-<script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
-<script src="https://www.unpkg.com/dedent@0.7.0/dist/dedent.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-
+<div class="retry" style="display: none">
+  <select value="succeeds">
+    <option value="fails">Fails after</option>
+    <option value="succeeds">Succeeds after</option>
+  </select>
+  <input type="number" value="1" />
+  ms
+  <button class="remove">&times;</button>
+</div>
 <script>
-  const input = CodeMirror(document.querySelector('#input'), {
-    mode: 'javascript',
-    lineNumbers: true,
-    value: dedent(`
-    {
-      backoffCoefficient: 2,
-      initialInterval: 100,
-      maximumAttempts: 5
+  const retryTemplate = document.querySelector('.retry');
+  let numRetries = 0;
+  function addRetry(success, runtimeMS) {
+    const el = retryTemplate.cloneNode(true);
+    if (state.retries.length > 0) {
+      state.retries[state.retries.length - 1].success = false;
+      state.retries[state.retries.length - 1].select.disabled = true;
+      state.retries[state.retries.length - 1].select.value = 'fails';
     }
-    `),
-    tabSize: 2,
-    gutters: ['error']
-  });
-
-  input.on('changes', () => {
-    let value;
-    try {
-      value = eval(`(${input.getValue()})`);
-    } catch (err) {
-      return;
+    const retry = { success, runtimeMS, el };
+    state.retries.push(retry);
+    const select = el.querySelector('select');
+    retry.select = select;
+    select.value = success ? 'succeeds' : 'fails';
+    const input = el.querySelector('input[type="number"]');
+    el.querySelector('.remove').addEventListener('click', () => removeRetry());
+    input.value = runtimeMS;
+    input.addEventListener('change', function() {
+      const val = input.value;
+      if (!isNaN(val)) {
+        retry.runtimeMS = +val;
+        rerenderResult();
+      }
+    });
+    select.addEventListener('change', function() {
+      retry.success = select.value === 'succeeds';
+      rerenderResult();
+    });
+    document.querySelector('.retries-list').appendChild(el);
+    el.style.display = 'block';
+    rerenderResult();
+  }
+  function removeRetry() {
+    if (state.retries.length > 0) {
+      const lastRetry = state.retries[state.retries.length - 1];
+      document.querySelector('.retries-list').removeChild(lastRetry.el);
+      state.retries.pop();
+      state.retries[state.retries.length - 1].select.disabled = false;
+      rerenderResult();
     }
-
-    updateChart(value);
+  }
+  function reflectChange(slider, newValue) {
+    slider.value = newValue;
+  }
+  const sliderProps = [
+    'startToCloseTimeout',
+    'backoffCoefficient',
+    'initialInterval',
+    'maximumAttempts',
+    'maximumInterval'
+  ];
+  const state = {
+    retries: [],
+    startToCloseTimeout: 10000,
+    backoffCoefficient: 2,
+    initialInterval: 100,
+    maximumAttempts: 5,
+    maximumInterval: 100000
+  };
+  sliderProps.forEach(prop => {
+    const input = document.querySelector(`#${prop}-input`);
+    const slider = document.querySelector(`#${prop}-slider`);
+    slider.value = state[prop];
+    input.value = state[prop];
+    input.addEventListener('change', function() {
+      const val = input.value;
+      if (!isNaN(val)) {
+        slider.value = +val;
+        state[prop] = +val;
+        rerenderResult();
+      }
+    });
+    slider.addEventListener('change', () => {
+      input.value = +slider.value;
+      state[prop] = +slider.value;
+      rerenderResult();
+    });
   });
-
-  const ctx = document.getElementById('chart').getContext('2d');
-  const chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'bar',
-
-      // Configuration options go here
-      options: {
-        responsive: true,
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+  addRetry(true, 1);
+  function rerenderResult() {
+    if (state.retries.length === 0) {
+      document.querySelector('.result').innerHTML = '';
+    }
+    const res = calculateResult();
+    if (res.success) {
+      document.querySelector('.result').innerHTML = `<h2>Success after ${res.runtimeMS} ms</h2>`;
+      document.querySelector('.result').classList.add('success');
+      document.querySelector('.result').classList.remove('fail');
+      console.log('Hey')
+    } else {
+      document.querySelector('.result').innerHTML = `<h2>Error after ${res.runtimeMS} ms: ${res.reason}</h2>`;
+      document.querySelector('.result').classList.remove('success');
+      document.querySelector('.result').classList.add('fail');
+    }
+  }
+  function calculateResult() {
+    let runtimeMS = 0;
+    let retryIntervalMS = state.initialInterval;
+    const {
+      startToCloseTimeout,
+      maximumInterval,
+      maximumAttempts,
+      backoffCoefficient
+    } = state;
+    for (let i = 0; i < state.retries.length; ++i) {
+      if (i >= maximumAttempts) {
+        return {
+          success: false,
+          runtimeMS,
+          reason: 'maximumAttempts'
         }
       }
-  });
-
-  updateChart();
-
-  function parseInput(str) {
-    let val = null;
-    input.clearGutter('error');
-    try {
-      val = eval(`(${input.getValue()})`);
-    } catch (err) {
-      input.setGutterMarker(0, 'error', makeMarker(err.message));
-      return val;
+      runtimeMS = Math.min(runtimeMS + state.retries[i].runtimeMS, startToCloseTimeout);
+      if (!state.retries[i].success) {
+        runtimeMS = Math.min(runtimeMS + retryIntervalMS, startToCloseTimeout);
+      }
+      retryIntervalMS = Math.min(retryIntervalMS * backoffCoefficient, maximumInterval);
+      if (runtimeMS >= startToCloseTimeout) {
+        return {
+          success: false,
+          runtimeMS,
+          reason: 'startToCloseTimeout'
+        };
+      }
     }
-
-    if (val == null || typeof val !== 'object') {
-      input.setGutterMarker(0, 'error', makeMarker('Must resolve to an object'));
-      return null;
+    if (!state.retries[state.retries.length - 1].success) {
+      return {
+        success: false,
+        runtimeMS,
+        reason: 'All retries failed'
+      };
     }
-
-    if (val.maximumAttempts !== undefined && typeof val.maximumAttempts !== 'number') {
-      input.setGutterMarker(0, 'error', makeMarker('maximumAttempts must be number or undefined'));
-      return null;
-    }
-    if (val.backupCoefficient !== undefined && typeof val.backupCoefficient !== 'number') {
-      input.setGutterMarker(0, 'error', makeMarker('backupCoefficient must be number or undefined'));
-      return null;
-    }
-    if (val.initialInterval !== undefined && typeof val.initialInterval !== 'number') {
-      input.setGutterMarker(0, 'error', makeMarker('initialInterval must be number or undefined'));
-      return null;
-    }
-    if (val.maximumInterval !== undefined && typeof val.maximumInterval !== 'number') {
-      input.setGutterMarker(0, 'error', makeMarker('maximumInterval must be number or undefined'));
-      return null;
-    }
-
-    return val;
-  }
-
-  function updateChart() {
-    const obj = parseInput(input.getValue());
-    if (obj == null) {
-      return;
-    }
-
-    let maximumAttempts = Math.min(50, obj.maximumAttempts || 50);
-    let backupCoefficient = obj.backupCoefficient || 2;
-    let initialInterval = obj.initialInterval || 1000;
-    let maximumInterval = obj.maximumInterval || Number.POSITIVE_INFINITY;
-
-    const labels = [];
-    const values = [];
-
-    let interval = initialInterval;
-
-    for (let i = 0; i < maximumAttempts; ++i) {
-      labels.push(i + 1);
-      values.push(interval);
-
-      interval = Math.min(interval * backupCoefficient, maximumInterval);
-    }
-
-    chart.data.labels = labels;
-    chart.data.datasets = [{
-      label: 'Time Before Retry',
-      backgroundColor: '#168a93',
-      borderColor: '#168a93',
-      data: values
-    }];
-    chart.update();
-  }
-
-  // Create an HTML element that CodeMirror is responsible for positioning
-  // properly.
-  function makeMarker(msg) {
-    const marker = document.createElement('div');
-    marker.classList.add('error-marker');
-    marker.innerHTML = '&nbsp;';
-
-    const error = document.createElement('div');
-    error.innerHTML = msg;
-    error.classList.add('error-message');
-    marker.appendChild(error);
-
-    return marker;
+    return {
+      success: true,
+      runtimeMS
+    };
   }
 </script>
