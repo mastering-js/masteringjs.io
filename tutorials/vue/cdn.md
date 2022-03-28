@@ -2,16 +2,22 @@ You can load Vue [from a CDN using a `script` tag](https://vuejs.org/v2/guide/in
 For example, here's how you can load the latest version of Vue 2.x:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
+<script src="https://unpkg.com/vue@2"></script>
+```
+
+For Vue 3:
+
+```html
+<script src="https://unpkg.com/vue@3"></script>
 ```
 
 Once you load Vue via CDN, `Vue` will be a global variable that you can use normally.
-For example, the below is a standalone HTML page that loads Vue and adds interactivity.
+For example, the below is a standalone HTML page that loads Vue 2.x and adds interactivity.
 
 ```html
 <div id="content"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   new Vue({
     data: () => ({ message: 'Row' }),
@@ -29,7 +35,7 @@ Below is a live example.
 
 <div id="content"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   new Vue({
     data: () => ({ message: 'Row' }),
