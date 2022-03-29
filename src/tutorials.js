@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Set Axis Label Color in ChartJS',
+    raw: './tutorials/chartjs/label-color.md',
+    url: '/tutorials/chartjs/axis-label-color',
+    description: 'Here\'s how you can configure the X and Y axis label colors in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-03-29')
+  },
+  {
     title: 'Set Chart Size with ChartJS',
     raw: './tutorials/chartjs/size.md',
     url: '/tutorials/chartjs/size',
