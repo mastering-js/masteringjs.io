@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Filter Duplicates with Lodash\'s uniq() Function',
+    raw: './tutorials/lodash/uniq.md',
+    url: '/tutorials/lodash/uniq',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-03-30')
+  },
+  {
     title: 'Set Axis Label Color in ChartJS',
     raw: './tutorials/chartjs/label-color.md',
     url: '/tutorials/chartjs/axis-label-color',
