@@ -9,8 +9,32 @@ const tutorials = [
     title: 'Hide the Tooltip in ChartJS',
     raw: './tutorials/chartjs/hide-tooltip.md',
     url: '/tutorials/chartjs/hide-tooltip',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can hide the default tooltip that shows when you mouse over a ChartJS chart.',
     tags: ['chartjs'],
+    date: moment('2022-04-01')
+  },
+  {
+    title: 'Set Axis Label Color in ChartJS',
+    raw: './tutorials/chartjs/label-color.md',
+    url: '/tutorials/chartjs/axis-label-color',
+    description: 'Here\'s how you can configure the X and Y axis label colors in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-03-29')
+  },
+  {
+    title: 'Set Chart Size with ChartJS',
+    raw: './tutorials/chartjs/size.md',
+    url: '/tutorials/chartjs/size',
+    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you need to know.',
+    tags: ['chartjs'],
+    date: moment('2022-03-25')
+  },
+  {
+    title: 'String replaceAll() in JavaScript',
+    raw: './tutorials/fundamentals/replaceAll.md',
+    url: '/tutorials/fundamentals/replaceall',
+    description: 'Here\'s how you can use replaceAll() to replace all instances of a substring in JavaScript.',
+    tags: ['fundamentals'],
     date: moment('2022-03-21')
   },
   {

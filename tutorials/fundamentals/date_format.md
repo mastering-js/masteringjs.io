@@ -7,7 +7,7 @@ The `toLocaleString()` function takes 2 arguments:
 
 1) A string `locale` that represents the [high level format of the date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument), like `'en-US'` or `'default'`.
 
-2) An object `options` that contains how to format various date components, like `month` or `minutes`.
+2) An object `options` that contains how to format various date components, like `month` or `minutes`. Here's a [full list of `toLocaleDateString()` options](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)
 
 Here's an example of formatting a date to include the short form of the weekday and the full date.
 
