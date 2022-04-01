@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Hide the Tooltip in ChartJS',
+    raw: './tutorials/chartjs/hide-tooltip.md',
+    url: '/tutorials/chartjs/hide-tooltip',
+    description: 'Here\'s how you can hide the default tooltip that shows when you mouse over a ChartJS chart.',
+    tags: ['chartjs'],
+    date: moment('2022-04-01')
+  },
+  {
     title: 'Set Axis Label Color in ChartJS',
     raw: './tutorials/chartjs/label-color.md',
     url: '/tutorials/chartjs/axis-label-color',
