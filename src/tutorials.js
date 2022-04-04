@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Retry Policies in Temporal',
+    raw: './tutorials/temporal/retry-policy.md',
+    url: '/tutorials/temporal/retry-policy',
+    description: 'Here\'s a tool that displays times between retries given different Temporal retry policies.',
+    tags: ['temporal'],
+    date: moment('2022-04-04')
+  },
+  {
     title: 'Hide the Tooltip in ChartJS',
     raw: './tutorials/chartjs/hide-tooltip.md',
     url: '/tutorials/chartjs/hide-tooltip',
