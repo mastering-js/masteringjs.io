@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Create a Chart with 2 Y Axes in ChartJS',
+    raw: './tutorials/chartjs/two-axes.md',
+    url: '/tutorials/chartjs/two-y-axes',
+    description: 'Here\'s how you can create a chart that has two different Y axes with different scales in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-04-04')
+  },
+  {
     title: 'Retry Policies in Temporal',
     raw: './tutorials/temporal/retry-policy.md',
     url: '/tutorials/temporal/retry-policy',
