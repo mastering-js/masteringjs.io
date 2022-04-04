@@ -8,8 +8,48 @@ const tutorials = [
   {
     title: 'Create a Chart with 2 Y Axes in ChartJS',
     raw: './tutorials/chartjs/two-axes.md',
-    url: '/tutorials/chartjs/two-axes',
-    description: 'Placeholder Description',
+    url: '/tutorials/chartjs/two-y-axes',
+    description: 'Here\'s how you can create a chart that has two different Y axes with different scales in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-04-04')
+  },
+  {
+    title: 'Retry Policies in Temporal',
+    raw: './tutorials/temporal/retry-policy.md',
+    url: '/tutorials/temporal/retry-policy',
+    description: 'Here\'s a tool that displays times between retries given different Temporal retry policies.',
+    tags: ['temporal'],
+    date: moment('2022-04-04')
+  },
+  {
+    title: 'Hide the Tooltip in ChartJS',
+    raw: './tutorials/chartjs/hide-tooltip.md',
+    url: '/tutorials/chartjs/hide-tooltip',
+    description: 'Here\'s how you can hide the default tooltip that shows when you mouse over a ChartJS chart.',
+    tags: ['chartjs'],
+    date: moment('2022-04-01')
+  },
+  {
+    title: 'Set Axis Label Color in ChartJS',
+    raw: './tutorials/chartjs/label-color.md',
+    url: '/tutorials/chartjs/axis-label-color',
+    description: 'Here\'s how you can configure the X and Y axis label colors in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-03-29')
+  },
+  {
+    title: 'Set Chart Size with ChartJS',
+    raw: './tutorials/chartjs/size.md',
+    url: '/tutorials/chartjs/size',
+    description: 'Setting the chart size with ChartJS is tricky. Here\'s what you need to know.',
+    tags: ['chartjs'],
+    date: moment('2022-03-25')
+  },
+  {
+    title: 'String replaceAll() in JavaScript',
+    raw: './tutorials/fundamentals/replaceAll.md',
+    url: '/tutorials/fundamentals/replaceall',
+    description: 'Here\'s how you can use replaceAll() to replace all instances of a substring in JavaScript.',
     tags: ['fundamentals'],
     date: moment('2022-03-21')
   },
