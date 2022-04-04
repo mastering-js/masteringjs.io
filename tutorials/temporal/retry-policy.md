@@ -50,7 +50,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     display: table;
   }
 
-  .slider {
+  .slider, .runtime-slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
@@ -63,12 +63,18 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     border-radius: 5px;
   }
 
-  .slider::-webkit-slider-thumb {
+  .runtime-slider {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 75%;
+  }
+
+  .slider::-webkit-slider-thumb, .runtime-slider::-webkit-slider-thumb {
     height: 25px;
     width: 25px;
   }
 
-  .slider::-moz-range-thumb {
+  .slider::-moz-range-thumb, .runtime-slider::-moz-range-thumb {
     height: 25px;
     width: 25px;
   }
@@ -135,6 +141,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   <input type="number" value="1" />
   ms
   <button class="remove">&times;</button>
+  <input type="range" class="runtime-slider"/>
 </div>
 <script>
   const retryTemplate = document.querySelector('.retry');
@@ -152,14 +159,23 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     retry.select = select;
     select.value = success ? 'succeeds' : 'fails';
     const input = el.querySelector('input[type="number"]');
+    const slider = el.querySelector('input[type="range"]');
     el.querySelector('.remove').addEventListener('click', () => removeRetry());
     input.value = runtimeMS;
+    slider.value = input.value;
     input.addEventListener('change', function() {
       const val = input.value;
       if (!isNaN(val)) {
+        slider.value = val;
         retry.runtimeMS = +val;
         rerenderResult();
       }
+    });
+    slider.addEventListener('change', function() {
+      const val = slider.value;
+      input.value = val;
+      retry.runtimeMS = +val;
+      rerenderResult();
     });
     select.addEventListener('change', function() {
       retry.success = select.value === 'succeeds';
