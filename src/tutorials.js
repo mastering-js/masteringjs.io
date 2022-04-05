@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The document.createElement Function in JavaScript',
+    raw: './tutorials/fundamentals/create-element.md',
+    url: '/tutorials/fundamentals/create-element',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-04-05')
+  },
+  {
     title: 'Create a Chart with 2 Y Axes in ChartJS',
     raw: './tutorials/chartjs/two-axes.md',
     url: '/tutorials/chartjs/two-y-axes',
