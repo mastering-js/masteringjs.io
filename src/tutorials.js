@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The firstChild property in JavaScript',
+    raw: './tutorials/fundamentals/first-child.md',
+    url: '/tutorials/fundamentals/first-child',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-04-05')
+  },
+  {
     title: 'Create a Chart with 2 Y Axes in ChartJS',
     raw: './tutorials/chartjs/two-axes.md',
     url: '/tutorials/chartjs/two-y-axes',
