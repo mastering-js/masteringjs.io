@@ -29,11 +29,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     width: 50%;
   }
 
-  .label-container {
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-
   .label-container label {
     float: left;
     max-width: 49%;
@@ -42,6 +37,14 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   .label-container input {
     float: right;
     max-width: 49%;
+  }
+
+  .retry, .parameter {
+    padding: 10px;
+    padding-top: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    margin-right: 15px;
   }
 
   .label-container::after {
@@ -97,31 +100,68 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     </td>
     <td class="retry-policy-container">
       <h1>Retry Policy (in ms)</h1>
-      <div class="label-container">
-        <label>StartToCloseTimeout</label>
-        <input class="label-container-item" id="startToCloseTimeout-input" type="number">
+      <div class="parameter">
+        <div class="label-container">
+          <label>StartToCloseTimeout</label>
+          <input class="label-container-item" id="startToCloseTimeout-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="startToCloseTimeout-slider"
+          min="0"
+          max="100000"
+          step="100">
       </div>
-      <input type="range" class="slider" id="startToCloseTimeout-slider" min="0" max="100000">
-      <div class="label-container">
-        <label>backoffCoefficient</label>
-        <input class="label-container-item" id="backoffCoefficient-input" type="number">
+      <div class="parameter">
+        <div class="label-container">
+          <label>backoffCoefficient</label>
+          <input class="label-container-item" id="backoffCoefficient-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="backoffCoefficient-slider"
+          min="1"
+          max="10">
       </div>
-      <input type="range" class="slider" id="backoffCoefficient-slider" min="1" max="10">
-      <div class="label-container">
-        <label>initialInterval</label>
-        <input class="label-container-item" id="initialInterval-input" type="number">
+      <div class="parameter">
+        <div class="label-container">
+          <label>initialInterval</label>
+          <input class="label-container-item" id="initialInterval-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="initialInterval-slider"
+          min="0"
+          max="10000"
+          step="50">
       </div>
-      <input type="range" class="slider" id="initialInterval-slider" min="1" max="10000">
-      <div class="label-container">
-        <label>maximumAttempts</label>
-        <input class="label-container-item" id="maximumAttempts-input" type="number">
+      <div class="parameter">
+        <div class="label-container">
+          <label>maximumAttempts</label>
+          <input class="label-container-item" id="maximumAttempts-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="maximumAttempts-slider"
+          min="1"
+          max="100">
       </div>
-      <input type="range" class="slider" id="maximumAttempts-slider" min="1" max="100">
-      <div class="label-container">
-        <label>maximumInterval</label>
-        <input class="label-container-item" id="maximumInterval-input" type="number">
+      <div class="parameter">
+        <div class="label-container">
+          <label>maximumInterval</label>
+          <input class="label-container-item" id="maximumInterval-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="maximumInterval-slider"
+          min="0" max="100000"
+          step="100">
       </div>
-      <input type="range" class="slider" id="maximumInterval-slider" min="1" max="100000">
     </td>
   </tr>
 </table>
@@ -135,9 +175,11 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   <input type="number" value="1" />
   ms
   <button class="remove">&times;</button>
+  <input type="range" class="slider runtime-slider"/>
 </div>
 <script>
   const retryTemplate = document.querySelector('.retry');
+  const resultContainerElement = document.querySelector('.result');
   let numRetries = 0;
   function addRetry(success, runtimeMS) {
     const el = retryTemplate.cloneNode(true);
@@ -152,17 +194,26 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     retry.select = select;
     select.value = success ? 'succeeds' : 'fails';
     const input = el.querySelector('input[type="number"]');
+    const slider = el.querySelector('input[type="range"]');
     el.querySelector('.remove').addEventListener('click', () => removeRetry());
     input.value = runtimeMS;
+    slider.value = input.value;
     input.addEventListener('change', function() {
       const val = input.value;
       if (!isNaN(val)) {
+        slider.value = +val;
         retry.runtimeMS = +val;
         rerenderResult();
       }
     });
     select.addEventListener('change', function() {
       retry.success = select.value === 'succeeds';
+      rerenderResult();
+    });
+    slider.addEventListener('change', function() {
+      const val = slider.value;
+      input.value = +val;
+      retry.runtimeMS = +val;
       rerenderResult();
     });
     document.querySelector('.retries-list').appendChild(el);
@@ -177,9 +228,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       state.retries[state.retries.length - 1].select.disabled = false;
       rerenderResult();
     }
-  }
-  function reflectChange(slider, newValue) {
-    slider.value = newValue;
   }
   const sliderProps = [
     'startToCloseTimeout',
@@ -222,14 +270,13 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     }
     const res = calculateResult();
     if (res.success) {
-      document.querySelector('.result').innerHTML = `<h2>Success after ${res.runtimeMS} ms</h2>`;
-      document.querySelector('.result').classList.add('success');
-      document.querySelector('.result').classList.remove('fail');
-      console.log('Hey')
+      resultContainerElement.innerHTML = `<h2>Success after ${res.runtimeMS} ms</h2>`;
+      resultContainerElement.classList.add('success');
+      resultContainerElement.classList.remove('fail');
     } else {
-      document.querySelector('.result').innerHTML = `<h2>Error after ${res.runtimeMS} ms: ${res.reason}</h2>`;
-      document.querySelector('.result').classList.remove('success');
-      document.querySelector('.result').classList.add('fail');
+      resultContainerElement.innerHTML = `<h2>Error after ${res.runtimeMS} ms: ${res.reason}</h2>`;
+      resultContainerElement.classList.remove('success');
+      resultContainerElement.classList.add('fail');
     }
   }
   function calculateResult() {
