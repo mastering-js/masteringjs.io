@@ -86,12 +86,23 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   .fail {
     background-color: #f8d7da;
   }
+  .spacing {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 </style>
 <table>
   <tr>
     <td class="retry-container">
       <div class="retries-list">
         <h1>Retries</h1>
+        <select id="scenarios" class="spacing">
+        <option value="null">No option</option>
+        <option value='{"requestRuntimeMS": 10, "successRate": 0.9}'>Fast request (10ms), 90% success rate</option>
+        <option value='{"requestRuntimeMS": 10, "successRate": 0.5}'>Fast request (10ms), 50% success rate</option>
+        <option value='{"requestRuntimeMS": 100, "successRate": 0.9}'>Slow request (100ms), 90$ success rate</option>
+        <option value='{"requestRuntimeMS": 100, "successRate": 0.5}'>Slow request (100ms), 50% success rate</option>
+        </select>
       </div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
     </td>
@@ -196,6 +207,24 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     maximumAttempts: 5,
     maximumInterval: 100000
   };
+  const scenarios = document.querySelector('#scenarios');
+  scenarios.addEventListener('change', function() {
+    const values = JSON.parse(scenarios.value);
+    if (!values) return;
+    const requestRuntimeMS = values.requestRuntimeMS;
+    const successRate = values.successRate;
+    const retries = [];
+    while (true) {
+      const success = Math.random() > successRate;
+      const runtimeMS = requestRuntimeMS + (Math.random() - 0.5) * (requestRuntimeMS / 10); // 100ms +/- 10ms
+      retries.push({ success, runtimeMS });
+      if (success) {
+        state.retries = retries;
+        rerenderResult();
+        break;
+      }
+    }
+  });
   sliderProps.forEach(prop => {
     const input = document.querySelector(`#${prop}-input`);
     const slider = document.querySelector(`#${prop}-slider`);
