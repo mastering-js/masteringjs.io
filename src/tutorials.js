@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Filter Duplicates with Lodash\'s uniq() Function',
+    raw: './tutorials/lodash/filter-duplicates.md',
+    url: '/tutorials/lodash/filter-duplicates',
+    description: 'Here\'s how you can use _.uniq() to filter out duplicate entries in a JavaScript array.',
+    tags: ['lodash'],
+    date: moment('2022-04-07')
+  },
+  {
     title: 'Create a Chart with 2 Y Axes in ChartJS',
     raw: './tutorials/chartjs/two-axes.md',
     url: '/tutorials/chartjs/two-y-axes',
