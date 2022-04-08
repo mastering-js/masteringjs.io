@@ -1,4 +1,4 @@
-The `difference()` function in lodash takes two arguments, the array in question and an array of values to compare against, and returns a new array.
+The `difference()` function in Lodash takes two arrays, and returns an array containing all the values in the first array that are not in the second array.
 
 ```javascript
 const _ = require('lodash');
@@ -9,7 +9,8 @@ _.difference(array, values); // returns [4, 5]
 
 ## differenceBy()
 
-The `differenceBy()` function behaves similarly to the `difference()` function with the addition of a third argument that transforms each element before comparison.
+The `differenceBy()` function accepts a third argument, a callback function that transforms each element before calculating the difference.
+For example, below is how you can calculate the difference between two sets of numbers by their `Math.floor()` value.
 
 ```javascript
 const _ = require('lodash');
@@ -27,17 +28,28 @@ const values = [{property: 1}];
 _.differenceBy(array, values, 'property'); // returns [{property: 2}]
 ```
 
+You can even use it to convert values to strings.
+
+```javascript
+const mongoose = require('mongoose');
+const _ = require('lodash');
+
+const oids1 = [mongoose.Types.ObjectId('123456789012'), mongoose.Types.ObjectId('123456789013'), mongoose.Types.ObjectId('123456789014')];
+const oids2 = [mongoose.Types.ObjectId('123456789013'), mongoose.Types.ObjectId('123456789014')];
+_.differenceBy(oids1, oids2, id => id.toString()); // returns [mongoose.Types.ObjectId('123456789012')]
+```
+
 ## differenceWith()
 
-The `differenceWith()` function behaves similarly to the `differenceBy()` function with its third argument being a comparator as opposed to a transformer.
+The `differenceWith()` function takes a comparator function as a third parameter. The comparator should accept two values, and retrun true if the values are equal.
 The result will vary depending on the order of items in the array so be sure to sort before calling this function.
 
 ```javascript
 const _ = require('lodash');
-const array = [1, 2, 3, 4, 5];
-const values = [1, 2, 3];
-_.differenceWith(array, values, function(arrVal, othVal) {
-    if(arrVal === othVal) return true;
-    return false;
-}); // returns [4, 5]
+const array = [
+  { x: 1, y: 2 },
+  { x: 2, y: 1 },
+];
+const values = [{ x: 2, y: 1 }];
+_.differenceWith(array, values, _.isEqual) // returns [{x: 1, y: 2}]
 ```
