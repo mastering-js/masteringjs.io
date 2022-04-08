@@ -89,13 +89,38 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   .fail {
     background-color: #f8d7da;
   }
+  .spacing {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .scenarios {
+    font-size: 1.1em;
+    padding: 0.25em;
+    margin-bottom: 0.5em;
+  }
 </style>
 <table>
   <tr>
     <td class="retry-container">
-      <div class="retries-list">
+      <div class="retries">
         <h1>Retries</h1>
+        <select class="scenarios" class="spacing">
+          <option value="">Scenarios</option>
+          <option value='{"requestRuntimeMS": 10, "successRate": 0.9}'>
+            Fast request (10ms), 90% success rate
+          </option>
+          <option value='{"requestRuntimeMS": 10, "successRate": 0.5}'>
+            Fast request (10ms), 50% success rate
+          </option>
+          <option value='{"requestRuntimeMS": 100, "successRate": 0.9}'>
+            Slow request (100ms), 90% success rate
+          </option>
+          <option value='{"requestRuntimeMS": 100, "successRate": 0.5}'>
+            Slow request (100ms), 50% success rate
+          </option>
+        </select>
       </div>
+      <div class="retries-list"></div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
     </td>
     <td class="retry-policy-container">
@@ -175,11 +200,12 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   <input type="number" value="1" />
   ms
   <button class="remove">&times;</button>
-  <input type="range" class="slider runtime-slider"/>
+  <input type="range" class="slider runtime-slider" min="0" max="1000" step="5" />
 </div>
 <script>
   const retryTemplate = document.querySelector('.retry');
   const resultContainerElement = document.querySelector('.result');
+  const retriesListElement = document.querySelector('.retries-list');
   let numRetries = 0;
   function addRetry(success, runtimeMS) {
     const el = retryTemplate.cloneNode(true);
@@ -216,19 +242,41 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       retry.runtimeMS = +val;
       rerenderResult();
     });
-    document.querySelector('.retries-list').appendChild(el);
+    retriesListElement.appendChild(el);
     el.style.display = 'block';
     rerenderResult();
   }
   function removeRetry() {
     if (state.retries.length > 0) {
       const lastRetry = state.retries[state.retries.length - 1];
-      document.querySelector('.retries-list').removeChild(lastRetry.el);
+      retriesListElement.removeChild(lastRetry.el);
       state.retries.pop();
       state.retries[state.retries.length - 1].select.disabled = false;
       rerenderResult();
     }
   }
+  const scenarios = document.querySelector('.scenarios');
+  scenarios.addEventListener('change', function() {
+    if (!scenarios.value) {
+      return;
+    }
+    const values = JSON.parse(scenarios.value);
+    const requestRuntimeMS = values.requestRuntimeMS;
+    const successRate = values.successRate;
+    const retries = [];
+    const maxRetries = 20;
+    clearRetries();
+    for (let i = 0; i < maxRetries; ++i) {
+      const success = Math.random() < successRate || i === maxRetries - 1;
+      const runtimeMS = requestRuntimeMS +
+        Math.round((Math.random() - 0.5) * (requestRuntimeMS / 2)); // +/- 50%
+      addRetry(success, runtimeMS);
+      if (success) {
+        break;
+      }
+    }
+    rerenderResult();
+  });
   const sliderProps = [
     'startToCloseTimeout',
     'backoffCoefficient',
@@ -264,6 +312,10 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     });
   });
   addRetry(true, 1);
+  function clearRetries() {
+    state.retries = [];
+    retriesListElement.innerHTML = '';
+  }
   function rerenderResult() {
     if (state.retries.length === 0) {
       document.querySelector('.result').innerHTML = '';
