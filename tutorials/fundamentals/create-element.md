@@ -1,18 +1,16 @@
-The `createElement()` function in JavaScript is used to programatically add elements to a web file.
-It takes one argument which is the type of element to create.
-You should store it in a variable as you will most likely want to manipulate the newly created element's properties.
+The `createElement()` function in JavaScript is used to programatically add elements to the DOM.
+It has one required argument, the type of elemtn to create, like `'div'` or `'img'`.
 
 <div id="append-elements"></div>
 <button onclick="addElement()">Click to Add</button>
 
 <script>
-function addElement() {
-const doc = document.createElement('div');
-doc.innerHTML = 'Hello World';
-const descendant = document.querySelector('#append-elements');
-console.log(descendant)
-descendant.insertAdjacentElement('afterend', doc);
-}
+  function addElement() {
+    const doc = document.createElement('div');
+    doc.innerHTML = 'Hello World';
+    const descendant = document.querySelector('#append-elements');
+    descendant.appendChild(doc);
+  }
 </script>
 
 ```html
@@ -21,16 +19,15 @@ descendant.insertAdjacentElement('afterend', doc);
 ```
 
 ```javascript
-function addElement() {
-const doc = document.createElement('div');
-doc.innerHTML = 'Hello World';
-const descendant = document.querySelector('#append-elements');
-console.log(descendant)
-descendant.insertAdjacentElement('afterend', doc);
-}
+  function addElement() {
+    const doc = document.createElement('div');
+    doc.innerHTML = 'Hello World';
+    const descendant = document.querySelector('#append-elements');
+    descendant.appendChild(doc);
+  }
 ```
 
-The more nested, the more appending needs to be done.
+You can also use `appendChild()` on the newly created element to add more elements as shown below.
 
 ```html
 <div id="nested">I am the Parent</div>
