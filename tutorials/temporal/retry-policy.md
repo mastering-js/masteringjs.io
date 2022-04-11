@@ -206,7 +206,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     </td>
   </tr>
   <tr>
-    <td style="margin-right: 15px; vertical-align: top">
+    <td style="padding-right: 15px; vertical-align: top">
       <div class="result"></div>
     </td>
     <td>
