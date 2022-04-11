@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Mongoose find() Certain Fields',
+    raw: './tutorials/mongoose/filter-find.md',
+    url: '/tutorials/mongoose/filter-find',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-04-11')
+  },
+  {
     title: 'Filter Duplicates with Lodash\'s uniq() Function',
     raw: './tutorials/lodash/filter-duplicates.md',
     url: '/tutorials/lodash/filter-duplicates',
