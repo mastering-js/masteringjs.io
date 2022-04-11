@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Fix \'Query was already executed\' in Mongoose',
+    raw: './tutorials/mongoose/query-twice.md',
+    url: '/tutorials/mongoose/query-twice',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-04-11')
+  },
+  {
     title: 'Filter Duplicates with Lodash\'s uniq() Function',
     raw: './tutorials/lodash/filter-duplicates.md',
     url: '/tutorials/lodash/filter-duplicates',
