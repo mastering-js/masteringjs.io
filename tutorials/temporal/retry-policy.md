@@ -75,8 +75,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   }
   .result {
     padding: 5px;
-    margin:auto;
-    width: 100%;
     text-align:center;
     border-radius: 4px;
     margin-top: 25px;
@@ -96,15 +94,23 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     padding: 0.25em;
     margin-bottom: 0.5em;
   }
-  .retry-chart {
-    width: 100%;
-  }
   .output-wrapper {
     border: 1px solid #ddd;
     height: 130px;
   }
   .output-wrapper .CodeMirror {
     height: 130px;
+  }
+  .result-row {
+    display: flex;
+    flex-direction: row;
+  }
+  .result, .retry-chart {
+    position: relative;
+    width: 100%;
+  }
+  .result {
+    margin-right: 15px;
   }
 </style>
 <table>
@@ -199,9 +205,15 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       </div>
     </td>
   </tr>
+  <tr>
+    <td style="margin-right: 15px; vertical-align: top">
+      <div class="result"></div>
+    </td>
+    <td>
+      <div class="retry-chart"><canvas></canvas></div>
+    </div>
+  </tr>
 </table>
-<div class="result">
-</div>
 <div class="retry" style="display: none">
   <select value="succeeds">
     <option value="fails">Fails after</option>
@@ -211,9 +223,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   ms
   <button class="remove">&times;</button>
   <input type="range" class="slider runtime-slider" min="0" max="1000" step="5" />
-</div>
-<div class="retry-chart">
-  <canvas></canvas>
 </div>
 <script>
   const retryTemplate = document.querySelector('.retry');
