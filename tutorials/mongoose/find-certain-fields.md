@@ -2,7 +2,7 @@ To filter object properties in mongoose, you can use the `select()` function on 
 The `select()` function allows you to select the fields you wish to return.
 
 ```javascript
-// will return all documents and they will only contain age, name, and the _id properties on the documents.
+// will return all documents with just the age, name, and the _id properties on the documents.
 await Model.find({}).select('name age');
 ```
 
