@@ -1,19 +1,25 @@
-This issue typically happens when the dev uses `await` and passes a callback.
-This is a problem because this executes the query twice!
+Mongoose throws a 'Query was already executed' error when a given query is executed twice.
+The most common explanation for this is you're mixing `await` and callbacks.
 
 ```javascript
-// Causes "query was already executed" error. That's because passing callback and using `await` executes the query twice.
+// Causes "MongooseError: Query was already executed" error. That's because passing callback and using `await` executes the query twice.
 await Model.updateMany({}, { $inc: { count: 1 } }, function(err) { /* ... */ });
 ```
 
 Or:
 
 ```javascript
-// Causes "query was already executed" error. That's because passing callback and using `then()` executes the query twice.
+// Causes "MongooseError: Query was already executed" error. That's because passing callback and using `then()` executes the query twice.
 Model.updateMany({}, { $inc: { count: 1 } }, function(err) { /* ... */ }).then(() => { ... });
 ```
 
-The workaround is to not pass a callback at all.
+The solution is to skip passing a callback.
+
+```javascript
+await Model.updateMany({}, { $inc: { count: 1 } });
+// or
+Model.updateMany({}, { $inc: { count: 1 } }).then(() => { ... });
+```
 
 ## But I want to execute it twice
 
@@ -24,7 +30,7 @@ let query = Model.findOne();
 
 await query;
 
-// Throws "query was already executed"
+// Throws "MongooseError: Query was already executed" error.
 await query;
 
 // Works
