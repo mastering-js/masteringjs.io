@@ -9,9 +9,41 @@ const tutorials = [
     title: 'The difference() function in Lodash',
     raw: './tutorials/lodash/difference.md',
     url: '/tutorials/lodash/difference',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use the `difference()` function in Lodash to compute the values that are in one array but not another.',
     tags: ['lodash'],
-    date: moment('2022-03-30')
+    date: moment('2022-04-12')
+  },
+  {
+    title: 'Filter Duplicates with Lodash\'s uniq() Function',
+    raw: './tutorials/lodash/filter-duplicates.md',
+    url: '/tutorials/lodash/filter-duplicates',
+    description: 'Here\'s how you can use _.uniq() to filter out duplicate entries in a JavaScript array.',
+    tags: ['lodash'],
+    date: moment('2022-04-07')
+  },
+  {
+    title: 'Create a Chart with 2 Y Axes in ChartJS',
+    raw: './tutorials/chartjs/two-axes.md',
+    url: '/tutorials/chartjs/two-y-axes',
+    description: 'Here\'s how you can create a chart that has two different Y axes with different scales in ChartJS.',
+    tags: ['chartjs'],
+    date: moment('2022-04-04')
+  },
+  {
+    title: 'Retry Policies in Temporal',
+    raw: './tutorials/temporal/retry-policy.md',
+    url: '/tutorials/temporal/retry-policy',
+    description: 'Here\'s a tool that displays times between retries given different Temporal retry policies.',
+    tags: ['temporal'],
+    date: moment('2022-04-04')
+  },
+  {
+    title: 'Hide the Tooltip in ChartJS',
+    raw: './tutorials/chartjs/hide-tooltip.md',
+    url: '/tutorials/chartjs/hide-tooltip',
+    description: 'Here\'s how you can hide the default tooltip that shows when you mouse over a ChartJS chart.',
+    tags: ['chartjs'],
+    date: moment('2022-04-01')
   },
   {
     title: 'Set Axis Label Color in ChartJS',
