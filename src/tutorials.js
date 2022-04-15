@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The document.createElement Function in JavaScript',
+    raw: './tutorials/fundamentals/create-element.md',
+    url: '/tutorials/fundamentals/create-element',
+    description: 'The `createElement()` function lets you manually create DOM elements. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-15')
+  },
+  {
     title: 'The difference() function in Lodash',
     raw: './tutorials/lodash/difference.md',
     url: '/tutorials/lodash/difference',
