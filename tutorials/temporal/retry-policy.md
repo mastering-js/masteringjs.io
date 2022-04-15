@@ -13,7 +13,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
 <script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <style>
   table {
     border: 0;
@@ -186,7 +185,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           type="range"
           class="slider"
           id="maximumAttempts-slider"
-          min="1"
+          min="0"
           max="100">
       </div>
       <div class="parameter">
@@ -201,8 +200,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           min="0" max="100000"
           step="100">
       </div>
-      <div class="output-wrapper">
-      </div>
     </td>
   </tr>
   <tr>
@@ -210,7 +207,8 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       <div class="result"></div>
     </td>
     <td>
-      <div class="retry-chart"><canvas></canvas></div>
+      <div class="output-wrapper">
+      </div>
     </div>
   </tr>
 </table>
@@ -228,22 +226,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   const retryTemplate = document.querySelector('.retry');
   const resultContainerElement = document.querySelector('.result');
   const retriesListElement = document.querySelector('.retries-list');
-  const ctx = document.querySelector('.retry-chart canvas').getContext('2d');
-  const chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-    // Configuration options go here
-    options: {
-      responsive: true,
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
   const sliderProps = [
     'startToCloseTimeout',
     'backoffCoefficient',
@@ -255,17 +237,17 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     retries: [],
     startToCloseTimeout: 10000,
     backoffCoefficient: 2,
-    initialInterval: 100,
-    maximumAttempts: 5,
-    maximumInterval: 100000
+    initialInterval: 1000,
+    maximumAttempts: 0,
+    maximumInterval: 0
   };
   const codemirror = CodeMirror(document.querySelector('.output-wrapper'), {
     mode: 'javascript',
     lineNumbers: true,
-    value: JSON.stringify(omit(state, ['retries']), null, '  '),
     tabSize: 2,
     readOnly: true
   });
+  updateCodeMirror();
   codemirror.on('focus', () => codemirror.execCommand('selectAll'));
   let numRetries = 0;
   function omit(obj, props) {
@@ -273,7 +255,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     props.forEach(p => { delete obj[p]; });
     return obj;
   }
-  updateChart();
   function addRetry(success, runtimeMS) {
     const el = retryTemplate.cloneNode(true);
     if (state.retries.length > 0) {
@@ -356,7 +337,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
         state[prop] = +val;
         rerenderResult();
         updateCodeMirror();
-        updateChart();
       }
     });
     slider.addEventListener('change', () => {
@@ -364,7 +344,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       state[prop] = +slider.value;
       rerenderResult();
       updateCodeMirror();
-      updateChart();
     });
   });
   addRetry(true, 1);
@@ -373,7 +352,15 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     retriesListElement.innerHTML = '';
   }
   function updateCodeMirror() {
-    codemirror.setValue(JSON.stringify(omit(state, ['retries']), null, '  '));
+    const value = { ...state };
+    delete value.retries;
+    if (value.maximumAttempts === 0) {
+      delete value.maximumAttempts;
+    }
+    if (value.maximumInterval === 0) {
+      delete value.maximumInterval;
+    }
+    codemirror.setValue(JSON.stringify(value, null, '  '));
   }
   function rerenderResult() {
     if (state.retries.length === 0) {
@@ -400,18 +387,20 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       backoffCoefficient
     } = state;
     for (let i = 0; i < state.retries.length; ++i) {
-      if (i >= maximumAttempts) {
-        return {
-          success: false,
-          runtimeMS,
-          reason: 'maximumAttempts'
-        }
-      }
       runtimeMS = Math.min(runtimeMS + state.retries[i].runtimeMS, startToCloseTimeout);
       if (!state.retries[i].success) {
+        if (maximumAttempts > 0 && i + 1 >= maximumAttempts) {
+          return {
+            success: false,
+            runtimeMS,
+            reason: 'maximumAttempts'
+          };
+        }
         runtimeMS = Math.min(runtimeMS + retryIntervalMS, startToCloseTimeout);
       }
-      retryIntervalMS = Math.min(retryIntervalMS * backoffCoefficient, maximumInterval);
+      retryIntervalMS = maximumInterval > 0 ?
+        Math.min(retryIntervalMS * backoffCoefficient, maximumInterval) :
+        retryIntervalMS * backoffCoefficient;
       if (runtimeMS >= startToCloseTimeout) {
         return {
           success: false,
@@ -431,30 +420,5 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       success: true,
       runtimeMS
     };
-  }
-  function updateChart() {
-    const {
-      backoffCoefficient,
-      startToCloseTimeout,
-      initialInterval,
-      maximumInterval,
-      maximumAttempts
-    } = state;
-    const labels = [];
-    const values = [];
-    let interval = initialInterval;
-    for (let i = 0; i < maximumAttempts; ++i) {
-      labels.push(i + 1);
-      values.push(interval);
-      interval = Math.min(interval * backoffCoefficient, maximumInterval);
-    }
-    chart.data.labels = labels;
-    chart.data.datasets = [{
-      label: 'Time Before Retry',
-      backgroundColor: '#168a93',
-      borderColor: '#168a93',
-      data: values
-    }];
-    chart.update();
   }
 </script>
