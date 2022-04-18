@@ -110,10 +110,12 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
         <label>scheduleToStartTimeout</label>
         <input class="label-container-item" id="scheduleToStartTimeout-input" type="number">
       </div>
+      <input type="range" class="slider" id="scheduleToStartTimeout-slider" min="0" max="100000">
       <div class="label-container">
         <label>scheduleToCloseTimeout</label>
         <input class="label-container-item" id="scheduleToCloseTimeout-input" type="number">
       </div>
+      <input type="range" class="slider" id="scheduleToCloseTimeout-slider" min="0" max="100000">
       <div class="label-container">
         <label>StartToCloseTimeout</label>
         <input class="label-container-item" id="startToCloseTimeout-input" type="number">
@@ -200,6 +202,8 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   }
   const sliderProps = [
     'startToCloseTimeout',
+    'scheduleToCloseTimeout',
+    'scheduleToStartTimeout',
     'backoffCoefficient',
     'initialInterval',
     'maximumAttempts',
@@ -207,7 +211,10 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   ];
   const state = {
     retries: [],
+    scheduleToStartTimeout: 2,
+    scheduleToCloseTimeout: 2,
     startToCloseTimeout: 10000,
+    scheduleTime: 0,
     backoffCoefficient: 2,
     initialInterval: 100,
     maximumAttempts: 5,
@@ -232,6 +239,12 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       rerenderResult();
     });
   });
+  const schedule = document.querySelector('#scheduleTime-input');
+  schedule.addEventListener('change', function() {
+    console.log('yo', state, schedule.value);
+    state.scheduleTime = schedule.value;
+    rerenderResult();
+  });
   addRetry(true, 1);
   function rerenderResult() {
     if (state.retries.length === 0) {
@@ -242,7 +255,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       document.querySelector('.result').innerHTML = `<h2>Success after ${res.runtimeMS} ms</h2>`;
       document.querySelector('.result').classList.add('success');
       document.querySelector('.result').classList.remove('fail');
-      console.log('Hey')
     } else {
       document.querySelector('.result').innerHTML = `<h2>Error after ${res.runtimeMS} ms: ${res.reason}</h2>`;
       document.querySelector('.result').classList.remove('success');
@@ -254,6 +266,9 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     let retryIntervalMS = state.initialInterval;
     const {
       startToCloseTimeout,
+      scheduleToCloseTimeout,
+      scheduleToStartTimeout,
+      scheduleTime,
       maximumInterval,
       maximumAttempts,
       backoffCoefficient
@@ -264,6 +279,13 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           success: false,
           runtimeMS,
           reason: 'maximumAttempts'
+        }
+      }
+      if (scheduleTime >= scheduleToStartTimeout) {
+        return {
+          success: false,
+          runtimeMS: scheduleTime,
+          reason: 'scheduleTime'
         }
       }
       runtimeMS = Math.min(runtimeMS + state.retries[i].runtimeMS, startToCloseTimeout);
@@ -277,6 +299,14 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           runtimeMS,
           reason: 'startToCloseTimeout'
         };
+      }
+      if (scheduleTime + runtimeMS >= scheduleToCloseTimeout) {
+        let total = scheduleTime + runtimeMS;
+        return {
+          success: false,
+          runtimeMS: total,
+          reason: 'scheduleToCloseTimeout'
+        }
       }
     }
     if (!state.retries[state.retries.length - 1].success) {
