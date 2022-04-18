@@ -99,7 +99,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
         <h1>Retries</h1>
         <div class="schedule-class">
           <label style="padding-left: 10px">Schedule Time</label>
-          <input style="margin-left:15px" id="scheduleTime-input" type="number" />
+          <input style="margin-left:15px" id="scheduleTime-input" type="number" value="0" />
         </div>
       </div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
@@ -211,8 +211,8 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   ];
   const state = {
     retries: [],
-    scheduleToStartTimeout: 2,
-    scheduleToCloseTimeout: 2,
+    scheduleToStartTimeout: 0,
+    scheduleToCloseTimeout: 0,
     startToCloseTimeout: 10000,
     scheduleTime: 0,
     backoffCoefficient: 2,
@@ -241,7 +241,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   });
   const schedule = document.querySelector('#scheduleTime-input');
   schedule.addEventListener('change', function() {
-    console.log('yo', state, schedule.value);
     state.scheduleTime = schedule.value;
     rerenderResult();
   });
