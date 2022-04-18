@@ -50,6 +50,11 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     display: table;
   }
 
+  .schedule-class {
+    display:block;
+    margin-bottom: 20px;
+  }
+
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
@@ -92,11 +97,23 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     <td class="retry-container">
       <div class="retries-list">
         <h1>Retries</h1>
+        <div class="schedule-class">
+          <label style="padding-left: 10px">Schedule Time</label>
+          <input style="margin-left:15px" id="scheduleTime-input" type="number" />
+        </div>
       </div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
     </td>
     <td class="retry-policy-container">
       <h1>Retry Policy (in ms)</h1>
+      <div class="label-container">
+        <label>scheduleToStartTimeout</label>
+        <input class="label-container-item" id="scheduleToStartTimeout-input" type="number">
+      </div>
+      <div class="label-container">
+        <label>scheduleToCloseTimeout</label>
+        <input class="label-container-item" id="scheduleToCloseTimeout-input" type="number">
+      </div>
       <div class="label-container">
         <label>StartToCloseTimeout</label>
         <input class="label-container-item" id="startToCloseTimeout-input" type="number">
