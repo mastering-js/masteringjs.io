@@ -1,49 +1,48 @@
-The `firstChild` property returns the first child node of a node.
-The `firstChild` property returns a node, which could be of type `text`, `comment`, or `element`.
-When HTML is written like below, it will return type `text`, as the whitespace between the `ul` tag and `li` tag cause that issue.
+The `firstChild` property contains the first child DOM node of a DOM node, which could be of type `text`, `comment`, or `element`.
+For example, the below code changes the text in the first `<li>` element from "Gas" to "Water".
+
+```html
+<ul id="example"><li>Gas</li><li>Food</li></ul>
+<script>
+  const list = document.querySelector('#example');
+  list.firstChild.innerHTML = 'Water';
+</script>
+```
+
+Whitespace matters when using `firstChild`!
+The below example does **not** work as expected, because `firstChild` returns a text node containing the whitespace between `<ul id="example">` and the first `<li>`
 
 ```html
 <ul id="example">
   <li>Gas</li>
   <li>Food</li>
 </ul>
+<script>
+  const list = document.querySelector('#example');
+  // `firstChild` below is a text node containing whitespace, **not** the first `<li>`
+  list.firstChild.innerHTML = 'Water';
+</script>
 ```
-Any whitespace creates this issue and so the HTML would need to be written on one continuous line in order for it to return type `element`.
+
+You can use the `firstElementChild` property to avoid this issue, and get the first DOM element node, ignoring text nodes.
 
 ```html
-<ul id="example"><li>Gas</li><li>Food</li></ul>
-<script>
-  const list = document.querySelector('#example');
-  list.firstChild.innerHTML = 'Water';
-</script>
-```
-
-<ul id="example"><li>Gas</li><li>Food</li></ul>
-<script>
-  const list = document.querySelector('#example');
-  list.firstChild.innerHTML = 'Water';
-</script>
-
-You can use the `firstElementChild` property to negate this issue completely.
-
 <ul id="firstElemChild">
-<li>Gas</li>
-<li>Food</li>
+  <li>Gas</li>
+  <li>Food</li>
 </ul>
 <script>
   const elem = document.querySelector('#firstElemChild');
   elem.firstElementChild.innerHTML = 'Water';
 </script>
+```
 
-The `firstChild` property will return null for empty `divs`.
-<div id="example1"></div>
-<script>
-  console.log(document.querySelector('#example1').firstChild);
-</script>
+If the DOM node has no children, `firstElement` contains [`null`](/tutorials/fundamentals/null).
 
 ```html
 <div id="example1"></div>
 <script>
+  // Prints "null"
   console.log(document.querySelector('#example1').firstChild);
 </script>
 ```
