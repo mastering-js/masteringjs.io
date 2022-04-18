@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The firstChild Property in JavaScript',
+    raw: './tutorials/fundamentals/first-child.md',
+    url: '/tutorials/fundamentals/firstchild',
+    description: 'Here\'s what you need to know about the `firstChild` property in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-18')
+  },
+  {
     title: 'The document.createElement Function in JavaScript',
     raw: './tutorials/fundamentals/create-element.md',
     url: '/tutorials/fundamentals/create-element',
