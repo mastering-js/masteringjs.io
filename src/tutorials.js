@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Empty Objects are Truthy in JavaScript?',
+    raw: './tutorials/fundamentals/empty-bool.md',
+    url: '/tutorials/fundamentals/empty-bool',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-04-19')
+  },
+  {
     title: 'The firstChild Property in JavaScript',
     raw: './tutorials/fundamentals/first-child.md',
     url: '/tutorials/fundamentals/firstchild',
