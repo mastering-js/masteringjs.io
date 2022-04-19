@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Merge Two Objects in JavaScript',
+    raw: './tutorials/fundamentals/merge.md',
+    url: '/tutorials/fundamentals/merge',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-04-19')
+  },
+  {
     title: 'The firstChild Property in JavaScript',
     raw: './tutorials/fundamentals/first-child.md',
     url: '/tutorials/fundamentals/firstchild',
