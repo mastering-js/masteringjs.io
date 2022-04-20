@@ -13,6 +13,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
 <script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
+<script src="../../codemirror-5.62.2/mode/go/go.js"></script>
 <style>
   table {
     border: 0;
@@ -76,7 +77,6 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     padding: 5px;
     text-align:center;
     border-radius: 4px;
-    margin-top: 25px;
   }
   .success {
     background-color: #D4EDDC;
@@ -88,7 +88,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     margin-top: 15px;
     margin-bottom: 15px;
   }
-  .scenarios {
+  select {
     font-size: 1.1em;
     padding: 0.25em;
     margin-bottom: 0.5em;
@@ -111,12 +111,20 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   .result {
     margin-right: 15px;
   }
+  .schedule-class {
+    padding: 10px;
+    padding-top: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    background-color: #f0f0f0;
+    margin-right: 15px;
+  }
 </style>
 <table>
   <tr>
     <td class="retry-container">
       <div class="retries">
-        <h1>Retries</h1>
+        <h1>Activity Retries</h1>
         <select class="scenarios" class="spacing">
           <option value="">Scenarios</option>
           <option value='{"requestRuntimeMS": 10, "successRate": 0.9}'>
@@ -133,6 +141,11 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           </option>
         </select>
       </div>
+      <div class="schedule-class">
+        <label>Schedule Time</label>
+        <input id="scheduleTime-input" type="number" value="0" />
+        <input type="range" id="scheduleTime-slider" class="slider runtime-slider" min="0" max="1000" step="5" value="0" />
+      </div>
       <div class="retries-list"></div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
     </td>
@@ -140,7 +153,7 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       <h1>Retry Policy (in ms)</h1>
       <div class="parameter">
         <div class="label-container">
-          <label>StartToCloseTimeout</label>
+          <label>startToCloseTimeout</label>
           <input class="label-container-item" id="startToCloseTimeout-input" type="number">
         </div>
         <input
@@ -150,6 +163,30 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           min="0"
           max="100000"
           step="100">
+      </div>
+      <div class="parameter">
+        <div class="label-container">
+          <label>scheduleToStartTimeout</label>
+          <input class="label-container-item" id="scheduleToStartTimeout-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="scheduleToStartTimeout-slider"
+          min="0"
+          max="100000">
+      </div>
+      <div class="parameter">
+        <div class="label-container">
+        <label>scheduleToCloseTimeout</label>
+          <input class="label-container-item" id="scheduleToCloseTimeout-input" type="number">
+        </div>
+        <input
+          type="range"
+          class="slider"
+          id="scheduleToCloseTimeout-slider"
+          min="0"
+          max="100000">
       </div>
       <div class="parameter">
         <div class="label-container">
@@ -203,10 +240,16 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     </td>
   </tr>
   <tr>
-    <td style="padding-right: 15px; vertical-align: top">
+    <td style="padding-right: 15px; vertical-align: middle">
       <div class="result"></div>
     </td>
     <td>
+      <div class="language-selector">
+        <select>
+          <option value="typescript">TypeScript</option>
+          <option value="go">Go</option>
+        </select>
+      </div>
       <div class="output-wrapper">
       </div>
     </div>
@@ -226,8 +269,12 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   const retryTemplate = document.querySelector('.retry');
   const resultContainerElement = document.querySelector('.result');
   const retriesListElement = document.querySelector('.retries-list');
+  const scheduleTimeInput = document.querySelector('#scheduleTime-input');
+  const scheduleTimeSlider = document.querySelector('#scheduleTime-slider');
   const sliderProps = [
     'startToCloseTimeout',
+    'scheduleToStartTimeout',
+    'scheduleToCloseTimeout',
     'backoffCoefficient',
     'initialInterval',
     'maximumAttempts',
@@ -235,9 +282,13 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
   ];
   const state = {
     retries: [],
+    language: 'typescript',
+    scheduleToStartTimeout: 0,
+    scheduleToCloseTimeout: 0,
     startToCloseTimeout: 10000,
     backoffCoefficient: 2,
     initialInterval: 1000,
+    scheduleTime: 0,
     maximumAttempts: 0,
     maximumInterval: 0
   };
@@ -303,6 +354,20 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       rerenderResult();
     }
   }
+  scheduleTimeSlider.addEventListener('change', function() {
+    const val = scheduleTimeSlider.value;
+    scheduleTimeInput.value = +val;
+    state.scheduleTime = +val;
+    rerenderResult();
+  });
+  scheduleTimeInput.addEventListener('change', function() {
+    const val = scheduleTimeInput.value;
+    if (!isNaN(val)) {
+      scheduleTimeSlider.value = +val;
+      state.scheduleTime = +val;
+      rerenderResult();
+    }
+  });
   const scenarios = document.querySelector('.scenarios');
   scenarios.addEventListener('change', function() {
     if (!scenarios.value) {
@@ -351,17 +416,54 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     state.retries = [];
     retriesListElement.innerHTML = '';
   }
-  function updateCodeMirror() {
-    const value = { ...state };
-    delete value.retries;
-    if (value.maximumAttempts === 0) {
-      delete value.maximumAttempts;
-    }
-    if (value.maximumInterval === 0) {
-      delete value.maximumInterval;
-    }
-    codemirror.setValue(JSON.stringify(value, null, '  '));
+  function capitalizeFirstLetter(val) {
+    return val[0].toUpperCase() + val.slice(1);
   }
+  function updateCodeMirror() {
+    const value = {
+      scheduleToCloseTimeout: state.scheduleToCloseTimeout,
+      startToCloseTimeout: state.startToCloseTimeout,
+      scheduleToStartTimeout: state.scheduleToStartTimeout,
+      retryPolicy: {
+        backoffCoefficient: state.backoffCoefficient,
+        initialInterval: state.initialInterval,
+        maximumAttempts: state.maximumAttempts,
+        maximumInterval: state.maximumInterval,
+      }
+    };
+    if (value.retryPolicy.maximumAttempts === 0) {
+      delete value.retryPolicy.maximumAttempts;
+    }
+    if (value.retryPolicy.maximumInterval === 0) {
+      delete value.retryPolicy.maximumInterval;
+    }
+    if (value.scheduleToStartTimeout === 0) {
+      delete value.scheduleToStartTimeout;
+    }
+    if (value.scheduleToCloseTimeout === 0) {
+      delete value.scheduleToCloseTimeout;
+    }
+    if (state.language === 'typescript') {
+      codemirror.setOption('mode', 'javascript');
+      codemirror.setValue(JSON.stringify(value, null, '  '));
+    } else if (state.language === 'go') {
+      const val = [
+        'workflow.ActivityOptions{', 
+        ...Object.keys(value).filter(key => key !== 'retryPolicy').map(key => `\t${capitalizeFirstLetter(key)}: ${value[key]},`),
+        '\tRetryPolicy: &temporal.RetryPolicy{',
+        ...Object.keys(value.retryPolicy).map(key => `\t\t${capitalizeFirstLetter(key)}: ${value.retryPolicy[key]}`),
+        '\t}',
+        '}'
+      ].join('\n');
+      codemirror.setOption('mode', 'go');
+      codemirror.setValue(val);
+    }
+  }
+  const languageSelect = document.querySelector('.language-selector select');
+  languageSelect.addEventListener('change', function() {
+    state.language = languageSelect.value;
+    updateCodeMirror();
+  });
   function rerenderResult() {
     if (state.retries.length === 0) {
       document.querySelector('.result').innerHTML = '';
@@ -382,10 +484,20 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     let retryIntervalMS = state.initialInterval;
     const {
       startToCloseTimeout,
+      scheduleToCloseTimeout,
+      scheduleToStartTimeout,
+      scheduleTime,
       maximumInterval,
       maximumAttempts,
       backoffCoefficient
     } = state;
+    if (scheduleToStartTimeout > 0 && scheduleTime >= scheduleToStartTimeout) {
+      return {
+        success: false,
+        runtimeMS: scheduleToStartTimeout,
+        reason: 'scheduleTime'
+      };
+    }
     for (let i = 0; i < state.retries.length; ++i) {
       runtimeMS = Math.min(runtimeMS + state.retries[i].runtimeMS, startToCloseTimeout);
       if (!state.retries[i].success) {
@@ -406,6 +518,15 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           success: false,
           runtimeMS,
           reason: 'startToCloseTimeout'
+        };
+      }
+      if (scheduleToCloseTimeout > 0 &&
+          scheduleTime + runtimeMS >= scheduleToCloseTimeout) {
+        let total = scheduleTime + runtimeMS;
+        return {
+          success: false,
+          runtimeMS: total,
+          reason: 'scheduleToCloseTimeout'
         };
       }
     }
