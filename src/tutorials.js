@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Fix \'Query was already executed\' in Mongoose',
+    raw: './tutorials/mongoose/query-was-already-executed.md',
+    url: '/tutorials/mongoose/query-was-already-executed',
+    description: 'Running into "Query was already executed" errors in Mongoose? Here\'s what causes this error, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-04-21')
+  },
+  {
     title: 'The firstChild Property in JavaScript',
     raw: './tutorials/fundamentals/first-child.md',
     url: '/tutorials/fundamentals/firstchild',
