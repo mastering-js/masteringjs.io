@@ -7,8 +7,8 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'How to Merge Two Objects in JavaScript',
-    raw: './tutorials/fundamentals/merge.md',
-    url: '/tutorials/fundamentals/merge',
+    raw: './tutorials/fundamentals/merge-two-objects.md',
+    url: '/tutorials/fundamentals/merge-two-objects',
     description: 'Placeholder Description',
     tags: ['fundamentals'],
     date: moment('2022-04-19')
