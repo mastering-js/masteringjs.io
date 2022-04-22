@@ -7,8 +7,8 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'Empty Objects are Truthy in JavaScript?',
-    raw: './tutorials/fundamentals/empty-bool.md',
-    url: '/tutorials/fundamentals/empty-bool',
+    raw: './tutorials/fundamentals/empty-object-truthy.md',
+    url: '/tutorials/fundamentals/empty-object-truthy',
     description: 'Placeholder Description',
     tags: ['fundamentals'],
     date: moment('2022-04-19')
