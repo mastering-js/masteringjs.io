@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Mongoose find() Certain Fields',
+    raw: './tutorials/mongoose/find-certain-fields.md',
+    url: '/tutorials/mongoose/find-certain-fields',
+    description: 'Here\'s how you can restrict Mongoose\'s `find()` function to only return certain fields using `select()`.',
+    tags: ['mongoose'],
+    date: moment('2022-04-27')
+  },
+  {
     title: 'How to Fix \'Query was already executed\' in Mongoose',
     raw: './tutorials/mongoose/query-was-already-executed.md',
     url: '/tutorials/mongoose/query-was-already-executed',
