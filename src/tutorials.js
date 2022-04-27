@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with the img HTML Tag in Vue',
+    raw: './tutorials/vue/img.md',
+    url: '/tutorials/vue/img',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-04-27')
+  },
+  {
     title: 'How to Fix \'Query was already executed\' in Mongoose',
     raw: './tutorials/mongoose/query-was-already-executed.md',
     url: '/tutorials/mongoose/query-was-already-executed',
