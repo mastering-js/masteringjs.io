@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
+    raw: './tutorials/vue/key.md',
+    url: '/tutorials/vue/key',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-04-27')
+  },
+  {
     title: 'How to Fix \'Query was already executed\' in Mongoose',
     raw: './tutorials/mongoose/query-was-already-executed.md',
     url: '/tutorials/mongoose/query-was-already-executed',
