@@ -9,9 +9,41 @@ const tutorials = [
     title: 'Mongoose find() Certain Fields',
     raw: './tutorials/mongoose/find-certain-fields.md',
     url: '/tutorials/mongoose/find-certain-fields',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can restrict Mongoose\'s `find()` function to only return certain fields using `select()`.',
     tags: ['mongoose'],
-    date: moment('2022-04-11')
+    date: moment('2022-04-27')
+  },
+  {
+    title: 'How to Fix \'Query was already executed\' in Mongoose',
+    raw: './tutorials/mongoose/query-was-already-executed.md',
+    url: '/tutorials/mongoose/query-was-already-executed',
+    description: 'Running into "Query was already executed" errors in Mongoose? Here\'s what causes this error, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-04-21')
+  },
+  {
+    title: 'The firstChild Property in JavaScript',
+    raw: './tutorials/fundamentals/first-child.md',
+    url: '/tutorials/fundamentals/firstchild',
+    description: 'Here\'s what you need to know about the `firstChild` property in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-18')
+  },
+  {
+    title: 'The document.createElement Function in JavaScript',
+    raw: './tutorials/fundamentals/create-element.md',
+    url: '/tutorials/fundamentals/create-element',
+    description: 'The `createElement()` function lets you manually create DOM elements. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-15')
+  },
+  {
+    title: 'The difference() function in Lodash',
+    raw: './tutorials/lodash/difference.md',
+    url: '/tutorials/lodash/difference',
+    description: 'Here\'s how you can use the `difference()` function in Lodash to compute the values that are in one array but not another.',
+    tags: ['lodash'],
+    date: moment('2022-04-12')
   },
   {
     title: 'Filter Duplicates with Lodash\'s uniq() Function',
