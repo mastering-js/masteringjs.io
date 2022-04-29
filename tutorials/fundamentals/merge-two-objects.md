@@ -3,9 +3,13 @@ The spread operator creates a new object with all the properties from the first 
 If there's two properties with the same name, the property from the second object wins out.
 
 ```javascript
-const obj1 = {a: 1, b: 2, c: 3};
-const obj2 = {d: 4, e: 5, f: 6};
-const obj3 = {...obj1, ...obj2}; // {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6}
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { d: 4, e: 5, f: 6 };
+const obj3 = {...obj1, ...obj2}; // { a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }
+
+let user = { name: 'John Smith', age: 29 };
+const changes = { name: 'John A. Smith' };
+user = { ...user, ...changes }; // { name: 'John A. Smith', age: 29 }
 ```
 
 ## Using Object.assign()
