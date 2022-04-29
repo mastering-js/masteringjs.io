@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Merge Two Objects in JavaScript',
+    raw: './tutorials/fundamentals/merge-two-objects.md',
+    url: '/tutorials/fundamentals/merge-two-objects',
+    description: 'Here\'s two ways to merge two objects in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-29')
+  },
+  {
     title: 'Mongoose find() Certain Fields',
     raw: './tutorials/mongoose/find-certain-fields.md',
     url: '/tutorials/mongoose/find-certain-fields',
