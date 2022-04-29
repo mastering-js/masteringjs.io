@@ -37,7 +37,7 @@ You can use the `firstElementChild` property to avoid this issue, and get the fi
 </script>
 ```
 
-If the DOM node has no children, `firstElement` contains [`null`](/tutorials/fundamentals/null).
+If the DOM node has no children, `firstChild` contains [`null`](/tutorials/fundamentals/null).
 
 ```html
 <div id="example1"></div>
