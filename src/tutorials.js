@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Enums in Mongoose',
+    raw: './tutorials/mongoose/enums.md',
+    url: '/tutorials/mongoose/enums',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-05-02')
+  },
+  {
     title: 'How to Merge Two Objects in JavaScript',
     raw: './tutorials/fundamentals/merge-two-objects.md',
     url: '/tutorials/fundamentals/merge-two-objects',
