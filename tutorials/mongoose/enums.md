@@ -15,3 +15,25 @@ await Test.create({ name: 'Test'}); // no issue
 
 ## Typescript enums
 
+You can also use [Typescript Enums](https://www.typescriptlang.org/docs/handbook/enums.html) to pass as an option to mongoose enums.
+When you pass an object as a value to the `enum` property in mongoose, mongoose will run `Object.values()` on the object to get the desired values.
+
+```typescript
+enum Rating {
+    Zero,
+    One,
+    Two,
+    Three,
+    Four,
+    Five
+};
+
+const testSchema = new mongoose.Schema({
+    rating: {type: Number, enum: Rating}
+});
+
+const Test = mongoose.model('Test', testSchema);
+
+await Test.create({ rating: 6}); // will throw validation error
+await Test.create({ name: 3}); // no issue
+```
