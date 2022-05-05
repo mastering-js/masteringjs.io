@@ -4,23 +4,23 @@ You can use the `Object.keys()` function to check if an object is empty as shown
 
 ```javascript
 if ({}) {
-    console.log('I will print');
+  console.log('I will print');
 }
 
 if (Object.keys({}).length === 0) {
-    console.log('I will not print');
+  console.log('I will not print');
 }
 ```
 
-## Handling null with Object.keys()
+## Handling `null` with Object.keys()
 
-If you pass `null` as an argument to `Object.keys()` it will throw an error.
+JavaScript throws an error if you call `Object.keys()` with a [null](/tutorials/fundamentals/null) or undefined value.
 To work around this, you should check beforehand if the argument being passed is null.
 
 ```javascript
 const value = null;
 
 if (typeof value === 'object' && value != null && Object.keys(value).length == 0) {
-    console.log('I will not print and not throw an error either');
+  console.log('I will not print and not throw an error either');
 }
 ```
