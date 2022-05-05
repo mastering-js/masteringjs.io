@@ -6,7 +6,7 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
+    title: 'elements-in-iteration-expect-to-have-v-bind:key',
     raw: './tutorials/vue/key.md',
     url: '/tutorials/vue/key',
     description: 'Placeholder Description',

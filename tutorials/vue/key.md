@@ -1,16 +1,17 @@
-To fix this error, you need to set a unique `v-bind:key`, or `:key` for short, on the `v-for` element.
+To fix the "elements in iteration expect to have 'v-bind:key' error" in Vue, you need to set a unique `v-bind:key`, or `:key` for short, on the `v-for` element.
 
 ```javascript
 <div v-for="item in items" v-bind:key="item.id">
-<li>{{item}}</li>
+  <li>{{item}}</li>
 </div>
 ```
 
+## Using the Array Index as the Key
 You can also use the array index as the key if you are only appending to the end of the list, however, anything else can create issues as the individual items may not be tracked properly.
 
 ```javascript
 <div v-for="(item, index) in items" v-bind:key="index">
-<li>{{item}}</li>
+  <li>{{item}}</li>
 </div>
 ```
 
@@ -18,7 +19,7 @@ In the example below, the second list is incorrect as the internal and prop valu
 
 ```javascript
 <div id="content"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
     Vue.component("item", {
     props: ["value"],
@@ -33,11 +34,10 @@ In the example below, the second list is incorrect as the internal and prop valu
     data: () => ({ items: [1,2,3,4,5] }),
     template: `
       <div>
-      {{items}}
         <ul>
             <item v-for="i in items" :value="i" :key="i"></item>
         </ul>
-        <button @click="addValue">AddValue</button>
+        <button @click="addValue">Add value to middle</button>
         <ul>
             <item v-for="(i, index) in items" :value="i" :key="index"></item>
         </ul>
@@ -54,7 +54,7 @@ In the example below, the second list is incorrect as the internal and prop valu
 ```
 
 <div id="content"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
     Vue.component("item", {
     props: ["value"],
@@ -69,11 +69,10 @@ In the example below, the second list is incorrect as the internal and prop valu
     data: () => ({ items: [1,2,3,4,5] }),
     template: `
       <div>
-      {{items}}
         <ul>
             <item v-for="i in items" :value="i" :key="i"></item>
         </ul>
-        <button @click="addValue">AddValue</button>
+        <button @click="addValue">Add value to middle</button>
         <ul>
             <item v-for="(i, index) in items" :value="i" :key="index"></item>
         </ul>
