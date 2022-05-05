@@ -9,9 +9,33 @@ const tutorials = [
     title: 'Empty Objects are Truthy in JavaScript?',
     raw: './tutorials/fundamentals/empty-object-truthy.md',
     url: '/tutorials/fundamentals/empty-object-truthy',
-    description: 'Placeholder Description',
+    description: 'Empty objects are truthy in JavaScript, so you need a little extra work to check if an object is empty. Here\'s how.',
     tags: ['fundamentals'],
-    date: moment('2022-04-19')
+    date: moment('2022-05-05')
+  },
+  {
+    title: 'How to Merge Two Objects in JavaScript',
+    raw: './tutorials/fundamentals/merge-two-objects.md',
+    url: '/tutorials/fundamentals/merge-two-objects',
+    description: 'Here\'s two ways to merge two objects in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-04-29')
+  },
+  {
+    title: 'Mongoose find() Certain Fields',
+    raw: './tutorials/mongoose/find-certain-fields.md',
+    url: '/tutorials/mongoose/find-certain-fields',
+    description: 'Here\'s how you can restrict Mongoose\'s `find()` function to only return certain fields using `select()`.',
+    tags: ['mongoose'],
+    date: moment('2022-04-27')
+  },
+  {
+    title: 'How to Fix \'Query was already executed\' in Mongoose',
+    raw: './tutorials/mongoose/query-was-already-executed.md',
+    url: '/tutorials/mongoose/query-was-already-executed',
+    description: 'Running into "Query was already executed" errors in Mongoose? Here\'s what causes this error, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-04-21')
   },
   {
     title: 'The firstChild Property in JavaScript',
