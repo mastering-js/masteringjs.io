@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Empty Objects are Truthy in JavaScript?',
+    raw: './tutorials/fundamentals/empty-object-truthy.md',
+    url: '/tutorials/fundamentals/empty-object-truthy',
+    description: 'Empty objects are truthy in JavaScript, so you need a little extra work to check if an object is empty. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2022-05-05')
+  },
+  {
     title: 'How to Merge Two Objects in JavaScript',
     raw: './tutorials/fundamentals/merge-two-objects.md',
     url: '/tutorials/fundamentals/merge-two-objects',
