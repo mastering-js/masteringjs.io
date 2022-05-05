@@ -1,25 +1,45 @@
 To use the `img` tag in vue, you must use the `v-bind:src` directive or `:src` for short.
-Be sure to enclose the image address in single quotes on top of the double quotes.
+Remember that `:src` expects a JavaScript expression, so if you want to use a string in `:src` you need to wrap the string in quotes.
 
 ```javascript
   const app = new Vue({
+    data: function() {
+      return {
+        link: '../../assets/logo.png'
+      };
+    },
     template: `
-      <div style="width: 50%">
-       <img :src="'../../assets/logo.png'" />
-      </div>
+      <div>
+        <div style="width: 50%">
+          <img :src="'../../assets/logo.png'" />
+        </div>
+        <div style="width: 50%">
+          <img :src="link" />
+        </div>
+    </div>
     `,
   });
   app.$mount("#content");
 ```
 
 <div id="content"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
-  const app = new Vue({
+    const app = new Vue({
+    data: function() {
+      return {
+        link: '../../assets/logo.png'
+      };
+    },
     template: `
+    <div>
       <div style="width: 50%">
-       <img :src="'../../assets/logo.png'" />
+        <img :src="'../../assets/logo.png'" />
       </div>
+      <div style="width: 50%">
+        <img :src="link" />
+      </div>
+    </div>
     `,
   });
   app.$mount("#content");
@@ -27,21 +47,21 @@ Be sure to enclose the image address in single quotes on top of the double quote
 
 ## Computed src
 
-You can also pass a computed property to `:src`, but make sure that it returns the image file location.
+You can also pass a computed property to `:src`, but make sure that it returns the path to the image file.
 
 
 ```javascript
 <div id="computed"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   const example = new Vue({
     template: `
       <div style="width: 50%">
-        <img :src="getPhoto" />
+        <img :src="photo" />
       </div>
     `,
     computed: {
-      getPhoto() {
+      photo() {
         return '../../assets/logo.png';
       }
     }
@@ -51,16 +71,16 @@ You can also pass a computed property to `:src`, but make sure that it returns t
 ```
 
 <div id="computed"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   const example = new Vue({
     template: `
       <div style="width: 50%">
-       <img :src="getPhoto" />
+       <img :src="photo" />
       </div>
     `,
     computed: {
-      getPhoto() {
+      photo() {
         return '../../assets/logo.png';
       }
     }
@@ -74,7 +94,7 @@ You can set a custom class on an image using `v-bind:class` or `:class` for shor
 
 ```javascript
 <div id="decor"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   const decor = new Vue({
     data: () => ({
@@ -83,16 +103,16 @@ You can set a custom class on an image using `v-bind:class` or `:class` for shor
     }),
     template: `
       <div style="width: 50%">
-       <img ref="result" :class="getStyle" :src="getPhoto" />
+       <img ref="result" :class="imageClass" :src="photo" />
        <div> classes attached to this image are: {{result}}</div>
       </div>
     `,
     computed: {
-      getPhoto() {
+      photo() {
         return '../../assets/logo.png';
       },
-      getStyle() {
-        return {active: this.active}
+      imageClass() {
+        return {active: this.active};
       }
     },
     mounted() {
@@ -107,7 +127,7 @@ You can set a custom class on an image using `v-bind:class` or `:class` for shor
 ```
 
 <div id="decor"></div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="https://unpkg.com/vue@2"></script>
 <script>
   const decor = new Vue({
     data: () => ({
@@ -116,16 +136,16 @@ You can set a custom class on an image using `v-bind:class` or `:class` for shor
     }),
     template: `
       <div style="width: 50%">
-       <img ref="result" :class="getStyle" :src="getPhoto" />
+       <img ref="result" :class="imageClass" :src="photo" />
        <div> classes attached to this image are: {{result}}</div>
       </div>
     `,
     computed: {
-      getPhoto() {
+      photo() {
         return '../../assets/logo.png';
       },
-      getStyle() {
-        return {active: this.active}
+      imageClass() {
+        return {active: this.active};
       }
     },
     mounted() {
