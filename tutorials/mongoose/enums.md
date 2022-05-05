@@ -1,6 +1,6 @@
-Mongoose `String` and `Number` types had access to the `enum` validator.
+Mongoose `String` and `Number` types have an `enum` validator.
 The `enum` validator is an array that will check if the value given is an item in the array.
-If it is not, it will throw an error.
+If the value is not in the array, Mongoose will throw a `ValidationError` when you try to `save()`.
 
 ```javascript
 const testSchema = new mongoose.Schema({
