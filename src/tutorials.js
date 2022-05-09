@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with the img HTML Tag in Vue',
+    raw: './tutorials/vue/img.md',
+    url: '/tutorials/vue/img-tag',
+    description: 'Here\'s the basics of how to work with the `img` tag in Vue.',
+    tags: ['vue'],
+    date: moment('2022-05-09')
+  },
+  {
     title: 'Empty Objects are Truthy in JavaScript?',
     raw: './tutorials/fundamentals/empty-object-truthy.md',
     url: '/tutorials/fundamentals/empty-object-truthy',
