@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove a null from an Object with Lodash',
+    raw: './tutorials/lodash/remove-null.md',
+    url: '/tutorials/lodash/remove-null',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-05-10')
+  },
+  {
     title: 'Working with the img HTML Tag in Vue',
     raw: './tutorials/vue/img.md',
     url: '/tutorials/vue/img-tag',
