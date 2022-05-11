@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
+    raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
+    url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-05-11')
+  },
+  {
     title: 'Working with the img HTML Tag in Vue',
     raw: './tutorials/vue/img.md',
     url: '/tutorials/vue/img-tag',
