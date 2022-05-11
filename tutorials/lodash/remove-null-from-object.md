@@ -22,7 +22,7 @@ const other = _.omitBy(obj, v => v == null); // {b: 'Hello', c: 3}
 
 ## Using Vanilla JavaScript
 
-You can use vanilla JavaScript to remove nulls from objects, however, it requires many function calls.
+You can use vanilla JavaScript to remove `null`s from objects, however, it requires many function calls.
 
 ```javascript
 const obj = {a: null, b: 'Hello', c: 3, d: undefined, e: null};
