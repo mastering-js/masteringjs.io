@@ -4,8 +4,7 @@ It takes three options:
 
 - length (number), the maximum length of the string.
 - omission (string), the string to indicate text is omitted.
-- separator (RegExp | string), the separator pattern to truncate to. 
-Meaning that it will cut the string at the indicated pattern/string if the max length is smaller than the string but greater than the position of the indicated pattern/string.
+
 
 ```javascript
 const _ = require('lodash');
@@ -13,26 +12,34 @@ const _ = require('lodash');
 const example = 'Masteringjs.io is a great website to learn JavaScript fundamentals, mongoose, vue, and other fun JavaScript libraries.';
 
 const result = _.truncate(example, {
-    length: 40,
-    omisssion: '.',
-    separator: 'website'
+    length: 39,
 });
 
-result; // Masteringjs.io is a great ...
+result; // Masteringjs.io is a great website to...
 
 const close = _.truncate(example, {
-    length: 34,
+    length: 36,
     omisssion: '.',
-    separator: 'website'
 });
 
-close; // Masteringjs.io is a great websi...
+close; // Masteringjs.io is a great website.
+```
+
+## Separator
+
+The `separator` argument is a RegExp or string that indicates where to truncate the string if it matches the indicated pattern, and also exceeds the length option.
+
+```javascript
+const _ = require('lodash');
+
+const example = 'Masteringjs.io is a great website to learn JavaScript fundamentals, mongoose, vue, and other fun JavaScript libraries.';
 
 const short = _.truncate(example, {
-    length: 20,
-    omisssion: '.',
+    length: 42,
     separator: 'website'
 });
 
-short; // Masteringjs.io is...
+short; // Masteringjs.io is a great ...
 ```
+
+You can see that although it should have ended at `learn`, it back tracked and cut off at `website` because the `separator` option indicated so.
