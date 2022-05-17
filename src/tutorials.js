@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Split on Multiple Characters in JavaScript',
+    raw: './tutorials/fundamentals/split-on-multiple-characters.md',
+    url: '/tutorials/fundamentals/split-on-multiple-characters',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-05-17')
+  },
+  {
     title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
     raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
     url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
