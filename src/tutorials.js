@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Rename Variables When Using Object Destructuring in JavaScript',
+    raw: './tutorials/fundamentals/object-destructuring-rename.md',
+    url: '/tutorials/fundamentals/object-destructuring-rename',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-05-17')
+  },
+  {
     title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
     raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
     url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
