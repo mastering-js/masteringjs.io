@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Enums in Mongoose',
+    raw: './tutorials/mongoose/enum.md',
+    url: '/tutorials/mongoose/enum',
+    description: 'Here\'s how you can use enum validators in Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2022-05-23')
+  },
+  {
     title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
     raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
     url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
