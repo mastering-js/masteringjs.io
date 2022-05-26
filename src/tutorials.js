@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Find Objects by Nested Properties with Lodash',
+    raw: './tutorials/lodash/find-nested-object.md',
+    url: '/tutorials/lodash/find-nested-object',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-05-26')
+  },
+  {
     title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
     raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
     url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
