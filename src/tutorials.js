@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Remove null from an Array with Lodash',
+    raw: './tutorials/lodash/remove-null-from-array.md',
+    url: '/tutorials/lodash/remove-null-from-array',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-05-26')
+  },
+  {
     title: 'Enums in Mongoose',
     raw: './tutorials/mongoose/enum.md',
     url: '/tutorials/mongoose/enum',
