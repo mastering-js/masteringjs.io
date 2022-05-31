@@ -9,9 +9,9 @@ const tutorials = [
     title: 'Mongoose on(\'delete\')',
     raw: './tutorials/mongoose/on-delete.md',
     url: '/tutorials/mongoose/on-delete',
-    description: 'Placeholder Description',
+    description: 'Here\'s two ways that Mongoose lets you execute code when a document is deleted: using middleware, and using change streams.',
     tags: ['mongoose'],
-    date: moment('2022-05-29')
+    date: moment('2022-05-31')
   },
   {
     title: 'Enums in Mongoose',
