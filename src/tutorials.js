@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Mongoose on(\'delete\')',
+    raw: './tutorials/mongoose/on-delete.md',
+    url: '/tutorials/mongoose/on-delete',
+    description: 'Here\'s two ways that Mongoose lets you execute code when a document is deleted: using middleware, and using change streams.',
+    tags: ['mongoose'],
+    date: moment('2022-05-31')
+  },
+  {
     title: 'Enums in Mongoose',
     raw: './tutorials/mongoose/enum.md',
     url: '/tutorials/mongoose/enum',
