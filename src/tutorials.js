@@ -7,11 +7,43 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'Mongoose on(\'delete\')',
-    raw: './tutorials/mongoose/delete.md',
-    url: '/tutorials/mongoose/delete',
+    raw: './tutorials/mongoose/on-delete.md',
+    url: '/tutorials/mongoose/on-delete',
     description: 'Placeholder Description',
     tags: ['mongoose'],
-    date: moment('2022-05-02')
+    date: moment('2022-05-29')
+  },
+  {
+    title: 'Enums in Mongoose',
+    raw: './tutorials/mongoose/enum.md',
+    url: '/tutorials/mongoose/enum',
+    description: 'Here\'s how you can use enum validators in Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2022-05-23')
+  },
+  {
+    title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
+    raw: './tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key.md',
+    url: '/tutorials/vue/elements-in-iteration-expect-to-have-v-bind-key',
+    description: 'Here\'s how you can fix the `v-bind:key` warning in Vue.',
+    tags: ['vue'],
+    date: moment('2022-05-11')
+  },
+  {
+    title: 'Working with the img HTML Tag in Vue',
+    raw: './tutorials/vue/img.md',
+    url: '/tutorials/vue/img-tag',
+    description: 'Here\'s the basics of how to work with the `img` tag in Vue.',
+    tags: ['vue'],
+    date: moment('2022-05-09')
+  },
+  {
+    title: 'Empty Objects are Truthy in JavaScript?',
+    raw: './tutorials/fundamentals/empty-object-truthy.md',
+    url: '/tutorials/fundamentals/empty-object-truthy',
+    description: 'Empty objects are truthy in JavaScript, so you need a little extra work to check if an object is empty. Here\'s how.',
+    tags: ['fundamentals'],
+    date: moment('2022-05-05')
   },
   {
     title: 'How to Merge Two Objects in JavaScript',

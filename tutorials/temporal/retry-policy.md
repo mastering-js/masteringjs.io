@@ -119,10 +119,40 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
     background-color: #f0f0f0;
     margin-right: 15px;
   }
+  .table {
+    display: table;
+  }
+  .tr {
+    display: table-row;
+  }
+  .td {
+    display: table-cell;
+  }
+  @media (max-width: 1000px) {
+    .table {
+      display: block;
+    }
+    .tr {
+      display: block;
+    }
+    .td {
+      display: block;
+    }
+    .retry-container {
+      width: 100%;
+    }
+    .retry-policy-container {
+      width: 100%;
+    }
+    select {
+      max-width: 100% !important;
+    }
+  }
+
 </style>
-<table>
-  <tr>
-    <td class="retry-container">
+<div class="table">
+  <div class="tr">
+    <div class="td retry-container">
       <div class="retries">
         <h1>Activity Retries</h1>
         <select class="scenarios" class="spacing">
@@ -148,8 +178,8 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       </div>
       <div class="retries-list"></div>
       <button class="add-button" onclick="addRetry(true, 1)">+ Add</button>
-    </td>
-    <td class="retry-policy-container">
+    </div>
+    <div class="td retry-policy-container">
       <h1>Retry Policy (in ms)</h1>
       <div class="parameter">
         <div class="label-container">
@@ -237,13 +267,13 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
           min="0" max="100000"
           step="100">
       </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding-right: 15px; vertical-align: middle">
+    </div>
+  </div>
+  <div class="tr">
+    <div class="td" style="padding-right: 15px; vertical-align: middle">
       <div class="result"></div>
-    </td>
-    <td>
+    </div>
+    <div class="td">
       <div class="language-selector">
         <select>
           <option value="typescript">TypeScript</option>
@@ -253,8 +283,8 @@ Below is a tool that calculates whether an activity succeeds or fails for a give
       <div class="output-wrapper">
       </div>
     </div>
-  </tr>
-</table>
+  </div>
+</div>
 <div class="retry" style="display: none">
   <select value="succeeds">
     <option value="fails">Fails after</option>
