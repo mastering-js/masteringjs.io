@@ -1,10 +1,11 @@
 To remove a null from an array, you should use lodash's `filter` function.
 It takes two arguments:
 
-- Collection, the object or array to iterate over.
-- Predicate, the function invoked per iteration.
+- `collection`: the object or array to iterate over.
+- `predicate`: the function invoked per iteration.
 
-It returns the new filtered array.
+The `find()` function returns a new array containing all elements `predicate` returned a truthy value for.
+To remove `null`, you can call `find()` with `v => v !== null` as the `predicate`.
 
 ```javascript
 const _ = require('lodash');
@@ -14,13 +15,6 @@ const obj = [{
         first: 'Test',
         last: 'Testerson',
         age: 2
-    },
-    location: 'Florida'
-},{
-    name: {
-        first: 'Jesus',
-        last: 'Christ',
-        age: Infinity
     },
     location: 'Florida'
 }, {
@@ -52,7 +46,8 @@ let result = _.filter(obj, function(element) { return element.location == 'Washi
 result; // [{name: { first: 'White', last: 'House', age: undefined },location: 'Washington'},{name: { first: 'Speaker', last: 'House', age: undefined },location: 'Washington'}]
 ```
 
-To remove a `null` using `filter`, you can use the `isNull` function.
+To remove a `null` using `filter`, you can use the `isNull` function as the `predicate`.
+Simply add a negate in front of the `isNull` and all `null` values will be filtered out.
 
 ```javascript
 const _ = require('lodash');
