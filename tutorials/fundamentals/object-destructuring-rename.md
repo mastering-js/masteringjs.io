@@ -8,4 +8,5 @@ firstName; // 'John'
 lastName; // 'Smith'
 ```
 
-This is perfect for making sure your variable names are in line with the standards used at your workplace or making a vague variable name provided from an http request more clear.
+This is perfect for cases where you want to rename variables from a REST API whose naming conventions don't line up with yours.
+For example, switching variables from `snake_case` to `camelCase` or vice versa.
