@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Modify Authorized redirect_uris For Google OAuth',
+    raw: './tutorials/node/google-oauth-authorized-redirect-uris.md',
+    url: '/tutorials/node/google-oauth-authorized-redirect-uris',
+    description: 'Here\'s how to modify authorized redirect URIs for logging in with Google OAuth.',
+    tags: ['node'],
+    date: moment('2022-06-03')
+  },
+  {
     title: 'Mongoose on(\'delete\')',
     raw: './tutorials/mongoose/on-delete.md',
     url: '/tutorials/mongoose/on-delete',
