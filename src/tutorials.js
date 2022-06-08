@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove a null from an Object with Lodash',
+    raw: './tutorials/lodash/remove-null-from-object.md',
+    url: '/tutorials/lodash/remove-null-from-object',
+    description: 'Here\'s how you can remove `null` properties from a JavaScript object using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-08')
+  },
+  {
     title: 'Modify Authorized redirect_uris For Google OAuth',
     raw: './tutorials/node/google-oauth-authorized-redirect-uris.md',
     url: '/tutorials/node/google-oauth-authorized-redirect-uris',
