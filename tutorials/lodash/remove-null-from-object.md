@@ -8,7 +8,7 @@ const obj = {a: null, b: 'Hello', c: 3, d: undefined};
 const result = _.omitBy(obj, v => v === null); // {b: 'Hello', c: 3, d: undefined}
 ```
 
-If you want to remove both `null` and `undefined`, you can use `.isNull` or non-strict equality.
+If you want to remove both `null` and `undefined`, you can use `.isNull` or [non-strict equality](/tutorials/fundamentals/equality#abstract-equality).
 
 ```javascript
 const _ = require('lodash');
@@ -22,7 +22,9 @@ const other = _.omitBy(obj, v => v == null); // {b: 'Hello', c: 3}
 
 ## Using Vanilla JavaScript
 
-You can use vanilla JavaScript to remove `null`s from objects, however, it requires many function calls.
+You can use vanilla JavaScript to remove `null`s from objects using [`Object.entries()`](/tutorials/fundamentals/foreach-object#using-objectentries) and [Array `filter()`](/tutorials/fundamentals/array-filter).
+However, the syntax is a bit messy.
+Lodash `omitBy()` is cleaner.
 
 ```javascript
 const obj = {a: null, b: 'Hello', c: 3, d: undefined, e: null};
