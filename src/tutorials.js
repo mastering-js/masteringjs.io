@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check a String for Numbers in JavaScript',
+    raw: './tutorials/fundamentals/check-string-for-numbers.md',
+    url: '/tutorials/fundamentals/check-string-for-numbers',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-06-10')
+  },
+  {
     title: 'Using Lodash truncate',
     raw: './tutorials/lodash/truncate.md',
     url: '/tutorials/lodash/truncate',
