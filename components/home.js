@@ -98,6 +98,21 @@ module.exports = ({ posts }) => `
               <img src="https://images.opencollective.com/correct-casinos/7cce33a/avatar/256.png" alt="Fast payout casinos" style="max-height: 100px"/>
             </a>
           </div>
+          <div class="col-lg-4">
+            <a href="https://www.kongcasino.com/" rel="sponsored">
+              <img src="https://codebarbarian-images.s3.amazonaws.com/kong-casino.png" alt="casino" style="max-height: 100px"/>
+            </a>
+          </div>
+          <div class="col-lg-4">
+            <a href="https://www.wizardslots.com/" rel="sponsored">
+              <img src="https://codebarbarian-images.s3.amazonaws.com/wizard-slots.png" alt="slots" style="max-height: 100px"/>
+            </a>
+          </div>
+          <div class="col-lg-4">
+            <a href="https://www.kingcasino.com/slots/" rel="sponsored">
+              <img src="https://codebarbarian-images.s3.amazonaws.com/king-casino.png" alt="slots" style="max-height: 100px"/>
+            </a>
+          </div>
         </div>
       </div>
     </div>
