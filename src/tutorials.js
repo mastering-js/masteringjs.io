@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using Lodash truncate',
+    raw: './tutorials/lodash/truncate.md',
+    url: '/tutorials/lodash/truncate',
+    description: 'Here\'s how you can use the `truncate()` function in Lodash to trim strings',
+    tags: ['lodash'],
+    date: moment('2022-05-10')
+  },
+  {
     title: 'How to Remove a null from an Object with Lodash',
     raw: './tutorials/lodash/remove-null-from-object.md',
     url: '/tutorials/lodash/remove-null-from-object',
