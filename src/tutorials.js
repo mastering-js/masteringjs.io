@@ -11,7 +11,7 @@ const tutorials = [
     url: '/tutorials/lodash/truncate',
     description: 'Here\'s how you can use the `truncate()` function in Lodash to trim strings',
     tags: ['lodash'],
-    date: moment('2022-05-10')
+    date: moment('2022-06-10')
   },
   {
     title: 'How to Remove a null from an Object with Lodash',
