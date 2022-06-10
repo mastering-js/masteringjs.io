@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Get the Longest String in an Array in JavaScript',
+    raw: './tutorials/fundamentals/get-longest-string-in-array.md',
+    url: '/tutorials/fundamentals/get-longest-string-in-array',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-06-10')
+  },
+  {
     title: 'Using Lodash truncate',
     raw: './tutorials/lodash/truncate.md',
     url: '/tutorials/lodash/truncate',
