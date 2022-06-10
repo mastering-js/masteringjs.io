@@ -10,10 +10,10 @@ It takes three parameters:
 ```javascript
 const _ = require('lodash');
 
-const example = 'Masteringjs.io is a great website to learn JavaScript fundamentals, mongoose, vue, and other fun JavaScript libraries.';
+const example = 'Masteringjs.io is a great website to learn JavaScript fundamentals, Mongoose, Vue, and other JavaScript libraries.';
 
 const result = _.truncate(example, {
-    length: 39,
+  length: 39
 });
 
 result; // Masteringjs.io is a great website to...
@@ -21,8 +21,8 @@ result; // Masteringjs.io is a great website to...
 
 ```javascript
 const close = _.truncate(example, {
-    length: 36,
-    omission: '.',
+  length: 36,
+  omission: '.',
 });
 
 close; // Masteringjs.io is a great website.
@@ -38,11 +38,11 @@ const _ = require('lodash');
 const example = 'Masteringjs.io is a great website to learn JavaScript fundamentals, mongoose, vue, and other fun JavaScript libraries.';
 
 const short = _.truncate(example, {
-    length: 23,
-    separator: ' '
+  length: 23, // 'Masteringjs.io is a gre'.length
+  separator: ' '
 });
 
 short; // Masteringjs.io is a...
 ```
 
-You can see that although it should have ended halfway through `great`, it back tracked and cut off at `a` because the `separator` parameter indicated so.
+Because `' '` is the separator, Lodash backtracked and cut off the string at the last space before index 23. Even though index 23 is halfway through "great", `truncate()` avoided breaking up words.
