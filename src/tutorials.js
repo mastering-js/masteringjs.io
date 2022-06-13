@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Split on Multiple Characters in JavaScript',
+    raw: './tutorials/fundamentals/split-on-multiple-characters.md',
+    url: '/tutorials/fundamentals/split-on-multiple-characters',
+    description: 'Here\'s how you can use the string `split()` method to split on one of multiple characters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-13')
+  },
+  {
     title: 'Using Lodash truncate',
     raw: './tutorials/lodash/truncate.md',
     url: '/tutorials/lodash/truncate',
