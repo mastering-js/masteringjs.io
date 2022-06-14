@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Fix "Buffering timed out after 1000ms" Error in Mongoose',
+    raw: './tutorials/mongoose/fix-buffering-timed-out.md',
+    url: '/tutorials/mongoose/fix-buffering-timed-out',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-06-14')
+  },
+  {
     title: 'Split on Multiple Characters in JavaScript',
     raw: './tutorials/fundamentals/split-on-multiple-characters.md',
     url: '/tutorials/fundamentals/split-on-multiple-characters',
