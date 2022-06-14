@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using insertOne() in Mongoose',
+    raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
+    url: '/tutorials/mongoose/using-insertone-in-mongoose',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-06-14')
+  },
+  {
     title: 'Split on Multiple Characters in JavaScript',
     raw: './tutorials/fundamentals/split-on-multiple-characters.md',
     url: '/tutorials/fundamentals/split-on-multiple-characters',
