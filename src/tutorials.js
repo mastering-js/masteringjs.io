@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Rename Variables When Using Object Destructuring in JavaScript',
+    raw: './tutorials/fundamentals/object-destructuring-rename.md',
+    url: '/tutorials/fundamentals/object-destructuring-rename',
+    description: 'Here\'s how you rename variables using destructuring assignment in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-05-17')
+  },
+  {
     title: 'Split on Multiple Characters in JavaScript',
     raw: './tutorials/fundamentals/split-on-multiple-characters.md',
     url: '/tutorials/fundamentals/split-on-multiple-characters',
