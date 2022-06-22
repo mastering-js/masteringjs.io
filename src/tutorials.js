@@ -9,9 +9,65 @@ const tutorials = [
     title: 'Find Objects by Nested Properties with Lodash',
     raw: './tutorials/lodash/find-nested-object.md',
     url: '/tutorials/lodash/find-nested-object',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can find an object in an array by a nested property using Lodash.',
     tags: ['lodash'],
-    date: moment('2022-05-26')
+    date: moment('2022-06-22')
+  },
+  {
+    title: 'Rename Variables When Using Object Destructuring in JavaScript',
+    raw: './tutorials/fundamentals/object-destructuring-rename.md',
+    url: '/tutorials/fundamentals/object-destructuring-rename',
+    description: 'Here\'s how you rename variables using destructuring assignment in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-17')
+  },
+  {
+    title: 'Split on Multiple Characters in JavaScript',
+    raw: './tutorials/fundamentals/split-on-multiple-characters.md',
+    url: '/tutorials/fundamentals/split-on-multiple-characters',
+    description: 'Here\'s how you can use the string `split()` method to split on one of multiple characters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-13')
+  },
+  {
+    title: 'Using Lodash truncate',
+    raw: './tutorials/lodash/truncate.md',
+    url: '/tutorials/lodash/truncate',
+    description: 'Here\'s how you can use the `truncate()` function in Lodash to trim strings',
+    tags: ['lodash'],
+    date: moment('2022-06-10')
+  },
+  {
+    title: 'How to Remove a null from an Object with Lodash',
+    raw: './tutorials/lodash/remove-null-from-object.md',
+    url: '/tutorials/lodash/remove-null-from-object',
+    description: 'Here\'s how you can remove `null` properties from a JavaScript object using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-08')
+  },
+  {
+    title: 'Modify Authorized redirect_uris For Google OAuth',
+    raw: './tutorials/node/google-oauth-authorized-redirect-uris.md',
+    url: '/tutorials/node/google-oauth-authorized-redirect-uris',
+    description: 'Here\'s how to modify authorized redirect URIs for logging in with Google OAuth.',
+    tags: ['node'],
+    date: moment('2022-06-03')
+  },
+  {
+    title: 'Mongoose on(\'delete\')',
+    raw: './tutorials/mongoose/on-delete.md',
+    url: '/tutorials/mongoose/on-delete',
+    description: 'Here\'s two ways that Mongoose lets you execute code when a document is deleted: using middleware, and using change streams.',
+    tags: ['mongoose'],
+    date: moment('2022-05-31')
+  },
+  {
+    title: 'Enums in Mongoose',
+    raw: './tutorials/mongoose/enum.md',
+    url: '/tutorials/mongoose/enum',
+    description: 'Here\'s how you can use enum validators in Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2022-05-23')
   },
   {
     title: 'Fix "elements in interation expect to have \'v-bind:key\'" in Vue',
