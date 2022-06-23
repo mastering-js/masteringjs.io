@@ -6,12 +6,20 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Find Objects by Nested Properties with Lodash',
+    raw: './tutorials/lodash/find-nested-object.md',
+    url: '/tutorials/lodash/find-nested-object',
+    description: 'Here\'s how you can find an object in an array by a nested property using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-22')
+  },
+  {
     title: 'Rename Variables When Using Object Destructuring in JavaScript',
     raw: './tutorials/fundamentals/object-destructuring-rename.md',
     url: '/tutorials/fundamentals/object-destructuring-rename',
     description: 'Here\'s how you rename variables using destructuring assignment in JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2022-05-17')
+    date: moment('2022-06-17')
   },
   {
     title: 'Split on Multiple Characters in JavaScript',
