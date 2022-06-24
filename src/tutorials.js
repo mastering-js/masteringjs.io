@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vue v-if and v-else',
+    raw: './tutorials/vue/v-if-and-else.md',
+    url: '/tutorials/vue/v-if-and-else',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-06-24')
+  },
+  {
     title: 'Find Objects by Nested Properties with Lodash',
     raw: './tutorials/lodash/find-nested-object.md',
     url: '/tutorials/lodash/find-nested-object',
