@@ -4,7 +4,7 @@ Simply pass an expression to the `v-if` directive, and the block will render if 
 `v-else` must come after a `v-if` or it will not be recognized.
 Below is a live example and the necessary code to replicate it:
 
-```javascript
+```html
 <div id="content" style="border: 1px solid #ddd; padding: 1em"></div>
 
 <script src="https://unpkg.com/vue@3.x"></script>
