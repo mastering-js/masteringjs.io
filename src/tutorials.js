@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Remove null from an Array with Lodash',
+    raw: './tutorials/lodash/remove-null-from-array.md',
+    url: '/tutorials/lodash/remove-null-from-array',
+    description: 'Here\'s how you can remove null elements from an array with Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-26')
+  },
+  {
     title: 'Find Objects by Nested Properties with Lodash',
     raw: './tutorials/lodash/find-nested-object.md',
     url: '/tutorials/lodash/find-nested-object',
