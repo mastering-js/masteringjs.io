@@ -8,10 +8,42 @@ const tutorials = [
   {
     title: 'Check a String for Numbers in JavaScript',
     raw: './tutorials/fundamentals/check-string-for-numbers.md',
-    url: '/tutorials/fundamentals/check-string-for-numbers',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/check-if-string-contains-numbers',
+    description: 'Here\'s how you can check if a string contains numbers in vanilla JavaScript.',
     tags: ['fundamentals'],
-    date: moment('2022-06-10')
+    date: moment('2022-06-27')
+  },
+  {
+    title: 'Remove null from an Array with Lodash',
+    raw: './tutorials/lodash/remove-null-from-array.md',
+    url: '/tutorials/lodash/remove-null-from-array',
+    description: 'Here\'s how you can remove null elements from an array with Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-26')
+  },
+  {
+    title: 'Find Objects by Nested Properties with Lodash',
+    raw: './tutorials/lodash/find-nested-object.md',
+    url: '/tutorials/lodash/find-nested-object',
+    description: 'Here\'s how you can find an object in an array by a nested property using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-22')
+  },
+  {
+    title: 'Rename Variables When Using Object Destructuring in JavaScript',
+    raw: './tutorials/fundamentals/object-destructuring-rename.md',
+    url: '/tutorials/fundamentals/object-destructuring-rename',
+    description: 'Here\'s how you rename variables using destructuring assignment in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-17')
+  },
+  {
+    title: 'Split on Multiple Characters in JavaScript',
+    raw: './tutorials/fundamentals/split-on-multiple-characters.md',
+    url: '/tutorials/fundamentals/split-on-multiple-characters',
+    description: 'Here\'s how you can use the string `split()` method to split on one of multiple characters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-13')
   },
   {
     title: 'Using Lodash truncate',
