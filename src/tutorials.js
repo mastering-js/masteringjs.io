@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check a String for Numbers in JavaScript',
+    raw: './tutorials/fundamentals/check-string-for-numbers.md',
+    url: '/tutorials/fundamentals/check-if-string-contains-numbers',
+    description: 'Here\'s how you can check if a string contains numbers in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-27')
+  },
+  {
     title: 'Remove null from an Array with Lodash',
     raw: './tutorials/lodash/remove-null-from-array.md',
     url: '/tutorials/lodash/remove-null-from-array',
