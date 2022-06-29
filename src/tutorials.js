@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Capitalize the First Letter of a String Using Lodash',
+    raw: './tutorials/lodash/capitalize-first-letter.md',
+    url: '/tutorials/lodash/capitalize-first-letter',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-06-29')
+  },
+  {
     title: 'Check a String for Numbers in JavaScript',
     raw: './tutorials/fundamentals/check-string-for-numbers.md',
     url: '/tutorials/fundamentals/check-if-string-contains-numbers',
