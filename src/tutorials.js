@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check if a Date is Between Two Dates in JavaScript',
+    raw: './tutorials/fundamentals/check-date-between-two-dates.md',
+    url: '/tutorials/fundamentals/check-date-between-two-dates',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-06-29')
+  },
+  {
     title: 'Check a String for Numbers in JavaScript',
     raw: './tutorials/fundamentals/check-string-for-numbers.md',
     url: '/tutorials/fundamentals/check-if-string-contains-numbers',
