@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using insertOne() in Mongoose',
+    raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
+    url: '/tutorials/mongoose/using-insertone-in-mongoose',
+    description: 'Mongoose models don\'t have an `insertOne()` function, but `create()` is similar. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2022-07-05')
+  },
+  {
     title: 'Check a String for Numbers in JavaScript',
     raw: './tutorials/fundamentals/check-string-for-numbers.md',
     url: '/tutorials/fundamentals/check-if-string-contains-numbers',
