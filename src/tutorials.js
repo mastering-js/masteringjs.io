@@ -8,7 +8,7 @@ const tutorials = [
   {
     title: 'Vue v-if and v-else',
     raw: './tutorials/vue/v-if-and-else.md',
-    url: '/tutorials/vue/v-if-and-else',
+    url: '/tutorials/vue/v-if-else',
     description: 'Placeholder Description',
     tags: ['vue'],
     date: moment('2022-06-24')

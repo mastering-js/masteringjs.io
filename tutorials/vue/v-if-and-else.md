@@ -1,6 +1,6 @@
-To conditionally render something in vue, you must use `v-if` and `v-else` directive.
+To conditionally render something in Vue, you should use [`v-if`](/tutorials/vue/v-if.html) and `v-else` directive.
 Simply pass an expression to the `v-if` directive, and the block will render if the expression is true.
-`v-else` will render in the event none of the `v-if` directives render.
+You can also use `v-else`, which will render if the `v-if` expression evaluates to a falsy value.
 `v-else` must come after a `v-if` or it will not be recognized.
 Below is a live example and the necessary code to replicate it:
 
