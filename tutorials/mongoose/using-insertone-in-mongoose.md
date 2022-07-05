@@ -1,17 +1,17 @@
-Mongoose does not have an `insertOne()` method, you should use the `create()` function instead.
+Mongoose models do not have an `insertOne()` method, you should use the `create()` function instead.
 
 ```javascript
 const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
-    name: String
+  name: String
 });
-const testModel = mongoose.model('Test', schema);
+const TestModel = mongoose.model('Test', schema);
 
 async function run() {
-    await mongoose.connect('mongodb://localhost:27017');
-    await testModel.create({
-        name: 'Test Testerson'
-    });
+  await mongoose.connect('mongodb://localhost:27017');
+  await TestModel.create({
+    name: 'Test Testerson'
+  });
 }
 run();
 ```
@@ -21,15 +21,15 @@ If you are adamant about using `insertOne()`, you will need to call the function
 ```javascript
 const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
-    name: String
+  name: String
 });
-const testModel = mongoose.model('Test', schema);
+const TestModel = mongoose.model('Test', schema);
 
 async function run() {
-    await mongoose.connect('mongodb://localhost:27017');
-    await testModel.collection.insertOne({ name: 'Test Testerson' });
+  await mongoose.connect('mongodb://localhost:27017');
+  await TestModel.collection.insertOne({ name: 'Test Testerson' });
 }
 run();
 ```
 
-**Note:** Be warned that doing so bypasses Mongoose, which means no schema validation and no hooks will be called/fired.
+**Note:** All methods on `TestModel.collection` bypass Mongoose entirely. So `TestModel.collection.insertOne()` bypasses schema validation, middleware, getters/setters, and all other Mongoose features.
