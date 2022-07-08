@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
+    raw: './tutorials/mongoose/buffering-timed-out.md',
+    url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
+    description: 'Here\'s what the "Buffering timed out after 10000ms" error means in Mongoose, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-07-08')
+  },
+  {
     title: 'Using insertOne() in Mongoose',
     raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
     url: '/tutorials/mongoose/using-insertone-in-mongoose',
