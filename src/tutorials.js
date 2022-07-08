@@ -6,12 +6,52 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
-    title: 'How to Fix "Buffering timed out after 1000ms" Error in Mongoose',
-    raw: './tutorials/mongoose/fix-buffering-timed-out.md',
-    url: '/tutorials/mongoose/fix-buffering-timed-out',
-    description: 'Placeholder Description',
+    title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
+    raw: './tutorials/mongoose/buffering-timed-out.md',
+    url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
+    description: 'Here\'s what the "Buffering timed out after 10000ms" error means in Mongoose, and how to fix it.',
     tags: ['mongoose'],
-    date: moment('2022-06-14')
+    date: moment('2022-07-08')
+  },
+  {
+    title: 'Using insertOne() in Mongoose',
+    raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
+    url: '/tutorials/mongoose/using-insertone-in-mongoose',
+    description: 'Mongoose models don\'t have an `insertOne()` function, but `create()` is similar. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2022-07-05')
+  },
+  {
+    title: 'Check a String for Numbers in JavaScript',
+    raw: './tutorials/fundamentals/check-string-for-numbers.md',
+    url: '/tutorials/fundamentals/check-if-string-contains-numbers',
+    description: 'Here\'s how you can check if a string contains numbers in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-27')
+  },
+  {
+    title: 'Remove null from an Array with Lodash',
+    raw: './tutorials/lodash/remove-null-from-array.md',
+    url: '/tutorials/lodash/remove-null-from-array',
+    description: 'Here\'s how you can remove null elements from an array with Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-26')
+  },
+  {
+    title: 'Find Objects by Nested Properties with Lodash',
+    raw: './tutorials/lodash/find-nested-object.md',
+    url: '/tutorials/lodash/find-nested-object',
+    description: 'Here\'s how you can find an object in an array by a nested property using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-22')
+  },
+  {
+    title: 'Rename Variables When Using Object Destructuring in JavaScript',
+    raw: './tutorials/fundamentals/object-destructuring-rename.md',
+    url: '/tutorials/fundamentals/object-destructuring-rename',
+    description: 'Here\'s how you rename variables using destructuring assignment in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-17')
   },
   {
     title: 'Split on Multiple Characters in JavaScript',
