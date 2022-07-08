@@ -7,7 +7,7 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
-    raw: './tutorials/mongoose/buffering-timed-out.md',
+    raw: './tutorials/mongoose/fix-buffering-timed-out.md',
     url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
     description: 'Here\'s what the "Buffering timed out after 10000ms" error means in Mongoose, and how to fix it.',
     tags: ['mongoose'],
