@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using limit() with Mongoose Queries',
+    raw: './tutorials/mongoose/limit.md',
+    url: '/tutorials/mongoose/limit',
+    description: 'Placeholder Description',
+    tags: ['mongoose'],
+    date: moment('2022-07-12')
+  },
+  {
     title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
     raw: './tutorials/mongoose/fix-buffering-timed-out.md',
     url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
