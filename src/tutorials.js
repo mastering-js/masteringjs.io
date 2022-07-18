@@ -6,12 +6,53 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+<<<<<<< HEAD
     title: 'Vue v-else-if',
     raw: './tutorials/vue/v-else-if.md',
     url: '/tutorials/vue/v-else-if',
     description: 'Placeholder Description',
     tags: ['vue'],
     date: moment('2022-06-24')
+=======
+    title: 'Vue v-if and v-else',
+    raw: './tutorials/vue/v-if-and-else.md',
+    url: '/tutorials/vue/v-if-else',
+    description: 'Here\'s what you need to know about using `v-else` with `v-if` in Vue.',
+    tags: ['vue'],
+    date: moment('2022-07-13')
+  },
+  {
+    title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
+    raw: './tutorials/mongoose/fix-buffering-timed-out.md',
+    url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
+    description: 'Here\'s what the "Buffering timed out after 10000ms" error means in Mongoose, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-07-08')
+  },
+  {
+    title: 'Using insertOne() in Mongoose',
+    raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
+    url: '/tutorials/mongoose/using-insertone-in-mongoose',
+    description: 'Mongoose models don\'t have an `insertOne()` function, but `create()` is similar. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2022-07-05')
+  },
+  {
+    title: 'Check a String for Numbers in JavaScript',
+    raw: './tutorials/fundamentals/check-string-for-numbers.md',
+    url: '/tutorials/fundamentals/check-if-string-contains-numbers',
+    description: 'Here\'s how you can check if a string contains numbers in vanilla JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-06-27')
+  },
+  {
+    title: 'Remove null from an Array with Lodash',
+    raw: './tutorials/lodash/remove-null-from-array.md',
+    url: '/tutorials/lodash/remove-null-from-array',
+    description: 'Here\'s how you can remove null elements from an array with Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-06-26')
+>>>>>>> master
   },
   {
     title: 'Find Objects by Nested Properties with Lodash',
