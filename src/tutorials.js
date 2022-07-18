@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vue v-else-if',
+    raw: './tutorials/vue/v-else-if.md',
+    url: '/tutorials/vue/v-else-if',
+    description: 'Here\'s what you need to know about v-else-if in Vue.',
+    tags: ['vue'],
+    date: moment('2022-07-18')
+  },
+  {
     title: 'Vue v-if and v-else',
     raw: './tutorials/vue/v-if-and-else.md',
     url: '/tutorials/vue/v-if-else',
