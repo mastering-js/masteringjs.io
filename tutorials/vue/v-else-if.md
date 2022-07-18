@@ -1,19 +1,19 @@
 Vue provides a `v-else-if` directive that you can use with `v-if` analogous to using `else if {}` with `if {}`.
 
 ```javascript
-   const app = Vue.createApp({
-    data: () => ({ value: 1 }),
-    template: `
+const app = Vue.createApp({
+  data: () => ({ value: 1 }),
+  template: `
+  <div>
     <div>
-      <div>
-        <h1 v-if="value > 0">Hello</h1>
-        <h1 v-else-if="value > 1">There</h1>
-        <h1 v-else-if="value > 2">World</h1>
-      </div>
-      <button @click="value++">Increment</button>
+      <h1 v-if="value > 0">Hello</h1>
+      <h1 v-else-if="value > 1">There</h1>
+      <h1 v-else-if="value > 2">World</h1>
     </div>
-    `
-  }).mount('#content');
+    <button @click="value++">Increment</button>
+  </div>
+  `
+}).mount('#content');
 ```
 
 
