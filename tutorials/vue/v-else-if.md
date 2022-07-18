@@ -26,8 +26,8 @@ const app = Vue.createApp({
     template: `
     <div>
       <div>
-        <h1 v-if="value > 0">Hello</h1>
-        <h1 v-else-if="value > 1">There</h1>
+        <h1 v-if="value <= 1">Hello</h1>
+        <h1 v-else-if="value <= 2">There</h1>
         <h1 v-else-if="value > 2">World</h1>
       </div>
       <button @click="value++">Increment</button>
