@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The encodeURIComponent() Function in JavaScript',
+    raw: './tutorials/fundamentals/encodeURIComponent.md',
+    url: '/tutorials/fundamentals/encodeURIComponent',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-07-20')
+  },
+  {
     title: 'Vue v-else-if',
     raw: './tutorials/vue/v-else-if.md',
     url: '/tutorials/vue/v-else-if',
