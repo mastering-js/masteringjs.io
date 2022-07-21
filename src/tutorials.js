@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Check if a Date is Between Two Dates in JavaScript',
+    raw: './tutorials/fundamentals/check-date-between-two-dates.md',
+    url: '/tutorials/fundamentals/check-date-between-two-dates',
+    description: 'Here\'s how you can check if a date is between two dates in vanilla JavaScript, no libraries.',
+    tags: ['fundamentals'],
+    date: moment('2022-07-21')
+  },
+  {
     title: 'Vue v-else-if',
     raw: './tutorials/vue/v-else-if.md',
     url: '/tutorials/vue/v-else-if',
