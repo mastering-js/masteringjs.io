@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Format CSS in the Browser',
+    raw: './tutorials/tools/format-css.md',
+    url: '/tutorials/tools/format-css',
+    description: 'Placeholder Description',
+    tags: ['tools'],
+    date: moment('2022-07-29')
+  },
+  {
     title: 'How to Check if a Date is Between Two Dates in JavaScript',
     raw: './tutorials/fundamentals/check-date-between-two-dates.md',
     url: '/tutorials/fundamentals/check-date-between-two-dates',
