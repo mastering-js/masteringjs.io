@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove Line Chart Fill in ChartJS',
+    raw: './tutorials/chartjs/remove-fill.md',
+    url: '/tutorials/chartjs/remove-fill',
+    description: 'Placeholder Description',
+    tags: ['chartjs'],
+    date: moment('2022-07-29')
+  },
+  {
     title: 'How to Check if a Date is Between Two Dates in JavaScript',
     raw: './tutorials/fundamentals/check-date-between-two-dates.md',
     url: '/tutorials/fundamentals/check-date-between-two-dates',
