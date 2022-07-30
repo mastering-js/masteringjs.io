@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Capitalize the First Letter of a String Using Lodash',
+    raw: './tutorials/lodash/capitalize-first-letter.md',
+    url: '/tutorials/lodash/capitalize-first-letter',
+    description: 'Here\'s how you capitalize the first letter of a string using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-07-30')
+  },
+  {
     title: 'How to Check if a Date is Between Two Dates in JavaScript',
     raw: './tutorials/fundamentals/check-date-between-two-dates.md',
     url: '/tutorials/fundamentals/check-date-between-two-dates',
