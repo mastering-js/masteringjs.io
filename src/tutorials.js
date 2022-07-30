@@ -9,9 +9,49 @@ const tutorials = [
     title: 'Capitalize the First Letter of a String Using Lodash',
     raw: './tutorials/lodash/capitalize-first-letter.md',
     url: '/tutorials/lodash/capitalize-first-letter',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you capitalize the first letter of a string using Lodash.',
     tags: ['lodash'],
-    date: moment('2022-06-29')
+    date: moment('2022-07-30')
+  },
+  {
+    title: 'How to Check if a Date is Between Two Dates in JavaScript',
+    raw: './tutorials/fundamentals/check-date-between-two-dates.md',
+    url: '/tutorials/fundamentals/check-date-between-two-dates',
+    description: 'Here\'s how you can check if a date is between two dates in vanilla JavaScript, no libraries.',
+    tags: ['fundamentals'],
+    date: moment('2022-07-21')
+  },
+  {
+    title: 'Vue v-else-if',
+    raw: './tutorials/vue/v-else-if.md',
+    url: '/tutorials/vue/v-else-if',
+    description: 'Here\'s what you need to know about v-else-if in Vue.',
+    tags: ['vue'],
+    date: moment('2022-07-18')
+  },
+  {
+    title: 'Vue v-if and v-else',
+    raw: './tutorials/vue/v-if-and-else.md',
+    url: '/tutorials/vue/v-if-else',
+    description: 'Here\'s what you need to know about using `v-else` with `v-if` in Vue.',
+    tags: ['vue'],
+    date: moment('2022-07-13')
+  },
+  {
+    title: 'How to Fix "Buffering timed out after 10000ms" Error in Mongoose',
+    raw: './tutorials/mongoose/fix-buffering-timed-out.md',
+    url: '/tutorials/mongoose/buffering-timed-out-after-10000ms',
+    description: 'Here\'s what the "Buffering timed out after 10000ms" error means in Mongoose, and how to fix it.',
+    tags: ['mongoose'],
+    date: moment('2022-07-08')
+  },
+  {
+    title: 'Using insertOne() in Mongoose',
+    raw: './tutorials/mongoose/using-insertone-in-mongoose.md',
+    url: '/tutorials/mongoose/using-insertone-in-mongoose',
+    description: 'Mongoose models don\'t have an `insertOne()` function, but `create()` is similar. Here\'s what you need to know.',
+    tags: ['mongoose'],
+    date: moment('2022-07-05')
   },
   {
     title: 'Check a String for Numbers in JavaScript',
