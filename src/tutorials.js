@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using limit() with Mongoose Queries',
+    raw: './tutorials/mongoose/limit.md',
+    url: '/tutorials/mongoose/limit',
+    description: 'Here\'s how you can use limit() to return a fixed number of documents with Mongoose `find()`.',
+    tags: ['mongoose'],
+    date: moment('2022-08-03')
+  },
+  {
     title: 'Capitalize the First Letter of a String Using Lodash',
     raw: './tutorials/lodash/capitalize-first-letter.md',
     url: '/tutorials/lodash/capitalize-first-letter',
