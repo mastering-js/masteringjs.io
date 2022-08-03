@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Calculate the Median of an Array in JavaScript',
+    raw: './tutorials/fundamentals/calculate-median.md',
+    url: '/tutorials/fundamentals/calculate-median',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-08-03')
+  },
+  {
     title: 'Capitalize the First Letter of a String Using Lodash',
     raw: './tutorials/lodash/capitalize-first-letter.md',
     url: '/tutorials/lodash/capitalize-first-letter',
