@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Implementing Soft Delete in Mongoose',
+    raw: './tutorials/mongoose/soft-delete.md',
+    url: '/tutorials/mongoose/soft-delete',
+    description: 'Here\'s how you can implement soft delete with Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2022-08-07')
+  },
+  {
     title: 'Using limit() with Mongoose Queries',
     raw: './tutorials/mongoose/limit.md',
     url: '/tutorials/mongoose/limit',
