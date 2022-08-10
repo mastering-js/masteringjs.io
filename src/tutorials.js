@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using v-bind:src with Vue',
+    raw: './tutorials/vue/bind-src.md',
+    url: '/tutorials/vue/bind-src',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-08-10')
+  },
+  {
     title: 'Implementing Soft Delete in Mongoose',
     raw: './tutorials/mongoose/soft-delete.md',
     url: '/tutorials/mongoose/soft-delete',
