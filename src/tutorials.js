@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Props with Vue Router',
+    raw: './tutorials/vue/router-props.md',
+    url: '/tutorials/vue/router-props',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-08-12')
+  },
+  {
     title: 'Implementing Soft Delete in Mongoose',
     raw: './tutorials/mongoose/soft-delete.md',
     url: '/tutorials/mongoose/soft-delete',
