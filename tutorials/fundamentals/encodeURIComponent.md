@@ -1,19 +1,36 @@
-The `encodeURIComponent()` function in JavaScript allows you to encode special characters in your query parameters that would otherwise cause an error.
-Characters like `+`, `/`, and `&` have a use within query parameters.
-If you needed to send some data that contained those characters, sending them normally would trigger their use case and therefore mess up the data you wanted to send.
-`encodeURIComponent()` makes it so that the use case is not triggered by encoding the character.
+The `encodeURIComponent()` function in JavaScript allows you to encode special characters in your query string that would otherwise change the meaning of your query string.
+
+Characters like `+`, `/`, and `&` are special.
+For example, suppose you wanted to send an HTTP request with the user's `email` address in the query string.
+
+```javascript
+fetch(`https://httpbin.org/get?email=${email}`);
+```
+
+What happens if `email` has an `&`, like `'john@gmail.com&param=somethingelse'`?
+That would add an extra parameter `param=somethingelse` to the query string.
+
+`encodeURIComponent()` ensures that `email`.
 For example:
 
 ```javascript
-// The url will be https://httpbin.org/get?field=+value
-await fetch(`https://httpbin.org/get?field=+value`).then((res) => res.json()); // will be {field: ' value'}
-// The url will be https://httpbin.org/get?field=%2Bvalue
-await fetch(`https://httpbin.org/get?field=${encodeURIComponent('+value')}`).then((res) => res.json()); // will be {field: '+value'}
+const email = 'john@gmail.com&param=somethingelse';
+
+await fetch(`https://httpbin.org/get?email?email=${email}`).
+  then((res) => res.json()); // { email: 'john@gmail.com', param: 'somethingelse' }
+
+await fetch(`https://httpbin.org/get?email=${encodeURIComponent(email)}`).
+  then((res) => res.json()); // { email: 'john@gmail.com&param=somethingelse' }
 ```
 
-You can run these lines in developer tools to see for yourself.
-Do not encode the entire url as this will also encode the characters whose use case you want to trigger when making your request.
+Do not encode the entire url!
+Just encode the individual values in the query string.
 
 ## Axios
 
-Axios does this automatically for you with [params](/tutorials/axios/get-query-params).
+If you're using [Axios query params](/tutorials/axios/get-query-params), you don't need to use `encodeURIComponent()`.
+Axios calls `encodeURIComponent()` for you.
+
+```javascript
+[require:axios.*get request params$]
+```
