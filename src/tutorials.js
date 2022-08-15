@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The encodeURIComponent() Function in JavaScript',
+    raw: './tutorials/fundamentals/encodeURIComponent.md',
+    url: '/tutorials/fundamentals/encodeuricomponent',
+    description: 'Here\'s how to use `encodeURIComponent()` to sanitize query string parameters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-08-15')
+  },
+  {
     title: 'Implementing Soft Delete in Mongoose',
     raw: './tutorials/mongoose/soft-delete.md',
     url: '/tutorials/mongoose/soft-delete',
