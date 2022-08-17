@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The inheritAttrs Option in Vue',
+    raw: './tutorials/vue/inherit-attribute.md',
+    url: '/tutorials/vue/inherit-attribute',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-08-17')
+  },
+  {
     title: 'The encodeURIComponent() Function in JavaScript',
     raw: './tutorials/fundamentals/encodeURIComponent.md',
     url: '/tutorials/fundamentals/encodeuricomponent',
