@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Remove Line Chart Fill in ChartJS',
+    raw: './tutorials/chartjs/remove-fill.md',
+    url: '/tutorials/chartjs/line-chart-fill-color',
+    description: 'Here\'s how you can configure ChartJS\' line chart fill color, including removing the fill color.',
+    tags: ['chartjs'],
+    date: moment('2022-08-18')
+  },
+  {
     title: 'The encodeURIComponent() Function in JavaScript',
     raw: './tutorials/fundamentals/encodeURIComponent.md',
     url: '/tutorials/fundamentals/encodeuricomponent',
