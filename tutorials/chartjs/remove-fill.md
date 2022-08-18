@@ -28,7 +28,7 @@ const chart = new Chart(ctx, {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [{
       label: 'Example Data',
-      fill: false,
+      fill: false, // <-- Set `fill: false` here
       data: [12, 19, 3, 5, 2, 3]
     }]
   },
