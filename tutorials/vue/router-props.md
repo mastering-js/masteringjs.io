@@ -1,5 +1,5 @@
-To pass props to different routes, you must set `props` to true.
-This enables `route.params` to be set to the component's props.
+To pass props to different routes, you must set the `props` option on your route to `true`.
+This will set `route.params` as the component's props.
 
 ```javascript
 
@@ -51,29 +51,9 @@ app.use(router);
 app.mount('#props')
 ```
 
-## Object Mode
-
-Instead of setting `props: true`, you can set props to an object.
-This allows for static props to always be present in the route.
-
-```javascript
-{
-    path: '/name',
-    name: 'name',
-    component: { 
-        template: '<h1>the props are {{$route.matched[0].props.default}}</h1>'
-    },
-    props: { value: true, navigate: false}
-},
-```
-
-```html
-<button @click="changeRoute({path: '/name'})">Static props</button>      
-```
-
 ## Function Mode
 
-You can set `props` to a function with vue router.
+You can set `props` to a function with Vue Router.
 This lets you pass different values to the routes as long as the property names are the same.
 
 ```javascript
@@ -81,7 +61,7 @@ This lets you pass different values to the routes as long as the property names 
     path: '/function',
     name: 'function',
     component: { template: '<h1>the props are {{$route.query}}</h1>'},
-    props: route => ({ query: route.query.value })
+    props: route => ({ ...route.params, showProfilePicture: true })
 },
 ```
 
@@ -89,5 +69,3 @@ This lets you pass different values to the routes as long as the property names 
 <button @click="changeRoute({path: '/function', query: {value:'test'}})">Query String</button>
 ```
 
-
-Live example can be found [here](/tutorials/vue/router/props.html)
