@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Format CSS in the Browser',
+    raw: './tutorials/tools/format-css.md',
+    url: '/tutorials/tools/format-css',
+    description: 'Here\'s an online tool for formatting CSS code in the browser, as well as how to implement CSS formatting in JavaScript yourself.',
+    tags: ['tools'],
+    date: moment('2022-08-22')
+  },
+  {
     title: 'How to Remove Line Chart Fill in ChartJS',
     raw: './tutorials/chartjs/remove-fill.md',
     url: '/tutorials/chartjs/line-chart-fill-color',
