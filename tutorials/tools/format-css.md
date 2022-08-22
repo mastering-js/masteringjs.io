@@ -81,3 +81,10 @@ let initial = prettier.format(text, {
   endOfLine: 'auto'
 });
 ```
+
+We import Prettier from [unpkg](https://unpkg.com/) as follows:
+
+```html
+<script src="https://unpkg.com/prettier@2.7.1/standalone.js"></script>
+<script src="https://unpkg.com/prettier@2.7.1/parser-postcss.js"></script>
+```
