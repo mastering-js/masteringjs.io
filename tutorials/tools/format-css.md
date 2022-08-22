@@ -1,6 +1,24 @@
 # Format Your CSS
 
-Input your css into the text field and it will be formatted.
+Input your css into the text field below and it will be formatted to use 2-space indent.
+
+<style>
+  .CodeMirror {
+    border: 1px solid #ddd;
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 0.25em 0.5em;
+    color: white;
+    background-color: #19E2F1;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0px;
+    margin-top: 0.5em;
+    font-size: 1.75em;
+  }
+</style>
 
 <div id="input"></div>
 <div>
@@ -8,7 +26,6 @@ Input your css into the text field and it will be formatted.
 </div>
 <h3>Output:</h3>
 <div id="output"></div>
-
 
 <script src="https://unpkg.com/prettier@2.7.1/standalone.js"></script>
 <script src="https://unpkg.com/prettier@2.7.1/parser-postcss.js"></script>
@@ -30,7 +47,12 @@ Input your css into the text field and it will be formatted.
   });
   function format() {
     let text = input.getValue();
-    let initial = prettier.format(text,{ parser: "css", plugins: prettierPlugins, tabWidth: 2, endOfLine: 'auto'});
+    let initial = prettier.format(text, {
+      parser: 'css',
+      plugins: prettierPlugins,
+      tabWidth: 2,
+      endOfLine: 'auto'
+    });
     initial = initial.replaceAll('}', '}\n');
     // https://stackoverflow.com/a/67243723
     const kebabizeFromCamel = (str) => str.replaceAll(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())
@@ -39,11 +61,23 @@ Input your css into the text field and it will be formatted.
     initial = kebabizeFromSnake(initial);
     output.setValue(initial);
   }
+  format();
 </script>
 
 
-This tool uses `prettier.format()` in conjunction with the `replaceAll()` function.
+This tool uses `prettier.format()` to format CSS.
 `format()` takes 2 parameters:
 
 1. text, which is what you input into the textbox
 2. options, which indicates specific format preferences like tab width and end of line characters.
+
+Here's the code we use to format the CSS:
+
+```javascript
+let initial = prettier.format(text, {
+  parser: 'css',
+  plugins: prettierPlugins,
+  tabWidth: 2,
+  endOfLine: 'auto'
+});
+```
