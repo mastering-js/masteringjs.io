@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with the Node.js assert Library',
+    raw: './tutorials/node/assert.md',
+    url: '/tutorials/node/assert',
+    description: 'Placeholder Description',
+    tags: ['node'],
+    date: moment('2022-08-22')
+  },
+  {
     title: 'Format CSS in the Browser',
     raw: './tutorials/tools/format-css.md',
     url: '/tutorials/tools/format-css',
