@@ -9,9 +9,49 @@ const tutorials = [
     title: 'Format CSS in the Browser',
     raw: './tutorials/tools/format-css.md',
     url: '/tutorials/tools/format-css',
-    description: 'Placeholder Description',
+    description: 'Here\'s an online tool for formatting CSS code in the browser, as well as how to implement CSS formatting in JavaScript yourself.',
     tags: ['tools'],
-    date: moment('2022-07-29')
+    date: moment('2022-08-22')
+  },
+  {
+    title: 'How to Remove Line Chart Fill in ChartJS',
+    raw: './tutorials/chartjs/remove-fill.md',
+    url: '/tutorials/chartjs/line-chart-fill-color',
+    description: 'Here\'s how you can configure ChartJS\' line chart fill color, including removing the fill color.',
+    tags: ['chartjs'],
+    date: moment('2022-08-18')
+  },
+  {
+    title: 'The encodeURIComponent() Function in JavaScript',
+    raw: './tutorials/fundamentals/encodeURIComponent.md',
+    url: '/tutorials/fundamentals/encodeuricomponent',
+    description: 'Here\'s how to use `encodeURIComponent()` to sanitize query string parameters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-08-15')
+  },
+  {
+    title: 'Implementing Soft Delete in Mongoose',
+    raw: './tutorials/mongoose/soft-delete.md',
+    url: '/tutorials/mongoose/soft-delete',
+    description: 'Here\'s how you can implement soft delete with Mongoose.',
+    tags: ['mongoose'],
+    date: moment('2022-08-07')
+  },
+  {
+    title: 'Using limit() with Mongoose Queries',
+    raw: './tutorials/mongoose/limit.md',
+    url: '/tutorials/mongoose/limit',
+    description: 'Here\'s how you can use limit() to return a fixed number of documents with Mongoose `find()`.',
+    tags: ['mongoose'],
+    date: moment('2022-08-03')
+  },
+  {
+    title: 'Capitalize the First Letter of a String Using Lodash',
+    raw: './tutorials/lodash/capitalize-first-letter.md',
+    url: '/tutorials/lodash/capitalize-first-letter',
+    description: 'Here\'s how you capitalize the first letter of a string using Lodash.',
+    tags: ['lodash'],
+    date: moment('2022-07-30')
   },
   {
     title: 'How to Check if a Date is Between Two Dates in JavaScript',
