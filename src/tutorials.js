@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using bcrypt-js to Hash Passwords in JavaScript',
+    raw: './tutorials/node/bcrypt.md',
+    url: '/tutorials/node/bcrypt',
+    description: 'Placeholder Description',
+    tags: ['node'],
+    date: moment('2022-08-23')
+  },
+  {
     title: 'Format CSS in the Browser',
     raw: './tutorials/tools/format-css.md',
     url: '/tutorials/tools/format-css',
