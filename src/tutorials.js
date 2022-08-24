@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Calculate the Median of an Array in JavaScript',
+    raw: './tutorials/fundamentals/calculate-median.md',
+    url: '/tutorials/fundamentals/median',
+    description: 'Here\'s how you can quickly calculate the median of an array of numbers in vanilla JavaScript, with no outside libraries.',
+    tags: ['fundamentals'],
+    date: moment('2022-08-24')
+  },
+  {
     title: 'Format CSS in the Browser',
     raw: './tutorials/tools/format-css.md',
     url: '/tutorials/tools/format-css',
