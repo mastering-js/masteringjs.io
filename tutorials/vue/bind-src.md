@@ -3,20 +3,22 @@ This allows you to insert JavaScript in the attribute field.
 
 ## methods
 
+Using `:src`, you can set the image's `src` to the result of a Vue method.
+
 ```javascript
 <script>
   const { createApp } = Vue
 
   createApp({
     methods: {
-        getPhoto() {
-            return '../../assets/logo.png'
-        }
+      getPhoto() {
+        return '../../assets/logo.png';
+      }
     },
     template: `
-    <img style="width:50%; height:50%;" :src="getPhoto()" />
+    <img :src="getPhoto()" />
     `
-  }).mount('#app')
+  }).mount('#app');
 </script>
 ```
 
@@ -64,9 +66,9 @@ In the example below, should `value` change, the logo image will no longer be di
         }
     },
     template: `
-    <img style="width:50%; height:50%;" :src="photo" />
+    <img :src="photo" />
     <div>
-    <button @click="value > 0 ? value-- : value++">Click</button>
+      <button @click="value > 0 ? value-- : value++">Click</button>
     </div>
     `
   }).mount('#example');
