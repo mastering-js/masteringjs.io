@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using v-bind:src with Vue',
+    raw: './tutorials/vue/bind-src.md',
+    url: '/tutorials/vue/v-bind-src',
+    description: 'Here\'s how you can control an image\'s `src` property in Vue using `v-bind:src`.',
+    tags: ['vue'],
+    date: moment('2022-08-29')
+  },
+  {
     title: 'Calculate the Median of an Array in JavaScript',
     raw: './tutorials/fundamentals/calculate-median.md',
     url: '/tutorials/fundamentals/median',
