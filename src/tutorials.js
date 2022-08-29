@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Use HTML Files as Vue Templates with Webpack',
+    raw: './tutorials/vue/html-template.md',
+    url: '/tutorials/vue/html-template',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-08-29')
+  },
+  {
     title: 'Using v-bind:src with Vue',
     raw: './tutorials/vue/bind-src.md',
     url: '/tutorials/vue/v-bind-src',
