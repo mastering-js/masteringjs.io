@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Add Global Variables to Vue JS Templates',
+    raw: './tutorials/vue/global.md',
+    url: '/tutorials/vue/global',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-08-30')
+  },
+  {
     title: 'Using v-bind:src with Vue',
     raw: './tutorials/vue/bind-src.md',
     url: '/tutorials/vue/v-bind-src',
