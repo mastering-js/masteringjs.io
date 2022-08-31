@@ -9,9 +9,9 @@ const tutorials = [
     title: 'Use HTML Files as Vue Templates with Webpack',
     raw: './tutorials/vue/html-template.md',
     url: '/tutorials/vue/html-template',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can use Webpack to write your Vue templates as HTML files in the browser, as well as how to use HTML templates for server-side rendering in Node.js.',
     tags: ['vue'],
-    date: moment('2022-08-29')
+    date: moment('2022-08-31')
   },
   {
     title: 'Using v-bind:src with Vue',
