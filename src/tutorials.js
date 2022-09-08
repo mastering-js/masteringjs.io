@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with the Node.js assert Library',
+    raw: './tutorials/node/assert.md',
+    url: '/tutorials/node/assert',
+    description: 'Here\'s what you need to know about Node\'s built-in assert module.',
+    tags: ['node'],
+    date: moment('2022-09-07')
+  },
+  {
     title: 'Use HTML Files as Vue Templates with Webpack',
     raw: './tutorials/vue/html-template.md',
     url: '/tutorials/vue/html-template',
