@@ -1,20 +1,22 @@
 Node.js' `assert.equal(a, b)` function will throw an error if `a != b`.
-This is equivalent to simply doing `assert(a,b)`.
+`assert.equal(a, b)` is equivalent `assert(a, b)`.
+Asserts are most commonly used for testing, but can also be used as a more concise alternative to an `if` statement in your code.
 
 ```javascript
 const assert = require('assert');
 
 const a = 1;
 const b = 2;
-assert.equal(a,b)
-assert(a,b);
-assert.equal(a,a);
-assert(a,a)
+assert.equal(a, b); // Throws
+assert(a, b); // Throws
+assert.equal(a, a); // Succeeds
+assert(a, a); // Succeeds
 ```
 
 ## strictEqual()
 
-While `equal(a,b)` throws an error if `a != b`, `strictEqual(a,b)` throws an error if `a !== b`.
+While `equal(a,b)` throws an error if `a != b`, `strictEqual(a, b)` throws an error if `a !== b`.
+[Here's more on the difference between `!==` and `!=` in JavaScript](/tutorials/fundamentals/equals)
 
 ```javascript
 const assert = require('assert');
@@ -22,7 +24,8 @@ const assert = require('assert');
 const a = 1;
 const b = '1';
 
-assert.strictEqual(a,b); // fails assertion
+assert.equal(a, b); // Succeeds
+assert.strictEqual(a, b); // Fails
 ```
 
 ## deepEqual() && deepStrictEqual()
@@ -44,18 +47,18 @@ assert.deepStrictEqual(obj, pojo); // fails
 
 ## throws()
 
-Use this function when you want to assert that the function you are testing should be throwing a specific error.
+Use this function when you want to assert that the function you are testing should throw an error with a specific `message`.
 The first parameter is a function and the second parameter is a regular expression that you want the error message to match.
 
 ```javascript
 const assert = require('assert');
 
 function run() {
-  assert.throws(() => { test(); }, /TypeError: Wrong Value/)
+  assert.throws(() => { test(); }, /TypeError: Wrong Value/);
 }
 
 function test() {
-  throw new TypeError('Wrong Value')
+  throw new TypeError('Wrong Value');
 }
 
 run();
@@ -70,7 +73,7 @@ Use this with async functions.
 const assert = require('assert');
 
 async function run() {
- await assert.rejects(async () => { await test(); }, /TypeError: Wrong Value/)
+ await assert.rejects(async () => { await test(); }, /TypeError: Wrong Value/);
 }
 
 async function test() {
@@ -78,5 +81,4 @@ async function test() {
 }
 
 run();
-
 ```
