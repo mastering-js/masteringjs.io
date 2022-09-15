@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Toggle Visibility in Vue',
+    raw: './tutorials/vue/toggle-visibility.md',
+    url: '/tutorials/vue/toggle-visibility',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-09-15')
+  },
+  {
     title: 'Working with the Node.js assert Library',
     raw: './tutorials/node/assert.md',
     url: '/tutorials/node/assert',
