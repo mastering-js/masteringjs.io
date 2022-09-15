@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Creating Computed Properties with Vue\'s Composition API',
+    raw: './tutorials/vue/computed-properties-composition-api.md',
+    url: '/tutorials/vue/computed-properties-composition-api',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-09-15')
+  },
+  {
     title: 'Working with the Node.js assert Library',
     raw: './tutorials/node/assert.md',
     url: '/tutorials/node/assert',
