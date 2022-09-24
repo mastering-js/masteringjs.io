@@ -1,11 +1,10 @@
-To pass props to different routes, you must set the `props` option on your route to `true`.
+To pass route parameters as props, you should set the `props` option on your route to `true`.
 This will set `route.params` as the component's props.
 
 ```javascript
-
 const User = {
-    props: ['id'],
-    template: '<h1>Your Id is {{id}} </h1>' 
+  props: ['id'],
+  template: '<h1>Your Id is {{id}} </h1>' 
 }
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
@@ -54,18 +53,26 @@ app.mount('#props')
 ## Function Mode
 
 You can set `props` to a function with Vue Router.
-This lets you pass different values to the routes as long as the property names are the same.
+This gives you more fine grained control over what props Vue Router passes to your Vue component.
+
+Vue Router calls your props function with the `route` object as the first parameter.
 
 ```javascript
 {
-    path: '/function',
-    name: 'function',
-    component: { template: '<h1>the props are {{$route.query}}</h1>'},
-    props: route => ({ ...route.params, showProfilePicture: true })
-},
-```
-
-```html
-<button @click="changeRoute({path: '/function', query: {value:'test'}})">Query String</button>
+  path: '/user/:id',
+  name: 'user',
+  component: {
+    template: `
+    <div>
+      <h1>id is {{id}}</h1>
+      <h1>showProfilePicture is {{showProfilePicture}}</h1>
+    </div>
+    `
+  },
+  props: route => ({
+    id: route.params.id, // Pull `id` from route params
+    showProfilePicture: true // Hard code `showProfilePicture`
+  })
+}
 ```
 
