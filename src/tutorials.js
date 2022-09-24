@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Props with Vue Router',
+    raw: './tutorials/vue/router-props.md',
+    url: '/tutorials/vue/router-props',
+    description: 'Here\'s how you pass custom props to your view components with Vue Router, including route parameters.',
+    tags: ['vue'],
+    date: moment('2022-09-23')
+  },
+  {
     title: 'Working with the Node.js assert Library',
     raw: './tutorials/node/assert.md',
     url: '/tutorials/node/assert',
