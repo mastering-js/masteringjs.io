@@ -9,9 +9,65 @@ const tutorials = [
     title: 'Props with Vue Router',
     raw: './tutorials/vue/router-props.md',
     url: '/tutorials/vue/router-props',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you pass custom props to your view components with Vue Router, including route parameters.',
     tags: ['vue'],
-    date: moment('2022-08-12')
+    date: moment('2022-09-23')
+  },
+  {
+    title: 'Working with the Node.js assert Library',
+    raw: './tutorials/node/assert.md',
+    url: '/tutorials/node/assert',
+    description: 'Here\'s what you need to know about Node\'s built-in assert module.',
+    tags: ['node'],
+    date: moment('2022-09-07')
+  },
+  {
+    title: 'Use HTML Files as Vue Templates with Webpack',
+    raw: './tutorials/vue/html-template.md',
+    url: '/tutorials/vue/html-template',
+    description: 'Here\'s how you can use Webpack to write your Vue templates as HTML files in the browser, as well as how to use HTML templates for server-side rendering in Node.js.',
+    tags: ['vue'],
+    date: moment('2022-08-31')
+  },
+  {
+    title: 'Using v-bind:src with Vue',
+    raw: './tutorials/vue/bind-src.md',
+    url: '/tutorials/vue/v-bind-src',
+    description: 'Here\'s how you can control an image\'s `src` property in Vue using `v-bind:src`.',
+    tags: ['vue'],
+    date: moment('2022-08-29')
+  },
+  {
+    title: 'Calculate the Median of an Array in JavaScript',
+    raw: './tutorials/fundamentals/calculate-median.md',
+    url: '/tutorials/fundamentals/median',
+    description: 'Here\'s how you can quickly calculate the median of an array of numbers in vanilla JavaScript, with no outside libraries.',
+    tags: ['fundamentals'],
+    date: moment('2022-08-24')
+  },
+  {
+    title: 'Format CSS in the Browser',
+    raw: './tutorials/tools/format-css.md',
+    url: '/tutorials/tools/format-css',
+    description: 'Here\'s an online tool for formatting CSS code in the browser, as well as how to implement CSS formatting in JavaScript yourself.',
+    tags: ['tools'],
+    date: moment('2022-08-22')
+  },
+  {
+    title: 'How to Remove Line Chart Fill in ChartJS',
+    raw: './tutorials/chartjs/remove-fill.md',
+    url: '/tutorials/chartjs/line-chart-fill-color',
+    description: 'Here\'s how you can configure ChartJS\' line chart fill color, including removing the fill color.',
+    tags: ['chartjs'],
+    date: moment('2022-08-18')
+  },
+  {
+    title: 'The encodeURIComponent() Function in JavaScript',
+    raw: './tutorials/fundamentals/encodeURIComponent.md',
+    url: '/tutorials/fundamentals/encodeuricomponent',
+    description: 'Here\'s how to use `encodeURIComponent()` to sanitize query string parameters in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-08-15')
   },
   {
     title: 'Implementing Soft Delete in Mongoose',
