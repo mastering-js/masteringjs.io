@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The inheritAttrs Option in Vue',
+    raw: './tutorials/vue/inherit-attribute.md',
+    url: '/tutorials/vue/inheritattrs',
+    description: 'Here\'s what you need to know about Vue components\' `inheritAttrs` option.',
+    tags: ['vue'],
+    date: moment('2022-09-26')
+  },
+  {
     title: 'Props with Vue Router',
     raw: './tutorials/vue/router-props.md',
     url: '/tutorials/vue/router-props',
