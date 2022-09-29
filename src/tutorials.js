@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Copy Content to the Clipboard in Vue',
+    raw: './tutorials/vue/copy-clipboard.md',
+    url: '/tutorials/vue/copy-clipboard',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-09-29')
+  },
+  {
     title: 'The inheritAttrs Option in Vue',
     raw: './tutorials/vue/inherit-attribute.md',
     url: '/tutorials/vue/inheritattrs',
