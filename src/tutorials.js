@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Copy to Clipboard',
+    raw: './tutorials/fundamentals/copy-clipboard.md',
+    url: '/tutorials/fundamentals/copy-clipboard',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-09-29')
+  },
+  {
     title: 'The inheritAttrs Option in Vue',
     raw: './tutorials/vue/inherit-attribute.md',
     url: '/tutorials/vue/inheritattrs',
