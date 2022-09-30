@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using bcrypt-js to Hash Passwords in JavaScript',
+    raw: './tutorials/node/bcrypt.md',
+    url: '/tutorials/node/bcrypt',
+    description: 'Here\'s how you can use bcrypt-js to work with passwords in Node.js.',
+    tags: ['node'],
+    date: moment('2022-09-30')
+  },
+  {
     title: 'The inheritAttrs Option in Vue',
     raw: './tutorials/vue/inherit-attribute.md',
     url: '/tutorials/vue/inheritattrs',
