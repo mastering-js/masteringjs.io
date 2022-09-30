@@ -1,16 +1,22 @@
 bcrypt's `hash()` function is how to create a secure hash of a password.
-It takes two parameters: the password and the amount of characters to generate a salt.
+It takes two parameters: the password and the number of _salt rounds_.
+Increasing the number of salt rounds makes `bcrypt.hash()` slower, which makes your passwords harder to brute force.
 
 ```javascript
 const bcryptjs = require('bcryptjs');
 
-const numSaltRounds = process.env.NODE_ENV === 'test' ? 1 : 12
+const numSaltRounds = 8;
 
-// use a password no one could possibly guess, like from this list https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt
 const password = 'password';
 
 bcryptjs.hash(password, numSaltRounds);
 ```
+
+We generally recommend a higher `numSaltRounds` in production (at least 8).
+However, we often use `numSaltRounds = 1` in tests to make tests run faster.
+
+The bcrypt-js library also has a `bcryptjs.hashSync(password, numSaltRounds)` function.
+We recomment **not** using `hashSync()`, because `hashSync()` will block your entire Node process while it runs.
 
 ## compare()
 
@@ -21,7 +27,7 @@ If the function returns true, then the password passed was the correct password.
 ```javascript
 const bcryptjs = require('bcryptjs');
 
-const numSaltRounds = process.env.NODE_ENV === 'test' ? 1 : 12
+const numSaltRounds = process.env.NODE_ENV === 'test' ? 1 : 12;
 
 const password = 'password';
 
@@ -30,6 +36,7 @@ const hash = bcryptjs.hash(password, numSaltRounds);
 bcryptjs.compare(password, hash); // true
 ```
 
-The more salt rounds added, the slower the process.
-Therefore, you can use a small number for testing and increase the number conditionally when in production.
-Make sure you use the same number of salt rounds in your environments respectfully, otherwise it will break.
+There is no way to get the original password from the bcrypt hash without guessing the password.
+
+Make sure you use the exact same number of salt rounds when generating the hash using `hash()`, and when comparing using `compare()`.
+If you `compare()` using a different number of salt rounds than the hash was generated with, `compare()` will always fail.
