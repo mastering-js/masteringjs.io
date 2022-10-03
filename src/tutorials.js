@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Add Global Variables to Vue JS Templates',
+    raw: './tutorials/vue/global.md',
+    url: '/tutorials/vue/use-global-variable',
+    description: 'You can\'t access global variables from Vue templates by default, but here is how you can add variables that are global to all Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-03')
+  },
+  {
     title: 'Using bcrypt-js to Hash Passwords in JavaScript',
     raw: './tutorials/node/bcrypt.md',
     url: '/tutorials/node/bcrypt',
