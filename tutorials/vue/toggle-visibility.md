@@ -1,7 +1,6 @@
 To conditionally display content on your Vue applications, you can use the `v-show` directive.
 The `v-show` directive toggles the `display` css property of the element.
 
-
 ```javascript
 const app = Vue.createApp({
   data: () => ({ display: true }),
@@ -40,12 +39,14 @@ const app = Vue.createApp({
 </script>
 
 
-## Using v-bind
-You can use `v-bind:class` to achieve the same effect as using `v-show` by conditionally changing the css display property of the desired element.
+## Using `v-bind:class`
+
+The `v-show` directive works well for most cases.
+But if you want more fine-grained control over the CSS of how the element is hidden, like hiding the element using `height: 0px;` or `opacity: 0;`, you can use `v-bind:class` to conditionally add a class to your element.
 
 ```css
 .hide {
-    display: none;
+  display: none;
 }
 ```
 
@@ -69,12 +70,10 @@ const example = Vue.createApp({
 <div id="example" style="border: 1px solid #ddd; padding: 1em"></div>
 <style>
 .hide {
-    display: none;
+  display: none;
 }
 
 </style>
-
-<script src="https://unpkg.com/vue@3.x"></script>
 <script>
 const example = Vue.createApp({
   data: () => ({ hide: true }),
@@ -92,10 +91,10 @@ const example = Vue.createApp({
 }).mount('#example');
 </script>
 
-## Using v-if
+## Using `v-if`
 
-The `v-if` directive and the `v-show` achieve the same effect with the key difference being that `v-if` unmounts the element from the DOM, while `v-show` simply hides it.
-Go into the developer tools to see this in action.
+The `v-if` directive is similar to `v-show`.
+The major difference is that `v-if` unmounts the element from the DOM, while `v-show` simply hides it.
 
 ```javascript
 const example1 = Vue.createApp({
@@ -116,7 +115,6 @@ const example1 = Vue.createApp({
 
 <div id="example1" style="border: 1px solid #ddd; padding: 1em"></div>
 
-<script src="https://unpkg.com/vue@3.x"></script>
 <script>
   const example1 = Vue.createApp({
   data: () => ({ display: true }),
@@ -133,3 +131,5 @@ const example1 = Vue.createApp({
   `
 }).mount('#example1');
 </script>
+
+Keep in mind that `v-if` will fire the [Vue mounted hooks](/tutorials/vue/mounted) of any component underneath the `v-if` when the `v-if` expression changes from `false` to `true`.
