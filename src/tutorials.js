@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Toggle Visibility in Vue',
+    raw: './tutorials/vue/toggle-visibility.md',
+    url: '/tutorials/vue/toggle-visibility',
+    description: 'Here\'s 3 ways you can toggle an element\'s visibility in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-05')
+  },
+  {
     title: 'Add Global Variables to Vue JS Templates',
     raw: './tutorials/vue/global.md',
     url: '/tutorials/vue/use-global-variable',
