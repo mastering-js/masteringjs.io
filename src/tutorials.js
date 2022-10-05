@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Validate Emails using Regex in JavaScript',
+    raw: './tutorials/fundamentals/email-regex.md',
+    url: '/tutorials/fundamentals/email-regex',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-10-05')
+  },
+  {
     title: 'Add Global Variables to Vue JS Templates',
     raw: './tutorials/vue/global.md',
     url: '/tutorials/vue/use-global-variable',
