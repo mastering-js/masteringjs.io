@@ -130,7 +130,7 @@ const { createApp } = Vue;
       async verifyEmail() {
         const verify = await axios("https://api.mailgun.net/v4/address/validate", {method: "POST", params:{ address: this.email }, auth: {
           username: 'api',
-          password: 'f39bb232dbb6c20e1e6fff7e37c0fdce-4dd50799-6ce4cbcb'
+          password: ''
         }}).then((res) => {return res.data}).catch(err => { return err.response.data.message });
         this.message = verify;
       }
