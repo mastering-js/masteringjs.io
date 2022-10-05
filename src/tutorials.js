@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vue JS Email Validation',
+    raw: './tutorials/vue/email-validation.md',
+    url: '/tutorials/vue/email-validation',
+    description: 'Placeholder Description',
+    tags: ['vue'],
+    date: moment('2022-10-05')
+  },
+  {
     title: 'Add Global Variables to Vue JS Templates',
     raw: './tutorials/vue/global.md',
     url: '/tutorials/vue/use-global-variable',
