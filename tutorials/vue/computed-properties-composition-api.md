@@ -1,56 +1,48 @@
-To create a computed property with the Vue's Composition API, initialize the computed property in the `setup` hook in conjunction with the `ref` function.
-Then, make sure the `setup` hook returns all the values you wish to use later on.
+To create a computed property with the Vue's Composition API, you should call Vue's `computed()` function.
+For example, the following code demonstrates how to create a computed property that transforms a string value to lowercase.
 
 ```javascript
-  const { createApp, ref, computed } = Vue
+Vue.createApp({
+  setup() {
+    const name = Vue.ref('World');
+    const lowercase = Vue.computed(() => name.value.toLowerCase());
 
-  createApp({
-    data: function() {
-        return {
-            message: 'Example'
-        }
-    },
-    setup(){
-        const count = ref(0);
-        const double = computed(() => count.value * 2);
-        return { count, double };
-    },
-    template: `
+    // Make sure to return your computed property
+    // so your templates can use it!
+    return { name, lowercase };
+  },
+  template: `
+  <div>
+    <input v-model="name">
     <div>
-        <div>{{message}}</div>
-    <button @click="count++">Hello There: {{count}}</button>
-    <h2>{{double}}</h2>
+      Hello, {{lowercase}}
     </div>
-    `
-  }).mount('#app')
+  </div>
+  `
+}).mount('#app');
 ```
 
-The above example increases the value of the count variable while the computed property displays the value of the count variable doubled.
+Below is a live example.
+Notice that Vue automatically updates the value of `lowercase` whenever `name` changes.
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <div id="app" style="border: 1px solid #ddd; padding: 1em"></div>
 
 <script>
-  const { createApp, ref, computed } = Vue
-
-  createApp({
-    data: function() {
-        return {
-            message: 'Example'
-        }
-    },
-    setup(){
-        const count = ref(0);
-        const double = computed(() => count.value * 2);
-        return { count, double };
-    },
-    template: `
+Vue.createApp({
+  setup() {
+    const name = Vue.ref('World');
+    const lowercase = Vue.computed(() => name.value.toLowerCase());
+    return { name, lowercase };
+  },
+  template: `
+  <div>
+    <input v-model="name">
     <div>
-        <div>{{message}}</div>
-    <button @click="count++">Hello There: {{count}}</button>
-    <h2>{{double}}</h2>
+      Hello, {{lowercase}}
     </div>
-    `
-  }).mount('#app')
+  </div>
+  `
+}).mount('#app');
 </script>
