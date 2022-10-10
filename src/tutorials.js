@@ -8,10 +8,50 @@ const tutorials = [
   {
     title: 'Creating Computed Properties with Vue\'s Composition API',
     raw: './tutorials/vue/computed-properties-composition-api.md',
-    url: '/tutorials/vue/computed-properties-composition-api',
-    description: 'Placeholder Description',
+    url: '/tutorials/vue/composition-computed',
+    description: 'Here\'s how you work can create computed properties using Vue 3\'s new composition API.',
     tags: ['vue'],
-    date: moment('2022-09-15')
+    date: moment('2022-10-10')
+  },
+  {
+    title: 'Toggle Visibility in Vue',
+    raw: './tutorials/vue/toggle-visibility.md',
+    url: '/tutorials/vue/toggle-visibility',
+    description: 'Here\'s 3 ways you can toggle an element\'s visibility in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-05')
+  },
+  {
+    title: 'Add Global Variables to Vue JS Templates',
+    raw: './tutorials/vue/global.md',
+    url: '/tutorials/vue/use-global-variable',
+    description: 'You can\'t access global variables from Vue templates by default, but here is how you can add variables that are global to all Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-03')
+  },
+  {
+    title: 'Using bcrypt-js to Hash Passwords in JavaScript',
+    raw: './tutorials/node/bcrypt.md',
+    url: '/tutorials/node/bcrypt',
+    description: 'Here\'s how you can use bcrypt-js to work with passwords in Node.js.',
+    tags: ['node'],
+    date: moment('2022-09-30')
+  },
+  {
+    title: 'The inheritAttrs Option in Vue',
+    raw: './tutorials/vue/inherit-attribute.md',
+    url: '/tutorials/vue/inheritattrs',
+    description: 'Here\'s what you need to know about Vue components\' `inheritAttrs` option.',
+    tags: ['vue'],
+    date: moment('2022-09-26')
+  },
+  {
+    title: 'Props with Vue Router',
+    raw: './tutorials/vue/router-props.md',
+    url: '/tutorials/vue/router-props',
+    description: 'Here\'s how you pass custom props to your view components with Vue Router, including route parameters.',
+    tags: ['vue'],
+    date: moment('2022-09-23')
   },
   {
     title: 'Working with the Node.js assert Library',
