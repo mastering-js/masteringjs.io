@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Creating Computed Properties with Vue\'s Composition API',
+    raw: './tutorials/vue/computed-properties-composition-api.md',
+    url: '/tutorials/vue/composition-computed',
+    description: 'Here\'s how you work can create computed properties using Vue 3\'s new composition API.',
+    tags: ['vue'],
+    date: moment('2022-10-10')
+  },
+  {
     title: 'Toggle Visibility in Vue',
     raw: './tutorials/vue/toggle-visibility.md',
     url: '/tutorials/vue/toggle-visibility',
