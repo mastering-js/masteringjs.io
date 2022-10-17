@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Copy to Clipboard',
+    raw: './tutorials/fundamentals/copy-clipboard.md',
+    url: '/tutorials/fundamentals/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-17')
+  },
+  {
     title: 'Creating Computed Properties with Vue\'s Composition API',
     raw: './tutorials/vue/computed-properties-composition-api.md',
     url: '/tutorials/vue/composition-computed',
