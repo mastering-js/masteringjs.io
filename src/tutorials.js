@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Conditionally Add an Object to an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
+    url: '/tutorials/fundamentals/add-object-to-array-conditionally',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-10-17')
+  },
+  {
     title: 'Creating Computed Properties with Vue\'s Composition API',
     raw: './tutorials/vue/computed-properties-composition-api.md',
     url: '/tutorials/vue/composition-computed',
