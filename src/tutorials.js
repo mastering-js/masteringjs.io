@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Copy Content to the Clipboard in Vue',
+    raw: './tutorials/vue/copy-clipboard.md',
+    url: '/tutorials/vue/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically with Vue.',
+    tags: ['vue'],
+    date: moment('2022-10-19')
+  },
+  {
     title: 'JavaScript Copy to Clipboard',
     raw: './tutorials/fundamentals/copy-clipboard.md',
     url: '/tutorials/fundamentals/copy-to-clipboard',
