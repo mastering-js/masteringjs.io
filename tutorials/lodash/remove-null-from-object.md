@@ -8,14 +8,14 @@ const obj = {a: null, b: 'Hello', c: 3, d: undefined};
 const result = _.omitBy(obj, v => v === null); // {b: 'Hello', c: 3, d: undefined}
 ```
 
-If you want to remove both `null` and `undefined`, you can use `.isNull` or [non-strict equality](/tutorials/fundamentals/equality#abstract-equality).
+If you want to remove both `null` and `undefined`, you can use `.isNil` or [non-strict equality](/tutorials/fundamentals/equality#abstract-equality).
 
 ```javascript
 const _ = require('lodash');
 
 const obj = {a: null, b: 'Hello', c: 3, d: undefined};
 
-const result = _.omitBy(obj, _.isNull); // {b: 'Hello', c: 3}
+const result = _.omitBy(obj, _.isNil); // {b: 'Hello', c: 3}
 
 const other = _.omitBy(obj, v => v == null); // {b: 'Hello', c: 3}
 ```
