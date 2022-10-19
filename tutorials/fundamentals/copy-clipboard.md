@@ -34,7 +34,7 @@ function triggerExample() {
 
 ## Copy from a non-input field
 
-To copy from a non-input field, you must create a temporary `textarea` or `input` and set the contents of that temporary input to the text you want to copy.
+To copy from a non-input field, you must create a temporary `textarea` or `input` and set the contents of that temporary input to the text you want to copy using the [`document.createElement()` function](/tutorials/fundamentals/create-element).
 You need to append the input to the page.
 You can remove it from the page after you've executed `execCommand('copy')`.
 
