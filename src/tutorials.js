@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Skip an Index in JavaScript Array map()',
+    raw: './tutorials/fundamentals/map-skip-index.md',
+    url: '/tutorials/fundamentals/map-skip-index',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-10-20')
+  },
+  {
     title: 'The inheritAttrs Option in Vue',
     raw: './tutorials/vue/inherit-attribute.md',
     url: '/tutorials/vue/inheritattrs',
