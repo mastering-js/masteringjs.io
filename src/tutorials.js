@@ -9,8 +9,40 @@ const tutorials = [
     title: 'Validate Emails using Regex in JavaScript',
     raw: './tutorials/fundamentals/email-regex.md',
     url: '/tutorials/fundamentals/email-regex',
-    description: 'Placeholder Description',
+    description: 'Here\'s a regular expression you can use to validate emails in JavaScript.',
     tags: ['fundamentals'],
+    date: moment('2022-10-27')
+  },
+  {
+    title: 'How to Copy Content to the Clipboard in Vue',
+    raw: './tutorials/vue/copy-clipboard.md',
+    url: '/tutorials/vue/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically with Vue.',
+    tags: ['vue'],
+    date: moment('2022-10-19')
+  },
+  {
+    title: 'JavaScript Copy to Clipboard',
+    raw: './tutorials/fundamentals/copy-clipboard.md',
+    url: '/tutorials/fundamentals/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-17')
+  },
+  {
+    title: 'Creating Computed Properties with Vue\'s Composition API',
+    raw: './tutorials/vue/computed-properties-composition-api.md',
+    url: '/tutorials/vue/composition-computed',
+    description: 'Here\'s how you work can create computed properties using Vue 3\'s new composition API.',
+    tags: ['vue'],
+    date: moment('2022-10-10')
+  },
+  {
+    title: 'Toggle Visibility in Vue',
+    raw: './tutorials/vue/toggle-visibility.md',
+    url: '/tutorials/vue/toggle-visibility',
+    description: 'Here\'s 3 ways you can toggle an element\'s visibility in Vue templates.',
+    tags: ['vue'],
     date: moment('2022-10-05')
   },
   {
