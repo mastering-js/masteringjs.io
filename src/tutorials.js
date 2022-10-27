@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Validate Emails using Regex in JavaScript',
+    raw: './tutorials/fundamentals/email-regex.md',
+    url: '/tutorials/fundamentals/email-regex',
+    description: 'Here\'s a regular expression you can use to validate emails in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-27')
+  },
+  {
     title: 'How to Copy Content to the Clipboard in Vue',
     raw: './tutorials/vue/copy-clipboard.md',
     url: '/tutorials/vue/copy-to-clipboard',
