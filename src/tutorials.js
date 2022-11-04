@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Lodash\'s cloneDeep() Function',
+    raw: './tutorials/lodash/clone-deep.md',
+    url: '/tutorials/lodash/clone-deep',
+    description: 'Placeholder Description',
+    tags: ['lodash'],
+    date: moment('2022-11-04')
+  },
+  {
     title: 'Validate Emails using Regex in JavaScript',
     raw: './tutorials/fundamentals/email-regex.md',
     url: '/tutorials/fundamentals/email-regex',
