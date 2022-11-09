@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Vue Email Validation',
+    raw: './tutorials/vue/email-validation.md',
+    url: '/tutorials/vue/email-validation',
+    description: 'Here\'s how you can validate an email input in Vue.',
+    tags: ['vue'],
+    date: moment('2022-11-08')
+  },
+  {
     title: 'Validate Emails using Regex in JavaScript',
     raw: './tutorials/fundamentals/email-regex.md',
     url: '/tutorials/fundamentals/email-regex',
