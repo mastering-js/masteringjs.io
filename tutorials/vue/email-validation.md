@@ -1,61 +1,38 @@
-To check if an email is syntactically correct, you can use a regular expression and check it against the entered string.
+To validate an email input in Vue, you should bind the input's value to a variable using [`v-model`](/tutorials/vue/v-model) and use one of the methods for [email validation in vanilla JavaScript](/tutorials/fundamentals/email-validation).
+For example, the following example validates whether the input is valid whenever the value of the input changes using a relatively simple regular expression.
 
 ```javascript
-  const { createApp } = Vue;
-  createApp({
-    data() {
-      return {
-        email: '',
-        message: ''
-      }
-    },
-    methods: {
-      async verifyEmail() {
-       if (this.email.match(/(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gi)) {
-        this.message = 'Valid email';
-       }
-       else {
-        this.message = 'not a valid email';
-       }
-      }
-    },
-    template: `
+Vue.createApp({
+  data: () => ({ email: 'john@gmail.com' }),
+  computed: {
+    isValidEmail() {
+      return /^[^@]+@\w+(\.\w+)+\w$/.test(this.email);
+    }
+  },
+  template: `
+  <div>
     <div>
-      <div>
-        <input v-model="email" />
-      </div>
-      <div>
-        <button @click="verifyEmail()">Click To Verify</button>
-      </div>
-      <div>
-        {{message}}
-      </div>
+      <input v-model="email" />
     </div>
-    `
-  }).mount('#example')
+    <div>
+      Email is {{isValidEmail ? 'valid' : 'invalid'}}
+    </div>
+  </div>
+  `
+}).mount('#example');
 ```
+
+Below is a live example.
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<div id="example"></div>
+<div id="example" style="padding: 10px; border: 1px solid #ddd"></div>
 <script>
-  const { createApp } = Vue;
-  createApp({
-    data() {
-      return {
-        email: '',
-        message: ''
-      }
-    },
-    methods: {
-      async verifyEmail() {
-       if (this.email.match(/(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gi)) {
-        this.message = 'Valid email';
-       }
-       else {
-        this.message = 'not a valid email';
-       }
+  Vue.createApp({
+    data: () => ({ email: 'john@gmail.com' }),
+    computed: {
+      isValidEmail() {
+        return /^[^@]+@\w+(\.\w+)+\w$/.test(this.email);
       }
     },
     template: `
@@ -64,89 +41,106 @@ To check if an email is syntactically correct, you can use a regular expression 
         <input v-model="email" />
       </div>
       <div>
-        <button @click="verifyEmail()">Click To Verify</button>
-      </div>
-      <div>
-        {{message}}
+        Email is {{isValidEmail ? 'valid' : 'invalid'}}
       </div>
     </div>
     `
-  }).mount('#example')
+  }).mount('#example');
 </script>
 
-## Using Mailgun
+## Validating Email on Button Click
 
-To check if an email actually exists, you can use the [mailgun api](https://documentation.mailgun.com/en/latest/api-email-validation.html#single-verification).
-However, know that if you do not have a paid account it will return an error stating you are not authorized to access this part of the api.
-If the email does not exist, the return object will have a `reason` array and contain an entry.
-If the email exists, the `reason` array will be empty.
+The previous example validates the email immediately whenever the input changes.
+This isn't necessarily the right way to go for a good user experience.
+For example, if the `input` were empty by default, the user would see that the email was invalid immediately.
+
+A common approach is to delay validating the email until the user clicks a button.
+For example, suppose you have a registration form that asks the user to enter their email and password.
+You can instead validate the email when the user submits the form.
 
 ```javascript
-const { createApp } = Vue;
-  createApp({
-    data() {
-      return {
-        email: '',
-        message: ''
+Vue.createApp({
+  data: () => ({ email: '', password: '', errors: null }),
+  methods: {
+    async submitForm() {
+      const errors = {};
+      if (!this.email) {
+        errors.email = 'Email is required';
+      } else if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email)) {
+        errors.email = 'Invalid email';
       }
-    },
-    methods: {
-      async verifyEmail() {
-        const verify = await axios("https://api.mailgun.net/v4/address/validate", {method: "POST", params:{ address: this.email }, auth: {
-          username: 'api',
-          password: '' // your api private key
-        }}).then((res) => {return res.data}).catch(err => { return err.response.data.message });
-        this.message = verify;
+
+      if (Object.keys(errors).length > 0) {
+        this.errors = errors;
+        return;
+      } else {
+        this.errors = null;
       }
-    },
-    template: `
-    <div>
+
+      // Handle submitting form
+    }
+  },
+  template: `
+  <div>
+    <form @submit.prevent="submitForm">
       <div>
-        <input v-model="email" />
+        <input v-model="email" placeholder="email" />
+        <div v-if="errors && errors.email">
+          {{errors.email}}
+        </div>
       </div>
       <div>
-        <button @click="verifyEmail()">Click To Verify</button>
+        <input type="password" v-model="password" />
       </div>
       <div>
-        {{message}}
+        <button type="submit">Register</button>
       </div>
-    </div>
-    `
-  }).mount('#app')
+    </form>
+  </div>
+  `
+}).mount('#example2');
 ```
 
-<div id="app"></div>
+Below is a live example.
 
+<div id="example2" style="padding: 10px; border: 1px solid #ddd"></div>
 <script>
-
-  createApp({
-    data() {
-      return {
-        email: '',
-        message: ''
-      }
-    },
+  Vue.createApp({
+    data: () => ({ email: '', password: '', errors: null }),
     methods: {
-      async verifyEmail() {
-        const verify = await axios("https://api.mailgun.net/v4/address/validate", {method: "POST", params:{ address: this.email }, auth: {
-          username: 'api',
-          password: ''
-        }}).then((res) => {return res.data}).catch(err => { return err.response.data.message });
-        this.message = verify;
+      async submitForm() {
+        const errors = {};
+        if (!this.email) {
+          errors.email = 'Email is required';
+        } else if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email)) {
+          errors.email = 'Invalid email';
+        }
+        if (Object.keys(errors).length > 0) {
+          this.errors = errors;
+          return;
+        } else {
+          this.errors = null;
+        }
+        // Handle submitting form
       }
     },
     template: `
     <div>
-      <div>
-        <input v-model="email" />
-      </div>
-      <div>
-        <button @click="verifyEmail()">Click To Verify</button>
-      </div>
-      <div>
-        {{message}}
-      </div>
+      <form @submit.prevent="submitForm">
+        <div>
+          <input v-model="email" placeholder="email" />
+          <div v-if="errors && errors.email">
+            {{errors.email}}
+          </div>
+        </div>
+        <div>
+          <input type="password" v-model="password" />
+        </div>
+        <div>
+          <button type="submit">Register</button>
+        </div>
+      </form>
     </div>
     `
-  }).mount('#app')
+  }).mount('#example2');
 </script>
