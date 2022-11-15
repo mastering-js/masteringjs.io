@@ -1,26 +1,27 @@
-To conditionally add an object to an array in JavaScript, you can use `if()` in combination with `push()` or `concat()`.
+To conditionally add an object to an array in JavaScript, you can use `if` in combination with `push()` or `concat()`.
 
 ```javascript
-
-const array = [{name: 'Test'}, {name: 'John'}];
-
+const array = [{ name: 'Test' }, { name: 'John' }];
 if (array.length < 5) {
-  array.push({ name: 'Pass' });
+  array.push({ name: 'pass' });
 }
 
-const array2 = [{ name: 'Start of Second Array'}, { name: 'The meaning of life is 42' }];
-
+let array2 = [{ name: 'Test' }, { name: 'John' }];
 if (array2.length < 5) {
-  array1.concat(array2);
+  array2 = array2.concat([{ name: 'pass' }]);
 }
 ```
 
-## Immutable patterns
+## Immutable Patterns with Spread Operator
 
-If you are using immutable patterns, use the `spread` on `ternary` operator.
+If you are using immutable patterns, use the [spread operator](/tutorials/fundamentals/spread) with the ternary operator.
 
 ```javascript
-const array = [{name: 'Test'}, {name: 'John'}];
+let array2 = [{ name: 'Test' }, { name: 'John' }];
 
-const newArray = [...array, ...(array.length < 5 ? [{ name: 'Pass'}, { name:'Forward' } ] : [])].map(char => char.name.toUpperCase());
+array2 = [
+  ...array2,
+  // If `array2.length < 5`, add element to array. Otherwise add nothing.
+  ...(array2.length < 5 ? [{ name: 'pass' }] : [])
+];
 ```
