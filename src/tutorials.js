@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'What Does Setting the Length of a JavaScript Array Do?',
+    raw: './tutorials/fundamentals/set-length.md',
+    url: '/tutorials/fundamentals/set-length',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-11-15')
+  },
+  {
     title: 'Conditionally Add an Object to an Array in JavaScript',
     raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
     url: '/tutorials/fundamentals/add-object-to-array-conditionally',
