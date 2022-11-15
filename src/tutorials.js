@@ -11,6 +11,38 @@ const tutorials = [
     url: '/tutorials/fundamentals/add-object-to-array-conditionally',
     description: 'Placeholder Description',
     tags: ['fundamentals'],
+    date: moment('2022-11-15')
+  },
+  {
+    title: 'Vue Email Validation',
+    raw: './tutorials/vue/email-validation.md',
+    url: '/tutorials/vue/email-validation',
+    description: 'Here\'s how you can validate an email input in Vue.',
+    tags: ['vue'],
+    date: moment('2022-11-08')
+  },
+  {
+    title: 'Validate Emails using Regex in JavaScript',
+    raw: './tutorials/fundamentals/email-regex.md',
+    url: '/tutorials/fundamentals/email-regex',
+    description: 'Here\'s a regular expression you can use to validate emails in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-27')
+  },
+  {
+    title: 'How to Copy Content to the Clipboard in Vue',
+    raw: './tutorials/vue/copy-clipboard.md',
+    url: '/tutorials/vue/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically with Vue.',
+    tags: ['vue'],
+    date: moment('2022-10-19')
+  },
+  {
+    title: 'JavaScript Copy to Clipboard',
+    raw: './tutorials/fundamentals/copy-clipboard.md',
+    url: '/tutorials/fundamentals/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically in JavaScript.',
+    tags: ['fundamentals'],
     date: moment('2022-10-17')
   },
   {
