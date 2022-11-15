@@ -9,7 +9,7 @@ const tutorials = [
     title: 'Conditionally Add an Object to an Array in JavaScript',
     raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
     url: '/tutorials/fundamentals/add-object-to-array-conditionally',
-    description: 'Placeholder Description',
+    description: 'Here\'s how you can conditionally add an object to an array, using push, concat, or the spread operator.',
     tags: ['fundamentals'],
     date: moment('2022-11-15')
   },
