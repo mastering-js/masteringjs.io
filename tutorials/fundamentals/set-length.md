@@ -21,5 +21,5 @@ If you increase the length of the array, you're adding "holes" at the end of the
 ```javascript
 const array = [];
 array.length = 1;
-arr[0]; // undefined
+array[0]; // undefined
 ```
