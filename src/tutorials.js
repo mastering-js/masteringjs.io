@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Conditionally Add an Object to an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
+    url: '/tutorials/fundamentals/add-object-to-array-conditionally',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-11-15')
+  },
+  {
     title: 'Vue Email Validation',
     raw: './tutorials/vue/email-validation.md',
     url: '/tutorials/vue/email-validation',
