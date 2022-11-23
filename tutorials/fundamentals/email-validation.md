@@ -1,6 +1,5 @@
-There are numerous solutions out there for validating an email address in JavaScript, depending on how strict you
-want to be with your validation. In this tutorial, you'll learn about 3 different options and the tradeoffs between
-them.
+There are numerous solutions out there for validating an email address in JavaScript, depending on how strict you want to be with your validation. 
+In this tutorial, you'll learn about 3 different options and the tradeoffs between them.
 
 ### Write Your Own Regular Expression
 

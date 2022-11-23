@@ -9,9 +9,81 @@ const tutorials = [
     title: 'Skip an Index in JavaScript Array map()',
     raw: './tutorials/fundamentals/map-skip-index.md',
     url: '/tutorials/fundamentals/map-skip-index',
-    description: 'Placeholder Description',
+    description: 'You can\'t skip an index using JavaScript\'s map() function, but there are a couple of workarounds. Here\'s 2 alternatives.',
     tags: ['fundamentals'],
-    date: moment('2022-10-20')
+    date: moment('2022-11-23')
+  },
+  {
+    title: 'Conditionally Add an Object to an Array in JavaScript',
+    raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
+    url: '/tutorials/fundamentals/add-object-to-array-conditionally',
+    description: 'Here\'s how you can conditionally add an object to an array, using push, concat, or the spread operator.',
+    tags: ['fundamentals'],
+    date: moment('2022-11-15')
+  },
+  {
+    title: 'Vue Email Validation',
+    raw: './tutorials/vue/email-validation.md',
+    url: '/tutorials/vue/email-validation',
+    description: 'Here\'s how you can validate an email input in Vue.',
+    tags: ['vue'],
+    date: moment('2022-11-08')
+  },
+  {
+    title: 'Validate Emails using Regex in JavaScript',
+    raw: './tutorials/fundamentals/email-regex.md',
+    url: '/tutorials/fundamentals/email-regex',
+    description: 'Here\'s a regular expression you can use to validate emails in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-27')
+  },
+  {
+    title: 'How to Copy Content to the Clipboard in Vue',
+    raw: './tutorials/vue/copy-clipboard.md',
+    url: '/tutorials/vue/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically with Vue.',
+    tags: ['vue'],
+    date: moment('2022-10-19')
+  },
+  {
+    title: 'JavaScript Copy to Clipboard',
+    raw: './tutorials/fundamentals/copy-clipboard.md',
+    url: '/tutorials/fundamentals/copy-to-clipboard',
+    description: 'Here\'s how you can copy text to the clipboard programatically in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2022-10-17')
+  },
+  {
+    title: 'Creating Computed Properties with Vue\'s Composition API',
+    raw: './tutorials/vue/computed-properties-composition-api.md',
+    url: '/tutorials/vue/composition-computed',
+    description: 'Here\'s how you work can create computed properties using Vue 3\'s new composition API.',
+    tags: ['vue'],
+    date: moment('2022-10-10')
+  },
+  {
+    title: 'Toggle Visibility in Vue',
+    raw: './tutorials/vue/toggle-visibility.md',
+    url: '/tutorials/vue/toggle-visibility',
+    description: 'Here\'s 3 ways you can toggle an element\'s visibility in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-05')
+  },
+  {
+    title: 'Add Global Variables to Vue JS Templates',
+    raw: './tutorials/vue/global.md',
+    url: '/tutorials/vue/use-global-variable',
+    description: 'You can\'t access global variables from Vue templates by default, but here is how you can add variables that are global to all Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-10-03')
+  },
+  {
+    title: 'Using bcrypt-js to Hash Passwords in JavaScript',
+    raw: './tutorials/node/bcrypt.md',
+    url: '/tutorials/node/bcrypt',
+    description: 'Here\'s how you can use bcrypt-js to work with passwords in Node.js.',
+    tags: ['node'],
+    date: moment('2022-09-30')
   },
   {
     title: 'The inheritAttrs Option in Vue',
