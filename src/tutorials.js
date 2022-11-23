@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Skip an Index in JavaScript Array map()',
+    raw: './tutorials/fundamentals/map-skip-index.md',
+    url: '/tutorials/fundamentals/map-skip-index',
+    description: 'You can\'t skip an index using JavaScript\'s map() function, but there are a couple of workarounds. Here\'s 2 alternatives.',
+    tags: ['fundamentals'],
+    date: moment('2022-11-23')
+  },
+  {
     title: 'Conditionally Add an Object to an Array in JavaScript',
     raw: './tutorials/fundamentals/add-object-to-array-conditionally.md',
     url: '/tutorials/fundamentals/add-object-to-array-conditionally',
