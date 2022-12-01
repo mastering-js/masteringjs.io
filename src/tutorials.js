@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Use the Ternary Operator for Conditionals in Vue',
+    raw: './tutorials/vue/ternary-operator.md',
+    url: '/tutorials/vue/ternary-operator',
+    description: 'Here\'s what you need to know about using the ternary operator in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-12-01')
+  },
+  {
     title: 'Skip an Index in JavaScript Array map()',
     raw: './tutorials/fundamentals/map-skip-index.md',
     url: '/tutorials/fundamentals/map-skip-index',
