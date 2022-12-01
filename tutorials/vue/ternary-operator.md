@@ -20,7 +20,7 @@ Vue.createApp({
       <button @click="increaseVal">Increase Value by 1</button>
     </div>
     <div>Current Value: {{value}}</div>
-    <div :style="{ color: value % 2 === 0 ? 'red' : 'green'">
+    <div :style="{ color: value % 2 === 0 ? 'red' : 'green' }">
       {{value % 2 == 0 ? 'Value is even' : 'Value is odd'}}
     </div>
   </div>
@@ -42,7 +42,7 @@ Vue.createApp({
       <button @click="increaseVal">Increase Value by 1</button>
     </div>
     <div>Current Value: {{value}}</div>
-    <div :style="{ color: value % 2 === 0 ? 'red' : 'green'">
+    <div :style="{ color: value % 2 === 0 ? 'red' : 'green' }">
       {{value % 2 == 0 ? 'Value is even' : 'Value is odd'}}
     </div>
   </div>
