@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: "How to Fix \"cannot use import statement outside a module\" in JavaScript",
+    raw: './tutorials/fundamentals/import-outside-module-error.md',
+    url: '/tutorials/fundamentals/import-outside-module-error',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-12-02')
+  },
+  {
     title: 'Use the Ternary Operator for Conditionals in Vue',
     raw: './tutorials/vue/ternary-operator.md',
     url: '/tutorials/vue/ternary-operator',
