@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Add 2 Arrays Together in JavaScript',
+    raw: './tutorials/fundamentals/add-arrays.md',
+    url: '/tutorials/fundamentals/add-arrays',
+    description: 'Placeholder Description',
+    tags: ['fundamentals'],
+    date: moment('2022-12-02')
+  },
+  {
     title: 'Use the Ternary Operator for Conditionals in Vue',
     raw: './tutorials/vue/ternary-operator.md',
     url: '/tutorials/vue/ternary-operator',
