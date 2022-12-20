@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Methods in Vue',
+    raw: './tutorials/vue/methods.md',
+    url: '/tutorials/vue/methods',
+    description: 'Here\'s what you need to know about methods in Vue',
+    tags: ['vue'],
+    date: moment('2022-12-20')
+  },
+  {
     title: 'Use the Ternary Operator for Conditionals in Vue',
     raw: './tutorials/vue/ternary-operator.md',
     url: '/tutorials/vue/ternary-operator',
