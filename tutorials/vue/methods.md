@@ -74,5 +74,5 @@ Vue.createApp({
 
 ## When not to use Methods
 
-When it comes to display or formatting related logic, you should use computed properties.
+When it comes to display or formatting related logic, you should use [computed properties](/tutorials/vue/computed).
 Methods should only be used for event handlers and formatting in a `v-for` that is dependent on the state of the loop.
