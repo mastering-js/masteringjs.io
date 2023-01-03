@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Lodash\'s cloneDeep() Function',
+    raw: './tutorials/lodash/clone-deep.md',
+    url: '/tutorials/lodash/clone-deep',
+    description: 'Here\'s how you use Lodash\'s cloneDeep function.',
+    tags: ['lodash'],
+    date: moment('2023-01-03')
+  },
+  {
     title: 'Methods in Vue',
     raw: './tutorials/vue/methods.md',
     url: '/tutorials/vue/methods',
