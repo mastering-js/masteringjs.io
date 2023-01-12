@@ -9,9 +9,41 @@ const tutorials = [
     title: 'Get the Last Element in an Array in JavaScript',
     raw: './tutorials/fundamentals/get-last-element-array.md',
     url: '/tutorials/fundamentals/get-last-element-array',
-    description: 'Placeholder Description',
+    description: 'Here\'s 3 ways to get the last element in an array in JavaScript with no external dependencies.',
     tags: ['fundamentals'],
-    date: moment('2022-11-15')
+    date: moment('2023-01-06')
+  },
+  {
+    title: 'Lodash\'s cloneDeep() Function',
+    raw: './tutorials/lodash/clone-deep.md',
+    url: '/tutorials/lodash/clone-deep',
+    description: 'Here\'s how you use Lodash\'s cloneDeep function.',
+    tags: ['lodash'],
+    date: moment('2023-01-03')
+  },
+  {
+    title: 'Methods in Vue',
+    raw: './tutorials/vue/methods.md',
+    url: '/tutorials/vue/methods',
+    description: 'Here\'s what you need to know about methods in Vue',
+    tags: ['vue'],
+    date: moment('2022-12-20')
+  },
+  {
+    title: 'Use the Ternary Operator for Conditionals in Vue',
+    raw: './tutorials/vue/ternary-operator.md',
+    url: '/tutorials/vue/ternary-operator',
+    description: 'Here\'s what you need to know about using the ternary operator in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-12-01')
+  },
+  {
+    title: 'Skip an Index in JavaScript Array map()',
+    raw: './tutorials/fundamentals/map-skip-index.md',
+    url: '/tutorials/fundamentals/map-skip-index',
+    description: 'You can\'t skip an index using JavaScript\'s map() function, but there are a couple of workarounds. Here\'s 2 alternatives.',
+    tags: ['fundamentals'],
+    date: moment('2022-11-23')
   },
   {
     title: 'Conditionally Add an Object to an Array in JavaScript',
