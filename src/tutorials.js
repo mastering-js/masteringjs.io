@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Get the Last Element in an Array in JavaScript',
+    raw: './tutorials/fundamentals/get-last-element-array.md',
+    url: '/tutorials/fundamentals/get-last-element-array',
+    description: 'Here\'s 2 ways to get the last element in an array in JavaScript with no external dependencies.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-06')
+  },
+  {
     title: 'Lodash\'s cloneDeep() Function',
     raw: './tutorials/lodash/clone-deep.md',
     url: '/tutorials/lodash/clone-deep',
