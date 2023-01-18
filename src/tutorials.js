@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Make a Horizontal Bar Chart with ChartJS',
+    raw: './tutorials/chartjs/horizontal-bar-chart.md',
+    url: '/tutorials/chartjs/horizontal-bar-chart',
+    description: 'ChartJS bar charts are vertical by default. Here\'s how you make a horizontal bar chart.',
+    tags: ['chartjs'],
+    date: moment('2023-01-18')
+  },
+  {
     title: 'Get the Last Element in an Array in JavaScript',
     raw: './tutorials/fundamentals/get-last-element-array.md',
     url: '/tutorials/fundamentals/get-last-element-array',
