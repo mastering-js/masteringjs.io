@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'What Does Setting the Length of a JavaScript Array Do?',
+    raw: './tutorials/fundamentals/set-length.md',
+    url: '/tutorials/fundamentals/array-set-length',
+    description: 'Here\'s what setting the length of a JavaScript array does.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-23')
+  },
+  {
     title: 'Make a Horizontal Bar Chart with ChartJS',
     raw: './tutorials/chartjs/horizontal-bar-chart.md',
     url: '/tutorials/chartjs/horizontal-bar-chart',
