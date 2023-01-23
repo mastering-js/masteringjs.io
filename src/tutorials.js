@@ -8,10 +8,58 @@ const tutorials = [
   {
     title: 'What Does Setting the Length of a JavaScript Array Do?',
     raw: './tutorials/fundamentals/set-length.md',
-    url: '/tutorials/fundamentals/set-length',
-    description: 'Placeholder Description',
+    url: '/tutorials/fundamentals/array-set-length',
+    description: 'Here\'s what setting the length of a JavaScript array does.',
     tags: ['fundamentals'],
-    date: moment('2022-11-15')
+    date: moment('2023-01-23')
+  },
+  {
+    title: 'Make a Horizontal Bar Chart with ChartJS',
+    raw: './tutorials/chartjs/horizontal-bar-chart.md',
+    url: '/tutorials/chartjs/horizontal-bar-chart',
+    description: 'ChartJS bar charts are vertical by default. Here\'s how you make a horizontal bar chart.',
+    tags: ['chartjs'],
+    date: moment('2023-01-18')
+  },
+  {
+    title: 'Get the Last Element in an Array in JavaScript',
+    raw: './tutorials/fundamentals/get-last-element-array.md',
+    url: '/tutorials/fundamentals/get-last-element-array',
+    description: 'Here\'s 2 ways to get the last element in an array in JavaScript with no external dependencies.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-06')
+  },
+  {
+    title: 'Lodash\'s cloneDeep() Function',
+    raw: './tutorials/lodash/clone-deep.md',
+    url: '/tutorials/lodash/clone-deep',
+    description: 'Here\'s how you use Lodash\'s cloneDeep function.',
+    tags: ['lodash'],
+    date: moment('2023-01-03')
+  },
+  {
+    title: 'Methods in Vue',
+    raw: './tutorials/vue/methods.md',
+    url: '/tutorials/vue/methods',
+    description: 'Here\'s what you need to know about methods in Vue',
+    tags: ['vue'],
+    date: moment('2022-12-20')
+  },
+  {
+    title: 'Use the Ternary Operator for Conditionals in Vue',
+    raw: './tutorials/vue/ternary-operator.md',
+    url: '/tutorials/vue/ternary-operator',
+    description: 'Here\'s what you need to know about using the ternary operator in Vue templates.',
+    tags: ['vue'],
+    date: moment('2022-12-01')
+  },
+  {
+    title: 'Skip an Index in JavaScript Array map()',
+    raw: './tutorials/fundamentals/map-skip-index.md',
+    url: '/tutorials/fundamentals/map-skip-index',
+    description: 'You can\'t skip an index using JavaScript\'s map() function, but there are a couple of workarounds. Here\'s 2 alternatives.',
+    tags: ['fundamentals'],
+    date: moment('2022-11-23')
   },
   {
     title: 'Conditionally Add an Object to an Array in JavaScript',
