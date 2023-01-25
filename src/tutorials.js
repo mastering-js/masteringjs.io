@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert a Set to an Array in JavaScript',
+    raw: './tutorials/fundamentals/set-to-array.md',
+    url: '/tutorials/fundamentals/set-to-array',
+    description: 'Here\'s how you can convert a JavaScript Set to an array with no external dependencies.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-25')
+  },
+  {
     title: 'What Does Setting the Length of a JavaScript Array Do?',
     raw: './tutorials/fundamentals/set-length.md',
     url: '/tutorials/fundamentals/array-set-length',
