@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Load Chart.js from CDNs',
+    raw: './tutorials/chartjs/cdn.md',
+    url: '/tutorials/chartjs/cdn',
+    description: 'Here\'s how you can import Chart.js from JSDelivr, Cloudflare, or unpkg in your HTML files.',
+    tags: ['chartjs'],
+    date: moment('2023-01-30')
+  },
+  {
     title: 'Convert a Set to an Array in JavaScript',
     raw: './tutorials/fundamentals/set-to-array.md',
     url: '/tutorials/fundamentals/set-to-array',
