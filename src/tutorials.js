@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The String `match()` Function in JavaScript',
+    raw: './tutorials/fundamentals/string-match.md',
+    url: '/tutorials/fundamentals/string-match',
+    description: 'JavaScript\'s String `match()` function lets you test whether a string matches a given regexp. It also has some neat tricks for advanced users using regexp groups.',
+    tags: ['fundamentals'],
+    date: moment('2023-02-02')
+  },
+  {
     title: 'How to Load Chart.js from CDNs',
     raw: './tutorials/chartjs/cdn.md',
     url: '/tutorials/chartjs/cdn',
