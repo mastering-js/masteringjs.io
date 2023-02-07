@@ -9,9 +9,73 @@ const tutorials = [
     title: 'How to Add 2 Arrays Together in JavaScript',
     raw: './tutorials/fundamentals/add-arrays.md',
     url: '/tutorials/fundamentals/add-arrays',
-    description: 'Placeholder Description',
+    description: 'Here\'s 3 ways you can add two arrays together in vanilla JavaScript, no libraries required.',
     tags: ['fundamentals'],
-    date: moment('2022-12-02')
+    date: moment('2023-02-07')
+  },
+  {
+    title: 'The String `match()` Function in JavaScript',
+    raw: './tutorials/fundamentals/string-match.md',
+    url: '/tutorials/fundamentals/string-match',
+    description: 'JavaScript\'s String `match()` function lets you test whether a string matches a given regexp. It also has some neat tricks for advanced users using regexp groups.',
+    tags: ['fundamentals'],
+    date: moment('2023-02-02')
+  },
+  {
+    title: 'How to Load Chart.js from CDNs',
+    raw: './tutorials/chartjs/cdn.md',
+    url: '/tutorials/chartjs/cdn',
+    description: 'Here\'s how you can import Chart.js from JSDelivr, Cloudflare, or unpkg in your HTML files.',
+    tags: ['chartjs'],
+    date: moment('2023-01-30')
+  },
+  {
+    title: 'Convert a Set to an Array in JavaScript',
+    raw: './tutorials/fundamentals/set-to-array.md',
+    url: '/tutorials/fundamentals/set-to-array',
+    description: 'Here\'s how you can convert a JavaScript Set to an array with no external dependencies.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-25')
+  },
+  {
+    title: 'What Does Setting the Length of a JavaScript Array Do?',
+    raw: './tutorials/fundamentals/set-length.md',
+    url: '/tutorials/fundamentals/array-set-length',
+    description: 'Here\'s what setting the length of a JavaScript array does.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-23')
+  },
+  {
+    title: 'Make a Horizontal Bar Chart with ChartJS',
+    raw: './tutorials/chartjs/horizontal-bar-chart.md',
+    url: '/tutorials/chartjs/horizontal-bar-chart',
+    description: 'ChartJS bar charts are vertical by default. Here\'s how you make a horizontal bar chart.',
+    tags: ['chartjs'],
+    date: moment('2023-01-18')
+  },
+  {
+    title: 'Get the Last Element in an Array in JavaScript',
+    raw: './tutorials/fundamentals/get-last-element-array.md',
+    url: '/tutorials/fundamentals/get-last-element-array',
+    description: 'Here\'s 2 ways to get the last element in an array in JavaScript with no external dependencies.',
+    tags: ['fundamentals'],
+    date: moment('2023-01-06')
+  },
+  {
+    title: 'Lodash\'s cloneDeep() Function',
+    raw: './tutorials/lodash/clone-deep.md',
+    url: '/tutorials/lodash/clone-deep',
+    description: 'Here\'s how you use Lodash\'s cloneDeep function.',
+    tags: ['lodash'],
+    date: moment('2023-01-03')
+  },
+  {
+    title: 'Methods in Vue',
+    raw: './tutorials/vue/methods.md',
+    url: '/tutorials/vue/methods',
+    description: 'Here\'s what you need to know about methods in Vue',
+    tags: ['vue'],
+    date: moment('2022-12-20')
   },
   {
     title: 'Use the Ternary Operator for Conditionals in Vue',
