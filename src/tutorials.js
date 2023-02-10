@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using Lodash\'s omit() Function',
+    raw: './tutorials/lodash/omit.md',
+    url: '/tutorials/lodash/omit',
+    description: 'Here\'s how to use Lodash\'s `omit()` function to exclude properties from an object. Also includes a vanilla JS alternative for `omit()`.',
+    tags: ['lodash'],
+    date: moment('2023-02-10')
+  },
+  {
     title: 'How to Add 2 Arrays Together in JavaScript',
     raw: './tutorials/fundamentals/add-arrays.md',
     url: '/tutorials/fundamentals/add-arrays',
