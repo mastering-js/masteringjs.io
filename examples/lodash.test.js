@@ -587,6 +587,71 @@ describe('lodash', function() {
     });
   });
 
+  describe('omit', function() {
+    it('basic example', function() {
+      const obj = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+      const newObj = _.omit(obj, ['rank', 'age']);
+
+      newObj === obj; // false
+      newObj.name; // 'Will Riker'
+      newObj.rank; // undefined
+      newObj.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(newObj, { name: 'Will Riker' });
+      // acquit:ignore:end
+    });
+
+    it('non-existent paths', function() {
+      const obj = {
+        name: 'Will Riker',
+        rank: 'Commander',
+        age: 29
+      };
+      // Works fine even though 'something else' isn't a path in `obj`
+      const newObj = _.omit(obj, ['rank', 'age', 'something else']);
+
+      newObj === obj; // false
+      newObj.name; // 'Will Riker'
+      newObj.rank; // undefined
+      newObj.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(newObj, { name: 'Will Riker' });
+      // acquit:ignore:end
+    });
+
+    it('dotted', function() {
+      const obj = {
+        name: {
+          first: 'Will',
+          last: 'Riker'
+        },
+        rank: 'Commander',
+        ships: ['USS Enterprise', 'USS Pegasus'],
+        age: 29
+      };
+      const newObj = _.omit(obj, ['name.first', 'age', 'ships.1']);
+
+      newObj === obj; // false
+      newObj.name.first; // undefined
+      newObj.name.last; // 'Riker'
+      newObj.rank; // 'Commander'
+      newObj.ships; // ['USS Enterprise',] Note that index 1 is an array hole
+      newObj.age; // undefined
+      // acquit:ignore:start
+      assert.deepEqual(Object.keys(newObj), ['name', 'rank', 'ships']);
+      assert.deepEqual(newObj.name, { last: 'Riker' });
+      assert.equal(newObj.rank, 'Commander');
+      assert.equal(newObj.ships.length, 2);
+      assert.equal(newObj.ships[0], 'USS Enterprise');
+      assert.equal(newObj.ships[1], undefined);
+      // acquit:ignore:end
+    });
+  });
+
   describe('pick', function() {
     it('basic example', function() {
       const obj = {

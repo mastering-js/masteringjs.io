@@ -1,4 +1,4 @@
-Given an object `obj` and an array of string `paths`, [Lodash's `pick()` function](https://lodash.com/docs/4.17.15#pick) returns a new object
+Given an object `obj` and an array of strings `paths`, [Lodash's `pick()` function](https://lodash.com/docs/4.17.15#pick) returns a new object
 with just the keys `paths` from `obj`.
 
 ```javascript
