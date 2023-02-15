@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Optional Chaining with Array Index',
+    raw: './tutorials/fundamentals/optional-chaining-array.md',
+    url: '/tutorials/fundamentals/optional-chaining-array',
+    description: 'Here\'s how to use JavaScript\'s optional chaining with array indexes.',
+    tags: ['fundamentals'],
+    date: moment('2023-02-15')
+  },
+  {
     title: 'Using Lodash\'s omit() Function',
     raw: './tutorials/lodash/omit.md',
     url: '/tutorials/lodash/omit',
