@@ -870,14 +870,6 @@ const tutorials = [
     date: moment('2021-09-28')
   },
   {
-    title: 'How to Print An Enum\'s Properties in JavaScript',
-    raw: './tutorials/fundamentals/enumtostring.md',
-    url: '/tutorials/fundamentals/enum-to-string',
-    description: 'JavaScript doesn\'t support enums, but here\'s how you can print out an enum object\'s properties.',
-    tags: ['fundamentals'],
-    date: moment('2021-09-22')
-  },
-  {
     title: 'How to Reverse a String in JavaScript',
     raw: './tutorials/fundamentals/reversestring.md',
     url: '/tutorials/fundamentals/reverse-string',
