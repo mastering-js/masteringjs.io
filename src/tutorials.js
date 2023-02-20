@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert a JavaScript Enum to a String',
+    raw: './tutorials/fundamentals/enum-to-string.md',
+    url: '/tutorials/fundamentals/enum-to-string',
+    description: 'Here\'s how to use JavaScript\'s optional chaining with array indexes.',
+    tags: ['fundamentals'],
+    date: moment('2023-02-20')
+  },
+  {
     title: 'JavaScript Optional Chaining with Array Index',
     raw: './tutorials/fundamentals/optional-chaining-array.md',
     url: '/tutorials/fundamentals/optional-chaining-array',
