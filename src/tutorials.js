@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Lodash Playground',
+    raw: './tutorials/tools/lodash-playground.md',
+    url: '/tutorials/tools/lodash-playground',
+    description: 'Here\'s a playground for lodash on the down low',
+    tags: ['tools'],
+    date: moment('2023-02-22')
+  },
+  {
     title: 'Implementing Tuples in JavaScript',
     raw: './tutorials/fundamentals/tuple.md',
     url: '/tutorials/fundamentals/tuple',
