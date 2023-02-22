@@ -6,10 +6,18 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Implementing Tuples in JavaScript',
+    raw: './tutorials/fundamentals/tuple.md',
+    url: '/tutorials/fundamentals/tuple',
+    description: 'JavaScript doesn\'t have a built-in tuple type, but here\'s how you can implement one.',
+    tags: ['fundamentals'],
+    date: moment('2023-02-22')
+  },
+  {
     title: 'Convert a JavaScript Enum to a String',
     raw: './tutorials/fundamentals/enum-to-string.md',
     url: '/tutorials/fundamentals/enum-to-string',
-    description: 'Here\'s how to use JavaScript\'s optional chaining with array indexes.',
+    description: 'Here\'s how you can convert a TypeScript or JavaScript enum to a string, or enum value to a string.',
     tags: ['fundamentals'],
     date: moment('2023-02-20')
   },
