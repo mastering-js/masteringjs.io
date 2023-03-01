@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Handling onClick Events on ChartJS Bar Charts',
+    raw: './tutorials/chartjs/onclick-bar-chart.md',
+    url: '/tutorials/chartjs/onclick-bar-chart',
+    description: 'Here\'s how you can find what bar in a bar chart the user clicked on in ChartJS 4 and ChartJS 2+3',
+    tags: ['chartjs'],
+    date: moment('2023-03-01')
+  },
+  {
     title: 'Implementing Tuples in JavaScript',
     raw: './tutorials/fundamentals/tuple.md',
     url: '/tutorials/fundamentals/tuple',
