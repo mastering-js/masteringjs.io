@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The Nullish Coalescing Operator ?? in JavaScript',
+    raw: './tutorials/fundamentals/nullish-coalescing.md',
+    url: '/tutorials/fundamentals/nullish-coalescing',
+    description: 'Here\'s how the nullish coalescing operator in JavaScript works',
+    tags: ['fundamentals'],
+    date: moment('2023-03-07')
+  },
+  {
     title: 'Handling onClick Events on ChartJS Bar Charts',
     raw: './tutorials/chartjs/onclick-bar-chart.md',
     url: '/tutorials/chartjs/onclick-bar-chart',
