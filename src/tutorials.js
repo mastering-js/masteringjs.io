@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The toFixed() Function in JavaScript',
+    raw: './tutorials/fundamentals/tofixed.md',
+    url: '/tutorials/fundamentals/tofixed',
+    description: 'The `toFixed()` function converts a number to a string rounded to a certain number of decimal places. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2023-03-14')
+  },
+  {
     title: 'The Nullish Coalescing Operator ?? in JavaScript',
     raw: './tutorials/fundamentals/nullish-coalescing.md',
     url: '/tutorials/fundamentals/nullish-coalescing',
