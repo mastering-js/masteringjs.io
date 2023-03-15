@@ -1,15 +1,34 @@
-# Hello World
+Type some code that uses Lodash in the below input, click "Run" (or press Shift+Enter) and see the results!
+Clicking "Share" adds a base64 encoded version of your input to `window.location.hash`, so you can share your examples with other devs.
 
-<div id="input"></div>
+<style>
+  button.opt {
+    background-color: #19E2F1;
+    color: white;
+    padding: 0.5em;
+    margin-right: 0.33em;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0px;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+  }
+</style>
+
 <div>
-<button onclick="format()">Click to Format</button>
+<button class="opt" onclick="format()">&rsaquo; Run</button>
+<button class="opt" onclick="tourl()">&Uarr; Share</button>
 </div>
-<h3>Output:</h3>
-<div id="output"></div>
+<div id="input" style="border: 1px solid #ddd"></div>
+
+### Results:
+
+<div id="output" style="border: 1px solid #ddd"></div>
+
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
-<script src="../../codemirror-5.62.2/mode/css/css.js"></script>
+<script src="../../codemirror-5.62.2/mode/javascript/javascript.js"></script>
 <script type="text/javascript">
   const global = {cnsl: {} }
   const messages = [];
@@ -29,8 +48,13 @@
   const input = CodeMirror(document.querySelector('#input'), {
     lineNumbers: true,
     tabSize: 2,
-    value: `console.log(_.omit({ a: 1, b: 2 }, ['a']))`,
-    mode: 'javascript',
+    value: window.location.hash ? atob(window.location.hash.slice(1)) : `console.log(_.omit({ a: 1, b: 2 }, ['a']));\n`,
+    mode: 'javascript'
+  });
+  input.setOption('extraKeys', {
+    'Shift-Enter': function() {
+      format();
+    }
   });
   const output = CodeMirror(document.querySelector('#output'), {
     lineNumbers: true,
@@ -38,6 +62,9 @@
     mode: 'javascript',
     readOnly: true
   });
+  function tourl() {
+    window.location.hash = btoa(input.getValue());
+  }
   function format() {
     output.setValue('');
     const raw = input.getValue();

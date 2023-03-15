@@ -9,9 +9,33 @@ const tutorials = [
     title: 'Lodash Playground',
     raw: './tutorials/tools/lodash-playground.md',
     url: '/tutorials/tools/lodash-playground',
-    description: 'Here\'s a playground for lodash on the down low',
+    description: 'Here\'s a playground to test out Lodash in your browser.',
     tags: ['tools'],
-    date: moment('2023-02-22')
+    date: moment('2023-03-15')
+  },
+  {
+    title: 'The toFixed() Function in JavaScript',
+    raw: './tutorials/fundamentals/tofixed.md',
+    url: '/tutorials/fundamentals/tofixed',
+    description: 'The `toFixed()` function converts a number to a string rounded to a certain number of decimal places. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2023-03-14')
+  },
+  {
+    title: 'The Nullish Coalescing Operator ?? in JavaScript',
+    raw: './tutorials/fundamentals/nullish-coalescing.md',
+    url: '/tutorials/fundamentals/nullish-coalescing',
+    description: 'Here\'s how the nullish coalescing operator in JavaScript works',
+    tags: ['fundamentals'],
+    date: moment('2023-03-07')
+  },
+  {
+    title: 'Handling onClick Events on ChartJS Bar Charts',
+    raw: './tutorials/chartjs/onclick-bar-chart.md',
+    url: '/tutorials/chartjs/onclick-bar-chart',
+    description: 'Here\'s how you can find what bar in a bar chart the user clicked on in ChartJS 4 and ChartJS 2+3',
+    tags: ['chartjs'],
+    date: moment('2023-03-01')
   },
   {
     title: 'Implementing Tuples in JavaScript',

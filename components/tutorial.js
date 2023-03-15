@@ -17,19 +17,7 @@ module.exports = ({ tutorials, tutorial }) => `
   ${tutorial.content}
   ${cta(tutorial)}
   <hr class="tutorial-separator">
-  <div id="jobs">
-    <div id="jobs-container">
 
-    </div>
-    <div>
-      <div class="button jobs-view-more">
-        <a href="/jobs">
-          View more jobs!
-        </a>
-      </div>
-    </div>
-  </div>
-  <script src="../../src/client/listjobs.js"></script>
   <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
   <script>
   (function(){

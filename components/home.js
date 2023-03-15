@@ -39,7 +39,7 @@ module.exports = ({ posts }) => `
             to your inbox every week.
           </div>
           <div class="button" >
-            <a href="https://www.getrevue.co/profile/masteringjs">
+            <a href="https://masteringjs.substack.com/">
               Sign Up
             </a>
           </div>
