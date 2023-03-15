@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Lodash Playground',
+    raw: './tutorials/tools/lodash-playground.md',
+    url: '/tutorials/tools/lodash-playground',
+    description: 'Here\'s a playground to test out Lodash in your browser.',
+    tags: ['tools'],
+    date: moment('2023-03-15')
+  },
+  {
     title: 'The toFixed() Function in JavaScript',
     raw: './tutorials/fundamentals/tofixed.md',
     url: '/tutorials/fundamentals/tofixed',

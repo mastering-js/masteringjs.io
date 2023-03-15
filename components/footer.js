@@ -15,7 +15,7 @@ module.exports = () => `
         <span class="addressCtrl"><img src="/assets/images/footer/location.svg" alt="location"> <span>Miami Beach, FL</span></span>
       </div>
       <div class="copyRight">
-        <p class="copyRight">Copyright © MeanIT Software, Inc.</p>
+        <p class="copyRight">Copyright © <a href="https://meanitsoftware.com/">MeanIT Software, Inc.</a></p>
       </div>
       </div>
       <div class="col span_2_of_3 footerLink">
@@ -35,7 +35,7 @@ module.exports = () => `
                   <li> <a href="/sinon">Sinon</a></li>
               </ul>
               <div class="subscribe">
-                <span class="subscribeText">Get Tutorials Weekly →</span> <a href="https://www.getrevue.co/profile/masteringjs"><button class="subscribeBtn">Subscribe</button></a>
+                <span class="subscribeText">Subscribe to our Newsletter &rsaquo;</span> <a href="https://masteringjs.substack.com/"><button class="subscribeBtn">Subscribe</button></a>
               </div>
       </div>
       <div class="col span_1_of_3">
@@ -48,7 +48,6 @@ module.exports = () => `
       <h4>Resources</h4>
       <ul>
         <li> <a href="/about">About</a></li>
-        <li> <a href="/jobs/create">For Recruiters</a></li>
         <li> <a href="https://github.com/sponsors/mastering-js">Partnerships</a></li>
       </ul>
     </div>
