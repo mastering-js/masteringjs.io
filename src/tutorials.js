@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert Callbacks to Async/Await with OpenAI',
+    raw: './tutorials/tools/callback-to-async-await.md',
+    url: '/tutorials/tools/callback-to-async-await',
+    description: 'Here\'s a tool to convert short JavaScript snippets from callbacks to async/await using ChatGPT 3.5.',
+    tags: ['tools'],
+    date: moment('2023-03-21')
+  },
+  {
     title: 'Lodash Playground',
     raw: './tutorials/tools/lodash-playground.md',
     url: '/tutorials/tools/lodash-playground',
