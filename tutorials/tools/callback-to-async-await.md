@@ -32,6 +32,16 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
 
 <div id="previous-requests"></div>
 
+<script async="" defer="" crossorigin="anonymous" src="https://js.stratos.blue/stratos.js"></script>
+<script>
+  window.stratosSettings = {
+    publisherId: '641a1e06290373f15cc3a920',
+  };
+  window.stratos = window.stratos || { queue: [] };
+  window.stratos.queue.push(function() { 
+    console.log('Stratos initialized!');
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/vanillatoasts@1.3.0/vanillatoasts.js"></script>
 <script src="../../codemirror-5.62.2/lib/codemirror.js"></script>
 <link rel="stylesheet" href="../../codemirror-5.62.2/lib/codemirror.css">
@@ -66,7 +76,8 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
       output: output.getValue()
     }));
   }
-  const server = window.location.hostname === 'localhost' ?
+  const isLocalhost = window.location.hostname === 'localhost';
+  const server = isLocalhost ?
     'http://localhost:3000' :
     'https://masteringjs-backend-production.up.railway.app';
   let inProgress = false;
@@ -87,6 +98,9 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
       }
     }, 250);
     const code = input.getValue();
+    if (!isLocalhost) {
+      window.stratos.trackPrompt(code);
+    }
     fetch(
       server + '/awaitify',
       {
