@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with UUID in Node',
+    raw: './tutorials/node/uuid.md',
+    url: '/tutorials/node/uuid',
+    description: 'Here\'s what you need to know about Node\'s built-in uuid functionality.',
+    tags: ['node'],
+    date: moment('2023-03-28')
+  },
+  {
     title: 'Convert Callbacks to Async/Await with OpenAI',
     raw: './tutorials/tools/callback-to-async-await.md',
     url: '/tutorials/tools/callback-to-async-await',
