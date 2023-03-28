@@ -498,6 +498,12 @@ input[type="text"], input[type="password"], input[type="number"] {
   display: block;
 }
 
+.ad.leaderboard-ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #default_masteringjsio {
   height: 95px;
   padding-top: 10px;
