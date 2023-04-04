@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The parseInt Function in JavaScript',
+    raw: './tutorials/fundamentals/parseint.md',
+    url: '/tutorials/fundamentals/parseint',
+    description: 'Here\'s what you need to know about JavaScript\'s `parseInt()` function.',
+    tags: ['fundamentals'],
+    date: moment('2023-04-04')
+  },
+  {
     title: 'Working with UUID in Node',
     raw: './tutorials/node/uuid.md',
     url: '/tutorials/node/uuid',
