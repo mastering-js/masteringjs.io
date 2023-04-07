@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Configuring maxBodyLength in Axios',
+    raw: './tutorials/axios/maxbodylength.md',
+    url: '/tutorials/axios/maxbodylength',
+    description: 'Axios\' maxBodyLength property provides a neat way to add a maximum size for HTTP request bodies. Here\'s what you need to know.',
+    tags: ['axios'],
+    date: moment('2023-04-07')
+  },
+  {
     title: 'The parseInt Function in JavaScript',
     raw: './tutorials/fundamentals/parseint.md',
     url: '/tutorials/fundamentals/parseint',
