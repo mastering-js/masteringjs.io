@@ -84,7 +84,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
     'https://masteringjs-backend-production.up.railway.app';
   let inProgress = false;
   let recentRequests = [];
-  function sendRequest() {
+  async function sendRequest() {
     if (inProgress) {
       return;
     }
@@ -103,6 +103,25 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
     if (!isLocalhost) {
       window.stratos.trackPrompt(code);
     }
+    setTimeout(() => {
+      if (inProgress) {
+        VanillaToasts.create({
+          title: 'Apologies',
+          text: 'Sorry, this is taking longer than expected...',
+          positionClass: 'bottomRight'
+        });
+      }
+    }, 8000);
+    setTimeout(() => {
+      if (inProgress) {
+        VanillaToasts.create({
+          title: 'Time out',
+          text: 'Sorry, that didn\'t work, the request timed out. Please try again.',
+          positionClass: 'bottomRight'
+        });
+        throw new Error('Timed out')
+      }
+    }, 15000);
     fetch(
       server + '/awaitify',
       {
