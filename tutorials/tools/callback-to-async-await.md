@@ -88,6 +88,8 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
     if (inProgress) {
       return;
     }
+    const controller = new AbortController();
+    const signal = controller.signal;
     inProgress = true;
     const runButton = document.querySelector('#run');
     runButton.disabled = true;
@@ -119,6 +121,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
           text: 'Sorry, that didn\'t work, the request timed out. Please try again.',
           positionClass: 'bottomRight'
         });
+        controller.abort();
         throw new Error('Timed out')
       }
     }, 15000);
@@ -126,6 +129,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
       server + '/awaitify',
       {
         method: 'POST',
+        signal: signal,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           code: code
