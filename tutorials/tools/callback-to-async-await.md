@@ -110,6 +110,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
         VanillaToasts.create({
           title: 'Apologies',
           text: 'Sorry, this is taking longer than expected...',
+          timeout: 10000,
           positionClass: 'bottomRight'
         });
       }
@@ -119,6 +120,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
         VanillaToasts.create({
           title: 'Time out',
           text: 'Sorry, that didn\'t work, the request timed out. Please try again.',
+          timeout: 10000,
           positionClass: 'bottomRight'
         });
         controller.abort();
@@ -142,6 +144,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
             VanillaToasts.create({
               title: 'Server Error',
               text: text,
+              timeout: 10000,
               positionClass: 'bottomRight'
             });
           });
