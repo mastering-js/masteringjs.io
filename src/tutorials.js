@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The callsFake() Function in Sinon',
+    raw: './tutorials/sinon/callsfake.md',
+    url: '/tutorials/sinon/callsfake',
+    description: 'Sinon\'s callsFake() function lets you configure what a stub function returns. Here\'s what you need to know.',
+    tags: ['sinon'],
+    date: moment('2023-04-21')
+  },
+  {
     title: 'Configuring maxBodyLength in Axios',
     raw: './tutorials/axios/maxbodylength.md',
     url: '/tutorials/axios/maxbodylength',
