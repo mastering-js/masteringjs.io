@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Convert a BigInt to a Number in JavaScript',
+    raw: './tutorials/fundamentals/bigint-to-number.md',
+    url: '/tutorials/fundamentals/bigint-to-number',
+    description: 'You can convert BigInts to numbers using the `Number()` constructor, with a few caveats. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2023-04-25')
+  },
+  {
     title: 'The callsFake() Function in Sinon',
     raw: './tutorials/sinon/callsfake.md',
     url: '/tutorials/sinon/callsfake',
