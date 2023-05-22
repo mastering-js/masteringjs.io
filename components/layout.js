@@ -7,6 +7,15 @@ module.exports = params => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M7D4R7TYY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-8M7D4R7TYY');
+    </script>
     <title>${params.title} - Mastering JS</title>
 
     <meta property="og:title" content="${params.title}" />
