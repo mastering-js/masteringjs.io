@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: '3 Patterns to Merge Arrays in JavaScript',
+    raw: './tutorials/fundamentals/merge-arrays.md',
+    url: '/tutorials/fundamentals/merge-arrays',
+    description: 'Here\'s 3 different ways to merge arrays in JavaScript, including trade-offs between them.',
+    tags: ['fundamentals'],
+    date: moment('2023-05-28')
+  },
+  {
     title: 'Convert a BigInt to a Number in JavaScript',
     raw: './tutorials/fundamentals/bigint-to-number.md',
     url: '/tutorials/fundamentals/bigint-to-number',
