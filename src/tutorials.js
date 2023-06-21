@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Add Days to Date',
+    raw: './tutorials/fundamentals/date-add-days.md',
+    url: '/tutorials/fundamentals/date-add-days',
+    description: 'Here\'s how you can add days to a Date without using external libraries, or using date-fns or Luxon.',
+    tags: ['fundamentals'],
+    date: moment('2023-06-21')
+  },
+  {
     title: '3 Patterns to Merge Arrays in JavaScript',
     raw: './tutorials/fundamentals/merge-arrays.md',
     url: '/tutorials/fundamentals/merge-arrays',
