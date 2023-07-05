@@ -28,9 +28,9 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
 
 ### Results:
 
-<div id="masteringjs-leaderboard-banner" style="display: none"></div>
-
 <div id="output" style="border: 1px solid #ddd"></div>
+
+<div id="masteringjs-leaderboard-banner"></div>
 
 <div id="previous-requests"></div>
 
