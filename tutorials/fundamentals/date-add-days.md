@@ -35,7 +35,7 @@ That's what common libraries, like [date-fns](https://date-fns.org/) and [Luxon]
 With date-fns
 -------------
 
-Date-fns has a neat `add()` function that lets you add dates to the current date.
+Date-fns has a neat `add()` function that lets you add days to the current date.
 
 ```javascript
 const add = require('date-fns/add');
@@ -46,6 +46,9 @@ add(new Date('2022-06-01'), { days: 37 });
 
 With Luxon
 ----------
+
+[Luxon's `plus()` method](https://moment.github.io/luxon/api-docs/index.html) is roughly equivalent to date-fns' `add()`.
+You can use `plus()` to add days to a Luxon DateTime as follows.
 
 ```javascript
 const { DateTime } = require('luxon');

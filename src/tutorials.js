@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Add Month to Date',
+    raw: './tutorials/fundamentals/add-month-to-date.md',
+    url: '/tutorials/fundamentals/add-month-to-date',
+    description: 'Here\'s how you can add a month to a JavaScript Date without using external libraries. We also have examples using date-fns or Luxon.',
+    tags: ['fundamentals'],
+    date: moment('2023-07-07')
+  },
+  {
     title: 'JavaScript Add Days to Date',
     raw: './tutorials/fundamentals/date-add-days.md',
     url: '/tutorials/fundamentals/date-add-days',
