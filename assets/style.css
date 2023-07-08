@@ -260,6 +260,14 @@ input[type="text"], input[type="password"], input[type="number"] {
   padding: 15px;
 }
 
+.star-cta {
+  font-style: italic;
+}
+
+.star-cta iframe {
+  margin-top: 0.5em;
+}
+
 /* sidebar */
 
 .sidebar {

@@ -26,6 +26,12 @@ module.exports = ({ tutorials, tutorial }) => `
     }
   })();
 	</script>
+
+  <div class="star-cta">
+    Did you find this tutorial useful? Say thanks by starring <a href="https://github.com/mastering-js/masteringjs.io">our repo on GitHub!</a><br>
+    <iframe src="//ghbtns.com/github-btn.html?user=mastering-js&repo=masteringjs.io&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+  </div>
+
   ${more(tutorials, tutorial)}
   ${tutorial.sidebar || ''}
 `;
