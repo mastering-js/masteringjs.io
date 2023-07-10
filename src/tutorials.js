@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How To Fix "__dirname is not defined" Error in Node.js',
+    raw: './tutorials/node/__dirname-is-not-defined.md',
+    url: '/tutorials/node/__dirname-is-not-defined',
+    description: 'The "__dirname is not defined" error is usually due to using ESM. Here\'s how you can fix this error.',
+    tags: ['node'],
+    date: moment('2023-07-10')
+  },
+  {
     title: 'JavaScript Add Month to Date',
     raw: './tutorials/fundamentals/add-month-to-date.md',
     url: '/tutorials/fundamentals/add-month-to-date',
