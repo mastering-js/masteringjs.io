@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check if URL Contains a String',
+    raw: './tutorials/fundamentals/if-url-contains.md',
+    url: '/tutorials/fundamentals/if-url-contains',
+    description: 'Here\'s how you can check if the current URL contains a given string in JavaScript.',
+    tags: ['fundamentals'],
+    date: moment('2023-07-12')
+  },
+  {
     title: 'How To Fix "__dirname is not defined" Error in Node.js',
     raw: './tutorials/node/__dirname-is-not-defined.md',
     url: '/tutorials/node/__dirname-is-not-defined',
