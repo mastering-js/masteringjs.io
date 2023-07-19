@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The `beforeEach()` Hook in Mocha',
+    raw: './tutorials/mocha/beforeeach.md',
+    url: '/tutorials/mocha/beforeeach',
+    description: 'Here\'s how Mocha\'s beforeEach() hook works.',
+    tags: ['mocha'],
+    date: moment('2023-07-19')
+  },
+  {
     title: 'Check if URL Contains a String',
     raw: './tutorials/fundamentals/if-url-contains.md',
     url: '/tutorials/fundamentals/if-url-contains',
