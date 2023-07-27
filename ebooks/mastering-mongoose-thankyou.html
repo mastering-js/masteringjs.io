@@ -147,14 +147,28 @@
     <div class="openads-chat">
   <div class="openads-chat-wrapper">
     <div class="openads-chat-exit">&times;</div>
-    <div class="openads-chat-new-message">
-      <div class="openads-chat-input">
-        <input type="text" placeholder="Ask Anything">
-      </div>
-      <div class="open-ads-chat-button">
-        <button class="openads-chat-submit">&raquo;</button>
+    <div class="openads-chat-history">
+      <div class="openads-chat-history-message bot">
+        <div class="participant">
+          <img src="/assets/logo.svg">
+          Mastering JS
+        </div>
+        <div class="openads-chat-message-body">
+          Hi, I'm a JavaScript programming bot.
+          Ask me something about JavaScript!
+        </div>
       </div>
     </div>
+    <form action="javascript:submitOpenAdsMessage()">
+      <div class="openads-chat-new-message">
+        <div class="openads-chat-input">
+          <input type="text" placeholder="Ask Anything">
+        </div>
+        <div class="open-ads-chat-button">
+          <button class="openads-chat-submit">&raquo;</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
     <link rel="stylesheet" href="/assets/openads-chat.css" />

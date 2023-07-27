@@ -37,13 +37,27 @@
 .openads-chat-wrapper {
   position: relative;
   display: flex;
-  flex-direction: row;
-  padding: 1em;
+  flex-direction: column;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  box-sizing: border-box;
+  height: 100%;
+  gap: 10px;
+}
+
+.openads-chat-history {
+  flex-grow: 1;
+  border-bottom: 1px solid #ddd;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .openads-chat-new-message {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .openads-chat-input {
@@ -54,6 +68,7 @@
   box-sizing: border-box;
   width: 100%;
   font-size: 1.1em;
+  margin-bottom: 0px;
 }
 
 .open-ads-chat-button {
@@ -64,4 +79,31 @@
   border: 0px;
   background-color: #208E96;
   color: white;
+  font-size: 1.5em;
+  height: calc(1.1em + 3px);
+  border-radius: 4px;
+  padding-top: 0px;
+}
+
+.openads-chat-submit:disabled {
+  background-color: #ddd;
+}
+
+.openads-chat-message-body {
+  margin-left: 24px;
+}
+
+.openads-chat-history-message {
+  margin-bottom: 1em;
+}
+
+.openads-chat-history-message .participant {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.openads-chat-history-message .participant img {
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
 }
