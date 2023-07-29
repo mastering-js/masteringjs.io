@@ -50,6 +50,8 @@
   border-bottom: 1px solid #ddd;
   padding-left: 1em;
   padding-right: 1em;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .openads-chat-new-message {
