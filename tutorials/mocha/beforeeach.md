@@ -40,6 +40,26 @@ it('test3', function() {});
 So a global `beforeEach()` will run on every test, even tests within a `describe()`.
 But a `beforeEach()` hook within a `describe()` will not run on any test outside of that `describe()`.
 
+## Skipped Tests
+
+Mocha will **not** run `beforeEach()` if there are no tests.
+For example, if you [run a single Mocha test](./run-single-test) using `.only()`, Mocha will not execute the `beforeEach()` hook in the following test file.
+
+```javascript
+describe('my test suite', function() {
+  beforeEach(function() {
+    console.log('Running my test suite beforeEach!');
+  });
+
+  it('test1', function() {});
+  it('test2', function() {});
+});
+
+// Because of `.only()`, Node will **not** print
+// "Running my test suite beforeEach!"
+it.only('test3', function() {});
+```
+
 ## Working Around Linters
 
 By default, linters like [ESLint](/eslint) complain that `beforeEach()` is not defined.
