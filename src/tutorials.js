@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Run Just a Single Test in Mocha',
+    raw: './tutorials/mocha/run-single-test.md',
+    url: '/tutorials/mocha/run-single-test',
+    description: 'Here\'s two ways you can run just one test out of a Mocha test suite.',
+    tags: ['mocha'],
+    date: moment('2023-07-29')
+  },
+  {
     title: 'The `beforeEach()` Hook in Mocha',
     raw: './tutorials/mocha/beforeeach.md',
     url: '/tutorials/mocha/beforeeach',
