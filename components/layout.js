@@ -47,6 +47,7 @@ module.exports = params => `
     </div>
     ${openAdsChat}
     <link rel="stylesheet" href="/assets/openads-chat.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.2/marked.min.js"></script>
     <script src="/assets/js/openads-chat.js"></script>
     ${carbonAdScript(params.carbonAds)}
   </body>
@@ -72,7 +73,7 @@ const openAdsChat = `
     <form action="javascript:submitOpenAdsMessage()">
       <div class="openads-chat-new-message">
         <div class="openads-chat-input">
-          <input type="text" placeholder="Ask Anything">
+          <textarea placeholder="Ask Anything"></textarea>
         </div>
         <div class="open-ads-chat-button">
           <button class="openads-chat-submit">&raquo;</button>

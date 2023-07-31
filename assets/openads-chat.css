@@ -29,7 +29,7 @@
 
 .openads-chat-exit {
   position: absolute;
-  right: 0px;
+  right: 2px;
   top: 0px;
   cursor: pointer;
 }
@@ -38,7 +38,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-top: 1em;
+  padding-top: 1.5em;
   padding-bottom: 1em;
   box-sizing: border-box;
   height: 100%;
@@ -62,15 +62,22 @@
   padding-right: 1em;
 }
 
+.openads-chat-message-body p:first-child {
+  margin-top: 0px;
+}
+
 .openads-chat-input {
   flex-grow: 1;
 }
 
-.openads-chat-input input {
+.openads-chat-input textarea {
   box-sizing: border-box;
   width: 100%;
   font-size: 1.1em;
   margin-bottom: 0px;
+  border: 1px solid #eee;
+  height: 3em;
+  border-radius: 4px;
 }
 
 .open-ads-chat-button {
@@ -82,9 +89,11 @@
   background-color: #208E96;
   color: white;
   font-size: 1.5em;
-  height: calc(1.1em + 3px);
+  box-sizing: border-box;
+  height: 1.75em;
   border-radius: 4px;
   padding-top: 0px;
+  cursor: pointer;
 }
 
 .openads-chat-submit:disabled {

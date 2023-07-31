@@ -18,7 +18,7 @@
     chatWindow.classList.remove('show');
   };
 
-  const newMessageInput = document.querySelector('.openads-chat-input input');
+  const newMessageInput = document.querySelector('.openads-chat-input textarea');
   const newMessageButton = document.querySelector('.openads-chat-submit');
   const chatHistory = document.querySelector('.openads-chat-history');
 
@@ -69,7 +69,7 @@
       Mastering JS
     </div>
     <div class="openads-chat-message-body">
-      ${response}
+      ${marked.parse(response)}
     </div>
     `;
     chatHistory.appendChild(newResponse);
