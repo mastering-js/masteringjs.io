@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Working with Timezones using date-fns and date-fns-tz',
+    raw: './tutorials/date-fns/tz.md',
+    url: '/tutorials/date-fns/tz',
+    description: 'Here\'s how you can use date-fns-tz to work with timezones, and alternatives for working with timezones in vanilla JS.',
+    tags: ['date-fns'],
+    date: moment('2023-08-02')
+  },
+  {
     title: 'The `before()` Hook in Mocha',
     raw: './tutorials/mocha/before.md',
     url: '/tutorials/mocha/before',
