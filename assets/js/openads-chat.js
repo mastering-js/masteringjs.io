@@ -81,10 +81,16 @@
         </div>
       </div>
       <div class="openads-chat-message-source-body">
-        <a href="${response.link}">${response.title}</a>
+        <a href="${response.link}" target="_blank">${response.title}</a>
       </div>
     </div>
     `;
     chatHistory.appendChild(newResponse);
   };
+
+  document.querySelector('.openads-chat-input textarea').addEventListener('keypress', ev => {
+    if (ev.code === 'Enter') {
+      window.submitOpenAdsMessage();
+    }
+  });
 })();
