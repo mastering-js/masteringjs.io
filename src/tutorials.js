@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The `before()` Hook in Mocha',
+    raw: './tutorials/mocha/before.md',
+    url: '/tutorials/mocha/before',
+    description: 'Here\'s how Mocha\'s before() hook works, and when you should use it.',
+    tags: ['mocha'],
+    date: moment('2023-07-31')
+  },
+  {
     title: 'Run Just a Single Test in Mocha',
     raw: './tutorials/mocha/run-single-test.md',
     url: '/tutorials/mocha/run-single-test',

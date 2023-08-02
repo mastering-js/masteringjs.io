@@ -12,8 +12,8 @@ module.exports = ({ posts }) => `
 
     <meta property="og:title" content="Mastering JS" />
     <meta property="og:site_name" content="Mastering JS" />
-    <meta property="og:description" content="Bite-sized full stack JavaScript tutorials for busy developers" />
-    <meta name="description" content="Bite-sized full stack JavaScript tutorials for busy developers">
+    <meta property="og:description" content="Bite-sized full stack JavaScript tutorials for pragmatic developers that get things done" />
+    <meta name="description" content="Bite-sized full stack JavaScript tutorials for pragmatic developers that get things done">
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
