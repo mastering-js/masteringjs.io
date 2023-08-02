@@ -46,7 +46,7 @@
     let response;
     let error = false;
     try {
-      response = await fetch('https://mj-chatbot-production.up.railway.app/api/chat', {
+      response = await fetch('https://mj-chatbot-production-abe0.up.railway.app/api/ping', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
