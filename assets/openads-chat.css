@@ -94,10 +94,15 @@
   border-radius: 4px;
   padding-top: 0px;
   cursor: pointer;
+  width: 1.25em;
 }
 
 .openads-chat-submit:disabled {
   background-color: #ddd;
+}
+
+.openads-chat-submit img {
+  width: 0.75em;
 }
 
 .openads-chat-message-body {
@@ -117,4 +122,20 @@
   height: 16px;
   width: 16px;
   margin-right: 4px;
+}
+
+.openads-chat-message-source-header {
+  color: #666;
+  font-weight: 600;
+  font-size: 0.9em;
+  position: relative;
+}
+
+.openads-chat-message-source-header-line {
+  position: absolute;
+  border-bottom: 4px solid #666;
+  width: 100%;
+  top: 0px;
+  line-height: 8px;
+  z-index: -1;
 }

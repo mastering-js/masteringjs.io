@@ -28,6 +28,7 @@
       return;
     }
     newMessageButton.disabled = true;
+    newMessageButton.innerHTML = '<img src="https://terravera.com/images/loader.gif">';
     newMessageInput.disabled = true;
 
     const newMessage = document.createElement('div');
@@ -52,7 +53,7 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ question: value })
-      }).then(res => res.json()).then(res => res.response);
+      }).then(res => res.json());
     } catch (err) {
 
     }
@@ -60,6 +61,7 @@
     newMessageInput.value = '';
     newMessageInput.disabled = false;
     newMessageButton.disabled = false;
+    newMessageButton.innerHTML = '&raquo;';
 
     const newResponse = document.createElement('div');
     newResponse.classList.add('openads-chat-history-message');
@@ -69,7 +71,18 @@
       Mastering JS
     </div>
     <div class="openads-chat-message-body">
-      ${marked.parse(response)}
+      ${marked.parse(response.content)}
+    </div>
+    <div class="openads-chat-message-source">
+      <div class="openads-chat-message-source-header">
+        <div class="openads-chat-message-source-header-line">&nbsp;</div>
+        <div style="background-color: white; display: inline-block; padding-right: 0.5em;">
+          Source
+        </div>
+      </div>
+      <div class="openads-chat-message-source-body">
+        <a href="${response.link}">${response.title}</a>
+      </div>
     </div>
     `;
     chatHistory.appendChild(newResponse);
