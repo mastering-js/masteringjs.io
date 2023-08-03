@@ -65,7 +65,7 @@ class Direction {
     this.name = name;
   }
   toString() {
-    return `Color.${this.name}`;
+    return `Direction.${this.name}`;
   }
 }
 ```
@@ -78,4 +78,4 @@ Here's how you can work with the `Direction` class:
 
 This approach is interesting, and there's even a [enumify npm package](https://www.npmjs.com/package/enumify) that implements this basic approach along with additional syntactic sugar. This approach also has the neat benefit that `Direction.Downe.name` throws an error, which means you don't accidentally check `undefined === undefined` if you typo an enum property.
 
-However, we generally recommend using `Object.freeze()` on a [POJO](/tutorials/fundamentals/pojo) to represent an enum. Enumify does offer advatanges and some neat syntactic sugar, but we think a POJO gets you most of the advantages with much less overhead.
+However, we generally recommend using `Object.freeze()` on a [POJO](/tutorials/fundamentals/pojo) to represent an enum. Enumify does offer advantages and some neat syntactic sugar, but we think a POJO gets you most of the advantages with much less overhead.
