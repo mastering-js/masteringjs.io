@@ -24,7 +24,7 @@
 }
 
 .openads-chat.show {
-  width: 320px;
+  width: 60vw;
 }
 
 .openads-chat-exit {
@@ -43,6 +43,7 @@
   box-sizing: border-box;
   height: 100%;
   gap: 10px;
+  font-size: 18px;
 }
 
 .openads-chat-history {
@@ -90,7 +91,7 @@
   color: white;
   font-size: 1.5em;
   box-sizing: border-box;
-  height: 1.75em;
+  height: 2.25em;
   border-radius: 4px;
   padding-top: 0px;
   cursor: pointer;
@@ -138,4 +139,10 @@
   top: 0px;
   line-height: 8px;
   z-index: -1;
+}
+
+@media (max-width: 1000px) {
+  .openads-chat.show {
+    width: 100vw;
+  }
 }
