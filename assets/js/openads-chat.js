@@ -7,6 +7,7 @@
   widget.innerHTML = '<div class="openads-widget-text">Ask me anything about JavaScript</div>';
   widget.classList.add('openads-widget');
   widget.onclick = function() {
+    document.querySelector('.allwrapper').classList.add('openads-chat-fixed');
     chatWindow.classList.add('show');
   };
   document.body.appendChild(widget);
@@ -15,6 +16,7 @@
 
   const chatExit = document.querySelector('.openads-chat-exit');
   chatExit.onclick = function() {
+    document.querySelector('.allwrapper').classList.remove('openads-chat-fixed');
     chatWindow.classList.remove('show');
   };
 
