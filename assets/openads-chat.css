@@ -18,7 +18,7 @@
   position: fixed;
   width: 0px;
   right: 0px;
-  height: 100vh;
+  height: 100%;
   background-color: white;
   border-left: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
