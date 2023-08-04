@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Using `it.skip()` in Mocha',
+    raw: './tutorials/mocha/it-skip.md',
+    url: '/tutorials/mocha/it-skip',
+    description: 'Here\'s how `it.skip()` works in Mocha',
+    tags: ['mocha'],
+    date: moment('2023-08-04')
+  },
+  {
     title: 'Working with Timezones using date-fns and date-fns-tz',
     raw: './tutorials/date-fns/tz.md',
     url: '/tutorials/date-fns/tz',
