@@ -5,7 +5,9 @@
   top: 50vh;
   padding: 1em;
   cursor: pointer;
-  width: 120px;
+  width: 180px;
+  display: flex;
+  gap: 10px;
 }
 
 .openads-chat {
@@ -141,8 +143,34 @@
   z-index: -1;
 }
 
+.openads-chat-icon {
+  flex-grow: 0;
+  padding-top: 0.5em;
+}
+
+.openads-chat-icon img {
+  height: 2em;
+}
+
+.openads-widget-text {
+  flex-grow: 1;
+}
+
 @media (max-width: 1000px) {
   .openads-chat.show {
     width: 100vw;
+  }
+
+  .openads-widget {
+    position: fixed;
+    background-color: #f0db4f;
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    padding: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    font-size: 0.9em;
   }
 }

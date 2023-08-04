@@ -4,7 +4,7 @@
   const endpoint = 'https://mj-chatbot-production.up.railway.app/api/chat';
 
   const widget = document.createElement('div');
-  widget.innerText = 'Ask me anything about JavaScript';
+  widget.innerHTML = '<div class="openads-widget-text">Ask me anything about JavaScript</div>';
   widget.classList.add('openads-widget');
   widget.onclick = function() {
     chatWindow.classList.add('show');
