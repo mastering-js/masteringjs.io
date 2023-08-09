@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Assertions in Mocha',
+    raw: './tutorials/mocha/assertions.md',
+    url: '/tutorials/mocha/assertions',
+    description: 'Mocha doesn\'t have a built-in assertion library, but here are a few options.',
+    tags: ['mocha'],
+    date: moment('2023-08-09')
+  },
+  {
     title: 'Using `it.skip()` in Mocha',
     raw: './tutorials/mocha/it-skip.md',
     url: '/tutorials/mocha/it-skip',
