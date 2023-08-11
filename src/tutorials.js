@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Encode base64 in JavaScript',
+    raw: './tutorials/fundamentals/encode-base64.md',
+    url: '/tutorials/fundamentals/encode-base64',
+    description: 'Here\'s how you can use the btoa() function in JavaScript to convert strings to base64. Also describes how to convert strings to base64 using Node.js buffers.',
+    tags: ['fundamentals'],
+    date: moment('2023-08-11')
+  },
+  {
     title: 'Assertions in Mocha',
     raw: './tutorials/mocha/assertions.md',
     url: '/tutorials/mocha/assertions',
