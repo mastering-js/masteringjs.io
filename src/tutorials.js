@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check if a Date is Valid in JavaScript',
+    raw: './tutorials/fundamentals/check-if-date-is-valid.md',
+    url: '/tutorials/fundamentals/check-if-date-is-valid',
+    description: 'Got a JavaScript date that is showing up as "Invalid Date" in your console? Here\'s how you check for that.',
+    tags: ['fundamentals'],
+    date: moment('2023-08-14')
+  },
+  {
     title: 'Encode base64 in JavaScript',
     raw: './tutorials/fundamentals/encode-base64.md',
     url: '/tutorials/fundamentals/encode-base64',
