@@ -1591,10 +1591,10 @@ const tutorials = [
     featured: true
   },
   {
-    title: 'Best Books to Learn Vue in 2022',
+    title: 'Best Books to Learn Vue in 2023',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',
-    description: 'Looking to learn Vue in 2022? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
+    description: 'Looking to learn Vue in 2023? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
     tags: ['vue'],
     date: moment('2021-02-12'),
     featured: true
