@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The `afterEach()` Hook in Mocha',
+    raw: './tutorials/mocha/aftereach.md',
+    url: '/tutorials/mocha/aftereach',
+    description: 'Here\'s how Mocha\'s afterEach() hook works.',
+    tags: ['mocha'],
+    date: moment('2023-08-25')
+  },
+  {
     title: 'Check if a Date is Valid in JavaScript',
     raw: './tutorials/fundamentals/check-if-date-is-valid.md',
     url: '/tutorials/fundamentals/check-if-date-is-valid',
