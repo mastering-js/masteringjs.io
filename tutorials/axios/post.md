@@ -30,8 +30,8 @@ Form-Encoded Request Bodies
 
 If you pass a string as the `body` parameter to `axios.post()`, Axios will
 set the `content-type` header to [`application/x-www-form-urlencoded`](https://dev.to/sidthesloth92/understanding-html-form-encoding-url-encoded-and-multipart-forms-3lpa).
-That means the request body should be a bunch of key/value pairs separated by
-`&`, like `key1=value1&key2=value2`.
+That means that the string passed in as the request body should contain a bunch of key/value pairs separated by
+`&`, in the format of `key1=value1&key2=value2`.
 
 ```javascript
 [require:axios.*POST requests.*string$]
