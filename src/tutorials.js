@@ -6,6 +6,46 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The `afterEach()` Hook in Mocha',
+    raw: './tutorials/mocha/aftereach.md',
+    url: '/tutorials/mocha/aftereach',
+    description: 'Here\'s how Mocha\'s afterEach() hook works.',
+    tags: ['mocha'],
+    date: moment('2023-08-25')
+  },
+  {
+    title: 'Check if a Date is Valid in JavaScript',
+    raw: './tutorials/fundamentals/check-if-date-is-valid.md',
+    url: '/tutorials/fundamentals/check-if-date-is-valid',
+    description: 'Got a JavaScript date that is showing up as "Invalid Date" in your console? Here\'s how you check for that.',
+    tags: ['fundamentals'],
+    date: moment('2023-08-14')
+  },
+  {
+    title: 'Encode base64 in JavaScript',
+    raw: './tutorials/fundamentals/encode-base64.md',
+    url: '/tutorials/fundamentals/encode-base64',
+    description: 'Here\'s how you can use the btoa() function in JavaScript to convert strings to base64. Also describes how to convert strings to base64 using Node.js buffers.',
+    tags: ['fundamentals'],
+    date: moment('2023-08-11')
+  },
+  {
+    title: 'Assertions in Mocha',
+    raw: './tutorials/mocha/assertions.md',
+    url: '/tutorials/mocha/assertions',
+    description: 'Mocha doesn\'t have a built-in assertion library, but here are a few options.',
+    tags: ['mocha'],
+    date: moment('2023-08-09')
+  },
+  {
+    title: 'Using `it.skip()` in Mocha',
+    raw: './tutorials/mocha/it-skip.md',
+    url: '/tutorials/mocha/it-skip',
+    description: 'Here\'s how `it.skip()` works in Mocha',
+    tags: ['mocha'],
+    date: moment('2023-08-04')
+  },
+  {
     title: 'Working with Timezones using date-fns and date-fns-tz',
     raw: './tutorials/date-fns/tz.md',
     url: '/tutorials/date-fns/tz',
@@ -1559,10 +1599,10 @@ const tutorials = [
     featured: true
   },
   {
-    title: 'Best Books to Learn Vue in 2022',
+    title: 'Best Books to Learn Vue in 2023',
     raw: './tutorials/vue/books.md',
     url: '/tutorials/vue/books',
-    description: 'Looking to learn Vue in 2022? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
+    description: 'Looking to learn Vue in 2023? Or looking to level up your Vue skills? Here\'s a list of books that can help!',
     tags: ['vue'],
     date: moment('2021-02-12'),
     featured: true

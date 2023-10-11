@@ -44,15 +44,3 @@ _Vue.js in Action_ can serve as a basic introduction to Vue, especially if you'r
 Unlike _Fullstack Vue_, _Vue.js in Action_ takes the extra pages to introduce you to numerous tradeoffs in architecting Vue apps. This extra information might not be useful if you're just looking to build a Vue app, but it is useful if you want to be informed about the different ways you could build a Vue app.
 
 <div style="clear: both"></div>
-
-## Best for Vue 3: [_The Vue 3 Masterclass_](https://vueschool.io/the-vuejs-master-class/?friend=mongoose)
-
-<div class="image-pull-left">
-<a target="_blank"  href="https://vueschool.io/the-vuejs-master-class/?friend=mongoose"><img border="0" src="/assets/images/vueschool_320x480_light.png" ></a>
-</div>
-
-Disclaimer: this is a video course, not a book. However, we have not been able to find a book about upgrading to Vue 3 that we can recommend. The closest alternative is [_The Vue.js 3 Cookbook_](https://www.amazon.com/gp/product/B08CY3Y8PK/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B08CY3Y8PK&linkCode=as2&tag=codebarbarian-20&linkId=cf512d4801953b6a5a3ed602b06d58a9), which has a good explanation of [what's new in Vue 3](/tutorials/vue/vue-3) at the beginning, but after that becomes too verbose and covers too many topics. We're looking forward to reading [_Vue.js 3 By Example_](https://www.amazon.com/gp/product/1838826343/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1838826343&linkCode=as2&tag=codebarbarian-20&linkId=ff85b329c735d1aac33e957e439c3e1c) when it is released.
-
-Until then, _The Vue 3 Masterclass_ is the best alternative for developers looking to get a handle on what's changed between Vue 2 and Vue 3.
-
-<div style="clear: both"></div>
