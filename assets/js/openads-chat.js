@@ -1,7 +1,12 @@
 (function() {
   'use strict';
 
-  const endpoint = 'https://mj-chatbot-production.up.railway.app/api/chat';
+  const queryString = new URLSearchParams(window.location.search);
+
+  const isLocalhost = window.location.hostname === 'localhost';
+  const endpoint = isLocalhost ?
+    'http://localhost:3000/chatbot' :
+    'https://masteringjs-backend-production.up.railway.app/chatbot';
 
   const widget = document.createElement('div');
   widget.innerHTML = '<div class="openads-widget-text">Ask me anything about JavaScript</div>';
@@ -23,6 +28,13 @@
   const newMessageInput = document.querySelector('.openads-chat-input textarea');
   const newMessageButton = document.querySelector('.openads-chat-submit');
   const chatHistory = document.querySelector('.openads-chat-history');
+
+  setTimeout(() => {
+    if (queryString.has('show-chatbot')) {
+      document.querySelector('.allwrapper').classList.add('openads-chat-fixed');
+      chatWindow.classList.add('show');
+    }
+  }, 0);
 
   window.submitOpenAdsMessage = async function submitOpenAdsMessage() {
     const value = newMessageInput.value;
@@ -49,7 +61,7 @@
     let response;
     let error = false;
     try {
-      response = await fetch('https://mj-chatbot-production-abe0.up.railway.app/api/ping', {
+      response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
