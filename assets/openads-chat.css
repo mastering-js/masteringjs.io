@@ -1,0 +1,180 @@
+.openads-widget {
+  position: fixed;
+  background-color: #f0db4f;
+  right: 0px;
+  top: 50vh;
+  padding: 1em;
+  cursor: pointer;
+  width: 180px;
+  display: flex;
+  gap: 10px;
+}
+
+.openads-chat-fixed {
+  position: fixed;
+}
+
+.openads-chat {
+  position: fixed;
+  width: 0px;
+  right: 0px;
+  height: 100%;
+  background-color: white;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  top: 0px;
+  box-sizing: border-box;
+  transition: width 0.3s ease;
+  z-index: 1000000;
+  overflow: hidden;
+}
+
+.openads-chat.show {
+  width: 60vw;
+}
+
+.openads-chat-exit {
+  position: absolute;
+  right: 2px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.openads-chat-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
+  box-sizing: border-box;
+  height: 100%;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.openads-chat-history {
+  flex-grow: 1;
+  border-bottom: 1px solid #ddd;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.openads-chat-new-message {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.openads-chat-message-body p:first-child {
+  margin-top: 0px;
+}
+
+.openads-chat-input {
+  flex-grow: 1;
+}
+
+.openads-chat-input textarea {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1.1em;
+  margin-bottom: 0px;
+  border: 1px solid #eee;
+  height: 3em;
+  border-radius: 4px;
+}
+
+.open-ads-chat-button {
+  flex-grow: 0;
+}
+
+.openads-chat-submit {
+  border: 0px;
+  background-color: #208E96;
+  color: white;
+  font-size: 1.5em;
+  box-sizing: border-box;
+  height: 2.25em;
+  border-radius: 4px;
+  padding-top: 0px;
+  cursor: pointer;
+  width: 1.25em;
+}
+
+.openads-chat-submit:disabled {
+  background-color: #ddd;
+}
+
+.openads-chat-submit img {
+  width: 0.75em;
+}
+
+.openads-chat-message-body {
+  margin-left: 24px;
+}
+
+.openads-chat-history-message {
+  margin-bottom: 1em;
+}
+
+.openads-chat-history-message .participant {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.openads-chat-history-message .participant img {
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+}
+
+.openads-chat-message-source-header {
+  color: #666;
+  font-weight: 600;
+  font-size: 0.9em;
+  position: relative;
+}
+
+.openads-chat-message-source-header-line {
+  position: absolute;
+  border-bottom: 4px solid #666;
+  width: 100%;
+  top: 0px;
+  line-height: 8px;
+  z-index: -1;
+}
+
+.openads-chat-icon {
+  flex-grow: 0;
+  padding-top: 0.5em;
+}
+
+.openads-chat-icon img {
+  height: 2em;
+}
+
+.openads-widget-text {
+  flex-grow: 1;
+}
+
+@media (max-width: 1000px) {
+  .openads-chat.show {
+    width: 100vw;
+  }
+
+  .openads-widget {
+    position: fixed;
+    background-color: #f0db4f;
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    padding: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    font-size: 0.9em;
+  }
+}
