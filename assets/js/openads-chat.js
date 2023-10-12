@@ -79,6 +79,20 @@
 
     const newResponse = document.createElement('div');
     newResponse.classList.add('openads-chat-history-message');
+    let sources;
+    if (response.sources) {
+      sources = response.sources.map(source => `
+        <div class="openads-chat-message-source-body">
+          <a href="${source.link}" target="_blank">${source.title}</a>
+        </div>
+      `).join('\n');
+    } else {
+      sources = `
+        <div class="openads-chat-message-source-body">
+          <a href="${response.link}" target="_blank">${response.title}</a>
+        </div>
+      `;
+    }
     newResponse.innerHTML = `
     <div class="participant">
       <img src="/assets/logo.svg">
@@ -94,9 +108,7 @@
           Source
         </div>
       </div>
-      <div class="openads-chat-message-source-body">
-        <a href="${response.link}" target="_blank">${response.title}</a>
-      </div>
+      ${sources}
     </div>
     `;
     chatHistory.appendChild(newResponse);
