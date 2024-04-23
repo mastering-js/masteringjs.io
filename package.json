@@ -21,7 +21,7 @@
     "express-static": "1.2.6",
     "feed": "4.2.2",
     "form-data": "2.5.1",
-    "formidable": "1.2.1",
+    "formidable": "3.2.4",
     "graphql": "15.x",
     "highlight.js": "9.12.0",
     "http-proxy": "1.18.x",
