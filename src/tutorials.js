@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to Get Distinct Values in a JavaScript Array',
+    raw: './tutorials/fundamentals/distinct-values-in-array.md',
+    url: '/tutorials/fundamentals/distinct-values-in-array-javascript',
+    description: 'Here\'s how you can use ES6 Sets to get distinct values in an array.',
+    tags: ['fundamentals'],
+    date: moment('2024-05-20')
+  },
+  {
     title: 'The `afterEach()` Hook in Mocha',
     raw: './tutorials/mocha/aftereach.md',
     url: '/tutorials/mocha/aftereach',
