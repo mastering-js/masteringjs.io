@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'JavaScript Array flatMap()',
+    raw: './tutorials/fundamentals/array-flatmap.md',
+    url: '/tutorials/fundamentals/javascript-array-flatmap',
+    description: 'Here\'s how JavaScript arrays\' `flatMap()` method works, and what you can use it for..',
+    tags: ['fundamentals'],
+    date: moment('2024-05-25')
+  },
+  {
     title: 'How to Get Distinct Values in a JavaScript Array',
     raw: './tutorials/fundamentals/distinct-values-in-array.md',
     url: '/tutorials/fundamentals/distinct-values-in-array-javascript',
