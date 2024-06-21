@@ -79,9 +79,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
     }));
   }
   const isLocalhost = window.location.hostname === 'localhost';
-  const server = isLocalhost ?
-    'http://localhost:3000' :
-    'https://masteringjs-backend-production.up.railway.app';
+  const server = 'https://masteringjs-backend.netlify.app/.netlify/functions';
   let inProgress = false;
   let recentRequests = [];
   async function sendRequest() {
