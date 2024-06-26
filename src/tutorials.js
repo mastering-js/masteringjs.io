@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Set Whether a Checkbox is Checked in Vue',
+    raw: './tutorials/vue/checkbox-checked.md',
+    url: '/tutorials/vue/checkbox-checked',
+    description: 'Here\'s how you can set whether a checkbox is checked in Vue',
+    tags: ['vue'],
+    date: moment('2024-06-26')
+  },
+  {
     title: 'JavaScript Array flatMap()',
     raw: './tutorials/fundamentals/array-flatmap.md',
     url: '/tutorials/fundamentals/javascript-array-flatmap',
