@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'trim() in Mongoose Schemas',
+    raw: './tutorials/mongoose/trim.md',
+    url: '/tutorials/mongoose/trim',
+    description: 'The `trim()` option in Mongoose schema definitions makes Mongoose automatically call `String.prototype.trim()` on string fields. Here\'s how it works.',
+    tags: ['mongoose'],
+    date: moment('2024-07-01')
+  },
+  {
     title: 'Set Whether a Checkbox is Checked in Vue',
     raw: './tutorials/vue/checkbox-checked.md',
     url: '/tutorials/vue/checkbox-checked',
