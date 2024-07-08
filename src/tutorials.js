@@ -6,10 +6,18 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'The `setTimeout()` Function in JavaScript',
+    raw: './tutorials/fundamentals/settimeout.md',
+    url: '/tutorials/fundamentals/settimeout',
+    description: 'The `setTimeout()` function in JavaScript sets a function to run later in a non-blocking way. Here\'s what you need to know.',
+    tags: ['fundamentals'],
+    date: moment('2024-07-03')
+  },
+  {
     title: 'trim() in Mongoose Schemas',
     raw: './tutorials/mongoose/trim.md',
     url: '/tutorials/mongoose/trim',
-    description: 'The `trim()` option in Mongoose schema definitions makes Mongoose automatically call `String.prototype.trim()` on string fields. Here\'s how it works.',
+    description: 'The `trim` option in Mongoose schema definitions makes Mongoose automatically call `String.prototype.trim()` on string fields. Here\'s how it works.',
     tags: ['mongoose'],
     date: moment('2024-07-01')
   },
