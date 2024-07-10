@@ -9,7 +9,7 @@ const tutorials = [
     title: 'How to Set Response Headers in Express',
     raw: './tutorials/express/set-response-headers.md',
     url: '/tutorials/express/set-response-headers',
-    description: 'The `setTimeout()` function in JavaScript sets a function to run later in a non-blocking way. Here\'s what you need to know.',
+    description: 'Here\'s how you can set HTTP response headers in Express.js',
     tags: ['express'],
     date: moment('2024-07-09')
   },
