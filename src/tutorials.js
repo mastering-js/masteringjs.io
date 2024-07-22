@@ -10,7 +10,7 @@ const tutorials = [
     raw: './tutorials/node/check-if-file-exists.md',
     url: '/tutorials/node/check-if-file-exists',
     description: 'Here\'s how you can check if a file exists using the fs module in Node.js',
-    tags: ['express'],
+    tags: ['node'],
     date: moment('2024-07-21')
   },
   {
