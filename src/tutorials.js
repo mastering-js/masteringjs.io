@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Check if a File Exists in Node.js',
+    raw: './tutorials/node/check-if-file-exists.md',
+    url: '/tutorials/node/check-if-file-exists',
+    description: 'Here\'s how you can check if a file exists using the fs module in Node.js',
+    tags: ['express'],
+    date: moment('2024-07-21')
+  },
+  {
     title: 'How to Set Response Headers in Express',
     raw: './tutorials/express/set-response-headers.md',
     url: '/tutorials/express/set-response-headers',
