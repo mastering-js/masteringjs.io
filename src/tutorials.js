@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Make a Sinon Spy Return a Value',
+    raw: './tutorials/sinon/spy-return-value.md',
+    url: '/tutorials/sinon/spy-return-value',
+    description: 'Here\'s how to make a spy return a value in Sinon.js',
+    tags: ['sinon'],
+    date: moment('2024-08-13')
+  },
+  {
     title: 'Check if a File Exists in Node.js',
     raw: './tutorials/node/check-if-file-exists.md',
     url: '/tutorials/node/check-if-file-exists',
