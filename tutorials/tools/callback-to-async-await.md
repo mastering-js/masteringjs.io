@@ -21,13 +21,13 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
 
   #masteringjs-leaderboard-banner {
     position: absolute;
-    left: -350px;
+    left: -320px;
     bottom: 125px;
     width: 300px;
     height: 600px;
   }
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1600px) {
     #masteringjs-leaderboard-banner {
       display: none;
     }
