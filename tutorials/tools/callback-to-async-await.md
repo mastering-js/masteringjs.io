@@ -18,6 +18,18 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
   button.opt:disabled {
     background-color: #ddd;
   }
+
+  #masteringjs-leaderboard-banner {
+    position: absolute;
+    left: -350px;
+    top: -125px;
+  }
+
+  @media (max-width: 1350px) {
+    #masteringjs-leaderboard-banner {
+      display: none;
+    }
+  }
 </style>
 
 <div>
