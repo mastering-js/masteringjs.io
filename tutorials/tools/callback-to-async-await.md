@@ -22,7 +22,7 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
   #masteringjs-leaderboard-banner {
     position: absolute;
     left: -350px;
-    top: -125px;
+    bottom: 125px;
     width: 300px;
     height: 600px;
   }
