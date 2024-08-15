@@ -23,6 +23,8 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
     position: absolute;
     left: -350px;
     top: -125px;
+    width: 300px;
+    height: 600px;
   }
 
   @media (max-width: 1350px) {
