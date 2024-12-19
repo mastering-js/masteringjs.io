@@ -99,21 +99,6 @@ module.exports = ({ posts }) => `
             </a>
           </div>
           <div class="col-lg-4">
-            <a href="https://www.kongcasino.com/" rel="sponsored">
-              <img src="https://codebarbarian-images.s3.amazonaws.com/kong-casino.png" alt="casino" style="max-height: 100px"/>
-            </a>
-          </div>
-          <div class="col-lg-4">
-            <a href="https://www.wizardslots.com/" rel="sponsored">
-              <img src="https://codebarbarian-images.s3.amazonaws.com/wizard-slots.png" alt="slots" style="max-height: 100px"/>
-            </a>
-          </div>
-          <div class="col-lg-4">
-            <a href="https://www.kingcasino.com/slots/" rel="sponsored">
-              <img src="https://codebarbarian-images.s3.amazonaws.com/king-casino.png" alt="slots" style="max-height: 100px"/>
-            </a>
-          </div>
-          <div class="col-lg-4">
             <a href="https://automatenspielex.com/" rel="sponsored">
               <img src="https://codebarbarian-images.s3.amazonaws.com/Automatenspiele+LOGO.png" style="max-height: 100px"/>
             </a>
