@@ -7,7 +7,7 @@ const axiosPath = require('./axiosPath');
 const tutorials = [
   {
     title: 'Getting Started with Oso Authorization in Node.js',
-    raw: './tutorials/node/oso',
+    raw: './tutorials/node/oso.md',
     url: '/tutorials/node/oso',
     description: 'Here\'s how you can get started with Oso\'s authorization service in Node.js',
     tags: ['node'],
