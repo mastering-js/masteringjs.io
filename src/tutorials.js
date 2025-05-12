@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'Getting Started with Oso Authorization in Node.js',
+    raw: './tutorials/node/oso',
+    url: '/tutorials/node/oso',
+    description: 'Here\'s how you can get started with Oso\'s authorization service in Node.js',
+    tags: ['node'],
+    date: moment('2025-05-12')
+  },
+  {
     title: 'Make a Sinon Spy Return a Value',
     raw: './tutorials/sinon/spy-return-value.md',
     url: '/tutorials/sinon/spy-return-value',
