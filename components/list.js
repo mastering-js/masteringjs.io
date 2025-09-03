@@ -41,6 +41,6 @@ const post = p => `
 
 const tag = t => `
 <span class="tag">
-  <a href="/${t}">${t}</a>
+  <a href="/${p.url}">${t}</a>
 </span>
 `;
