@@ -6,6 +6,14 @@ const axiosPath = require('./axiosPath');
 
 const tutorials = [
   {
+    title: 'How to update multiple documents with Mongoose Studio',
+    raw: './tutorials/mongoose/studio-update-multiple.md',
+    url: '/tutorials/mongoose/studio-update-multiple',
+    description: 'Here\'s how you can update multiple documents using Mongoose Studio',
+    tags: ['mongoose'],
+    date: moment('2025-09-12')
+  },
+  {
     title: 'Getting Started with Oso Authorization in Node.js',
     raw: './tutorials/node/oso.md',
     url: '/tutorials/node/oso',
