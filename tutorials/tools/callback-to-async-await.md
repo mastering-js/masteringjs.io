@@ -52,6 +52,27 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
 <script>
   window.stratosSettings = {
     publisherId: '641a1e06290373f15cc3a920',
+    adSlots: [
+      {
+        adUnitCode: 'masteringjs-leaderboard-banner',
+        adFormat: 'chat',
+        sizes: [[300, 600]],
+      },
+    ],
+    cssOverrides: `
+      .ad-container { background-color: #fafafa !important; }
+      .ad-header { color: black !important; }
+      .ad-main { color: black !important; }
+      .ad-main .headline { color: black !important; }
+      .question-header { color: black !important; }
+      .ad-questions li { background-color: #19E2F1 !important; color: white !important; }
+      .ad-footer { background-color: #fafafa !important; }
+      .ad-input input { border: 1px solid #ddd !important; }
+      .ad-input-container { background-color: #fafafa !important; }
+      .ad-footer button { background-color: #19E2F1 !important; color: white !important; }
+      .ad-footer a { background-color: #19E2F1 !important; color: white !important; }
+      .skeleton-loader { display: none !important; }
+    `
   };
   window.stratos = window.stratos || { queue: [] };
   window.stratos.queue.push(function() { 
@@ -114,9 +135,9 @@ Enter in your callback-based code in the input below, and click "Run" (or press 
       }
     }, 250);
     const code = input.getValue();
-    if (!isLocalhost) {
+    //if (!isLocalhost) {
       window.stratos.trackPrompt(code);
-    }
+    //}
     setTimeout(() => {
       if (inProgress) {
         VanillaToasts.create({
