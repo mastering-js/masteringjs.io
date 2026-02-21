@@ -1,33 +1,23 @@
 module.exports = () => `
 <div class="cta">
   <i>
-    Want to become your team's Express expert? There's no better way to really grok a framework than to write your own
-    clone from scratch. In 15 concise pages, this tutorial walks you through how to write a simplified clone of Express
-    called Espresso.
-    <a href="https://gum.co/tlcRd">Get your copy!</a>
+    Built an Express app and want to deploy it?
   </i>
 
   <br><br>
 
   <i>
-    Espresso supports:
-
-    <ul>
-      <li>Route handlers, like \`app.get()\` and \`app.post()\`</li>
-      <li>Express-compatible middleware, like \`app.use(require('cors')())\`</li>
-      <li>Express 4.0 style subrouters</li>
-    </ul>
-
-    As a bonus, Espresso also supports async functions, unlike Express.
+    We recommend Railway. It lets you deploy Node.js and Express apps without dealing with servers,
+  Docker, CI/CD pipelines, or infrastructure. Click button, select GitHub repo, get URL. We've been using Railway for years to spin up apps quickly.
 
     <br><br>
 
-    <a href="https://gum.co/tlcRd">Get the tutorial and master Express today!</a>
+    <a href="https://railway.com?referralCode=CD4_kV">Deploy your Express app on Railway in minutes</a>
   </i>
 
   <div class="cta-img-wrap">
-    <a href="https://gum.co/tlcRd">
-      <img src="/assets/write-your-own-express-banner.png">
+    <a href="https://railway.com?referralCode=CD4_kV">
+      <img src="https://res.cloudinary.com/drfhhq8wu/image/upload/v1771711216/railway-ad-3_lowjo8.webp">
     </a>
   </div>
  </div>
