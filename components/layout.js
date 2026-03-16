@@ -26,7 +26,7 @@ module.exports = params => `
     <meta name="twitter:image" content="https://masteringjs.io/assets/logo.png">
     <meta property="og:image" content="https://masteringjs.io/assets/logo.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Consolas:400,700" rel="stylesheet">
     <link href="https://masteringjs.io/assets/logo.png" rel="shortcut icon" type="image/x-icon">
@@ -45,10 +45,44 @@ module.exports = params => `
       ${footer()}
       ${floatAd(params.ad)}
     </div>
+    ${openAdsChat}
+    <link rel="stylesheet" href="/assets/openads-chat.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.2/marked.min.js"></script>
+    <script src="/assets/js/openads-chat.js"></script>
     ${carbonAdScript(params.carbonAds)}
   </body>
 </html>
 `;
+
+const openAdsChat = `
+<div class="openads-chat">
+  <div class="openads-chat-wrapper">
+    <div class="openads-chat-exit">&times;</div>
+    <div class="openads-chat-history">
+      <div class="openads-chat-history-message bot">
+        <div class="participant">
+          <img src="/assets/logo.svg">
+          Mastering JS
+        </div>
+        <div class="openads-chat-message-body">
+          Hi, I'm a JavaScript programming bot.
+          Ask me something about JavaScript!
+        </div>
+      </div>
+    </div>
+    <form action="javascript:submitOpenAdsMessage()">
+      <div class="openads-chat-new-message">
+        <div class="openads-chat-input">
+          <textarea placeholder="Ask Anything"></textarea>
+        </div>
+        <div class="open-ads-chat-button">
+          <button class="openads-chat-submit">&raquo;</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`.trim();
 
 function carbonAdScript(carbonAds) {
   if (carbonAds === false) {
